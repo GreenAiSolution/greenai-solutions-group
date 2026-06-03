@@ -1,5 +1,5 @@
 /* =============================================
-   GreenAI Realty Solutions — Main JavaScript
+   GreenAI Solution Team — Main JavaScript
    ============================================= */
 
 (function () {
