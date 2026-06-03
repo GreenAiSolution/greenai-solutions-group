@@ -141,7 +141,12 @@
           <h3>Send a Message</h3>
           <p>Fill out the form below and we'll be in touch within one business day. All fields marked with * are required.</p>
 
-          <form class="js-contact-form" novalidate aria-label="Contact form">
+          <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Contact form">
+            <input type="hidden" name="access_key" value="PASTE_YOUR_KEY_HERE" />
+            <input type="hidden" name="subject" value="New Quote Request — GreenAI Solution Team" />
+            <input type="hidden" name="from_name" value="GreenAI Solution Team Website" />
+            <input type="hidden" name="redirect" value="https://willystakker.github.io/greenai-solutions-group/thankyou.html" />
+
             <div class="form-row">
               <div class="form-group">
                 <label for="first-name">First Name *</label>
