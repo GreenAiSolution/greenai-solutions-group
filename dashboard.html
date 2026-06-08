@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GreenAI Worker Dashboard</title>
+
+  <!-- iPad PWA: save to home screen = full-screen app -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GreenAI Work" />
+  <meta name="theme-color" content="#1a5c2a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ── Variables ── */
+:root {
+  --green-dark:   #1a5c2a;
+  --green-mid:    #236b35;
+  --green-light:  #2e8b47;
+  --green-pale:   #e8f4eb;
+  --green-accent: #4caf6e;
+  --white:        #ffffff;
+  --off-white:    #f9fafb;
+  --gray-100:     #f3f4f6;
+  --gray-200:     #e5e7eb;
+  --gray-400:     #9ca3af;
+  --gray-600:     #4b5563;
+  --gray-800:     #1f2937;
+  --radius-md:    12px;
+  --radius-lg:    20px;
+  --shadow-md:    0 4px 16px rgba(0,0,0,.10);
+  --shadow-green: 0 8px 32px rgba(26,92,42,.22);
+  --font-body:    'Inter', sans-serif;
+  --font-display: 'Playfair Display', serif;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--off-white);
+  color: var(--gray-800);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ── Top Bar ── */
+.topbar {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  padding: calc(env(safe-area-inset-top) + 18px) 20px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-green);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar__logo-icon {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.15);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+}
+.topbar__logo-text { color: white; }
+.topbar__logo-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar__logo-sub  { font-size: .65rem; opacity: .8; letter-spacing: .08em; text-transform: uppercase; }
+.topbar__right { text-align: right; color: white; }
+.topbar__date { font-size: .75rem; opacity: .75; }
+.topbar__greeting { font-size: .9rem; font-weight: 600; }
+
+/* ── Main Layout ── */
+.main { padding: 20px 16px; max-width: 900px; margin: 0 auto; }
+
+/* ── Section Headers ── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .badge {
+  background: var(--green-pale);
+  color: var(--green-dark);
+  font-family: var(--font-body);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+/* ── Progress Bar ── */
+.progress-wrap { margin: 10px 0 16px; }
+.progress-label { font-size: .78rem; color: var(--gray-600); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.progress-bar {
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-light), var(--green-accent));
+  border-radius: 99px;
+  transition: width .4s ease;
+}
+
+/* ── Checklist ── */
+.checklist { display: flex; flex-direction: column; gap: 10px; }
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all .2s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.checklist-item.done { background: var(--green-pale); }
+.checklist-item.done .check-label { text-decoration: line-through; color: var(--gray-400); }
+.check-box {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  border: 2px solid var(--gray-400);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.checklist-item.done .check-box {
+  background: var(--green-light);
+  border-color: var(--green-light);
+  color: white;
+}
+.check-label { font-size: .95rem; font-weight: 500; }
+.check-meta { font-size: .72rem; color: var(--gray-400); margin-left: auto; white-space: nowrap; }
+
+/* ── Quick Launch Grid ── */
+.launch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.launch-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 8px;
+  border-radius: var(--radius-md);
+  font-size: .8rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 3px 10px rgba(0,0,0,.15);
+}
+.launch-btn:active { transform: scale(.96); }
+.launch-btn .icon { font-size: 1.7rem; }
+.launch-btn.canva    { background: linear-gradient(135deg, #7B2FF7, #B44AC0); }
+.launch-btn.ig       { background: linear-gradient(135deg, #833AB4, #E1306C, #F77737); }
+.launch-btn.tiktok   { background: linear-gradient(135deg, #010101, #69C9D0); }
+.launch-btn.facebook { background: linear-gradient(135deg, #0668E1, #1877F2); }
+.launch-btn.later    { background: linear-gradient(135deg, #FF6B6B, #FFD93D); color: #1f2937; }
+.launch-btn.claude   { background: linear-gradient(135deg, var(--green-dark), var(--green-accent)); }
+
+/* ── Content Prompt Generator ── */
+.prompt-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.prompt-controls select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: .9rem;
+  color: var(--gray-800);
+  background: var(--gray-100);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.generate-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  box-shadow: var(--shadow-green);
+  transition: transform .15s, box-shadow .15s;
+}
+.generate-btn:active { transform: scale(.98); }
+.prompt-output {
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  font-size: .88rem;
+  color: var(--gray-800);
+  line-height: 1.6;
+  min-height: 80px;
+  border-left: 3px solid var(--green-accent);
+  display: none;
+}
+.copy-row { display: flex; gap: 8px; margin-top: 10px; }
+.copy-btn {
+  flex: 1;
+  padding: 10px;
+  background: var(--green-pale);
+  color: var(--green-dark);
+  border-radius: var(--radius-md);
+  font-size: .85rem;
+  font-weight: 700;
+  transition: background .2s;
+}
+.copy-btn:active { background: var(--green-accent); color: white; }
+
+/* ── Client Board ── */
+.client-add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.client-add-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: .9rem;
+  background: var(--gray-100);
+  color: var(--gray-800);
+}
+.client-add-row input:focus { outline: none; border-color: var(--green-light); }
+.add-client-btn {
+  padding: 10px 18px;
+  background: var(--green-dark);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: .9rem;
+  font-weight: 700;
+}
+.client-list { display: flex; flex-direction: column; gap: 8px; }
+.client-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--green-accent);
+}
+.client-card__name { font-weight: 600; font-size: .95rem; }
+.client-card__meta { font-size: .75rem; color: var(--gray-400); margin-top: 2px; }
+.client-status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.status-active   { background: #d1fae5; color: #065f46; }
+.status-pending  { background: #fef3c7; color: #92400e; }
+.status-new      { background: #dbeafe; color: #1e40af; }
+.client-delete {
+  font-size: 1.1rem;
+  color: var(--gray-400);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.client-delete:active { color: #ef4444; }
+.no-clients { text-align: center; color: var(--gray-400); font-size: .9rem; padding: 20px; }
+
+/* ── Post Log ── */
+.log-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.log-form input, .log-form select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: .85rem;
+  background: var(--gray-100);
+  color: var(--gray-800);
+}
+.log-form input:focus, .log-form select:focus { outline: none; border-color: var(--green-light); }
+.log-add-btn {
+  padding: 10px 14px;
+  background: var(--green-dark);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: .9rem;
+  font-weight: 700;
+}
+.post-log-list { display: flex; flex-direction: column; gap: 6px; }
+.post-log-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  font-size: .85rem;
+}
+.platform-tag {
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tag-ig       { background: #fce7f3; color: #9d174d; }
+.tag-tiktok   { background: #e0f2fe; color: #075985; }
+.tag-facebook { background: #dbeafe; color: #1e40af; }
+.post-log-time { margin-left: auto; color: var(--gray-400); font-size: .72rem; white-space: nowrap; }
+.post-log-del { color: var(--gray-400); font-size: 1rem; padding: 2px 6px; }
+.post-log-del:active { color: #ef4444; }
+.no-logs { text-align: center; color: var(--gray-400); font-size: .85rem; padding: 16px; }
+
+/* ── Reset Day Button ── */
+.reset-row { text-align: center; margin-bottom: 24px; }
+.reset-btn {
+  padding: 10px 24px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 99px;
+  font-size: .82rem;
+  color: var(--gray-400);
+  background: white;
+}
+.reset-btn:active { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+</style>
+</head>
+<body>
+
+<!-- ── Top Bar ── -->
+<header class="topbar">
+  <div class="topbar__logo">
+    <div class="topbar__logo-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="17.5" cy="13" r="1.1" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="topbar__logo-text">
+      <span class="topbar__logo-name">GreenAI</span>
+      <span class="topbar__logo-sub">Employee Portal</span>
+    </div>
+  </div>
+  <div class="topbar__right">
+    <div class="topbar__date" id="js-date"></div>
+    <div class="topbar__greeting">Social Media Mgmt</div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ── 1. Daily Task Checklist ── -->
+  <div class="card">
+    <div class="section-title">
+      ✅ Daily Tasks
+      <span class="badge" id="task-badge">0 / 7 done</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Today's progress</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-bar__fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="checklist" id="checklist">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ── 2. Quick Launch ── -->
+  <div class="card">
+    <div class="section-title">🚀 Quick Launch</div>
+    <div class="launch-grid">
+      <a href="https://canva.com" target="_blank" class="launch-btn canva">
+        <span class="icon">🎨</span>Canva
+      </a>
+      <a href="https://instagram.com" target="_blank" class="launch-btn ig">
+        <span class="icon">📸</span>Instagram
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="launch-btn tiktok">
+        <span class="icon">🎵</span>TikTok
+      </a>
+      <a href="https://facebook.com" target="_blank" class="launch-btn facebook">
+        <span class="icon">📘</span>Facebook
+      </a>
+      <a href="https://later.com" target="_blank" class="launch-btn later">
+        <span class="icon">📅</span>Later
+      </a>
+      <a href="https://claude.ai" target="_blank" class="launch-btn claude">
+        <span class="icon">🤖</span>Claude AI
+      </a>
+    </div>
+  </div>
+
+  <!-- ── 3. AI Content Prompt Generator ── -->
+  <div class="card">
+    <div class="section-title">✍️ Content Prompt Generator</div>
+    <div class="prompt-controls">
+      <select id="platform-select">
+        <option value="">Platform…</option>
+        <option value="Instagram">Instagram</option>
+        <option value="TikTok">TikTok</option>
+        <option value="Facebook">Facebook</option>
+      </select>
+      <select id="niche-select">
+        <option value="">Niche…</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Small Business">Small Business</option>
+        <option value="Notary Services">Notary Services</option>
+        <option value="AI & Tech">AI & Tech</option>
+        <option value="General Business">General Business</option>
+      </select>
+    </div>
+    <button class="generate-btn" onclick="generatePrompt()">⚡ Generate Content Prompt</button>
+    <div class="prompt-output" id="prompt-output"></div>
+    <div class="copy-row" id="copy-row" style="display:none">
+      <button class="copy-btn" onclick="copyPrompt()">📋 Copy Prompt</button>
+    </div>
+  </div>
+
+  <!-- ── 4. Client Board ── -->
+  <div class="card">
+    <div class="section-title">👥 Client Board</div>
+    <div class="client-add-row">
+      <input type="text" id="client-input" placeholder="Add client name…" maxlength="40" />
+      <button class="add-client-btn" onclick="addClient()">+ Add</button>
+    </div>
+    <div class="client-list" id="client-list">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ── 5. Post Log ── -->
+  <div class="card">
+    <div class="section-title">📊 Today's Post Log</div>
+    <div class="log-form">
+      <input type="text" id="log-client" placeholder="Client name" maxlength="30" />
+      <select id="log-platform">
+        <option value="Instagram">Instagram</option>
+        <option value="TikTok">TikTok</option>
+        <option value="Facebook">Facebook</option>
+      </select>
+      <button class="log-add-btn" onclick="logPost()">Log</button>
+    </div>
+    <div class="post-log-list" id="post-log">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ── Reset ── -->
+  <div class="reset-row">
+    <button class="reset-btn" onclick="confirmReset()">🔄 Reset Day (clear tasks & log)</button>
+  </div>
+
+</main>
+
+<script>
+/* ── State ── */
+const TASKS_KEY   = 'greenai_tasks_v1';
+const CLIENTS_KEY = 'greenai_clients_v1';
+const POSTS_KEY   = 'greenai_posts_v1';
+const DATE_KEY    = 'greenai_date_v1';
+
+const TASK_DEFS = [
+  { id: 't1', label: 'Check client content calendar',       meta: '9am' },
+  { id: 't2', label: 'Create Instagram post(s)',             meta: 'Canva' },
+  { id: 't3', label: 'Create TikTok video / caption',        meta: 'Canva' },
+  { id: 't4', label: 'Create Facebook post(s)',              meta: 'Canva' },
+  { id: 't5', label: 'Schedule all posts in Later/Buffer',   meta: 'Later' },
+  { id: 't6', label: 'Reply to comments & DMs',              meta: 'Daily' },
+  { id: 't7', label: 'Send client weekly update message',    meta: 'Friday' },
+];
+
+/* ── Helpers ── */
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function loadTasks() {
+  const saved = JSON.parse(localStorage.getItem(TASKS_KEY) || '{}');
+  const date  = localStorage.getItem(DATE_KEY);
+  if (date !== today()) {
+    localStorage.setItem(DATE_KEY, today());
+    localStorage.removeItem(TASKS_KEY);
+    return {};
+  }
+  return saved;
+}
+
+function saveTasks(done) {
+  localStorage.setItem(TASKS_KEY, JSON.stringify(done));
+}
+
+function loadClients() {
+  return JSON.parse(localStorage.getItem(CLIENTS_KEY) || '[]');
+}
+
+function saveClients(list) {
+  localStorage.setItem(CLIENTS_KEY, JSON.stringify(list));
+}
+
+function loadPosts() {
+  const saved = JSON.parse(localStorage.getItem(POSTS_KEY) || '{"date":"","items":[]}');
+  if (saved.date !== today()) return { date: today(), items: [] };
+  return saved;
+}
+
+function savePosts(data) {
+  localStorage.setItem(POSTS_KEY, JSON.stringify(data));
+}
+
+/* ── Date display ── */
+(function() {
+  const d = new Date();
+  const opts = { weekday: 'short', month: 'short', day: 'numeric' };
+  document.getElementById('js-date').textContent = d.toLocaleDateString('en-US', opts);
+})();
+
+/* ── Checklist ── */
+let taskDone = loadTasks();
+
+function renderChecklist() {
+  const el = document.getElementById('checklist');
+  const count = TASK_DEFS.filter(t => taskDone[t.id]).length;
+  const pct = Math.round((count / TASK_DEFS.length) * 100);
+
+  document.getElementById('task-badge').textContent = `${count} / ${TASK_DEFS.length} done`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  el.innerHTML = TASK_DEFS.map(t => `
+    <div class="checklist-item${taskDone[t.id] ? ' done' : ''}" onclick="toggleTask('${t.id}')">
+      <div class="check-box">
+        ${taskDone[t.id] ? '<svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l4 4L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+      </div>
+      <span class="check-label">${t.label}</span>
+      <span class="check-meta">${t.meta}</span>
+    </div>
+  `).join('');
+}
+
+function toggleTask(id) {
+  taskDone[id] = !taskDone[id];
+  saveTasks(taskDone);
+  renderChecklist();
+}
+
+renderChecklist();
+
+/* ── Prompt Generator ── */
+const PROMPTS = {
+  'Instagram|Real Estate': `Write a compelling Instagram caption for a real estate agent in Arizona. Hook the reader with a surprising local market stat, highlight the benefit of working with an agent who responds within 5 minutes, and end with a call-to-action to DM for a free home value estimate. Keep it under 150 words. Include 5 relevant hashtags.`,
+  'Instagram|Small Business': `Write an Instagram caption for an Arizona small business owner. Start with a relatable pain point about social media being overwhelming, then position AI-powered social media management as the solution. Keep a warm, conversational tone. Under 150 words. Include 5 hashtags.`,
+  'Instagram|Notary Services': `Write an Instagram post for a mobile notary service in the Phoenix metro area. Emphasize convenience, speed, and professionalism. Include a CTA to book online. Under 120 words with 4 hashtags.`,
+  'Instagram|AI & Tech': `Write an Instagram post educating Arizona business owners about how AI can handle their lead follow-up in under 5 minutes. Keep it accessible — no jargon. End with a CTA for a free consultation. Under 150 words with 5 hashtags.`,
+  'Instagram|General Business': `Write an Instagram post for a local Arizona business. Share one actionable tip about growing your online presence. Friendly and motivating tone. Under 130 words with 5 hashtags.`,
+  'TikTok|Real Estate': `Write a TikTok video script (30–45 seconds) for a real estate agent in Arizona. Hook: "Here's why most agents lose deals in the first 5 minutes." Then explain the importance of fast lead response. End with a soft CTA. Include on-screen text cue suggestions.`,
+  'TikTok|Small Business': `Write a TikTok script (under 60 seconds) for a small business owner showing their "day in the life" running social media with AI tools. Relatable, energetic, trend-aware. Include suggested transitions.`,
+  'TikTok|Notary Services': `Write a short TikTok script (30 seconds) demystifying the notary process — what it is, when you need it, and how mobile notary makes it easy. Educational and friendly.`,
+  'TikTok|AI & Tech': `Write a TikTok script (45 seconds) that explains in plain English how AI can automate lead follow-up for Arizona businesses. Use a before/after format. High energy, clear hook.`,
+  'TikTok|General Business': `Write a TikTok script (30 seconds) with 3 quick tips any Arizona business owner can use today to get more engagement on social media. Fast-paced, numbered tips format.`,
+  'Facebook|Real Estate': `Write a Facebook post for a real estate agent in the Phoenix metro area. Share a brief success story (fictional) about helping a buyer find their dream home fast. Emphasize local expertise and quick response. End with a CTA. 200 words max.`,
+  'Facebook|Small Business': `Write a Facebook post for a local Arizona small business promoting a limited-time social media management package. Highlight results and include a link CTA. Professional but approachable. 180 words max.`,
+  'Facebook|Notary Services': `Write a Facebook post for a mobile notary service in Maricopa County. Explain what documents require notarization (loan signings, POAs, etc.) and why mobile is more convenient. Include a booking CTA. 200 words max.`,
+  'Facebook|AI & Tech': `Write a Facebook post educating local business owners about AI workflow automation. Use a simple before/after example. Include a link to a free consultation. 180 words max.`,
+  'Facebook|General Business': `Write a Facebook post for a local Arizona business sharing their company values and community involvement. Warm, authentic tone. Include a CTA to follow the page. 150 words max.`,
+};
+
+function generatePrompt() {
+  const platform = document.getElementById('platform-select').value;
+  const niche    = document.getElementById('niche-select').value;
+  const out      = document.getElementById('prompt-output');
+  const copyRow  = document.getElementById('copy-row');
+
+  if (!platform || !niche) {
+    out.textContent = '⚠️ Please select a platform AND a niche first.';
+    out.style.display = 'block';
+    copyRow.style.display = 'none';
+    return;
+  }
+
+  const key = `${platform}|${niche}`;
+  const prompt = PROMPTS[key] || `Write a high-converting ${platform} post for a ${niche} business in Arizona. Make it engaging, locally relevant, and end with a clear call-to-action. Match the platform's native tone and format.`;
+
+  out.textContent = prompt;
+  out.style.display = 'block';
+  copyRow.style.display = 'flex';
+}
+
+function copyPrompt() {
+  const text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Prompt', 2000);
+  }).catch(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '⚠️ Copy manually';
+  });
+}
+
+/* ── Client Board ── */
+let clients = loadClients();
+
+function renderClients() {
+  const el = document.getElementById('client-list');
+  if (!clients.length) {
+    el.innerHTML = '<div class="no-clients">No clients yet — add your first one above ☝️</div>';
+    return;
+  }
+  const statusCycle = ['new', 'active', 'pending'];
+  const statusLabel = { new: 'New', active: 'Active', pending: 'Pending' };
+  el.innerHTML = clients.map((c, i) => `
+    <div class="client-card">
+      <div>
+        <div class="client-card__name">${c.name}</div>
+        <div class="client-card__meta">Added ${c.date}</div>
+      </div>
+      <span class="client-status status-${c.status}" onclick="cycleStatus(${i})">${statusLabel[c.status]}</span>
+      <button class="client-delete" onclick="deleteClient(${i})">✕</button>
+    </div>
+  `).join('');
+}
+
+function addClient() {
+  const input = document.getElementById('client-input');
+  const name = input.value.trim();
+  if (!name) return;
+  clients.push({ name, status: 'new', date: today() });
+  saveClients(clients);
+  renderClients();
+  input.value = '';
+}
+
+function cycleStatus(i) {
+  const cycle = ['new', 'active', 'pending'];
+  const cur = cycle.indexOf(clients[i].status);
+  clients[i].status = cycle[(cur + 1) % cycle.length];
+  saveClients(clients);
+  renderClients();
+}
+
+function deleteClient(i) {
+  if (!confirm(`Remove "${clients[i].name}"?`)) return;
+  clients.splice(i, 1);
+  saveClients(clients);
+  renderClients();
+}
+
+document.getElementById('client-input').addEventListener('keydown', e => { if (e.key === 'Enter') addClient(); });
+
+renderClients();
+
+/* ── Post Log ── */
+let postData = loadPosts();
+
+function renderLog() {
+  const el = document.getElementById('post-log');
+  if (!postData.items.length) {
+    el.innerHTML = '<div class="no-logs">No posts logged today yet.</div>';
+    return;
+  }
+  const tagClass = { Instagram: 'tag-ig', TikTok: 'tag-tiktok', Facebook: 'tag-facebook' };
+  el.innerHTML = [...postData.items].reverse().map((p, ri) => {
+    const i = postData.items.length - 1 - ri;
+    return `
+      <div class="post-log-item">
+        <span class="platform-tag ${tagClass[p.platform] || ''}">${p.platform}</span>
+        <span>${p.client}</span>
+        <span class="post-log-time">${p.time}</span>
+        <button class="post-log-del" onclick="deletePost(${i})">✕</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function logPost() {
+  const client   = document.getElementById('log-client').value.trim();
+  const platform = document.getElementById('log-platform').value;
+  if (!client) { document.getElementById('log-client').focus(); return; }
+  const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  postData.items.push({ client, platform, time: now });
+  savePosts(postData);
+  renderLog();
+  document.getElementById('log-client').value = '';
+}
+
+function deletePost(i) {
+  postData.items.splice(i, 1);
+  savePosts(postData);
+  renderLog();
+}
+
+document.getElementById('log-client').addEventListener('keydown', e => { if (e.key === 'Enter') logPost(); });
+
+renderLog();
+
+/* ── Reset Day ── */
+function confirmReset() {
+  if (!confirm('Reset today\'s tasks and post log? Clients are kept.')) return;
+  localStorage.removeItem(TASKS_KEY);
+  localStorage.removeItem(POSTS_KEY);
+  localStorage.setItem(DATE_KEY, today());
+  taskDone = {};
+  postData  = { date: today(), items: [] };
+  renderChecklist();
+  renderLog();
+}
+</script>
+</body>
+</html>
