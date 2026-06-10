@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GreenAI Solutions Team — Arizona's Growth Partner</title>
-  <meta name="description" content="GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media management. Based in Gilbert, AZ." />
+  <meta name="description" content="GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media management, and professional notary services. Based in Gilbert, AZ." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -12,7 +12,222 @@
 </head>
 <body>
 
-  
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="17.5" cy="13" r="1.1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">GreenAI</span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li><a href="contact.html"  class="nav__link" data-page="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="contact.html" class="btn btn-primary nav__cta">Get a Free Consultation</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="contact.html"  class="nav__link" data-page="contact.html">Contact</a></li>
+        <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Get a Free Consultation</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__bg-pattern" aria-hidden="true"></div>
+    <div class="hero__grid-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot" aria-hidden="true"></span>
+          AI-Powered Business Growth · Gilbert, AZ
+        </div>
+
+        <h1 id="hero-heading">
+          Your Business.<br/>
+          <span>Amplified</span> by AI.
+        </h1>
+
+        <p class="hero__sub">
+          GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media that actually converts, and trusted professional services — all from one dedicated partner.
+        </p>
+
+        <div class="hero__actions">
+          <a href="contact.html" class="btn btn-white btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Book a Free Strategy Call
+          </a>
+          <a href="services.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.9)">
+            Explore Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="hero__stats" aria-label="Key statistics">
+          <div class="hero__stat">
+            <div class="hero__stat-num">
+              <span class="js-counter" data-target="3" data-suffix="x">3x</span>
+            </div>
+            <div class="hero__stat-label">More leads from social media</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">
+              <span class="js-counter" data-target="18" data-suffix="hrs">18hrs</span>
+            </div>
+            <div class="hero__stat-label">Saved per client per week</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">Free</div>
+            <div class="hero__stat-label">First strategy consultation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS TRUST BAR ===== -->
+  <section style="background:#fff;border-top:1px solid #e8ede9;border-bottom:1px solid #e8ede9;padding:1.5rem 0;">
+    <div class="container">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:1.25rem 2.5rem;justify-content:center;">
+        <span style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a9e8d;white-space:nowrap;">Certified In</span>
+        <!-- Google Ads -->
+        <div style="display:flex;align-items:center;gap:.6rem;">
+          <div style="width:32px;height:32px;border-radius:8px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#4285F4"/><path d="M17.65 6.35A8 8 0 1 0 19.78 11H18a6 6 0 1 1-1.52-3.93l1.52-1.52.88-.88c-.12-.12-.25-.23-.23-.32z" fill="#fff"/><path d="M12 8v4l3 3" stroke="#4285F4" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">Google Ads</div>
+            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">Google Certified</div>
+          </div>
+        </div>
+        <!-- divider -->
+        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
+        <!-- Meta Blueprint -->
+        <div style="display:flex;align-items:center;gap:.6rem;">
+          <div style="width:32px;height:32px;border-radius:8px;background:#1877F2;box-shadow:0 1px 6px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">Meta Blueprint</div>
+            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">Meta Certified</div>
+          </div>
+        </div>
+        <!-- divider -->
+        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
+        <!-- HubSpot -->
+        <div style="display:flex;align-items:center;gap:.6rem;">
+          <div style="width:32px;height:32px;border-radius:8px;background:#FF7A59;box-shadow:0 1px 6px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="3"/><path d="M7 20c0-2.76 2.24-5 5-5s5 2.24 5 5"/><circle cx="19" cy="12" r="2"/><path d="M12 11v2"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">HubSpot Digital Marketing</div>
+            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">HubSpot Certified</div>
+          </div>
+        </div>
+        <!-- divider -->
+        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
+        <a href="about.html#certifications" style="font-size:.78rem;font-weight:600;color:var(--green-dark);text-decoration:none;white-space:nowrap;">View All Credentials →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUE PROPS ===== -->
+  <section class="section bg-gray" aria-labelledby="value-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Why GreenAI</span>
+        <h2 id="value-heading">One Partner. Three Ways<br/>to Dominate Your Market.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width:560px;margin:0 auto 3rem">Most Arizona businesses are leaving money on the table. We bring the strategy, the tools, and the relentless execution to fix that.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Social Media That Sells</h3>
+          <p>We handle your Instagram, TikTok, and Facebook end-to-end — content, posting, engagement, and growth. You run the business. We make sure everyone knows about it.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div>
+          <h3>AI-Powered Business Systems</h3>
+          <p>Stop losing leads to slow follow-up. Our AI responds to prospects in under 5 minutes, automates your CRM, and builds workflows that run while you sleep.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="14" y2="16"/></svg></div>
+          <h3>Professional Notary Services</h3>
+          <p>Fast, certified, and mobile. We come to you for real estate signings, general notarizations, and loan documents — available evenings and weekends.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>Real Estate Specialization</h3>
+          <p>From AI listing optimization to automated lead follow-up, we know the real estate game inside and out. Agents across the Phoenix metro trust GreenAI to fill their pipeline.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <h3>ROI You Can Measure</h3>
+          <p>Every service comes with clear metrics. You'll see exactly what's working, what it's generating, and what your return looks like — month over month.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>A Real Partner, Not a Vendor</h3>
+          <p>You work directly with Jaden — not an account manager. We keep our client roster small so every business gets the attention and hustle it deserves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES OVERVIEW ===== -->
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Our Services</span>
+        <h2 id="services-heading">Three Services. One Goal:<br/>Grow Your Business.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width:500px;margin:0 auto 3rem">Every service is built to put more money in your pocket and more time back in your day.</p>
+      </div>
+
+      <div class="grid-3" style="gap:2rem">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-card__header">
+            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+            <h3>Social Media Management</h3>
+            <p>We run your Instagram, TikTok, and Facebook from top to bottom — so you show up online every single day without lifting a finger.</p>
+          </div>
+          <div class="service-card__body">
+            <ul class="service-card__list" role="list">
+              <li>Content strategy & creation</li>
+              <li>Daily posting & scheduling</li>
+              <li>Community engagement & DMs</li>
+              <li>Monthly performance reports</li>
+              <li>Paid ad management (optional)</li>
+            </ul>
+            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $500/mo</div>
+            <a href="services.html#social-media" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
 
         <div class="service-card reveal reveal-delay-2">
           <div class="service-card__header">
@@ -35,20 +250,20 @@
 
         <div class="service-card reveal reveal-delay-3">
           <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <h3>Web Design &amp; Development</h3>
-            <p>Custom-built, conversion-focused websites from scratch. Clean, fast, and designed to turn visitors into paying customers — no templates, ever.</p>
+            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="14" y2="16"/></svg></div>
+            <h3>Notary &amp; Loan Signing</h3>
+            <p>Professional, certified, and mobile. We come to you for real estate closings, general notarizations, and loan signings — on your schedule.</p>
           </div>
           <div class="service-card__body">
             <ul class="service-card__list" role="list">
-              <li>100% custom design — no templates</li>
-              <li>Mobile-first &amp; lightning fast</li>
-              <li>SEO foundation built in</li>
-              <li>Lead capture &amp; contact forms</li>
-              <li>Delivered in ~7 business days</li>
+              <li>Real estate loan signings</li>
+              <li>General notarization services</li>
+              <li>Mobile notary (we come to you)</li>
+              <li>Evening & weekend availability</li>
+              <li>Fast turnaround guaranteed</li>
             </ul>
-            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $500 one-time</div>
-            <a href="services.html#web-design" class="btn btn-secondary">Learn More</a>
+            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $75/signing</div>
+            <a href="services.html#notary" class="btn btn-secondary">Learn More</a>
           </div>
         </div>
       </div>
@@ -59,7 +274,171 @@
     </div>
   </section>
 
-  
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section bg-pale" aria-labelledby="how-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">The Process</span>
+        <h2 id="how-heading">Up and Running in 2 Weeks</h2>
+        <div class="section-divider"></div>
+        <p style="max-width:500px;margin:0 auto 3rem">We handle the entire setup so you don't have to. Our onboarding is streamlined, painless, and designed to show results fast.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="text-center reveal reveal-delay-1" style="padding:1.5rem">
+          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">1</div>
+          <h4 style="margin-bottom:.5rem">Discovery Call</h4>
+          <p style="font-size:.88rem">We learn your business goals, current tech stack, and biggest pain points in a 45-minute strategy session.</p>
+        </div>
+        <div class="text-center reveal reveal-delay-2" style="padding:1.5rem">
+          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">2</div>
+          <h4 style="margin-bottom:.5rem">Custom AI Blueprint</h4>
+          <p style="font-size:.88rem">We design a tailored AI implementation plan specific to your market, niche, and production goals.</p>
+        </div>
+        <div class="text-center reveal reveal-delay-3" style="padding:1.5rem">
+          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">3</div>
+          <h4 style="margin-bottom:.5rem">Done-For-You Setup</h4>
+          <p style="font-size:.88rem">Our team builds, integrates, and configures everything — from CRM automation to lead gen funnels — in under 14 days.</p>
+        </div>
+        <div class="text-center reveal reveal-delay-4" style="padding:1.5rem">
+          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">4</div>
+          <h4 style="margin-bottom:.5rem">Ongoing Optimization</h4>
+          <p style="font-size:.88rem">Monthly check-ins, performance reviews, and continuous improvements keep your AI working at peak efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Client Results</span>
+        <h2 id="testimonials-heading">Real Clients. Real Results.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width:480px;margin:0 auto 3rem">Don't take our word for it — hear from Arizona businesses that GreenAI has already helped.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"GreenAI completely transformed our Instagram presence. We went from 200 followers to over 2,000 in 90 days and our phone started ringing more than ever. Best investment we've made."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">MR</div>
+            <div>
+              <div class="testimonial-name">Maria R.</div>
+              <div class="testimonial-role">Owner, Chandler Salon &amp; Spa</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"As a real estate agent I was drowning in follow-ups. The AI system Jaden set up now handles 80% of my lead responses automatically. I closed 3 extra deals last quarter without working more hours."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">DT</div>
+            <div>
+              <div class="testimonial-name">Derek T.</div>
+              <div class="testimonial-role">REALTOR®, Scottsdale AZ</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-text">"Professional, punctual, and made the whole signing process completely stress-free. Jaden came to our home on a Saturday evening and had everything done in 20 minutes. Will use for every future closing."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">JK</div>
+            <div>
+              <div class="testimonial-name">Jennifer K.</div>
+              <div class="testimonial-role">Homebuyer, Gilbert AZ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <section class="section bg-gray" aria-labelledby="compare-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Why GreenAI Wins</span>
+        <h2 id="compare-heading">GreenAI vs. <span style="color:var(--gray-400)">The Big Agencies</span></h2>
+        <div class="section-divider"></div>
+        <p style="max-width:520px;margin:0 auto 2.5rem">Big agencies charge enterprise prices and hand you off to a junior rep. We give you direct access to a dedicated partner who treats your business like their own.</p>
+      </div>
+
+      <div class="reveal" style="overflow-x:auto">
+        <table style="width:100%;border-collapse:separate;border-spacing:0;background:white;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md)">
+          <thead>
+            <tr>
+              <th style="padding:1.25rem 1.5rem;text-align:left;background:var(--gray-800);color:white;font-size:.85rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1)">What you're comparing</th>
+              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--green-dark);color:white;font-size:.95rem;font-weight:700">GreenAI Solutions Team</th>
+              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--gray-600);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600">Big Agencies</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--gray-200)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Who you work with</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Jaden directly — every time</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Whoever got assigned to you this month</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Minimum contract</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Month-to-month — no lock-in</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ 6"12 month contracts typical</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-200)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Starting price</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ $500/month</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ $1,500"$10,000/month minimum</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Content strategy</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Custom-built for YOUR business</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Template repurposed from last client</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-200)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Response time</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Same day — you have Jaden's number</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Ticket system, 48"72hr wait</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">AI + social + notary bundle</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Only provider offering all three</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Need 3 different vendors</td>
+            </tr>
+            <tr>
+              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Results guarantee</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ 30-day satisfaction guarantee</td>
+              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Pay whether it works or not</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-center" style="margin-top:2.5rem">
+        <a href="contact.html" class="btn btn-primary btn-lg">Start for Free — No Commitment â†’</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="section" aria-label="Results guarantee">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,var(--green-dark),var(--green-mid));border-radius:var(--radius-xl);padding:3.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;position:relative;overflow:hidden" class="reveal">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:50px 50px;pointer-events:none"></div>
+        <div style="font-size:4rem;flex-shrink:0;position:relative"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div style="flex:1;min-width:260px;position:relative">
+          <div style="font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-accent);margin-bottom:.5rem">Our Guarantee</div>
+          <h2 style="color:white;margin-bottom:.75rem;font-size:clamp(1.4rem,3vw,2rem)">If You Don't See Results in 30 Days,<br/>You Don't Pay.</h2>
+          <p style="color:rgba(255,255,255,.78);max-width:520px;margin:0">Every new client gets a full 30-day satisfaction guarantee. If you're not seeing measurable improvement in your social engagement, lead volume, or business systems — we'll refund your first month. No questions, no drama. We're that confident in what we deliver.</p>
+        </div>
+        <div style="flex-shrink:0;position:relative">
+          <a href="contact.html" class="btn btn-white btn-lg">Claim Your Guarantee â†’</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -94,7 +473,7 @@
             </div>
             <span class="footer__logo-name">GreenAI Solutions Team</span>
           </a>
-          <p class="footer__tagline">Growing Arizona businesses with AI-powered strategy, social media that converts, and professionally built websites — all from one dedicated partner.</p>
+          <p class="footer__tagline">Growing Arizona businesses with AI-powered strategy, social media that converts, and trusted professional services — all from one dedicated partner.</p>
           <p style="font-size:.78rem;color:rgba(255,255,255,.3)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
         </div>
 
@@ -113,6 +492,7 @@
           <ul class="footer__links" role="list">
             <li><a href="services.html#social-media">Social Media Management</a></li>
             <li><a href="services.html#ai-consulting">AI Business Consulting</a></li>
+            <li><a href="services.html#notary">Notary &amp; Loan Signing</a></li>
             <li><a href="services.html#pricing">Pricing Plans</a></li>
           </ul>
         </div>
