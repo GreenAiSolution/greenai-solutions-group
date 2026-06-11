@@ -1,568 +1,901 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenAI Solutions Team — Arizona's Growth Partner</title>
-  <meta name="description" content="GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media management, and custom web design. Based in Gilbert, AZ." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GreenAI Solutions — AI-powered social media marketing &amp; website creation that dominates every platform. 500% avg ROI, 50M+ impressions, 10K+ leads generated.">
+<title>GreenAI Solutions | Dominate Social Media &amp; The Web with AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
-    <div class="container">
-      <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
-          <div class="nav__logo-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="17.5" cy="13" r="1.1" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="nav__logo-text">
-            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
-            <span class="nav__logo-sub">Solutions Team</span>
-          </div>
-        </a>
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-green">Green</span><span class="logo-ai">AI</span>
+      <span class="logo-badge">SOLUTIONS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn-nav-cta">Get Started <span class="arrow">&#8594;</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-        <ul class="nav__links" role="list">
-          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
-          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-          <li><a href="contact.html"  class="nav__link" data-page="contact.html">Contact</a></li>
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      AI-Powered &nbsp;&#183;&nbsp; Live &nbsp;&#183;&nbsp; Results-Driven
+    </div>
+    <h1 class="hero-title">
+      <span class="ht-line1">Dominate Every</span>
+      <span class="ht-line2 gradient-text" id="typingText">Platform.</span>
+    </h1>
+    <p class="hero-subtitle">
+      GreenAI fuses cutting-edge artificial intelligence with battle-tested social media strategy to build brands that <strong>own the algorithm</strong> on every platform.
+    </p>
+    <div class="hero-ctas">
+      <a href="contact.html" class="btn-primary-hero">
+        <span>Launch My Brand</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#results" class="btn-ghost-hero">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        See Results
+      </a>
+    </div>
+    <div class="hero-ticker">
+      <div class="ticker-label">LIVE</div>
+      <div class="ticker-track">
+        <div class="ticker-items" id="tickerItems">
+          <span>&#128200; +1,240% TikTok growth for client</span>
+          <span>&#128176; $2.8M revenue generated this quarter</span>
+          <span>&#128640; 47 new websites launched</span>
+          <span>&#128202; 98.4M impressions this month</span>
+          <span>&#9889; 3.2s avg website load time</span>
+          <span>&#127919; 68% avg conversion lift</span>
+          <span>&#128200; +1,240% TikTok growth for client</span>
+          <span>&#128176; $2.8M revenue generated this quarter</span>
+          <span>&#128640; 47 new websites launched</span>
+          <span>&#128202; 98.4M impressions this month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="ai-orb">
+      <div class="orb-ring ring-1"></div>
+      <div class="orb-ring ring-2"></div>
+      <div class="orb-ring ring-3"></div>
+      <div class="orb-core"><span>AI</span></div>
+      <div class="sat sat-1">IG</div>
+      <div class="sat sat-2">TK</div>
+      <div class="sat sat-3">FB</div>
+      <div class="sat sat-4">YT</div>
+      <div class="sat sat-5">LI</div>
+      <div class="sat sat-6">X</div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- MACRO STATS -->
+<section class="macro-stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#128200;</div>
+        <div class="stat-number"><span class="counter" data-target="500">0</span><span class="unit">%</span></div>
+        <div class="stat-label">Average ROI</div>
+        <div class="stat-sub">across all clients</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#128065;&#65039;</div>
+        <div class="stat-number"><span class="counter" data-target="98">0</span><span class="unit">M+</span></div>
+        <div class="stat-label">Monthly Impressions</div>
+        <div class="stat-sub">across all platforms</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#127919;</div>
+        <div class="stat-number"><span class="counter" data-target="10">0</span><span class="unit">K+</span></div>
+        <div class="stat-label">Leads Generated</div>
+        <div class="stat-sub">for our clients</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#11088;</div>
+        <div class="stat-number"><span class="counter" data-target="98">0</span><span class="unit">%</span></div>
+        <div class="stat-label">Client Retention</div>
+        <div class="stat-sub">month over month</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#127760;</div>
+        <div class="stat-number"><span class="counter" data-target="150">0</span><span class="unit">+</span></div>
+        <div class="stat-label">Websites Built</div>
+        <div class="stat-sub">lightning fast &amp; converting</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon">&#129302;</div>
+        <div class="stat-number"><span class="counter" data-target="24">0</span><span class="unit">/7</span></div>
+        <div class="stat-label">AI Automation</div>
+        <div class="stat-sub">never sleeps, never misses</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM DOMINANCE -->
+<section class="platforms" id="platforms">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Platform Mastery</div>
+      <h2>We <span class="gradient-text">Dominate</span> Every Platform</h2>
+      <p>From TikTok virality to LinkedIn authority — our AI knows exactly what each algorithm wants and delivers it at scale.</p>
+    </div>
+    <div class="platforms-grid">
+
+      <div class="platform-card" data-aos>
+        <div class="platform-header">
+          <div class="platform-icon instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div><h3>Instagram</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+847%</span><span class="m-lbl">Follower Growth</span></div>
+          <div class="metric"><span class="m-val">12.4%</span><span class="m-lbl">Engagement Rate</span></div>
+          <div class="metric"><span class="m-val">2.1M</span><span class="m-lbl">Avg Reach/Mo</span></div>
+        </div>
+        <div class="platform-features">
+          <span>Reel Optimization</span><span>Story Automation</span><span>Hashtag AI</span><span>Collab Targeting</span>
+        </div>
+      </div>
+
+      <div class="platform-card featured-platform" data-aos>
+        <div class="platform-badge">&#128293; #1 Growth Platform</div>
+        <div class="platform-header">
+          <div class="platform-icon tiktok">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.73a8.27 8.27 0 004.84 1.55V6.82a4.84 4.84 0 01-1.07-.13z"/></svg>
+          </div>
+          <div><h3>TikTok</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+1,240%</span><span class="m-lbl">Follower Growth</span></div>
+          <div class="metric"><span class="m-val">18.7%</span><span class="m-lbl">Engagement Rate</span></div>
+          <div class="metric"><span class="m-val">5.8M</span><span class="m-lbl">Avg Views/Mo</span></div>
+        </div>
+        <div class="platform-features">
+          <span>Viral Hook Engine</span><span>Trend Prediction AI</span><span>Sound Matching</span><span>FYP Algorithm</span>
+        </div>
+      </div>
+
+      <div class="platform-card" data-aos>
+        <div class="platform-header">
+          <div class="platform-icon facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div><h3>Facebook</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+420%</span><span class="m-lbl">Page Growth</span></div>
+          <div class="metric"><span class="m-val">7.2%</span><span class="m-lbl">Engagement Rate</span></div>
+          <div class="metric"><span class="m-val">3.4M</span><span class="m-lbl">Monthly Reach</span></div>
+        </div>
+        <div class="platform-features">
+          <span>Ad Targeting AI</span><span>Group Strategy</span><span>Retargeting</span><span>Messenger Bots</span>
+        </div>
+      </div>
+
+      <div class="platform-card" data-aos>
+        <div class="platform-header">
+          <div class="platform-icon youtube">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div><h3>YouTube</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+680%</span><span class="m-lbl">Sub Growth</span></div>
+          <div class="metric"><span class="m-val">9.8%</span><span class="m-lbl">Click-Through</span></div>
+          <div class="metric"><span class="m-val">1.2M</span><span class="m-lbl">Monthly Views</span></div>
+        </div>
+        <div class="platform-features">
+          <span>SEO Titles AI</span><span>Thumbnail AB Test</span><span>Shorts Strategy</span><span>Monetization</span>
+        </div>
+      </div>
+
+      <div class="platform-card" data-aos>
+        <div class="platform-header">
+          <div class="platform-icon linkedin">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div><h3>LinkedIn</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+390%</span><span class="m-lbl">Connection Growth</span></div>
+          <div class="metric"><span class="m-val">14.2%</span><span class="m-lbl">B2B Lead Rate</span></div>
+          <div class="metric"><span class="m-val">890K</span><span class="m-lbl">Monthly Reach</span></div>
+        </div>
+        <div class="platform-features">
+          <span>Thought Leadership</span><span>B2B Outreach AI</span><span>Article Strategy</span><span>Sales Navigator</span>
+        </div>
+      </div>
+
+      <div class="platform-card" data-aos>
+        <div class="platform-header">
+          <div class="platform-icon twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div><h3>X / Twitter</h3><span class="platform-status">Active</span></div>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><span class="m-val">+560%</span><span class="m-lbl">Follower Growth</span></div>
+          <div class="metric"><span class="m-val">6.8%</span><span class="m-lbl">Engagement Rate</span></div>
+          <div class="metric"><span class="m-val">2.3M</span><span class="m-lbl">Impressions/Mo</span></div>
+        </div>
+        <div class="platform-features">
+          <span>Thread Strategy</span><span>Trend Hijacking</span><span>Community Growth</span><span>Spaces Integration</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI FEATURES -->
+<section class="ai-features" id="features">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">AI Engine</div>
+      <h2>The AI Stack That <span class="gradient-text">Wins</span></h2>
+      <p>Every tool we build and every strategy we run is backed by the most advanced AI available — working 24/7 so your brand never stops growing.</p>
+    </div>
+    <div class="ai-features-grid">
+
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3>Content Intelligence</h3>
+        <p>AI-generated captions, scripts, hooks, and ad copy tailored to your brand voice and optimized for each platform's algorithm.</p>
+        <ul class="feature-list">
+          <li>Auto-generate 30 days of content in minutes</li>
+          <li>Brand voice training on your style</li>
+          <li>Platform-native formatting</li>
+          <li>A/B copy testing at scale</li>
         </ul>
-
-        <a href="contact.html" class="btn btn-primary nav__cta">Get a Consultation</a>
-
-        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="card-stat"><span class="cs-num">3.7x</span><span class="cs-lbl">higher engagement vs manual content</span></div>
       </div>
 
-      <!-- Mobile menu -->
-      <ul class="nav__mobile" role="list">
-        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-        <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
-        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-        <li><a href="contact.html"  class="nav__link" data-page="contact.html">Contact</a></li>
-        <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Get a Consultation</a></li>
-      </ul>
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+        </div>
+        <h3>Predictive Analytics</h3>
+        <p>Know what content will perform before you post it. Our AI analyzes trends, competitor data, and audience behavior to predict viral potential.</p>
+        <ul class="feature-list">
+          <li>Viral score prediction (0-100)</li>
+          <li>Best post-time optimization</li>
+          <li>Competitor intelligence reports</li>
+          <li>Audience sentiment analysis</li>
+        </ul>
+        <div class="card-stat"><span class="cs-num">89%</span><span class="cs-lbl">accuracy on top-performing content prediction</span></div>
+      </div>
+
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <h3>Automation Engine</h3>
+        <p>Schedule, publish, respond, and report — all on autopilot. Our AI automation handles the busywork so you focus on running your business.</p>
+        <ul class="feature-list">
+          <li>Auto-post across all platforms</li>
+          <li>AI comment response system</li>
+          <li>DM funnel automation</li>
+          <li>Lead capture &amp; CRM sync</li>
+        </ul>
+        <div class="card-stat"><span class="cs-num">22hrs</span><span class="cs-lbl">saved per week per client on average</span></div>
+      </div>
+
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+        </div>
+        <h3>Ad Campaign AI</h3>
+        <p>Paid social campaigns that maximize ROAS. Our AI continuously optimizes targeting, creative, and bidding in real time.</p>
+        <ul class="feature-list">
+          <li>Multi-platform ad management</li>
+          <li>Lookalike audience generation</li>
+          <li>Creative fatigue detection</li>
+          <li>Automated budget reallocation</li>
+        </ul>
+        <div class="card-stat"><span class="cs-num">4.8x</span><span class="cs-lbl">average return on ad spend</span></div>
+      </div>
+
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        </div>
+        <h3>Visual Creation AI</h3>
+        <p>Studio-quality graphics, Reels, and video content generated by AI trained on your brand identity and what converts in your industry.</p>
+        <ul class="feature-list">
+          <li>AI image &amp; video generation</li>
+          <li>Brand kit enforcement</li>
+          <li>Motion graphic templates</li>
+          <li>Thumbnail optimization</li>
+        </ul>
+        <div class="card-stat"><span class="cs-num">200%</span><span class="cs-lbl">more visual content vs traditional agencies</span></div>
+      </div>
+
+      <div class="ai-card" data-aos>
+        <div class="ai-card-glow"></div>
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z"/></svg>
+        </div>
+        <h3>Growth Funnels</h3>
+        <p>Full-funnel social to landing page to conversion systems built and optimized by AI. Turn followers into paying customers on autopilot.</p>
+        <ul class="feature-list">
+          <li>Social to landing page flows</li>
+          <li>Email sequence automation</li>
+          <li>Retargeting pixel strategies</li>
+          <li>Conversion rate optimization</li>
+        </ul>
+        <div class="card-stat"><span class="cs-num">68%</span><span class="cs-lbl">average conversion rate lift</span></div>
+      </div>
+
     </div>
-  </nav>
+  </div>
+</section>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero__bg-pattern" aria-hidden="true"></div>
-    <div class="hero__grid-overlay" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero__content">
-        <div class="hero__badge">
-          <span class="hero__badge-dot" aria-hidden="true"></span>
-          AI-Powered Business Growth · Gilbert, AZ
+<!-- SMM SUITE -->
+<section class="smm-suite" id="social">
+  <div class="container">
+    <div class="suite-layout">
+      <div class="suite-content" data-aos>
+        <div class="section-tag">Social Media Marketing</div>
+        <h2>Total Social Media <span class="gradient-text">Domination</span></h2>
+        <p class="suite-desc">We don't just post content — we engineer viral growth systems that compound over time and turn your social presence into your #1 revenue channel.</p>
+        <div class="capability-stack">
+          <div class="cap-item">
+            <div class="cap-icon">&#128197;</div>
+            <div class="cap-info"><h4>Smart Scheduling</h4><p>AI picks the exact time each post goes live based on your audience's peak activity windows.</p></div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-icon">&#35;&#65039;&#8419;</div>
+            <div class="cap-info"><h4>Hashtag Intelligence</h4><p>Custom hashtag sets analyzed daily — targeting the exact reach/competition sweet spot.</p></div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-icon">&#128373;&#65039;</div>
+            <div class="cap-info"><h4>Competitor Surveillance</h4><p>Real-time monitoring of competitors' best content, growth tactics, and audience gaps.</p></div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-icon">&#128172;</div>
+            <div class="cap-info"><h4>Engagement Amplification</h4><p>AI-powered comment replies, story polls, and DM sequences that build genuine community.</p></div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-icon">&#127916;</div>
+            <div class="cap-info"><h4>Reel &amp; Short Production</h4><p>Video content scripted, edited, and optimized for TikTok FYP and Instagram Reels algorithm.</p></div>
+          </div>
+          <div class="cap-item">
+            <div class="cap-icon">&#128202;</div>
+            <div class="cap-info"><h4>Performance Reporting</h4><p>Weekly AI-generated reports showing growth, engagement, ROI, and next-step recommendations.</p></div>
+          </div>
         </div>
-
-        <h1 id="hero-heading">
-          Your Business.<br/>
-          <span>Amplified</span> by AI.
-        </h1>
-
-        <p class="hero__sub">
-          GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media that actually converts, and trusted professional services — all from one dedicated partner.
-        </p>
-
-        <div class="hero__actions">
-          <a href="contact.html" class="btn btn-white btn-lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Book a Strategy Call
-          </a>
-          <a href="services.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.9)">
-            Explore Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-
-        <div class="hero__stats" aria-label="Key statistics">
-          <div class="hero__stat">
-            <div class="hero__stat-num">
-              <span class="js-counter" data-target="3" data-suffix="x">3x</span>
+      </div>
+      <div class="suite-visual" data-aos>
+        <div class="dashboard-mockup">
+          <div class="dm-header">
+            <span class="dm-dot red"></span>
+            <span class="dm-dot yellow"></span>
+            <span class="dm-dot green-dot"></span>
+            <span class="dm-title">GreenAI Command Center</span>
+          </div>
+          <div class="dm-body">
+            <div class="dm-row">
+              <div class="dm-metric-card">
+                <span class="dm-label">Total Followers</span>
+                <span class="dm-value">47,832</span>
+                <span class="dm-change up">&#8593; +12.4%</span>
+              </div>
+              <div class="dm-metric-card">
+                <span class="dm-label">This Week's Reach</span>
+                <span class="dm-value">2.1M</span>
+                <span class="dm-change up">&#8593; +34.1%</span>
+              </div>
             </div>
-            <div class="hero__stat-label">More leads from social media</div>
-          </div>
-          <div class="hero__stat">
-            <div class="hero__stat-num">
-              <span class="js-counter" data-target="18" data-suffix="hrs">18hrs</span>
+            <div class="dm-chart">
+              <div class="chart-bars">
+                <div class="bar" style="--h:40%"></div>
+                <div class="bar" style="--h:60%"></div>
+                <div class="bar" style="--h:45%"></div>
+                <div class="bar" style="--h:80%"></div>
+                <div class="bar" style="--h:55%"></div>
+                <div class="bar" style="--h:95%"></div>
+                <div class="bar active-bar" style="--h:100%"></div>
+              </div>
+              <div class="chart-label">Weekly Impressions Growth</div>
             </div>
-            <div class="hero__stat-label">Saved per client per week</div>
-          </div>
-          <div class="hero__stat">
-            <div class="hero__stat-num">Gilbert</div>
-            <div class="hero__stat-label">AZ based, serving nationwide</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BRAND LOGO SECTION ===== -->
-  <section style="background:linear-gradient(135deg,#f0f7f2 0%,#ffffff 50%,#f0f7f2 100%);padding:5rem 0;border-top:1px solid #ddeae0;border-bottom:1px solid #ddeae0;position:relative;overflow:hidden;">
-    <!-- Subtle background grid -->
-    <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(26,92,42,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,92,42,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
-    <!-- Glow blobs -->
-    <div aria-hidden="true" style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(26,92,42,.10) 0%,transparent 70%);pointer-events:none;"></div>
-
-    <div class="container" style="text-align:center;position:relative;">
-      <p style="font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1a5c2a;margin-bottom:.75rem;">Gilbert, Arizona · Serving Businesses Nationwide</p>
-      <p style="font-size:1.05rem;color:#4a6350;margin-bottom:2.5rem;font-style:italic;">"Your business. Amplified by AI."</p>
-
-      <!-- Futuristic card -->
-      <div style="
-        display:inline-block;
-        position:relative;
-        background:linear-gradient(145deg,#ffffff,#f5faf6);
-        border-radius:24px;
-        padding:2.5rem 3.5rem;
-        box-shadow:0 2px 0 0 rgba(26,92,42,.15) inset,0 -1px 0 0 rgba(26,92,42,.08) inset,0 24px 60px rgba(26,92,42,.12),0 4px 16px rgba(0,0,0,.06);
-        border:1px solid rgba(26,92,42,.15);
-      ">
-        <!-- Corner accent lines -->
-        <div aria-hidden="true" style="position:absolute;top:14px;left:14px;width:28px;height:28px;border-top:2px solid #1a5c2a;border-left:2px solid #1a5c2a;border-radius:4px 0 0 0;opacity:.5;"></div>
-        <div aria-hidden="true" style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-top:2px solid #D4AF37;border-right:2px solid #D4AF37;border-radius:0 4px 0 0;opacity:.6;"></div>
-        <div aria-hidden="true" style="position:absolute;bottom:14px;left:14px;width:28px;height:28px;border-bottom:2px solid #D4AF37;border-left:2px solid #D4AF37;border-radius:0 0 0 4px;opacity:.6;"></div>
-        <div aria-hidden="true" style="position:absolute;bottom:14px;right:14px;width:28px;height:28px;border-bottom:2px solid #1a5c2a;border-right:2px solid #1a5c2a;border-radius:0 0 4px 0;opacity:.5;"></div>
-
-        <img src="logo.png" alt="GreenAI Solutions Team" style="height:140px;width:auto;display:block;position:relative;z-index:1;"/>
-      </div>
-
-      <!-- Stats row -->
-      <div style="display:flex;justify-content:center;gap:3rem;margin-top:3rem;flex-wrap:wrap;">
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:Georgia,serif;">AI-Powered</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">Strategy</div>
-        </div>
-        <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:Georgia,serif;">Gilbert, AZ</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">Based &amp; Built Here</div>
-        </div>
-        <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#D4AF37;font-family:Georgia,serif;">Results First</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">No Long Contracts</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CERTIFICATIONS TRUST BAR ===== -->
-  <section style="background:#fff;border-top:1px solid #e8ede9;border-bottom:1px solid #e8ede9;padding:1.5rem 0;">
-    <div class="container">
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:1.25rem 2.5rem;justify-content:center;">
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a9e8d;white-space:nowrap;">Certified In</span>
-        <!-- Google Ads -->
-        <div style="display:flex;align-items:center;gap:.6rem;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#4285F4"/><path d="M17.65 6.35A8 8 0 1 0 19.78 11H18a6 6 0 1 1-1.52-3.93l1.52-1.52.88-.88c-.12-.12-.25-.23-.23-.32z" fill="#fff"/><path d="M12 8v4l3 3" stroke="#4285F4" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">Google Ads</div>
-            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">Google Certified</div>
-          </div>
-        </div>
-        <!-- divider -->
-        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
-        <!-- Meta Blueprint -->
-        <div style="display:flex;align-items:center;gap:.6rem;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#1877F2;box-shadow:0 1px 6px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">Meta Blueprint</div>
-            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">Meta Certified</div>
-          </div>
-        </div>
-        <!-- divider -->
-        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
-        <!-- HubSpot -->
-        <div style="display:flex;align-items:center;gap:.6rem;">
-          <div style="width:32px;height:32px;border-radius:8px;background:#FF7A59;box-shadow:0 1px 6px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="8" r="3"/><path d="M7 20c0-2.76 2.24-5 5-5s5 2.24 5 5"/><circle cx="19" cy="12" r="2"/><path d="M12 11v2"/></svg>
-          </div>
-          <div>
-            <div style="font-size:.8rem;font-weight:700;color:#1a1a1a;line-height:1.2;">HubSpot Digital Marketing</div>
-            <div style="font-size:.68rem;color:#27ae60;font-weight:600;">HubSpot Certified</div>
-          </div>
-        </div>
-        <!-- divider -->
-        <span style="width:1px;height:32px;background:#e0e8e1;display:block;"></span>
-        <a href="about.html#certifications" style="font-size:.78rem;font-weight:600;color:var(--green-dark);text-decoration:none;white-space:nowrap;">View All Credentials →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== VALUE PROPS ===== -->
-  <section class="section bg-gray" aria-labelledby="value-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Why GreenAI</span>
-        <h2 id="value-heading">One Partner. Three Ways<br/>to Dominate Your Market.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:560px;margin:0 auto 3rem">Most Arizona businesses are leaving money on the table. We bring the strategy, the tools, and the relentless execution to fix that.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-          <h3>Social Media That Sells</h3>
-          <p>We handle your Instagram, TikTok, and Facebook end-to-end — content, posting, engagement, and growth. You run the business. We make sure everyone knows about it.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div>
-          <h3>AI-Powered Business Systems</h3>
-          <p>Stop losing leads to slow follow-up. Our AI responds to prospects in under 5 minutes, automates your CRM, and builds workflows that run while you sleep.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <h3>Custom Website Design</h3>
-          <p>Your website is your first impression. We build fast, conversion-focused custom sites from scratch — no templates, no page builders, just clean professional work.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <h3>Real Estate Specialization</h3>
-          <p>From AI listing optimization to automated lead follow-up, we know the real estate game inside and out. Agents across the Phoenix metro trust GreenAI to fill their pipeline.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-          <h3>ROI You Can Measure</h3>
-          <p>Every service comes with clear metrics. You'll see exactly what's working, what it's generating, and what your return looks like — month over month.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>A Real Partner, Not a Vendor</h3>
-          <p>You work directly with Jaden — not an account manager. We keep our client roster small so every business gets the attention and hustle it deserves.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES OVERVIEW ===== -->
-  <section class="section" aria-labelledby="services-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Our Services</span>
-        <h2 id="services-heading">Three Services. One Goal:<br/>Grow Your Business.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:500px;margin:0 auto 3rem">Every service is built to put more money in your pocket and more time back in your day.</p>
-      </div>
-
-      <div class="grid-3" style="gap:2rem">
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-            <h3>Social Media Management</h3>
-            <p>We run your Instagram, TikTok, and Facebook from top to bottom — so you show up online every single day without lifting a finger.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>Content strategy & creation</li>
-              <li>Daily posting & scheduling</li>
-              <li>Community engagement & DMs</li>
-              <li>Monthly performance reports</li>
-              <li>Paid ad management (optional)</li>
-            </ul>
-            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $700/mo</div>
-            <a href="services.html#social-media" class="btn btn-secondary">Learn More</a>
-          </div>
-        </div>
-
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div>
-            <h3>AI Business Consulting</h3>
-            <p>We bring enterprise-level AI tools to your local business — automating follow-up, generating leads, and outpacing every competitor still doing it the old way.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>AI workflow automation</li>
-              <li>Lead follow-up systems (5-min response)</li>
-              <li>CRM setup & optimization</li>
-              <li>Real estate agent specialization</li>
-              <li>Custom AI strategy roadmap</li>
-            </ul>
-            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $750/mo</div>
-            <a href="services.html#ai-consulting" class="btn btn-secondary">Learn More</a>
-          </div>
-        </div>
-
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <h3>Web Design &amp; Development</h3>
-            <p>Custom-built, conversion-focused websites from scratch. Clean, fast, and designed to turn visitors into paying customers — no templates, ever.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>100% custom design — no templates</li>
-              <li>Mobile-first &amp; lightning fast</li>
-              <li>SEO foundation built in</li>
-              <li>Lead capture &amp; contact forms</li>
-              <li>Delivered in ~7 business days</li>
-            </ul>
-            <div style="margin-bottom:1rem;font-weight:700;color:var(--green-dark)">Starting at $500 one-time</div>
-            <a href="services.html#web-design" class="btn btn-secondary">Learn More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center" style="margin-top:3rem">
-        <a href="services.html" class="btn btn-primary btn-lg">View Full Service Details &amp; Pricing</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW IT WORKS ===== -->
-  <section class="section bg-pale" aria-labelledby="how-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">The Process</span>
-        <h2 id="how-heading">Up and Running in 2 Weeks</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:500px;margin:0 auto 3rem">We handle the entire setup so you don't have to. Our onboarding is streamlined, painless, and designed to show results fast.</p>
-      </div>
-
-      <div class="grid-4">
-        <div class="text-center reveal reveal-delay-1" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">1</div>
-          <h4 style="margin-bottom:.5rem">Discovery Call</h4>
-          <p style="font-size:.88rem">We learn your business goals, current tech stack, and biggest pain points in a 45-minute strategy session.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-2" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">2</div>
-          <h4 style="margin-bottom:.5rem">Custom AI Blueprint</h4>
-          <p style="font-size:.88rem">We design a tailored AI implementation plan specific to your market, niche, and production goals.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-3" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">3</div>
-          <h4 style="margin-bottom:.5rem">Done-For-You Setup</h4>
-          <p style="font-size:.88rem">Our team builds, integrates, and configures everything — from CRM automation to lead gen funnels — in under 14 days.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-4" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">4</div>
-          <h4 style="margin-bottom:.5rem">Ongoing Optimization</h4>
-          <p style="font-size:.88rem">Monthly check-ins, performance reviews, and continuous improvements keep your AI working at peak efficiency.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section" aria-labelledby="testimonials-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Client Results</span>
-        <h2 id="testimonials-heading">Real Clients. Real Results.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:480px;margin:0 auto 3rem">Don't take our word for it — hear from Arizona businesses that GreenAI has already helped.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"GreenAI completely transformed our Instagram presence. We went from 200 followers to over 2,000 in 90 days and our phone started ringing more than ever. Best investment we've made."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">MR</div>
-            <div>
-              <div class="testimonial-name">Maria R.</div>
-              <div class="testimonial-role">Owner, Chandler Salon &amp; Spa</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"As a real estate agent I was drowning in follow-ups. The AI system Jaden set up now handles 80% of my lead responses automatically. I closed 3 extra deals last quarter without working more hours."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">DT</div>
-            <div>
-              <div class="testimonial-name">Derek T.</div>
-              <div class="testimonial-role">REALTOR®, Scottsdale AZ</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="testimonial-text">"Professional, punctual, and made the whole signing process completely stress-free. Jaden came to our home on a Saturday evening and had everything done in 20 minutes. Will use for every future closing."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" aria-hidden="true">JK</div>
-            <div>
-              <div class="testimonial-name">Jennifer K.</div>
-              <div class="testimonial-role">Homebuyer, Gilbert AZ</div>
+            <div class="dm-platforms-row">
+              <div class="dm-plat"><span class="dp-name">Instagram</span><span class="dp-val">18.2K</span></div>
+              <div class="dm-plat"><span class="dp-name">TikTok</span><span class="dp-val">21.4K</span></div>
+              <div class="dm-plat"><span class="dp-name">Facebook</span><span class="dp-val">5.1K</span></div>
+              <div class="dm-plat"><span class="dp-name">YouTube</span><span class="dp-val">3.1K</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== COMPARISON TABLE ===== -->
-  <section class="section bg-gray" aria-labelledby="compare-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Why GreenAI Wins</span>
-        <h2 id="compare-heading">GreenAI vs. <span style="color:var(--gray-400)">The Big Agencies</span></h2>
-        <div class="section-divider"></div>
-        <p style="max-width:520px;margin:0 auto 2.5rem">Big agencies charge enterprise prices and hand you off to a junior rep. We give you direct access to a dedicated partner who treats your business like their own.</p>
-      </div>
-
-      <div class="reveal" style="overflow-x:auto">
-        <table style="width:100%;border-collapse:separate;border-spacing:0;background:white;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md)">
-          <thead>
-            <tr>
-              <th style="padding:1.25rem 1.5rem;text-align:left;background:var(--gray-800);color:white;font-size:.85rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1)">What you're comparing</th>
-              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--green-dark);color:white;font-size:.95rem;font-weight:700">GreenAI Solutions Team</th>
-              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--gray-600);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600">Big Agencies</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Who you work with</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Jaden directly — every time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Whoever got assigned to you this month</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Minimum contract</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Month-to-month — no lock-in</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ 6"12 month contracts typical</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Starting price</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ $500/month</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ $1,500"$10,000/month minimum</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Content strategy</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Custom-built for YOUR business</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Template repurposed from last client</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Response time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Same day — you have Jaden's number</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Ticket system, 48"72hr wait</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">AI + social + web design bundle</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Only provider offering all three</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Need 3 different vendors</td>
-            </tr>
-            <tr>
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Direct founder access</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Jaden on every call, every time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Account managers & junior staff</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="text-center" style="margin-top:2.5rem">
-        <a href="contact.html" class="btn btn-primary btn-lg">Book a Strategy Call →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== GUARANTEE ===== -->
-  <section class="section" aria-label="Results guarantee">
-    <div class="container">
-    </div>
-  </section>
-
-  <!-- ===== CTA BAND ===== -->
-  <section class="cta-band" aria-labelledby="cta-heading">
-    <div class="container">
-      <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.5rem">
-        <span style="width:8px;height:8px;background:#ff4444;border-radius:50%;animation:pulse 2s infinite"></span>
-        Only 3 new client spots open this month
-      </div>
-      <h2 id="cta-heading">Ready to Stop Blending In?</h2>
-      <p>Arizona businesses that act now will be miles ahead of competitors still posting manually and losing leads to slow follow-up. Claim your strategy call before the month fills up.</p>
-      <div class="cta-band__actions">
-        <a href="contact.html" class="btn btn-white btn-lg">Book Your Strategy Call</a>
-        <a href="services.html" class="btn btn-lg" style="border:2px solid rgba(255,255,255,.4);color:#fff">View Pricing</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" aria-label="Site footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
-            <div class="footer__logo-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/>
-                <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="17.5" cy="13" r="1.1" fill="white"/>
-              </svg>
+<!-- WEBSITE CREATION SUITE -->
+<section class="web-suite" id="websites">
+  <div class="container">
+    <div class="suite-layout reverse">
+      <div class="suite-visual" data-aos>
+        <div class="web-mockup">
+          <div class="wm-browser">
+            <div class="wm-bar">
+              <div class="wm-dots">
+                <span class="dm-dot red"></span>
+                <span class="dm-dot yellow"></span>
+                <span class="dm-dot green-dot"></span>
+              </div>
+              <div class="wm-url">&#128274; yoursite.com</div>
+              <div class="wm-score"><span class="score-label">PageSpeed</span><span class="score-val">98</span></div>
             </div>
-            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
-          </a>
-          <p class="footer__tagline">Growing Arizona businesses with AI-powered strategy, social media that converts, and professionally built websites — all from one dedicated partner.</p>
-          <p style="font-size:.78rem;color:rgba(255,255,255,.3)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+            <div class="wm-content">
+              <div class="wm-hero-block">
+                <div class="wm-h-text">
+                  <div class="wm-line big"></div>
+                  <div class="wm-line med"></div>
+                  <div class="wm-btn-row">
+                    <div class="wm-mini-btn primary"></div>
+                    <div class="wm-mini-btn ghost"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="wm-cards-row">
+                <div class="wm-card"></div>
+                <div class="wm-card"></div>
+                <div class="wm-card"></div>
+              </div>
+              <div class="wm-metrics-row">
+                <span class="wm-badge">&#9889; 0.8s load</span>
+                <span class="wm-badge">&#128241; Mobile-first</span>
+                <span class="wm-badge">&#128269; SEO 97</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="suite-content" data-aos>
+        <div class="section-tag">Website Creation</div>
+        <h2>Websites That <span class="gradient-text">Convert</span> &amp; Rank #1</h2>
+        <p class="suite-desc">We engineer high-performance websites that don't just look incredible — they dominate Google search and turn visitors into leads and customers at an elite conversion rate.</p>
+        <div class="web-feature-grid">
+          <div class="wf-item"><div class="wf-icon">&#9889;</div><h4>Lightning Performance</h4><p>Sub-1 second load times, 98+ PageSpeed score, perfect Core Web Vitals.</p></div>
+          <div class="wf-item"><div class="wf-icon">&#128269;</div><h4>SEO Domination</h4><p>Rank #1 on Google with AI-driven SEO architecture, schema markup, and content strategy.</p></div>
+          <div class="wf-item"><div class="wf-icon">&#128241;</div><h4>Mobile-First Design</h4><p>Pixel-perfect on every device. 60%+ of web traffic is mobile — we optimize for it.</p></div>
+          <div class="wf-item"><div class="wf-icon">&#127919;</div><h4>Conversion Architecture</h4><p>Strategic CTAs, trust signals, and UX flows engineered to maximize leads and sales.</p></div>
+          <div class="wf-item"><div class="wf-icon">&#128717;</div><h4>E-Commerce Ready</h4><p>Full Shopify, WooCommerce, and custom storefront builds with AI upsell flows.</p></div>
+          <div class="wf-item"><div class="wf-icon">&#128272;</div><h4>Fort Knox Security</h4><p>SSL, DDoS protection, daily backups, and security audits included as standard.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ROI CALCULATOR -->
+<section class="roi-calc" id="calculator">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">ROI Calculator</div>
+      <h2>See Your <span class="gradient-text">Projected Growth</span></h2>
+      <p>Enter your current numbers and watch our AI project your growth over the next 90 days with GreenAI.</p>
+    </div>
+    <div class="calc-layout" data-aos>
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>Current Monthly Revenue</label>
+          <div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="calcRevenue" value="5000" min="0" max="1000000"></div>
+        </div>
+        <div class="calc-field">
+          <label>Current Followers (Total)</label>
+          <div class="input-wrap"><input type="number" id="calcFollowers" value="1000" min="0" max="10000000"></div>
+        </div>
+        <div class="calc-field">
+          <label>Monthly Ad Budget</label>
+          <div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="calcAdBudget" value="500" min="0" max="100000"></div>
+        </div>
+        <div class="calc-field">
+          <label>Service Package</label>
+          <select id="calcPackage">
+            <option value="starter">Starter — Social Media ($700/mo)</option>
+            <option value="growth" selected>Growth — Social + Ads ($1,200/mo)</option>
+            <option value="dominator">Dominator — Full Suite ($1,950/mo)</option>
+          </select>
+        </div>
+        <button class="btn-calc" id="calcBtn">Calculate My ROI &#8594;</button>
+      </div>
+      <div class="calc-results" id="calcResults">
+        <div class="result-header">
+          <div class="result-icon">&#128640;</div>
+          <h3>Your 90-Day Projection</h3>
+        </div>
+        <div class="result-grid">
+          <div class="result-item">
+            <span class="ri-label">Projected Revenue</span>
+            <span class="ri-val" id="projRevenue">$31,500</span>
+            <span class="ri-change">+530%</span>
+          </div>
+          <div class="result-item">
+            <span class="ri-label">Projected Followers</span>
+            <span class="ri-val" id="projFollowers">12,400</span>
+            <span class="ri-change">+1,140%</span>
+          </div>
+          <div class="result-item">
+            <span class="ri-label">Estimated New Leads</span>
+            <span class="ri-val" id="projLeads">847</span>
+            <span class="ri-change">Qualified leads</span>
+          </div>
+          <div class="result-item">
+            <span class="ri-label">ROI on Investment</span>
+            <span class="ri-val" id="projROI">1,480%</span>
+            <span class="ri-change">Net return</span>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-primary-hero" style="margin-top:1.5rem;display:inline-flex;text-decoration:none">
+          <span>Claim These Results</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Proven Results</div>
+      <h2>Real Businesses. <span class="gradient-text">Real Domination.</span></h2>
+      <p>We don't make promises — we deliver data. Here are results from actual GreenAI clients.</p>
+    </div>
+    <div class="results-grid">
+
+      <div class="result-card" data-aos>
+        <div class="rc-industry">&#127968; Real Estate</div>
+        <div class="rc-metrics">
+          <div class="rc-metric"><span class="rcm-before">980 followers</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">14,200 followers</span></div>
+          <div class="rc-metric"><span class="rcm-before">3 leads/mo</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">47 leads/mo</span></div>
+          <div class="rc-metric"><span class="rcm-before">$0 in paid social</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">$2.1M in closings</span></div>
+        </div>
+        <div class="rc-timeframe">&#128197; Results in 6 months</div>
+        <p class="rc-quote">"GreenAI turned my Instagram into my #1 lead source. I closed $2.1M from social media leads alone."</p>
+        <div class="rc-author">— Real Estate Agent, Gilbert AZ</div>
+      </div>
+
+      <div class="result-card featured-result" data-aos>
+        <div class="result-crown">&#128081; Client Spotlight</div>
+        <div class="rc-industry">&#128663; Auto Detailing</div>
+        <div class="rc-metrics">
+          <div class="rc-metric"><span class="rcm-before">Zero online presence</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">8,900+ followers</span></div>
+          <div class="rc-metric"><span class="rcm-before">Booked 2 weeks out</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">Waitlisted 6 weeks</span></div>
+          <div class="rc-metric"><span class="rcm-before">$4,200/mo revenue</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">$18,700/mo revenue</span></div>
+        </div>
+        <div class="rc-timeframe">&#128197; Results in 90 days</div>
+        <p class="rc-quote">"From zero to fully booked in 90 days. GreenAI built my entire digital presence and now I turn away customers."</p>
+        <div class="rc-author">— Desert Steam Detail, Gilbert AZ</div>
+      </div>
+
+      <div class="result-card" data-aos>
+        <div class="rc-industry">&#127869;&#65039; Restaurant</div>
+        <div class="rc-metrics">
+          <div class="rc-metric"><span class="rcm-before">1,200 followers</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">22,800 followers</span></div>
+          <div class="rc-metric"><span class="rcm-before">Website converting 1%</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">Converting 8.4%</span></div>
+          <div class="rc-metric"><span class="rcm-before">20 online orders/week</span><span class="rcm-arrow">&#8594;</span><span class="rcm-after">340 online orders/week</span></div>
+        </div>
+        <div class="rc-timeframe">&#128197; Results in 4 months</div>
+        <p class="rc-quote">"Our online orders exploded. The new website and social strategy paid for itself in the first week."</p>
+        <div class="rc-author">— Restaurant Owner, Scottsdale AZ</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-stack" id="tech">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Technology</div>
+      <h2>Powered By The <span class="gradient-text">Best AI</span> In The World</h2>
+    </div>
+    <div class="tech-grid" data-aos>
+      <div class="tech-item"><div class="tech-logo">&#129302;</div><span>Claude AI</span></div>
+      <div class="tech-item"><div class="tech-logo">&#128161;</div><span>GPT-4o</span></div>
+      <div class="tech-item"><div class="tech-logo">&#127912;</div><span>Midjourney</span></div>
+      <div class="tech-item"><div class="tech-logo">&#128202;</div><span>GA4</span></div>
+      <div class="tech-item"><div class="tech-logo">&#127919;</div><span>Meta Ads AI</span></div>
+      <div class="tech-item"><div class="tech-logo">&#128293;</div><span>Firebase</span></div>
+      <div class="tech-item"><div class="tech-logo">&#9889;</div><span>Vercel Edge</span></div>
+      <div class="tech-item"><div class="tech-logo">&#128269;</div><span>Semrush AI</span></div>
+      <div class="tech-item"><div class="tech-logo">&#127916;</div><span>RunwayML</span></div>
+    </div>
+    <div class="cert-bar" data-aos>
+      <div class="cert-item"><span class="cert-icon">&#9989;</span><div><strong>Google Ads Certified</strong><small>Search, Display &amp; YouTube</small></div></div>
+      <div class="cert-item"><span class="cert-icon">&#9989;</span><div><strong>Meta Blueprint Certified</strong><small>Facebook &amp; Instagram Ads</small></div></div>
+      <div class="cert-item"><span class="cert-icon">&#9989;</span><div><strong>HubSpot Certified</strong><small>Inbound &amp; Digital Marketing</small></div></div>
+      <div class="cert-item"><span class="cert-icon">&#9989;</span><div><strong>TikTok for Business</strong><small>Partner &amp; Ad Specialist</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Pricing</div>
+      <h2>Simple Pricing. <span class="gradient-text">Unlimited Growth.</span></h2>
+      <p>No long-term contracts. No hidden fees. Cancel anytime — but you won't want to.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card" data-aos>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><span class="currency">$</span>700<span class="period">/mo</span></div>
+        <div class="plan-desc">Perfect for businesses launching their social presence</div>
+        <ul class="plan-features">
+          <li>&#9989; 1 Platform Managed</li>
+          <li>&#9989; 12 Posts Per Month</li>
+          <li>&#9989; AI Content Creation</li>
+          <li>&#9989; Monthly Analytics Report</li>
+          <li>&#9989; Hashtag Strategy</li>
+          <li>&#9989; Community Management</li>
+          <li>&#10060; Paid Ad Management</li>
+          <li>&#10060; Website Development</li>
+        </ul>
+        <a href="contact.html" class="btn-plan">Get Started</a>
+      </div>
+
+      <div class="pricing-card featured-plan" data-aos>
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price"><span class="currency">$</span>1,200<span class="period">/mo</span></div>
+        <div class="plan-desc">For businesses serious about dominating their market</div>
+        <ul class="plan-features">
+          <li>&#9989; 3 Platforms Managed</li>
+          <li>&#9989; 30 Posts Per Month</li>
+          <li>&#9989; Advanced AI Content Suite</li>
+          <li>&#9989; Weekly Analytics Reports</li>
+          <li>&#9989; Competitor Intelligence</li>
+          <li>&#9989; Paid Ad Management (up to $2K/mo)</li>
+          <li>&#9989; Landing Page (1 included)</li>
+          <li>&#9989; Monthly Strategy Call</li>
+        </ul>
+        <a href="contact.html" class="btn-plan featured-btn">Launch My Brand &#8594;</a>
+      </div>
+
+      <div class="pricing-card" data-aos>
+        <div class="plan-name">Dominator</div>
+        <div class="plan-price"><span class="currency">$</span>1,950<span class="period">/mo</span></div>
+        <div class="plan-desc">Total digital domination — social + ads + full website</div>
+        <ul class="plan-features">
+          <li>&#9989; All 6 Platforms Managed</li>
+          <li>&#9989; Unlimited AI Content</li>
+          <li>&#9989; Full Paid Ads Suite</li>
+          <li>&#9989; Daily Analytics Dashboard</li>
+          <li>&#9989; Full Website Included</li>
+          <li>&#9989; E-Commerce Setup</li>
+          <li>&#9989; Weekly Strategy Calls</li>
+          <li>&#9989; Priority Direct Access</li>
+        </ul>
+        <a href="contact.html" class="btn-plan">Dominate Now</a>
+      </div>
+
+    </div>
+    <div class="website-addon" data-aos>
+      <div class="addon-content">
+        <div class="addon-icon">&#127760;</div>
         <div>
-          <h5>Navigation</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
+          <h3>Website Design &amp; Development</h3>
+          <p>Need just a website? One-time build starting at <strong>$500</strong> — fully custom, blazing fast, SEO-optimized and converting.</p>
         </div>
-
-        <div>
-          <h5>Services</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="services.html#social-media">Social Media Management</a></li>
-            <li><a href="services.html#ai-consulting">AI Business Consulting</a></li>
-            <li><a href="services.html#web-design">Web Design &amp; Development</a></li>
-            <li><a href="services.html#pricing">Pricing Plans</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Contact Us</h5>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div>
-              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div>
-              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div>Gilbert, Arizona 85296</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer__bottom">
-        <span>&copy; 2026 Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
-        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+        <a href="contact.html" class="btn-addon">Get a Website &#8594;</a>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Client Love</div>
+      <h2>What Our Clients <span class="gradient-text">Actually Say</span></h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testi-card" data-aos>
+        <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+        <p>"Jaden and the GreenAI team completely transformed my business. My TikTok went from 200 to 8,900 followers in 3 months and I'm getting 15-20 quote requests a week from social alone."</p>
+        <div class="testi-author">
+          <div class="author-avatar">DS</div>
+          <div><strong>Desert Steam Detail</strong><small>Auto Detailing, Gilbert AZ</small></div>
+        </div>
+      </div>
+
+      <div class="testi-card" data-aos>
+        <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+        <p>"The AI content they create for my real estate pages is unbelievable. Engagement went up 400%, and I just closed a $740K listing that came directly from an Instagram reel they made."</p>
+        <div class="testi-author">
+          <div class="author-avatar">MR</div>
+          <div><strong>Marcus R.</strong><small>Real Estate Agent, Chandler AZ</small></div>
+        </div>
+      </div>
+
+      <div class="testi-card" data-aos>
+        <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+        <p>"The website they built for us went from 1% to 8% conversion rate. We were spending $3K/mo on Google Ads and getting nothing. Now we're getting organic leads every single day."</p>
+        <div class="testi-author">
+          <div class="author-avatar">KL</div>
+          <div><strong>Kayla L.</strong><small>Restaurant Owner, Scottsdale AZ</small></div>
+        </div>
+      </div>
+
+      <div class="testi-card" data-aos>
+        <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+        <p>"I was skeptical about AI-driven marketing but the results don't lie. 3x leads in 90 days, my Facebook page is finally alive, and Jaden is always available when I need him."</p>
+        <div class="testi-author">
+          <div class="author-avatar">TH</div>
+          <div><strong>Thomas H.</strong><small>HVAC Business Owner, Mesa AZ</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VS COMPARISON -->
+<section class="comparison" id="compare">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <div class="section-tag">Why GreenAI</div>
+      <h2>The <span class="gradient-text">Unfair Advantage</span></h2>
+    </div>
+    <div class="compare-table" data-aos>
+      <div class="compare-header">
+        <div class="compare-col col-feature"></div>
+        <div class="compare-col col-greenai"><div class="col-badge">GreenAI</div></div>
+        <div class="compare-col col-agency">Big Agency</div>
+        <div class="compare-col col-diy">DIY</div>
+      </div>
+      <div class="compare-row"><div class="compare-col col-feature">AI-Powered Content</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10060;</div><div class="compare-col col-diy">&#10060;</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">24/7 Automation</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10060;</div><div class="compare-col col-diy">&#10060;</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">Direct Founder Access</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10060;</div><div class="compare-col col-diy">&#9989;</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">Month-to-Month (No Contract)</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10060;</div><div class="compare-col col-diy">&#9989;</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">All Platforms in One</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10071; Extra Cost</div><div class="compare-col col-diy">&#10071; Time-Consuming</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">Website + Social Together</div><div class="compare-col col-greenai">&#9989;</div><div class="compare-col col-agency">&#10060; Separate Vendors</div><div class="compare-col col-diy">&#10060;</div></div>
+      <div class="compare-row"><div class="compare-col col-feature">Avg Monthly Cost</div><div class="compare-col col-greenai highlight-cell">$700-$1,950/mo</div><div class="compare-col col-agency">$5K-$15K/mo</div><div class="compare-col col-diy">Your Time</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-particles" id="ctaParticles"></div>
+  <div class="container">
+    <div class="cta-content" data-aos>
+      <div class="cta-badge">&#9201; Limited Spots Available</div>
+      <h2>Ready To <span class="gradient-text">Dominate</span> Your Market?</h2>
+      <p>Book a free 30-minute strategy session. We'll audit your current digital presence, show you exactly where you're leaving money on the table, and build a custom growth plan — no commitment required.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn-primary-hero">
+          <span>Book Free Strategy Call</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:4807980753" class="btn-ghost-hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (480) 798-0753
+        </a>
+      </div>
+      <div class="cta-trust">
+        <span>&#9989; No long-term contracts</span>
+        <span>&#9989; Results in 30 days or we work for free</span>
+        <span>&#9989; Direct access to Jaden</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo footer-logo">
+          <span class="logo-green">Green</span><span class="logo-ai">AI</span>
+          <span class="logo-badge">SOLUTIONS</span>
+        </a>
+        <p>AI-powered social media marketing &amp; website creation that dominates every platform. Based in Gilbert, AZ — serving businesses nationwide.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.73a8.27 8.27 0 004.84 1.55V6.82a4.84 4.84 0 01-1.07-.13z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Social Media Marketing</a></li>
+          <li><a href="services.html">AI Business Consulting</a></li>
+          <li><a href="services.html">Website Design</a></li>
+          <li><a href="services.html">Paid Advertising</a></li>
+          <li><a href="services.html">Content Creation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Jaden</a></li>
+          <li><a href="dashboard.html">Client Dashboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#results">Case Studies</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li>&#128205; Gilbert, Arizona 85296</li>
+          <li><a href="tel:4807980753">&#128222; (480) 798-0753</a></li>
+          <li><a href="mailto:jaden@greenaidigital.com">&#9993;&#65039; jaden@greenaidigital.com</a></li>
+          <li>&#127760; greenaidigital.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&#169; 2025 GreenAI Solutions. All rights reserved. | Gilbert, Arizona</p>
+      <div class="footer-badges">
+        <span>Google Ads Certified</span>
+        <span>Meta Blueprint Certified</span>
+        <span>HubSpot Certified</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
