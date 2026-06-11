@@ -460,10 +460,14 @@
   .managed-name{font-size:.76rem;font-weight:700;color:var(--off);}
   .managed-txt{font-size:.7rem;color:var(--gray);}
   .nav-section{padding:.5rem 0;}
-  .nav-label{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);padding:.35rem 1.1rem .2rem;}
-  .nav-item{display:flex;align-items:center;gap:.65rem;padding:.52rem 1.1rem;cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-size:.83rem;color:var(--gray);}
-  .nav-item:hover{background:rgba(26,92,42,.15);color:var(--off);}
-  .nav-item.active{background:rgba(26,92,42,.25);color:var(--green-xl);border-left-color:var(--gold);}
+  .nav-label{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(74,222,128,.35);padding:.5rem 1.1rem .2rem;display:flex;align-items:center;gap:.4rem;}
+  .nav-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(74,222,128,.15),transparent);}
+  .nav-item{display:flex;align-items:center;gap:.65rem;padding:.52rem 1.1rem;cursor:pointer;transition:all .2s;border-left:2px solid transparent;font-size:.82rem;color:var(--gray);position:relative;overflow:hidden;}
+  .nav-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(212,175,55,.08),transparent);transition:width .2s;}
+  .nav-item:hover::before{width:100%;}
+  .nav-item:hover{color:var(--off);border-left-color:rgba(212,175,55,.4);}
+  .nav-item.active{background:linear-gradient(90deg,rgba(26,92,42,.35),rgba(26,92,42,.08));color:var(--green-xl);border-left-color:var(--gold);font-weight:600;}
+  .nav-item.active::after{content:'';position:absolute;right:.6rem;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);}
   .sidebar-footer{margin-top:auto;padding:.9rem 1.1rem;border-top:1px solid var(--border);}
   .plan-chip{background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:.6rem .8rem;}
   .plan-name{font-size:.8rem;font-weight:800;color:var(--gold);}
@@ -1176,19 +1180,14 @@
     // already handled in module; ROI mirrors updated on submitStatsUpdate
   }
 
-  // Hide setup banner if Firebase configured
+  // Sync conn badges
   document.addEventListener('DOMContentLoaded', () => {
-    // Hide banner immediately — Firebase config is already set
-    const banner = document.getElementById('setup-banner');
-    if (banner) banner.style.display = 'none';
-    {
-    // sync both conn badges
     const orig = document.getElementById('conn-badge');
     const top  = document.getElementById('conn-badge-top');
     if (orig && top) {
       const obs = new MutationObserver(()=>{
-        top.textContent  = orig.textContent;
-        top.className    = orig.className;
+        top.textContent = orig.textContent;
+        top.className   = orig.className;
       });
       obs.observe(orig, { childList:true, attributes:true, attributeFilter:['class'] });
     }
