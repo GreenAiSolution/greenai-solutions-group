@@ -439,12 +439,6 @@
   ::-webkit-scrollbar-track{background:var(--bg2);}
   ::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px;}
 
-  /* ── SETUP BANNER ── */
-  .setup-banner{background:linear-gradient(135deg,#1a0a00,#2d1800);border-bottom:2px solid var(--gold);padding:.9rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-  .setup-banner h3{font-size:.88rem;font-weight:800;color:var(--gold);white-space:nowrap;}
-  .setup-banner p{font-size:.75rem;color:rgba(255,255,255,.7);flex:1;}
-  .setup-steps{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.7rem;color:rgba(255,255,255,.6);}
-  .setup-steps span{background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.2);border-radius:6px;padding:.2rem .55rem;}
 
   /* ── CONNECTION BADGE ── */
   .conn-badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:.25rem .75rem;border-radius:20px;text-transform:uppercase;}
@@ -590,19 +584,6 @@
 </head>
 <body>
 
-<!-- ══════════ FIREBASE SETUP BANNER (hidden once configured) ══════════ -->
-<div class="setup-banner" id="setup-banner">
-  <h3>🔥 Firebase Setup Required for Live Mode</h3>
-  <p>Right now you're in Demo Mode with sample data. To go LIVE (real-time syncing 24/7), paste your Firebase config in the &lt;script&gt; at the top of this file — takes 5 minutes.</p>
-  <div class="setup-steps">
-    <span>1. console.firebase.google.com</span>
-    <span>2. New Project → "DesertSteamCRM"</span>
-    <span>3. Build → Realtime Database → Test Mode</span>
-    <span>4. Project Settings → Web App → Copy Config</span>
-    <span>5. Paste in this file → Save → Reload</span>
-  </div>
-  <button class="btn btn-outline btn-sm" onclick="document.getElementById('setup-banner').style.display='none'">✕ Hide</button>
-</div>
 
 <div class="shell">
 
