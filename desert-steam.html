@@ -385,6 +385,7 @@
 
   // stash fns for use outside module
   window._fbFns = { push, set, update, remove, ref, serverTimestamp };
+  window._demoMode = DEMO_MODE;
 
   // ── HELPERS ──
   function setTxt(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
@@ -1196,12 +1197,10 @@
 
   // Hide setup banner if Firebase configured
   document.addEventListener('DOMContentLoaded', () => {
-    const configFilled = !document.querySelector('script[type="module"]')
-      ?.textContent?.includes('PASTE_YOUR_API_KEY');
-    if (configFilled) {
-      const banner = document.getElementById('setup-banner');
-      if (banner) banner.style.display = 'none';
-    }
+    // Hide banner immediately — Firebase config is already set
+    const banner = document.getElementById('setup-banner');
+    if (banner) banner.style.display = 'none';
+    {
     // sync both conn badges
     const orig = document.getElementById('conn-badge');
     const top  = document.getElementById('conn-badge-top');
