@@ -1,5 +1,5 @@
 /* =============================================
-   GreenAI Solution Team — Main JavaScript
+   GreenAI Solutions Team — Main JavaScript
    ============================================= */
 
 (function () {

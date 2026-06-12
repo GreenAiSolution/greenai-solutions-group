@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Desert Steam Detail × GreenAI — Live Dashboard</title>
+
+<!-- ═══════════════════════════════════════════════
+  🔥 FIREBASE SETUP — PASTE YOUR CONFIG HERE
+     1. Go to console.firebase.google.com
+     2. New Project → "DesertSteamCRM"
+     3. Build → Realtime Database → Create → Start in Test Mode
+     4. Project Settings → Your Apps → Web → Register App
+     5. Paste your firebaseConfig object below
+═══════════════════════════════════════════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, push, set, update, remove, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  // ▼▼▼ FIREBASE CONFIG ▼▼▼
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJdA0cHKeomRimfZtx_L7Pyo3AlgA25GU",
+    authDomain: "desertsteamcrmproject.firebaseapp.com",
+    databaseURL: "https://desertsteamcrmproject-default-rtdb.firebaseio.com",
+    projectId: "desertsteamcrmproject",
+    storageBucket: "desertsteamcrmproject.firebasestorage.app",
+    messagingSenderId: "66183551680",
+    appId: "1:66183551680:web:c8196843bebf570ab5ab25",
+    measurementId: "G-CC6Z2TK1JV"
+  };
+  // ▲▲▲ END CONFIG ▲▲▲
+
+  const DEMO_MODE = firebaseConfig.apiKey === "PASTE_YOUR_API_KEY";
+
+  // ── DEMO DATA (used when Firebase not yet configured) ──
+  const DEMO = {
+    stats: {
+      followers: 4113, leads: 127, reviews: 18, posts: 43, rating: 4.9,
+      booked: 43, revenue_impact: 66300, dms_handled: 312
+    },
+    platforms: {
+      instagram: { followers: 1247, gained: 749, goal: 5000 },
+      tiktok:    { followers: 2814, gained: 2814, goal: 10000 },
+      facebook:  { followers: 634,  gained: 212,  goal: 2000 },
+      youtube:   { followers: 418,  gained: 418,  goal: 1000 }
+    },
+    leads: {
+      "lead_001": { name:"Marcus T.",   service:"Graphene Coating",  vehicle:"Lamborghini Urus", source:"TikTok",    status:"hot",    date:"Jun 10" },
+      "lead_002": { name:"Sarah K.",    service:"Full Interior Steam",vehicle:"BMW X5",           source:"Instagram", status:"booked", date:"Jun 10" },
+      "lead_003": { name:"Derek M.",    service:"Ceramic Coating",   vehicle:"Porsche 911",       source:"Website",   status:"hot",    date:"Jun 9" },
+      "lead_004": { name:"Amanda R.",   service:"Paint Correction",  vehicle:"Tesla Model S",     source:"Google",    status:"booked", date:"Jun 9" },
+      "lead_005": { name:"Tyler W.",    service:"Full Detail Pkg",   vehicle:"Ford F-250",        source:"Facebook",  status:"followup",date:"Jun 8" },
+      "lead_006": { name:"Chris B.",    service:"Graphene Coating",  vehicle:"Mercedes G-Wagon",  source:"TikTok",    status:"booked", date:"Jun 8" },
+      "lead_007": { name:"Jessica L.",  service:"Interior+Exterior", vehicle:"Range Rover",       source:"Instagram", status:"followup",date:"Jun 7" },
+      "lead_008": { name:"Ryan S.",     service:"Ceramic Coating",   vehicle:"Audi RS7",          source:"YouTube",   status:"booked", date:"Jun 7" },
+      "lead_009": { name:"Nicole H.",   service:"Steam Detail",      vehicle:"Cadillac Escalade", source:"Google",    status:"new",    date:"Jun 6" },
+      "lead_010": { name:"Brandon F.",  service:"Full Pkg + PPF",    vehicle:"Ferrari 488",       source:"TikTok",    status:"hot",    date:"Jun 5" }
+    },
+    reviews: {
+      "rev_001": { platform:"Google", date:"2 days ago", author:"Ryan S.",   rating:5, text:"Collin and the team did an unbelievable job on my Porsche. The graphene coating came out flawless. I've been to a dozen detailers in Scottsdale — this is by far the best." },
+      "rev_002": { platform:"Google", date:"4 days ago", author:"Chris B.",  rating:5, text:"I found Desert Steam Detail through TikTok and I'm so glad I did. My G-Wagon interior looks brand new. The steam process is next level — no chemicals, just perfect results." },
+      "rev_003": { platform:"Yelp",   date:"5 days ago", author:"Amanda R.", rating:5, text:"Hands down the most professional detailers I've ever used. Responded to my inquiry within minutes, showed up on time, and the ceramic coating on my Tesla is absolutely perfect." },
+      "rev_004": { platform:"Google", date:"1 week ago", author:"Sarah K.",  rating:5, text:"Saw their before and after on Instagram, messaged them, had a quote within 3 minutes and a booking same day. The full steam detail on my BMW was worth every penny." }
+    },
+    automations: {
+      "auto_001": { name:"Instant Lead Response",    desc:"Auto-responds to every inquiry within 3 min, 24/7",           active:true,  stat1_val:"127", stat1_lbl:"Leads Caught", stat2_val:"2.8m",  stat2_lbl:"Avg Response", stat3_val:"34%",   stat3_lbl:"Book Rate" },
+      "auto_002": { name:"7-Day Follow-Up Sequence", desc:"4 automated follow-ups over 7 days via text + email",          active:true,  stat1_val:"61",  stat1_lbl:"Re-Engaged",  stat2_val:"22%",   stat2_lbl:"Book Rate",    stat3_val:"$8,200", stat3_lbl:"Revenue Rev." },
+      "auto_003": { name:"Auto Review Request",      desc:"Text with Google review link sent 2 hrs after every job",      active:true,  stat1_val:"40",  stat1_lbl:"Sent",         stat2_val:"18",    stat2_lbl:"Reviews Posted",stat3_val:"4.9★",  stat3_lbl:"Avg Rating" },
+      "auto_004": { name:"Auto Booking + Calendar",  desc:"Live availability calendar, auto-confirm + reminder texts",    active:true,  stat1_val:"84",  stat1_lbl:"Bookings",     stat2_val:"3%",    stat2_lbl:"No-Show Rate", stat3_val:"0hrs",  stat3_lbl:"Admin Time" },
+      "auto_005": { name:"Instagram & FB DM Bot",    desc:"Responds to every DM < 60 seconds, routes hot leads to Collin",active:true,  stat1_val:"312", stat1_lbl:"DMs Handled", stat2_val:"47",    stat2_lbl:"Leads from DMs",stat3_val:"<60s", stat3_lbl:"Response" },
+      "auto_006": { name:"Past Client Win-Back",     desc:"Contacts clients who haven't booked in 60 days automatically", active:true,  stat1_val:"28",  stat1_lbl:"Sent",         stat2_val:"11",    stat2_lbl:"Re-Booked",    stat3_val:"$12K",  stat3_lbl:"Revenue Rev." }
+    },
+    notes: [
+      "• Collin is most excited about TikTok results — double down on graphene coating process videos",
+      "• Weekly call scheduled Mondays at 10am — keep calls under 20 min",
+      "• Paid ad campaign launching Week 3 — targeting Paradise Valley + Scottsdale 85251/85253",
+      "• Collin has a Ferrari client coming in — set up for a content shoot",
+      "• Upsell opportunity: Reputation Management add-on ($200/mo)"
+    ]
+  };
+
+  // ── GLOBAL STATE ──
+  window._db   = null;
+  window._data = JSON.parse(JSON.stringify(DEMO));
+
+  function formatNum(n) {
+    if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
+    if (n >= 1000) return (n/1000).toFixed(1)+'K';
+    return n;
+  }
+
+  // ── RENDER FUNCTIONS ──
+  function renderStats(stats) {
+    const s = stats || window._data.stats;
+    setTxt('stat-followers',  formatNum(s.followers));
+    setTxt('stat-leads',      formatNum(s.leads));
+    setTxt('stat-reviews',    s.reviews);
+    setTxt('stat-posts',      s.posts);
+    setTxt('stat-rating',     s.rating+'★');
+    setTxt('stat-booked',     s.booked);
+    setTxt('stat-revenue',    '$'+formatNum(s.revenue_impact));
+    setTxt('stat-dms',        formatNum(s.dms_handled));
+  }
+
+  function renderPlatforms(p) {
+    p = p || window._data.platforms;
+    ['instagram','tiktok','facebook','youtube'].forEach(k => {
+      const pl = p[k];
+      if (!pl) return;
+      setTxt('pf-count-'+k, formatNum(pl.followers));
+      setTxt('pf-gain-'+k,  '+'+formatNum(pl.gained)+' this month');
+      setTxt('pf-goal-'+k,  'Goal: '+formatNum(pl.goal));
+      const pct = Math.min(100, Math.round((pl.followers/pl.goal)*100));
+      const el = document.getElementById('pf-prog-'+k);
+      if (el) el.style.width = pct+'%';
+    });
+  }
+
+  function renderLeads(leadsObj) {
+    leadsObj = leadsObj || window._data.leads;
+    const tbody = document.getElementById('leads-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    const statusMap = {
+      hot:      {dot:'dot-hot',    label:'Hot — Active'},
+      booked:   {dot:'dot-booked', label:'Booked ✓'},
+      followup: {dot:'dot-warm',   label:'In Follow-Up'},
+      new:      {dot:'dot-new',    label:'New — AI Replied'},
+      lost:     {dot:'dot-lost',   label:'Lost'}
+    };
+    const leads = Object.entries(leadsObj).reverse();
+    leads.forEach(([id, l]) => {
+      const s = statusMap[l.status] || {dot:'dot-new', label:l.status};
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong style="color:#fff">${escHtml(l.name)}</strong></td>
+        <td>${escHtml(l.service||'')}</td>
+        <td>${escHtml(l.vehicle||'')}</td>
+        <td><span class="source-tag">${escHtml(l.source||'')}</span></td>
+        <td style="color:#8a9e8d;font-size:.78rem">${escHtml(l.date||'')}</td>
+        <td><span class="s-dot"><span class="dot ${s.dot}"></span>${s.label}</span></td>
+        <td><button class="del-btn" onclick="deleteLead('${id}')">✕</button></td>`;
+      tbody.appendChild(tr);
+    });
+    const total = leads.length;
+    const booked = leads.filter(([,l])=>l.status==='booked').length;
+    const hot    = leads.filter(([,l])=>l.status==='hot').length;
+    setTxt('lead-total', total);
+    setTxt('lead-booked', booked);
+    setTxt('lead-hot', hot);
+    setTxt('lead-rate', total ? Math.round(booked/total*100)+'%' : '0%');
+  }
+
+  function renderReviews(revObj) {
+    revObj = revObj || window._data.reviews;
+    const grid = document.getElementById('reviews-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    const entries = Object.entries(revObj).reverse();
+    entries.forEach(([id, r]) => {
+      const stars = '★'.repeat(r.rating||5);
+      const div = document.createElement('div');
+      div.className = 'review-card';
+      div.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:.68rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.08em">${escHtml(r.platform)} · ${escHtml(r.date)}</div>
+          <button class="del-btn" onclick="deleteReview('${id}')">✕</button>
+        </div>
+        <div class="star-row"><span class="star">${stars}</span></div>
+        <div class="review-body">"${escHtml(r.text)}"</div>
+        <div class="review-author">— ${escHtml(r.author)}</div>`;
+      grid.appendChild(div);
+    });
+    const count = entries.length;
+    setTxt('review-count', count);
+    const avgRating = count ? (entries.reduce((s,[,r])=>s+(r.rating||5),0)/count).toFixed(1) : '—';
+    setTxt('review-avg', avgRating+'★');
+  }
+
+  function renderAutomations(autoObj) {
+    autoObj = autoObj || window._data.automations;
+    const list = document.getElementById('auto-list');
+    if (!list) return;
+    list.innerHTML = '';
+    const icons = ['⚡','🔄','⭐','📅','💬','🎯','📢','🔔','📊','🤖'];
+    const colors = ['rgba(74,222,128,.12)','rgba(74,144,217,.12)','rgba(212,175,55,.1)',
+                    'rgba(155,89,182,.12)','rgba(74,222,128,.08)','rgba(224,82,82,.1)',
+                    'rgba(74,144,217,.1)','rgba(212,175,55,.08)','rgba(74,222,128,.08)','rgba(74,144,217,.12)'];
+    let i = 0;
+    Object.entries(autoObj).forEach(([id, a]) => {
+      const ico   = icons[i % icons.length];
+      const clr   = colors[i % colors.length];
+      const onOff = a.active !== false;
+      const div   = document.createElement('div');
+      div.className = 'auto-row';
+      div.innerHTML = `
+        <div class="auto-ico" style="background:${clr}">${ico}</div>
+        <div class="auto-info">
+          <div class="auto-title">${escHtml(a.name)}</div>
+          <div class="auto-desc">${escHtml(a.desc||'')}</div>
+        </div>
+        <div class="auto-stats">
+          <div class="a-stat"><div class="a-stat-val">${escHtml(a.stat1_val||'—')}</div><div class="a-stat-lbl">${escHtml(a.stat1_lbl||'')}</div></div>
+          <div class="a-stat"><div class="a-stat-val">${escHtml(a.stat2_val||'—')}</div><div class="a-stat-lbl">${escHtml(a.stat2_lbl||'')}</div></div>
+          <div class="a-stat"><div class="a-stat-val">${escHtml(a.stat3_val||'—')}</div><div class="a-stat-lbl">${escHtml(a.stat3_lbl||'')}</div></div>
+        </div>
+        <div class="toggle ${onOff?'on':''}" onclick="toggleAuto('${id}',${!onOff})" style="background:${onOff?'var(--green-xl)':'rgba(255,255,255,.15)'}"></div>`;
+      list.appendChild(div);
+      i++;
+    });
+  }
+
+  function renderNotes(notesArr) {
+    notesArr = notesArr || window._data.notes;
+    const el = document.getElementById('notes-text');
+    if (!el) return;
+    if (Array.isArray(notesArr)) {
+      el.innerHTML = notesArr.map(n=>`<p style="margin-bottom:.5rem">${escHtml(n)}</p>`).join('');
+    } else {
+      el.innerHTML = `<p>${escHtml(String(notesArr))}</p>`;
+    }
+  }
+
+  // ── FIREBASE INIT ──
+  function initFirebase() {
+    if (DEMO_MODE) {
+      setConnStatus('demo');
+      renderAll(window._data);
+      return;
+    }
+    try {
+      const app = initializeApp(firebaseConfig);
+      window._db = getDatabase(app);
+      setConnStatus('connecting');
+
+      // Seed default data if empty
+      const statsRef = ref(window._db, 'desert_steam/stats');
+      onValue(statsRef, snap => {
+        if (!snap.exists()) {
+          set(statsRef, DEMO.stats);
+        } else {
+          window._data.stats = snap.val();
+          renderStats(window._data.stats);
+          showToast('📊 Stats updated live!');
+        }
+      });
+
+      onValue(ref(window._db,'desert_steam/platforms'), snap => {
+        if (!snap.exists()) { set(ref(window._db,'desert_steam/platforms'), DEMO.platforms); }
+        else { window._data.platforms = snap.val(); renderPlatforms(window._data.platforms); }
+      });
+
+      onValue(ref(window._db,'desert_steam/leads'), snap => {
+        if (!snap.exists()) { set(ref(window._db,'desert_steam/leads'), DEMO.leads); }
+        else { window._data.leads = snap.val(); renderLeads(window._data.leads); showLeadAlert(); }
+      });
+
+      onValue(ref(window._db,'desert_steam/reviews'), snap => {
+        if (!snap.exists()) { set(ref(window._db,'desert_steam/reviews'), DEMO.reviews); }
+        else { window._data.reviews = snap.val(); renderReviews(window._data.reviews); }
+      });
+
+      onValue(ref(window._db,'desert_steam/automations'), snap => {
+        if (!snap.exists()) { set(ref(window._db,'desert_steam/automations'), DEMO.automations); }
+        else { window._data.automations = snap.val(); renderAutomations(window._data.automations); }
+      });
+
+      onValue(ref(window._db,'desert_steam/notes'), snap => {
+        if (!snap.exists()) { set(ref(window._db,'desert_steam/notes'), DEMO.notes); }
+        else { window._data.notes = snap.val(); renderNotes(window._data.notes); }
+      });
+
+      setConnStatus('live');
+    } catch(e) {
+      console.error('Firebase error:', e);
+      setConnStatus('error');
+      renderAll(window._data);
+    }
+  }
+
+  function renderAll(data) {
+    renderStats(data.stats);
+    renderPlatforms(data.platforms);
+    renderLeads(data.leads);
+    renderReviews(data.reviews);
+    renderAutomations(data.automations);
+    renderNotes(data.notes);
+  }
+
+  // ── EXPOSED ACTIONS ──
+  let lastLeadCount = 0;
+  function showLeadAlert() {
+    const count = Object.keys(window._data.leads||{}).length;
+    if (count > lastLeadCount && lastLeadCount > 0) {
+      showToast('🎯 New lead captured by AI!', 'gold');
+    }
+    lastLeadCount = count;
+  }
+
+  window.addLead = function(data) {
+    if (DEMO_MODE) {
+      const id = 'lead_'+Date.now();
+      window._data.leads[id] = data;
+      renderLeads(window._data.leads);
+      showToast('✅ Lead added! (Demo mode)', 'gold');
+      return;
+    }
+    const { push: fbPush } = window._fbFns;
+    fbPush(ref(window._db, 'desert_steam/leads'), { ...data, date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'}) });
+  };
+
+  window.deleteLead = function(id) {
+    if (DEMO_MODE) {
+      delete window._data.leads[id];
+      renderLeads(window._data.leads);
+      return;
+    }
+    remove(ref(window._db, 'desert_steam/leads/'+id));
+  };
+
+  window.deleteReview = function(id) {
+    if (DEMO_MODE) {
+      delete window._data.reviews[id];
+      renderReviews(window._data.reviews);
+      return;
+    }
+    remove(ref(window._db, 'desert_steam/reviews/'+id));
+  };
+
+  window.addReview = function(data) {
+    if (DEMO_MODE) {
+      const id = 'rev_'+Date.now();
+      window._data.reviews[id] = data;
+      renderReviews(window._data.reviews);
+      showToast('⭐ Review added!');
+      return;
+    }
+    push(ref(window._db, 'desert_steam/reviews'), data);
+  };
+
+  window.toggleAuto = function(id, newState) {
+    if (DEMO_MODE) {
+      if (window._data.automations[id]) window._data.automations[id].active = newState;
+      renderAutomations(window._data.automations);
+      showToast(newState ? '✅ Automation live!' : '⏸ Automation paused');
+      return;
+    }
+    update(ref(window._db, 'desert_steam/automations/'+id), { active: newState });
+    showToast(newState ? '✅ Automation reactivated!' : '⏸ Automation paused');
+  };
+
+  window.updateStats = function(updates) {
+    if (DEMO_MODE) {
+      Object.assign(window._data.stats, updates);
+      renderStats(window._data.stats);
+      showToast('📊 Stats updated!', 'gold');
+      return;
+    }
+    update(ref(window._db, 'desert_steam/stats'), updates);
+  };
+
+  window.updatePlatform = function(platform, updates) {
+    if (DEMO_MODE) {
+      Object.assign(window._data.platforms[platform], updates);
+      renderPlatforms(window._data.platforms);
+      showToast('📱 Platform stats updated!');
+      return;
+    }
+    update(ref(window._db, 'desert_steam/platforms/'+platform), updates);
+  };
+
+  window.saveNote = function(text) {
+    if (DEMO_MODE) {
+      if (!Array.isArray(window._data.notes)) window._data.notes = [];
+      window._data.notes.push('• ' + text);
+      renderNotes(window._data.notes);
+      showToast('📝 Note saved!');
+      return;
+    }
+    const arr = Array.isArray(window._data.notes) ? [...window._data.notes] : [];
+    arr.push('• ' + text);
+    set(ref(window._db, 'desert_steam/notes'), arr);
+  };
+
+  // stash fns for use outside module
+  window._fbFns = { push, set, update, remove, ref, serverTimestamp };
+  window._demoMode = DEMO_MODE;
+
+  // ── HELPERS ──
+  function setTxt(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+  function setConnStatus(s) {
+    const el = document.getElementById('conn-badge');
+    if (!el) return;
+    const map = {
+      demo:       { txt:'⚙ Demo Mode — Setup Firebase below', cls:'badge-demo' },
+      live:       { txt:'🔴 LIVE — All Systems Syncing', cls:'badge-live' },
+      connecting: { txt:'⏳ Connecting to Firebase…', cls:'badge-connecting' },
+      error:      { txt:'⚠ Firebase Error — Check Config', cls:'badge-error' }
+    };
+    const m = map[s] || map.demo;
+    el.textContent = m.txt;
+    el.className = 'conn-badge ' + m.cls;
+  }
+
+  // toast exposed globally
+  let _toastT;
+  window.showToast = function(msg, type) {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.className = 'toast show' + (type==='gold'?' gold':'');
+    clearTimeout(_toastT);
+    _toastT = setTimeout(()=>t.classList.remove('show'), 3500);
+  };
+  window.escHtml = function(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  };
+
+  // wait for DOM then init
+  document.addEventListener('DOMContentLoaded', () => {
+    renderAll(DEMO);     // instant render from demo data
+    initFirebase();      // then connect / override with live
+  });
+</script>
+
+<style>
+  :root{
+    --bg:#060E08;--bg2:#0a1a0e;--bg3:#0f2415;--card:#0d1f11;
+    --green:#1a5c2a;--green-lt:#2e8b47;--green-xl:#4ade80;
+    --gold:#D4AF37;--gold-lt:#f0d060;--steam:#7eb8f7;
+    --white:#ffffff;--off:#e8eee9;--gray:#8a9e8d;--red:#e05252;
+    --border:rgba(26,92,42,.35);--shadow:0 8px 40px rgba(0,0,0,.5);
+    --font:'Segoe UI',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--off);font-family:var(--font);min-height:100vh;}
+  ::-webkit-scrollbar{width:5px;height:5px;}
+  ::-webkit-scrollbar-track{background:var(--bg2);}
+  ::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px;}
+
+
+  /* ── CONNECTION BADGE ── */
+  .conn-badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:.25rem .75rem;border-radius:20px;text-transform:uppercase;}
+  .badge-live{background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:var(--green-xl);animation:pulseBadge 2s infinite;}
+  .badge-demo{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);color:var(--gold);}
+  .badge-connecting{background:rgba(126,184,247,.1);border:1px solid rgba(126,184,247,.25);color:var(--steam);}
+  .badge-error{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.3);color:var(--red);}
+  @keyframes pulseBadge{0%,100%{opacity:1;}50%{opacity:.7;}}
+
+  .shell{display:flex;min-height:calc(100vh - 0px);}
+  .sidebar{width:230px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;overflow-y:auto;}
+  .sidebar-top{padding:1.2rem 1.1rem .9rem;border-bottom:1px solid var(--border);}
+  .client-badge{background:linear-gradient(135deg,var(--bg3),var(--card));border:1px solid var(--border);border-radius:12px;padding:.8rem;margin-bottom:.8rem;}
+  .client-badge-lbl{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:.25rem;}
+  .client-name{font-size:.92rem;font-weight:800;color:var(--white);}
+  .client-loc{font-size:.7rem;color:var(--gray);}
+  .managed-by{display:flex;align-items:center;gap:.55rem;}
+  .jg-dot{width:27px;height:27px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.68rem;color:var(--gold);border:1.5px solid var(--gold);flex-shrink:0;}
+  .managed-name{font-size:.76rem;font-weight:700;color:var(--off);}
+  .managed-txt{font-size:.7rem;color:var(--gray);}
+  .nav-section{padding:.5rem 0;}
+  .nav-label{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(74,222,128,.35);padding:.5rem 1.1rem .2rem;display:flex;align-items:center;gap:.4rem;}
+  .nav-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(74,222,128,.15),transparent);}
+  .nav-item{display:flex;align-items:center;gap:.65rem;padding:.52rem 1.1rem;cursor:pointer;transition:all .2s;border-left:2px solid transparent;font-size:.82rem;color:var(--gray);position:relative;overflow:hidden;}
+  .nav-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(212,175,55,.08),transparent);transition:width .2s;}
+  .nav-item:hover::before{width:100%;}
+  .nav-item:hover{color:var(--off);border-left-color:rgba(212,175,55,.4);}
+  .nav-item.active{background:linear-gradient(90deg,rgba(26,92,42,.35),rgba(26,92,42,.08));color:var(--green-xl);border-left-color:var(--gold);font-weight:600;}
+  .nav-item.active::after{content:'';position:absolute;right:.6rem;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);}
+  .sidebar-footer{margin-top:auto;padding:.9rem 1.1rem;border-top:1px solid var(--border);}
+  .plan-chip{background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:.6rem .8rem;}
+  .plan-name{font-size:.8rem;font-weight:800;color:var(--gold);}
+  .plan-price{font-size:.7rem;color:var(--gray);margin-top:.12rem;}
+  .plan-since{font-size:.63rem;color:var(--gray);margin-top:.08rem;}
+
+  .main{margin-left:230px;flex:1;display:flex;flex-direction:column;}
+  .topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:.8rem 1.6rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+  .topbar h1{font-size:1.05rem;font-weight:700;color:var(--white);}
+  .topbar p{font-size:.73rem;color:var(--gray);margin-top:.06rem;}
+  .topbar-right{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+  .day-badge{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);color:var(--gold);font-size:.66rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;}
+  .btn{padding:.42rem 1rem;border-radius:8px;border:none;cursor:pointer;font-size:.78rem;font-weight:600;transition:.18s;}
+  .btn-gold{background:var(--gold);color:#060E08;}
+  .btn-gold:hover{background:var(--gold-lt);}
+  .btn-green{background:var(--green);color:#fff;}
+  .btn-green:hover{background:var(--green-lt);}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--off);}
+  .btn-outline:hover{border-color:var(--green-lt);color:var(--green-xl);}
+  .btn-sm{padding:.28rem .65rem;font-size:.72rem;}
+  .del-btn{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.2);color:var(--red);border-radius:5px;cursor:pointer;padding:.15rem .45rem;font-size:.7rem;transition:.15s;}
+  .del-btn:hover{background:rgba(224,82,82,.25);}
+
+  .content{padding:1.6rem;flex:1;}
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.15rem;position:relative;overflow:hidden;}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .stat-card.c1::before{background:linear-gradient(90deg,var(--green),var(--green-lt));}
+  .stat-card.c2::before{background:linear-gradient(90deg,var(--gold),var(--gold-lt));}
+  .stat-card.c3::before{background:linear-gradient(90deg,var(--steam),#a8d4ff);}
+  .stat-card.c4::before{background:linear-gradient(90deg,#9b59b6,#c07bd6);}
+  .stat-lbl{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:.35rem;}
+  .stat-val{font-size:1.8rem;font-weight:800;color:var(--white);transition:all .4s;}
+  .stat-val em{font-size:.82rem;font-weight:600;color:var(--green-xl);font-style:normal;margin-left:.3rem;}
+  .stat-sub{font-size:.68rem;color:var(--gray);margin-top:.25rem;}
+
+  .sec{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .sec h2{font-size:.95rem;font-weight:700;color:var(--white);}
+  .sec p{font-size:.73rem;color:var(--gray);}
+
+  .platform-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem;}
+  .platform-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;}
+  .platform-logo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto .7rem;}
+  .platform-name{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:.45rem;}
+  .platform-count{font-size:1.55rem;font-weight:800;color:var(--white);transition:all .4s;}
+  .platform-growth{font-size:.73rem;font-weight:700;margin-top:.18rem;}
+  .platform-goal{font-size:.63rem;color:var(--gray);margin-top:.12rem;}
+  .prog-bar{height:5px;background:var(--bg3);border-radius:3px;margin-top:.7rem;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+
+  .table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.6rem;}
+  table{width:100%;border-collapse:collapse;}
+  thead{background:var(--bg3);}
+  th{padding:.7rem 1rem;text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);border-bottom:1px solid var(--border);}
+  td{padding:.8rem 1rem;font-size:.81rem;border-bottom:1px solid rgba(26,92,42,.1);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(26,92,42,.06);}
+  .s-dot{display:inline-flex;align-items:center;gap:.32rem;font-size:.73rem;font-weight:600;}
+  .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .dot-hot{background:#f97316;}
+  .dot-warm{background:var(--gold);}
+  .dot-new{background:var(--steam);}
+  .dot-booked{background:var(--green-xl);}
+  .dot-lost{background:var(--red);}
+  .source-tag{font-size:.63rem;font-weight:700;padding:.13rem .4rem;border-radius:4px;background:rgba(74,222,128,.08);color:var(--green-xl);border:1px solid rgba(74,222,128,.15);}
+
+  .auto-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.6rem;}
+  .auto-row{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;align-items:center;gap:.9rem;}
+  .auto-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .auto-info{flex:1;}
+  .auto-title{font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:.15rem;}
+  .auto-desc{font-size:.72rem;color:var(--gray);}
+  .auto-stats{display:flex;gap:1.3rem;margin-left:auto;}
+  .a-stat{text-align:center;}
+  .a-stat-val{font-size:.9rem;font-weight:800;color:var(--gold);}
+  .a-stat-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);}
+  .toggle{width:36px;height:20px;border-radius:10px;position:relative;cursor:pointer;flex-shrink:0;transition:background .2s;}
+  .toggle::after{content:'';position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:right .2s;}
+  .toggle:not(.on)::after{right:unset;left:3px;}
+
+  .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.6rem;}
+  .review-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.15rem;}
+  .star-row{display:flex;gap:.2rem;margin:.45rem 0;}
+  .star{color:var(--gold);font-size:1rem;}
+  .review-body{font-size:.8rem;color:var(--off);line-height:1.6;font-style:italic;margin-bottom:.5rem;}
+  .review-author{font-size:.7rem;color:var(--gray);}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.2s;}
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.6rem;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+  .modal h2{font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.3rem;}
+  .modal-sub{font-size:.75rem;color:var(--gray);margin-bottom:1.25rem;}
+  .form-group{margin-bottom:.9rem;}
+  .form-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem;display:block;}
+  .form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:.55rem .8rem;color:var(--off);font-size:.83rem;outline:none;transition:.18s;}
+  .form-input:focus{border-color:var(--green-lt);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .modal-actions{display:flex;gap:.6rem;margin-top:1.25rem;justify-content:flex-end;}
+  .tab-row{display:flex;gap:.35rem;margin-bottom:1.1rem;}
+  .tab{padding:.38rem .9rem;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--gray);cursor:pointer;font-size:.78rem;font-weight:600;transition:.15s;}
+  .tab.active,.tab:hover{background:rgba(26,92,42,.2);color:var(--green-xl);border-color:var(--green);}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:1.6rem;right:1.6rem;background:var(--green);color:#fff;border-radius:10px;padding:.75rem 1.2rem;font-size:.83rem;font-weight:600;z-index:300;transform:translateY(70px);opacity:0;transition:.3s;display:flex;align-items:center;gap:.45rem;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  .toast.gold{background:var(--gold);color:#060E08;}
+
+  /* PULSE on update */
+  @keyframes flashGold{0%,100%{box-shadow:none;}50%{box-shadow:0 0 0 3px rgba(212,175,55,.4);}}
+  .flash-update{animation:flashGold .8s ease;}
+
+  @media(max-width:1100px){.stat-grid,.platform-grid{grid-template-columns:repeat(2,1fr);}.auto-stats{display:none;}}
+</style>
+</head>
+<body>
+
+
+<div class="shell">
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <div class="client-badge">
+      <div class="client-badge-lbl">Active Client</div>
+      <div class="client-name">Desert Steam Detail</div>
+      <div class="client-loc">📍 Gilbert / Scottsdale, AZ</div>
+    </div>
+    <div class="managed-by">
+      <div class="jg-dot">JG</div>
+      <div>
+        <div class="managed-name">Jaden Green</div>
+        <div class="managed-txt">GreenAI Solutions Team</div>
+      </div>
+    </div>
+    <div style="margin-top:.75rem;">
+      <span id="conn-badge" class="conn-badge badge-demo">⚙ Demo Mode</span>
+    </div>
+  </div>
+
+  <nav style="flex:1;overflow-y:auto;">
+    <div class="nav-section">
+      <div class="nav-label">Overview</div>
+      <div class="nav-item active" onclick="go('overview',this)">📊 Overview</div>
+      <div class="nav-item" onclick="go('social',this)">📱 Social Media</div>
+      <div class="nav-item" onclick="go('automations',this)">🤖 AI Automations</div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Growth</div>
+      <div class="nav-item" onclick="go('leads',this)">🎯 Lead Tracker</div>
+      <div class="nav-item" onclick="go('reviews',this)">⭐ Reviews</div>
+      <div class="nav-item" onclick="go('roi',this)">💰 ROI & Results</div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Manage</div>
+      <div class="nav-item" onclick="go('update',this)">⚡ Update Stats</div>
+      <div class="nav-item" onclick="go('notes',this)">📝 Notes & Goals</div>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="plan-chip">
+      <div class="plan-name">⚡ Elite Bundle</div>
+      <div class="plan-price">$1,500 / month</div>
+      <div class="plan-since">Active since June 2026</div>
+    </div>
+  </div>
+</aside>
+
+<!-- ══════════ MAIN ══════════ -->
+<div class="main">
+  <div class="topbar">
+    <div>
+      <h1 id="pg-title">Desert Steam Detail — Live Dashboard</h1>
+      <p id="pg-sub">Real-time data, synced 24/7 — powered by GreenAI Solutions</p>
+    </div>
+    <div class="topbar-right">
+      <span id="conn-badge-top" class="conn-badge badge-demo">⚙ Demo</span>
+      <div class="day-badge">📅 Day 10 of 30</div>
+      <button class="btn btn-green btn-sm" onclick="openModal('lead')">+ Add Lead</button>
+      <button class="btn btn-gold btn-sm" onclick="openModal('review')">+ Add Review</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+  <!-- ══ OVERVIEW ══ -->
+  <div class="page active" id="page-overview">
+    <div class="stat-grid">
+      <div class="stat-card c1">
+        <div class="stat-lbl">Total Followers Gained</div>
+        <div class="stat-val" id="stat-followers">—<em id="stat-followers-em"></em></div>
+        <div class="stat-sub">Instagram + TikTok + Facebook + YouTube</div>
+      </div>
+      <div class="stat-card c2">
+        <div class="stat-lbl">AI Leads Captured</div>
+        <div class="stat-val" id="stat-leads">—</div>
+        <div class="stat-sub">Auto-replied to within 3 min, 24/7</div>
+      </div>
+      <div class="stat-card c3">
+        <div class="stat-lbl">New Reviews</div>
+        <div class="stat-val" id="stat-reviews">— <em id="stat-rating">★</em></div>
+        <div class="stat-sub">Google + Yelp via automation</div>
+      </div>
+      <div class="stat-card c4">
+        <div class="stat-lbl">Content Published</div>
+        <div class="stat-val" id="stat-posts">—</div>
+        <div class="stat-sub">Daily posting across all 4 platforms</div>
+      </div>
+    </div>
+
+    <div class="sec"><h2>Platform Growth</h2><p>Real-time follower counts</p></div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-logo" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);">📸</div>
+        <div class="platform-name">Instagram</div>
+        <div class="platform-count" id="pf-count-instagram">—</div>
+        <div class="platform-growth" id="pf-gain-instagram" style="color:var(--green-xl);">—</div>
+        <div class="platform-goal" id="pf-goal-instagram">—</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-instagram" style="width:0%;background:linear-gradient(90deg,#833ab4,#fd1d1d)"></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#111;color:#fff;">🎬</div>
+        <div class="platform-name">TikTok</div>
+        <div class="platform-count" id="pf-count-tiktok">—</div>
+        <div class="platform-growth" id="pf-gain-tiktok" style="color:#69c9d0;">—</div>
+        <div class="platform-goal" id="pf-goal-tiktok">—</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-tiktok" style="width:0%;background:linear-gradient(90deg,#69c9d0,#fff)"></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#1877f2;">👍</div>
+        <div class="platform-name">Facebook</div>
+        <div class="platform-count" id="pf-count-facebook">—</div>
+        <div class="platform-growth" id="pf-gain-facebook" style="color:#60a5fa;">—</div>
+        <div class="platform-goal" id="pf-goal-facebook">—</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-facebook" style="width:0%;background:linear-gradient(90deg,#1877f2,#60a5fa)"></div></div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#ff0000;">▶️</div>
+        <div class="platform-name">YouTube Shorts</div>
+        <div class="platform-count" id="pf-count-youtube">—</div>
+        <div class="platform-growth" id="pf-gain-youtube" style="color:#fca5a5;">—</div>
+        <div class="platform-goal" id="pf-goal-youtube">—</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-youtube" style="width:0%;background:linear-gradient(90deg,#ff0000,#fca5a5)"></div></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.15rem;">
+        <div style="font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:.85rem;">📊 Lead Summary</div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">Total Leads</span><span style="font-weight:700;color:var(--white)" id="lead-total">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">Booked</span><span style="font-weight:700;color:var(--green-xl)" id="lead-booked">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">Hot Leads</span><span style="font-weight:700;color:#f97316" id="lead-hot">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;"><span style="font-size:.78rem;color:var(--gray)">Conversion Rate</span><span style="font-weight:700;color:var(--gold)" id="lead-rate">—</span></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.15rem;">
+        <div style="font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:.85rem;">⭐ Review Summary</div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">Total Reviews</span><span style="font-weight:700;color:var(--white)" id="review-count">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">Avg Rating</span><span style="font-weight:700;color:var(--gold)" id="review-avg">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.78rem;color:var(--gray)">DMs Handled</span><span style="font-weight:700;color:var(--steam)" id="stat-dms">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.4rem 0;"><span style="font-size:.78rem;color:var(--gray)">Revenue Impact</span><span style="font-weight:700;color:var(--gold)" id="stat-revenue">—</span></div>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(26,92,42,.12));border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:1.15rem;">
+        <div style="font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:.85rem;">💰 Quick ROI</div>
+        <div style="text-align:center;padding:.75rem 0;">
+          <div style="font-size:2rem;font-weight:800;color:var(--green-xl)" id="stat-booked">—</div>
+          <div style="font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem">Jobs Booked</div>
+        </div>
+        <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:.65rem;text-align:center;margin-top:.25rem;">
+          <div style="font-size:.78rem;color:var(--off)">Monthly investment: <strong style="color:var(--gold)">$1,500</strong></div>
+          <div style="font-size:.72rem;color:var(--gray);margin-top:.2rem">2 graphene jobs = fully paid</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SOCIAL MEDIA ══ -->
+  <div class="page" id="page-social">
+    <div class="sec"><h2>Social Media</h2><p>Update follower counts anytime — changes sync live</p></div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-logo" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);">📸</div>
+        <div class="platform-name">Instagram</div>
+        <div class="platform-count" id="pf-count-instagram2">—</div>
+        <div class="platform-growth" id="pf-gain-instagram2" style="color:var(--green-xl);">—</div>
+        <div class="platform-goal" id="pf-goal-instagram2">Goal: 5,000</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-instagram2" style="width:0%;background:linear-gradient(90deg,#833ab4,#fd1d1d)"></div></div>
+        <button class="btn btn-outline btn-sm" style="width:100%;margin-top:.75rem" onclick="openUpdatePlatform('instagram')">Update Count</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#111;color:#fff;">🎬</div>
+        <div class="platform-name">TikTok</div>
+        <div class="platform-count" id="pf-count-tiktok2">—</div>
+        <div class="platform-growth" id="pf-gain-tiktok2" style="color:#69c9d0;">—</div>
+        <div class="platform-goal" id="pf-goal-tiktok2">Goal: 10,000</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-tiktok2" style="width:0%;background:linear-gradient(90deg,#69c9d0,#fff)"></div></div>
+        <button class="btn btn-outline btn-sm" style="width:100%;margin-top:.75rem" onclick="openUpdatePlatform('tiktok')">Update Count</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#1877f2;">👍</div>
+        <div class="platform-name">Facebook</div>
+        <div class="platform-count" id="pf-count-facebook2">—</div>
+        <div class="platform-growth" id="pf-gain-facebook2" style="color:#60a5fa;">—</div>
+        <div class="platform-goal" id="pf-goal-facebook2">Goal: 2,000</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-facebook2" style="width:0%;background:linear-gradient(90deg,#1877f2,#60a5fa)"></div></div>
+        <button class="btn btn-outline btn-sm" style="width:100%;margin-top:.75rem" onclick="openUpdatePlatform('facebook')">Update Count</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo" style="background:#ff0000;">▶️</div>
+        <div class="platform-name">YouTube Shorts</div>
+        <div class="platform-count" id="pf-count-youtube2">—</div>
+        <div class="platform-growth" id="pf-gain-youtube2" style="color:#fca5a5;">—</div>
+        <div class="platform-goal" id="pf-goal-youtube2">Goal: 1,000</div>
+        <div class="prog-bar"><div class="prog-fill" id="pf-prog-youtube2" style="width:0%;background:linear-gradient(90deg,#ff0000,#fca5a5)"></div></div>
+        <button class="btn btn-outline btn-sm" style="width:100%;margin-top:.75rem" onclick="openUpdatePlatform('youtube')">Update Count</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AUTOMATIONS ══ -->
+  <div class="page" id="page-automations">
+    <div class="sec"><h2>AI Automation Suite</h2><button class="btn btn-green btn-sm" onclick="openModal('automation')">+ Add Automation</button></div>
+    <div class="auto-list" id="auto-list"></div>
+  </div>
+
+  <!-- ══ LEADS ══ -->
+  <div class="page" id="page-leads">
+    <div class="sec"><h2>AI Lead Tracker</h2><button class="btn btn-green btn-sm" onclick="openModal('lead')">+ Add Lead</button></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--white)" id="lead-total2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Total Leads</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--green-xl)" id="lead-booked2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Booked</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:#f97316" id="lead-hot2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Hot Leads</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--gold)" id="lead-rate2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Book Rate</div></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Service</th><th>Vehicle</th><th>Source</th><th>Date</th><th>Status</th><th></th></tr></thead>
+        <tbody id="leads-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ REVIEWS ══ -->
+  <div class="page" id="page-reviews">
+    <div class="sec"><h2>Reviews</h2><button class="btn btn-gold btn-sm" onclick="openModal('review')">+ Add Review</button></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.25rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--gold)" id="review-avg2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Google Rating</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--green-xl)" id="review-count2">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Total Reviews</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;"><div style="font-size:1.4rem;font-weight:800;color:var(--steam)">45%</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Completion Rate</div></div>
+    </div>
+    <div class="review-grid" id="reviews-grid"></div>
+  </div>
+
+  <!-- ══ ROI ══ -->
+  <div class="page" id="page-roi">
+    <div class="sec"><h2>ROI & Results</h2></div>
+    <div style="background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(26,92,42,.12));border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:1.3rem;margin-bottom:1.25rem;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;">Month 1 — Live Tracking</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--white)">GreenAI is already paying for itself — and then some.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:.9rem;">
+        <div style="text-align:center;background:rgba(0,0,0,.2);border-radius:10px;padding:.9rem;"><div style="font-size:1.4rem;font-weight:800;color:var(--green-xl)" id="roi-booked">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem">Leads Booked</div></div>
+        <div style="text-align:center;background:rgba(0,0,0,.2);border-radius:10px;padding:.9rem;"><div style="font-size:1.4rem;font-weight:800;color:var(--gold)" id="roi-revenue">—</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem">Est. Revenue</div></div>
+        <div style="text-align:center;background:rgba(0,0,0,.2);border-radius:10px;padding:.9rem;"><div style="font-size:1.4rem;font-weight:800;color:var(--steam)">31x</div><div style="font-size:.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem">Return on Investment</div></div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+      <h3 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.9rem;">💰 Revenue Impact Breakdown</h3>
+      <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.8rem;color:var(--gray)">Monthly GreenAI Investment</span><span style="font-size:.85rem;font-weight:700;color:var(--red)">-$1,500</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.8rem;color:var(--gray)">Leads Booked (avg $1,100/job)</span><span style="font-size:.85rem;font-weight:700;color:var(--green-xl)" id="roi-jobs">—</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.8rem;color:var(--gray)">Re-Engaged Past Clients</span><span style="font-size:.85rem;font-weight:700;color:var(--green-xl)">+$12,100</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)"><span style="font-size:.8rem;color:var(--gray)">Social Media Referrals</span><span style="font-size:.85rem;font-weight:700;color:var(--green-xl)">+$8,400</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.75rem 0 0;"><span style="font-size:.88rem;font-weight:700;color:var(--white)">Net Revenue Impact</span><span style="font-size:1rem;font-weight:800;color:var(--gold)" id="roi-net">—</span></div>
+    </div>
+  </div>
+
+  <!-- ══ UPDATE STATS ══ -->
+  <div class="page" id="page-update">
+    <div class="sec"><h2>⚡ Update Live Stats</h2><p>Changes reflect instantly on the dashboard</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+        <h3 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:1rem;">📊 Core Stats</h3>
+        <div class="form-group"><label class="form-label">Total Followers Gained (this month)</label><input class="form-input" id="u-followers" type="number" placeholder="e.g. 4113"/></div>
+        <div class="form-group"><label class="form-label">AI Leads Captured</label><input class="form-input" id="u-leads" type="number" placeholder="e.g. 127"/></div>
+        <div class="form-group"><label class="form-label">New Reviews Generated</label><input class="form-input" id="u-reviews" type="number" placeholder="e.g. 18"/></div>
+        <div class="form-group"><label class="form-label">Posts Published</label><input class="form-input" id="u-posts" type="number" placeholder="e.g. 43"/></div>
+        <div class="form-group"><label class="form-label">Google Rating (e.g. 4.9)</label><input class="form-input" id="u-rating" type="number" step=".1" placeholder="e.g. 4.9"/></div>
+        <div class="form-group"><label class="form-label">Leads Booked</label><input class="form-input" id="u-booked" type="number" placeholder="e.g. 43"/></div>
+        <div class="form-group"><label class="form-label">Revenue Impact ($)</label><input class="form-input" id="u-revenue" type="number" placeholder="e.g. 66300"/></div>
+        <div class="form-group"><label class="form-label">DMs Auto-Handled</label><input class="form-input" id="u-dms" type="number" placeholder="e.g. 312"/></div>
+        <button class="btn btn-gold" style="width:100%" onclick="submitStatsUpdate()">🔄 Push Stats Live →</button>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+        <h3 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:1rem;">📱 Platform Counts</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem;">
+          <div class="form-group" style="margin:0"><label class="form-label">Instagram Followers</label><input class="form-input" id="u-ig" type="number" placeholder="1247"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">IG Gained This Month</label><input class="form-input" id="u-ig-gain" type="number" placeholder="749"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">TikTok Followers</label><input class="form-input" id="u-tt" type="number" placeholder="2814"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">TT Gained This Month</label><input class="form-input" id="u-tt-gain" type="number" placeholder="2814"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">Facebook Followers</label><input class="form-input" id="u-fb" type="number" placeholder="634"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">FB Gained This Month</label><input class="form-input" id="u-fb-gain" type="number" placeholder="212"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">YouTube Subscribers</label><input class="form-input" id="u-yt" type="number" placeholder="418"/></div>
+          <div class="form-group" style="margin:0"><label class="form-label">YT Gained This Month</label><input class="form-input" id="u-yt-gain" type="number" placeholder="418"/></div>
+        </div>
+        <button class="btn btn-green" style="width:100%;margin-top:.25rem" onclick="submitPlatformUpdate()">📱 Push Platform Counts Live →</button>
+        <div style="margin-top:1.25rem;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.15);border-radius:8px;padding:.9rem;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;">📝 Add a Note</div>
+          <input class="form-input" id="u-note" placeholder="e.g. Collin confirmed Ferrari shoot for Thursday" style="margin-bottom:.5rem"/>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="submitNote()">Save Note →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ NOTES ══ -->
+  <div class="page" id="page-notes">
+    <div class="sec"><h2>Notes & Goals</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+        <h3 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.8rem;">📋 Strategy Notes</h3>
+        <div id="notes-text" style="font-size:.8rem;color:var(--off);line-height:1.75;"></div>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;">
+          <input class="form-input" id="notes-input" placeholder="Add a note…" style="flex:1"/>
+          <button class="btn btn-green btn-sm" onclick="submitNote()">Add</button>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;">
+        <h3 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.8rem;">🚀 90-Day Goals</h3>
+        <div style="display:flex;flex-direction:column;gap:.6rem;">
+          <div style="display:flex;align-items:center;gap:.7rem;padding:.55rem;background:rgba(74,222,128,.06);border-radius:8px;border:1px solid rgba(74,222,128,.15)"><span>📱</span><div><div style="font-size:.8rem;font-weight:700;color:var(--white)">9,000 total followers</div><div style="font-size:.68rem;color:var(--gray)">Across all platforms</div></div></div>
+          <div style="display:flex;align-items:center;gap:.7rem;padding:.55rem;background:rgba(212,175,55,.06);border-radius:8px;border:1px solid rgba(212,175,55,.15)"><span>🎯</span><div><div style="font-size:.8rem;font-weight:700;color:var(--white)">500+ AI-captured leads</div><div style="font-size:.68rem;color:var(--gray)">All sourced from social & automation</div></div></div>
+          <div style="display:flex;align-items:center;gap:.7rem;padding:.55rem;background:rgba(126,184,247,.06);border-radius:8px;border:1px solid rgba(126,184,247,.15)"><span>⭐</span><div><div style="font-size:.8rem;font-weight:700;color:var(--white)">100 new 5-star reviews</div><div style="font-size:.68rem;color:var(--gray)">Google #1 in Gilbert for auto detailing</div></div></div>
+          <div style="display:flex;align-items:center;gap:.7rem;padding:.55rem;background:rgba(155,89,182,.06);border-radius:8px;border:1px solid rgba(155,89,182,.15)"><span>💰</span><div><div style="font-size:.8rem;font-weight:700;color:var(--white)">$250K+ revenue impact</div><div style="font-size:.68rem;color:var(--gray)">Directly attributable to GreenAI</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- content -->
+</div><!-- main -->
+</div><!-- shell -->
+
+<!-- ══ MODALS ══ -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="tab-row">
+      <button class="tab active" id="tab-lead" onclick="switchTab('lead')">🎯 Add Lead</button>
+      <button class="tab" id="tab-review" onclick="switchTab('review')">⭐ Add Review</button>
+      <button class="tab" id="tab-automation" onclick="switchTab('automation')">🤖 Add Automation</button>
+    </div>
+
+    <!-- Lead form -->
+    <div id="form-lead">
+      <h2>Add New Lead</h2>
+      <p class="modal-sub">Syncs live to the dashboard instantly</p>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Customer Name</label><input class="form-input" id="l-name" placeholder="e.g. Marcus T."/></div>
+        <div class="form-group"><label class="form-label">Service Interest</label><input class="form-input" id="l-service" placeholder="e.g. Graphene Coating"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Vehicle</label><input class="form-input" id="l-vehicle" placeholder="e.g. Lamborghini Urus"/></div>
+        <div class="form-group"><label class="form-label">Lead Source</label>
+          <select class="form-input" id="l-source"><option>TikTok</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option>Google</option><option>Website</option><option>Referral</option><option>Walk-in</option><option>Phone</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Status</label>
+        <select class="form-input" id="l-status"><option value="new">New — AI Replied</option><option value="hot">Hot — Active</option><option value="followup">In Follow-Up</option><option value="booked">Booked ✓</option><option value="lost">Lost</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="submitLead()">Add Lead → Live</button>
+      </div>
+    </div>
+
+    <!-- Review form -->
+    <div id="form-review" style="display:none">
+      <h2>Add New Review</h2>
+      <p class="modal-sub">Appears on the Reviews page instantly</p>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Customer Name</label><input class="form-input" id="r-author" placeholder="e.g. John D."/></div>
+        <div class="form-group"><label class="form-label">Platform</label>
+          <select class="form-input" id="r-platform"><option>Google</option><option>Yelp</option><option>Facebook</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Star Rating</label>
+          <select class="form-input" id="r-rating"><option value="5">★★★★★ 5 Stars</option><option value="4">★★★★ 4 Stars</option><option value="3">★★★ 3 Stars</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Date</label><input class="form-input" id="r-date" placeholder="e.g. 1 day ago"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Review Text</label><textarea class="form-input" id="r-text" rows="3" placeholder="What the customer said…"></textarea></div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="submitReview()">Add Review → Live</button>
+      </div>
+    </div>
+
+    <!-- Automation form -->
+    <div id="form-automation" style="display:none">
+      <h2>Add Automation</h2>
+      <p class="modal-sub">Add a new automation to Desert Steam's live suite</p>
+      <div class="form-group"><label class="form-label">Automation Name</label><input class="form-input" id="a-name" placeholder="e.g. Post-Job Thank You SMS"/></div>
+      <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="a-desc" placeholder="Brief description of what this does"/></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;">
+        <div class="form-group"><label class="form-label">Stat 1 Value</label><input class="form-input" id="a-s1v" placeholder="e.g. 48"/></div>
+        <div class="form-group"><label class="form-label">Stat 1 Label</label><input class="form-input" id="a-s1l" placeholder="e.g. Sent"/></div>
+        <div></div>
+        <div class="form-group"><label class="form-label">Stat 2 Value</label><input class="form-input" id="a-s2v" placeholder="e.g. 22%"/></div>
+        <div class="form-group"><label class="form-label">Stat 2 Label</label><input class="form-input" id="a-s2l" placeholder="e.g. Open Rate"/></div>
+        <div></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="submitAutomation()">Add Automation → Live</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Platform update modal -->
+<div class="modal-overlay" id="modal-platform" onclick="if(event.target===this)closePlatformModal()">
+  <div class="modal" style="width:380px">
+    <h2 id="plat-modal-title">Update Platform</h2>
+    <p class="modal-sub">Changes reflect instantly on the live dashboard</p>
+    <div class="form-group"><label class="form-label">Current Follower Count</label><input class="form-input" id="plat-followers" type="number" placeholder="e.g. 1247"/></div>
+    <div class="form-group"><label class="form-label">Gained This Month</label><input class="form-input" id="plat-gained" type="number" placeholder="e.g. 749"/></div>
+    <input type="hidden" id="plat-key"/>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closePlatformModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="submitPlatformModal()">Update Live →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── NAVIGATION ──
+  const pageInfo = {
+    overview:    ['Desert Steam Detail — Live Dashboard',  'Real-time data, synced 24/7'],
+    social:      ['Social Media',                          'Update follower counts — live sync'],
+    automations: ['AI Automation Suite',                   'Every system running live for Desert Steam Detail'],
+    leads:       ['AI Lead Tracker',                       'Every lead captured by the automation system'],
+    reviews:     ['Review Management',                     'Google & Yelp — auto-generated reviews'],
+    roi:         ['ROI & Results',                         'Direct financial impact of GreenAI'],
+    update:      ['⚡ Update Live Stats',                  'Push new numbers — instant sync to all screens'],
+    notes:       ['Notes & Goals',                         'Strategy notes and 90-day targets'],
+  };
+
+  function go(id, el) {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if (el) el.classList.add('active');
+    const [t,s] = pageInfo[id]||['Dashboard',''];
+    document.getElementById('pg-title').textContent = t;
+    document.getElementById('pg-sub').textContent = s;
+    // sync mirrors
+    if (id==='leads') { syncMirrors('lead'); }
+    if (id==='reviews') { syncMirrors('review'); }
+  }
+
+  function syncMirrors(type) {
+    if (type==='lead') {
+      ['lead-total2','lead-booked2','lead-hot2','lead-rate2'].forEach(id=>{
+        const src = document.getElementById(id.replace('2',''));
+        const dst = document.getElementById(id);
+        if (src&&dst) dst.textContent = src.textContent;
+      });
+    }
+    if (type==='review') {
+      const rc = document.getElementById('review-count');
+      const ra = document.getElementById('review-avg');
+      if (rc) { const d=document.getElementById('review-count2'); if(d) d.textContent=rc.textContent; }
+      if (ra) { const d=document.getElementById('review-avg2'); if(d) d.textContent=ra.textContent; }
+    }
+  }
+
+  // Re-render platform mirrors (social page)
+  const origRenderPlatforms = window.renderPlatforms;
+  document.addEventListener('DOMContentLoaded', () => {
+    // patch renderPlatforms to also update social page mirrors
+    const _rp = window.renderPlatforms;
+    // mirrors handled inline in renderPlatforms via ID suffix 2
+  });
+
+  // ── MODALS ──
+  function openModal(tab) {
+    document.getElementById('modal').classList.add('open');
+    if (tab) switchTab(tab);
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); }
+  function switchTab(tab) {
+    ['lead','review','automation'].forEach(t=>{
+      document.getElementById('form-'+t).style.display = t===tab?'block':'none';
+      document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+    });
+  }
+
+  function openUpdatePlatform(key) {
+    const pf = (window._data.platforms||{})[key]||{};
+    document.getElementById('plat-key').value = key;
+    document.getElementById('plat-modal-title').textContent = 'Update '+key.charAt(0).toUpperCase()+key.slice(1);
+    document.getElementById('plat-followers').value = pf.followers||'';
+    document.getElementById('plat-gained').value = pf.gained||'';
+    document.getElementById('modal-platform').classList.add('open');
+  }
+  function closePlatformModal() { document.getElementById('modal-platform').classList.remove('open'); }
+  function submitPlatformModal() {
+    const key = document.getElementById('plat-key').value;
+    const f = parseInt(document.getElementById('plat-followers').value)||0;
+    const g = parseInt(document.getElementById('plat-gained').value)||0;
+    window.updatePlatform(key, { followers:f, gained:g });
+    closePlatformModal();
+    showToast('📱 Platform updated live!', 'gold');
+  }
+
+  // ── FORM SUBMITS ──
+  function submitLead() {
+    const name    = document.getElementById('l-name').value.trim();
+    const service = document.getElementById('l-service').value.trim();
+    const vehicle = document.getElementById('l-vehicle').value.trim();
+    const source  = document.getElementById('l-source').value;
+    const status  = document.getElementById('l-status').value;
+    if (!name) { showToast('⚠ Enter a customer name'); return; }
+    window.addLead({ name, service, vehicle, source, status });
+    closeModal();
+    showToast('🎯 Lead added live!', 'gold');
+    document.getElementById('l-name').value='';
+    document.getElementById('l-service').value='';
+    document.getElementById('l-vehicle').value='';
+  }
+
+  function submitReview() {
+    const author   = document.getElementById('r-author').value.trim();
+    const platform = document.getElementById('r-platform').value;
+    const rating   = parseInt(document.getElementById('r-rating').value);
+    const text     = document.getElementById('r-text').value.trim();
+    const date     = document.getElementById('r-date').value.trim() || 'just now';
+    if (!author||!text) { showToast('⚠ Fill in name and review'); return; }
+    window.addReview({ author, platform, rating, text, date });
+    closeModal();
+    showToast('⭐ Review added live!', 'gold');
+    ['r-author','r-text','r-date'].forEach(id=>document.getElementById(id).value='');
+  }
+
+  function submitAutomation() {
+    const name  = document.getElementById('a-name').value.trim();
+    const desc  = document.getElementById('a-desc').value.trim();
+    const s1v   = document.getElementById('a-s1v').value.trim();
+    const s1l   = document.getElementById('a-s1l').value.trim();
+    const s2v   = document.getElementById('a-s2v').value.trim();
+    const s2l   = document.getElementById('a-s2l').value.trim();
+    if (!name) { showToast('⚠ Enter automation name'); return; }
+    if (!window._data.automations) window._data.automations = {};
+    const id = 'auto_'+Date.now();
+    const auto = { name, desc, active:true, stat1_val:s1v, stat1_lbl:s1l, stat2_val:s2v, stat2_lbl:s2l, stat3_val:'', stat3_lbl:'' };
+    if (window._db && window._fbFns) {
+      const { ref: fRef, push: fPush } = window._fbFns;
+      fPush(fRef(window._db, 'desert_steam/automations'), auto);
+    } else {
+      window._data.automations[id] = auto;
+      window.renderAutomations(window._data.automations);
+    }
+    closeModal();
+    showToast('🤖 Automation added live!', 'gold');
+  }
+
+  function submitStatsUpdate() {
+    const keys = ['followers','leads','reviews','posts','rating','booked','revenue_impact','dms_handled'];
+    const ids  = ['u-followers','u-leads','u-reviews','u-posts','u-rating','u-booked','u-revenue','u-dms'];
+    const updates = {};
+    keys.forEach((k,i) => {
+      const v = document.getElementById(ids[i]).value;
+      if (v !== '') updates[k] = parseFloat(v);
+    });
+    if (!Object.keys(updates).length) { showToast('⚠ Enter at least one value'); return; }
+    window.updateStats(updates);
+    // update ROI mirrors
+    if (updates.booked) { setTxt('roi-booked', updates.booked); setTxt('roi-jobs', '+$'+formatMoney(updates.booked*1100)); }
+    if (updates.revenue_impact) { setTxt('roi-revenue','$'+formatMoney(updates.revenue_impact)); setTxt('roi-net','+$'+formatMoney(updates.revenue_impact)); }
+  }
+
+  function submitPlatformUpdate() {
+    const map = { instagram:['u-ig','u-ig-gain'], tiktok:['u-tt','u-tt-gain'], facebook:['u-fb','u-fb-gain'], youtube:['u-yt','u-yt-gain'] };
+    Object.entries(map).forEach(([plat,[fId,gId]])=>{
+      const f = document.getElementById(fId).value;
+      const g = document.getElementById(gId).value;
+      if (f) window.updatePlatform(plat, { followers:parseInt(f), gained:g?parseInt(g):undefined });
+    });
+    showToast('📱 Platform counts updated live!', 'gold');
+  }
+
+  function submitNote() {
+    const inp = document.getElementById('u-note') || document.getElementById('notes-input');
+    const text = inp ? inp.value.trim() : '';
+    if (!text) { showToast('⚠ Enter a note first'); return; }
+    window.saveNote(text);
+    if (inp) inp.value = '';
+  }
+
+  function setTxt(id, v) { const el=document.getElementById(id); if(el) el.textContent=v; }
+  function formatMoney(n) { return n>=1000 ? (n/1000).toFixed(0)+'K' : n; }
+
+  // Patch renderStats to also update ROI page mirrors
+  const _origRS = window.renderStats;
+  if (_origRS) {
+    // already handled in module; ROI mirrors updated on submitStatsUpdate
+  }
+
+  // Sync conn badges
+  document.addEventListener('DOMContentLoaded', () => {
+    const orig = document.getElementById('conn-badge');
+    const top  = document.getElementById('conn-badge-top');
+    if (orig && top) {
+      const obs = new MutationObserver(()=>{
+        top.textContent = orig.textContent;
+        top.className   = orig.className;
+      });
+      obs.observe(orig, { childList:true, attributes:true, attributeFilter:['class'] });
+    }
+  });
+</script>
+</body>
+</html>
