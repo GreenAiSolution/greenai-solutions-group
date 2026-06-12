@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenFit AI Creator — The World's Most Powerful AI Software Platform | GreenAI Solutions</title>
+  <meta name="description" content="GreenFit AI Creator builds custom software, apps, CRMs, dashboards, and business tools — powered by the most advanced AI. Describe it in plain English, we build and deploy it. $1,400/month." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── GreenFit AI Creator page-specific styles ── */
+    .creator-hero {
+      background: linear-gradient(135deg, #030a04 0%, #06100A 40%, #0a1c0e 70%, #030805 100%);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 0 5rem;
+    }
+    .creator-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(212,175,55,.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(212,175,55,.05) 1px, transparent 1px);
+      background-size: 55px 55px;
+      pointer-events: none;
+    }
+    .creator-glow-left {
+      position: absolute;
+      top: 10%;
+      left: -8%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(26,92,42,.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .creator-glow-right {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(212,175,55,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .creator-hero__inner {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .creator-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: rgba(212,175,55,.1);
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 100px;
+      padding: .45rem 1.2rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #D4AF37;
+      margin-bottom: 1.75rem;
+    }
+    .creator-badge-dot {
+      width: 7px;
+      height: 7px;
+      background: #D4AF37;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .creator-hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.9rem);
+      line-height: 1.08;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    .creator-hero h1 .gold  { color: #D4AF37; }
+    .creator-hero h1 .acc   { color: #4caf6e; }
+    .creator-hero__sub {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 530px;
+    }
+    .creator-hero__actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #D4AF37, #b8941f);
+      color: #06100A;
+      font-weight: 800;
+      border: none;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #e4c040, #c8a42a);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,175,55,.4);
+    }
+    .creator-hero__stats {
+      display: flex;
+      gap: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+      flex-wrap: wrap;
+    }
+    .creator-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #D4AF37;
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+    .creator-stat-label {
+      font-size: .72rem;
+      color: rgba(255,255,255,.45);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Terminal window */
+    .terminal {
+      background: #080e0a;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 40px 90px rgba(0,0,0,.7), 0 0 0 1px rgba(212,175,55,.18);
+      position: relative;
+    }
+    .terminal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,.03) 0%, transparent 50%);
+      pointer-events: none;
+      border-radius: 18px;
+    }
+    .terminal__bar {
+      background: #111b12;
+      padding: .85rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .t-dot-r { width:12px;height:12px;border-radius:50%;background:#ff5f57; }
+    .t-dot-y { width:12px;height:12px;border-radius:50%;background:#ffbd2e; }
+    .t-dot-g { width:12px;height:12px;border-radius:50%;background:#28c840; }
+    .terminal__name {
+      margin-left: .6rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.4);
+      font-family: 'Inter', monospace;
+      letter-spacing: .05em;
+    }
+    .terminal__body {
+      padding: 1.6rem 1.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .8rem;
+      line-height: 2;
+    }
+    .t-dim    { color: rgba(255,255,255,.28); }
+    .t-light  { color: rgba(255,255,255,.7); }
+    .t-gold   { color: #D4AF37; }
+    .t-green  { color: #4caf6e; font-weight: 600; }
+    .t-blue   { color: #7dd3fc; }
+    .t-prompt { color: #4caf6e; }
+    .t-str    { color: #f8c555; }
+    .t-check  { color: #4caf6e; }
+    .t-bar {
+      display: inline-block;
+      vertical-align: middle;
+      width: 80px;
+      height: 7px;
+      background: rgba(76,175,110,.18);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 5px;
+    }
+    .t-bar span {
+      display: block;
+      height: 100%;
+      background: #4caf6e;
+      border-radius: 4px;
+    }
+    .t-live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4caf6e;
+      margin-right: 4px;
+      vertical-align: middle;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Build categories grid */
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .build-card {
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.25rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .build-card:hover {
+      border-color: var(--green-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .build-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+    .build-card h4 {
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin: 0;
+    }
+    .build-card p {
+      font-size: .76rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Compare section */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .compare-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .compare-card--winner {
+      background: rgba(212,175,55,.06);
+      border: 2px solid rgba(212,175,55,.45);
+      position: relative;
+    }
+    .compare-winner-tag {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #D4AF37, #b8941f);
+      color: #06100A;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .compare-card__label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+      color: rgba(255,255,255,.5);
+    }
+    .compare-card--winner .compare-card__label { color: #D4AF37; }
+    .compare-card__price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.5);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .compare-card--winner .compare-card__price { color: #D4AF37; }
+    .compare-card__period {
+      font-size: .75rem;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 1.5rem;
+    }
+    .compare-card--winner .compare-card__period { color: rgba(212,175,55,.7); }
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .77rem;
+      text-align: left;
+      margin-bottom: .55rem;
+      line-height: 1.45;
+    }
+    .compare-item .ci-x   { color: #ef4444; flex-shrink: 0; }
+    .compare-item .ci-chk { color: #4caf6e; flex-shrink: 0; }
+    .compare-item .ci-txt-bad  { color: rgba(255,255,255,.35); }
+    .compare-item .ci-txt-good { color: rgba(255,255,255,.8); }
+
+    /* Pricing (dedicated) */
+    .creator-pricing {
+      background: linear-gradient(145deg, #06100A 0%, #0d1e10 100%);
+      border: 2px solid rgba(212,175,55,.35);
+      border-radius: 32px;
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .creator-pricing::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(212,175,55,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .creator-pricing__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .creator-pricing__price-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 800;
+      color: #D4AF37;
+      line-height: 1;
+    }
+    .creator-pricing__per {
+      font-size: 1rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 1.5rem;
+    }
+    .creator-pricing__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: white;
+      margin-bottom: .5rem;
+    }
+    .creator-pricing__sub {
+      color: rgba(255,255,255,.6);
+      font-size: .9rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .creator-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+    .creator-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.78);
+      line-height: 1.5;
+    }
+    .creator-feature-item .cfi-check {
+      color: #4caf6e;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .creator-feature-item strong { color: white; }
+
+    /* FAQ */
+    .faq-item {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--gray-200); }
+    .faq-q {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: .75rem;
+    }
+    .faq-a {
+      color: var(--gray-600);
+      font-size: .92rem;
+      line-height: 1.75;
+    }
+
+    /* Section with dark bg for comparison */
+    .section-dark {
+      background: linear-gradient(135deg, #06100A 0%, #0a1a0d 100%);
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-dark::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(212,175,55,.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(212,175,55,.03) 1px, transparent 1px);
+      background-size: 55px 55px;
+      pointer-events: none;
+    }
+    .section-dark > .container { position: relative; z-index: 1; }
+    .section-dark .section-label { color: #D4AF37; }
+    .section-dark h2 { color: white; }
+    .section-dark p  { color: rgba(255,255,255,.65); }
+    .section-dark .section-divider { background: rgba(212,175,55,.4); }
+
+    /* How It Works steps */
+    .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .hiw-card {
+      position: relative;
+      text-align: center;
+      padding: 2.5rem 1.75rem 2rem;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--gray-200);
+      transition: var(--transition);
+    }
+    .hiw-card:hover {
+      border-color: var(--green-light);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+    .hiw-num {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 42px;
+      height: 42px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: white;
+    }
+    .hiw-icon {
+      margin: 0 auto 1.25rem;
+      width: 64px;
+      height: 64px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hiw-card h3 { margin-bottom: .6rem; font-size: 1.1rem; }
+    .hiw-card p  { font-size: .88rem; line-height: 1.7; }
+    .hiw-time-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .3rem .85rem;
+      border-radius: 100px;
+      letter-spacing: .06em;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .build-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .creator-hero__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .creator-hero        { min-height: auto; padding: 6rem 0 4rem; }
+      .build-grid          { grid-template-columns: repeat(2, 1fr); }
+      .compare-grid        { grid-template-columns: 1fr 1fr; }
+      .hiw-grid            { grid-template-columns: 1fr; }
+      .creator-pricing__inner { grid-template-columns: 1fr; gap: 2rem; }
+      .creator-pricing     { padding: 2rem 1.5rem; }
+      .creator-pricing__price-big { font-size: 4rem; }
+    }
+    @media (max-width: 480px) {
+      .build-grid   { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="17.5" cy="13" r="1.1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li><a href="contact.html"  class="nav__link" data-page="contact.html">Contact</a></li>
+        </ul>
+        <a href="#apply" class="btn btn-gold nav__cta">Apply for Access</a>
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link">Home</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="about.html"    class="nav__link">About</a></li>
+        <li><a href="contact.html"  class="nav__link">Contact</a></li>
+        <li style="padding:.5rem 1rem"><a href="#apply" class="btn btn-gold" style="width:100%;justify-content:center">Apply for Access</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="creator-hero" aria-labelledby="creator-hero-heading">
+    <div class="creator-glow-left"  aria-hidden="true"></div>
+    <div class="creator-glow-right" aria-hidden="true"></div>
+    <div class="container">
+      <div class="creator-hero__inner">
+
+        <!-- Left: copy -->
+        <div>
+          <div class="creator-badge">
+            <span class="creator-badge-dot" aria-hidden="true"></span>
+            GreenFit AI Creator &nbsp;·&nbsp; By GreenAI Solutions
+          </div>
+
+          <h1 id="creator-hero-heading">
+            The World's<br/>
+            First <span class="gold">AI Software</span><br/>
+            <span class="acc">Factory.</span>
+          </h1>
+
+          <p class="creator-hero__sub">
+            Describe any app, tool, CRM, dashboard, or system you need in plain English — and watch AI build it, test it, and deploy it for your business. No code. No developers. No months of waiting.
+          </p>
+
+          <div class="creator-hero__actions">
+            <a href="#apply" class="btn btn-gold btn-lg">
+              Apply for Access &rarr;
+            </a>
+            <a href="#how-it-works" class="btn btn-lg" style="border: 2px solid rgba(255,255,255,.3); color: rgba(255,255,255,.85);">
+              See How It Works
+            </a>
+          </div>
+
+          <div class="creator-hero__stats" aria-label="Service statistics">
+            <div>
+              <div class="creator-stat-num">40+</div>
+              <div class="creator-stat-label">Types of software<br/>we can create</div>
+            </div>
+            <div>
+              <div class="creator-stat-num">$250K</div>
+              <div class="creator-stat-label">Equivalent enterprise<br/>value per year</div>
+            </div>
+            <div>
+              <div class="creator-stat-num">$1,400</div>
+              <div class="creator-stat-label">Per month — all<br/>inclusive subscription</div>
+            </div>
+            <div>
+              <div class="creator-stat-num">Hours</div>
+              <div class="creator-stat-label">Not months, to<br/>go live</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: terminal visual -->
+        <div class="terminal" role="img" aria-label="GreenFit AI Creator building a client portal in real-time">
+          <div class="terminal__bar">
+            <div class="t-dot-r"></div>
+            <div class="t-dot-y"></div>
+            <div class="t-dot-g"></div>
+            <span class="terminal__name">GreenFit AI Creator</span>
+          </div>
+          <div class="terminal__body">
+            <div><span class="t-prompt">&gt;</span> <span class="t-light">New build request received</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">client: </span><span class="t-str">"I need a booking portal where my</span></div>
+            <div><span class="t-str">&nbsp;&nbsp;clients can schedule calls, pay me,</span></div>
+            <div><span class="t-str">&nbsp;&nbsp;and get automated reminders..."</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-gold">[AI]</span> <span class="t-light">Analyzing requirements</span><span class="t-dim">...</span></div>
+            <div><span class="t-gold">[AI]</span> <span class="t-light">Generating architecture</span><span class="t-dim">...</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">Building frontend UI</span>
+              <span class="t-bar"><span style="width:100%"></span></span>
+              <span class="t-check">✓</span></div>
+            <div><span class="t-dim">Database &amp; auth layer</span>
+              <span class="t-bar"><span style="width:100%"></span></span>
+              <span class="t-check">✓</span></div>
+            <div><span class="t-dim">Payment integration</span>
+              <span class="t-bar"><span style="width:100%"></span></span>
+              <span class="t-check">✓</span></div>
+            <div><span class="t-dim">Email automation</span>
+              <span class="t-bar"><span style="width:100%"></span></span>
+              <span class="t-check">✓</span></div>
+            <div><span class="t-dim">Cloud deployment</span>
+              <span class="t-bar"><span style="width:100%"></span></span>
+              <span class="t-check">✓</span></div>
+            <div>&nbsp;</div>
+            <div>
+              <span class="t-live-dot"></span>
+              <span class="t-green">LIVE</span>
+              <span class="t-dim"> → </span>
+              <span class="t-blue">yourbusiness.greenfit.app</span>
+            </div>
+            <div><span class="t-dim">Built in: </span><span class="t-gold">4 hours 12 minutes</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IS IT ===== -->
+  <section class="section" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="service-detail">
+        <div class="service-detail__content">
+          <span class="section-label">Service 03 — GreenFit AI Creator</span>
+          <h2 id="what-heading">Your Business Deserves Custom Software. Now You Can Have It.</h2>
+          <div class="section-divider section-divider--left"></div>
+          <p>Every major company in the world runs on custom software — custom CRMs, branded client portals, internal tools, automated systems, dashboards. That used to require a development team, six-figure budgets, and months of build time. That was until now.</p>
+          <p>GreenFit AI Creator is the world's most powerful AI-driven software creation service. You describe what your business needs in plain English. We use the most advanced AI systems combined with Jaden's expertise to build it, test it, and deploy it — typically within hours. Then as your business evolves, your software evolves with it — every single month.</p>
+
+          <ul class="detail-list" aria-label="GreenFit AI Creator capabilities">
+            <li class="detail-list__item">
+              <div class="detail-list__icon" aria-hidden="true">✓</div>
+              <p class="detail-list__text"><strong>Full custom software creation</strong> — CRMs, client portals, booking systems, dashboards, e-commerce tools, APIs, and everything in between built specifically for your business</p>
+            </li>
+            <li class="detail-list__item">
+              <div class="detail-list__icon" aria-hidden="true">✓</div>
+              <p class="detail-list__text"><strong>No technical knowledge required</strong> — describe what you want in plain English and our AI does the rest; you never see a single line of code</p>
+            </li>
+            <li class="detail-list__item">
+              <div class="detail-list__icon" aria-hidden="true">✓</div>
+              <p class="detail-list__text"><strong>Deployed and hosted for you</strong> — your software goes live on your domain, fully managed and maintained by us, no servers to configure ever</p>
+            </li>
+            <li class="detail-list__item">
+              <div class="detail-list__icon" aria-hidden="true">✓</div>
+              <p class="detail-list__text"><strong>Monthly iteration sessions</strong> — each month we refine, expand, and add new features based on your feedback; your software grows as your business grows</p>
+            </li>
+            <li class="detail-list__item">
+              <div class="detail-list__icon" aria-hidden="true">✓</div>
+              <p class="detail-list__text"><strong>Integrates with your existing tools</strong> — Stripe, Zapier, Calendly, HubSpot, Google Workspace, Slack — your new software talks to everything you already use</p>
+            </li>
+          </ul>
+
+          <div style="background: linear-gradient(135deg, #06100A, #0d1a0f); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.75rem; display: inline-block; border: 1px solid rgba(212,175,55,.25);">
+            <span style="font-weight: 800; color: #D4AF37; font-size: 1.05rem;">$1,400/month</span>
+            <span style="color: rgba(255,255,255,.5); font-size: .88rem;"> &nbsp;·&nbsp; Most Powerful Service We Offer</span>
+          </div>
+          <br/>
+          <a href="#apply" class="btn btn-gold btn-lg">Apply for Access &rarr;</a>
+        </div>
+
+        <div class="service-detail__visual" style="background: linear-gradient(135deg, #06100A, #111f13);">
+          <div class="service-detail__visual-bg" aria-hidden="true" style="background: rgba(212,175,55,.06);"></div>
+          <div class="service-detail__visual-icon" aria-hidden="true">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              <line x1="12" y1="2" x2="12" y2="22" stroke-opacity=".4"/>
+            </svg>
+          </div>
+          <div class="service-detail__visual-title" style="color: #D4AF37;">GreenFit AI Creator</div>
+          <div style="margin-top: 1.5rem; width: 100%; display: flex; flex-direction: column; gap: .75rem;">
+
+            <div style="background: rgba(255,255,255,.06); border-radius: 12px; padding: 1rem 1.1rem; border: 1px solid rgba(212,175,55,.15);">
+              <div style="font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #D4AF37; margin-bottom: .65rem;">Your Software Stack</div>
+              <div style="display: flex; flex-direction: column; gap: .45rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: .82rem;">
+                  <span style="color: rgba(255,255,255,.65);">Client Portal</span>
+                  <span style="background: rgba(76,175,110,.2); color: #4caf6e; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">LIVE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: .82rem;">
+                  <span style="color: rgba(255,255,255,.65);">Booking System</span>
+                  <span style="background: rgba(76,175,110,.2); color: #4caf6e; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">LIVE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: .82rem;">
+                  <span style="color: rgba(255,255,255,.65);">Invoice Automation</span>
+                  <span style="background: rgba(76,175,110,.2); color: #4caf6e; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">LIVE</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: .82rem;">
+                  <span style="color: rgba(255,255,255,.65);">Lead Dashboard</span>
+                  <span style="background: rgba(212,175,55,.2); color: #D4AF37; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">BUILDING</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,.06); border-radius: 12px; padding: 1rem 1.1rem; border: 1px solid rgba(212,175,55,.15);">
+              <div style="display: flex; gap: 1.5rem;">
+                <div>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: #D4AF37; font-family: 'Playfair Display', serif;">4hrs</div>
+                  <div style="font-size: .68rem; color: rgba(255,255,255,.4);">Avg. build time</div>
+                </div>
+                <div>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: #D4AF37; font-family: 'Playfair Display', serif;">100%</div>
+                  <div style="font-size: .68rem; color: rgba(255,255,255,.4);">Custom built</div>
+                </div>
+                <div>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: #4caf6e; font-family: 'Playfair Display', serif;">∞</div>
+                  <div style="font-size: .68rem; color: rgba(255,255,255,.4);">Iterations</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section bg-gray" id="how-it-works" aria-labelledby="hiw-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">The Process</span>
+        <h2 id="hiw-heading">From Idea to Live Software<br/>in Three Steps</h2>
+        <div class="section-divider"></div>
+        <p style="max-width: 520px; margin: 0 auto 3.5rem;">What used to take months and cost a fortune now happens in hours. Here's exactly how GreenFit AI Creator works.</p>
+      </div>
+
+      <div class="hiw-grid">
+        <div class="hiw-card reveal reveal-delay-1">
+          <div class="hiw-num" aria-hidden="true">1</div>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Describe Your Vision</h3>
+          <p>Tell us in plain English what you need built — a booking system, a client portal, a custom CRM, an analytics dashboard, anything. No technical specs required. If you can describe it, we can build it.</p>
+          <span class="hiw-time-badge">Day 1 — 30 min session</span>
+        </div>
+
+        <div class="hiw-card reveal reveal-delay-2">
+          <div class="hiw-num" aria-hidden="true">2</div>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>AI Builds &amp; Deploys</h3>
+          <p>Our advanced AI system — combined with Jaden's expert oversight — builds your complete software application. Frontend, backend, database, integrations, and deployment. We test it, polish it, and push it live to your domain.</p>
+          <span class="hiw-time-badge">Same day — typically 4–12 hours</span>
+        </div>
+
+        <div class="hiw-card reveal reveal-delay-3">
+          <div class="hiw-num" aria-hidden="true">3</div>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h3>Iterate Every Month</h3>
+          <p>Your monthly subscription means your software never stops growing. Monthly strategy sessions identify new features, improvements, and expansions. Your software evolves alongside your business — and your competitors can never catch up.</p>
+          <span class="hiw-time-badge">Monthly — unlimited iterations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT YOU CAN BUILD ===== -->
+  <section class="section" aria-labelledby="build-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">What You Can Build</span>
+        <h2 id="build-heading">If You Can Describe It,<br/>We Can Build It.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width: 540px; margin: 0 auto 3rem;">GreenFit AI Creator has delivered 40+ types of custom software. Here's a snapshot of what businesses just like yours have had built.</p>
+      </div>
+
+      <div class="build-grid reveal">
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🏢</div>
+          <div>
+            <h4>Custom CRM Systems</h4>
+            <p>Manage every lead, client, and deal in a system built exactly for how your business actually works</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🔐</div>
+          <div>
+            <h4>Client Portals</h4>
+            <p>Branded, password-protected portals where your clients can access their files, reports, and updates</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">📅</div>
+          <div>
+            <h4>Booking &amp; Scheduling Apps</h4>
+            <p>Full booking systems with payments, reminders, cancellations, and calendar sync — all branded as you</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">💳</div>
+          <div>
+            <h4>Payment &amp; Invoice Systems</h4>
+            <p>Accept payments, send invoices, track subscriptions, and manage billing on autopilot</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">📊</div>
+          <div>
+            <h4>Analytics Dashboards</h4>
+            <p>Real-time dashboards showing exactly the metrics that matter to your business — nothing more, nothing less</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🛒</div>
+          <div>
+            <h4>E-commerce Stores</h4>
+            <p>Custom online stores with your exact design, product catalog, payment flow, and fulfillment system</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🎯</div>
+          <div>
+            <h4>Lead Capture Funnels</h4>
+            <p>High-converting landing pages, lead forms, and nurture flows that feed directly into your CRM</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🏠</div>
+          <div>
+            <h4>Real Estate Tools</h4>
+            <p>Property management portals, listing tools, agent dashboards, and buyer/seller communication systems</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">👥</div>
+          <div>
+            <h4>Membership Portals</h4>
+            <p>Subscription-gated content platforms, community hubs, and member management for any industry</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🔗</div>
+          <div>
+            <h4>API &amp; Tool Integrations</h4>
+            <p>Connect your existing tools — Stripe, Slack, HubSpot, Zapier, Google — into one unified system</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🤝</div>
+          <div>
+            <h4>Internal Team Tools</h4>
+            <p>Employee dashboards, task managers, project trackers, and internal knowledge bases built for your team</p>
+          </div>
+        </div>
+        <div class="build-card">
+          <div class="build-icon" aria-hidden="true">🤖</div>
+          <div>
+            <h4>AI Chatbots &amp; Assistants</h4>
+            <p>Trained AI assistants for your website, client portal, or internal operations — powered by the latest models</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center" style="margin-top: 2rem; color: var(--gray-400); font-size: .9rem;">And much more. If you can describe it, it can be built.</p>
+    </div>
+  </section>
+
+  <!-- ===== CORE FEATURES ===== -->
+  <section class="section bg-pale" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Platform Capabilities</span>
+        <h2 id="features-heading">Everything Included.<br/>Nothing Hidden.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width: 500px; margin: 0 auto 3rem;">Every single feature listed below is included in your $1,400/month subscription. No add-ons. No nickel-and-diming. One price, total capability.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>AI-Powered App Generation</h3>
+          <p>The most advanced AI models in the world — Claude, GPT-4, and beyond — are used to architect, build, and optimize every application we create for you.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Plain English Interface</h3>
+          <p>No technical jargon, no wireframes, no user stories. You talk to us like a human and we translate it into perfect software. If you can describe it, it will be built.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+          </div>
+          <h3>Full-Stack Development</h3>
+          <p>Every app includes everything — beautiful frontend UI, robust backend logic, database design, API endpoints, and security — all production-ready from day one.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          </div>
+          <h3>Cloud Hosting &amp; Deployment</h3>
+          <p>Your software lives on enterprise-grade cloud infrastructure with 99.9% uptime. Automatic backups, scaling, and security patches — all handled by us, always.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h3>Monthly Iteration Sessions</h3>
+          <p>A dedicated monthly session with Jaden to expand, refine, and evolve your software. New features get added, old bottlenecks get removed — your software never stagnates.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h3>Tool &amp; API Integrations</h3>
+          <p>Connect your new software to Stripe, HubSpot, Zapier, Slack, Google Workspace, Twilio, and 500+ other tools. Your entire business ecosystem, unified.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Mobile-Optimized by Default</h3>
+          <p>Every application we build works flawlessly on desktop, tablet, and mobile. Responsive, fast, and tested across devices before it ever goes live.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>Custom Domain &amp; Branding</h3>
+          <p>Your software runs under your domain, wears your brand colors, and has your logo throughout. Clients see your brand — not ours. White-label by default.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Security &amp; Data Protection</h3>
+          <p>Enterprise-grade authentication, encrypted data storage, SSL certificates, and GDPR-ready infrastructure. Your data and your clients' data is protected at all times.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Business Intelligence Built In</h3>
+          <p>Dashboards, reports, and analytics are included in every build so you always know exactly what's happening in your business — in real time, on any device.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Priority Support &amp; Direct Access</h3>
+          <p>Direct access to Jaden, always. Same-day responses, priority queue for all requests, and a dedicated line for anything urgent — no tickets, no wait times.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Latest AI Model Access</h3>
+          <p>You get access to the absolute cutting edge — every new AI model release, every capability upgrade, every breakthrough gets incorporated into your builds first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUE COMPARISON ===== -->
+  <section class="section-dark" aria-labelledby="compare-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">The Value Equation</span>
+        <h2 id="compare-heading">GreenFit AI Creator vs.<br/><span style="color: rgba(255,255,255,.45);">Every Other Option</span></h2>
+        <div class="section-divider" style="background: rgba(212,175,55,.4);"></div>
+        <p style="max-width: 560px; margin: 0 auto;">For the first time in history, a small business can have the same custom software capability as a Fortune 500 company — without the Fortune 500 budget.</p>
+      </div>
+
+      <div class="compare-grid reveal">
+
+        <div class="compare-card">
+          <div class="compare-card__label">In-House Dev Team</div>
+          <div class="compare-card__price">$25K+</div>
+          <div class="compare-card__period">per month in salaries alone</div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">3–6 months to ship anything</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">$300K+ annual overhead</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Hiring, managing, retaining</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Still needs a PM + QA</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">No guarantee of results</span></div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-card__label">Agency or Freelancer</div>
+          <div class="compare-card__price">$15K+</div>
+          <div class="compare-card__period">per project, no ongoing support</div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">2–6 month project timelines</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Scope creep and overruns</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Disappears after delivery</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Locked into their tech stack</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Start over for any change</span></div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-card__label">DIY No-Code Tools</div>
+          <div class="compare-card__price">$500+</div>
+          <div class="compare-card__period">per month, endless limitations</div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Hits walls you can't pass</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Requires your own time</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Looks like everyone else's</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">Templates, not custom</span></div>
+          <div class="compare-item"><span class="ci-x">✗</span><span class="ci-txt-bad">You own the problem</span></div>
+        </div>
+
+        <div class="compare-card compare-card--winner">
+          <div class="compare-winner-tag">Best Value on Earth</div>
+          <div class="compare-card__label">GreenFit AI Creator</div>
+          <div class="compare-card__price">$1,400</div>
+          <div class="compare-card__period">per month — all-inclusive, forever</div>
+          <div class="compare-item"><span class="ci-chk">✓</span><span class="ci-txt-good">Live in hours, not months</span></div>
+          <div class="compare-item"><span class="ci-chk">✓</span><span class="ci-txt-good">Unlimited custom software</span></div>
+          <div class="compare-item"><span class="ci-chk">✓</span><span class="ci-txt-good">Hosted, managed, secured</span></div>
+          <div class="compare-item"><span class="ci-chk">✓</span><span class="ci-txt-good">Monthly iteration included</span></div>
+          <div class="compare-item"><span class="ci-chk">✓</span><span class="ci-txt-good">Direct access to Jaden always</span></div>
+        </div>
+
+      </div>
+
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="#apply" class="btn btn-gold btn-lg">Claim Your Spot &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section" id="pricing" aria-labelledby="pricing-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Simple Pricing</span>
+        <h2 id="pricing-heading">One Plan. Total Power.</h2>
+        <div class="section-divider"></div>
+        <p style="max-width: 480px; margin: 0 auto 3rem;">No tiers. No add-ons. No surprise invoices. $1,400/month gets you everything — and everything is exactly what we deliver.</p>
+      </div>
+
+      <div class="creator-pricing reveal">
+        <div class="creator-pricing__inner">
+          <div>
+            <div style="display: inline-block; background: rgba(212,175,55,.15); border: 1px solid rgba(212,175,55,.3); border-radius: 100px; padding: .35rem 1rem; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #D4AF37; margin-bottom: 1.5rem;">Most Powerful Service</div>
+            <div class="creator-pricing__title">GreenFit AI Creator</div>
+            <div class="creator-pricing__price-big">$1,400</div>
+            <div class="creator-pricing__per">/month &nbsp;&middot;&nbsp; No long-term contract &nbsp;&middot;&nbsp; Cancel anytime</div>
+            <p class="creator-pricing__sub">Everything a $250,000/year enterprise software budget gets you — compressed into $1,400/month through the power of AI and Jaden's expertise.</p>
+            <a href="#apply" class="btn btn-gold btn-lg" style="margin-bottom: 1rem; display: inline-flex;">Apply for Access &rarr;</a>
+            <br/>
+            <p style="font-size: .78rem; color: rgba(255,255,255,.35); margin-top: .75rem;">Limited spots available. Jaden reviews every application personally.</p>
+          </div>
+
+          <div>
+            <p style="font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #D4AF37; margin-bottom: 1.25rem;">Everything Included</p>
+            <div class="creator-feature-list">
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Unlimited custom software builds</strong> — describe anything, we build it</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Monthly iteration &amp; expansion sessions</strong> — new features every month</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Cloud hosting &amp; deployment</strong> — live on your domain, managed always</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Full-stack development</strong> — frontend, backend, database, APIs</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>API &amp; tool integrations</strong> — Stripe, HubSpot, Zapier, and 500+ more</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Mobile-optimized by default</strong> — works on every device, always</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Custom domain &amp; white-label branding</strong> — your brand, always</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Security, backups &amp; SSL</strong> — enterprise-grade protection</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Business analytics &amp; dashboards</strong> — real-time visibility built in</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>AI chatbot &amp; automation layer</strong> — AI baked into every build</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Priority support &amp; direct Jaden access</strong> — same-day always</span></div>
+              <div class="creator-feature-item"><span class="cfi-check">✓</span><span><strong>Latest AI model access</strong> — first to benefit from every breakthrough</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section bg-gray" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Common Questions</span>
+        <h2 id="faq-heading">Everything You're Wondering About</h2>
+        <div class="section-divider"></div>
+        <p style="max-width: 460px; margin: 0 auto 3rem;">Straight answers to the questions we hear most often.</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;" class="reveal">
+
+        <div class="faq-item">
+          <div class="faq-q">What exactly gets built each month?</div>
+          <div class="faq-a">It depends entirely on your business needs. In your first month, we identify the single highest-impact piece of software for your business and build it completely — typically a client portal, a custom CRM, a booking system, or an internal dashboard. In subsequent months, we iterate on existing builds and add new capabilities. Some clients build 2–3 new tools per month; others go deep on evolving one core system. You drive the roadmap.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How long does it take to go from idea to live software?</div>
+          <div class="faq-a">Most builds go live the same day or within 24–48 hours of our session. A standard booking system or client portal takes 4–8 hours to build and deploy. More complex applications with advanced integrations may take 2–3 days. Compare that to 3–6 months with a traditional developer — and you'll understand why we call this a factory.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Do I need any technical knowledge at all?</div>
+          <div class="faq-a">Absolutely not. You don't need to know what a database is, what an API does, or what "full-stack" means. You talk to us in plain English about your business problem and what you want to accomplish. We translate that into working software. Your only job is to describe your vision clearly — and that's something every business owner already knows how to do.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Who owns the software that gets built?</div>
+          <div class="faq-a">You own it entirely. The software we build for you is your intellectual property. If you ever cancel, you keep everything that was built — all the code, all the data, all the deployments. We'll provide you with a complete handoff package. You're never locked in or held hostage by us owning your tools.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How is this different from Bubble, Webflow, or other no-code tools?</div>
+          <div class="faq-a">No-code tools require you to do the building yourself — you learn the platform, drag and drop, and wrestle with limitations. GreenFit AI Creator is done-for-you. We do all the work. There are also no platform limitations — because we're writing real code with AI, there is no ceiling on what we can build. You're not constrained by what Bubble or Webflow decided to support.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What if I want changes after something is built?</div>
+          <div class="faq-a">That's exactly what the monthly subscription is for. Changes, improvements, expansions, and new features are all handled in your monthly iteration session — and for urgent fixes or small tweaks, direct access to Jaden means you can request changes any time. Your software is never "frozen" — it always moves forward.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How many clients does GreenFit AI Creator accept?</div>
+          <div class="faq-a">We keep the roster intentionally small to maintain the quality and attention that makes this service worth $1,400/month. Every client gets direct access to Jaden — and that means we can only take on a limited number of clients at once. Every application is reviewed personally and we only accept clients we're certain we can deliver extraordinary results for.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Is there a setup fee or minimum commitment?</div>
+          <div class="faq-a">No setup fee. No long-term contract. Month-to-month, cancel anytime. We earn your continued business by delivering continuous value every single month — not by locking you in. If it's not working, you walk away with everything we built for you and owe nothing more.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPLY FORM ===== -->
+  <section class="elite-section" id="apply" aria-labelledby="apply-heading">
+    <div class="container">
+
+      <div class="elite-top">
+        <div class="elite-eyebrow">
+          <span class="elite-dot"></span>
+          Limited Spots Available &mdash; Application Required
+          <span class="elite-dot"></span>
+        </div>
+        <h2 id="apply-heading" class="elite-title">Apply for GreenFit<br/>AI Creator Access</h2>
+        <div class="elite-rule"></div>
+        <p class="elite-desc">This isn't a checkout button. GreenFit AI Creator is a high-commitment, high-output partnership. Tell us about your business and what you want to build — if it's a fit, Jaden will reach out within 24 hours to schedule your onboarding call.</p>
+      </div>
+
+      <div class="elite-grid">
+
+        <div class="elite-includes">
+          <h4 class="elite-section-title">What Happens After You Apply</h4>
+          <ul class="elite-list">
+            <li><span class="elite-check">◆</span> Jaden personally reviews your application within 24 hours and determines if GreenFit AI Creator is the right fit for your business goals</li>
+            <li><span class="elite-check">◆</span> If approved, you receive a direct call or text from Jaden to schedule your 60-minute onboarding session</li>
+            <li><span class="elite-check">◆</span> During onboarding, we map your entire business software vision — what to build first, what to build next, and what 12 months of software evolution looks like for you</li>
+            <li><span class="elite-check">◆</span> Your first build begins the same day as onboarding — most clients have live software within 24–48 hours of their first session</li>
+            <li><span class="elite-check">◆</span> Monthly rhythm established: same-day builds, monthly iteration sessions, and direct access to Jaden throughout your subscription</li>
+          </ul>
+          <div class="elite-stats-row">
+            <div>
+              <div class="elite-stat-num">24hrs</div>
+              <div class="elite-stat-label">Application review time</div>
+            </div>
+            <div>
+              <div class="elite-stat-num">4hrs</div>
+              <div class="elite-stat-label">Avg. first build delivery</div>
+            </div>
+            <div>
+              <div class="elite-stat-num">100%</div>
+              <div class="elite-stat-label">Direct Jaden access</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="elite-form-card">
+          <h3 class="elite-form-title">Apply for Access</h3>
+          <p class="elite-form-sub">Tell us about your business and your vision. Be specific — the more detail you share, the better Jaden can prepare for your onboarding.</p>
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac"/>
+            <input type="hidden" name="subject" value="🚀 GREENFIT AI CREATOR APPLICATION — GreenAI Website"/>
+            <input type="hidden" name="redirect" value="https://greenaidigital.com/thankyou.html"/>
+            <div class="elite-form-row">
+              <div class="elite-form-group">
+                <label for="gac-name">Full Name</label>
+                <input type="text" id="gac-name" name="name" placeholder="Your name" required/>
+              </div>
+              <div class="elite-form-group">
+                <label for="gac-biz">Business Name</label>
+                <input type="text" id="gac-biz" name="business_name" placeholder="Your business" required/>
+              </div>
+            </div>
+            <div class="elite-form-row">
+              <div class="elite-form-group">
+                <label for="gac-email">Email Address</label>
+                <input type="email" id="gac-email" name="email" placeholder="you@yourbusiness.com" required/>
+              </div>
+              <div class="elite-form-group">
+                <label for="gac-phone">Phone Number</label>
+                <input type="tel" id="gac-phone" name="phone" placeholder="(480) 000-0000" required/>
+              </div>
+            </div>
+            <div class="elite-form-group">
+              <label for="gac-industry">Industry / Business Type</label>
+              <select id="gac-industry" name="industry" required>
+                <option value="" disabled selected>Select your industry</option>
+                <option>Real Estate</option>
+                <option>Med Spa / Aesthetics</option>
+                <option>Dental / Medical</option>
+                <option>Fitness / Gym</option>
+                <option>Restaurant / Food &amp; Beverage</option>
+                <option>Law Firm / Legal</option>
+                <option>Insurance</option>
+                <option>Construction / Home Services</option>
+                <option>Retail / E-commerce</option>
+                <option>Financial Services</option>
+                <option>Marketing / Agency</option>
+                <option>SaaS / Tech</option>
+                <option>Coaching / Consulting</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="elite-form-group">
+              <label for="gac-first-build">What's the first thing you want us to build?</label>
+              <textarea id="gac-first-build" name="first_build" rows="3" placeholder="e.g., A client portal where my customers can view their project status, upload files, and send messages to my team..." required></textarea>
+            </div>
+            <div class="elite-form-group">
+              <label for="gac-challenge">What's the biggest operational problem software could solve for your business?</label>
+              <textarea id="gac-challenge" name="main_challenge" rows="3" placeholder="e.g., We manually send invoices and track payments in spreadsheets — it takes hours every week and we miss things..." required></textarea>
+            </div>
+            <button type="submit" class="elite-submit">Submit My Application &rarr;</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="cta-band" aria-labelledby="creator-cta-heading">
+    <div class="container">
+      <span class="section-label" style="color: var(--green-accent)">GreenFit AI Creator</span>
+      <h2 id="creator-cta-heading">Your Competitors Don't Have This.<br/>Yet.</h2>
+      <p>The businesses that move first with AI-powered custom software will own their market for the next decade. The window is open right now — but it won't stay open forever.</p>
+      <div class="cta-band__actions">
+        <a href="#apply" class="btn btn-gold btn-lg">Apply for Access &rarr;</a>
+        <a href="services.html" class="btn btn-lg" style="border: 2px solid rgba(255,255,255,.4); color: #fff;">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/>
+                <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="17.5" cy="13" r="1.1" fill="white"/>
+              </svg>
+            </div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">Growing businesses worldwide with AI-powered strategy, social media, custom web design, and the world's most powerful AI software creation platform.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.3)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="services.html#social-media">Social Media Management</a></li>
+            <li><a href="services.html#ai-consulting">AI Business Consulting</a></li>
+            <li><a href="greenfit-ai-creator.html" style="color:#D4AF37;font-weight:600">GreenFit AI Creator ✦</a></li>
+            <li><a href="services.html#web-design">Web Design &amp; Development</a></li>
+            <li><a href="services.html#pricing">Pricing Plans</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <span>Gilbert, Arizona 85296</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
