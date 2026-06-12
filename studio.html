@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>GreenAI Studio — AI Platform</title>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="GreenAI Studio"/>
+<meta name="theme-color" content="#1a3d20"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#1a3d20;--gm:#236b35;--gl:#4caf6e;--gp:#eaf3de;--gt:#27500A;--gu:#639922;
+  --w:#fff;--off:#f8f9fa;--g1:#f3f4f6;--g2:#e5e7eb;--g4:#9ca3af;--g6:#4b5563;--g8:#1f2937;
+  --r:10px;--rl:16px;--rxl:20px;
+  --shadow:0 2px 16px rgba(0,0,0,.08);--shadow-lg:0 8px 40px rgba(0,0,0,.14);
+}
+html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#0d1f10;color:var(--g8)}
+
+/* ══ AUTH SCREEN ══ */
+#auth-screen{position:fixed;inset:0;background:linear-gradient(145deg,#0d1f10 0%,#1a3d20 50%,#0d1f10 100%);display:flex;align-items:center;justify-content:center;z-index:1000;flex-direction:column;gap:0}
+.auth-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:48px 44px;width:100%;max-width:420px;text-align:center;backdrop-filter:blur(12px)}
+.auth-logo{width:64px;height:64px;background:rgba(76,175,110,.2);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.auth-logo svg{width:36px;height:36px}
+.auth-title{font-family:'Playfair Display',serif;font-size:26px;color:#fff;margin-bottom:6px}
+.auth-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:32px;line-height:1.5}
+.auth-label{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:left;margin-bottom:8px}
+.auth-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:13px 16px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;margin-bottom:12px;outline:none;transition:border .2s}
+.auth-input:focus{border-color:var(--gl)}
+.auth-input::placeholder{color:rgba(255,255,255,.25)}
+.auth-btn{width:100%;background:var(--gl);border:none;border-radius:var(--r);padding:14px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-top:4px}
+.auth-btn:hover{background:#3d9e5c}
+.auth-error{font-size:12px;color:#f87171;margin-top:8px;display:none}
+.auth-hint{font-size:11px;color:rgba(255,255,255,.25);margin-top:20px;line-height:1.6}
+
+/* ══ APP SHELL ══ */
+#app{display:none;flex-direction:column;height:100vh;background:var(--off)}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--g);height:60px;display:flex;align-items:center;padding:0 28px;gap:16px;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,.2);position:relative;z-index:50}
+.tb-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tb-logo svg{width:30px;height:30px}
+.tb-name{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.tb-name span{color:var(--gl)}
+.tb-divider{width:1px;height:26px;background:rgba(255,255,255,.15)}
+.tb-tagline{font-size:12px;color:rgba(255,255,255,.45);flex:1}
+.api-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer;padding:6px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.15);transition:background .15s}
+.api-status:hover{background:rgba(255,255,255,.06)}
+.api-dot{width:7px;height:7px;border-radius:50%}
+.api-dot.on{background:#4ade80}
+.api-dot.off{background:#f87171}
+.api-status .api-text{color:rgba(255,255,255,.7)}
+
+/* ── NAV TABS ── */
+.nav-tabs{background:#fff;border-bottom:1px solid var(--g2);display:flex;padding:0 28px;gap:4px;flex-shrink:0}
+.tab{display:flex;align-items:center;gap:7px;padding:14px 16px;font-size:13px;font-weight:500;color:var(--g4);border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab:hover{color:var(--g8)}
+.tab.active{color:var(--g);border-bottom-color:var(--gl);font-weight:600}
+.tab-icon{font-size:15px}
+.tab-badge{background:var(--gp);color:var(--gu);font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px}
+
+/* ── CONTENT AREA ── */
+.content{flex:1;overflow-y:auto;padding:28px}
+
+/* ── PANELS ── */
+.panel{display:none}
+.panel.active{display:block}
+
+/* ── CARDS ── */
+.card{background:#fff;border-radius:var(--rl);border:1px solid var(--g2);box-shadow:var(--shadow);padding:24px}
+.card-title{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--g4);margin-bottom:18px}
+.card-title.green{color:var(--gu)}
+
+/* ══ CONTENT STUDIO ══ */
+.studio-grid{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+.form-group{margin-bottom:14px}
+.form-label{font-size:12px;font-weight:600;color:var(--g6);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.form-label .fl-hint{font-size:10px;color:var(--g4);font-weight:400}
+select,input[type=text]{width:100%;padding:10px 12px;border:1.5px solid var(--g2);border-radius:var(--r);font-size:13px;color:var(--g8);background:var(--g1);font-family:'Inter',sans-serif;outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+select:focus,input[type=text]:focus{border-color:var(--gl);background:#fff}
+textarea.form-ctrl{width:100%;padding:10px 12px;border:1.5px solid var(--g2);border-radius:var(--r);font-size:13px;color:var(--g8);background:var(--g1);font-family:'Inter',sans-serif;outline:none;transition:border .15s;resize:vertical;line-height:1.6}
+textarea.form-ctrl:focus{border-color:var(--gl);background:#fff}
+.platform-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.plat-btn{padding:10px 8px;border-radius:var(--r);border:1.5px solid var(--g2);background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.plat-btn .pb-icon{font-size:18px}
+.plat-btn.active{border-color:var(--gl);background:var(--gp);color:var(--g)}
+.plat-btn:hover:not(.active){border-color:var(--g4)}
+.gen-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.gen-btn:hover{opacity:.9}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
+.gen-btn .spin{animation:spin .8s linear infinite;display:none}
+.gen-btn.loading .spin{display:inline-block}
+.gen-btn.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Output */
+.output-area{min-height:300px}
+.output-placeholder{height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g4);text-align:center;gap:10px;border:2px dashed var(--g2);border-radius:var(--rl)}
+.output-placeholder .op-icon{font-size:36px}
+.output-placeholder p{font-size:13px}
+.output-result{display:none}
+.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.output-header h3{font-size:14px;font-weight:600;color:var(--g8)}
+.output-actions{display:flex;gap:8px}
+.out-btn{padding:7px 14px;border-radius:var(--r);border:1.5px solid var(--g2);background:#fff;font-size:12px;font-weight:600;color:var(--g6);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.out-btn:hover{border-color:var(--gl);color:var(--g)}
+.out-btn.primary{background:var(--g);border-color:var(--g);color:#fff}
+.out-btn.primary:hover{background:var(--gm)}
+.content-box{background:var(--g1);border-radius:var(--r);padding:18px;font-size:14px;line-height:1.75;color:var(--g8);white-space:pre-wrap;min-height:200px;border:1px solid var(--g2)}
+.char-count{font-size:11px;color:var(--g4);margin-top:8px;text-align:right}
+.regen-row{display:flex;gap:8px;margin-top:12px}
+.regen-btn{flex:1;padding:10px;background:var(--gp);border:1.5px solid #C0DD97;border-radius:var(--r);font-size:12px;font-weight:600;color:var(--g);cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s}
+.regen-btn:hover{background:#d4edda}
+
+/* ══ LEAD TOOL ══ */
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.lead-tone-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.tone-pill{padding:6px 14px;border-radius:99px;border:1.5px solid var(--g2);background:#fff;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.tone-pill.active{background:var(--g);border-color:var(--g);color:#fff}
+.lead-output-box{background:var(--g1);border-radius:var(--r);padding:16px;font-size:13px;line-height:1.75;color:var(--g8);white-space:pre-wrap;min-height:220px;border:1px solid var(--g2)}
+
+/* ══ CLIENT DASHBOARD ══ */
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.dash-header h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--g8)}
+.add-client-btn{background:var(--g);color:#fff;border:none;border-radius:var(--r);padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
+.add-client-btn:hover{background:var(--gm)}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.client-card{background:#fff;border:1px solid var(--g2);border-radius:var(--rl);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s}
+.client-card:hover{box-shadow:var(--shadow-lg)}
+.cc-header{background:var(--g);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.cc-name{font-size:15px;font-weight:700;color:#fff}
+.cc-industry{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
+.cc-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;cursor:pointer}
+.cs-active{background:rgba(74,222,128,.2);color:#4ade80}
+.cs-pending{background:rgba(251,191,36,.2);color:#fbbf24}
+.cs-new{background:rgba(147,197,253,.2);color:#93c5fd}
+.cc-body{padding:16px 20px}
+.cc-stat-row{display:flex;gap:8px;margin-bottom:12px}
+.cc-stat{flex:1;text-align:center;background:var(--g1);border-radius:6px;padding:8px 4px}
+.cc-stat .csv{font-size:16px;font-weight:700;color:var(--g)}
+.cc-stat .csl{font-size:9px;color:var(--g4);text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
+.cc-platforms{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.plat-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:99px}
+.pt-ig{background:#fce7f3;color:#9d174d}
+.pt-tt{background:#e0f2fe;color:#075985}
+.pt-fb{background:#dbeafe;color:#1e40af}
+.cc-note{font-size:12px;color:var(--g6);line-height:1.55;margin-bottom:12px}
+.cc-footer{display:flex;gap:6px;padding-top:12px;border-top:1px solid var(--g2)}
+.cc-action{flex:1;padding:7px;border-radius:6px;border:1px solid var(--g2);background:#fff;font-size:11px;font-weight:600;color:var(--g6);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;text-align:center}
+.cc-action.primary{background:var(--gp);border-color:#C0DD97;color:var(--g)}
+.cc-action:hover{border-color:var(--gl);color:var(--g)}
+.empty-clients{text-align:center;padding:60px 20px;color:var(--g4)}
+.empty-clients .ei{font-size:48px;margin-bottom:12px}
+.empty-clients p{font-size:14px;line-height:1.6}
+
+/* ══ ADD CLIENT MODAL ══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--rxl);padding:32px;width:100%;max-width:480px;box-shadow:var(--shadow-lg)}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--g8);margin-bottom:20px}
+.modal-close{float:right;background:var(--g1);border:none;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;color:var(--g6);margin-top:-4px}
+.modal-footer{display:flex;gap:10px;margin-top:20px}
+.modal-cancel{flex:1;padding:11px;border-radius:var(--r);border:1.5px solid var(--g2);background:#fff;font-size:13px;font-weight:600;color:var(--g6);cursor:pointer;font-family:'Inter',sans-serif}
+.modal-save{flex:2;padding:11px;border-radius:var(--r);background:var(--g);border:none;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* ══ API KEY MODAL ══ */
+.api-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.api-modal.open{display:flex}
+.api-modal-inner{background:#fff;border-radius:var(--rxl);padding:36px;width:100%;max-width:460px;box-shadow:var(--shadow-lg)}
+.api-modal-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--g8);margin-bottom:6px}
+.api-modal-sub{font-size:13px;color:var(--g6);line-height:1.6;margin-bottom:24px}
+.api-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;padding:12px;background:var(--g1);border-radius:var(--r)}
+.api-step-num{width:22px;height:22px;border-radius:50%;background:var(--g);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.api-step-text{font-size:12px;color:var(--g6);line-height:1.55}
+.api-step-text strong{color:var(--g8)}
+.api-step-text a{color:var(--gl);text-decoration:none;font-weight:600}
+.api-secure{background:var(--gp);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--gt);margin:16px 0;line-height:1.55}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--g8);color:#fff;padding:12px 20px;border-radius:var(--r);font-size:13px;font-weight:500;z-index:500;transition:transform .3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ══ STREAMING CURSOR ══ */
+.cursor{display:inline-block;width:2px;height:1em;background:var(--gl);margin-left:2px;animation:blink .7s infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+</style>
+</head>
+<body>
+
+<!-- ══ AUTH SCREEN ══ -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="rgba(76,175,110,0.25)" stroke="#4caf6e" stroke-width="1.5"/>
+        <path d="M15 9.5C14.3 8.7 13.3 8.2 12 8.2C9.7 8.2 7.8 10.1 7.8 12.4C7.8 14.7 9.7 16.6 12 16.6C13.7 16.6 15.1 15.6 15.8 14.2H12.6V12.7H17V13.3" stroke="#4caf6e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="auth-title">GreenAI Studio</div>
+    <div class="auth-sub">AI-powered content, lead follow-up, and client management — built for businesses that want to grow.</div>
+    <div class="auth-label">Access Code</div>
+    <input class="auth-input" type="password" id="passcode-input" placeholder="Enter your access code" autocomplete="off"/>
+    <div class="auth-error" id="auth-error">Incorrect code. Try again.</div>
+    <button class="auth-btn" onclick="checkPasscode()">Enter GreenAI Studio →</button>
+    <div class="auth-hint">Powered by GreenAI Solutions · greenaidigital.com<br>Access provided by your GreenAI account manager</div>
+  </div>
+</div>
+
+<!-- ══ API KEY MODAL ══ -->
+<div class="api-modal" id="api-modal">
+  <div class="api-modal-inner">
+    <div class="api-modal-title">Connect Your Claude API Key</div>
+    <div class="api-modal-sub">To power the AI features in GreenAI Studio, you need a free Anthropic API key. This takes 2 minutes to set up once.</div>
+    <div class="api-step"><div class="api-step-num">1</div><div class="api-step-text">Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> and sign in or create a free account.</div></div>
+    <div class="api-step"><div class="api-step-num">2</div><div class="api-step-text">Click <strong>API Keys</strong> in the left sidebar, then <strong>Create Key</strong>. Name it "GreenAI Studio".</div></div>
+    <div class="api-step"><div class="api-step-num">3</div><div class="api-step-text">Copy your key — it starts with <strong>sk-ant-...</strong> — and paste it below.</div></div>
+    <div class="api-secure">🔒 Your key is stored only in this browser session. It is never saved, never sent to GreenAI's servers, and clears when you close the tab.</div>
+    <div class="form-group">
+      <div class="form-label">Paste Your API Key</div>
+      <input type="password" class="form-ctrl" id="api-key-input" placeholder="sk-ant-..." style="width:100%;padding:11px 14px;border:1.5px solid var(--g2);border-radius:var(--r);font-size:13px;background:var(--g1);font-family:'Inter',sans-serif;outline:none"/>
+    </div>
+    <button class="modal-save" style="width:100%;padding:12px;margin-top:4px" onclick="saveApiKey()">Connect API Key →</button>
+  </div>
+</div>
+
+<!-- ══ ADD CLIENT MODAL ══ -->
+<div class="modal-overlay" id="client-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeClientModal()">✕</button>
+    <div class="modal-title">Add New Client</div>
+    <div class="form-group">
+      <div class="form-label">Business Name</div>
+      <input type="text" id="c-name" placeholder="e.g. Desert Steam Detail"/>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Industry / Niche</div>
+      <select id="c-niche">
+        <option value="Auto Detailing">Auto Detailing</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Small Business">Small Business</option>
+        <option value="Notary Services">Notary Services</option>
+        <option value="Restaurant">Restaurant</option>
+        <option value="Fitness">Fitness / Gym</option>
+        <option value="Beauty">Beauty / Salon</option>
+        <option value="Contractor">Contractor / Trades</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Active Platforms <span class="fl-hint">Select all that apply</span></div>
+      <div class="platform-btns">
+        <div class="plat-btn" id="cp-ig" onclick="toggleClientPlat('ig')"><div class="pb-icon">📸</div>Instagram</div>
+        <div class="plat-btn" id="cp-tt" onclick="toggleClientPlat('tt')"><div class="pb-icon">🎵</div>TikTok</div>
+        <div class="plat-btn" id="cp-fb" onclick="toggleClientPlat('fb')"><div class="pb-icon">📘</div>Facebook</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Monthly Budget</div>
+      <select id="c-budget">
+        <option value="$700/mo">$700/mo — Social Media</option>
+        <option value="$750/mo">$750/mo — AI Consulting</option>
+        <option value="$1,450/mo">$1,450/mo — Full Package</option>
+        <option value="$500 one-time">$500 — Web Design</option>
+        <option value="Custom">Custom</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Notes</div>
+      <textarea class="form-ctrl" id="c-notes" rows="3" placeholder="Key details, goals, preferences..."></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel" onclick="closeClientModal()">Cancel</button>
+      <button class="modal-save" onclick="saveClient()">Add Client →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast"></div>
+
+<!-- ══ APP ══ -->
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="tb-logo">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="rgba(76,175,110,0.25)" stroke="#4caf6e" stroke-width="1.5"/>
+        <path d="M15 9.5C14.3 8.7 13.3 8.2 12 8.2C9.7 8.2 7.8 10.1 7.8 12.4C7.8 14.7 9.7 16.6 12 16.6C13.7 16.6 15.1 15.6 15.8 14.2H12.6V12.7H17V13.3" stroke="#4caf6e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="tb-name">GreenAI <span>Studio</span></span>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-tagline">AI-Powered Growth Platform · greenaidigital.com</div>
+    <div class="api-status" onclick="openApiModal()" id="api-status-btn">
+      <div class="api-dot off" id="api-dot"></div>
+      <span class="api-text" id="api-text">Connect API</span>
+    </div>
+  </div>
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <div class="tab active" onclick="switchTab('studio')" id="tab-studio">
+      <span class="tab-icon">✍️</span> Content Studio <span class="tab-badge">AI</span>
+    </div>
+    <div class="tab" onclick="switchTab('lead')" id="tab-lead">
+      <span class="tab-icon">⚡</span> Lead Follow-Up <span class="tab-badge">AI</span>
+    </div>
+    <div class="tab" onclick="switchTab('clients')" id="tab-clients">
+      <span class="tab-icon">👥</span> Client Dashboard
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ══ CONTENT STUDIO PANEL ══ -->
+    <div class="panel active" id="panel-studio">
+      <div class="studio-grid">
+
+        <!-- Controls -->
+        <div>
+          <div class="card">
+            <div class="card-title green">Content Studio</div>
+
+            <div class="form-group">
+              <div class="form-label">Platform</div>
+              <div class="platform-btns">
+                <div class="plat-btn active" id="pb-ig" onclick="selectPlat('ig')"><div class="pb-icon">📸</div>Instagram</div>
+                <div class="plat-btn" id="pb-tt" onclick="selectPlat('tt')"><div class="pb-icon">🎵</div>TikTok</div>
+                <div class="plat-btn" id="pb-fb" onclick="selectPlat('fb')"><div class="pb-icon">📘</div>Facebook</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Business / Client</div>
+              <input type="text" id="biz-name" placeholder="e.g. Desert Steam Detail" value="Desert Steam Detail"/>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Industry Niche</div>
+              <select id="niche-sel">
+                <option value="Auto Detailing">Auto Detailing</option>
+                <option value="Real Estate">Real Estate</option>
+                <option value="Small Business">Small Business</option>
+                <option value="Notary Services">Notary Services</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Fitness">Fitness / Gym</option>
+                <option value="Beauty">Beauty / Salon</option>
+                <option value="Contractor">Contractor / Trades</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Content Type</div>
+              <select id="content-type">
+                <option value="promotional post">Promotional Post</option>
+                <option value="educational post">Educational / Tips</option>
+                <option value="before and after reveal">Before & After Reveal</option>
+                <option value="brand story post">Brand Story</option>
+                <option value="customer testimonial post">Customer Testimonial</option>
+                <option value="video script">Video Script (Reel/TikTok)</option>
+                <option value="seasonal promotion">Seasonal Promotion</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Tone</div>
+              <div class="lead-tone-row">
+                <div class="tone-pill active" id="tone-professional" onclick="selectTone('professional')">Professional</div>
+                <div class="tone-pill" id="tone-casual" onclick="selectTone('casual')">Casual</div>
+                <div class="tone-pill" id="tone-bold" onclick="selectTone('bold')">Bold</div>
+                <div class="tone-pill" id="tone-friendly" onclick="selectTone('friendly')">Friendly</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Key Details <span class="fl-hint">Optional extra context</span></div>
+              <textarea class="form-ctrl" id="extra-details" rows="3" placeholder="e.g. Mention $1,100 ceramic coating, steam technology, serving Scottsdale..."></textarea>
+            </div>
+
+            <button class="gen-btn" id="gen-btn" onclick="generateContent()">
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="btn-text">⚡ Generate Content</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Output -->
+        <div class="card output-area">
+          <div class="card-title green">Generated Content</div>
+          <div id="output-placeholder" class="output-placeholder">
+            <div class="op-icon">✨</div>
+            <p>Fill in the details on the left<br>and hit Generate to create<br>platform-ready content with AI.</p>
+          </div>
+          <div id="output-result" class="output-result">
+            <div class="output-header">
+              <h3 id="output-label">Instagram Caption</h3>
+              <div class="output-actions">
+                <button class="out-btn" onclick="copyContent()">📋 Copy</button>
+                <button class="out-btn" onclick="generateContent()">↺ Regenerate</button>
+              </div>
+            </div>
+            <div class="content-box" id="content-box"></div>
+            <div class="char-count" id="char-count"></div>
+            <div class="regen-row">
+              <button class="regen-btn" onclick="tweakContent('make it shorter and punchier')">⚡ Shorter & Punchier</button>
+              <button class="regen-btn" onclick="tweakContent('add more emojis and energy')">🔥 More Energy</button>
+              <button class="regen-btn" onclick="tweakContent('make it more professional')">✨ More Professional</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ LEAD FOLLOW-UP PANEL ══ -->
+    <div class="panel" id="panel-lead">
+      <div class="lead-grid">
+        <div class="card">
+          <div class="card-title green">Lead Message</div>
+          <div class="form-group">
+            <div class="form-label">Paste the Lead's Message</div>
+            <textarea class="form-ctrl" id="lead-input" rows="8" placeholder="Paste the inquiry, DM, or voicemail transcription here...&#10;&#10;e.g. 'Hi, I saw your post about ceramic coatings. How much does it cost for a truck? I'm in Scottsdale...'"></textarea>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Your Business</div>
+            <input type="text" id="lead-biz" placeholder="e.g. Desert Steam Detail" value="Desert Steam Detail"/>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Response Tone</div>
+            <div class="lead-tone-row">
+              <div class="tone-pill active" id="lt-warm" onclick="selectLeadTone('warm')">Warm & Friendly</div>
+              <div class="tone-pill" id="lt-professional" onclick="selectLeadTone('professional')">Professional</div>
+              <div class="tone-pill" id="lt-urgent" onclick="selectLeadTone('urgent')">Create Urgency</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Include <span class="fl-hint">Optional</span></div>
+            <select id="lead-include">
+              <option value="">Nothing specific</option>
+              <option value="pricing">Mention pricing range</option>
+              <option value="booking CTA">Strong booking CTA</option>
+              <option value="phone number">Ask for phone call</option>
+              <option value="free consultation">Offer free consultation</option>
+            </select>
+          </div>
+          <button class="gen-btn" id="lead-btn" onclick="generateLeadResponse()">
+            <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            <span class="btn-text">⚡ Write My Response</span>
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-title green">AI Response (Ready to Send)</div>
+          <div id="lead-placeholder" class="output-placeholder" style="height:280px">
+            <div class="op-icon">💬</div>
+            <p>Paste the lead's message on the left.<br>AI writes your perfect response<br>in seconds — copy and send.</p>
+          </div>
+          <div id="lead-result" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+              <div style="font-size:13px;font-weight:600;color:var(--g8)">Your Response</div>
+              <div style="display:flex;gap:8px">
+                <button class="out-btn" onclick="copyLead()">📋 Copy</button>
+                <button class="out-btn" onclick="generateLeadResponse()">↺ Rewrite</button>
+              </div>
+            </div>
+            <div class="lead-output-box" id="lead-output-box"></div>
+            <div class="regen-row" style="margin-top:12px">
+              <button class="regen-btn" onclick="tweakLead('make it shorter and more direct')">✂️ Shorter</button>
+              <button class="regen-btn" onclick="tweakLead('add a stronger call to action to book now')">🎯 Stronger CTA</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CLIENT DASHBOARD PANEL ══ -->
+    <div class="panel" id="panel-clients">
+      <div class="dash-header">
+        <h2>Client Dashboard</h2>
+        <button class="add-client-btn" onclick="openClientModal()">+ Add Client</button>
+      </div>
+      <div id="clients-container">
+        <div class="empty-clients" id="empty-clients">
+          <div class="ei">👥</div>
+          <p>No clients yet. Add your first client above<br>to start tracking their growth.</p>
+        </div>
+        <div class="clients-grid" id="clients-grid" style="display:none"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══ STATE ══
+const PASS = 'GreenAI2026';
+let apiKey = sessionStorage.getItem('gai_api_key') || '';
+let selectedPlat = 'ig';
+let selectedTone = 'professional';
+let selectedLeadTone = 'warm';
+let clientPlats = {ig:false, tt:false, fb:false};
+let clients = JSON.parse(localStorage.getItem('gai_clients') || '[]');
+let lastContent = '';
+let lastLead = '';
+
+// ══ AUTH ══
+function checkPasscode() {
+  const val = document.getElementById('passcode-input').value;
+  if (val === PASS) {
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    if (!apiKey) setTimeout(openApiModal, 600);
+    else setApiConnected(true);
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+    document.getElementById('passcode-input').value = '';
+    document.getElementById('passcode-input').focus();
+  }
+}
+document.getElementById('passcode-input').addEventListener('keydown', e => { if(e.key==='Enter') checkPasscode(); });
+
+// ══ API KEY ══
+function openApiModal() { document.getElementById('api-modal').classList.add('open'); }
+function saveApiKey() {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (!k.startsWith('sk-ant-') && !k.startsWith('sk-')) { showToast('Invalid key format — should start with sk-ant-'); return; }
+  apiKey = k;
+  sessionStorage.setItem('gai_api_key', k);
+  document.getElementById('api-modal').classList.remove('open');
+  setApiConnected(true);
+  showToast('✅ API connected — AI features are live!');
+}
+function setApiConnected(on) {
+  document.getElementById('api-dot').className = 'api-dot ' + (on ? 'on' : 'off');
+  document.getElementById('api-text').textContent = on ? 'AI Connected' : 'Connect API';
+}
+
+// ══ TABS ══
+function switchTab(tab) {
+  ['studio','lead','clients'].forEach(t => {
+    document.getElementById('panel-'+t).classList.toggle('active', t===tab);
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+}
+
+// ══ PLATFORM SELECT ══
+function selectPlat(p) {
+  selectedPlat = p;
+  ['ig','tt','fb'].forEach(x => document.getElementById('pb-'+x).classList.toggle('active', x===p));
+}
+function selectTone(t) {
+  selectedTone = t;
+  ['professional','casual','bold','friendly'].forEach(x => document.getElementById('tone-'+x).classList.toggle('active', x===t));
+}
+function selectLeadTone(t) {
+  selectedLeadTone = t;
+  ['warm','professional','urgent'].forEach(x => document.getElementById('lt-'+x).classList.toggle('active', x===t));
+}
+
+// ══ CLAUDE API ══
+async function callClaude(prompt) {
+  if (!apiKey) { openApiModal(); throw new Error('No API key'); }
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json', 'x-api-key':apiKey, 'anthropic-version':'2023-06-01', 'anthropic-dangerous-direct-browser-access':'true' },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1024,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  if (!resp.ok) { const e = await resp.json(); throw new Error(e.error?.message || 'API error'); }
+  const data = await resp.json();
+  return data.content[0].text;
+}
+
+// ══ STREAM TO ELEMENT ══
+async function streamToElement(el, text) {
+  el.innerHTML = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  el.appendChild(cursor);
+  const words = text.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    await new Promise(r => setTimeout(r, 18));
+    cursor.insertAdjacentText('beforebegin', (i===0?'':' ') + words[i]);
+  }
+  cursor.remove();
+  return text;
+}
+
+// ══ GENERATE CONTENT ══
+async function generateContent() {
+  if (!apiKey) { openApiModal(); return; }
+  const biz = document.getElementById('biz-name').value || 'this business';
+  const niche = document.getElementById('niche-sel').value;
+  const type = document.getElementById('content-type').value;
+  const tone = selectedTone;
+  const details = document.getElementById('extra-details').value;
+  const platNames = {ig:'Instagram',tt:'TikTok',fb:'Facebook'};
+  const plat = platNames[selectedPlat];
+  const platFormats = {
+    ig: 'Write an Instagram caption with relevant hashtags (5-8). Keep under 150 words. Hook on the first line.',
+    tt: 'Write a TikTok video script (30-45 seconds). Include a strong hook, key points with on-screen text cues, and a CTA.',
+    fb: 'Write a Facebook post. Can be slightly longer (150-200 words). Warm, community-focused tone. End with a question or CTA.'
+  };
+  const prompt = `You are an expert social media content creator for ${niche} businesses.
+
+Create a ${tone} ${type} for ${plat} for "${biz}" — a ${niche} business.
+
+${platFormats[selectedPlat]}
+
+${details ? `Additional context: ${details}` : ''}
+
+Output ONLY the ready-to-post content. No intro, no explanation. Just the post itself.`;
+
+  const btn = document.getElementById('gen-btn');
+  btn.classList.add('loading'); btn.disabled = true;
+  document.getElementById('output-placeholder').style.display = 'none';
+  document.getElementById('output-result').style.display = 'block';
+  document.getElementById('output-label').textContent = `${plat} ${type.replace(/^\w/,c=>c.toUpperCase())}`;
+  const box = document.getElementById('content-box');
+  box.textContent = '';
+  try {
+    const text = await callClaude(prompt);
+    lastContent = text;
+    await streamToElement(box, text);
+    document.getElementById('char-count').textContent = `${text.length} characters`;
+  } catch(e) {
+    box.textContent = 'Error: ' + e.message;
+    showToast('⚠️ ' + e.message);
+  }
+  btn.classList.remove('loading'); btn.disabled = false;
+}
+
+async function tweakContent(instruction) {
+  if (!lastContent) return;
+  const prompt = `Here is a social media post:\n\n"${lastContent}"\n\nPlease ${instruction}. Output ONLY the revised post, nothing else.`;
+  const btn = document.getElementById('gen-btn');
+  btn.classList.add('loading'); btn.disabled = true;
+  const box = document.getElementById('content-box');
+  box.textContent = '';
+  try {
+    const text = await callClaude(prompt);
+    lastContent = text;
+    await streamToElement(box, text);
+    document.getElementById('char-count').textContent = `${text.length} characters`;
+  } catch(e) { showToast('⚠️ ' + e.message); }
+  btn.classList.remove('loading'); btn.disabled = false;
+}
+
+function copyContent() {
+  navigator.clipboard.writeText(lastContent).then(() => showToast('✅ Copied to clipboard!'));
+}
+
+// ══ LEAD RESPONSE ══
+async function generateLeadResponse() {
+  if (!apiKey) { openApiModal(); return; }
+  const msg = document.getElementById('lead-input').value.trim();
+  if (!msg) { showToast('Paste the lead message first'); return; }
+  const biz = document.getElementById('lead-biz').value || 'our business';
+  const tone = selectedLeadTone;
+  const include = document.getElementById('lead-include').value;
+  const toneDesc = {warm:'warm, friendly, and personable',professional:'professional and confident',urgent:'friendly but creates a sense of urgency to book soon'};
+  const prompt = `You are a customer response expert for "${biz}".
+
+A potential customer sent this message:
+"${msg}"
+
+Write a ${toneDesc[tone]} response that:
+- Directly answers their question or addresses their message
+- Represents the business professionally
+- ${include ? `Includes: ${include}` : 'Ends with a clear next step'}
+- Is conversational, not robotic
+- Is 3-5 sentences max — short enough to text or DM
+
+Output ONLY the response message. No subject line, no sign-off label, just the message text.`;
+
+  const btn = document.getElementById('lead-btn');
+  btn.classList.add('loading'); btn.disabled = true;
+  document.getElementById('lead-placeholder').style.display = 'none';
+  document.getElementById('lead-result').style.display = 'block';
+  const box = document.getElementById('lead-output-box');
+  box.textContent = '';
+  try {
+    const text = await callClaude(prompt);
+    lastLead = text;
+    await streamToElement(box, text);
+  } catch(e) {
+    box.textContent = 'Error: ' + e.message;
+    showToast('⚠️ ' + e.message);
+  }
+  btn.classList.remove('loading'); btn.disabled = false;
+}
+
+async function tweakLead(instruction) {
+  if (!lastLead) return;
+  const prompt = `Here is a customer response message:\n\n"${lastLead}"\n\nPlease ${instruction}. Output ONLY the revised message, nothing else.`;
+  const box = document.getElementById('lead-output-box');
+  box.textContent = '';
+  try {
+    const text = await callClaude(prompt);
+    lastLead = text;
+    await streamToElement(box, text);
+  } catch(e) { showToast('⚠️ ' + e.message); }
+}
+
+function copyLead() {
+  navigator.clipboard.writeText(lastLead).then(() => showToast('✅ Copied to clipboard!'));
+}
+
+// ══ CLIENT DASHBOARD ══
+function openClientModal() {
+  clientPlats = {ig:false,tt:false,fb:false};
+  ['ig','tt','fb'].forEach(p => document.getElementById('cp-'+p).classList.remove('active'));
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-notes').value = '';
+  document.getElementById('client-modal').classList.add('open');
+  setTimeout(() => document.getElementById('c-name').focus(), 100);
+}
+function closeClientModal() { document.getElementById('client-modal').classList.remove('open'); }
+function toggleClientPlat(p) {
+  clientPlats[p] = !clientPlats[p];
+  document.getElementById('cp-'+p).classList.toggle('active', clientPlats[p]);
+}
+function saveClient() {
+  const name = document.getElementById('c-name').value.trim();
+  if (!name) { showToast('Enter a business name'); return; }
+  const plats = Object.keys(clientPlats).filter(k => clientPlats[k]);
+  clients.push({
+    id: Date.now(),
+    name,
+    niche: document.getElementById('c-niche').value,
+    platforms: plats,
+    budget: document.getElementById('c-budget').value,
+    notes: document.getElementById('c-notes').value,
+    status: 'new',
+    added: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
+  });
+  localStorage.setItem('gai_clients', JSON.stringify(clients));
+  closeClientModal();
+  renderClients();
+  showToast('✅ Client added!');
+}
+function cycleStatus(id) {
+  const cycle = ['new','active','pending'];
+  const c = clients.find(x => x.id===id);
+  if (!c) return;
+  c.status = cycle[(cycle.indexOf(c.status)+1)%cycle.length];
+  localStorage.setItem('gai_clients', JSON.stringify(clients));
+  renderClients();
+}
+function deleteClient(id) {
+  if (!confirm('Remove this client?')) return;
+  clients = clients.filter(x => x.id!==id);
+  localStorage.setItem('gai_clients', JSON.stringify(clients));
+  renderClients();
+}
+function useClient(c) {
+  document.getElementById('biz-name').value = c.name;
+  document.getElementById('lead-biz').value = c.name;
+  switchTab('studio');
+  showToast('✅ Loaded ' + c.name + ' into Content Studio');
+}
+function renderClients() {
+  const empty = document.getElementById('empty-clients');
+  const grid = document.getElementById('clients-grid');
+  if (!clients.length) { empty.style.display='block'; grid.style.display='none'; return; }
+  empty.style.display='none'; grid.style.display='grid';
+  const statusLabel = {active:'Active',pending:'Pending',new:'New'};
+  const statusClass = {active:'cs-active',pending:'cs-pending',new:'cs-new'};
+  const platTag = {ig:'<span class="plat-tag pt-ig">Instagram</span>', tt:'<span class="plat-tag pt-tt">TikTok</span>', fb:'<span class="plat-tag pt-fb">Facebook</span>'};
+  grid.innerHTML = clients.map(c => `
+    <div class="client-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">${c.name}</div>
+          <div class="cc-industry">${c.niche}</div>
+        </div>
+        <div class="cc-status ${statusClass[c.status]}" onclick="cycleStatus(${c.id})">${statusLabel[c.status]}</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-stat-row">
+          <div class="cc-stat"><div class="csv">${c.platforms.length}</div><div class="csl">Platforms</div></div>
+          <div class="cc-stat"><div class="csv">${c.budget.split('/')[0]}</div><div class="csl">Budget</div></div>
+          <div class="cc-stat"><div class="csv">${c.status==='active'?'Live':'Setup'}</div><div class="csl">Status</div></div>
+        </div>
+        <div class="cc-platforms">${c.platforms.map(p => platTag[p]).join('') || '<span style="font-size:12px;color:var(--g4)">No platforms set</span>'}</div>
+        ${c.notes ? `<div class="cc-note">${c.notes}</div>` : ''}
+        <div style="font-size:11px;color:var(--g4)">Added ${c.added}</div>
+      </div>
+      <div class="cc-footer">
+        <button class="cc-action primary" onclick='useClient(${JSON.stringify(c).replace(/'/g,"&#39;")})'>✍️ Create Content</button>
+        <button class="cc-action" onclick="deleteClient(${c.id})">✕ Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══ TOAST ══
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══ INIT ══
+renderClients();
+if (apiKey) setApiConnected(true);
+</script>
+</body>
+</html>
