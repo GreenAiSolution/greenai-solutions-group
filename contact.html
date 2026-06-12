@@ -144,9 +144,11 @@
 
           <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Contact form">
             <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
-            <input type="hidden" name="subject" value="New Quote Request — GreenAI Solutions Team" />
-            <input type="hidden" name="from_name" value="GreenAI Solutions Team Website" />
+            <input type="hidden" name="to" value="jaden@greenaidigital.com" />
+            <input type="hidden" name="subject" value="📩 New Contact Form — GreenAI Solutions Team" />
+            <input type="hidden" name="from_name" value="GreenAI Website — Contact Form" />
             <input type="hidden" name="redirect" value="https://greenaidigital.com/thankyou.html" />
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
               <div class="form-group">
@@ -177,10 +179,11 @@
             <div class="form-group">
               <label for="service">Service I'm Most Interested In</label>
               <select id="service" name="service">
-                <option value="" disabled selected>Select a service"¦</option>
-                <option value="social">Social Media Management</option>
-                <option value="ai">AI Business Consulting</option>
-                <option value="notary">Notary &amp; Loan Signing</option>
+                <option value="" disabled selected>Select a service…</option>
+                <option value="social">Social Media Management — $700/mo</option>
+                <option value="ai">AI Business Consulting — $750/mo</option>
+                <option value="creator">GreenFit AI Creator (AI Software) — $1,400/mo</option>
+                <option value="web">Web Design &amp; Development — from $500</option>
                 <option value="bundle">Multiple Services / Bundle</option>
                 <option value="unsure">Not sure yet — need guidance</option>
               </select>
