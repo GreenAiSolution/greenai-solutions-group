@@ -1108,7 +1108,7 @@ function setAPI(on){
 
 // ══ NAV ══
 function switchPanel(p){
-  ['studio','lead','image','hashtag','review','clients','viral','campaign','dm'].forEach(x=>{
+  ['studio','lead','image','hashtag','review','viral','campaign','dm','adcopy','email','strategy','clients'].forEach(x=>{
     document.getElementById('panel-'+x).classList.toggle('active',x===p);
     document.getElementById('nav-'+x).classList.toggle('active',x===p);
   });
