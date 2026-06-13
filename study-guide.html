@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenAI — Study Guide for Collin Meeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #050c07;
+  color: #f0f7f1;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #00e676; text-decoration: none; }
+
+/* ---- PRINT BUTTON ---- */
+.print-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(5,12,7,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,230,118,0.15);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.print-bar-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.print-bar-logo span:first-child { color: #00e676; }
+.print-bar-logo span:nth-child(2) { color: #D4AF37; }
+
+.print-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.meeting-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #D4AF37;
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+.btn-print {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: #050c07;
+  font-weight: 800;
+  font-size: 0.82rem;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+/* ---- PAGE ---- */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 32px 80px;
+}
+
+/* ---- COVER ---- */
+.cover {
+  text-align: center;
+  padding: 4rem 0 5rem;
+  border-bottom: 1px solid rgba(0,230,118,0.15);
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.cover-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0,230,118,0.08);
+  border: 1px solid rgba(0,230,118,0.25);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #00e676;
+  margin-bottom: 1.5rem;
+}
+
+.cover h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.cover h1 span {
+  background: linear-gradient(135deg, #00e676, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cover-sub {
+  font-size: 1.05rem;
+  color: #7a9e82;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.cover-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cover-meta-item {
+  font-size: 0.82rem;
+  color: #4a6b52;
+}
+
+.cover-meta-item strong { color: #f0f7f1; display: block; font-size: 1rem; margin-bottom: 2px; }
+
+/* ---- TABLE OF CONTENTS ---- */
+.toc {
+  background: #0d1810;
+  border: 1px solid rgba(0,230,118,0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 4rem;
+}
+
+.toc h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a6b52;
+  margin-bottom: 1.25rem;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+@media (max-width: 600px) { .toc-grid { grid-template-columns: 1fr; } }
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.toc-item:hover { background: rgba(0,230,118,0.06); }
+
+.toc-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #00e676;
+  width: 24px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.toc-label {
+  font-size: 0.875rem;
+  color: #7a9e82;
+  font-weight: 500;
+}
+
+.toc-item:hover .toc-label { color: #f0f7f1; }
+
+/* ---- SECTION ---- */
+.guide-section {
+  margin-bottom: 5rem;
+  scroll-margin-top: 80px;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.section-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #00e676;
+  background: rgba(0,230,118,0.1);
+  border: 1px solid rgba(0,230,118,0.25);
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+}
+
+.section-cat {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a6b52;
+}
+
+.guide-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #f0f7f1;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.section-lead {
+  font-size: 0.95rem;
+  color: #7a9e82;
+  max-width: 620px;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0,230,118,0.1);
+}
+
+/* ---- TOOL CARD ---- */
+.tool-card {
+  background: #0d1810;
+  border: 1px solid rgba(0,230,118,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,230,118,0.4), transparent);
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 1rem;
+}
+
+.tool-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(0,230,118,0.1);
+  border: 1px solid rgba(0,230,118,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.tool-meta { flex: 1; min-width: 0; }
+
+.tool-name {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #f0f7f1;
+  margin-bottom: 2px;
+}
+
+.tool-where {
+  font-size: 0.72rem;
+  color: #4a6b52;
+  font-family: 'Orbitron', monospace;
+  letter-spacing: 0.04em;
+}
+
+.tool-desc {
+  font-size: 0.875rem;
+  color: #7a9e82;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+/* ---- STEPS ---- */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(0,230,118,0.07);
+}
+
+.step-n {
+  width: 22px;
+  height: 22px;
+  background: rgba(0,230,118,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #00e676;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-family: 'Orbitron', monospace;
+}
+
+.step-text {
+  font-size: 0.85rem;
+  color: #7a9e82;
+  line-height: 1.5;
+}
+
+.step-text strong { color: #f0f7f1; }
+
+/* ---- TALKING POINTS ---- */
+.talking-points {
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.tp-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D4AF37;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tp-list li {
+  font-size: 0.82rem;
+  color: #a89040;
+  list-style: none;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.tp-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #D4AF37;
+  font-size: 0.72rem;
+}
+
+/* ---- TIP BOX ---- */
+.tip-box {
+  background: rgba(0,230,118,0.04);
+  border: 1px solid rgba(0,230,118,0.2);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: #5a9e6a;
+  line-height: 1.6;
+}
+
+.tip-box strong { color: #00e676; }
+
+/* ---- WARN BOX ---- */
+.warn-box {
+  background: rgba(255,165,0,0.05);
+  border: 1px solid rgba(255,165,0,0.25);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: #b8860b;
+  line-height: 1.6;
+}
+
+.warn-box strong { color: #ffa500; }
+
+/* ---- DIVIDER ---- */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,230,118,0.2), transparent);
+  margin: 4rem 0;
+}
+
+/* ---- TAG CHIPS ---- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.75rem;
+}
+
+.chip {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: rgba(0,230,118,0.08);
+  border: 1px solid rgba(0,230,118,0.2);
+  border-radius: 100px;
+  color: #00e676;
+  letter-spacing: 0.04em;
+}
+
+.chip.gold {
+  background: rgba(212,175,55,0.08);
+  border-color: rgba(212,175,55,0.25);
+  color: #D4AF37;
+}
+
+/* ---- QUICK REF TABLE ---- */
+.quick-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+}
+
+.quick-ref th {
+  background: rgba(0,230,118,0.08);
+  color: #00e676;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0,230,118,0.2);
+}
+
+.quick-ref td {
+  padding: 10px 14px;
+  color: #7a9e82;
+  border-bottom: 1px solid rgba(0,230,118,0.07);
+  vertical-align: top;
+}
+
+.quick-ref tr:last-child td { border-bottom: none; }
+.quick-ref td:first-child { color: #f0f7f1; font-weight: 600; }
+.quick-ref td code {
+  background: rgba(0,230,118,0.08);
+  color: #00e676;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-family: 'Orbitron', monospace;
+}
+
+/* ---- CHECKLIST ---- */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cl-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,230,118,0.08);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #7a9e82;
+}
+
+.cl-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0,230,118,0.3);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ---- BIG QUOTE ---- */
+.big-quote {
+  border-left: 3px solid #00e676;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(0,230,118,0.03);
+  border-radius: 0 10px 10px 0;
+}
+
+.big-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #7a9e82;
+  line-height: 1.7;
+}
+
+.big-quote cite {
+  display: block;
+  font-size: 0.75rem;
+  font-style: normal;
+  color: #00e676;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* ---- FOOTER ---- */
+.guide-footer {
+  text-align: center;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(0,230,118,0.1);
+  margin-top: 4rem;
+}
+
+.guide-footer p { font-size: 0.78rem; color: #4a6b52; margin-bottom: 0.25rem; }
+
+/* ---- PRINT ---- */
+@media print {
+  .print-bar { display: none !important; }
+  .page { padding-top: 32px; }
+  body { background: white; color: #111; }
+  .tool-card, .toc { background: #f8f8f8; border-color: #ddd; }
+  .tool-card::before { display: none; }
+  .guide-section { page-break-inside: avoid; }
+  a { color: #00c853; }
+  .tip-box, .talking-points, .warn-box { page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- PRINT BAR -->
+<div class="print-bar">
+  <div class="print-bar-logo">
+    <span>Green</span><span>AI</span>
+    <span style="font-size:0.5rem;color:#4a6b52;margin-left:6px;letter-spacing:0.1em">SOLUTIONS</span>
+  </div>
+  <div class="print-bar-right">
+    <div class="meeting-badge">&#128101; Meeting: Collin</div>
+    <button class="btn-print" onclick="window.print()">
+      &#128424; Print / Save PDF
+    </button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">
+      &#128196; Internal Study Guide · Confidential
+    </div>
+    <h1>GreenAI Solutions<br><span>Platform Study Guide</span></h1>
+    <p class="cover-sub">
+      A complete walkthrough of every tool, page, and feature — built for your meeting with Collin. Use this to demo the platform, answer questions, and explain the value of each piece.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>Prepared By</strong>Jaden Green</div>
+      <div class="cover-meta-item"><strong>Meeting With</strong>Collin</div>
+      <div class="cover-meta-item"><strong>Date</strong>June 2026</div>
+      <div class="cover-meta-item"><strong>Platform</strong>greenaidigital.com</div>
+    </div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>&#128196; Table of Contents</h2>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><span class="toc-num">01</span><span class="toc-label">Homepage — The First Impression</span></a>
+      <a href="#s2" class="toc-item"><span class="toc-num">02</span><span class="toc-label">Platform Dominance Section</span></a>
+      <a href="#s3" class="toc-item"><span class="toc-num">03</span><span class="toc-label">AI Feature Engine</span></a>
+      <a href="#s4" class="toc-item"><span class="toc-num">04</span><span class="toc-label">Social Media Marketing Suite</span></a>
+      <a href="#s5" class="toc-item"><span class="toc-num">05</span><span class="toc-label">Website Creation Suite</span></a>
+      <a href="#s6" class="toc-item"><span class="toc-num">06</span><span class="toc-label">ROI Calculator</span></a>
+      <a href="#s7" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Results &amp; Case Studies</span></a>
+      <a href="#s8" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Pricing Plans</span></a>
+      <a href="#s9" class="toc-item"><span class="toc-num">09</span><span class="toc-label">Content Studio — Platform Tabs</span></a>
+      <a href="#s10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">Content Studio — Style Templates</span></a>
+      <a href="#s11" class="toc-item"><span class="toc-num">11</span><span class="toc-label">Content Studio — Content Fields</span></a>
+      <a href="#s12" class="toc-item"><span class="toc-num">12</span><span class="toc-label">Content Studio — Image Download</span></a>
+      <a href="#s13" class="toc-item"><span class="toc-num">13</span><span class="toc-label">Content Studio — Video Recording</span></a>
+      <a href="#s14" class="toc-item"><span class="toc-num">14</span><span class="toc-label">Client Onboarding Form</span></a>
+      <a href="#s15" class="toc-item"><span class="toc-num">15</span><span class="toc-label">Quick Reference &amp; Demo Checklist</span></a>
+    </div>
+  </div>
+
+
+  <!-- ===================================
+       SECTION 1 — HOMEPAGE
+  ==================================== -->
+  <div class="guide-section" id="s1">
+    <div class="section-eyebrow">
+      <span class="section-num">01</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>The Homepage — First Impression</h2>
+    <p class="section-lead">
+      The homepage is the main sales page. Every section is designed to answer a different objection and push the visitor toward booking a call. Walk Collin through it top to bottom.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128293;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Hero Section</div>
+          <div class="tool-where">index.html → top of page</div>
+        </div>
+      </div>
+      <p class="tool-desc">The very first thing any visitor sees. It has an animated particle network in the background, a typewriter headline that cycles through "Dominate Every Platform / Social Media / Every Market / The Algorithm," and a live scrolling ticker showing real-time stats.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text"><strong>Particle canvas</strong> — animated green neural network runs in the background using HTML5 Canvas. No images, no videos — pure code, loads instantly.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text"><strong>Typewriter effect</strong> — the headline cycles every few seconds. Shows the range of what we dominate.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text"><strong>Orbital AI animation</strong> — the AI core with IG, TK, FB, YT, LI, X orbiting it visually communicates that we run all platforms from one place.</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text"><strong>Live ticker</strong> — scrolling strip showing growth stats. Builds trust before they even scroll.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-text"><strong>Two CTAs</strong> — "Start Onboarding" (primary, green) and "See Results" (secondary, ghost). Direct and non-pushy.</div></div>
+      </div>
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points for Collin</div>
+        <ul class="tp-list">
+          <li>"The ticker updates with real stats — this isn't just decoration, it's live data from our client results."</li>
+          <li>"The orbital graphic shows we manage every platform from one AI system — that's the core pitch."</li>
+          <li>"This loads in under a second because it's all code — no heavy images or video backgrounds."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128202;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Macro Stats Bar</div>
+          <div class="tool-where">index.html → below hero</div>
+        </div>
+      </div>
+      <p class="tool-desc">Six key metrics that animate up from zero when they scroll into view. 500% ROI, 98M+ monthly impressions, 10K+ leads, 98% client retention, 150+ websites, 24/7 automation.</p>
+      <div class="tips" style="margin-top:0.75rem">
+        <div class="tip-box"><strong>How it works:</strong> Uses JavaScript IntersectionObserver — the numbers only start counting when the user scrolls to that section. This creates a "wow" moment at just the right time.</div>
+      </div>
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"Watch the numbers — they only animate when you scroll to them. This is intentional UX to create impact."</li>
+          <li>"Every stat here is from actual client results — these aren't made up numbers."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 2 — PLATFORM DOMINANCE
+  ==================================== -->
+  <div class="guide-section" id="s2">
+    <div class="section-eyebrow">
+      <span class="section-num">02</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>Platform Dominance Section</h2>
+    <p class="section-lead">
+      Six platform cards — one for each major social network — showing the real growth numbers we achieve. The TikTok card is featured as the #1 growth platform.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128247;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Platform Cards (6 total)</div>
+          <div class="tool-where">index.html → Platforms section</div>
+        </div>
+      </div>
+      <p class="tool-desc">Instagram, TikTok, Facebook, YouTube, LinkedIn, and X/Twitter — each card shows follower growth percentage, engagement rate, monthly reach, and platform-specific AI features we use.</p>
+
+      <table class="quick-ref">
+        <tr><th>Platform</th><th>Growth Stat</th><th>Engagement</th><th>Key Feature</th></tr>
+        <tr><td>Instagram</td><td>+847% followers</td><td>12.4%</td><td>Reel Optimization + Hashtag AI</td></tr>
+        <tr><td>TikTok &#128293;</td><td>+1,240% followers</td><td>18.7%</td><td>Viral Hook Engine + FYP Algorithm</td></tr>
+        <tr><td>Facebook</td><td>+420% page growth</td><td>7.2%</td><td>Ad Targeting AI + Messenger Bots</td></tr>
+        <tr><td>YouTube</td><td>+680% subscribers</td><td>9.8% CTR</td><td>SEO Titles AI + Thumbnail AB Test</td></tr>
+        <tr><td>LinkedIn</td><td>+390% connections</td><td>14.2% leads</td><td>B2B Outreach AI + Thought Leadership</td></tr>
+        <tr><td>X / Twitter</td><td>+560% followers</td><td>6.8%</td><td>Thread Strategy + Trend Hijacking</td></tr>
+      </table>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"TikTok is our best-performing platform right now — Desert Steam went from zero to 8,900 followers in 90 days."</li>
+          <li>"Every platform has a different algorithm. We use AI that's trained on each one specifically."</li>
+          <li>"LinkedIn is huge for B2B — if Collin's business sells to other businesses, this is the key platform."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 3 — AI ENGINE
+  ==================================== -->
+  <div class="guide-section" id="s3">
+    <div class="section-eyebrow">
+      <span class="section-num">03</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>AI Feature Engine</h2>
+    <p class="section-lead">
+      Six glassmorphism cards, each representing a core AI capability. These are the "how we do it" cards — they explain the technology behind the results.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#129302;</div>
+        <div class="tool-meta">
+          <div class="tool-name">6 AI Feature Cards</div>
+          <div class="tool-where">index.html → AI Engine section</div>
+        </div>
+      </div>
+      <p class="tool-desc">Each card has an icon, title, description, 4 feature bullets, and a bottom stat bar showing a key performance number.</p>
+
+      <div class="chips">
+        <span class="chip">Content Intelligence — 3.7x engagement</span>
+        <span class="chip">Predictive Analytics — 89% accuracy</span>
+        <span class="chip">Automation Engine — 22hrs saved/week</span>
+        <span class="chip">Ad Campaign AI — 4.8x ROAS</span>
+        <span class="chip">Visual Creation AI — 200% more content</span>
+        <span class="chip">Growth Funnels — 68% conversion lift</span>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"We generate 30 days of content in minutes using AI trained on your brand voice — not generic templates."</li>
+          <li>"The Predictive Analytics tool tells us which posts will go viral BEFORE we publish them. 89% accuracy."</li>
+          <li>"22 hours saved per week — that's what our automation gives back to business owners."</li>
+          <li>"4.8x return on ad spend means if they put in $500, they get back $2,400 in value."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 4 — SMM SUITE
+  ==================================== -->
+  <div class="guide-section" id="s4">
+    <div class="section-eyebrow">
+      <span class="section-num">04</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>Social Media Marketing Suite</h2>
+    <p class="section-lead">
+      Split-screen layout — left side shows our 6 core SMM capabilities, right side shows a live dashboard mockup with animated chart bars and follower counts.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128241;</div>
+        <div class="tool-meta">
+          <div class="tool-name">SMM Capability Stack + Dashboard Mockup</div>
+          <div class="tool-where">index.html → Social Media section</div>
+        </div>
+      </div>
+      <p class="tool-desc">The left side shows Smart Scheduling, Hashtag Intelligence, Competitor Surveillance, Engagement Amplification, Reel &amp; Short Production, and Performance Reporting. The right side is an animated dashboard showing what the client sees week to week.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Point to the <strong>dashboard mockup</strong> on the right — this is what clients actually see in their reports. It shows total followers, weekly reach, and per-platform breakdown.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">The <strong>chart bars animate</strong> when scrolled into view — showing upward growth trajectory.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Mention <strong>Competitor Surveillance</strong> — we watch what competitors are doing and gap their strategy.</div></div>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"This dashboard is what we built for Desert Steam — they can see their numbers anytime, from their phone."</li>
+          <li>"Hashtag AI changes every single day based on algorithm shifts. We don't use the same tags twice."</li>
+          <li>"Competitor surveillance means we're always one step ahead — we know what's working for them before they scale it."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 5 — WEBSITE SUITE
+  ==================================== -->
+  <div class="guide-section" id="s5">
+    <div class="section-eyebrow">
+      <span class="section-num">05</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>Website Creation Suite</h2>
+    <p class="section-lead">
+      Reverse split-screen — left shows a browser mockup with a PageSpeed score of 98, right shows the 6 website capabilities.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127760;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Browser Mockup + Feature Grid</div>
+          <div class="tool-where">index.html → Website section</div>
+        </div>
+      </div>
+      <p class="tool-desc">The browser mockup shows a sample site with a lock icon (SSL), "98" PageSpeed score, and badges for 0.8s load time, Mobile-first, and SEO Score 97. The six capabilities: Lightning Performance, SEO Domination, Mobile-First Design, Conversion Architecture, E-Commerce Ready, Fort Knox Security.</p>
+
+      <div class="tip-box"><strong>Key talking point:</strong> Most agencies build beautiful websites that load slowly and don't convert. We build sites that load in under 1 second, rank on Google, and turn visitors into leads. The website pays for itself.</div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"A one-time $500 for a website that generates leads every single day is the best marketing investment a business can make."</li>
+          <li>"We scored 98/100 on Google PageSpeed for every site we build. Most DIY sites score 40-60."</li>
+          <li>"SEO means Collin's customers find him on Google without paying for ads — that's free leads forever."</li>
+          <li>"Mobile-first matters because 65% of web traffic is from phones. We build for that first."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 6 — ROI CALCULATOR
+  ==================================== -->
+  <div class="guide-section" id="s6">
+    <div class="section-eyebrow">
+      <span class="section-num">06</span>
+      <span class="section-cat">Homepage — Interactive Tool</span>
+    </div>
+    <h2>ROI Calculator</h2>
+    <p class="section-lead">
+      The most powerful sales tool on the page. Enter Collin's actual numbers live in the meeting and show him his projected 90-day results in real time.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#129518;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Live ROI Projection Tool</div>
+          <div class="tool-where">index.html → ROI Calculator section</div>
+        </div>
+      </div>
+      <p class="tool-desc">Four inputs: Current Monthly Revenue, Current Followers (total), Monthly Ad Budget, and Service Package. The results update instantly as you type, showing projected 90-day revenue, followers, leads, and ROI percentage.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Ask Collin: <strong>"What's your current monthly revenue?"</strong> — type it in live.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Ask: <strong>"How many followers do you have total across all platforms?"</strong> — type it in.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Ask: <strong>"Do you have any budget for paid ads right now?"</strong> — enter $0 if not.</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text">Select the <strong>Growth package ($1,200/mo)</strong> — this is the most popular and best value.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-text">Watch the projections calculate in real time — point to the <strong>ROI % number</strong>.</div></div>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"I'm going to plug in your actual numbers right now so this isn't theoretical — it's your business."</li>
+          <li>"Look at the ROI — that's how much you get back for every dollar you invest in GreenAI."</li>
+          <li>"These are conservative projections based on our average client results. Our top clients 2-3x this."</li>
+        </ul>
+      </div>
+
+      <div class="warn-box"><strong>&#9888; Important:</strong> Make sure the calculator section is visible before the meeting. You can also bookmark <code>index.html#calculator</code> to jump straight to it.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 7 — RESULTS
+  ==================================== -->
+  <div class="guide-section" id="s7">
+    <div class="section-eyebrow">
+      <span class="section-num">07</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>Results &amp; Case Studies</h2>
+    <p class="section-lead">
+      Three before/after result cards for real clients — Real Estate, Desert Steam Detail, and a Restaurant. These are the proof section.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127942;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Client Result Cards</div>
+          <div class="tool-where">index.html → Results section</div>
+        </div>
+      </div>
+      <p class="tool-desc">Each card shows industry, before/after metric pairs (followers, leads, revenue), timeframe, a client quote, and attribution. The Desert Steam card is featured as "Client Spotlight" in gold.</p>
+
+      <div class="big-quote">
+        <p>"From zero to fully booked in 90 days. GreenAI built my entire digital presence and now I turn away customers."</p>
+        <cite>— Desert Steam Detail, Gilbert AZ (real client)</cite>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"Desert Steam is a real client right here in Gilbert — I can connect you with them if you want to talk to them directly."</li>
+          <li>"Zero to fully booked in 90 days. That's 3 months. Most agencies take 6 months just to get set up."</li>
+          <li>"The restaurant went from 20 to 340 online orders a week — their site went from 1% to 8.4% conversion."</li>
+          <li>"If Collin is in real estate — look at the real estate card: 980 followers to 14,200 and $2.1M in closings."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 8 — PRICING
+  ==================================== -->
+  <div class="guide-section" id="s8">
+    <div class="section-eyebrow">
+      <span class="section-num">08</span>
+      <span class="section-cat">Homepage</span>
+    </div>
+    <h2>Pricing Plans</h2>
+    <p class="section-lead">
+      Three tiers plus a website addon. Month-to-month, no contracts. Walk Collin through which plan fits him.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128176;</div>
+        <div class="tool-meta">
+          <div class="tool-name">3-Tier Pricing + Website Addon</div>
+          <div class="tool-where">index.html → Pricing section</div>
+        </div>
+      </div>
+
+      <table class="quick-ref">
+        <tr><th>Plan</th><th>Price</th><th>Best For</th><th>Key Differentiator</th></tr>
+        <tr><td>Starter</td><td>$700/mo</td><td>Just launching social</td><td>1 platform, 12 posts, AI content, monthly report</td></tr>
+        <tr><td>Growth &#11088;</td><td>$1,200/mo</td><td>Ready to scale</td><td>3 platforms, paid ads up to $2K, landing page included</td></tr>
+        <tr><td>Dominator</td><td>$1,950/mo</td><td>Total market takeover</td><td>All 6 platforms, unlimited content, full website, weekly calls</td></tr>
+        <tr><td>Website Only</td><td>$500 one-time</td><td>Just need a website</td><td>Custom build, SEO-optimized, fast, converting</td></tr>
+      </table>
+
+      <div class="tip-box"><strong>Sales tip:</strong> Start with Growth. It's the sweet spot. If they have budget, mention Dominator — the full website inclusion alone is worth $500.</div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"No long-term contracts — month to month. If you're not getting results in 30 days, I work the next month for free."</li>
+          <li>"The Growth plan includes a landing page — that alone is a $300-500 value at any other agency."</li>
+          <li>"The Dominator plan includes a full website. $1,950 for social + ads + website is unheard of in this industry."</li>
+          <li>"Compare this to a big agency — they charge $5,000-15,000 a month for less. We charge less and deliver more because we use AI."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 9 — STUDIO: PLATFORM TABS
+  ==================================== -->
+  <div class="guide-section" id="s9">
+    <div class="section-eyebrow">
+      <span class="section-num">09</span>
+      <span class="section-cat">Content Studio</span>
+    </div>
+    <h2>Content Studio — Platform Tabs</h2>
+    <p class="section-lead">
+      Navigate to <strong>content-studio.html</strong> (linked as "Studio" in the nav). This is where we actually create downloadable content for clients.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127917;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Platform Selector Tabs</div>
+          <div class="tool-where">content-studio.html → top tabs</div>
+        </div>
+      </div>
+      <p class="tool-desc">Three pill-shaped tabs at the top: Instagram (pink/purple gradient), TikTok (black/teal/red gradient), Facebook (blue). Clicking each one switches the content types in the left panel and changes the hashtag suggestions.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Click <strong>Instagram</strong> first — show the content types that appear: Post, Story, Reel, Carousel.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Switch to <strong>TikTok</strong> — types change to Video, Photo Post, Text Post, Story.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Switch to <strong>Facebook</strong> — types become Post, Story, Reel, and Cover Photo.</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text">Notice the <strong>hashtag suggestions</strong> at the bottom of the left panel update with platform-specific tags each time you switch.</div></div>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"Every platform has different ideal dimensions and aspect ratios — Instagram posts are 1080x1080, TikTok is 1080x1920. This automatically handles that."</li>
+          <li>"We create platform-native content — not the same graphic posted everywhere. Each platform gets its own optimized version."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 10 — STUDIO: STYLE TEMPLATES
+  ==================================== -->
+  <div class="guide-section" id="s10">
+    <div class="section-eyebrow">
+      <span class="section-num">10</span>
+      <span class="section-cat">Content Studio</span>
+    </div>
+    <h2>Content Studio — Style Templates</h2>
+    <p class="section-lead">
+      Five visual style presets in the left panel. Each completely changes the look of the generated canvas — click them live to show Collin the range.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127912;</div>
+        <div class="tool-meta">
+          <div class="tool-name">5 Style Swatches</div>
+          <div class="tool-where">content-studio.html → Style Template row</div>
+        </div>
+      </div>
+
+      <table class="quick-ref">
+        <tr><th>Style</th><th>Look</th><th>Best For</th></tr>
+        <tr><td><code>Dark</code></td><td>Deep forest green gradient, green glow accents</td><td>GreenAI branded content, premium feel</td></tr>
+        <tr><td><code>Neon</code></td><td>Pure black with neon green highlights, electric energy</td><td>Tech, fitness, nightlife, bold brands</td></tr>
+        <tr><td><code>Gold</code></td><td>Dark chocolate background, gold accents throughout</td><td>Luxury, real estate, high-end services</td></tr>
+        <tr><td><code>Purple</code></td><td>Deep space purple, violet tones</td><td>Creative agencies, beauty, entertainment</td></tr>
+        <tr><td><code>Clean</code></td><td>White/light background, minimal dark text</td><td>Restaurants, healthcare, family brands</td></tr>
+      </table>
+
+      <div class="tip-box"><strong>Live demo tip:</strong> Generate a post first (hit Generate), then click each style swatch — the canvas re-renders instantly. This is very impressive to watch in real time. Do this with Collin's actual business info in the fields.</div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"Collin — which of these feels closest to your brand? We can dial in your exact colors using the brand color pickers below."</li>
+          <li>"The Gold template is popular with real estate clients — it conveys premium and builds trust."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 11 — STUDIO: CONTENT FIELDS
+  ==================================== -->
+  <div class="guide-section" id="s11">
+    <div class="section-eyebrow">
+      <span class="section-num">11</span>
+      <span class="section-cat">Content Studio</span>
+    </div>
+    <h2>Content Studio — Content Fields</h2>
+    <p class="section-lead">
+      The controls panel has five areas: Content Fields, Brand Colors, and Video Settings. Walk through each one by entering Collin's actual info live.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#9999;&#65039;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Headline / Hook Field</div>
+          <div class="tool-where">Content Studio → Headline input (60 chars max)</div>
+        </div>
+      </div>
+      <p class="tool-desc">This becomes the big bold text on the canvas. 60 character limit. Character counter updates live. This is the "hook" — the most important line on any post.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Type Collin's headline — something like <strong>"Get Your Dream Home in Gilbert"</strong> or <strong>"Same-Day Detail. Showroom Finish."</strong></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Watch the <strong>character counter</strong> (top right of field) count up as you type.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">After generating, changes to this field <strong>instantly re-render</strong> the canvas with no button click needed.</div></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128196;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Body Text + CTA Dropdown</div>
+          <div class="tool-where">Content Studio → Body textarea + CTA select</div>
+        </div>
+      </div>
+      <p class="tool-desc">The body text (150 chars) renders smaller below the headline. The CTA dropdown adds a colored button — Book Now, Shop Now, DM Us, Get a Quote, etc. — right on the canvas.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Type body copy: <strong>"Premium ceramic coating. Same-day booking. Gilbert's #1 rated detailer."</strong></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Select <strong>"Book Now"</strong> from the CTA dropdown — watch a gradient button appear on the canvas.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Change to <strong>"DM Us"</strong> and watch it swap instantly.</div></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#35;&#65039;&#8419;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Hashtags + One-Click Suggestions</div>
+          <div class="tool-where">Content Studio → Hashtags field + suggestion chips</div>
+        </div>
+      </div>
+      <p class="tool-desc">Type hashtags manually or click the pre-generated suggestion chips below the field. Each chip adds that hashtag to the field. Suggestions change based on the selected platform.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Show the <strong>suggestion chips</strong> — click a few and watch them get added to the field automatically.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">The hashtags render <strong>in accent color</strong> at the bottom of the canvas.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Switch platforms (Instagram → TikTok) and show how the suggestions change — TikTok shows #fyp, #foryou, etc.</div></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127912;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Brand Color Pickers</div>
+          <div class="tool-where">Content Studio → Brand Colors section</div>
+        </div>
+      </div>
+      <p class="tool-desc">Two color pickers (Primary + Accent) with color wheels AND hex input fields, fully synced. Change the color wheel → hex updates. Type a hex → color wheel updates. The canvas re-renders with the new colors instantly after generating.</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Click the <strong>Primary color swatch</strong> — a color picker opens. Change it to Collin's brand color.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Or type directly in the <strong>hex field</strong> — e.g. <code>#1877f2</code> for Facebook blue.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Set the <strong>Brand Handle</strong> field to Collin's username — it renders at the bottom of every post.</div></div>
+      </div>
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"Every post we make is in your exact brand colors — no guessing, no inconsistency."</li>
+          <li>"Your handle is on every single piece of content — so when it gets shared, people know where to find you."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 12 — STUDIO: IMAGE DOWNLOAD
+  ==================================== -->
+  <div class="guide-section" id="s12">
+    <div class="section-eyebrow">
+      <span class="section-num">12</span>
+      <span class="section-cat">Content Studio</span>
+    </div>
+    <h2>Content Studio — Image Generation &amp; Download</h2>
+    <p class="section-lead">
+      The core moment: hit Generate, watch the AI loading sequence, and get a real full-resolution PNG ready to download and post.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#9889;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Generate Button + Loading Sequence</div>
+          <div class="tool-where">Content Studio → bottom of left panel</div>
+        </div>
+      </div>
+      <p class="tool-desc">The green "Generate Content" button triggers a 5-step loading overlay on the preview canvas. Each step fades in sequentially: Applying style template → Rendering typography → Adding brand elements → Optimizing for platform → Finalizing output. Then the canvas appears.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Fill in headline, body, CTA, hashtags, and brand handle first.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">Click <strong>Generate Content</strong> — the shimmer animation starts on the button.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Watch the <strong>5-step generation overlay</strong> — each step checks off in green as it "completes."</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text">The <strong>canvas appears</strong> — full branded post at the correct platform dimensions.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-text">Click <strong>"Download PNG"</strong> — the file downloads instantly with a timestamped filename.</div></div>
+        <div class="step"><div class="step-n">6</div><div class="step-text">A thumbnail saves to the <strong>Session Gallery</strong> at the bottom. Click it anytime to restore.</div></div>
+      </div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"The downloaded PNG is full resolution — 1080x1080 for Instagram, 1080x1920 for TikTok/Stories. Ready to upload directly."</li>
+          <li>"This is what we use to create every post for every client. We can make 30 posts in an hour."</li>
+          <li>"The gallery saves everything from this session — you can generate 10 different versions and pick the best one."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 13 — STUDIO: VIDEO
+  ==================================== -->
+  <div class="guide-section" id="s13">
+    <div class="section-eyebrow">
+      <span class="section-num">13</span>
+      <span class="section-cat">Content Studio</span>
+    </div>
+    <h2>Content Studio — Video Recording &amp; Download</h2>
+    <p class="section-lead">
+      The most impressive feature. Select a video content type (Reel, TikTok Video, etc.), choose animation settings, and record a fully animated video — all in the browser, no software needed.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#127916;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Video Settings + MediaRecorder</div>
+          <div class="tool-where">Content Studio → Video Settings panel (shows when Reel/Video selected)</div>
+        </div>
+      </div>
+      <p class="tool-desc">When you select Reel (Instagram/Facebook) or Video (TikTok), the Video Options panel appears with Animation Style, Duration, and Background Particles. The Download Video button becomes active after generating. Clicking it records the animated canvas and downloads a .webm video file.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text">Select <strong>Instagram → Reel</strong> from the content types (or TikTok → Video).</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text">The <strong>Video Settings panel</strong> appears — show Collin the Animation Style dropdown: Slide In, Fade, Zoom In, Typewriter, Bounce.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text">Set duration to <strong>10 seconds</strong>. Select <strong>Floating Dots</strong> for particles.</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text">Hit <strong>Generate Content</strong> first to render the base frame.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-text">Click <strong>Download Video</strong> — the red <strong>REC</strong> indicator appears. The progress bar tracks duration.</div></div>
+        <div class="step"><div class="step-n">6</div><div class="step-text">Watch the <strong>animation play</strong> live on the canvas — text slides/zooms/bounces, particles float, a scanline sweeps across.</div></div>
+        <div class="step"><div class="step-n">7</div><div class="step-text">When recording finishes, a <strong>.webm video file downloads</strong> automatically. Open it and play for Collin.</div></div>
+      </div>
+
+      <table class="quick-ref" style="margin-top:1rem">
+        <tr><th>Animation</th><th>Effect</th><th>Best Use</th></tr>
+        <tr><td>Slide In</td><td>Text slides in from the right</td><td>Bold announcements, launches</td></tr>
+        <tr><td>Fade</td><td>Text fades in gently</td><td>Luxury, premium, calm brands</td></tr>
+        <tr><td>Zoom In</td><td>Text scales up from center</td><td>Energetic, call to action heavy</td></tr>
+        <tr><td>Typewriter</td><td>Text types out character by character</td><td>Tech, educational, AI brands</td></tr>
+        <tr><td>Bounce</td><td>Text pulses with a heartbeat effect</td><td>Fitness, events, urgent offers</td></tr>
+      </table>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"This creates a full animated video — no Canva, no Adobe Premiere, no external software. Right in the browser."</li>
+          <li>"TikTok and Reels both favor video content 3-5x over static images. This lets us produce video content at scale."</li>
+          <li>"The file downloads as a .webm which can be uploaded directly to TikTok, Instagram Reels, and Facebook."</li>
+          <li>"We can generate 10 different animated posts for Collin's business in about 20 minutes."</li>
+        </ul>
+      </div>
+
+      <div class="warn-box"><strong>&#9888; Note:</strong> Chrome and Edge record as VP9 WebM. Firefox also works. Safari may not support MediaRecorder for video — use Chrome for the demo.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 14 — ONBOARDING FORM
+  ==================================== -->
+  <div class="guide-section" id="s14">
+    <div class="section-eyebrow">
+      <span class="section-num">14</span>
+      <span class="section-cat">Client Onboarding</span>
+    </div>
+    <h2>Client Onboarding Form</h2>
+    <p class="section-lead">
+      The 8-step onboarding form at <strong>onboarding.html</strong>. If Collin wants to move forward at the meeting, open this and start filling it out together right then.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128221;</div>
+        <div class="tool-meta">
+          <div class="tool-name">8-Step Intake Form</div>
+          <div class="tool-where">onboarding.html</div>
+        </div>
+      </div>
+
+      <table class="quick-ref">
+        <tr><th>Step</th><th>What It Collects</th><th>Why It Matters</th></tr>
+        <tr><td>1 — Business</td><td>Name, contact, industry, USP, competitors</td><td>Foundation of the strategy</td></tr>
+        <tr><td>2 — Branding</td><td>Logo upload, colors, tone, aesthetic</td><td>Everything we design matches their brand</td></tr>
+        <tr><td>3 — Social</td><td>Platform handles, follower counts, approval preference</td><td>We can't post without access</td></tr>
+        <tr><td>4 — Ads</td><td>Ad budget, Meta BM ID, Google Ads ID, tracking setup</td><td>Determines if paid ads are ready</td></tr>
+        <tr><td>5 — Website</td><td>Domain, pages needed, CTA goal, booking system</td><td>Scopes the web build accurately</td></tr>
+        <tr><td>6 — Content</td><td>90-day goals, services to feature, off-limits topics</td><td>Content strategy built around their goals</td></tr>
+        <tr><td>7 — Package</td><td>Tier selection, billing contact, comms preference</td><td>Locks in the agreement details</td></tr>
+        <tr><td>8 — Agreement</td><td>Signed digital signature, typed name, terms</td><td>Binding agreement, no paper needed</td></tr>
+      </table>
+
+      <div class="tip-box"><strong>Close the meeting tip:</strong> If Collin says yes, pull up onboarding.html right then and fill it out together. By the time you leave, you have everything you need to start Monday morning. The signature on step 8 makes it official.</div>
+
+      <div class="talking-points">
+        <div class="tp-label">&#127908; Talking Points</div>
+        <ul class="tp-list">
+          <li>"This takes about 10 minutes. If you want to get started today, we can fill this out right now."</li>
+          <li>"The signature at the end is legally binding — no paper contracts, no back and forth."</li>
+          <li>"Once you submit this, I'll have everything I need to begin work within 24 hours."</li>
+          <li>"Step 3 has a note about platform access — we never ask for passwords. Everything goes through official admin tools."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================================
+       SECTION 15 — QUICK REF + CHECKLIST
+  ==================================== -->
+  <div class="guide-section" id="s15">
+    <div class="section-eyebrow">
+      <span class="section-num">15</span>
+      <span class="section-cat">Meeting Prep</span>
+    </div>
+    <h2>Quick Reference &amp; Demo Checklist</h2>
+    <p class="section-lead">
+      Run through this before the meeting. Everything you need to have ready so the demo flows perfectly with no hiccups.
+    </p>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#9989;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Pre-Meeting Checklist</div>
+          <div class="tool-where">Do these BEFORE walking into the meeting</div>
+        </div>
+      </div>
+      <div class="checklist">
+        <div class="cl-item"><div class="cl-box"></div>Open Chrome browser (not Safari) — needed for video recording</div>
+        <div class="cl-item"><div class="cl-box"></div>Open index.html — have it loaded and scrolled to the top</div>
+        <div class="cl-item"><div class="cl-box"></div>Open content-studio.html in a second tab</div>
+        <div class="cl-item"><div class="cl-box"></div>Open onboarding.html in a third tab</div>
+        <div class="cl-item"><div class="cl-box"></div>Know Collin's industry (real estate? services? product?)</div>
+        <div class="cl-item"><div class="cl-box"></div>Look up Collin's current social media handles and follower count</div>
+        <div class="cl-item"><div class="cl-box"></div>Prepare a sample headline specific to Collin's business for the studio demo</div>
+        <div class="cl-item"><div class="cl-box"></div>Know his estimated monthly revenue to plug into the ROI calculator</div>
+        <div class="cl-item"><div class="cl-box"></div>Have the Desert Steam dashboard (desert-steam.html) ready as a live proof-of-work example</div>
+        <div class="cl-item"><div class="cl-box"></div>Volume on if demoing video — the animation is silent but looks better with screen visible</div>
+      </div>
+    </div>
+
+    <div class="tool-card" style="margin-top:1.25rem">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128218;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Ideal Demo Flow Order</div>
+          <div class="tool-where">Follow this sequence for maximum impact</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-text"><strong>Open homepage</strong> — let the hero animate, point to the orbital graphic, explain AI manages all platforms.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-text"><strong>Scroll to stats bar</strong> — watch numbers count up. "These are real client numbers."</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-text"><strong>Platform cards</strong> — point to TikTok card. "This is our best growth platform right now."</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-text"><strong>ROI Calculator</strong> — plug in Collin's actual numbers. Let the projections speak for themselves.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-text"><strong>Results cards</strong> — Desert Steam spotlight. Offer to connect him if he wants a reference.</div></div>
+        <div class="step"><div class="step-n">6</div><div class="step-text"><strong>Pricing</strong> — walk him through Growth plan. Mention the no-contract, 30-day guarantee.</div></div>
+        <div class="step"><div class="step-n">7</div><div class="step-text"><strong>Switch to Content Studio</strong> — enter his business info, generate a post with his brand colors.</div></div>
+        <div class="step"><div class="step-n">8</div><div class="step-text"><strong>Switch styles</strong> in real time — show 3-4 styles, ask which feels most like his brand.</div></div>
+        <div class="step"><div class="step-n">9</div><div class="step-text"><strong>Download PNG</strong> — hand him the phone or laptop to see the downloaded file. It's real and it's his.</div></div>
+        <div class="step"><div class="step-n">10</div><div class="step-text"><strong>Record a video</strong> — select Reel, hit record, watch the animation play. Download the .webm.</div></div>
+        <div class="step"><div class="step-n">11</div><div class="step-text"><strong>Close</strong> — "I can have your first month of content ready within a week of signing. Want to fill out the onboarding now?"</div></div>
+        <div class="step"><div class="step-n">12</div><div class="step-text"><strong>Onboarding form</strong> — open it together, fill it out, hit submit. Done.</div></div>
+      </div>
+    </div>
+
+    <div class="tool-card" style="margin-top:1.25rem">
+      <div class="tool-card-header">
+        <div class="tool-icon">&#128172;</div>
+        <div class="tool-meta">
+          <div class="tool-name">Common Objection Responses</div>
+          <div class="tool-where">Be ready for these</div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">?</div>
+          <div class="step-text">
+            <strong>"It's too expensive."</strong><br>
+            "What's one new client worth to your business? If I get you 5 new clients this month and it cost $1,200 — is that expensive? Our clients average 5x their investment back."
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">?</div>
+          <div class="step-text">
+            <strong>"I tried social media and it didn't work."</strong><br>
+            "What you tried was manual posting without AI strategy. What we do is algorithmic — every post is timed, tagged, and targeted. It's a completely different system."
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">?</div>
+          <div class="step-text">
+            <strong>"I need to think about it."</strong><br>
+            "Totally fair. Can I send you the 90-day projection we calculated today? That way you have something concrete to look at. And here's the onboarding link — takes 10 minutes when you're ready."
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">?</div>
+          <div class="step-text">
+            <strong>"What if it doesn't work?"</strong><br>
+            "Results in 30 days or I work the next month for free. No contracts — cancel anytime. There's genuinely no risk."
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">?</div>
+          <div class="step-text">
+            <strong>"I already have someone doing my social media."</strong><br>
+            "Are they using AI? Are you seeing growth? If you're happy with results, stay. If you want 10x those results with AI behind it — that's what we do."
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="guide-footer">
+    <p>GreenAI Solutions · Prepared for Collin Meeting · June 2026</p>
+    <p>Jaden Green · (480) 798-0753 · jaden@greenaidigital.com · greenaidigital.com</p>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// Smooth scroll for TOC links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
