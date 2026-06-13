@@ -208,6 +208,41 @@ textarea.fi{resize:vertical;line-height:1.65}
 .htag-stat .v{font-size:18px;font-weight:800;color:var(--gx)}
 .htag-stat .l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
 
+/* ══ VIRAL DECODER ══ */
+.viral-breakdown{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.viral-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid}
+.vt-hook{background:rgba(239,68,68,.1);color:#f87171;border-color:rgba(239,68,68,.3)}
+.vt-emotion{background:rgba(234,179,8,.1);color:#fbbf24;border-color:rgba(234,179,8,.3)}
+.vt-structure{background:rgba(59,130,246,.1);color:#60a5fa;border-color:rgba(59,130,246,.3)}
+.viral-score{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:var(--r);margin-bottom:12px}
+.vs-num{font-size:36px;font-weight:900;color:#f87171;line-height:1}
+.vs-label{font-size:11px;color:var(--text2);line-height:1.5}
+.vs-label strong{display:block;color:var(--text);font-size:13px}
+.variation-card{padding:14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);margin-bottom:8px;cursor:pointer;transition:all .15s}
+.variation-card:hover{border-color:var(--gx);background:rgba(61,158,92,.05)}
+.vc-num{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+.vc-text{font-size:13px;color:var(--text);line-height:1.6}
+.vc-copy{font-size:10px;color:var(--gx);margin-top:6px}
+
+/* ══ CAMPAIGN BUILDER ══ */
+.cal-grid{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.cal-day{display:grid;grid-template-columns:36px 1fr;gap:10px;padding:10px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--r);transition:border .15s}
+.cal-day:hover{border-color:var(--gx)}
+.cal-day-num{font-size:18px;font-weight:900;color:var(--gx);opacity:.6;line-height:1.2}
+.cal-day-content{font-size:12px;color:var(--text2);line-height:1.6}
+.cal-day-content strong{color:var(--text);display:block;font-size:13px;margin-bottom:2px}
+.cal-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* ══ DM SEQUENCE ══ */
+.dm-seq{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.dm-msg{padding:14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);position:relative}
+.dm-msg-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gm),var(--gx));font-size:10px;font-weight:700;color:#fff;margin-bottom:8px}
+.dm-timing{font-size:10px;color:var(--gold2);font-weight:600;letter-spacing:.05em;margin-bottom:6px}
+.dm-text{font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap}
+.dm-copy-btn{position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.dm-copy-btn:hover{border-color:var(--gx);color:var(--gx)}
+.dm-intent{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+
 /* ══ REVIEW MANAGER ══ */
 .star-row{display:flex;gap:4px;margin-bottom:8px}
 .star{font-size:20px;cursor:pointer;transition:transform .1s;filter:grayscale(1);opacity:.4}
@@ -371,6 +406,13 @@ textarea.fi{resize:vertical;line-height:1.65}
       <div class="nav-item" id="nav-image" onclick="switchPanel('image')"><span class="nav-icon">🎨</span>Image Creator<span class="nav-badge">NEW</span></div>
       <div class="nav-item" id="nav-hashtag" onclick="switchPanel('hashtag')"><span class="nav-icon">#️⃣</span>Hashtag Lab<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-review" onclick="switchPanel('review')"><span class="nav-icon">⭐</span>Review Manager<span class="nav-badge">AI</span></div>
+      <div class="sidebar-section">Premium Tools</div>
+      <div class="nav-item" id="nav-viral" onclick="switchPanel('viral')"><span class="nav-icon">🔥</span>Viral Decoder<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
+      <div class="nav-item" id="nav-campaign" onclick="switchPanel('campaign')"><span class="nav-icon">📅</span>Campaign Builder<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
+      <div class="nav-item" id="nav-dm" onclick="switchPanel('dm')"><span class="nav-icon">💌</span>DM Sequence<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
+      <div class="nav-item" id="nav-adcopy" onclick="switchPanel('adcopy')"><span class="nav-icon">🚀</span>Ad Copy Engine<span class="nav-badge">AI</span></div>
+      <div class="nav-item" id="nav-email" onclick="switchPanel('email')"><span class="nav-icon">📧</span>Email Campaigns<span class="nav-badge">AI</span></div>
+      <div class="nav-item" id="nav-strategy" onclick="switchPanel('strategy')"><span class="nav-icon">📊</span>Growth Strategist<span class="nav-badge">AI</span></div>
       <div class="sidebar-section">Management</div>
       <div class="nav-item" id="nav-clients" onclick="switchPanel('clients')"><span class="nav-icon">👥</span>Client Dashboard</div>
       <div class="sidebar-bottom">
@@ -657,6 +699,213 @@ textarea.fi{resize:vertical;line-height:1.65}
         </div>
       </div>
 
+
+      <!-- ══ AD COPY ENGINE ══ -->
+      <div class="panel" id="panel-adcopy">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">Ad Copy Engine <span></span></div>
+            <div class="fg"><div class="fl">Ad Platform</div>
+              <div class="plat-grid" style="grid-template-columns:repeat(3,1fr)">
+                <div class="plat-card active" id="ad-fb" onclick="selAd('fb')"><div class="pi">📘</div>Facebook</div>
+                <div class="plat-card" id="ad-ig" onclick="selAd('ig')"><div class="pi">📸</div>Instagram</div>
+                <div class="plat-card" id="ad-goog" onclick="selAd('goog')"><div class="pi">🔍</div>Google</div>
+              </div>
+            </div>
+            <div class="fg"><div class="fl">Campaign Objective</div>
+              <select class="fi" id="ad-obj">
+                <option value="generate leads and bookings">Lead Generation</option>
+                <option value="drive sales and conversions">Sales & Conversions</option>
+                <option value="drive traffic to website">Website Traffic</option>
+                <option value="build brand awareness">Brand Awareness</option>
+                <option value="promote a special offer or deal">Special Offer / Promo</option>
+                <option value="retarget warm audiences who visited before">Retargeting</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Business / Client</div><input type="text" class="fi" id="ad-biz" value="Desert Steam Detail" placeholder="Business name"/></div>
+            <div class="fg"><div class="fl">Industry</div>
+              <select class="fi" id="ad-niche">
+                <option>Auto Detailing</option><option>Real Estate</option><option>Small Business</option>
+                <option>Notary Services</option><option>Restaurant</option><option>Fitness / Gym</option>
+                <option>Beauty / Salon</option><option>Contractor / Trades</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Target Audience</div><textarea class="fi" id="ad-audience" rows="2" placeholder="e.g. Men 25–50, Scottsdale AZ, car enthusiasts, homeowners, income $75K+..."></textarea></div>
+            <div class="fg"><div class="fl">Offer / Key Message</div><textarea class="fi" id="ad-offer" rows="2" placeholder="e.g. $1,100 ceramic coating, limited spots, free inspection, 10% off this week..."></textarea></div>
+            <div class="fg"><div class="fl">Variations</div>
+              <div class="pill-row">
+                <div class="pill active" id="adv-1" onclick="selAV(1)">1 Ad</div>
+                <div class="pill" id="adv-3" onclick="selAV(3)">3 Variations</div>
+              </div>
+            </div>
+            <button class="gen-btn" id="ad-btn" onclick="genAdCopy()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">🚀 Generate Ad Copy</span>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Ad Copy — Click to Edit <span></span></div>
+            <div id="ad-empty" class="out-empty" style="min-height:220px"><div class="oe-icon">🚀</div><p>Configure your ad on the left.<br>AI writes complete, conversion-optimized<br>ad copy ready to run.</p></div>
+            <div id="ad-result" style="display:none">
+              <div class="out-header">
+                <div class="out-title" id="ad-out-label">Facebook Ad</div>
+                <div class="out-actions">
+                  <button class="btn-sm" onclick="copyEl('ad-box')">📋 Copy</button>
+                  <button class="btn-sm primary" onclick="genAdCopy()">↺ Regenerate</button>
+                </div>
+              </div>
+              <div class="editable-out" id="ad-box" contenteditable="true" data-placeholder="Ad copy will appear here..."></div>
+              <div class="tweak-row" style="margin-top:10px">
+                <button class="tweak-btn" onclick="tweakAd('make the hook more attention-grabbing and scroll-stopping')">🎯 Stronger Hook</button>
+                <button class="tweak-btn" onclick="tweakAd('make it more urgent and FOMO-driven')">⏰ Add Urgency</button>
+                <button class="tweak-btn" onclick="tweakAd('make it shorter and punchier for mobile')">📱 Mobile Punch</button>
+                <button class="tweak-btn" onclick="tweakAd('rewrite with a completely different angle')">🔄 New Angle</button>
+                <button class="tweak-btn" onclick="tweakAd('make the CTA more compelling and specific')">💥 Better CTA</button>
+                <button class="tweak-btn" onclick="tweakAd('add social proof and trust signals')">⭐ Add Proof</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ EMAIL CAMPAIGNS ══ -->
+      <div class="panel" id="panel-email">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">Email Campaign Builder <span></span></div>
+            <div class="fg"><div class="fl">Campaign Type</div>
+              <select class="fi" id="em-type">
+                <option value="welcome email introducing the business">Welcome / Intro Email</option>
+                <option value="promotional offer email">Promotional Offer</option>
+                <option value="follow-up email after a service">Post-Service Follow-Up</option>
+                <option value="re-engagement email for cold contacts">Re-Engagement Campaign</option>
+                <option value="seasonal promotion email">Seasonal Promotion</option>
+                <option value="referral request email">Referral Request</option>
+                <option value="appointment reminder email">Appointment Reminder</option>
+                <option value="review request email asking for a 5-star Google review">Review Request</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Business / Client</div><input type="text" class="fi" id="em-biz" value="Desert Steam Detail" placeholder="Business name"/></div>
+            <div class="fg"><div class="fl">Industry</div>
+              <select class="fi" id="em-niche">
+                <option>Auto Detailing</option><option>Real Estate</option><option>Small Business</option>
+                <option>Notary Services</option><option>Restaurant</option><option>Fitness / Gym</option>
+                <option>Beauty / Salon</option><option>Contractor / Trades</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Recipient</div>
+              <div class="pill-row">
+                <div class="pill active" id="em-new" onclick="selEM('new')">New Lead</div>
+                <div class="pill" id="em-past" onclick="selEM('past')">Past Customer</div>
+                <div class="pill" id="em-vip" onclick="selEM('vip')">VIP Client</div>
+              </div>
+            </div>
+            <div class="fg"><div class="fl">Key Details / Offer</div><textarea class="fi" id="em-details" rows="3" placeholder="e.g. 15% off ceramic coating this month, free interior detail with any exterior, referral bonus $50..."></textarea></div>
+            <div class="fg"><div class="fl">Tone</div>
+              <div class="pill-row">
+                <div class="pill active" id="et-professional" onclick="selET('professional')">Professional</div>
+                <div class="pill" id="et-warm" onclick="selET('warm')">Warm & Personal</div>
+                <div class="pill" id="et-bold" onclick="selET('bold')">Bold & Urgent</div>
+              </div>
+            </div>
+            <button class="gen-btn" id="em-btn" onclick="genEmail()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">📧 Write Email Campaign</span>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Email — Click to Edit <span></span></div>
+            <div id="em-empty" class="out-empty" style="min-height:220px"><div class="oe-icon">📧</div><p>Configure your email campaign.<br>AI writes the full email —<br>subject line, body, and CTA.</p></div>
+            <div id="em-result" style="display:none">
+              <div class="out-header">
+                <div class="out-title">Email Campaign</div>
+                <div class="out-actions">
+                  <button class="btn-sm" onclick="copyEl('em-box')">📋 Copy Full Email</button>
+                  <button class="btn-sm primary" onclick="genEmail()">↺ Rewrite</button>
+                </div>
+              </div>
+              <div class="editable-out" id="em-box" contenteditable="true" style="min-height:300px" data-placeholder="Email will appear here..."></div>
+              <div class="tweak-row" style="margin-top:10px">
+                <button class="tweak-btn" onclick="tweakEM('make the subject line more compelling and clickable')">📬 Better Subject</button>
+                <button class="tweak-btn" onclick="tweakEM('make the body shorter and more punchy')">✂️ Shorten</button>
+                <button class="tweak-btn" onclick="tweakEM('make the CTA button text and offer more urgent')">🎯 Stronger CTA</button>
+                <button class="tweak-btn" onclick="tweakEM('add a personal story or testimonial angle')">❤️ Add Story</button>
+                <button class="tweak-btn" onclick="tweakEM('add a P.S. line at the bottom with a second offer or reminder')">✉️ Add P.S.</button>
+                <button class="tweak-btn" onclick="tweakEM('rewrite with completely different subject line and angle')">🔄 New Version</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ GROWTH STRATEGIST ══ -->
+      <div class="panel" id="panel-strategy">
+        <div style="display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start">
+          <div class="card">
+            <div class="card-label">Growth Strategist AI <span></span></div>
+            <div class="fg"><div class="fl">Business / Client</div><input type="text" class="fi" id="gs-biz" value="Desert Steam Detail" placeholder="Business name"/></div>
+            <div class="fg"><div class="fl">Industry</div>
+              <select class="fi" id="gs-niche">
+                <option>Auto Detailing</option><option>Real Estate</option><option>Small Business</option>
+                <option>Notary Services</option><option>Restaurant</option><option>Fitness / Gym</option>
+                <option>Beauty / Salon</option><option>Contractor / Trades</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Current Situation</div><textarea class="fi" id="gs-current" rows="3" placeholder="e.g. 498 IG followers, 0 TikTok, posting 2x/week, no email list, mostly word of mouth..."></textarea></div>
+            <div class="fg"><div class="fl">Main Goal</div>
+              <select class="fi" id="gs-goal">
+                <option value="grow social media following and engagement">Grow Social Media</option>
+                <option value="generate more leads and booked appointments">Get More Leads</option>
+                <option value="build brand authority and recognition">Build Brand Authority</option>
+                <option value="increase monthly revenue">Increase Revenue</option>
+                <option value="launch into a new market or expand reach">Expand into New Market</option>
+                <option value="go viral and dominate TikTok">Go Viral on TikTok</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Timeline</div>
+              <div class="pill-row">
+                <div class="pill active" id="gs-30" onclick="selGS('30')">30 Days</div>
+                <div class="pill" id="gs-60" onclick="selGS('60')">60 Days</div>
+                <div class="pill" id="gs-90" onclick="selGS('90')">90 Days</div>
+              </div>
+            </div>
+            <div class="fg"><div class="fl">Budget Level</div>
+              <div class="pill-row">
+                <div class="pill active" id="gb-organic" onclick="selGB('organic')">Organic Only</div>
+                <div class="pill" id="gb-low" onclick="selGB('low')">$500/mo Ads</div>
+                <div class="pill" id="gb-mid" onclick="selGB('mid')">$1K–2K/mo</div>
+              </div>
+            </div>
+            <button class="gen-btn" id="gs-btn" onclick="genStrategy()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">📊 Build Growth Strategy</span>
+            </button>
+          </div>
+          <div class="card" style="min-height:500px">
+            <div class="card-label">Growth Strategy — Click to Edit <span></span></div>
+            <div id="gs-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">📊</div><p>Enter your business details and goal.<br>AI builds a complete, custom growth<br>strategy with a step-by-step action plan.</p></div>
+            <div id="gs-result" style="display:none">
+              <div class="out-header">
+                <div class="out-title" id="gs-out-label">Growth Strategy</div>
+                <div class="out-actions">
+                  <button class="btn-sm" onclick="copyEl('gs-box')">📋 Copy Strategy</button>
+                  <button class="btn-sm primary" onclick="genStrategy()">↺ Rebuild</button>
+                </div>
+              </div>
+              <div class="editable-out" id="gs-box" contenteditable="true" style="min-height:380px;font-size:13px" data-placeholder="Strategy will appear here..."></div>
+              <div class="tweak-row" style="margin-top:10px">
+                <button class="tweak-btn" onclick="tweakGS('add specific content ideas and post topics for each week')">📝 Add Content Ideas</button>
+                <button class="tweak-btn" onclick="tweakGS('add specific KPIs and measurable goals for each phase')">📈 Add KPIs</button>
+                <button class="tweak-btn" onclick="tweakGS('expand the paid advertising section with more detail')">💰 Expand Ads</button>
+                <button class="tweak-btn" onclick="tweakGS('add a competitor analysis and differentiation strategy')">🏆 Add Competitor Analysis</button>
+                <button class="tweak-btn" onclick="tweakGS('convert this into a client-ready presentation format with clear sections')">📄 Client Format</button>
+                <button class="tweak-btn" onclick="tweakGS('add an email marketing component to the strategy')">📧 Add Email Strategy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- ══ CLIENT DASHBOARD ══ -->
       <div class="panel" id="panel-clients">
         <div class="dash-stats">
@@ -672,6 +921,144 @@ textarea.fi{resize:vertical;line-height:1.65}
           </div>
           <div class="empty-state" id="clients-empty"><div class="ei">👥</div><p>No clients yet. Add your first client above.</p></div>
           <div class="clients-grid" id="clients-grid" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- ══ VIRAL DECODER ══ -->
+      <div class="panel" id="panel-viral">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">🔥 Viral Post Decoder <span></span></div>
+            <div class="card-title" style="font-size:16px;margin-bottom:4px">Reverse-Engineer Viral Content</div>
+            <div class="card-sub" style="font-size:12px;margin-bottom:16px">Paste any viral post — AI decodes exactly WHY it worked and generates 5 custom versions for your business.</div>
+            <div class="fg"><div class="fl">Viral Post to Analyze</div><textarea class="fi" id="vd-input" rows="6" placeholder="Paste a viral post, caption, or ad copy here...&#10;&#10;Any platform: Instagram, TikTok, Facebook, Twitter..."></textarea></div>
+            <div class="fg"><div class="fl">Your Business / Niche</div><input type="text" class="fi" id="vd-biz" value="Desert Steam Detail" placeholder="Your business or niche"/></div>
+            <div class="fg"><div class="fl">Adapt For</div>
+              <div class="pill-row">
+                <div class="pill active" id="vp-ig" onclick="selVP('ig')">Instagram</div>
+                <div class="pill" id="vp-tt" onclick="selVP('tt')">TikTok</div>
+                <div class="pill" id="vp-fb" onclick="selVP('fb')">Facebook</div>
+                <div class="pill" id="vp-email" onclick="selVP('email')">Email</div>
+              </div>
+            </div>
+            <button class="gen-btn" id="vd-btn" onclick="genViralDecode()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">🔥 Decode + Generate Variations</span>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Analysis + Custom Variations <span></span></div>
+            <div id="vd-empty" class="out-empty" style="min-height:200px"><div class="oe-icon">🔥</div><p>Paste any viral post and AI will<br>decode its formula + write 5 custom versions.</p></div>
+            <div id="vd-result" style="display:none">
+              <div id="vd-analysis" style="margin-bottom:16px"></div>
+              <div class="out-header" style="margin-bottom:8px">
+                <div class="out-title">5 Custom Variations</div>
+                <button class="btn-sm" onclick="copyEl('vd-variations')">📋 Copy All</button>
+              </div>
+              <div id="vd-variations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ CAMPAIGN BUILDER ══ -->
+      <div class="panel" id="panel-campaign">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">📅 30-Day Campaign Builder <span></span></div>
+            <div class="card-title" style="font-size:16px;margin-bottom:4px">Full Month of Content, One Click</div>
+            <div class="card-sub" style="font-size:12px;margin-bottom:16px">AI generates a complete 30-day content calendar — post ideas, captions, hashtags, story concepts, and best posting times.</div>
+            <div class="fg"><div class="fl">Business Name</div><input type="text" class="fi" id="cb-biz" value="Desert Steam Detail" placeholder="Your business"/></div>
+            <div class="fg"><div class="fl">Industry</div>
+              <select class="fi" id="cb-niche">
+                <option>Auto Detailing</option><option>Real Estate</option><option>Small Business</option>
+                <option>Notary Services</option><option>Restaurant</option><option>Fitness / Gym</option>
+                <option>Beauty / Salon</option><option>Contractor / Trades</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Campaign Goal</div>
+              <select class="fi" id="cb-goal">
+                <option value="grow followers and brand awareness">Grow Followers</option>
+                <option value="generate leads and bookings">Generate Leads</option>
+                <option value="increase sales and revenue">Boost Sales</option>
+                <option value="build community and engagement">Build Community</option>
+                <option value="launch a new product or service">Product Launch</option>
+              </select>
+            </div>
+            <div class="fg"><div class="fl">Platforms</div>
+              <div class="pill-row">
+                <div class="pill active" id="cp2-ig" onclick="toggleCP2('ig')">Instagram</div>
+                <div class="pill" id="cp2-tt" onclick="toggleCP2('tt')">TikTok</div>
+                <div class="pill" id="cp2-fb" onclick="toggleCP2('fb')">Facebook</div>
+              </div>
+            </div>
+            <div class="fg"><div class="fl">Key Offers / Promos <span class="fh">Optional</span></div><textarea class="fi" id="cb-offers" rows="2" placeholder="e.g. 20% off ceramic coating in July, summer special..."></textarea></div>
+            <button class="gen-btn" id="cb-btn" onclick="genCampaign()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">📅 Build My 30-Day Campaign</span>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your 30-Day Content Calendar <span></span></div>
+            <div id="cb-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">📅</div><p>AI will generate your complete<br>30-day content roadmap.</p></div>
+            <div id="cb-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title" id="cb-title">30-Day Campaign</div>
+                <div class="out-actions">
+                  <button class="btn-sm" onclick="copyCampaign()">📋 Copy All</button>
+                  <button class="btn-sm primary" onclick="genCampaign()">↺ Regenerate</button>
+                </div>
+              </div>
+              <div id="cb-output" class="editable-out" contenteditable="true" style="min-height:400px;white-space:pre-wrap;font-size:12px;line-height:1.8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ DM SEQUENCE ══ -->
+      <div class="panel" id="panel-dm">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">💌 DM Sales Sequence <span></span></div>
+            <div class="card-title" style="font-size:16px;margin-bottom:4px">Cold-to-Close Outreach System</div>
+            <div class="card-sub" style="font-size:12px;margin-bottom:16px">AI writes a complete 5-message DM sequence — opener, value, pitch, objection handler, and close — with follow-up timing.</div>
+            <div class="fg"><div class="fl">Your Business</div><input type="text" class="fi" id="dm-biz" value="Desert Steam Detail" placeholder="Your business name"/></div>
+            <div class="fg"><div class="fl">Target Prospect Type</div><input type="text" class="fi" id="dm-prospect" placeholder="e.g. luxury car owners, local business owners, real estate agents..."/></div>
+            <div class="fg"><div class="fl">Your Offer / Service</div><textarea class="fi" id="dm-offer" rows="2" placeholder="e.g. ceramic coating packages starting at $500, full detail for trucks..."></textarea></div>
+            <div class="fg"><div class="fl">Platform</div>
+              <div class="pill-row">
+                <div class="pill active" id="dp-ig" onclick="selDP('ig')">Instagram DM</div>
+                <div class="pill" id="dp-fb" onclick="selDP('fb')">Facebook</div>
+                <div class="pill" id="dp-li" onclick="selDP('li')">LinkedIn</div>
+              </div>
+            </div>
+            <div class="fg"><div class="fl">Sequence Goal</div>
+              <select class="fi" id="dm-goal">
+                <option value="book a call or appointment">Book Appointment</option>
+                <option value="get a quote request">Get Quote Request</option>
+                <option value="drive them to a link or offer">Drive to Offer</option>
+                <option value="build a relationship first">Relationship First</option>
+              </select>
+            </div>
+            <button class="gen-btn" id="dm-btn" onclick="genDMSequence()">
+              <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+              <span class="bt">💌 Generate My DM Sequence</span>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your 5-Message Sequence <span></span></div>
+            <div id="dm-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">💌</div><p>AI writes your complete cold-to-close<br>DM outreach sequence.</p></div>
+            <div id="dm-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">DM Sequence — Ready to Send</div>
+                <div class="out-actions">
+                  <button class="btn-sm" onclick="copyAllDMs()">📋 Copy All</button>
+                  <button class="btn-sm primary" onclick="genDMSequence()">↺ Rewrite</button>
+                </div>
+              </div>
+              <div class="dm-seq" id="dm-output"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -721,14 +1108,18 @@ function setAPI(on){
 
 // ══ NAV ══
 function switchPanel(p){
-  ['studio','lead','image','hashtag','review','clients'].forEach(x=>{
+  ['studio','lead','image','hashtag','review','clients','viral','campaign','dm'].forEach(x=>{
     document.getElementById('panel-'+x).classList.toggle('active',x===p);
     document.getElementById('nav-'+x).classList.toggle('active',x===p);
   });
 }
 
 // ══ SELECTORS ══
+let vpPlat='ig',dpPlat='ig',cp2Plats={ig:true,tt:false,fb:false};
 function selPlat(p){sPlat=p;['ig','tt','fb'].forEach(x=>document.getElementById('pb-'+x).classList.toggle('active',x===p))}
+function selVP(p){vpPlat=p;['ig','tt','fb','email'].forEach(x=>document.getElementById('vp-'+x).classList.toggle('active',x===p))}
+function selDP(p){dpPlat=p;['ig','fb','li'].forEach(x=>document.getElementById('dp-'+x).classList.toggle('active',x===p))}
+function toggleCP2(p){cp2Plats[p]=!cp2Plats[p];document.getElementById('cp2-'+p).classList.toggle('active',cp2Plats[p])}
 function selTone(t){sTone=t;['professional','casual','bold','luxury'].forEach(x=>document.getElementById('t-'+x).classList.toggle('active',x===t))}
 function selLT(t){lTone=t;['warm','professional','urgent'].forEach(x=>document.getElementById('lt-'+x).classList.toggle('active',x===t))}
 function selStyle(s){imgStyle=s;['cinematic','luxury','social','product'].forEach(x=>document.getElementById('is-'+x).classList.toggle('active',x===s))}
@@ -848,16 +1239,23 @@ async function genImages(){
   for(let i=0;i<imgQty;i++){
     const src=`https://image.pollinations.ai/prompt/${encodedPrompt}?width=${imgW}&height=${imgH}&seed=${seeds[i]}&nologo=true`;
     const img=document.createElement('img');
-    img.onload=()=>{
+    const imgEl=document.createElement('img');
+    imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+    imgEl.alt='AI Generated Image';
+    imgEl.onload=()=>{
       const card=document.createElement('div');card.className='img-card';
       const overlay=document.createElement('div');overlay.className='img-card-overlay';
       const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Save Image';
       btn.onclick=()=>{const a=document.createElement('a');a.href=src;a.download='greenai-image-'+Date.now()+'.jpg';a.target='_blank';a.click()};
-      overlay.appendChild(btn);card.appendChild(img.cloneNode());card.appendChild(overlay);
+      overlay.appendChild(btn);card.appendChild(imgEl);card.appendChild(overlay);
       const placeholder=document.getElementById('img-load-'+i);
       if(placeholder)placeholder.replaceWith(card);
     };
-    img.src=src;
+    imgEl.onerror=()=>{
+      const placeholder=document.getElementById('img-load-'+i);
+      if(placeholder){placeholder.textContent='⚠️';placeholder.style.fontSize='14px';placeholder.style.color='var(--text3)';placeholder.style.flexDirection='column';placeholder.style.gap='4px';placeholder.innerHTML='<span style="font-size:20px">⚠️</span><span style="font-size:10px;color:var(--text3)">Retry</span>';placeholder.style.cursor='pointer';placeholder.onclick=()=>{placeholder.textContent='🎨';placeholder.style.cursor='default';imgEl.src=src+'&t='+Date.now()}}
+    };
+    imgEl.src=src;
   }
   setLoading('img-btn',false);
 }
@@ -921,6 +1319,189 @@ async function tweakR(instr){
   setLoading('r-btn',false);
 }
 
+// ══ VIRAL DECODER ══
+async function genViralDecode(){
+  if(!apiKey){openModal('api-modal');return}
+  const post=document.getElementById('vd-input').value.trim();
+  if(!post){toast('Paste a viral post first');return}
+  const biz=document.getElementById('vd-biz').value||'my business';
+  const platNames={ig:'Instagram',tt:'TikTok',fb:'Facebook',email:'Email'};
+  const prompt=`You are an elite viral content strategist. Analyze this viral post and adapt it for a new business.
+
+VIRAL POST:
+"${post}"
+
+BUSINESS: ${biz}
+ADAPT FOR: ${platNames[vpPlat]}
+
+Respond in this EXACT format:
+
+VIRAL SCORE: [number 1-100]
+WHY IT WORKED:
+• Hook Type: [e.g. Curiosity gap, Bold claim, Relatability]
+• Core Emotion: [e.g. Aspiration, FOMO, Pride, Humor]
+• Structure: [e.g. Problem→Solution, Before/After, List, Story]
+• Power Element: [one key thing that made it spread]
+
+---VARIATIONS---
+VARIATION 1:
+[Custom version for ${biz} on ${platNames[vpPlat]}]
+
+VARIATION 2:
+[Different angle, same formula]
+
+VARIATION 3:
+[More emotional version]
+
+VARIATION 4:
+[More direct/sales version]
+
+VARIATION 5:
+[Most creative/unique take]`;
+  setLoading('vd-btn',true);
+  document.getElementById('vd-empty').style.display='none';
+  document.getElementById('vd-result').style.display='block';
+  document.getElementById('vd-analysis').innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:20px">🔥 Decoding viral formula...</div>';
+  document.getElementById('vd-variations').innerHTML='';
+  try{
+    const t=await claude(prompt);
+    // Parse score
+    const scoreMatch=t.match(/VIRAL SCORE:\s*(\d+)/);
+    const score=scoreMatch?scoreMatch[1]:'—';
+    // Parse why section
+    const whyMatch=t.match(/WHY IT WORKED:([\s\S]*?)---VARIATIONS---/);
+    const whyText=whyMatch?whyMatch[1].trim():'';
+    // Parse variations
+    const varMatches=[...t.matchAll(/VARIATION \d+:\n([\s\S]*?)(?=VARIATION \d+:|$)/g)];
+    // Render analysis
+    document.getElementById('vd-analysis').innerHTML=`
+      <div class="viral-score">
+        <div><div class="vs-num">${score}</div><div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em">Viral Score</div></div>
+        <div class="vs-label"><strong>Why It Worked</strong>${whyText.split('\n').filter(l=>l.trim()).map(l=>`<span style="display:block;font-size:11px;color:var(--text2)">${l.trim()}</span>`).join('')}</div>
+      </div>`;
+    // Render variations
+    const varEl=document.getElementById('vd-variations');
+    varMatches.forEach((m,i)=>{
+      const text=m[1].trim();
+      const card=document.createElement('div');card.className='variation-card';
+      card.innerHTML=`<div class="vc-num">Variation ${i+1}</div><div class="vc-text">${text}</div><div class="vc-copy">Click to copy</div>`;
+      card.onclick=()=>{navigator.clipboard.writeText(text);toast('✅ Variation '+(i+1)+' copied!')};
+      varEl.appendChild(card);
+    });
+    if(!varMatches.length){
+      varEl.innerHTML=`<div class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px">${t}</div>`;
+    }
+  }catch(e){toast('⚠️ '+e.message);document.getElementById('vd-analysis').innerHTML=''}
+  setLoading('vd-btn',false);
+}
+
+// ══ CAMPAIGN BUILDER ══
+async function genCampaign(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('cb-biz').value||'my business';
+  const niche=document.getElementById('cb-niche').value;
+  const goal=document.getElementById('cb-goal').value;
+  const offers=document.getElementById('cb-offers').value;
+  const plats=Object.keys(cp2Plats).filter(k=>cp2Plats[k]).map(p=>({ig:'Instagram',tt:'TikTok',fb:'Facebook'}[p])).join(', ')||'Instagram';
+  const prompt=`You are an elite social media strategist. Create a complete 30-day content calendar for:
+
+Business: ${biz} (${niche})
+Goal: ${goal}
+Platforms: ${plats}
+${offers?`Special Offers/Promos: ${offers}`:''}
+
+Generate a 30-day content plan. For each day include:
+- Post type (Reel, Carousel, Story, Static)
+- Content idea/hook
+- One key caption line
+- 3 hashtags
+- Best posting time
+
+Format each day exactly as:
+DAY [N] — [Post Type]
+📌 [Hook/Idea]
+✍️ [Caption line]
+#️⃣ [#tag1 #tag2 #tag3]
+⏰ [Best time]
+
+Go through all 30 days. Be specific to ${niche} and ${biz}.`;
+  setLoading('cb-btn',true);
+  document.getElementById('cb-empty').style.display='none';
+  document.getElementById('cb-result').style.display='block';
+  document.getElementById('cb-title').textContent=`30-Day Campaign — ${biz}`;
+  const out=document.getElementById('cb-output');out.textContent='Building your campaign...';
+  try{
+    const t=await claude(prompt);
+    out.textContent='';
+    await stream(out,t);
+  }catch(e){out.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  setLoading('cb-btn',false);
+}
+function copyCampaign(){
+  const text=document.getElementById('cb-output').innerText;
+  navigator.clipboard.writeText(text).then(()=>toast('✅ Campaign copied!'));
+}
+
+// ══ DM SEQUENCE ══
+let dmMessages=[];
+async function genDMSequence(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('dm-biz').value||'my business';
+  const prospect=document.getElementById('dm-prospect').value||'potential customers';
+  const offer=document.getElementById('dm-offer').value||'our services';
+  const goal=document.getElementById('dm-goal').value;
+  const platNames={ig:'Instagram DM',fb:'Facebook Messenger',li:'LinkedIn'};
+  const prompt=`You are a top sales copywriter. Write a 5-message cold DM outreach sequence for:
+
+Business: ${biz}
+Prospect: ${prospect}
+Offer: ${offer}
+Platform: ${platNames[dpPlat]}
+Goal: ${goal}
+
+Write exactly 5 messages. Format each as:
+
+MESSAGE [N]
+TIMING: [when to send, e.g. "Day 1 — Initial outreach"]
+INTENT: [e.g. Pattern interrupt, Build curiosity, Deliver value, Soft pitch, Close]
+---
+[Message text — conversational, not salesy, platform-native tone. Under 100 words each.]
+
+Make the sequence: opener that doesn't pitch → value/curiosity → soft proof → direct ask → follow-up/close. Each message must feel human and specific to ${prospect}.`;
+  setLoading('dm-btn',true);
+  document.getElementById('dm-empty').style.display='none';
+  document.getElementById('dm-result').style.display='block';
+  const out=document.getElementById('dm-output');out.innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:30px">💌 Writing your sequence...</div>';
+  dmMessages=[];
+  try{
+    const t=await claude(prompt);
+    const msgs=[...t.matchAll(/MESSAGE (\d+)\nTIMING: ([^\n]+)\nINTENT: ([^\n]+)\n---\n([\s\S]*?)(?=MESSAGE \d+|$)/g)];
+    out.innerHTML='';
+    if(msgs.length){
+      msgs.forEach(m=>{
+        const[,num,timing,intent,text]=m;
+        const trimmed=text.trim();
+        dmMessages.push(trimmed);
+        const el=document.createElement('div');el.className='dm-msg';
+        el.innerHTML=`<div class="dm-msg-num">${num}</div>
+          <div class="dm-timing">⏱ ${timing}</div>
+          <div class="dm-intent">${intent.split(',').map(i=>`<span class="viral-tag vt-structure" style="font-size:10px">${i.trim()}</span>`).join('')}</div>
+          <div class="dm-text" id="dm-text-${num}">${trimmed}</div>
+          <button class="dm-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('dm-text-${num}').textContent);toast('✅ Message ${num} copied!')">Copy</button>`;
+        out.appendChild(el);
+      });
+    }else{
+      out.innerHTML=`<div class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;min-height:200px">${t}</div>`;
+      dmMessages=[t];
+    }
+  }catch(e){out.innerHTML='';toast('⚠️ '+e.message)}
+  setLoading('dm-btn',false);
+}
+function copyAllDMs(){
+  const text=dmMessages.join('\n\n---\n\n');
+  navigator.clipboard.writeText(text).then(()=>toast('✅ All messages copied!'));
+}
+
 // ══ COPY ══
 function copyEl(id){
   const el=document.getElementById(id);
@@ -978,6 +1559,182 @@ function renderClients(){
         <button class="cc-btn" onclick="deleteClient(${c.id})">Remove</button>
       </div>
     </div>`).join('');
+}
+
+// ══ AD COPY ENGINE ══
+let adPlat='fb', adVars=1, emRecip='new', emTone='professional', gsTL='30', gsBudget='organic', lastAd='', lastEM='', lastGS='';
+function selAd(p){adPlat=p;['fb','ig','goog'].forEach(x=>document.getElementById('ad-'+x).classList.toggle('active',x===p))}
+function selAV(n){adVars=n;[1,3].forEach(x=>document.getElementById('adv-'+x).classList.toggle('active',x===n))}
+function selEM(r){emRecip=r;['new','past','vip'].forEach(x=>document.getElementById('em-'+x).classList.toggle('active',x===r))}
+function selET(t){emTone=t;['professional','warm','bold'].forEach(x=>document.getElementById('et-'+x).classList.toggle('active',x===t))}
+function selGS(t){gsTL=t;['30','60','90'].forEach(x=>document.getElementById('gs-'+x).classList.toggle('active',x===t))}
+function selGB(b){gsBudget=b;['organic','low','mid'].forEach(x=>document.getElementById('gb-'+x).classList.toggle('active',x===b))}
+
+async function genAdCopy(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('ad-biz').value||'this business';
+  const niche=document.getElementById('ad-niche').value;
+  const obj=document.getElementById('ad-obj').value;
+  const audience=document.getElementById('ad-audience').value;
+  const offer=document.getElementById('ad-offer').value;
+  const platNames={fb:'Facebook',ig:'Instagram',goog:'Google Search'};
+  const platGuide={
+    fb:`Facebook Ad format:
+- Hook (first line, stops the scroll, 1 sentence)
+- Primary Text (2-3 short paragraphs, conversational, tells the story)
+- Headline (bold, under 40 chars, benefit-focused)
+- Description (under 30 chars)
+- CTA button text`,
+    ig:`Instagram Ad format:
+- Hook (first line, visual, stops the scroll)
+- Caption (1-2 short paragraphs, punchy)
+- CTA (clear action)
+- 5 hashtags`,
+    goog:`Google Search Ad format:
+- Headline 1 (30 chars max)
+- Headline 2 (30 chars max)
+- Headline 3 (30 chars max)
+- Description 1 (90 chars max)
+- Description 2 (90 chars max)
+- Display URL path`
+  };
+  const varStr=adVars>1?`Write ${adVars} complete variations labeled Variation A, B, C.`:'Write 1 complete ad.';
+  const prompt=`You are an expert paid advertising copywriter specializing in ${niche} businesses.
+
+Create a high-converting ${platNames[adPlat]} ad for "${biz}" — a ${niche} business.
+
+Objective: ${obj}
+Target Audience: ${audience||'local customers in the area'}
+Key Offer/Message: ${offer||'premium quality service'}
+
+${platGuide[adPlat]}
+
+${varStr}
+
+Make every word earn its place. Use proven copywriting frameworks (AIDA, PAS, or hook-story-offer). Be specific, not generic.
+
+Output ONLY the ad copy, properly labeled.`;
+  setLoading('ad-btn',true);
+  document.getElementById('ad-empty').style.display='none';
+  document.getElementById('ad-result').style.display='block';
+  document.getElementById('ad-out-label').textContent=platNames[adPlat]+' Ad Copy';
+  const box=document.getElementById('ad-box');box.innerHTML='';
+  try{const t=await claude(prompt);lastAd=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  setLoading('ad-btn',false);
+}
+async function tweakAd(instr){
+  const text=document.getElementById('ad-box').innerText||lastAd;if(!text)return;
+  setLoading('ad-btn',true);const box=document.getElementById('ad-box');box.innerHTML='';
+  try{const t=await claude(`Ad copy:
+
+"${text}"
+
+Please ${instr}. Output ONLY the revised ad copy.`);lastAd=t;await stream(box,t)}catch(e){toast('⚠️ '+e.message)}
+  setLoading('ad-btn',false);
+}
+
+// ══ EMAIL CAMPAIGNS ══
+async function genEmail(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('em-biz').value||'this business';
+  const niche=document.getElementById('em-niche').value;
+  const type=document.getElementById('em-type').value;
+  const details=document.getElementById('em-details').value;
+  const recipDesc={new:'a potential new customer who expressed interest',past:'a past customer who has used the service before',vip:'a high-value VIP client who deserves extra care'};
+  const toneDesc={professional:'professional and polished',warm:'warm, personal, and friendly',bold:'bold, urgent, and results-focused'};
+  const prompt=`You are an expert email marketer for ${niche} businesses.
+
+Write a ${toneDesc[emTone]} ${type} for "${biz}" — a ${niche} business.
+
+Recipient: ${recipDesc[emRecip]}
+${details?`Key details/offer: ${details}`:''}
+
+Format the email exactly like this:
+SUBJECT LINE: [compelling subject, under 50 chars]
+PREVIEW TEXT: [preview/snippet text, under 90 chars]
+
+[Email body — 3–5 short paragraphs. Use ** for bold text. Short sentences. White space between paragraphs.]
+
+[CTA Button]: [specific action text]
+
+P.S. [optional powerful postscript]
+
+Make it feel like it was written by a real human who cares, not a robot. Every line should earn its place.`;
+  setLoading('em-btn',true);
+  document.getElementById('em-empty').style.display='none';
+  document.getElementById('em-result').style.display='block';
+  const box=document.getElementById('em-box');box.innerHTML='';
+  try{const t=await claude(prompt);lastEM=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  setLoading('em-btn',false);
+}
+async function tweakEM(instr){
+  const text=document.getElementById('em-box').innerText||lastEM;if(!text)return;
+  setLoading('em-btn',true);const box=document.getElementById('em-box');box.innerHTML='';
+  try{const t=await claude(`Email campaign:
+
+"${text}"
+
+Please ${instr}. Output ONLY the revised email.`);lastEM=t;await stream(box,t)}catch(e){toast('⚠️ '+e.message)}
+  setLoading('em-btn',false);
+}
+
+// ══ GROWTH STRATEGIST ══
+async function genStrategy(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('gs-biz').value||'this business';
+  const niche=document.getElementById('gs-niche').value;
+  const current=document.getElementById('gs-current').value;
+  const goal=document.getElementById('gs-goal').value;
+  const budgetDesc={organic:'organic/free strategies only',low:'plus $500/month in paid ads',mid:'plus $1,000–2,000/month in paid advertising'};
+  const prompt=`You are a world-class digital marketing strategist specializing in ${niche} businesses.
+
+Build a comprehensive ${gsTL}-day growth strategy for "${biz}" — a ${niche} business.
+
+Current situation: ${current||'starting from scratch, building presence'}
+Primary goal: ${goal}
+Budget: ${budgetDesc[gsBudget]}
+
+Structure your strategy with these sections:
+
+🎯 SITUATION ANALYSIS
+[2-3 sentences on where they are and what the opportunity is]
+
+📋 THE STRATEGY (${gsTL}-Day Plan)
+Phase 1 — Foundation (Days 1–10): [3–5 specific action items]
+Phase 2 — Growth (Days 11–${Math.round(parseInt(gsTL)*.6)}): [3–5 specific action items]
+Phase 3 — Scale (Days ${Math.round(parseInt(gsTL)*.6)+1}–${gsTL}): [3–5 specific action items]
+
+📱 PLATFORM STRATEGY
+[Specific recommendations per platform with posting frequency and content types]
+
+💡 CONTENT PILLARS
+[4–5 content themes specific to ${niche} that build authority and drive engagement]
+
+📈 GROWTH METRICS TO TRACK
+[5 specific KPIs with target numbers for ${gsTL} days]
+
+${gsBudget!=='organic'?'💰 AD STRATEGY\n[Specific ad types, targeting, and budget allocation]\n\n':''}
+⚡ QUICK WINS (This Week)
+[3 things to do immediately for fast results]
+
+Be specific to "${biz}" and the ${niche} industry. Use real numbers. No fluff.`;
+  setLoading('gs-btn',true);
+  document.getElementById('gs-empty').style.display='none';
+  document.getElementById('gs-result').style.display='block';
+  document.getElementById('gs-out-label').textContent=gsTL+'-Day Growth Strategy for '+biz;
+  const box=document.getElementById('gs-box');box.innerHTML='';
+  try{const t=await claude(prompt);lastGS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  setLoading('gs-btn',false);
+}
+async function tweakGS(instr){
+  const text=document.getElementById('gs-box').innerText||lastGS;if(!text)return;
+  setLoading('gs-btn',true);const box=document.getElementById('gs-box');box.innerHTML='';
+  try{const t=await claude(`Growth strategy:
+
+"${text}"
+
+Please ${instr}. Output the full revised strategy.`);lastGS=t;await stream(box,t)}catch(e){toast('⚠️ '+e.message)}
+  setLoading('gs-btn',false);
 }
 
 // ══ TOAST ══
