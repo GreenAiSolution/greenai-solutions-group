@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenAI — Visual Showcase for Collin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #040b06;
+  color: #f0f7f1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- TOP BAR ---- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(4,11,6,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,230,118,0.15);
+  padding: 14px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+}
+.topbar-logo { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 900; }
+.topbar-logo span:first-child { color: #00e676; }
+.topbar-logo span:last-child { color: #D4AF37; }
+.topbar-badge {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #D4AF37;
+  background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+/* ---- PAGE ---- */
+.page { max-width: 1200px; margin: 0 auto; padding: 100px 32px 80px; }
+
+/* ---- SECTION HEADER ---- */
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #00e676;
+  background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.2);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 1rem;
+}
+.section-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+  line-height: 1.15; color: #fff; margin-bottom: 0.75rem;
+}
+.section-header p { font-size: 1rem; color: #5a8a62; max-width: 540px; margin: 0 auto; }
+
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,230,118,0.15), transparent); margin: 5rem 0; }
+
+/* ============================================
+   STYLE SHOWCASE — POST MOCKUPS
+   ============================================ */
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.post-card {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.post-card:hover { transform: translateY(-6px) scale(1.02); }
+.post-canvas-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+.post-canvas-wrap canvas { width: 100%; height: 100%; display: block; }
+.post-label {
+  padding: 12px 14px;
+  background: rgba(13,22,15,0.9);
+  border: 1px solid rgba(0,230,118,0.1);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.post-label-name { font-size: 0.78rem; font-weight: 700; color: #f0f7f1; }
+.post-label-tag { font-size: 0.65rem; font-weight: 700; color: #00e676; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ============================================
+   STORY / REEL MOCKUPS (9:16)
+   ============================================ */
+.reel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+.reel-card {
+  border-radius: 16px; overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.reel-card:hover { transform: translateY(-6px) scale(1.02); }
+.reel-canvas-wrap { position: relative; aspect-ratio: 9 / 16; overflow: hidden; }
+.reel-canvas-wrap canvas { width: 100%; height: 100%; display: block; }
+.reel-label {
+  padding: 10px 12px;
+  background: rgba(13,22,15,0.9);
+  border: 1px solid rgba(0,230,118,0.1);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+}
+.reel-label-name { font-size: 0.72rem; font-weight: 700; color: #f0f7f1; }
+.reel-label-tag { font-size: 0.62rem; color: #00e676; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ============================================
+   PLATFORM PHONE FRAMES
+   ============================================ */
+.phone-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.phone-frame {
+  width: 260px;
+  background: #0a0a0a;
+  border: 2px solid #222;
+  border-radius: 36px;
+  padding: 16px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px #333;
+  position: relative;
+}
+.phone-notch {
+  width: 90px; height: 24px;
+  background: #111; border-radius: 0 0 14px 14px;
+  margin: 0 auto 12px;
+  position: relative;
+}
+.phone-notch::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 0 2px #0a3d20;
+}
+.phone-screen { border-radius: 20px; overflow: hidden; background: #111; }
+.phone-screen canvas { width: 100%; display: block; }
+.phone-label { text-align: center; }
+.phone-label-name { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: #f0f7f1; }
+.phone-label-sub { font-size: 0.75rem; color: #5a8a62; margin-top: 2px; }
+
+/* ============================================
+   STATS CARDS
+   ============================================ */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.stat-card {
+  background: rgba(13,24,16,0.7);
+  border: 1px solid rgba(0,230,118,0.12);
+  border-radius: 14px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.stat-num { font-family: 'Orbitron', monospace; font-size: 1.6rem; font-weight: 700; color: #00e676; }
+.stat-num.gold { color: #D4AF37; }
+.stat-label { font-size: 0.72rem; color: #5a8a62; margin-top: 4px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ============================================
+   COMPARISON — GreenAI vs DIY
+   ============================================ */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.compare-col { border-radius: 16px; padding: 1.75rem; }
+.compare-col.greenai { background: rgba(0,230,118,0.06); border: 1px solid rgba(0,230,118,0.25); }
+.compare-col.diy { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+.compare-col h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.compare-col.greenai h3 { color: #00e676; }
+.compare-col.diy h3 { color: #4a5a4f; }
+.compare-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 0.6rem; font-size: 0.82rem;
+}
+.compare-item.greenai { color: #a0c8a8; }
+.compare-item.diy { color: #3a4a3f; }
+.ci-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ============================================
+   RESULT CARD
+   ============================================ */
+.result-card {
+  background: rgba(13,24,16,0.6);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.result-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #D4AF37, #f0d060, #D4AF37);
+}
+.result-spotlight {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #D4AF37;
+  background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2);
+  padding: 4px 12px; border-radius: 100px; display: inline-block; margin-bottom: 1rem;
+}
+.result-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+.result-sub { font-size: 0.8rem; color: #5a8a62; margin-bottom: 1.5rem; }
+.result-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.rm { text-align: center; }
+.rm-before { font-size: 0.7rem; color: #3a4a3f; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+.rm-from { font-size: 0.9rem; color: #4a5a4f; font-weight: 600; text-decoration: line-through; }
+.rm-arrow { color: #00e676; font-size: 0.8rem; margin: 2px 0; }
+.rm-to { font-size: 1.2rem; color: #00e676; font-weight: 800; font-family: 'Orbitron', monospace; }
+.result-quote { font-size: 0.88rem; color: #7a9e82; font-style: italic; line-height: 1.6; border-left: 3px solid #D4AF37; padding-left: 1rem; }
+
+/* ============================================
+   PRICING VISUAL
+   ============================================ */
+.pricing-vis { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+.price-card {
+  background: rgba(13,24,16,0.6);
+  border: 1px solid rgba(0,230,118,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.price-card:hover { transform: translateY(-4px); }
+.price-card.featured {
+  border-color: rgba(0,230,118,0.4);
+  background: rgba(0,230,118,0.05);
+  position: relative;
+}
+.price-card.featured::before {
+  content: 'MOST POPULAR';
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: #040b06; padding: 4px 12px; border-radius: 100px;
+  white-space: nowrap;
+}
+.price-tier { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5a8a62; margin-bottom: 0.5rem; }
+.price-num { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 700; color: #00e676; }
+.price-num .price-dollar { font-size: 1rem; vertical-align: super; }
+.price-per { font-size: 0.72rem; color: #3a4a3f; margin-bottom: 1rem; }
+.price-features { list-style: none; text-align: left; }
+.price-features li { font-size: 0.78rem; color: #7a9e82; padding: 5px 0; border-bottom: 1px solid rgba(0,230,118,0.05); display: flex; align-items: flex-start; gap: 8px; }
+.price-features li:last-child { border: none; }
+.pf-check { color: #00e676; flex-shrink: 0; }
+
+/* tiktok frame */
+.tiktok-ui {
+  background: #000; position: relative;
+}
+.tiktok-sidebar {
+  position: absolute; right: 8px; bottom: 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.tiktok-action { text-align: center; }
+.tiktok-action .icon { font-size: 1.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); }
+.tiktok-action .count { font-size: 0.55rem; color: rgba(255,255,255,0.9); font-weight: 700; }
+.tiktok-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px 10px 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+}
+.tiktok-handle { font-size: 0.7rem; font-weight: 700; color: #fff; }
+.tiktok-caption { font-size: 0.6rem; color: rgba(255,255,255,0.8); margin-top: 2px; }
+.tiktok-hashtags { font-size: 0.58rem; color: rgba(255,255,255,0.7); }
+
+.ig-ui { background: #000; position: relative; }
+.ig-header {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 6px 10px;
+  display: flex; align-items: center; gap: 6px;
+  background: linear-gradient(rgba(0,0,0,0.5), transparent);
+}
+.ig-avatar { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.ig-handle-sm { font-size: 0.6rem; font-weight: 700; color: #fff; }
+.ig-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 6px 10px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+}
+.ig-caption-sm { font-size: 0.6rem; color: rgba(255,255,255,0.9); }
+.ig-actions {
+  position: absolute; right: 6px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.ig-action { font-size: 1.2rem; }
+
+@media (max-width: 760px) {
+  .style-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare-grid { grid-template-columns: 1fr; }
+  .pricing-vis { grid-template-columns: 1fr; }
+  .result-metrics { grid-template-columns: repeat(3,1fr); }
+  .phone-section { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .phone-section { grid-template-columns: 1fr; }
+  .reel-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo"><span>Green</span><span>AI</span></div>
+  <div class="topbar-badge">📊 Visual Demo — Collin</div>
+</div>
+
+<div class="page">
+
+  <!-- ===================== SECTION 1: INSTAGRAM POSTS ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">📸 Content Studio Output</div>
+    <h2>Sample Posts — Collin's Detailing Business</h2>
+    <p>5 style templates. Same business. Totally different look. Generated in seconds.</p>
+  </div>
+
+  <div class="style-grid" id="postGrid"></div>
+
+  <div class="divider"></div>
+
+  <!-- ===================== SECTION 2: REELS / STORIES ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">🎬 Reels & Stories (9:16)</div>
+    <h2>Vertical Content for TikTok & Reels</h2>
+    <p>Platform-native dimensions. Ready to post directly.</p>
+  </div>
+
+  <div class="reel-grid" id="reelGrid"></div>
+
+  <div class="divider"></div>
+
+  <!-- ===================== SECTION 3: PHONE FRAMES ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">📱 How It Looks on a Phone</div>
+    <h2>Real Platform Previews</h2>
+    <p>TikTok, Instagram, and Facebook — exactly as they appear to followers.</p>
+  </div>
+
+  <div class="phone-section" id="phoneSection"></div>
+
+  <div class="divider"></div>
+
+  <!-- ===================== SECTION 4: DESERT STEAM RESULTS ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">⭐ Proof of Work</div>
+    <h2>Desert Steam Detail — Real Results</h2>
+    <p>Same industry. Same area. This is what we did in 90 days.</p>
+  </div>
+
+  <div class="result-card">
+    <div class="result-spotlight">⭐ Client Spotlight — Gilbert, AZ</div>
+    <h3>Desert Steam Detail</h3>
+    <p class="result-sub">Auto Detailing · Mobile & On-Site · East Valley</p>
+    <div class="result-metrics">
+      <div class="rm">
+        <div class="rm-before">TikTok</div>
+        <div class="rm-from">0</div>
+        <div class="rm-arrow">↓</div>
+        <div class="rm-to">8,900</div>
+      </div>
+      <div class="rm">
+        <div class="rm-before">Bookings</div>
+        <div class="rm-from">part-time</div>
+        <div class="rm-arrow">↓</div>
+        <div class="rm-to">FULL</div>
+      </div>
+      <div class="rm">
+        <div class="rm-before">Timeline</div>
+        <div class="rm-from">—</div>
+        <div class="rm-arrow">↓</div>
+        <div class="rm-to">90 days</div>
+      </div>
+    </div>
+    <div class="result-quote">"From zero to fully booked in 90 days. GreenAI built my entire digital presence and now I turn away customers."</div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">0→8.9K</div><div class="stat-label">TikTok Followers</div></div>
+    <div class="stat-card"><div class="stat-num">90</div><div class="stat-label">Days to Fully Booked</div></div>
+    <div class="stat-card"><div class="stat-num gold">500%</div><div class="stat-label">Avg Client ROI</div></div>
+    <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-label">AI Running for You</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================== SECTION 5: GREENAI VS DIY ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">⚔️ The Difference</div>
+    <h2>GreenAI vs Doing It Yourself</h2>
+    <p>Why the old way doesn't work in 2026.</p>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col greenai">
+      <h3>✅ GreenAI Solutions</h3>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> AI posts at the exact best time daily</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> 30 posts created in under 1 hour</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> Hashtags updated daily by algorithm</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> TikTok, IG, FB all managed at once</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> Ad campaigns auto-optimized by AI</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> Competitor tracking 24/7</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> Real results tracked in weekly reports</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> Website SEO + Google ranking</div>
+      <div class="compare-item greenai"><span class="ci-icon">✅</span> No contract. Results in 30 days or free.</div>
+    </div>
+    <div class="compare-col diy">
+      <h3>❌ Doing It Yourself</h3>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Posting randomly whenever you remember</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Hours spent making one Canva graphic</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Same hashtags copied and pasted every time</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Only posting to one platform</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Burning ad budget with no strategy</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> No idea what competitors are doing</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> No tracking, no data, no direction</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Website buried on page 4 of Google</div>
+      <div class="compare-item diy"><span class="ci-icon">❌</span> Hours of work, declining results</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===================== SECTION 6: PRICING ===================== -->
+  <div class="section-header">
+    <div class="section-eyebrow">💰 Investment</div>
+    <h2>Pick Your Plan</h2>
+    <p>Month to month. No contracts. Results in 30 days or next month is free.</p>
+  </div>
+
+  <div class="pricing-vis">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-num"><span class="price-dollar">$</span>700</div>
+      <div class="price-per">/month</div>
+      <ul class="price-features">
+        <li><span class="pf-check">✓</span> 1 platform (Instagram or TikTok)</li>
+        <li><span class="pf-check">✓</span> 12 posts per month</li>
+        <li><span class="pf-check">✓</span> AI content creation</li>
+        <li><span class="pf-check">✓</span> Monthly performance report</li>
+        <li><span class="pf-check">✓</span> Hashtag intelligence</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tier">Growth</div>
+      <div class="price-num"><span class="price-dollar">$</span>1,200</div>
+      <div class="price-per">/month</div>
+      <ul class="price-features">
+        <li><span class="pf-check">✓</span> 3 platforms (IG + TikTok + FB)</li>
+        <li><span class="pf-check">✓</span> Unlimited posts</li>
+        <li><span class="pf-check">✓</span> Paid ads up to $2K managed</li>
+        <li><span class="pf-check">✓</span> Landing page included</li>
+        <li><span class="pf-check">✓</span> Weekly reports + strategy</li>
+        <li><span class="pf-check">✓</span> Competitor surveillance</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Dominator</div>
+      <div class="price-num"><span class="price-dollar">$</span>1,950</div>
+      <div class="price-per">/month</div>
+      <ul class="price-features">
+        <li><span class="pf-check">✓</span> All 6 platforms</li>
+        <li><span class="pf-check">✓</span> Unlimited content creation</li>
+        <li><span class="pf-check">✓</span> Full website included ($500 value)</li>
+        <li><span class="pf-check">✓</span> Weekly 1-on-1 strategy calls</li>
+        <li><span class="pf-check">✓</span> Priority support + ad management</li>
+        <li><span class="pf-check">✓</span> Complete market takeover</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ============================================
+   RENDER ENGINE
+   ============================================ */
+
+const STYLES = {
+  dark:   { bg1:'#061a0a', bg2:'#0d2e14', text:'#f0f7f1', accent:'#00e676', overlay:'rgba(0,230,118,0.04)', glow:'rgba(0,230,118,0.35)', border:'#00e676', badge:'rgba(0,230,118,0.15)' },
+  neon:   { bg1:'#000000', bg2:'#040f06', text:'#ffffff', accent:'#00ff88', overlay:'rgba(0,255,100,0.03)', glow:'rgba(0,255,136,0.5)', border:'#00ff88', badge:'rgba(0,255,136,0.12)' },
+  gold:   { bg1:'#1a0f02', bg2:'#2a1a05', text:'#f5e6c8', accent:'#D4AF37', overlay:'rgba(212,175,55,0.04)', glow:'rgba(212,175,55,0.4)', border:'#D4AF37', badge:'rgba(212,175,55,0.15)' },
+  purple: { bg1:'#0d0520', bg2:'#1a0a35', text:'#ede0ff', accent:'#c084fc', overlay:'rgba(192,132,252,0.04)', glow:'rgba(192,132,252,0.4)', border:'#c084fc', badge:'rgba(192,132,252,0.15)' },
+  clean:  { bg1:'#f0f5f1', bg2:'#e8f0ea', text:'#0d2414', accent:'#00a84f', overlay:'rgba(0,168,79,0.04)', glow:'rgba(0,168,79,0.2)', border:'#00a84f', badge:'rgba(0,168,79,0.1)' }
+};
+
+const STYLE_NAMES = {
+  dark:'Dark Premium', neon:'Neon Electric', gold:'Gold Luxury', purple:'Purple Haze', clean:'Clean & Fresh'
+};
+
+const POST_DATA = {
+  headline: 'Same-Day Ceramic Coating',
+  body: "Gilbert's #1 rated auto detailer. Paint correction, full details, ceramic coating. Book your appointment today.",
+  cta: 'Book Now',
+  handle: '@collindetailing',
+  tags: '#cardetail #ceramiccoating #gilbert #autodetail #detailing'
+};
+
+const REEL_DATA = {
+  headline: 'BEFORE → AFTER',
+  body: 'Watch what we do to a neglected paint job. Paint correction + ceramic coat.',
+  cta: 'DM for Pricing',
+  handle: '@collindetailing',
+  tags: '#detailing #fyp #satisfying #ceramiccoat #gilbert'
+};
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+
+function wrapText(ctx, text, x, y, maxW, lineH) {
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  for (let w of words) {
+    const test = line + w + ' ';
+    if (ctx.measureText(test).width > maxW && line !== '') {
+      lines.push(line.trim());
+      line = w + ' ';
+    } else { line = test; }
+  }
+  if (line.trim()) lines.push(line.trim());
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineH));
+  return lines.length;
+}
+
+function drawPost(canvas, styleKey, data, isReel = false) {
+  const s = STYLES[styleKey];
+  const W = canvas.width, H = canvas.height;
+  const ctx = canvas.getContext('2d');
+
+  // Background gradient
+  const grd = ctx.createLinearGradient(0, 0, W, H);
+  grd.addColorStop(0, s.bg1);
+  grd.addColorStop(1, s.bg2);
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid overlay
+  ctx.strokeStyle = s.overlay;
+  ctx.lineWidth = 0.5;
+  const grid = Math.round(W / 6);
+  for (let x = 0; x <= W; x += grid) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += grid) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  // Radial glow
+  const rad = ctx.createRadialGradient(W*0.5, H*0.35, 0, W*0.5, H*0.35, W*0.7);
+  rad.addColorStop(0, s.glow.replace(')', ',0.18)').replace('rgba(','rgba('));
+  rad.addColorStop(1, 'transparent');
+  ctx.fillStyle = rad;
+  ctx.fillRect(0,0,W,H);
+
+  // Decorative circles
+  ctx.strokeStyle = `rgba(${hexToRgb(s.accent)},0.06)`;
+  ctx.lineWidth = 1;
+  [0.8,0.55,0.3].forEach(r => {
+    ctx.beginPath(); ctx.arc(W*0.82, H*0.18, W*r, 0, Math.PI*2); ctx.stroke();
+  });
+
+  // Diagonal accent lines
+  ctx.strokeStyle = `rgba(${hexToRgb(s.accent)},0.08)`;
+  ctx.lineWidth = 0.8;
+  for (let i = 0; i < 4; i++) {
+    ctx.beginPath(); ctx.moveTo(W*0.65 + i*18, 0); ctx.lineTo(W*1.2 + i*18, H*0.6); ctx.stroke();
+  }
+
+  // Border frame
+  const bGrd = ctx.createLinearGradient(0,0,W,H);
+  bGrd.addColorStop(0, s.accent);
+  bGrd.addColorStop(0.5, `rgba(${hexToRgb(s.accent)},0.3)`);
+  bGrd.addColorStop(1, s.accent);
+  ctx.strokeStyle = bGrd;
+  ctx.lineWidth = 2;
+  const m = 14;
+  roundRect(ctx, m, m, W-m*2, H-m*2, 12);
+  ctx.stroke();
+
+  // Platform badge
+  const badgeX = W - 16 - (isReel ? 14 : 0);
+  const badgeY = 28;
+  ctx.fillStyle = s.badge;
+  ctx.beginPath();
+  roundRect(ctx, badgeX - 56, badgeY - 14, 56, 24, 6);
+  ctx.fill();
+  ctx.fillStyle = s.accent;
+  ctx.font = `bold ${Math.round(W*0.032)}px Inter`;
+  ctx.textAlign = 'right';
+  ctx.fillText(isReel ? '🎬 REEL' : '📸 POST', badgeX, badgeY + 3);
+  ctx.textAlign = 'left';
+
+  if (isReel) {
+    // REEL layout — vertical emphasis
+    const pad = W * 0.09;
+    const contentY = H * 0.2;
+
+    // Big headline
+    ctx.font = `900 ${Math.round(W*0.11)}px Space Grotesk, sans-serif`;
+    ctx.fillStyle = s.text;
+    ctx.shadowColor = s.glow;
+    ctx.shadowBlur = 20;
+    const headW = ctx.measureText(data.headline).width;
+    if (headW > W - pad*2) {
+      ctx.font = `900 ${Math.round(W*0.09)}px Space Grotesk, sans-serif`;
+    }
+    ctx.fillText(data.headline, pad, contentY);
+    ctx.shadowBlur = 0;
+
+    // Accent underline
+    const hw = Math.min(ctx.measureText(data.headline).width, W - pad*2);
+    const lineGrd = ctx.createLinearGradient(pad, 0, pad+hw, 0);
+    lineGrd.addColorStop(0, s.accent);
+    lineGrd.addColorStop(1, 'transparent');
+    ctx.fillStyle = lineGrd;
+    ctx.fillRect(pad, contentY + 8, hw, 3);
+
+    // Body
+    ctx.font = `500 ${Math.round(W*0.055)}px Inter`;
+    ctx.fillStyle = s.text + 'cc';
+    const bodyLines = wrapText(ctx, data.body, pad, contentY + 44, W - pad*2, Math.round(W*0.068));
+
+    // CTA button
+    const ctaY = contentY + 44 + bodyLines * Math.round(W*0.068) + 26;
+    const ctaW = Math.round(W*0.6), ctaH = Math.round(W*0.1);
+    const ctaGrd = ctx.createLinearGradient(pad, 0, pad+ctaW, 0);
+    ctaGrd.addColorStop(0, s.accent);
+    ctaGrd.addColorStop(1, styleKey==='gold'?'#f0d060':styleKey==='purple'?'#e879f9':styleKey==='clean'?'#00c853':'#00c853');
+    ctx.fillStyle = ctaGrd;
+    ctx.beginPath(); roundRect(ctx, pad, ctaY, ctaW, ctaH, ctaH/2); ctx.fill();
+    ctx.fillStyle = styleKey==='clean'?'#fff':'#040b06';
+    ctx.font = `800 ${Math.round(W*0.062)}px Inter`;
+    ctx.textAlign = 'center';
+    ctx.fillText(data.cta, pad + ctaW/2, ctaY + ctaH*0.65);
+    ctx.textAlign = 'left';
+
+    // Hashtags
+    ctx.font = `600 ${Math.round(W*0.042)}px Inter`;
+    ctx.fillStyle = `rgba(${hexToRgb(s.accent)},0.75)`;
+    wrapText(ctx, data.tags, pad, ctaY + ctaH + 26, W - pad*2, Math.round(W*0.055));
+
+    // Handle bottom
+    ctx.font = `700 ${Math.round(W*0.052)}px Inter`;
+    ctx.fillStyle = `rgba(${hexToRgb(s.accent)},0.55)`;
+    ctx.fillText(data.handle, pad, H - 32);
+
+  } else {
+    // SQUARE POST layout
+    const pad = W * 0.09;
+    const centerY = H * 0.36;
+
+    // Headline
+    ctx.font = `900 ${Math.round(W*0.09)}px Space Grotesk, sans-serif`;
+    ctx.fillStyle = s.text;
+    ctx.shadowColor = s.glow;
+    ctx.shadowBlur = 18;
+    const hw = ctx.measureText(data.headline).width;
+    if (hw > W - pad*2) {
+      ctx.font = `900 ${Math.round(W*0.075)}px Space Grotesk, sans-serif`;
+    }
+    ctx.fillText(data.headline, pad, centerY);
+    ctx.shadowBlur = 0;
+
+    // Underline
+    const ulW = Math.min(ctx.measureText(data.headline).width, W-pad*2);
+    const ulGrd = ctx.createLinearGradient(pad,0,pad+ulW,0);
+    ulGrd.addColorStop(0, s.accent); ulGrd.addColorStop(1,'transparent');
+    ctx.fillStyle = ulGrd;
+    ctx.fillRect(pad, centerY+8, ulW, 3);
+
+    // Body
+    ctx.font = `400 ${Math.round(W*0.052)}px Inter`;
+    ctx.fillStyle = styleKey==='clean' ? '#3a5a42' : 'rgba(240,247,241,0.7)';
+    const bl = wrapText(ctx, data.body, pad, centerY+36, W-pad*2, Math.round(W*0.065));
+
+    // CTA button
+    const ctaY = centerY + 36 + bl*Math.round(W*0.065) + 20;
+    const ctaW = Math.round(W*0.55), ctaH = Math.round(W*0.09);
+    const cGrd = ctx.createLinearGradient(pad,0,pad+ctaW,0);
+    cGrd.addColorStop(0, s.accent);
+    cGrd.addColorStop(1, styleKey==='gold'?'#f0d060':styleKey==='purple'?'#e879f9':styleKey==='clean'?'#00c853':'#00c853');
+    ctx.fillStyle = cGrd;
+    ctx.beginPath(); roundRect(ctx, pad, ctaY, ctaW, ctaH, ctaH/2); ctx.fill();
+    ctx.fillStyle = styleKey==='clean'?'#fff':'#040b06';
+    ctx.font = `800 ${Math.round(W*0.058)}px Inter`;
+    ctx.textAlign = 'center';
+    ctx.fillText(data.cta, pad+ctaW/2, ctaY+ctaH*0.65);
+    ctx.textAlign = 'left';
+
+    // Hashtags
+    ctx.font = `600 ${Math.round(W*0.038)}px Inter`;
+    ctx.fillStyle = `rgba(${hexToRgb(s.accent)},0.7)`;
+    wrapText(ctx, data.tags, pad, ctaY+ctaH+18, W-pad*2, Math.round(W*0.048));
+
+    // Handle
+    ctx.font = `700 ${Math.round(W*0.044)}px Inter`;
+    ctx.fillStyle = `rgba(${hexToRgb(s.accent)},0.5)`;
+    ctx.fillText(data.handle, pad, H-24);
+  }
+
+  // Corner brackets
+  const bLen = W*0.06, bOff = m+6, bW = 2;
+  ctx.strokeStyle = s.accent;
+  ctx.lineWidth = bW;
+  [[bOff,bOff],[W-bOff,bOff],[bOff,H-bOff],[W-bOff,H-bOff]].forEach(([cx,cy],idx) => {
+    ctx.beginPath();
+    ctx.moveTo(cx + (idx%2===0?0:bLen)*-1 + (idx%2===0?bLen:0), cy);
+    ctx.lineTo(cx, cy);
+    ctx.lineTo(cx, cy + (idx<2?bLen:-bLen));
+    ctx.stroke();
+  });
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+/* Build Post Grid */
+const postGrid = document.getElementById('postGrid');
+Object.keys(STYLES).forEach(key => {
+  const wrap = document.createElement('div');
+  wrap.className = 'post-card';
+  const cWrap = document.createElement('div');
+  cWrap.className = 'post-canvas-wrap';
+  const canvas = document.createElement('canvas');
+  canvas.width = 540; canvas.height = 540;
+  drawPost(canvas, key, POST_DATA, false);
+  cWrap.appendChild(canvas);
+  const label = document.createElement('div');
+  label.className = 'post-label';
+  label.innerHTML = `<span class="post-label-name">${STYLE_NAMES[key]}</span><span class="post-label-tag">Instagram Post</span>`;
+  wrap.appendChild(cWrap);
+  wrap.appendChild(label);
+  postGrid.appendChild(wrap);
+});
+
+/* Build Reel Grid */
+const reelGrid = document.getElementById('reelGrid');
+['dark','neon','gold','purple','clean'].forEach(key => {
+  const wrap = document.createElement('div');
+  wrap.className = 'reel-card';
+  const cWrap = document.createElement('div');
+  cWrap.className = 'reel-canvas-wrap';
+  const canvas = document.createElement('canvas');
+  canvas.width = 320; canvas.height = 568;
+  drawPost(canvas, key, REEL_DATA, true);
+  cWrap.appendChild(canvas);
+  const label = document.createElement('div');
+  label.className = 'reel-label';
+  label.innerHTML = `<div class="reel-label-name">${STYLE_NAMES[key]}</div><div class="reel-label-tag">TikTok / Reel</div>`;
+  wrap.appendChild(cWrap);
+  wrap.appendChild(label);
+  reelGrid.appendChild(wrap);
+});
+
+/* Build Phone Frames */
+const phoneSection = document.getElementById('phoneSection');
+const phones = [
+  {
+    platform: 'TikTok',
+    sub: 'For You Page',
+    build: (wrap, style) => {
+      const outer = document.createElement('div');
+      outer.className = 'tiktok-ui';
+      outer.style.position = 'relative';
+      const canvas = document.createElement('canvas');
+      canvas.width = 320; canvas.height = 568;
+      drawPost(canvas, style, {...REEL_DATA, headline:'PAINT CORRECTION', body:'Watch this oxidized hood turn into a mirror. Full paint correction + ceramic coating.'}, true);
+      canvas.style.width = '100%';
+      outer.appendChild(canvas);
+
+      // TikTok sidebar
+      const sidebar = document.createElement('div');
+      sidebar.className = 'tiktok-sidebar';
+      sidebar.innerHTML = `
+        <div class="tiktok-action"><div class="icon">❤️</div><div class="count">24.3K</div></div>
+        <div class="tiktok-action"><div class="icon">💬</div><div class="count">847</div></div>
+        <div class="tiktok-action"><div class="icon">🔁</div><div class="count">2.1K</div></div>
+        <div class="tiktok-action"><div class="icon">🔖</div><div class="count">5.6K</div></div>
+      `;
+      outer.appendChild(sidebar);
+
+      // Bottom info
+      const bottom = document.createElement('div');
+      bottom.className = 'tiktok-bottom';
+      bottom.innerHTML = `
+        <div class="tiktok-handle">@collindetailing ✓</div>
+        <div class="tiktok-caption">Paint correction + ceramic coat 🔥</div>
+        <div class="tiktok-hashtags">#detailing #fyp #ceramiccoating #gilbert</div>
+      `;
+      outer.appendChild(bottom);
+      wrap.appendChild(outer);
+    }
+  },
+  {
+    platform: 'Instagram',
+    sub: 'Feed Post',
+    build: (wrap, style) => {
+      const outer = document.createElement('div');
+      outer.className = 'ig-ui';
+      outer.style.position = 'relative';
+      const canvas = document.createElement('canvas');
+      canvas.width = 400; canvas.height = 400;
+      drawPost(canvas, style, POST_DATA, false);
+      canvas.style.width = '100%';
+      outer.appendChild(canvas);
+
+      // IG header
+      const header = document.createElement('div');
+      header.className = 'ig-header';
+      header.innerHTML = `<div class="ig-avatar"></div><span class="ig-handle-sm">collindetailing</span>`;
+      outer.appendChild(header);
+
+      // IG right actions
+      const actions = document.createElement('div');
+      actions.className = 'ig-actions';
+      actions.innerHTML = `<div class="ig-action">❤️</div><div class="ig-action">💬</div><div class="ig-action">📤</div>`;
+      outer.appendChild(actions);
+
+      // Bottom caption
+      const bottom = document.createElement('div');
+      bottom.className = 'ig-bottom';
+      bottom.innerHTML = `<div class="ig-caption-sm"><strong>collindetailing</strong> Same-day ceramic coating Gilbert AZ 🚗✨</div>`;
+      outer.appendChild(bottom);
+      wrap.appendChild(outer);
+    }
+  },
+  {
+    platform: 'Facebook',
+    sub: 'Business Page',
+    build: (wrap, style) => {
+      const outer = document.createElement('div');
+      outer.style.cssText = 'background:#18191a; position:relative;';
+      // FB post header
+      const fbHead = document.createElement('div');
+      fbHead.style.cssText = 'padding:8px 10px; display:flex; align-items:center; gap:8px;';
+      fbHead.innerHTML = `
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#00e676,#00c853);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:#040b06;">C</div>
+        <div>
+          <div style="font-size:0.65rem;font-weight:700;color:#e4e6ea;">Collin Detailing</div>
+          <div style="font-size:0.55rem;color:#8a8d91;">2 hours ago · 🌐</div>
+        </div>
+      `;
+      outer.appendChild(fbHead);
+      // Caption
+      const fbCap = document.createElement('div');
+      fbCap.style.cssText = 'padding:0 10px 8px; font-size:0.62rem; color:#e4e6ea;';
+      fbCap.textContent = "Gilbert's best ceramic coating. Same-day appointments available! 🚗✨";
+      outer.appendChild(fbCap);
+      // Post image
+      const canvas = document.createElement('canvas');
+      canvas.width = 400; canvas.height = 400;
+      drawPost(canvas, style, POST_DATA, false);
+      canvas.style.width = '100%';
+      outer.appendChild(canvas);
+      // Reactions
+      const fbReact = document.createElement('div');
+      fbReact.style.cssText = 'padding:6px 10px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.08);';
+      fbReact.innerHTML = `
+        <div style="font-size:0.6rem;color:#8a8d91;">❤️ 👍 😮 &nbsp;124</div>
+        <div style="font-size:0.6rem;color:#8a8d91;">38 comments · 12 shares</div>
+      `;
+      outer.appendChild(fbReact);
+      // Action row
+      const fbAct = document.createElement('div');
+      fbAct.style.cssText = 'padding:4px 10px 8px; display:flex; justify-content:space-around;';
+      fbAct.innerHTML = `
+        <div style="font-size:0.6rem;color:#8a8d91;">👍 Like</div>
+        <div style="font-size:0.6rem;color:#8a8d91;">💬 Comment</div>
+        <div style="font-size:0.6rem;color:#8a8d91;">📤 Share</div>
+      `;
+      outer.appendChild(fbAct);
+      wrap.appendChild(outer);
+    }
+  }
+];
+
+const phoneStyles = ['gold','neon','dark'];
+phones.forEach((p, i) => {
+  const col = document.createElement('div');
+  col.className = 'phone-wrap';
+
+  const frame = document.createElement('div');
+  frame.className = 'phone-frame';
+  const notch = document.createElement('div');
+  notch.className = 'phone-notch';
+  frame.appendChild(notch);
+  const screen = document.createElement('div');
+  screen.className = 'phone-screen';
+  p.build(screen, phoneStyles[i]);
+  frame.appendChild(screen);
+  col.appendChild(frame);
+
+  const lbl = document.createElement('div');
+  lbl.className = 'phone-label';
+  lbl.innerHTML = `<div class="phone-label-name">${p.platform}</div><div class="phone-label-sub">${p.sub}</div>`;
+  col.appendChild(lbl);
+
+  phoneSection.appendChild(col);
+});
+</script>
+
+</body>
+</html>
