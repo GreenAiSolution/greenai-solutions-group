@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
@@ -57,6 +57,13 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__scan" aria-hidden="true"></div>
+    <div class="hero__grain" aria-hidden="true"></div>
+    <div class="hero__data-tag" aria-hidden="true">
+      <div class="hero__data-item">LAT 33.3528° N</div>
+      <div class="hero__data-item">LON 111.7890° W</div>
+      <div class="hero__data-item">AI STATUS · ONLINE</div>
+    </div>
     <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
@@ -64,6 +71,10 @@
     <div class="hero__grid-overlay" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
+        <div class="hero__terminal" aria-hidden="true">
+          <span>&gt; AI ONLINE · 3 SERVICES DEPLOYED</span>
+          <span class="hero__terminal-cursor"></span>
+        </div>
         <div class="hero__badge">
           <span class="hero__badge-dot" aria-hidden="true"></span>
           AI-Powered Business Growth · Gilbert, AZ
@@ -604,5 +615,32 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <script>
+    // Stat counter animation
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const isDecimal = target % 1 !== 0;
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = target * ease;
+        el.textContent = (isDecimal ? val.toFixed(1) : Math.round(val)) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    // Trigger when stats come into view
+    const counters = document.querySelectorAll('.js-counter');
+    if (counters.length) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); obs.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach(c => obs.observe(c));
+    }
+  </script>
 </body>
 </html>
