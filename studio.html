@@ -1473,18 +1473,26 @@ function selStar(n){reviewStar=n;document.querySelectorAll('.star').forEach((s,i
 function toggleCP(p){cpPlats[p]=!cpPlats[p];document.getElementById('cp-'+p).classList.toggle('active',cpPlats[p])}
 
 // ══ CLAUDE API ══
-async function claude(prompt){
+async function claude(prompt,maxTok=1500){
   if(!apiKey){
     openModal('api-modal');
     toast('⚠️ Add your API key to generate content');
-    throw new Error('No API key — please add your Anthropic API key');
+    throw new Error('No API key — please connect your Anthropic API key');
   }
   const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1024,messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTok,messages:[{role:'user',content:prompt}]})
   });
-  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'API error')}
+  if(!r.ok){
+    const e=await r.json().catch(()=>({}));
+    const msg=e.error?.message||'API error';
+    if(msg.includes('invalid x-api-key')||msg.includes('authentication')){
+      apiKey='';sessionStorage.removeItem('gai_key');setAPI(false);openModal('api-modal');
+      throw new Error('Invalid API key — please reconnect');
+    }
+    throw new Error(msg);
+  }
   return (await r.json()).content[0].text;
 }
 
@@ -1495,7 +1503,7 @@ async function stream(el,text){
   const words=text.split(' ');
   for(let i=0;i<words.length;i++){
     await new Promise(r=>setTimeout(r,14));
-    cur.insertAdjacentText('beforebegin',(i?'  ':'')+words[i].replace(/  /g,' '));
+    cur.insertAdjacentText('beforebegin',(i?' ':'')+words[i]);
   }
   cur.remove();
   // update char count if exists
@@ -1564,6 +1572,7 @@ const stylePrompts={
 };
 async function genImages(){
   const biz=document.getElementById('img-biz').value||'professional business';
+  // Images work without API key (Pollinations is free) but AI prompt needs key
   const detail=document.getElementById('img-detail').value;
   const style=stylePrompts[imgStyle];
   setLoading('img-btn',true);
@@ -1601,7 +1610,11 @@ async function genImages(){
     };
     imgEl.onerror=()=>{
       const placeholder=document.getElementById('img-load-'+i);
-      if(placeholder){placeholder.textContent='⚠️';placeholder.style.fontSize='14px';placeholder.style.color='var(--text3)';placeholder.style.flexDirection='column';placeholder.style.gap='4px';placeholder.innerHTML='<span style="font-size:20px">⚠️</span><span style="font-size:10px;color:var(--text3)">Retry</span>';placeholder.style.cursor='pointer';placeholder.onclick=()=>{placeholder.textContent='🎨';placeholder.style.cursor='default';imgEl.src=src+'&t='+Date.now()}}
+      if(placeholder){
+        placeholder.innerHTML='<div style="text-align:center"><div style="font-size:24px;margin-bottom:8px">⚠️</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">Image failed to load</div><button class="btn-sm" style="font-size:11px" onclick="this.parentElement.parentElement.innerHTML=\'🎨\';this.parentElement.parentElement.style.cursor=\'default\';document.querySelector(\'.img-loading\')&&(document.querySelector(\'.img-loading\').textContent=\'🎨\')">↺ Retry</button></div>';
+        placeholder.style.cursor='default';
+        placeholder.querySelector('button').onclick=()=>{placeholder.innerHTML='🎨';imgEl.src=src+'&t='+Date.now();imgEl.onload();};
+      }
     };
     imgEl.src=src;
   }
@@ -1712,7 +1725,7 @@ VARIATION 5:
   document.getElementById('vd-analysis').innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:20px">🔥 Decoding viral formula...</div>';
   document.getElementById('vd-variations').innerHTML='';
   try{
-    const t=await claude(prompt);
+    const t=await claude(prompt,2000);
     // Parse score
     const scoreMatch=t.match(/VIRAL SCORE:\s*(\d+)/);
     const score=scoreMatch?scoreMatch[1]:'—';
@@ -1779,7 +1792,7 @@ Go through all 30 days. Be specific to ${niche} and ${biz}.`;
   document.getElementById('cb-title').textContent=`30-Day Campaign — ${biz}`;
   const out=document.getElementById('cb-output');out.textContent='Building your campaign...';
   try{
-    const t=await claude(prompt);
+    const t=await claude(prompt,3000);
     out.textContent='';
     await stream(out,t);
   }catch(e){out.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
@@ -1822,7 +1835,7 @@ Make the sequence: opener that doesn't pitch → value/curiosity → soft proof 
   const out=document.getElementById('dm-output');out.innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:30px">💌 Writing your sequence...</div>';
   dmMessages=[];
   try{
-    const t=await claude(prompt);
+    const t=await claude(prompt,2000);
     const msgs=[...t.matchAll(/MESSAGE (\d+)\nTIMING: ([^\n]+)\nINTENT: ([^\n]+)\n---\n([\s\S]*?)(?=MESSAGE \d+|$)/g)];
     out.innerHTML='';
     if(msgs.length){
@@ -2071,7 +2084,7 @@ Be specific to "${biz}" and the ${niche} industry. Use real numbers. No fluff.`;
   document.getElementById('gs-result').style.display='block';
   document.getElementById('gs-out-label').textContent=gsTL+'-Day Growth Strategy for '+biz;
   const box=document.getElementById('gs-box');box.innerHTML='';
-  try{const t=await claude(prompt);lastGS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,2500);lastGS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('gs-btn',false);
 }
 async function tweakGS(instr){
@@ -2135,6 +2148,7 @@ document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{
 
 /* ══ HOOK FACTORY ══ */
 async function genHooks(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-hook .gen-btn');
   const topic=document.getElementById('hook-topic').value.trim();
   const goal=document.getElementById('hook-goal').value;
@@ -2173,6 +2187,7 @@ Make hooks specific, punchy, under 15 words each. Score each on viral potential 
 
 /* ══ BRAND DNA ══ */
 async function genDNA(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-dna .gen-btn');
   const biz=document.getElementById('dna-biz').value.trim();
   const customer=document.getElementById('dna-customer').value.trim();
@@ -2219,6 +2234,7 @@ IDEAL POSTING STYLE: (brief description of visual and copy style)`);
 
 /* ══ STORY BUILDER ══ */
 async function genStory(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-story .gen-btn');
   const topic=document.getElementById('story-topic').value.trim();
   const biz=document.getElementById('story-biz').value.trim();
@@ -2262,6 +2278,7 @@ Make each slide punchy, visual, and scroll-stopping.`);
 
 /* ══ MULTI-PLATFORM BLAST ══ */
 async function genBlast(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-blast .gen-btn');
   const input=document.getElementById('blast-input').value.trim();
   const biz=document.getElementById('blast-biz').value.trim();
@@ -2305,6 +2322,7 @@ FACEBOOK:
 
 /* ══ COMPETITOR INTEL ══ */
 async function genIntel(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-intel .gen-btn');
   const you=document.getElementById('intel-you').value.trim();
   const comp=document.getElementById('intel-comp').value.trim();
@@ -2339,6 +2357,7 @@ Be specific, tactical, and brutally honest.`);
 
 /* ══ BIO OPTIMIZER ══ */
 async function genBio(){
+  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-bio .gen-btn');
   const input=document.getElementById('bio-input').value.trim();
   const platform=document.querySelector('#bio-plat-pills .pill.active')?.textContent||'Instagram';
