@@ -8,9 +8,50 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/" />
+  <meta property="og:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
+  <meta property="og:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses. Based in Gilbert, AZ." />
+  <meta property="og:image" content="https://greenaidigital.com/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
+  <meta name="twitter:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses." />
+  <meta name="twitter:image" content="https://greenaidigital.com/logo.png" />
+
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GreenAI Solutions Team",
+    "image": "https://greenaidigital.com/logo.png",
+    "url": "https://greenaidigital.com",
+    "telephone": "+1-480-798-0753",
+    "email": "jaden@greenaidigital.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gilbert",
+      "addressRegion": "AZ",
+      "postalCode": "85296",
+      "addressCountry": "US"
+    },
+    "founder": { "@type": "Person", "name": "Jaden Green" },
+    "areaServed": "United States",
+    "sameAs": ["https://instagram.com/GreenAI_solutions"]
+  }
+  </script>
 </head>
 <body>
+  <a href="#hero-heading" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -56,66 +97,113 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section class="hero" aria-labelledby="hero-heading">
+  <section class="hero hero--split" aria-labelledby="hero-heading">
     <div class="hero__scan" aria-hidden="true"></div>
     <div class="hero__grain" aria-hidden="true"></div>
-    <div class="hero__data-tag" aria-hidden="true">
-      <div class="hero__data-item">LAT 33.3528° N</div>
-      <div class="hero__data-item">LON 111.7890° W</div>
-      <div class="hero__data-item">AI STATUS · ONLINE</div>
-    </div>
     <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
     <div class="hero__bg-pattern" aria-hidden="true"></div>
     <div class="hero__grid-overlay" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero__content">
-        <div class="hero__terminal" aria-hidden="true">
-          <span>&gt; AI ONLINE · 3 SERVICES DEPLOYED</span>
-          <span class="hero__terminal-cursor"></span>
-        </div>
-        <div class="hero__badge">
-          <span class="hero__badge-dot" aria-hidden="true"></span>
-          AI-Powered Business Growth · Gilbert, AZ
-        </div>
-
-        <h1 id="hero-heading">
-          Your Business.<br/>
-          <span>Amplified</span> by AI.
-        </h1>
-
-        <p class="hero__sub">
-          GreenAI Solutions Team helps Arizona businesses dominate with AI-powered consulting, social media that actually converts, and trusted professional services — all from one dedicated partner.
-        </p>
-
-        <div class="hero__actions">
-          <a href="contact.html" class="btn btn-white btn-lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Book a Strategy Call
-          </a>
-          <a href="services.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.9)">
-            Explore Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-
-        <div class="hero__stats" aria-label="Key statistics">
-          <div class="hero__stat">
-            <div class="hero__stat-num">
-              <span class="js-counter" data-target="3" data-suffix="x">3x</span>
-            </div>
-            <div class="hero__stat-label">More leads from social media</div>
+      <div class="hero__split">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            AI-Powered Business Growth · Gilbert, AZ
           </div>
-          <div class="hero__stat">
-            <div class="hero__stat-num">
-              <span class="js-counter" data-target="18" data-suffix="hrs">18hrs</span>
-            </div>
-            <div class="hero__stat-label">Saved per client per week</div>
+
+          <h1 id="hero-heading">
+            Your Business.<br/>
+            <span>Amplified</span> by AI.
+          </h1>
+
+          <p class="hero__sub">
+            We help Arizona businesses grow with AI-powered consulting, social media that actually converts, and custom-built websites — all from one dedicated partner who answers the phone.
+          </p>
+
+          <div class="hero__actions">
+            <a href="contact.html" class="btn btn-white btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Book a Free Strategy Call
+            </a>
+            <a href="services.html" class="btn btn-lg hero__btn-ghost">
+              Explore Services
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
-          <div class="hero__stat">
-            <div class="hero__stat-num">Gilbert</div>
-            <div class="hero__stat-label">AZ based, serving nationwide</div>
+
+          <div class="hero__trust" aria-label="Trust signals">
+            <div class="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Google &amp; Meta certified
+            </div>
+            <div class="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              No long-term contracts
+            </div>
+            <div class="hero__trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Free 30-min consult
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side visual: dashboard mockup -->
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__visual-glow"></div>
+          <div class="hero__visual-card hero__visual-card--main">
+            <div class="hero__visual-header">
+              <div class="hero__visual-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="hero__visual-label">GreenAI Dashboard</div>
+            </div>
+            <div class="hero__visual-row">
+              <div class="hero__visual-metric">
+                <div class="hero__visual-metric-label">New leads · 7d</div>
+                <div class="hero__visual-metric-value">+247 <span class="hero__visual-trend">↗</span></div>
+              </div>
+              <div class="hero__visual-metric">
+                <div class="hero__visual-metric-label">Avg response</div>
+                <div class="hero__visual-metric-value">3m 12s</div>
+              </div>
+            </div>
+            <div class="hero__visual-chart">
+              <svg viewBox="0 0 300 80" preserveAspectRatio="none" width="100%" height="80">
+                <defs>
+                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4caf6e" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#4caf6e" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,60 C30,55 50,40 80,42 C110,44 130,25 160,28 C190,31 210,18 240,12 C270,8 290,5 300,3 L300,80 L0,80 Z" fill="url(#chartGrad)"/>
+                <path d="M0,60 C30,55 50,40 80,42 C110,44 130,25 160,28 C190,31 210,18 240,12 C270,8 290,5 300,3" fill="none" stroke="#4caf6e" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="hero__visual-list">
+              <div class="hero__visual-list-item">
+                <span class="hero__visual-status hero__visual-status--green"></span>
+                <span>AI follow-up sent to 12 new leads</span>
+              </div>
+              <div class="hero__visual-list-item">
+                <span class="hero__visual-status hero__visual-status--green"></span>
+                <span>Instagram post scheduled · 8:00 AM</span>
+              </div>
+              <div class="hero__visual-list-item">
+                <span class="hero__visual-status hero__visual-status--gold"></span>
+                <span>3 new strategy calls booked</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero__visual-card hero__visual-card--floater">
+            <div class="hero__floater-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a5c2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <div class="hero__floater-title">Lead replied in 2 min</div>
+              <div class="hero__floater-sub">AI auto-response · just now</div>
+            </div>
           </div>
         </div>
       </div>
@@ -155,18 +243,18 @@
       <!-- Stats row -->
       <div style="display:flex;justify-content:center;gap:3rem;margin-top:3rem;flex-wrap:wrap;">
         <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:Georgia,serif;">AI-Powered</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">Strategy</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:'Playfair Display',Georgia,serif;">AI-Powered</div>
+          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">Strategy</div>
         </div>
         <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
         <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:Georgia,serif;">Gilbert, AZ</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">Based &amp; Built Here</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:'Playfair Display',Georgia,serif;">Gilbert, AZ</div>
+          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">Based &amp; Built Here</div>
         </div>
         <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
         <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#D4AF37;font-family:Georgia,serif;">Results First</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8d;margin-top:.25rem;">No Long Contracts</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#b8941f;font-family:'Playfair Display',Georgia,serif;">Results First</div>
+          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">No Long Contracts</div>
         </div>
       </div>
     </div>
@@ -533,9 +621,9 @@
   <!-- ===== CTA BAND ===== -->
   <section class="cta-band" aria-labelledby="cta-heading">
     <div class="container">
-      <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.5rem">
+      <div class="cta-band__scarcity" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.5rem">
         <span style="width:8px;height:8px;background:#ff4444;border-radius:50%;animation:pulse 2s infinite"></span>
-        Only 3 new client spots open this month
+        <span>Only <span class="js-spots">3</span> new client spots open <span class="js-current-month">this month</span></span>
       </div>
       <h2 id="cta-heading">Ready to Stop Blending In?</h2>
       <p>Arizona businesses that act now will be miles ahead of competitors still posting manually and losing leads to slow follow-up. Claim your strategy call before the month fills up.</p>
@@ -614,8 +702,14 @@
         </div>
       </div>
 
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+
       <div class="footer__bottom">
-        <span>&copy; 2026 Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
         <span class="footer__bottom-right">Built with AI. Powered by results.</span>
       </div>
     </div>
@@ -648,6 +742,21 @@
       }, { threshold: 0.6 });
       counters.forEach(c => obs.observe(c));
     }
+
+    // Dynamic 'this month' label so the scarcity badge never goes stale
+    (function(){
+      const monthEl = document.querySelector('.js-current-month');
+      if (!monthEl) return;
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const now = new Date();
+      monthEl.textContent = 'in ' + months[now.getMonth()];
+    })();
+
+    // Auto-update copyright year
+    (function(){
+      const yearEl = document.querySelector('.js-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
