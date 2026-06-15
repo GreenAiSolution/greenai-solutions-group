@@ -442,6 +442,38 @@ textarea.fi{resize:vertical;line-height:1.65}
 .cursor{display:inline-block;width:2px;height:1em;background:var(--gx);margin-left:2px;vertical-align:text-bottom;animation:blink .8s step-end infinite}
 @keyframes blink{50%{opacity:0}}
 
+
+/* ── Sidebar search ── */
+.sidebar-search{padding:0 10px 10px;position:relative}
+.sidebar-search input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px 10px 7px 30px;font-size:11px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box}
+.sidebar-search input:focus{border-color:var(--gx)}
+.sidebar-search input::placeholder{color:var(--text3)}
+.sidebar-search::before{content:'🔍';position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none}
+.section-count{font-size:9px;background:rgba(61,158,92,.15);color:var(--gx);border-radius:99px;padding:1px 6px;font-weight:700}
+.nav-item{position:relative;overflow:hidden}
+.nav-hot{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(251,146,60,.12))!important;border:1px solid rgba(239,68,68,.18)!important;border-radius:8px!important}
+.nav-badge-pro{display:inline-flex;align-items:center;padding:1px 6px;border-radius:99px;font-size:9px;font-weight:700;background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(212,175,55,.1));color:#d4af37;border:1px solid rgba(212,175,55,.3);margin-left:auto}
+.reel-sections{display:flex;flex-direction:column;gap:12px}
+.reel-section{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative}
+.reel-section-label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.reel-text{font-size:13px;color:var(--text);line-height:1.6;white-space:pre-wrap}
+.caption-formula{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.formula-tag{padding:4px 10px;border-radius:99px;font-size:10px;font-weight:700;border:1px solid rgba(61,158,92,.3);color:var(--gx);background:rgba(61,158,92,.08);cursor:pointer;transition:all .15s}
+.formula-tag.active{background:var(--gx);color:#fff;border-color:var(--gx)}
+.caption-output-section{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.caption-output-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.caption-section-title{font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.repurpose-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.repurpose-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative}
+.repurpose-card:hover{border-color:var(--gx);background:rgba(61,158,92,.04)}
+.repurpose-platform{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gx);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.repurpose-text{font-size:12px;color:var(--text2);line-height:1.6}
+.repurpose-copy-btn{position:absolute;top:8px;right:8px;font-size:9px;padding:2px 7px}
+.seo-meta-preview{background:#1e1e2e;border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.seo-meta-url{font-size:11px;color:#4ade80;margin-bottom:4px}
+.seo-meta-title{font-size:14px;color:#60a5fa;font-weight:600;margin-bottom:4px;line-height:1.3}
+.seo-meta-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -544,26 +576,36 @@ textarea.fi{resize:vertical;line-height:1.65}
   <div class="layout">
     <!-- SIDEBAR -->
     <div class="sidebar">
-      <div class="sidebar-section">AI Tools</div>
+      <div class="sidebar-search"><input type="text" placeholder="Search tools..." oninput="filterTools(this.value)" id="tool-search"/></div>
+      <div class="sidebar-section">AI Tools <span class="section-count">5</span></div>
       <div class="nav-item active" id="nav-studio" onclick="switchPanel('studio')"><span class="nav-icon">✍️</span>Content Studio<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-lead" onclick="switchPanel('lead')"><span class="nav-icon">⚡</span>Lead Follow-Up<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-image" onclick="switchPanel('image')"><span class="nav-icon">🎨</span>Image Creator<span class="nav-badge">NEW</span></div>
       <div class="nav-item" id="nav-hashtag" onclick="switchPanel('hashtag')"><span class="nav-icon">#️⃣</span>Hashtag Lab<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-review" onclick="switchPanel('review')"><span class="nav-icon">⭐</span>Review Manager<span class="nav-badge">AI</span></div>
-      <div class="sidebar-section">Premium Tools</div>
+      <div class="sidebar-section">Premium Tools <span class="section-count">6</span></div>
       <div class="nav-item" id="nav-viral" onclick="switchPanel('viral')"><span class="nav-icon">🔥</span>Viral Decoder<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
       <div class="nav-item" id="nav-campaign" onclick="switchPanel('campaign')"><span class="nav-icon">📅</span>Campaign Builder<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
       <div class="nav-item" id="nav-dm" onclick="switchPanel('dm')"><span class="nav-icon">💌</span>DM Sequence<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">NEW</span></div>
       <div class="nav-item" id="nav-adcopy" onclick="switchPanel('adcopy')"><span class="nav-icon">🚀</span>Ad Copy Engine<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-email" onclick="switchPanel('email')"><span class="nav-icon">📧</span>Email Campaigns<span class="nav-badge">AI</span></div>
       <div class="nav-item" id="nav-strategy" onclick="switchPanel('strategy')"><span class="nav-icon">📊</span>Growth Strategist<span class="nav-badge">AI</span></div>
-      <div class="sidebar-section">Power Tools</div>
+      <div class="sidebar-section">Power Tools <span class="section-count">6</span></div>
       <div class="nav-item" id="nav-hook" onclick="switchPanel('hook')"><span class="nav-icon">🎯</span>Hook Factory<span class="nav-badge" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)">HOT</span></div>
       <div class="nav-item" id="nav-dna" onclick="switchPanel('dna')"><span class="nav-icon">🧬</span>Brand DNA</div>
       <div class="nav-item" id="nav-story" onclick="switchPanel('story')"><span class="nav-icon">📱</span>Story Builder</div>
       <div class="nav-item" id="nav-blast" onclick="switchPanel('blast')"><span class="nav-icon">🚀</span>Multi-Platform<span class="nav-badge">NEW</span></div>
       <div class="nav-item" id="nav-intel" onclick="switchPanel('intel')"><span class="nav-icon">🔍</span>Competitor Intel</div>
       <div class="nav-item" id="nav-bio" onclick="switchPanel('bio')"><span class="nav-icon">✨</span>Bio Optimizer</div>
+      <div class="sidebar-section">Elite Tools <span class="section-count">8</span></div>
+      <div class="nav-item nav-hot" id="nav-reel" onclick="switchPanel('reel')"><span class="nav-icon">🎬</span>Reel Script Writer<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-caption" onclick="switchPanel('caption')"><span class="nav-icon">✏️</span>Caption Lab<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-repurpose" onclick="switchPanel('repurpose')"><span class="nav-icon">♻️</span>Repurpose Engine<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-sales" onclick="switchPanel('sales')"><span class="nav-icon">📞</span>Sales Script<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-testimonial" onclick="switchPanel('testimonial')"><span class="nav-icon">🌟</span>Testimonial Pro<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-offer" onclick="switchPanel('offer')"><span class="nav-icon">💰</span>Offer Builder<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-seo" onclick="switchPanel('seo')"><span class="nav-icon">🔎</span>SEO Content<span class="nav-badge-pro">PRO</span></div>
+      <div class="nav-item" id="nav-insight" onclick="switchPanel('insight')"><span class="nav-icon">📊</span>Insight Engine<span class="nav-badge-pro">PRO</span></div>
       <div class="sidebar-section">Management</div>
       <div class="nav-item" id="nav-clients" onclick="switchPanel('clients')"><span class="nav-icon">👥</span>Client Dashboard</div>
       <div class="sidebar-bottom">
@@ -1401,6 +1443,323 @@ textarea.fi{resize:vertical;line-height:1.65}
         </div>
       </div>
 
+
+      <!-- ══ REEL SCRIPT WRITER ══ -->
+      <div class="panel" id="panel-reel">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">🎬 Reel Script Writer <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Viral Reel & TikTok Scripts</div>
+            <div class="card-sub">AI writes a complete word-for-word video script with hook, b-roll notes, on-screen text, audio suggestions, and CTA — ready to film.</div>
+            <div class="fg"><label class="fl">Business / Niche</label><input class="fi" id="reel-biz" placeholder="e.g. Mobile auto detailing, Scottsdale AZ"/></div>
+            <div class="fg"><label class="fl">Video Topic / Idea</label><input class="fi" id="reel-topic" placeholder="e.g. Ceramic coating transformation on a black Porsche"/></div>
+            <div class="fg"><label class="fl">Reel Type</label>
+              <select class="fi" id="reel-type">
+                <option value="before-after">Before & After Transformation</option>
+                <option value="educational">Educational / How-It-Works</option>
+                <option value="day-in-life">Day in the Life / POV</option>
+                <option value="testimonial">Client Testimonial Story</option>
+                <option value="promo">Promotional / Offer</option>
+                <option value="trend">Trending Audio Adaptation</option>
+                <option value="myth-bust">Myth Buster</option>
+              </select></div>
+            <div class="fg"><label class="fl">Video Length</label>
+              <div class="pill-row" id="reel-len-pills">
+                <button class="pill active" onclick="setPill(this,'reel-len-pills')">15 sec</button>
+                <button class="pill" onclick="setPill(this,'reel-len-pills')">30 sec</button>
+                <button class="pill" onclick="setPill(this,'reel-len-pills')">60 sec</button>
+                <button class="pill" onclick="setPill(this,'reel-len-pills')">90 sec</button>
+              </div></div>
+            <div class="fg"><label class="fl">Vibe</label>
+              <div class="pill-row" id="reel-vibe-pills">
+                <button class="pill active" onclick="setPill(this,'reel-vibe-pills')">High Energy</button>
+                <button class="pill" onclick="setPill(this,'reel-vibe-pills')">Premium & Calm</button>
+                <button class="pill" onclick="setPill(this,'reel-vibe-pills')">Authentic & Raw</button>
+                <button class="pill" onclick="setPill(this,'reel-vibe-pills')">Cinematic</button>
+              </div></div>
+            <button class="gen-btn" onclick="genReel()">
+              <span class="bt">🎬 Write My Reel Script</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your Complete Script</div>
+            <div id="reel-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">🎬</div><p>Your word-for-word reel script<br>with b-roll notes and audio tips.</p></div>
+            <div id="reel-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title" id="reel-title">Reel Script</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('reel-script-out')">Copy Script</button></div>
+              </div>
+              <div id="reel-script-out" class="reel-sections"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ CAPTION LAB ══ -->
+      <div class="panel" id="panel-caption">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">✏️ Caption Lab <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Advanced Caption Writer</div>
+            <div class="card-sub">Generate captions using proven viral formulas — AIDA, PAS, Storytelling, and more. Get 3 variations in different lengths.</div>
+            <div class="fg"><label class="fl">Business Name</label><input class="fi" id="cap-biz" placeholder="e.g. Desert Steam Detail"/></div>
+            <div class="fg"><label class="fl">What's the Post About?</label><textarea class="fi" id="cap-topic" rows="3" placeholder="e.g. Just finished a full paint correction and ceramic coat on a 2024 Lamborghini Urus..."></textarea></div>
+            <div class="fg"><label class="fl">Caption Formula</label>
+              <div class="caption-formula" id="cap-formula">
+                <span class="formula-tag active" onclick="setFormula(this,'AIDA')">AIDA</span>
+                <span class="formula-tag" onclick="setFormula(this,'PAS')">PAS</span>
+                <span class="formula-tag" onclick="setFormula(this,'Storytelling')">Story</span>
+                <span class="formula-tag" onclick="setFormula(this,'Bold Claim')">Bold Claim</span>
+                <span class="formula-tag" onclick="setFormula(this,'Before/After')">Before/After</span>
+                <span class="formula-tag" onclick="setFormula(this,'Social Proof')">Social Proof</span>
+              </div></div>
+            <div class="fg"><label class="fl">Platform</label>
+              <div class="pill-row" id="cap-plat-pills">
+                <button class="pill active" onclick="setPill(this,'cap-plat-pills')">Instagram</button>
+                <button class="pill" onclick="setPill(this,'cap-plat-pills')">TikTok</button>
+                <button class="pill" onclick="setPill(this,'cap-plat-pills')">Facebook</button>
+                <button class="pill" onclick="setPill(this,'cap-plat-pills')">LinkedIn</button>
+              </div></div>
+            <div class="fg"><label class="fl">CTA Style</label>
+              <div class="pill-row" id="cap-cta-pills">
+                <button class="pill active" onclick="setPill(this,'cap-cta-pills')">Book Now</button>
+                <button class="pill" onclick="setPill(this,'cap-cta-pills')">DM Me</button>
+                <button class="pill" onclick="setPill(this,'cap-cta-pills')">Link in Bio</button>
+                <button class="pill" onclick="setPill(this,'cap-cta-pills')">Comment Below</button>
+                <button class="pill" onclick="setPill(this,'cap-cta-pills')">None</button>
+              </div></div>
+            <button class="gen-btn" onclick="genCaption()">
+              <span class="bt">✏️ Write 3 Caption Variations</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">3 Caption Variations</div>
+            <div id="cap-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">✏️</div><p>3 caption variations using proven<br>viral formulas — ready to post.</p></div>
+            <div id="cap-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">Your Captions</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('cap-output')">Copy All</button></div>
+              </div>
+              <div id="cap-output"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ REPURPOSE ENGINE ══ -->
+      <div class="panel" id="panel-repurpose">
+        <div class="card">
+          <div class="card-label">♻️ Repurpose Engine <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+          <div class="card-title">1 Idea → 10 Platform-Ready Formats</div>
+          <div class="card-sub">Paste any content and AI instantly reformats it for Instagram, TikTok, Email, Twitter thread, LinkedIn, SMS, Story, YouTube, Google Business, and Blog intro.</div>
+          <div class="fg"><label class="fl">Original Content (any format)</label><textarea class="fi" id="rep-input" rows="5" placeholder="Paste a blog post, video idea, caption, article, client result — anything. AI repurposes it into 10 formats."></textarea></div>
+          <div class="fg"><label class="fl">Your Business</label><input class="fi" id="rep-biz" placeholder="e.g. Desert Steam Detail — mobile auto detailing"/></div>
+          <button class="gen-btn" onclick="genRepurpose()">
+            <span class="bt">♻️ Repurpose to 10 Formats</span>
+            <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+          </button>
+        </div>
+        <div class="card" id="rep-output-card" style="display:none">
+          <div class="out-header" style="margin-bottom:16px">
+            <div class="out-title">10-Format Content Package</div>
+            <div class="out-actions"><button class="btn-sm" onclick="copyEl('rep-grid')">Copy All</button></div>
+          </div>
+          <div class="repurpose-grid" id="rep-grid"></div>
+        </div>
+      </div>
+
+      <!-- ══ SALES SCRIPT BUILDER ══ -->
+      <div class="panel" id="panel-sales">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">📞 Sales Script Builder <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Phone & In-Person Close Scripts</div>
+            <div class="card-sub">AI writes a complete word-for-word sales script with opening, discovery questions, pitch, objection handlers, and trial closes.</div>
+            <div class="fg"><label class="fl">Your Business & Service</label><input class="fi" id="sales-biz" placeholder="e.g. Desert Steam Detail — ceramic coatings & full details"/></div>
+            <div class="fg"><label class="fl">Your Main Offer / Price</label><input class="fi" id="sales-offer" placeholder="e.g. Full detail + ceramic coating — $800"/></div>
+            <div class="fg"><label class="fl">Target Customer</label><input class="fi" id="sales-target" placeholder="e.g. Luxury car owners, auto enthusiasts in Scottsdale"/></div>
+            <div class="fg"><label class="fl">Script Type</label>
+              <select class="fi" id="sales-type">
+                <option value="inbound call">Inbound Call (they called you)</option>
+                <option value="outbound cold call">Cold Call / Outreach</option>
+                <option value="in-person consultation">In-Person Consultation</option>
+                <option value="follow-up call">Follow-Up Call</option>
+                <option value="price objection">Price Objection Handler</option>
+                <option value="upsell">Upsell Script (existing client)</option>
+              </select></div>
+            <div class="fg"><label class="fl">Top Objections You Hear</label><textarea class="fi" id="sales-objections" rows="2" placeholder='e.g. "Too expensive", "I need to think about it", "I can get it cheaper elsewhere"'></textarea></div>
+            <button class="gen-btn" onclick="genSales()">
+              <span class="bt">📞 Build My Sales Script</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your Sales Script</div>
+            <div id="sales-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">📞</div><p>Your word-for-word script with<br>objection handlers and closes.</p></div>
+            <div id="sales-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">Sales Script — Ready to Use</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('sales-output')">Copy Script</button></div>
+              </div>
+              <div id="sales-output" class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;line-height:1.8;min-height:300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TESTIMONIAL PRO ══ -->
+      <div class="panel" id="panel-testimonial">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">🌟 Testimonial Pro <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Raw Review → Elite Social Proof</div>
+            <div class="card-sub">Paste a raw client review and AI transforms it into a polished testimonial, social post, video script, ad copy, and owner response.</div>
+            <div class="fg"><label class="fl">Paste Raw Review / Feedback</label><textarea class="fi" id="test-raw" rows="4" placeholder='e.g. "Jaden did an amazing job on my truck. Way better than I expected. Will definitely be back."'></textarea></div>
+            <div class="fg"><label class="fl">Your Business</label><input class="fi" id="test-biz" placeholder="e.g. Desert Steam Detail"/></div>
+            <div class="fg"><label class="fl">Service Performed</label><input class="fi" id="test-service" placeholder="e.g. Full detail + ceramic coating on a 2024 F-150"/></div>
+            <div class="fg"><label class="fl">Client Name (optional)</label><input class="fi" id="test-name" placeholder="e.g. Marcus T. — or leave blank"/></div>
+            <button class="gen-btn" onclick="genTestimonial()">
+              <span class="bt">🌟 Amplify This Testimonial</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Amplified Testimonial Package</div>
+            <div id="test-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">🌟</div><p>AI transforms raw feedback into<br>5 polished social proof formats.</p></div>
+            <div id="test-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">Your Testimonial Package</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('test-output')">Copy All</button></div>
+              </div>
+              <div id="test-output" class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;line-height:1.8;min-height:200px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ OFFER BUILDER ══ -->
+      <div class="panel" id="panel-offer">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">💰 Offer Builder <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Irresistible Offer Creator</div>
+            <div class="card-sub">Using proven pricing psychology, AI builds an irresistible offer with value stacks, bonuses, urgency triggers, and guarantee language.</div>
+            <div class="fg"><label class="fl">Your Core Service</label><input class="fi" id="offer-service" placeholder="e.g. Full auto detail + ceramic coating"/></div>
+            <div class="fg"><label class="fl">Your Price</label><input class="fi" id="offer-price" placeholder="e.g. $800"/></div>
+            <div class="fg"><label class="fl">Competitor Price Range</label><input class="fi" id="offer-comp" placeholder="e.g. Other shops charge $1,200-$2,000"/></div>
+            <div class="fg"><label class="fl">Target Customer</label><input class="fi" id="offer-target" placeholder="e.g. Luxury car owners, car enthusiasts"/></div>
+            <div class="fg"><label class="fl">Add-Ons / Bonuses Available</label><textarea class="fi" id="offer-addons" rows="2" placeholder="e.g. Free interior wipe-down, free spray wax, 30-day touch-up guarantee"></textarea></div>
+            <div class="fg"><label class="fl">Offer Goal</label>
+              <select class="fi" id="offer-goal">
+                <option>Launch a new service</option>
+                <option>Fill a slow period / promo</option>
+                <option>Beat a competitor</option>
+                <option>Upsell existing clients</option>
+                <option>Premium positioning</option>
+              </select></div>
+            <button class="gen-btn" onclick="genOffer()">
+              <span class="bt">💰 Build My Irresistible Offer</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your Offer Package</div>
+            <div id="offer-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">💰</div><p>Your complete offer with value stack,<br>guarantee, and urgency copy.</p></div>
+            <div id="offer-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">Irresistible Offer Package</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('offer-output')">Copy All</button></div>
+              </div>
+              <div id="offer-output" class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;line-height:1.8;min-height:250px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SEO CONTENT WRITER ══ -->
+      <div class="panel" id="panel-seo">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">🔎 SEO Content Writer <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Rank-Ready Content Generator</div>
+            <div class="card-sub">AI writes fully SEO-optimized content — blog posts, location pages, service descriptions, and Google Business posts — with meta title, description, and headers.</div>
+            <div class="fg"><label class="fl">Business Name & Location</label><input class="fi" id="seo-biz" placeholder="e.g. Desert Steam Detail — Scottsdale, AZ"/></div>
+            <div class="fg"><label class="fl">Target Keyword or Topic</label><input class="fi" id="seo-keyword" placeholder='e.g. "mobile auto detailing Scottsdale AZ"'/></div>
+            <div class="fg"><label class="fl">Content Type</label>
+              <select class="fi" id="seo-type">
+                <option value="blog post">Blog Post (700-900 words)</option>
+                <option value="location page">Location / Service Area Page</option>
+                <option value="service description">Service Description</option>
+                <option value="google business post">Google Business Post</option>
+                <option value="faq page">FAQ Page</option>
+                <option value="about page">About Page</option>
+              </select></div>
+            <div class="fg"><label class="fl">Services / Key Info to Highlight</label><textarea class="fi" id="seo-services" rows="2" placeholder="e.g. Mobile detailing, ceramic coating, paint correction, serves all of Scottsdale, Paradise Valley, Tempe"></textarea></div>
+            <button class="gen-btn" onclick="genSEO()">
+              <span class="bt">🔎 Generate SEO Content</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">SEO Content Output</div>
+            <div id="seo-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">🔎</div><p>Rank-ready content with meta tags,<br>keywords, and headers included.</p></div>
+            <div id="seo-result" style="display:none">
+              <div id="seo-meta-box" style="margin-bottom:12px"></div>
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title" id="seo-content-title">SEO Content</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('seo-output')">Copy Content</button></div>
+              </div>
+              <div id="seo-output" class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;line-height:1.8;min-height:300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ INSIGHT ENGINE ══ -->
+      <div class="panel" id="panel-insight">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">📊 Insight Engine <span class="nav-badge-pro" style="font-size:9px">PRO</span></div>
+            <div class="card-title">Analytics → Actionable Strategy</div>
+            <div class="card-sub">Paste your social media or ad analytics and AI interprets what's working, what's failing, and gives you a clear 30-day action plan — no guessing.</div>
+            <div class="fg"><label class="fl">Your Analytics Data</label><textarea class="fi" id="insight-data" rows="6" placeholder="Paste your stats here — any format works:&#10;&#10;Instagram: 847 followers, avg 42 likes, 3.2% engagement, best post 215 likes (ceramic coating video), stories avg 89 views, 2 DMs this month...&#10;&#10;Or paste from Facebook Insights, TikTok Analytics, Google Ads, etc."></textarea></div>
+            <div class="fg"><label class="fl">Your Business Goal</label>
+              <select class="fi" id="insight-goal">
+                <option>Get more leads / bookings</option>
+                <option>Grow followers faster</option>
+                <option>Increase engagement</option>
+                <option>Improve ad performance</option>
+                <option>Understand what content works</option>
+              </select></div>
+            <div class="fg"><label class="fl">Platform</label>
+              <div class="pill-row" id="insight-plat-pills">
+                <button class="pill active" onclick="setPill(this,'insight-plat-pills')">Instagram</button>
+                <button class="pill" onclick="setPill(this,'insight-plat-pills')">TikTok</button>
+                <button class="pill" onclick="setPill(this,'insight-plat-pills')">Facebook</button>
+                <button class="pill" onclick="setPill(this,'insight-plat-pills')">Google Ads</button>
+                <button class="pill" onclick="setPill(this,'insight-plat-pills')">Mixed</button>
+              </div></div>
+            <button class="gen-btn" onclick="genInsight()">
+              <span class="bt">📊 Analyze & Get Action Plan</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-label">Your Insight Report</div>
+            <div id="insight-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">📊</div><p>AI turns your raw numbers into<br>a clear 30-day action plan.</p></div>
+            <div id="insight-result" style="display:none">
+              <div class="out-header" style="margin-bottom:12px">
+                <div class="out-title">Analytics Insight Report</div>
+                <div class="out-actions"><button class="btn-sm" onclick="copyEl('insight-output')">Copy Report</button></div>
+              </div>
+              <div id="insight-output" class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:13px;line-height:1.8;min-height:300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /main -->
   </div><!-- /layout -->
 </div><!-- /app -->
@@ -1448,7 +1807,7 @@ function setPill(el, groupId){
 
 // ══ NAV ══
 function switchPanel(p){
-  ['studio','lead','image','hashtag','review','viral','campaign','dm','adcopy','email','strategy','clients','hook','dna','story','blast','intel','bio'].forEach(x=>{
+  ['studio','lead','image','hashtag','review','viral','campaign','dm','adcopy','email','strategy','clients','hook','dna','story','blast','intel','bio','reel','caption','repurpose','sales','testimonial','offer','seo','insight'].forEach(x=>{
     const panel=document.getElementById('panel-'+x);
     const nav=document.getElementById('nav-'+x);
     if(panel)panel.classList.toggle('active',x===p);
@@ -2391,6 +2750,459 @@ Keep each under the character limit. Include relevant emojis. End each with a cl
     await stream(el,res);
     document.getElementById('bio-output-card').style.display='block';
   }catch(e){alert('Error: '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+let capFormula='AIDA';
+function setFormula(el,f){capFormula=f;document.querySelectorAll('#cap-formula .formula-tag').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+
+/* ══ TOOL SEARCH FILTER ══ */
+function filterTools(q){
+  const term=q.toLowerCase().trim();
+  document.querySelectorAll('.nav-item').forEach(el=>{
+    const text=el.textContent.toLowerCase();
+    el.style.display=(!term||text.includes(term))?'':'none';
+  });
+  document.querySelectorAll('.sidebar-section').forEach(sec=>{
+    sec.style.display=term?'none':'';
+  });
+}
+
+/* ══ REEL SCRIPT WRITER ══ */
+async function genReel(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('reel-biz').value.trim()||'local business';
+  const topic=document.getElementById('reel-topic').value.trim();
+  const type=document.getElementById('reel-type').value;
+  const len=document.querySelector('#reel-len-pills .pill.active')?.textContent||'30 sec';
+  const vibe=document.querySelector('#reel-vibe-pills .pill.active')?.textContent||'High Energy';
+  if(!topic){document.getElementById('reel-topic').focus();return}
+  const btn=document.querySelector('#panel-reel .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are a professional video director and viral content creator. Write a complete, word-for-word Reel/TikTok script.
+
+Business: ${biz}
+Topic: ${topic}
+Type: ${type}
+Length: ${len}
+Vibe/Energy: ${vibe}
+
+Output EXACTLY in this format — nothing else:
+
+HOOK (0-3 sec):
+[Opening line or action the first thing viewer sees/hears]
+
+ON-SCREEN TEXT:
+[Text overlay for hook]
+
+BODY:
+[Word-for-word script for main content]
+
+B-ROLL NOTES:
+[Specific shots to film angles subjects movements]
+
+CTA:
+[Exact words for call to action]
+
+AUDIO SUGGESTION:
+[Type of audio that fits this video]
+
+CAPTION HOOK:
+[First line of the caption that stops the scroll]`,2000);
+
+    const sections=[
+      {label:'🎬 HOOK',key:'HOOK',color:'var(--gx)',timing:'0-3s'},
+      {label:'📺 ON-SCREEN TEXT',key:'ON-SCREEN TEXT',color:'rgba(212,175,55,.9)',timing:''},
+      {label:'🎥 BODY SCRIPT',key:'BODY',color:'var(--text)',timing:len},
+      {label:'🎞️ B-ROLL NOTES',key:'B-ROLL NOTES',color:'rgba(139,92,246,.9)',timing:''},
+      {label:'📣 CTA',key:'CTA',color:'#f87171',timing:'Final 3s'},
+      {label:'🎵 AUDIO SUGGESTION',key:'AUDIO SUGGESTION',color:'rgba(251,146,60,.9)',timing:''},
+      {label:'📝 CAPTION HOOK',key:'CAPTION HOOK',color:'var(--gx)',timing:''},
+    ];
+    const container=document.getElementById('reel-script-out');
+    container.innerHTML='';
+    sections.forEach(s=>{
+      const match=res.match(new RegExp(s.key+'[^\n]*:\n([\s\S]*?)(?=\n[A-Z][A-Z\- ]+:|$)','i'));
+      const text=match?match[1].trim():'';
+      if(!text)return;
+      const div=document.createElement('div');div.className='reel-section';
+      div.innerHTML=`<div class="reel-section-label" style="color:${s.color}">${s.label}${s.timing?`<span style="margin-left:auto;font-size:9px;color:var(--text3)">${s.timing}</span>`:''}</div><div class="reel-text">${text}</div>`;
+      container.appendChild(div);
+    });
+    document.getElementById('reel-result').style.display='block';
+    document.getElementById('reel-empty').style.display='none';
+    document.getElementById('reel-title').textContent='Script: '+topic.substring(0,40);
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ CAPTION LAB ══ */
+async function genCaption(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('cap-biz').value.trim()||'this business';
+  const topic=document.getElementById('cap-topic').value.trim();
+  const formula=capFormula||'AIDA';
+  const platform=document.querySelector('#cap-plat-pills .pill.active')?.textContent||'Instagram';
+  const cta=document.querySelector('#cap-cta-pills .pill.active')?.textContent||'Book Now';
+  if(!topic){document.getElementById('cap-topic').focus();return}
+  const btn=document.querySelector('#panel-caption .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  const formulaDescs={
+    'AIDA':'Attention to Interest to Desire to Action',
+    'PAS':'Problem to Agitate to Solution',
+    'Storytelling':'Hook story to Conflict to Resolution to CTA',
+    'Bold Claim':'Bold statement then Proof then CTA',
+    'Before/After':'The before state then the transformation then the after result',
+    'Social Proof':'Social proof slash results then What made it possible then CTA'
+  };
+  try{
+    const res=await claude(`You are an elite social media copywriter. Write 3 captions for ${platform} using the ${formula} formula (${formulaDescs[formula]||formula}).
+
+Business: ${biz}
+Content: ${topic}
+Formula: ${formula}
+Platform: ${platform}
+CTA: ${cta==='None'?'No CTA needed':cta}
+
+Write 3 distinct variations:
+
+VERSION 1 SHORT:
+[Short punchy version under 150 chars]
+
+VERSION 2 MEDIUM:
+[Medium version 150-300 chars with more context]
+
+VERSION 3 LONG:
+[Long storytelling version 300-500 chars plus 5-8 hashtags]
+
+Use line breaks for readability, relevant emojis, strong hook on line 1.`,2000);
+
+    const versions=['VERSION 1','VERSION 2','VERSION 3'];
+    const labels=['Short — Punchy','Medium — With Context','Long — Full Story'];
+    const container=document.getElementById('cap-output');
+    container.innerHTML='';
+    versions.forEach((v,i)=>{
+      const match=res.match(new RegExp(v+'[^\n]*:\n([\s\S]*?)(?=VERSION \d+|$)','i'));
+      const text=match?match[1].trim():'';
+      if(!text)return;
+      const div=document.createElement('div');div.className='caption-output-section';
+      div.innerHTML=`<div class="caption-section-title">${labels[i]}<button class="btn-sm" style="font-size:10px" onclick="navigator.clipboard.writeText(this.closest('.caption-output-section').querySelector('.editable-out').textContent);toast('✅ Copied!')">Copy</button></div><div class="editable-out" contenteditable="true" style="white-space:pre-wrap;font-size:12px;line-height:1.7">${text}</div>`;
+      container.appendChild(div);
+    });
+    document.getElementById('cap-result').style.display='block';
+    document.getElementById('cap-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ REPURPOSE ENGINE ══ */
+async function genRepurpose(){
+  if(!apiKey){openModal('api-modal');return}
+  const input=document.getElementById('rep-input').value.trim();
+  const biz=document.getElementById('rep-biz').value.trim()||'local business';
+  if(!input){document.getElementById('rep-input').focus();return}
+  const btn=document.querySelector('#panel-repurpose .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are a content repurposing expert. Take this content and reformat it perfectly for 10 different formats.
+
+Business: ${biz}
+Original Content: "${input}"
+
+Output EXACTLY these 10 sections (use exact headers):
+
+INSTAGRAM CAPTION:
+[Hook line plus story plus CTA plus 5 hashtags 200-300 chars]
+
+TIKTOK SCRIPT:
+[Punchy 15-30 sec voiceover script with hook]
+
+EMAIL SUBJECT AND BODY:
+[Subject line on first line then 3-4 sentence email body]
+
+TWITTER THREAD:
+[3-tweet thread each tweet numbered 1/ 2/ 3/]
+
+LINKEDIN POST:
+[Professional 150-250 char insight post]
+
+SMS MESSAGE:
+[Under 160 chars direct and personal]
+
+STORY SLIDES:
+[5 slides worth of text each on a new line starting with Slide X:]
+
+YOUTUBE DESCRIPTION:
+[50-100 word video description with keywords]
+
+GOOGLE BUSINESS POST:
+[150-200 char local business post with CTA]
+
+BLOG INTRO:
+[2-3 sentence blog opening that hooks the reader]`,3000);
+
+    const formats=[
+      {key:'INSTAGRAM CAPTION',icon:'📸',label:'Instagram'},
+      {key:'TIKTOK SCRIPT',icon:'🎵',label:'TikTok'},
+      {key:'EMAIL SUBJECT',icon:'📧',label:'Email'},
+      {key:'TWITTER THREAD',icon:'🐦',label:'Twitter/X Thread'},
+      {key:'LINKEDIN POST',icon:'💼',label:'LinkedIn'},
+      {key:'SMS MESSAGE',icon:'💬',label:'SMS'},
+      {key:'STORY SLIDES',icon:'📱',label:'Story Slides'},
+      {key:'YOUTUBE DESCRIPTION',icon:'▶️',label:'YouTube'},
+      {key:'GOOGLE BUSINESS POST',icon:'📍',label:'Google Business'},
+      {key:'BLOG INTRO',icon:'📝',label:'Blog Intro'},
+    ];
+    const grid=document.getElementById('rep-grid');grid.innerHTML='';
+    formats.forEach(f=>{
+      const match=res.match(new RegExp(f.key+'[^\n]*:\n([\s\S]*?)(?=\n[A-Z][A-Z\/X& ]+:|$)','i'));
+      const text=match?match[1].trim():'Content not generated — regenerate.';
+      const div=document.createElement('div');div.className='repurpose-card';
+      div.innerHTML=`<div class="repurpose-platform">${f.icon} ${f.label}<button class="btn-sm repurpose-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.repurpose-card').querySelector('.repurpose-text').textContent);toast('✅ Copied!')">Copy</button></div><div class="repurpose-text">${text}</div>`;
+      grid.appendChild(div);
+    });
+    document.getElementById('rep-output-card').style.display='block';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ SALES SCRIPT BUILDER ══ */
+async function genSales(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('sales-biz').value.trim()||'my business';
+  const offer=document.getElementById('sales-offer').value.trim()||'my service';
+  const target=document.getElementById('sales-target').value.trim()||'potential customers';
+  const type=document.getElementById('sales-type').value;
+  const objections=document.getElementById('sales-objections').value.trim();
+  const btn=document.querySelector('#panel-sales .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are a world-class sales trainer. Write a complete word-for-word ${type} script.
+
+Business: ${biz}
+Offer: ${offer}
+Target customer: ${target}
+Common objections: ${objections||'price, need to think about it'}
+
+Write a complete script with these clearly labeled sections:
+
+OPENING:
+[Exact opening words warm confident creates rapport]
+
+DISCOVERY QUESTIONS:
+[3-4 questions to understand their pain and needs]
+
+THE PITCH:
+[Core pitch focus on transformation not features]
+
+OBJECTION HANDLERS:
+[Handle each common objection with exact words]
+
+TRIAL CLOSE:
+[Soft close to test readiness]
+
+THE CLOSE:
+[The ask direct confident easy to say yes]
+
+FOLLOW-UP LINE:
+[What to say if they say I need to think about it]
+
+Make it sound natural conversational and human not salesy. Use their psychology.`,2500);
+    const out=document.getElementById('sales-output');
+    out.textContent='';
+    await stream(out,res);
+    document.getElementById('sales-result').style.display='block';
+    document.getElementById('sales-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ TESTIMONIAL PRO ══ */
+async function genTestimonial(){
+  if(!apiKey){openModal('api-modal');return}
+  const raw=document.getElementById('test-raw').value.trim();
+  const biz=document.getElementById('test-biz').value.trim()||'my business';
+  const service=document.getElementById('test-service').value.trim()||'the service';
+  const name=document.getElementById('test-name').value.trim()||'Happy Client';
+  if(!raw){document.getElementById('test-raw').focus();return}
+  const btn=document.querySelector('#panel-testimonial .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are an expert copywriter. Transform this raw client review into 5 polished formats.
+
+Raw review: "${raw}"
+Business: ${biz}
+Service: ${service}
+Client: ${name}
+
+Output exactly these 5 sections:
+
+POLISHED TESTIMONIAL:
+[Clean impactful 2-3 sentence testimonial keep their voice but refine it]
+
+INSTAGRAM POST:
+[Social media post featuring this testimonial as social proof with hashtags]
+
+VIDEO SCRIPT:
+[Word-for-word script if the client were to record a short video testimonial]
+
+AD VERSION:
+[Ultra-short punchy version for use in ads under 50 words outcome-focused]
+
+OWNER RESPONSE:
+[Professional owner response to thank this client publicly for Google or Yelp]`,2000);
+
+    const out=document.getElementById('test-output');
+    out.textContent='';
+    await stream(out,res);
+    document.getElementById('test-result').style.display='block';
+    document.getElementById('test-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ OFFER BUILDER ══ */
+async function genOffer(){
+  if(!apiKey){openModal('api-modal');return}
+  const service=document.getElementById('offer-service').value.trim()||'my service';
+  const price=document.getElementById('offer-price').value.trim()||'competitive pricing';
+  const comp=document.getElementById('offer-comp').value.trim()||'higher than average';
+  const target=document.getElementById('offer-target').value.trim()||'ideal customers';
+  const addons=document.getElementById('offer-addons').value.trim();
+  const goal=document.getElementById('offer-goal').value;
+  const btn=document.querySelector('#panel-offer .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are a direct response copywriter and pricing strategy expert. Build an irresistible offer.
+
+Service: ${service}
+Price: ${price}
+Competitor pricing: ${comp}
+Target customer: ${target}
+Bonuses and add-ons available: ${addons||'standard service'}
+Goal: ${goal}
+
+Build a complete offer package with these sections:
+
+OFFER HEADLINE:
+[Irresistible headline for this offer]
+
+VALUE STACK:
+[List every element of what is included with perceived dollar value next to each]
+
+TOTAL VALUE VS PRICE:
+[Show the math — e.g. Total value $1600 Your price $800 They SAVE $800]
+
+GUARANTEE:
+[Confidence-building guarantee language]
+
+URGENCY:
+[Honest urgency trigger — limited spots time-based seasonal]
+
+SOCIAL MEDIA PROMO POST:
+[Caption to promote this offer on Instagram or Facebook]
+
+SMS VERSION:
+[Under 160 chars to send to past clients]`,2000);
+
+    const out=document.getElementById('offer-output');
+    out.textContent='';
+    await stream(out,res);
+    document.getElementById('offer-result').style.display='block';
+    document.getElementById('offer-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ SEO CONTENT WRITER ══ */
+async function genSEO(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('seo-biz').value.trim()||'local business';
+  const keyword=document.getElementById('seo-keyword').value.trim();
+  const type=document.getElementById('seo-type').value;
+  const services=document.getElementById('seo-services').value.trim();
+  if(!keyword){document.getElementById('seo-keyword').focus();return}
+  const btn=document.querySelector('#panel-seo .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are an expert SEO content writer. Write fully optimized ${type} content.
+
+Business: ${biz}
+Target keyword: "${keyword}"
+Content type: ${type}
+Services and info to include: ${services||'core services'}
+
+Output in this EXACT format:
+
+META TITLE:
+[SEO title tag under 60 chars]
+
+META DESCRIPTION:
+[Meta description under 155 chars that compels clicks]
+
+CONTENT:
+[Full ${type} content with proper H1 H2 headings natural keyword usage and local SEO optimization. Include the target keyword in first paragraph headings and naturally throughout. For blog posts 700-900 words. For location or service pages 400-600 words. End with a strong CTA.]`,3000);
+
+    const metaTitle=res.match(/META TITLE[^:]*:\n([^\n]+)/i)?.[1]?.trim()||keyword;
+    const metaDesc=res.match(/META DESCRIPTION[^:]*:\n([^\n]+)/i)?.[1]?.trim()||'';
+    const contentMatch=res.match(/CONTENT[^:]*:\n([\s\S]+)/i);
+    const content=contentMatch?contentMatch[1].trim():res;
+
+    document.getElementById('seo-meta-box').innerHTML=`<div class="seo-meta-preview"><div class="seo-meta-url">greenaidigital.com</div><div class="seo-meta-title">${metaTitle}</div><div class="seo-meta-desc">${metaDesc}</div></div>`;
+    document.getElementById('seo-content-title').textContent=type.charAt(0).toUpperCase()+type.slice(1)+': '+keyword;
+    const out=document.getElementById('seo-output');
+    out.textContent='';
+    await stream(out,content);
+    document.getElementById('seo-result').style.display='block';
+    document.getElementById('seo-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+/* ══ INSIGHT ENGINE ══ */
+async function genInsight(){
+  if(!apiKey){openModal('api-modal');return}
+  const data=document.getElementById('insight-data').value.trim();
+  const goal=document.getElementById('insight-goal').value;
+  const platform=document.querySelector('#insight-plat-pills .pill.active')?.textContent||'Instagram';
+  if(!data){document.getElementById('insight-data').focus();return}
+  const btn=document.querySelector('#panel-insight .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  try{
+    const res=await claude(`You are a data-driven social media strategist. Analyze these analytics and give a specific action plan.
+
+Platform: ${platform}
+Goal: ${goal}
+Analytics data:
+${data}
+
+Output this exact report:
+
+PERFORMANCE SCORE:
+[X out of 10 — one sentence verdict]
+
+WHAT IS WORKING:
+[2-3 specific things performing well based on the data]
+
+WHAT IS FAILING:
+[2-3 specific weak points in the data]
+
+BIGGEST OPPORTUNITY:
+[The single highest-leverage thing they should do next]
+
+30-DAY ACTION PLAN:
+Week 1: [Specific actions]
+Week 2: [Specific actions]
+Week 3: [Specific actions]
+Week 4: [Specific actions]
+
+CONTENT TO PRIORITIZE:
+[Based on the data what content formats to double down on]
+
+POSTING SCHEDULE:
+[Specific posting frequency recommendation based on their current performance]
+
+Be specific to THEIR numbers — do not be generic.`,2500);
+
+    const out=document.getElementById('insight-output');
+    out.textContent='';
+    await stream(out,res);
+    document.getElementById('insight-result').style.display='block';
+    document.getElementById('insight-empty').style.display='none';
+  }catch(e){toast('⚠️ '+e.message)}
   btn.disabled=false;btn.classList.remove('loading');
 }
 
