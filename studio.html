@@ -1964,8 +1964,8 @@ async function genImages(){
   const detail=document.getElementById('img-detail').value;
   const style=stylePrompts[imgStyle];
   setLoading('img-btn',true);
-  document.getElementById('img-empty').style.display='none';
-  document.getElementById('img-result').style.display='block';
+  const imgEmpty=document.getElementById('img-empty');if(imgEmpty)imgEmpty.style.display='none';
+  const imgResult=document.getElementById('img-result');if(imgResult)imgResult.style.display='block';
   const grid=document.getElementById('img-grid');
   grid.innerHTML='';
   // Generate prompt first with AI, then use Pollinations
@@ -2027,7 +2027,7 @@ async function genImages(){
         }
       });
       const successCount = results.filter(r=>r.status==='fulfilled').length;
-      document.getElementById('img-label').textContent='Gemini · '+successCount+' image'+(successCount!==1?'s':'')+' generated';
+      const lbl=document.getElementById('img-prompt-label');if(lbl)lbl.textContent='Gemini · '+successCount+' image'+(successCount!==1?'s':'')+' generated';
       if(successCount===0){
         const firstErr = results[0]?.reason?.message||'Unknown';
         toast('⚠️ Gemini: '+firstErr);
@@ -2065,7 +2065,7 @@ async function genImages(){
       imgEl.src=src;
     }));
     await Promise.all(loadImgs);
-    document.getElementById('img-label').textContent='Flux · '+imgQty+' image'+(imgQty>1?'s':'')+' generated';
+    const lbl2=document.getElementById('img-prompt-label');if(lbl2)lbl2.textContent='Flux · '+imgQty+' image'+(imgQty>1?'s':'')+' generated';
   }
   setLoading('img-btn',false);
 }
