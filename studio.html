@@ -461,8 +461,8 @@ textarea.fi{resize:vertical;line-height:1.65}
     <div class="auth-sub">The world's most advanced AI platform for social media, lead conversion, and client growth.</div>
     <div class="auth-label">Access Code</div>
     <input class="auth-input" type="password" id="passcode-input" placeholder="••••••••••••" autocomplete="off"/>
-    <div class="auth-error" id="auth-error">Incorrect access code.</div>
-    <button class="auth-btn" onclick="checkPasscode()">Enter Platform →</button>
+    
+    <button class="auth-btn" onclick="enterStudio()" style="font-size:16px;padding:18px;letter-spacing:.03em">Enter GreenAI Studio →</button>
     <div class="auth-badge">Powered by GreenAI Solutions · greenaidigital.com</div>
   </div>
 </div>
@@ -477,7 +477,8 @@ textarea.fi{resize:vertical;line-height:1.65}
     <div class="step-row"><div class="step-num">3</div><div class="step-text">Copy the key (starts with <strong>sk-ant-...</strong>) and paste below.</div></div>
     <div class="secure-note">🔒 Your key is stored only in this browser session — never saved, never sent to GreenAI's servers, clears on tab close.</div>
     <div class="fg"><div class="fl">API Key</div><input type="password" class="mi" id="api-key-input" placeholder="sk-ant-..."/></div>
-    <button class="modal-btn" onclick="saveApiKey()">Activate AI Features →</button>
+    <button class="modal-btn" onclick="saveApiKey()" style="background:linear-gradient(135deg,#1a4a25,#3d9e5c)">✅ Activate AI Features →</button>
+    <button onclick="closeModal('api-modal')" style="width:100%;padding:10px;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:var(--r);font-size:13px;color:rgba(255,255,255,.4);cursor:pointer;font-family:'Inter',sans-serif;margin-top:8px">Skip for now (demo mode)</button>
   </div>
 </div>
 
@@ -1413,20 +1414,13 @@ let lastS='',lastL='',lastR='';
 let allHashtags=[];
 
 // ══ AUTH ══
-function checkPasscode(){
-  if(document.getElementById('passcode-input').value===PASS){
-    document.getElementById('auth-screen').style.display='none';
-    document.getElementById('app').style.display='flex';
-    // show DS logo
-    document.getElementById('tb-ds-logo').style.display='block';
-    document.getElementById('sidebar-ds-logo').style.display='block';
-    if(!apiKey)setTimeout(()=>openModal('api-modal'),700);else setAPI(true);
-  }else{
-    document.getElementById('auth-error').style.display='block';
-    document.getElementById('passcode-input').value='';
-  }
+function enterStudio(){
+  document.getElementById('auth-screen').style.display='none';
+  document.getElementById('app').style.display='flex';
+  try{document.getElementById('tb-ds-logo').style.display='block';}catch(e){}
+  try{document.getElementById('sidebar-ds-logo').style.display='block';}catch(e){}
+  if(!apiKey)setTimeout(()=>openModal('api-modal'),500);else setAPI(true);
 }
-document.getElementById('passcode-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPasscode()});
 
 // ══ API ══
 function openModal(id){document.getElementById(id).classList.add('open')}
@@ -1440,6 +1434,13 @@ function saveApiKey(){
 function setAPI(on){
   document.getElementById('api-dot').className='api-dot '+(on?'on':'off');
   document.getElementById('api-text').textContent=on?'AI Active':'Connect API';
+}
+
+
+// ══ PILL SELECTOR HELPER ══
+function setPill(el, groupId){
+  document.querySelectorAll('#'+groupId+' .pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
 }
 
 // ══ NAV ══
@@ -1471,7 +1472,11 @@ function toggleCP(p){cpPlats[p]=!cpPlats[p];document.getElementById('cp-'+p).cla
 
 // ══ CLAUDE API ══
 async function claude(prompt){
-  if(!apiKey){openModal('api-modal');throw new Error('No API key')}
+  if(!apiKey){
+    openModal('api-modal');
+    toast('⚠️ Add your API key to generate content');
+    throw new Error('No API key — please add your Anthropic API key');
+  }
   const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
