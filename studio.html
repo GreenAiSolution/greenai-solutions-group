@@ -2095,7 +2095,7 @@ VARIATION 5:
   document.getElementById('vd-analysis').innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:20px">🔥 Decoding viral formula...</div>';
   document.getElementById('vd-variations').innerHTML='';
   try{
-    const t=await claude(prompt,2000);
+    const t=await claude(prompt,2500);
     // Parse score
     const scoreMatch=t.match(/VIRAL SCORE:\s*(\d+)/);
     const score=scoreMatch?scoreMatch[1]:'—';
@@ -2207,7 +2207,7 @@ Make the sequence: opener that doesn't pitch → value/curiosity → soft proof 
   const out=document.getElementById('dm-output');out.innerHTML='<div style="text-align:center;color:var(--text3);font-size:12px;padding:30px">💌 Writing your sequence...</div>';
   dmMessages=[];
   try{
-    const t=await claude(prompt,2000);
+    const t=await claude(prompt,2500);
     const msgs=[...t.matchAll(/MESSAGE (\d+)\nTIMING: ([^\n]+)\nINTENT: ([^\n]+)\n---\n([\s\S]*?)(?=MESSAGE \d+|$)/g)];
     out.innerHTML='';
     if(msgs.length){
@@ -2584,7 +2584,7 @@ CONTENT PILLARS: (4 main content themes with brief descriptions)
 WHAT TO AVOID: (3 things this brand should never say or do)
 SIGNATURE PHRASES: (3 original phrases/slogans this brand can own)
 CONTENT RATIO: (percentage breakdown of content types e.g. 40% showcasing work, 30% educational...)
-IDEAL POSTING STYLE: (brief description of visual and copy style)`,2000);
+IDEAL POSTING STYLE: (brief description of visual and copy style)`,3000);
     
     const el=document.getElementById('dna-result');
     el.textContent='';
@@ -2676,7 +2676,7 @@ LINKEDIN:
 [LinkedIn post - professional, 200-350 chars, insight-driven, no hashtags]
 
 FACEBOOK:
-[Facebook post - conversational, 150-250 chars, local community feel, CTA]`,2500);
+[Facebook post - conversational, 150-250 chars, local community feel, CTA]`,3000);
     
     const platforms=['INSTAGRAM','TIKTOK','LINKEDIN','FACEBOOK'];
     const icons=['📸','🎵','💼','👥'];
@@ -2720,7 +2720,7 @@ Provide a detailed competitor intelligence report covering:
 5. MESSAGING ANGLE: How to make your brand feel premium compared to theirs
 6. YOUR 90-DAY ATTACK PLAN: Specific steps to outperform them online
 
-Be specific, tactical, and brutally honest.`,2500);
+Be specific, tactical, and brutally honest.`,3500);
     
     const el=document.getElementById('intel-result');
     el.textContent='';
@@ -2759,7 +2759,7 @@ VERSION 2 (Story-Led):
 VERSION 3 (Authority-First):
 [Bio text]
 
-Keep each under the character limit. Include relevant emojis. End each with a clear action (DM, link in bio, book now, etc.). Make them feel premium and professional.`);
+Keep each under the character limit. Include relevant emojis. End each with a clear action (DM, link in bio, book now, etc.). Make them feel premium and professional.`,2000);
     
     const el=document.getElementById('bio-result');
     el.textContent='';
@@ -2824,7 +2824,7 @@ AUDIO SUGGESTION:
 [Type of audio that fits this video]
 
 CAPTION HOOK:
-[First line of the caption that stops the scroll]`,2500);
+[First line of the caption that stops the scroll]`,3000);
 
     const sections=[
       {label:'🎬 HOOK',key:'HOOK',color:'var(--gx)',timing:'0-3s'},
@@ -2890,7 +2890,7 @@ VERSION 2 MEDIUM:
 VERSION 3 LONG:
 [Long storytelling version 300-500 chars plus 5-8 hashtags]
 
-Use line breaks for readability, relevant emojis, strong hook on line 1.`,2000);
+Use line breaks for readability, relevant emojis, strong hook on line 1.`,2500);
 
     const versions=['VERSION 1','VERSION 2','VERSION 3'];
     const labels=['Short — Punchy','Medium — With Context','Long — Full Story'];
@@ -2953,7 +2953,7 @@ GOOGLE BUSINESS POST:
 [150-200 char local business post with CTA]
 
 BLOG INTRO:
-[2-3 sentence blog opening that hooks the reader]`,3000);
+[2-3 sentence blog opening that hooks the reader]`,4000);
 
     const formats=[
       {key:'INSTAGRAM CAPTION',icon:'📸',label:'Instagram'},
@@ -3020,7 +3020,7 @@ THE CLOSE:
 FOLLOW-UP LINE:
 [What to say if they say I need to think about it]
 
-Make it sound natural conversational and human not salesy. Use their psychology.`,2500);
+Make it sound natural conversational and human not salesy. Use their psychology.`,3500);
     const out=document.getElementById('sales-output');
     out.textContent='';
     await stream(out,res);
@@ -3062,7 +3062,7 @@ AD VERSION:
 [Ultra-short punchy version for use in ads under 50 words outcome-focused]
 
 OWNER RESPONSE:
-[Professional owner response to thank this client publicly for Google or Yelp]`,2000);
+[Professional owner response to thank this client publicly for Google or Yelp]`,2500);
 
     const out=document.getElementById('test-output');
     out.textContent='';
@@ -3114,7 +3114,7 @@ SOCIAL MEDIA PROMO POST:
 [Caption to promote this offer on Instagram or Facebook]
 
 SMS VERSION:
-[Under 160 chars to send to past clients]`,2000);
+[Under 160 chars to send to past clients]`,3000);
 
     const out=document.getElementById('offer-output');
     out.textContent='';
@@ -3151,7 +3151,7 @@ META DESCRIPTION:
 [Meta description under 155 chars that compels clicks]
 
 CONTENT:
-[Full ${type} content with proper H1 H2 headings natural keyword usage and local SEO optimization. Include the target keyword in first paragraph headings and naturally throughout. For blog posts 700-900 words. For location or service pages 400-600 words. End with a strong CTA.]`,3500);
+[Full ${type} content with proper H1 H2 headings natural keyword usage and local SEO optimization. Include the target keyword in first paragraph headings and naturally throughout. For blog posts 700-900 words. For location or service pages 400-600 words. End with a strong CTA.]`,4500);
 
     const metaTitle=res.match(/META TITLE[^:]*:\n([^\n]+)/i)?.[1]?.trim()||keyword;
     const metaDesc=res.match(/META DESCRIPTION[^:]*:\n([^\n]+)/i)?.[1]?.trim()||'';
@@ -3211,7 +3211,7 @@ CONTENT TO PRIORITIZE:
 POSTING SCHEDULE:
 [Specific posting frequency recommendation based on their current performance]
 
-Be specific to THEIR numbers — do not be generic.`,2500);
+Be specific to THEIR numbers — do not be generic.`,3500);
 
     const out=document.getElementById('insight-output');
     out.textContent='';
