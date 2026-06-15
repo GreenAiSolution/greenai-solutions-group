@@ -1923,3 +1923,254 @@ p { color: var(--gray-600); }
   transition: color .2s;
 }
 .footer__legal a:hover { color: #4caf6e; }
+
+/* =============================================
+   v5 — New logo integration + tech-vibe palette
+   ============================================= */
+
+/* Updated palette — slightly deeper green base, with cyan accent for tech */
+:root {
+  --green-deepest: #0a2614;
+  --green-richer:  #15482a;
+  --cyan-accent:   #4dd0e1;
+  --cyan-glow:     rgba(77, 208, 225, 0.18);
+  --gold-accent:   #d4af37;
+}
+
+/* Nav logo image — replace inline SVG */
+.nav__logo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(77, 208, 225, 0.15), 0 1px 3px rgba(0,0,0,.2);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.nav__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nav__logo:hover .nav__logo-icon {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 4px 14px rgba(77, 208, 225, 0.35), 0 2px 6px rgba(0,0,0,.25);
+}
+
+/* Footer logo image */
+.footer__logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(77, 208, 225, 0.2);
+}
+.footer__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== BRAND SHOWCASE section — replaces old logo card ===== */
+.brand-showcase {
+  position: relative;
+  background: linear-gradient(135deg, #0a2614 0%, #15482a 50%, #0a2614 100%);
+  padding: 5.5rem 0 5rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(77, 208, 225, 0.08);
+  border-bottom: 1px solid rgba(77, 208, 225, 0.08);
+}
+.brand-showcase__bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(77, 208, 225, .08), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, .06), transparent 50%);
+  pointer-events: none;
+}
+.brand-showcase__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(77, 208, 225, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 208, 225, .04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+.brand-showcase__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(77, 208, 225, .12), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.brand-showcase__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.brand-showcase__eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cyan-accent);
+  margin-bottom: 2.5rem;
+}
+
+/* The card holding logo + wordmark */
+.brand-showcase__card {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(77,208,225,.04));
+  border: 1px solid rgba(77, 208, 225, 0.2);
+  border-radius: 24px;
+  padding: 2rem 3rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .35),
+    0 8px 24px rgba(77, 208, 225, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.brand-showcase__corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+.brand-showcase__corner--tl { top: 12px; left: 12px; border-top: 2px solid var(--cyan-accent); border-left: 2px solid var(--cyan-accent); border-radius: 4px 0 0 0; opacity: .65; }
+.brand-showcase__corner--tr { top: 12px; right: 12px; border-top: 2px solid var(--gold-accent); border-right: 2px solid var(--gold-accent); border-radius: 0 4px 0 0; opacity: .7; }
+.brand-showcase__corner--bl { bottom: 12px; left: 12px; border-bottom: 2px solid var(--gold-accent); border-left: 2px solid var(--gold-accent); border-radius: 0 0 0 4px; opacity: .7; }
+.brand-showcase__corner--br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--cyan-accent); border-right: 2px solid var(--cyan-accent); border-radius: 0 0 4px 0; opacity: .65; }
+
+.brand-showcase__crest {
+  width: 180px;
+  height: 180px;
+  border-radius: 18px;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 4px 12px rgba(77, 208, 225, .2);
+  animation: crest-pulse 4s ease-in-out infinite;
+}
+@keyframes crest-pulse {
+  0%, 100% { box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 4px 12px rgba(77, 208, 225, .2); }
+  50%      { box-shadow: 0 18px 48px rgba(0,0,0,.45), 0 6px 18px rgba(77, 208, 225, .4); }
+}
+
+.brand-showcase__wordmark {
+  text-align: left;
+}
+.brand-showcase__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 .35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.brand-showcase__name span {
+  background: linear-gradient(135deg, #ffd97d 0%, #d4af37 50%, #b8941f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-showcase__tagline {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, .75);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: .01em;
+}
+
+/* Pillars (former stats row) */
+.brand-pillars {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+.brand-pillars__item { text-align: center; min-width: 140px; }
+.brand-pillars__value {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.brand-pillars__item--gold .brand-pillars__value {
+  background: linear-gradient(135deg, #ffd97d, #d4af37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-pillars__label {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cyan-accent);
+  margin-top: .35rem;
+  font-weight: 600;
+}
+.brand-pillars__divider {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(77, 208, 225, .35), transparent);
+  align-self: stretch;
+}
+
+/* Mobile brand showcase */
+@media (max-width: 720px) {
+  .brand-showcase { padding: 4rem 0 3.5rem; }
+  .brand-showcase__card {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+    width: calc(100% - 2rem);
+    max-width: 420px;
+  }
+  .brand-showcase__wordmark { text-align: center; }
+  .brand-showcase__crest { width: 140px; height: 140px; }
+  .brand-pillars { gap: 1.5rem; margin-top: 2.5rem; }
+  .brand-pillars__divider { display: none; }
+}
+
+/* Tech-vibe accent in the hero dashboard mockup */
+.hero__visual-status--cyan {
+  background: var(--cyan-accent);
+  box-shadow: 0 0 0 3px rgba(77, 208, 225, .25);
+}
+
+/* Subtle cyan accent on nav hover */
+.nav__link:hover { color: var(--cyan-accent); }
+.nav__link.active { color: var(--cyan-accent); }
+
+/* Hero stats are gone now, but make sure leftover old hero classes don't render anything */
+.hero__stats, .hero__stat { display: none !important; }
+.hero__data-tag, .hero__terminal { display: none !important; }
+
+/* Mobile nav logo — slightly smaller */
+@media (max-width: 600px) {
+  .nav__logo-icon { width: 38px; height: 38px; }
+  .footer__logo-icon { width: 34px; height: 34px; }
+}
