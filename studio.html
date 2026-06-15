@@ -459,7 +459,12 @@ textarea.fi{resize:vertical;line-height:1.65}
     </div>
     <div class="auth-title">GreenAI <span>Studio</span></div>
     <div class="auth-sub">The world's most advanced AI platform for social media, lead conversion, and client growth.</div>
-    <button class="auth-btn" onclick="enterStudio()" style="font-size:16px;padding:18px;letter-spacing:.03em">Enter GreenAI Studio →</button>
+    <div style="width:100%;margin-top:8px">
+      <div class="auth-label">ACCESS CODE</div>
+      <input class="auth-input" type="password" id="passcode-input" placeholder="••••••••••••" autocomplete="off" onkeydown="if(event.key==='Enter')checkPasscode()"/>
+      <div id="auth-error" style="color:#ff6b6b;font-size:.78rem;margin-top:6px;min-height:18px;text-align:center"></div>
+    </div>
+    <button class="auth-btn" onclick="checkPasscode()" style="font-size:16px;padding:18px;letter-spacing:.03em">Enter GreenAI Studio →</button>
     <div class="auth-badge">Powered by GreenAI Solutions · greenaidigital.com</div>
   </div>
 </div>
@@ -1411,6 +1416,7 @@ let lastS='',lastL='',lastR='';
 let allHashtags=[];
 
 // ══ AUTH ══
+function checkPasscode(){const v=document.getElementById('passcode-input').value.trim();if(v==='greenai2026'){enterStudio();}else{document.getElementById('auth-error').textContent='Incorrect access code';document.getElementById('passcode-input').style.borderColor='#ff6b6b';setTimeout(()=>{document.getElementById('auth-error').textContent='';document.getElementById('passcode-input').style.borderColor='';},2000);}}
 function enterStudio(){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app').style.display='flex';
