@@ -1814,7 +1814,7 @@ function setAPI(on){
 }
 function saveGeminiKey(){
   const k=document.getElementById('gemini-key-input').value.trim();
-  if(!k.startsWith('AIza')){toast('⚠️ Invalid key — should start with AIza...');return}
+  if(k.length < 20){toast('⚠️ Key too short — paste the full key');return}
   geminiKey=k;sessionStorage.setItem('gai_gemini',k);
   closeModal('gemini-modal');setGemini(true);toast('🎨 Imagen 3 activated — Image Creator upgraded!');
 }
@@ -3296,7 +3296,7 @@ function copyAll(containerId){
 </script>
 
   <!-- ══ GEMINI API MODAL ══ -->
-  <div class="modal" id="gemini-modal">
+  <div class="overlay" id="gemini-modal">
     <div class="modal-box">
       <div class="modal-title" style="color:var(--w)">🎨 Connect Gemini Image AI</div>
       <div class="modal-sub">Unlocks professional Imagen 3 image generation — significantly better quality than free alternatives.</div>
@@ -3304,7 +3304,7 @@ function copyAll(containerId){
       <div class="step-row"><div class="step-num">2</div><div class="step-text">Click <strong>Create API Key</strong> → copy the key (starts with <strong>AIza...</strong>).</div></div>
       <div class="step-row"><div class="step-num">3</div><div class="step-text">Paste below. Your key is stored only in this browser session — never sent anywhere except Google.</div></div>
       <div class="security-row" style="margin:14px 0;padding:10px 14px;background:rgba(61,158,92,.06);border:1px solid rgba(61,158,92,.15);border-radius:8px;font-size:11px;color:var(--text2)">🔒 Key stays in your browser session only — cleared when you close the tab.</div>
-      <input type="password" class="fi" id="gemini-key-input" placeholder="AIza..." style="margin-bottom:14px" oninput="this.style.borderColor=this.value.startsWith('AIza')||!this.value?'':'#f87171'"/>
+      <input type="password" class="fi" id="gemini-key-input" placeholder="Paste your Google AI Studio API key..." style="margin-bottom:14px" oninput="this.style.borderColor=this.value.startsWith('AIza')||!this.value?'':'#f87171'"/>
       <div style="display:flex;gap:10px">
         <button class="gen-btn" style="flex:1;margin:0" onclick="saveGeminiKey()"><span class="bt">🎨 Activate Imagen 3</span></button>
         <button class="btn-sm" style="padding:12px 18px" onclick="closeModal('gemini-modal')">Cancel</button>
