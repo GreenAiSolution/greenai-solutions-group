@@ -575,6 +575,10 @@ textarea.fi{resize:vertical;line-height:1.65}
       <div class="api-dot off" id="api-dot"></div>
       <span id="api-text">Connect API</span>
     </div>
+    <div class="api-pill" onclick="openModal('gemini-modal')" id="gemini-pill" style="margin-left:6px">
+      <div class="api-dot off" id="gemini-dot"></div>
+      <span id="gemini-text">Gemini Images</span>
+    </div>
   </div>
 
   <div class="layout">
@@ -1778,6 +1782,7 @@ textarea.fi{resize:vertical;line-height:1.65}
 // ══ STATE ══
 const PASS='GreenAI2026';
 let apiKey=sessionStorage.getItem('gai_key')||'';
+let geminiKey=sessionStorage.getItem('gai_gemini')||'';
 let sPlat='ig',sTone='professional',lTone='warm',imgStyle='cinematic',imgW=1080,imgH=1080,imgQty=1,hStrat='balanced',reviewStar=5,reviewSrc='google';
 let cpPlats={ig:false,tt:false,fb:false};
 let clients=JSON.parse(localStorage.getItem('gai_clients2')||'[]');
@@ -1807,6 +1812,18 @@ function setAPI(on){
   document.getElementById('api-dot').className='api-dot '+(on?'on':'off');
   document.getElementById('api-text').textContent=on?'AI Active':'Connect API';
 }
+function saveGeminiKey(){
+  const k=document.getElementById('gemini-key-input').value.trim();
+  if(!k.startsWith('AIza')){toast('⚠️ Invalid key — should start with AIza...');return}
+  geminiKey=k;sessionStorage.setItem('gai_gemini',k);
+  closeModal('gemini-modal');setGemini(true);toast('🎨 Imagen 3 activated — Image Creator upgraded!');
+}
+function setGemini(on){
+  document.getElementById('gemini-dot').className='api-dot '+(on?'on':'off');
+  document.getElementById('gemini-text').textContent=on?'Imagen 3 Active':'Gemini Images';
+}
+// Auto-restore Gemini key on load
+if(geminiKey){setGemini(true);}
 
 
 // ══ PILL SELECTOR HELPER ══
@@ -1940,9 +1957,10 @@ const stylePrompts={
   product:'commercial product photography, studio lighting, clean background, highly detailed, professional advertising'
 };
 async function genImages(){
-  if(!apiKey){openModal('api-modal');toast('⚠️ Add your API key');return}
+  if(!apiKey&&!geminiKey){openModal('gemini-modal');toast('⚠️ Connect Gemini for images or Claude API');return}
+  const useGemini=!!geminiKey;
   const biz=document.getElementById('img-biz').value||'professional business';
-  // Images work without API key (Pollinations is free) but AI prompt needs key
+  // Gemini Imagen 3 (preferred) or Pollinations fallback
   const detail=document.getElementById('img-detail').value;
   const style=stylePrompts[imgStyle];
   setLoading('img-btn',true);
@@ -1961,32 +1979,78 @@ async function genImages(){
   }catch(e){}
   // show loading placeholders
   for(let i=0;i<imgQty;i++){const d=document.createElement('div');d.className='img-loading';d.textContent='🎨';d.id='img-load-'+i;grid.appendChild(d)}
-  const encodedPrompt=encodeURIComponent(aiPrompt);
-  const seeds=Array.from({length:imgQty},()=>Math.floor(Math.random()*999999));
-  for(let i=0;i<imgQty;i++){
-    const src=`https://image.pollinations.ai/prompt/${encodedPrompt}?width=${imgW}&height=${imgH}&seed=${seeds[i]}&nologo=true&model=flux&enhance=true`;
-    const img=document.createElement('img');
-    const imgEl=document.createElement('img');
-    imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
-    imgEl.alt='AI Generated Image';
-    imgEl.onload=()=>{
-      const card=document.createElement('div');card.className='img-card';
-      const overlay=document.createElement('div');overlay.className='img-card-overlay';
-      const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Save Image';
-      btn.onclick=()=>{const a=document.createElement('a');a.href=src;a.download='greenai-image-'+Date.now()+'.jpg';a.target='_blank';a.click()};
-      overlay.appendChild(btn);card.appendChild(imgEl);card.appendChild(overlay);
-      const placeholder=document.getElementById('img-load-'+i);
-      if(placeholder)placeholder.replaceWith(card);
-    };
-    imgEl.onerror=()=>{
-      const placeholder=document.getElementById('img-load-'+i);
-      if(placeholder){
-        placeholder.innerHTML='<div style="text-align:center"><div style="font-size:24px;margin-bottom:8px">⚠️</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">Image failed to load</div><button class="btn-sm" style="font-size:11px" onclick="this.parentElement.parentElement.innerHTML=\'🎨\';this.parentElement.parentElement.style.cursor=\'default\';document.querySelector(\'.img-loading\')&&(document.querySelector(\'.img-loading\').textContent=\'🎨\')">↺ Retry</button></div>';
-        placeholder.style.cursor='default';
-        placeholder.querySelector('button').onclick=()=>{placeholder.innerHTML='🎨';imgEl.src=src+'&t='+Date.now();imgEl.onload();};
+  if(useGemini){
+    // ── Gemini Imagen 3 ──
+    try{
+      const requests=Array.from({length:imgQty},(_,i)=>
+        fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${geminiKey}`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            instances:[{prompt:aiPrompt}],
+            parameters:{sampleCount:1,aspectRatio:imgW===imgH?'1:1':imgW>imgH?'16:9':'9:16',personGeneration:'allow_adult'}
+          })
+        }).then(r=>{
+          if(!r.ok) return r.json().then(e=>{throw new Error(e.error?.message||'Gemini error '+r.status)});
+          return r.json();
+        }).then(data=>{
+          const b64=data.predictions?.[0]?.bytesBase64Encoded;
+          if(!b64) throw new Error('No image returned');
+          return 'data:image/png;base64,'+b64;
+        })
+      );
+      const results=await Promise.allSettled(requests);
+      results.forEach((res,i)=>{
+        const card=grid.children[i];
+        if(!card) return;
+        if(res.status==='fulfilled'){
+          card.innerHTML='';
+          const imgEl=document.createElement('img');
+          imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--r)';
+          imgEl.src=res.value;
+          const overlay=document.createElement('div');overlay.className='img-card-overlay';
+          const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Download';
+          btn.onclick=()=>{const a=document.createElement('a');a.href=res.value;a.download='greenai-image-'+(i+1)+'.png';a.click()};
+          overlay.appendChild(btn);card.appendChild(imgEl);card.appendChild(overlay);
+        } else {
+          card.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:20px;text-align:center"><span style="font-size:24px">⚠️</span><span style="font-size:11px;color:var(--text3)">'+res.reason?.message+'</span><button class="btn-sm" onclick="genImages()" style="font-size:10px">Retry</button></div>';
+        }
+      });
+      document.getElementById('img-label').textContent='Imagen 3 · '+imgQty+' image'+(imgQty>1?'s':'')+' generated';
+    }catch(e){
+      toast('⚠️ Gemini error: '+e.message);
+      if(e.message.includes('API_KEY_INVALID')||e.message.includes('API key not valid')){
+        geminiKey='';sessionStorage.removeItem('gai_gemini');setGemini(false);openModal('gemini-modal');
       }
-    };
-    imgEl.src=src;
+      grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">Generation failed — check your Gemini API key</div>';
+    }
+  } else {
+    // ── Pollinations fallback ──
+    const encodedPrompt=encodeURIComponent(aiPrompt);
+    const seeds=Array.from({length:imgQty},()=>Math.floor(Math.random()*999999));
+    const loadImgs=seeds.map((seed,i)=>new Promise(resolve=>{
+      const card=grid.children[i];
+      if(!card){resolve();return}
+      const src=`https://image.pollinations.ai/prompt/${encodedPrompt}?width=${imgW}&height=${imgH}&seed=${seed}&nologo=true&model=flux&enhance=true`;
+      const imgEl=document.createElement('img');
+      imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+      imgEl.alt='Generated image '+(i+1);
+      imgEl.onload=()=>{
+        card.innerHTML='';
+        card.appendChild(imgEl);
+        const overlay=document.createElement('div');overlay.className='img-card-overlay';
+        const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Download';
+        btn.onclick=()=>{const a=document.createElement('a');a.href=src;a.download='greenai-'+(i+1)+'.jpg';a.click()};
+        overlay.appendChild(btn);card.appendChild(overlay);resolve();
+      };
+      imgEl.onerror=()=>{
+        card.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:16px;text-align:center"><span style="font-size:20px">⚠️</span><span style="font-size:11px;color:var(--text3)">Rate limited — add Gemini key for unlimited images</span><button class="btn-sm" onclick="openModal(&apos;gemini-modal&apos;)" style="font-size:10px;margin-top:4px">Add Gemini Key</button></div>';
+        resolve();
+      };
+      imgEl.src=src;
+    }));
+    await Promise.all(loadImgs);
+    document.getElementById('img-label').textContent='Flux · '+imgQty+' image'+(imgQty>1?'s':'')+' generated';
   }
   setLoading('img-btn',false);
 }
@@ -3230,5 +3294,24 @@ function copyAll(containerId){
 }
 
 </script>
+
+  <!-- ══ GEMINI API MODAL ══ -->
+  <div class="modal" id="gemini-modal">
+    <div class="modal-box">
+      <div class="modal-title" style="color:var(--w)">🎨 Connect Gemini Image AI</div>
+      <div class="modal-sub">Unlocks professional Imagen 3 image generation — significantly better quality than free alternatives.</div>
+      <div class="step-row"><div class="step-num">1</div><div class="step-text">Go to <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gx)">aistudio.google.com/apikey</a> → sign in with Google (free).</div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-text">Click <strong>Create API Key</strong> → copy the key (starts with <strong>AIza...</strong>).</div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-text">Paste below. Your key is stored only in this browser session — never sent anywhere except Google.</div></div>
+      <div class="security-row" style="margin:14px 0;padding:10px 14px;background:rgba(61,158,92,.06);border:1px solid rgba(61,158,92,.15);border-radius:8px;font-size:11px;color:var(--text2)">🔒 Key stays in your browser session only — cleared when you close the tab.</div>
+      <input type="password" class="fi" id="gemini-key-input" placeholder="AIza..." style="margin-bottom:14px" oninput="this.style.borderColor=this.value.startsWith('AIza')||!this.value?'':'#f87171'"/>
+      <div style="display:flex;gap:10px">
+        <button class="gen-btn" style="flex:1;margin:0" onclick="saveGeminiKey()"><span class="bt">🎨 Activate Imagen 3</span></button>
+        <button class="btn-sm" style="padding:12px 18px" onclick="closeModal('gemini-modal')">Cancel</button>
+      </div>
+      <div style="margin-top:14px;text-align:center;font-size:11px;color:var(--text3)">Google AI Studio free tier: ~1,500 images/day · Imagen 3 model</div>
+    </div>
+  </div>
+
 </body>
 </html>
