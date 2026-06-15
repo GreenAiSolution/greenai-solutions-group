@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenAI — AI Automation Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #040b06;
+  color: #f0f7f1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(4,11,6,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,230,118,0.15);
+  padding: 14px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+}
+.topbar-logo { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 900; }
+.topbar-logo span:first-child { color: #00e676; }
+.topbar-logo span:last-child { color: #D4AF37; }
+.topbar-badge {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #D4AF37;
+  background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+.page { max-width: 1200px; margin: 0 auto; padding: 100px 32px 80px; }
+
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #00e676;
+  background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.2);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 1rem;
+}
+.section-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+  line-height: 1.15; color: #fff; margin-bottom: 0.75rem;
+}
+.section-header p { font-size: 1rem; color: #5a8a62; max-width: 540px; margin: 0 auto; }
+
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,230,118,0.15), transparent); margin: 5rem 0; }
+
+/* FEATURE GRID */
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.feature-card {
+  background: rgba(13,24,16,0.7);
+  border: 1px solid rgba(0,230,118,0.12);
+  border-radius: 16px; overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,230,118,0.08); }
+.feature-card canvas { width: 100%; display: block; aspect-ratio: 4/3; }
+.feature-card-label {
+  padding: 14px 16px; border-top: 1px solid rgba(0,230,118,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fcl-name { font-size: 0.85rem; font-weight: 700; color: #f0f7f1; }
+.fcl-stat { font-size: 0.68rem; font-weight: 700; color: #00e676; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* TIMELINE */
+.timeline {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  position: relative; gap: 1rem;
+}
+.timeline::before {
+  content: ''; position: absolute;
+  top: 28px; left: 12.5%; right: 12.5%; height: 2px;
+  background: linear-gradient(90deg, #00e676, #00c853, #00e676);
+}
+.tl-step { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; position: relative; z-index: 1; }
+.tl-node {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #00c853, #00e676);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700;
+  color: #040b06; box-shadow: 0 0 24px rgba(0,230,118,0.4); flex-shrink: 0;
+}
+.tl-card {
+  background: rgba(13,24,16,0.8); border: 1px solid rgba(0,230,118,0.15);
+  border-radius: 12px; padding: 1.1rem 1.25rem; width: 100%;
+}
+.tl-day { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #00e676; margin-bottom: 0.5rem; }
+.tl-text { font-size: 0.8rem; color: #7a9e82; line-height: 1.5; }
+
+/* TIME SAVED */
+.time-hero { text-align: center; margin-bottom: 2.5rem; }
+.time-num {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; color: #00e676;
+  line-height: 1; text-shadow: 0 0 40px rgba(0,230,118,0.35);
+}
+.time-label { font-size: 1rem; color: #5a8a62; margin-top: 0.5rem; }
+.time-sub { font-size: 0.8rem; color: #3a4a3f; margin-top: 0.25rem; }
+
+.hours-list { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+.hour-row { display: grid; grid-template-columns: 200px 1fr 52px; align-items: center; gap: 1rem; }
+.hour-label { font-size: 0.82rem; color: #7a9e82; font-weight: 500; text-align: right; }
+.hour-track { height: 10px; background: rgba(0,230,118,0.06); border-radius: 100px; overflow: hidden; }
+.hour-fill { height: 100%; border-radius: 100px; }
+.hour-val { font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 700; color: #00e676; }
+.hours-total {
+  max-width: 640px; margin: 1.5rem auto 0;
+  background: rgba(0,230,118,0.06); border: 1px solid rgba(0,230,118,0.2);
+  border-radius: 12px; padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ht-label { font-size: 0.85rem; color: #5a8a62; font-weight: 600; }
+.ht-num { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 700; color: #00e676; }
+
+/* COMPARISON */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.compare-col { border-radius: 16px; padding: 1.75rem; }
+.compare-col.good { background: rgba(0,230,118,0.06); border: 1px solid rgba(0,230,118,0.25); }
+.compare-col.bad { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+.compare-col h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.compare-col.good h3 { color: #00e676; }
+.compare-col.bad h3 { color: #3a4a3f; }
+.ci { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.65rem; font-size: 0.84rem; }
+.ci.g { color: #a0c8a8; }
+.ci.b { color: #3a4a3f; }
+
+/* PLATFORM GRID */
+.platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.plat-card {
+  background: rgba(13,24,16,0.7); border: 1px solid rgba(0,230,118,0.1);
+  border-radius: 14px; padding: 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.plat-card:hover { transform: translateY(-4px); border-color: rgba(0,230,118,0.3); }
+.plat-top { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.plat-icon { font-size: 1.5rem; }
+.plat-name { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: #f0f7f1; }
+.plat-feat {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: #7a9e82; padding: 5px 0;
+  border-bottom: 1px solid rgba(0,230,118,0.05);
+}
+.plat-feat:last-child { border: none; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: #00e676; flex-shrink: 0; }
+
+/* STATS */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stat-card {
+  background: rgba(13,24,16,0.7); border: 1px solid rgba(0,230,118,0.12);
+  border-radius: 14px; padding: 1.5rem; text-align: center;
+}
+.stat-num { font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 700; color: #00e676; }
+.stat-num.gold { color: #D4AF37; }
+.stat-label { font-size: 0.7rem; color: #5a8a62; margin-top: 6px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+
+@media (max-width: 900px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .timeline::before { display: none; }
+  .platform-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .compare-grid { grid-template-columns: 1fr; }
+  .hour-row { grid-template-columns: 130px 1fr 48px; }
+}
+@media (max-width: 560px) {
+  .feature-grid { grid-template-columns: 1fr; }
+  .platform-grid { grid-template-columns: 1fr; }
+  .page { padding: 90px 16px 60px; }
+  .hour-row { grid-template-columns: 110px 1fr 44px; }
+  .hour-label { font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo"><span>Green</span><span>AI</span></div>
+  <div class="topbar-badge">🤖 AI Automation Demo</div>
+</div>
+
+<div class="page">
+
+  <!-- 1: FEATURE CARDS -->
+  <div class="section-header">
+    <div class="section-eyebrow">⚡ Powered by AI</div>
+    <h2>What Our AI Automates For You</h2>
+    <p>Six core automation systems running 24/7 — so you never have to think about marketing again.</p>
+  </div>
+  <div class="feature-grid" id="featureGrid"></div>
+
+  <div class="divider"></div>
+
+  <!-- 2: TIMELINE -->
+  <div class="section-header">
+    <div class="section-eyebrow">📅 Your First Month</div>
+    <h2>The Automation Timeline — Your First 30 Days</h2>
+    <p>From onboarding to full optimization in four milestones.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="tl-node">1</div>
+      <div class="tl-card">
+        <div class="tl-day">Day 1</div>
+        <div class="tl-text">Onboarding complete. AI trained on your brand voice. Content calendar built and approved.</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-node">3</div>
+      <div class="tl-card">
+        <div class="tl-day">Day 3</div>
+        <div class="tl-text">First posts go live. Hashtag strategy deployed. Competitor tracking active across all platforms.</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-node">7</div>
+      <div class="tl-card">
+        <div class="tl-day">Day 7</div>
+        <div class="tl-text">First analytics report delivered. Ad campaign launched. Engagement automation running non-stop.</div>
+      </div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-node">30</div>
+      <div class="tl-card">
+        <div class="tl-day">Day 30</div>
+        <div class="tl-text">Full optimization cycle complete. ROI report delivered. Strategy adjusted based on real data.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3: TIME SAVED -->
+  <div class="section-header">
+    <div class="section-eyebrow">⏱️ Time is Money</div>
+    <h2>Time Saved Per Week</h2>
+    <p>Hours you used to spend manually — now handled entirely by AI.</p>
+  </div>
+  <div class="time-hero">
+    <div class="time-num">22 Hours Saved</div>
+    <div class="time-label">Every Single Week</div>
+    <div class="time-sub">That's 88 hrs/month · 1,144 hrs/year returned to you</div>
+  </div>
+  <div class="hours-list">
+    <div class="hour-row">
+      <div class="hour-label">Creating graphics & posts</div>
+      <div class="hour-track"><div class="hour-fill" style="width:72%;background:linear-gradient(90deg,#00c853,#00e676)"></div></div>
+      <div class="hour-val">4 hrs</div>
+    </div>
+    <div class="hour-row">
+      <div class="hour-label">Writing captions & hashtags</div>
+      <div class="hour-track"><div class="hour-fill" style="width:54%;background:linear-gradient(90deg,#00b548,#00d96a)"></div></div>
+      <div class="hour-val">3 hrs</div>
+    </div>
+    <div class="hour-row">
+      <div class="hour-label">Scheduling & posting</div>
+      <div class="hour-track"><div class="hour-fill" style="width:90%;background:linear-gradient(90deg,#00c853,#00ff88)"></div></div>
+      <div class="hour-val">5 hrs</div>
+    </div>
+    <div class="hour-row">
+      <div class="hour-label">Responding to comments & DMs</div>
+      <div class="hour-track"><div class="hour-fill" style="width:72%;background:linear-gradient(90deg,#00a844,#00c853)"></div></div>
+      <div class="hour-val">4 hrs</div>
+    </div>
+    <div class="hour-row">
+      <div class="hour-label">Checking analytics</div>
+      <div class="hour-track"><div class="hour-fill" style="width:54%;background:linear-gradient(90deg,#009e3d,#00b548)"></div></div>
+      <div class="hour-val">3 hrs</div>
+    </div>
+    <div class="hour-row">
+      <div class="hour-label">Running & monitoring ads</div>
+      <div class="hour-track"><div class="hour-fill" style="width:54%;background:linear-gradient(90deg,#008f36,#00a040)"></div></div>
+      <div class="hour-val">3 hrs</div>
+    </div>
+  </div>
+  <div class="hours-total">
+    <div class="ht-label">Total time reclaimed every week</div>
+    <div class="ht-num">= 22 hrs</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4: COMPARISON -->
+  <div class="section-header">
+    <div class="section-eyebrow">⚔️ The Difference</div>
+    <h2>AI Automation vs Manual Marketing</h2>
+    <p>The old way doesn't compete in 2026.</p>
+  </div>
+  <div class="compare-grid">
+    <div class="compare-col good">
+      <h3>✅ AI Automation (GreenAI)</h3>
+      <div class="ci g"><span>✅</span> Content generated in minutes, not hours</div>
+      <div class="ci g"><span>✅</span> Posts go live at the optimal time daily</div>
+      <div class="ci g"><span>✅</span> Hashtags refreshed daily by algorithm AI</div>
+      <div class="ci g"><span>✅</span> Competitor moves tracked automatically</div>
+      <div class="ci g"><span>✅</span> Ads optimized every hour by AI</div>
+      <div class="ci g"><span>✅</span> Every comment and DM gets a response</div>
+      <div class="ci g"><span>✅</span> Weekly reports with clear action items</div>
+      <div class="ci g"><span>✅</span> Works 24/7 — including while you sleep</div>
+    </div>
+    <div class="compare-col bad">
+      <h3>❌ Manual Marketing</h3>
+      <div class="ci b"><span>❌</span> Hours spent creating every single post</div>
+      <div class="ci b"><span>❌</span> Posting randomly whenever you remember</div>
+      <div class="ci b"><span>❌</span> Same hashtags copy-pasted for months</div>
+      <div class="ci b"><span>❌</span> No idea what competitors are doing</div>
+      <div class="ci b"><span>❌</span> Burning ad budget with guesswork</div>
+      <div class="ci b"><span>❌</span> Comments and DMs missed or ignored</div>
+      <div class="ci b"><span>❌</span> No data, no direction, no results</div>
+      <div class="ci b"><span>❌</span> Stops completely when you stop</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5: PLATFORMS -->
+  <div class="section-header">
+    <div class="section-eyebrow">🌐 Multi-Platform</div>
+    <h2>Platforms We Automate</h2>
+    <p>Full coverage across every major social platform — one system, zero effort.</p>
+  </div>
+  <div class="platform-grid">
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">📸</div><div class="plat-name">Instagram</div></div>
+      <div class="plat-feat"><div class="dot"></div>Posts & Reels scheduled daily</div>
+      <div class="plat-feat"><div class="dot"></div>Stories auto-published</div>
+      <div class="plat-feat"><div class="dot"></div>Hashtag AI updated daily</div>
+      <div class="plat-feat"><div class="dot"></div>Comments & DM responses</div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">🎵</div><div class="plat-name">TikTok</div></div>
+      <div class="plat-feat"><div class="dot"></div>Videos posted at peak hours</div>
+      <div class="plat-feat"><div class="dot"></div>FYP hashtag optimization</div>
+      <div class="plat-feat"><div class="dot"></div>Trending audio monitoring</div>
+      <div class="plat-feat"><div class="dot"></div>Comment engagement AI</div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">👥</div><div class="plat-name">Facebook</div></div>
+      <div class="plat-feat"><div class="dot"></div>Page posts & Stories</div>
+      <div class="plat-feat"><div class="dot"></div>Ad campaigns auto-optimized</div>
+      <div class="plat-feat"><div class="dot"></div>Messenger bot responses</div>
+      <div class="plat-feat"><div class="dot"></div>Audience retargeting AI</div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">▶️</div><div class="plat-name">YouTube</div></div>
+      <div class="plat-feat"><div class="dot"></div>Shorts published automatically</div>
+      <div class="plat-feat"><div class="dot"></div>SEO titles & descriptions</div>
+      <div class="plat-feat"><div class="dot"></div>Tags & chapter markers</div>
+      <div class="plat-feat"><div class="dot"></div>Community post automation</div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">💼</div><div class="plat-name">LinkedIn</div></div>
+      <div class="plat-feat"><div class="dot"></div>Posts & articles scheduled</div>
+      <div class="plat-feat"><div class="dot"></div>B2B outreach automation</div>
+      <div class="plat-feat"><div class="dot"></div>Thought leadership content</div>
+      <div class="plat-feat"><div class="dot"></div>Connection engagement AI</div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-top"><div class="plat-icon">𝕏</div><div class="plat-name">X / Twitter</div></div>
+      <div class="plat-feat"><div class="dot"></div>Threads & tweets scheduled</div>
+      <div class="plat-feat"><div class="dot"></div>Trend monitoring 24/7</div>
+      <div class="plat-feat"><div class="dot"></div>Viral hook engineering</div>
+      <div class="plat-feat"><div class="dot"></div>Reply & retweet automation</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 6: STATS -->
+  <div class="section-header">
+    <div class="section-eyebrow">📊 By the Numbers</div>
+    <h2>The Results Speak</h2>
+    <p>Real metrics from real automations running right now.</p>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">22 hrs</div><div class="stat-label">Saved Every Week</div></div>
+    <div class="stat-card"><div class="stat-num gold">4.8x</div><div class="stat-label">Average ROAS</div></div>
+    <div class="stat-card"><div class="stat-num">89%</div><div class="stat-label">Viral Prediction Accuracy</div></div>
+    <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-label">Running Non-Stop</div></div>
+  </div>
+
+</div>
+
+<script>
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function base(ctx,W,H){
+  const g=ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#061a0a');g.addColorStop(1,'#0d2e14');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(0,230,118,0.04)';ctx.lineWidth=0.5;
+  const s=Math.round(W/6);
+  for(let x=0;x<=W;x+=s){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<=H;y+=s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  const r=ctx.createRadialGradient(W*.5,H*.4,0,W*.5,H*.4,W*.6);
+  r.addColorStop(0,'rgba(0,230,118,0.09)');r.addColorStop(1,'transparent');
+  ctx.fillStyle=r;ctx.fillRect(0,0,W,H);
+}
+function frame(ctx,W,H){
+  const m=10,g=ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#00e676');g.addColorStop(.5,'rgba(0,230,118,0.2)');g.addColorStop(1,'#00e676');
+  ctx.strokeStyle=g;ctx.lineWidth=1.5;
+  roundRect(ctx,m,m,W-m*2,H-m*2,10);ctx.stroke();
+  const b=W*0.055,o=m+4;ctx.strokeStyle='#00e676';ctx.lineWidth=2;
+  [[o,o,1,1],[W-o,o,-1,1],[o,H-o,1,-1],[W-o,H-o,-1,-1]].forEach(([cx,cy,sx,sy])=>{
+    ctx.beginPath();ctx.moveTo(cx+sx*b,cy);ctx.lineTo(cx,cy);ctx.lineTo(cx,cy+sy*b);ctx.stroke();
+  });
+}
+
+const CARDS=[
+  {name:'📅 Smart Scheduling',stat:'30 posts/mo automated',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const cols=7,rows=4,cw=(W-60)/cols,ch=(H-90)/rows,sx=30,sy=26;
+    ['S','M','T','W','T','F','S'].forEach((d,i)=>{
+      ctx.font=`700 ${Math.round(W*.052)}px Inter`;ctx.fillStyle='rgba(0,230,118,0.5)';
+      ctx.textAlign='center';ctx.fillText(d,sx+i*cw+cw/2,sy+12);
+    });
+    const sched=[1,2,4,5,8,9,11,12,15,16,18,19,22,23];
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      const i=r*cols+c,x=sx+c*cw,y=sy+18+r*ch,hit=sched.includes(i);
+      ctx.fillStyle=hit?'rgba(0,230,118,0.16)':'rgba(0,230,118,0.03)';
+      roundRect(ctx,x+3,y+3,cw-6,ch-6,5);ctx.fill();
+      if(hit){
+        ctx.fillStyle='#00e676';ctx.shadowColor='#00e676';ctx.shadowBlur=10;
+        ctx.beginPath();ctx.arc(x+cw/2,y+ch/2,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      }
+      ctx.font=`500 ${Math.round(W*.044)}px Inter`;
+      ctx.fillStyle=hit?'rgba(0,230,118,0.7)':'rgba(0,230,118,0.18)';
+      ctx.textAlign='center';ctx.fillText(i+1,x+cw/2,y+ch-7);
+    }
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+  {name:'🔍 Hashtag Intelligence',stat:'Updated daily by AI',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const tags=[['#detailing',1.4,'#00e676',.85,.22],['#fyp',1.1,'rgba(0,230,118,.7)',.55,.18],
+      ['#gilbert',.9,'rgba(0,230,118,.5)',.3,.42],['#ceramic',1.3,'#00e676',.7,.36],
+      ['#cardetail',.85,'rgba(0,230,118,.6)',.12,.58],['#autodetail',1.0,'rgba(0,230,118,.8)',.48,.55],
+      ['#satisfying',1.2,'#00ff88',.75,.62],['#foryou',.8,'rgba(0,230,118,.45)',.28,.72],
+      ['#trending',.95,'rgba(0,230,118,.65)',.58,.78],['#detail',1.1,'rgba(0,230,118,.75)',.1,.84]];
+    tags.forEach(([t,s,c,rx,ry])=>{
+      ctx.font=`700 ${Math.round(W*.065*s)}px Inter`;ctx.fillStyle=c;
+      ctx.textAlign='left';ctx.fillText(t,W*rx,H*ry);
+    });
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+  {name:'👁 Competitor Watch',stat:'10+ competitors tracked',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const cols=3,rows=2,cw=(W-60)/cols,ch=(H-60)/rows;
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      const x=20+c*cw,y=20+r*ch;
+      ctx.fillStyle='rgba(0,230,118,0.05)';roundRect(ctx,x+4,y+4,cw-8,ch-8,8);ctx.fill();
+      ctx.strokeStyle='rgba(0,230,118,0.14)';ctx.lineWidth=1;roundRect(ctx,x+4,y+4,cw-8,ch-8,8);ctx.stroke();
+      ctx.fillStyle='rgba(0,230,118,0.18)';ctx.beginPath();ctx.arc(x+cw/2,y+ch*.32,13,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#00e676';ctx.font=`700 ${Math.round(W*.052)}px Inter`;ctx.textAlign='center';
+      ctx.fillText(['C1','C2','C3','C4','C5','C6'][r*cols+c],x+cw/2,y+ch*.32+5);
+      const bw=(cw-22)*(.35+Math.sin(r*3+c)*.3+.2);
+      ctx.fillStyle='rgba(0,230,118,0.12)';roundRect(ctx,x+11,y+ch*.68,cw-22,5,3);ctx.fill();
+      ctx.fillStyle='#00e676';roundRect(ctx,x+11,y+ch*.68,bw,5,3);ctx.fill();
+    }
+    ctx.strokeStyle='rgba(0,230,118,0.25)';ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
+    ctx.beginPath();ctx.moveTo(0,H*.47);ctx.lineTo(W,H*.47);ctx.stroke();ctx.setLineDash([]);
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+  {name:'💬 Auto Engagement',stat:'Instant AI replies',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const msgs=[
+      ['Love your work! How much?',false,.1],
+      ['AI: Full details from $199. Book at link in bio 🚗',true,.26],
+      ['Do you do ceramic coating?',false,.48],
+      ['AI: Ceramic from $399. DM us to schedule! ✨',true,.63],
+      ['Available this week?',false,.80],
+    ];
+    msgs.forEach(([t,ai,fy])=>{
+      const bw=W*.72,x=ai?W-bw-14:14,y=H*fy;
+      ctx.fillStyle=ai?'rgba(0,230,118,0.13)':'rgba(255,255,255,0.04)';
+      roundRect(ctx,x,y,bw,H*.11,9);ctx.fill();
+      ctx.strokeStyle=ai?'rgba(0,230,118,0.28)':'rgba(255,255,255,0.07)';ctx.lineWidth=1;
+      roundRect(ctx,x,y,bw,H*.11,9);ctx.stroke();
+      ctx.font=`${ai?600:400} ${Math.round(W*.048)}px Inter`;
+      ctx.fillStyle=ai?'#00e676':'rgba(240,247,241,0.65)';
+      ctx.textAlign=ai?'right':'left';
+      const txt=t.length>38?t.slice(0,38)+'…':t;
+      ctx.fillText(txt,ai?x+bw-12:x+12,y+H*.067);
+      if(ai){ctx.font=`600 ${Math.round(W*.038)}px Inter`;ctx.fillStyle='rgba(0,230,118,0.45)';ctx.fillText('🤖 · 0s',x+bw-12,y+H*.1);}
+    });
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+  {name:'📈 Ad Campaign AI',stat:'4.8x average ROAS',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const pts=[.88,.76,.8,.63,.68,.52,.43,.36,.27,.19,.14,.09];
+    const pw=(W-60)/(pts.length-1),sx=30,sy=22,sh=H-76;
+    ctx.beginPath();ctx.moveTo(sx,sy+sh);
+    pts.forEach((p,i)=>ctx.lineTo(sx+i*pw,sy+p*sh));
+    ctx.lineTo(sx+(pts.length-1)*pw,sy+sh);ctx.closePath();
+    const fg=ctx.createLinearGradient(0,sy,0,sy+sh);
+    fg.addColorStop(0,'rgba(0,230,118,0.22)');fg.addColorStop(1,'rgba(0,230,118,0)');
+    ctx.fillStyle=fg;ctx.fill();
+    ctx.beginPath();pts.forEach((p,i)=>i===0?ctx.moveTo(sx,sy+p*sh):ctx.lineTo(sx+i*pw,sy+p*sh));
+    ctx.strokeStyle='#00e676';ctx.lineWidth=2.5;ctx.stroke();
+    pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(sx+i*pw,sy+p*sh,3.5,0,Math.PI*2);ctx.fillStyle='#00e676';ctx.fill();});
+    ctx.fillStyle='rgba(0,230,118,0.12)';roundRect(ctx,W-96,26,80,38,8);ctx.fill();
+    ctx.fillStyle='#00e676';ctx.font=`700 ${Math.round(W*.09)}px Orbitron,monospace`;
+    ctx.textAlign='center';ctx.fillText('4.8x',W-56,52);
+    ctx.font=`600 ${Math.round(W*.045)}px Inter`;ctx.fillStyle='rgba(0,230,118,0.55)';ctx.fillText('ROAS',W-56,65);
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+  {name:'📊 Analytics & Reporting',stat:'Weekly AI reports',
+   fn(ctx,W,H){
+    base(ctx,W,H);
+    const bars=[{l:'IG',v:.82,c:'#00e676'},{l:'TK',v:.95,c:'#00ff88'},{l:'FB',v:.6,c:'#00c853'},{l:'YT',v:.72,c:'#00a844'},{l:'LI',v:.5,c:'#009e3d'}];
+    const bw=Math.round((W-80)/(bars.length*1.6)),gap=Math.round(bw*.6);
+    const tot=bars.length*(bw+gap)-gap,sx2=(W-tot)/2,maxH=H*.52,baseY=H*.74;
+    bars.forEach((b,i)=>{
+      const x=sx2+i*(bw+gap),bh=b.v*maxH;
+      ctx.fillStyle='rgba(0,230,118,0.05)';roundRect(ctx,x,baseY-maxH,bw,maxH,5);ctx.fill();
+      const bg=ctx.createLinearGradient(0,baseY-bh,0,baseY);
+      bg.addColorStop(0,b.c);bg.addColorStop(1,b.c+'33');
+      ctx.fillStyle=bg;roundRect(ctx,x,baseY-bh,bw,bh,5);ctx.fill();
+      ctx.fillStyle='#f0f7f1';ctx.font=`700 ${Math.round(W*.052)}px Inter`;ctx.textAlign='center';
+      ctx.fillText(b.l,x+bw/2,baseY+16);
+      ctx.fillStyle='#00e676';ctx.font=`600 ${Math.round(W*.044)}px Orbitron,monospace`;
+      ctx.fillText(Math.round(b.v*100)+'%',x+bw/2,baseY-bh-8);
+    });
+    // Gold trend line
+    const lp=[.3,.34,.28,.2,.14,.1,.07,.05];const lw2=(W-60)/(lp.length-1);
+    ctx.beginPath();lp.forEach((p,i)=>i===0?ctx.moveTo(30+i*lw2,H*.18+p*H*.28):ctx.lineTo(30+i*lw2,H*.18+p*H*.28));
+    ctx.strokeStyle='#D4AF37';ctx.lineWidth=2;ctx.stroke();
+    ctx.textAlign='left';frame(ctx,W,H);
+  }},
+];
+
+const grid=document.getElementById('featureGrid');
+CARDS.forEach(card=>{
+  const wrap=document.createElement('div');wrap.className='feature-card';
+  const canvas=document.createElement('canvas');canvas.width=480;canvas.height=360;
+  card.fn(canvas.getContext('2d'),480,360);
+  const label=document.createElement('div');label.className='feature-card-label';
+  label.innerHTML=`<span class="fcl-name">${card.name}</span><span class="fcl-stat">${card.stat}</span>`;
+  wrap.appendChild(canvas);wrap.appendChild(label);grid.appendChild(wrap);
+});
+</script>
+</body>
+</html>

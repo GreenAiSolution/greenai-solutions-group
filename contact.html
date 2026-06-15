@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -57,8 +57,11 @@
   </nav>
 
   <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero">
-    <div class="container">
+  <div class="page-hero" style="position:relative;overflow:hidden">
+    <div class="hero__scan" aria-hidden="true"></div>
+    <div class="hero__grain" aria-hidden="true"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="hero__terminal" aria-hidden="true" style="margin-bottom:.75rem"><span>&gt; GREENAI SOLUTIONS · AI ACTIVE</span><span class="hero__terminal-cursor"></span></div>
       <span class="section-label" style="color:var(--green-accent)">Get in Touch</span>
       <h1>Let's Grow Your<br/>Business Together</h1>
       <p>Book a 30-minute strategy session and walk away with a clear picture of exactly how GreenAI can transform your business — no obligation, no sales pressure.</p>
@@ -296,6 +299,13 @@
           <div class="footer__contact-item">
             <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <span>Gilbert, Arizona 85296</span>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
           </div>
         </div>
       </div>
