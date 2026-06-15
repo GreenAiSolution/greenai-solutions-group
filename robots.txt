@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /studio.html
+
+Sitemap: https://greenaidigital.com/sitemap.xml
