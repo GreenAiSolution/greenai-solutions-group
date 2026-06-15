@@ -1049,6 +1049,12 @@ textarea.fi{resize:vertical;line-height:1.65}
               </select>
             </div>
             <div class="fg"><div class="fl">Current Situation</div><textarea class="fi" id="gs-current" rows="3" placeholder="e.g. 498 IG followers, 0 TikTok, posting 2x/week, no email list, mostly word of mouth..."></textarea></div>
+            <div class="fg"><div class="fl">Strategy Duration</div>
+              <div class="pill-row" id="gs-dur-pills">
+                <button class="pill active" onclick="setPill(this,'gs-dur-pills')">30 Days</button>
+                <button class="pill" onclick="setPill(this,'gs-dur-pills')">60 Days</button>
+                <button class="pill" onclick="setPill(this,'gs-dur-pills')">90 Days</button>
+              </div></div>
             <div class="fg"><div class="fl">Main Goal</div>
               <select class="fi" id="gs-goal">
                 <option value="grow social media following and engagement">Grow Social Media</option>
@@ -1890,7 +1896,7 @@ async function genContent(){
   document.getElementById('s-result').style.display='block';
   document.getElementById('s-out-label').textContent=`${p.name} ${type.split(' ').slice(-1)[0]}`;
   const box=document.getElementById('s-box');box.innerHTML='';
-  try{const t=await claude(prompt);lastS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,2500);lastS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('s-btn',false);
 }
 async function tweakS(instr){
@@ -1915,7 +1921,7 @@ async function genLead(){
   document.getElementById('l-empty').style.display='none';
   document.getElementById('l-result').style.display='block';
   const box=document.getElementById('l-box');box.innerHTML='';
-  try{const t=await claude(prompt);lastL=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,2000);lastL=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('l-btn',false);
 }
 async function tweakL(instr){
@@ -1934,6 +1940,7 @@ const stylePrompts={
   product:'commercial product photography, studio lighting, clean background, highly detailed, professional advertising'
 };
 async function genImages(){
+  if(!apiKey){openModal('api-modal');toast('⚠️ Add your API key');return}
   const biz=document.getElementById('img-biz').value||'professional business';
   // Images work without API key (Pollinations is free) but AI prompt needs key
   const detail=document.getElementById('img-detail').value;
@@ -2127,14 +2134,16 @@ async function genCampaign(){
   const goal=document.getElementById('cb-goal').value;
   const offers=document.getElementById('cb-offers').value;
   const plats=Object.keys(cp2Plats).filter(k=>cp2Plats[k]).map(p=>({ig:'Instagram',tt:'TikTok',fb:'Facebook'}[p])).join(', ')||'Instagram';
-  const prompt=`You are an elite social media strategist. Create a complete 30-day content calendar for:
+  const dur=document.querySelector('#cb-dur-pills .pill.active')?.textContent||'30 Days';
+  const durNum=parseInt(dur)||30;
+  const prompt=`You are an elite social media strategist. Create a complete ${durNum}-day content calendar for:
 
 Business: ${biz} (${niche})
 Goal: ${goal}
 Platforms: ${plats}
 ${offers?`Special Offers/Promos: ${offers}`:''}
 
-Generate a 30-day content plan. For each day include:
+Generate a complete ${durNum}-day content plan. Cover EVERY day from Day 1 through Day ${durNum}. For each day include:
 - Post type (Reel, Carousel, Story, Static)
 - Content idea/hook
 - One key caption line
@@ -2155,7 +2164,7 @@ Go through all 30 days. Be specific to ${niche} and ${biz}.`;
   document.getElementById('cb-title').textContent=`30-Day Campaign — ${biz}`;
   const out=document.getElementById('cb-output');out.textContent='Building your campaign...';
   try{
-    const t=await claude(prompt,3000);
+    const t=await claude(prompt,durNum>=90?6000:durNum>=60?4500:3000);
     out.textContent='';
     await stream(out,t);
   }catch(e){out.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
@@ -2343,7 +2352,7 @@ Output ONLY the ad copy, properly labeled.`;
   document.getElementById('ad-result').style.display='block';
   document.getElementById('ad-out-label').textContent=platNames[adPlat]+' Ad Copy';
   const box=document.getElementById('ad-box');box.innerHTML='';
-  try{const t=await claude(prompt);lastAd=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,2000);lastAd=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('ad-btn',false);
 }
 async function tweakAd(instr){
@@ -2388,7 +2397,7 @@ Make it feel like it was written by a real human who cares, not a robot. Every l
   document.getElementById('em-empty').style.display='none';
   document.getElementById('em-result').style.display='block';
   const box=document.getElementById('em-box');box.innerHTML='';
-  try{const t=await claude(prompt);lastEM=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,2000);lastEM=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('em-btn',false);
 }
 async function tweakEM(instr){
@@ -2406,6 +2415,9 @@ Please ${instr}. Output ONLY the revised email.`);lastEM=t;await stream(box,t)}c
 async function genStrategy(){
   if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('gs-biz').value||'this business';
+  const stratDur=document.querySelector('#gs-dur-pills .pill.active')?.textContent||'30 Days';
+  const stratDays=parseInt(stratDur)||30;
+  const gsTL=stratDays;
   const niche=document.getElementById('gs-niche').value;
   const current=document.getElementById('gs-current').value;
   const goal=document.getElementById('gs-goal').value;
@@ -2447,7 +2459,7 @@ Be specific to "${biz}" and the ${niche} industry. Use real numbers. No fluff.`;
   document.getElementById('gs-result').style.display='block';
   document.getElementById('gs-out-label').textContent=gsTL+'-Day Growth Strategy for '+biz;
   const box=document.getElementById('gs-box');box.innerHTML='';
-  try{const t=await claude(prompt,2500);lastGS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
+  try{const t=await claude(prompt,stratDays>=90?5000:stratDays>=60?3500:2500);lastGS=t;await stream(box,t)}catch(e){box.textContent='Error: '+e.message;toast('⚠️ '+e.message)}
   setLoading('gs-btn',false);
 }
 async function tweakGS(instr){
@@ -2525,7 +2537,7 @@ For each hook, output in this exact format:
 
 Types to use (mix them): Question, Controversy, Bold Claim, Story, Secret, Warning, Result, Curiosity, Challenge, Relatable
 
-Make hooks specific, punchy, under 15 words each. Score each on viral potential 1-10. Output ONLY the 10 lines, no extra text.`);
+Make hooks specific, punchy, under 15 words each. Score each on viral potential 1-10. Output ONLY the 10 lines, no extra text.`,2000);
     
     const lines=res.trim().split('\n').filter(l=>l.trim());
     const list=document.getElementById('hook-list');
@@ -2572,7 +2584,7 @@ CONTENT PILLARS: (4 main content themes with brief descriptions)
 WHAT TO AVOID: (3 things this brand should never say or do)
 SIGNATURE PHRASES: (3 original phrases/slogans this brand can own)
 CONTENT RATIO: (percentage breakdown of content types e.g. 40% showcasing work, 30% educational...)
-IDEAL POSTING STYLE: (brief description of visual and copy style)`);
+IDEAL POSTING STYLE: (brief description of visual and copy style)`,2000);
     
     const el=document.getElementById('dna-result');
     el.textContent='';
@@ -2617,7 +2629,7 @@ SLIDE 3 | TYPE: Proof | TEXT: [slide text] | VISUAL: [visual direction]
 SLIDE 4 | TYPE: Value | TEXT: [slide text] | VISUAL: [visual direction]
 SLIDE 5 | TYPE: CTA | TEXT: [call to action under 12 words] | VISUAL: [visual direction]
 
-Make each slide punchy, visual, and scroll-stopping.`);
+Make each slide punchy, visual, and scroll-stopping.`,2000);
     
     const lines=res.trim().split('\n').filter(l=>l.includes('SLIDE'));
     const container=document.getElementById('story-slides-out');
@@ -2664,7 +2676,7 @@ LINKEDIN:
 [LinkedIn post - professional, 200-350 chars, insight-driven, no hashtags]
 
 FACEBOOK:
-[Facebook post - conversational, 150-250 chars, local community feel, CTA]`);
+[Facebook post - conversational, 150-250 chars, local community feel, CTA]`,2500);
     
     const platforms=['INSTAGRAM','TIKTOK','LINKEDIN','FACEBOOK'];
     const icons=['📸','🎵','💼','👥'];
@@ -2708,7 +2720,7 @@ Provide a detailed competitor intelligence report covering:
 5. MESSAGING ANGLE: How to make your brand feel premium compared to theirs
 6. YOUR 90-DAY ATTACK PLAN: Specific steps to outperform them online
 
-Be specific, tactical, and brutally honest.`);
+Be specific, tactical, and brutally honest.`,2500);
     
     const el=document.getElementById('intel-result');
     el.textContent='';
@@ -2812,7 +2824,7 @@ AUDIO SUGGESTION:
 [Type of audio that fits this video]
 
 CAPTION HOOK:
-[First line of the caption that stops the scroll]`,2000);
+[First line of the caption that stops the scroll]`,2500);
 
     const sections=[
       {label:'🎬 HOOK',key:'HOOK',color:'var(--gx)',timing:'0-3s'},
@@ -3139,7 +3151,7 @@ META DESCRIPTION:
 [Meta description under 155 chars that compels clicks]
 
 CONTENT:
-[Full ${type} content with proper H1 H2 headings natural keyword usage and local SEO optimization. Include the target keyword in first paragraph headings and naturally throughout. For blog posts 700-900 words. For location or service pages 400-600 words. End with a strong CTA.]`,3000);
+[Full ${type} content with proper H1 H2 headings natural keyword usage and local SEO optimization. Include the target keyword in first paragraph headings and naturally throughout. For blog posts 700-900 words. For location or service pages 400-600 words. End with a strong CTA.]`,3500);
 
     const metaTitle=res.match(/META TITLE[^:]*:\n([^\n]+)/i)?.[1]?.trim()||keyword;
     const metaDesc=res.match(/META DESCRIPTION[^:]*:\n([^\n]+)/i)?.[1]?.trim()||'';
