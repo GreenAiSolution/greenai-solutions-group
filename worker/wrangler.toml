@@ -1,0 +1,12 @@
+name = "greenai-studio-api"
+main = "src/worker.js"
+compatibility_date = "2025-01-15"
+
+# Public variables (NOT secrets — okay to commit)
+[vars]
+ALLOWED_ORIGIN = "https://greenaidigital.com,https://www.greenaidigital.com"
+CLAUDE_MODEL   = "claude-haiku-4-5-20251001"
+
+# Secrets are set with:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put STUDIO_ACCESS_TOKEN
