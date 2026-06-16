@@ -1924,6 +1924,7 @@ textarea.fi{resize:vertical;line-height:1.65}
             <div class="fg"><label class="fl">Client / Business Name</label><input class="fi" id="crm-biz" placeholder="e.g. Desert Steam Detail"/></div>
             <div class="fg"><label class="fl">Industry</label><input class="fi" id="crm-industry" placeholder="e.g. Auto detailing, Med spa, Real estate"/></div>
             <div class="fg"><label class="fl">Main Services / Products</label><textarea class="fi" id="crm-services" rows="3" placeholder="e.g. Ceramic coating, interior detail, paint correction, monthly maintenance plans"></textarea></div>
+            <div class="fg"><label class="fl">📊 Current Brand Stats <span style="color:var(--text2);font-weight:400;font-size:11px">(paste their live numbers — optional)</span></label><textarea class="fi" id="crm-stats" rows="4" placeholder="Paste whatever you can grab from their profiles:&#10;Instagram: 847 followers, 3.2% engagement&#10;TikTok: 8,900 followers&#10;Facebook: 1,240 likes&#10;Google: 4.9 stars (112 reviews)&#10;Website: ~1,200 visits/mo"></textarea></div>
             <div class="fg"><label class="fl">Business Type</label>
               <div class="pill-row" id="crm-type-pills">
                 <button class="pill active" onclick="setPill(this,'crm-type-pills')">Service Business</button>
@@ -3419,6 +3420,7 @@ async function genCRM(){
   const industry=document.getElementById('crm-industry').value.trim();
   const services=document.getElementById('crm-services').value.trim();
   const color=document.getElementById('crm-color').value||'#2e8b47';
+  const stats=document.getElementById('crm-stats').value.trim();
   const teamType=document.querySelector('#crm-type-pills .pill.active')?.textContent||'Service Business';
   if(!biz){document.getElementById('crm-biz').focus();return}
   const btn=document.querySelector('#panel-crm .gen-btn');btn.disabled=true;btn.classList.add('loading');
@@ -3432,6 +3434,9 @@ Industry: ${industry||teamType}
 Services/Products: ${services||'general services'}
 Business type: ${teamType}
 
+Current brand stats provided by the user — use ONLY these real numbers for brandSnapshot, NEVER invent or estimate follower counts:
+${stats||'(none provided)'}
+
 Return JSON with EXACTLY this shape:
 {
   "pipelineStages": [array of 6 stage names tailored to how THIS business actually closes deals, from first contact to won and lost],
@@ -3441,10 +3446,15 @@ Return JSON with EXACTLY this shape:
   "kpis": [array of 4 short KPI label strings this business should track],
   "tags": [array of 5 useful contact tags/labels for segmenting this business's customers],
   "avgDealValue": a single realistic average deal value number in dollars for this business (integer, no symbols),
-  "industryTip": "one sentence pro tip for managing this specific pipeline"
+  "industryTip": "one sentence pro tip for managing this specific pipeline",
+  "brandSnapshot": {
+    "platforms": [for EACH platform that has a real number in the brand stats above, an object {"name":"Instagram","metric":"Followers","value":the exact integer provided,"engagement":"3.2%" or null}; include ONLY platforms with provided numbers; empty array if none],
+    "verdict": "2 honest sentences on where this brand sits online RIGHT NOW based only on the provided numbers; if none provided, say live stats are needed",
+    "growthTargets": {"d30": realistic 30-day follower growth percent integer, "d60": 60-day percent integer, "d90": 90-day percent integer}
+  }
 }
 
-Every value must be specific to ${biz} and its industry — never generic.`,1800);
+Rules: every value must be specific to ${biz} and its industry. For brandSnapshot use ONLY numbers explicitly provided above — never fabricate follower counts or engagement. Growth target percentages are projections and may be ambitious but realistic.`,2400);
     let cfg=null;
     try{ cfg=JSON.parse(res.replace(/```json/g,'').replace(/```/g,'').trim()); }catch(e){ cfg=null; }
     if(!cfg||!cfg.pipelineStages){
@@ -3460,6 +3470,10 @@ Every value must be specific to ${biz} and its industry — never generic.`,1800
     if(!cfg.tags)cfg.tags=['Hot Lead','VIP','Repeat','Needs Follow-up','Cold'];
     if(!cfg.avgDealValue)cfg.avgDealValue=500;
     cfg.business=biz; cfg.color=color; cfg.industry=industry||teamType;
+    cfg.snapshot=cfg.brandSnapshot||{platforms:[],verdict:'',growthTargets:{d30:15,d60:35,d90:60}};
+    if(!cfg.snapshot.growthTargets)cfg.snapshot.growthTargets={d30:15,d60:35,d90:60};
+    if(!cfg.snapshot.platforms)cfg.snapshot.platforms=[];
+    cfg.snapshotRaw=stats;
     status.textContent='🛠 Engineering your luxury CRM app...';
     const html=buildCRMApp(cfg);
     renderCRMPreview(cfg);
@@ -3498,6 +3512,7 @@ function renderCRMPreview(cfg){
   h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">💼 Deal Types</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+(cfg.dealTypes||[]).map(s=>chip(s,n)).join('')+'</div>';
   h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">🏷 Smart Tags</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+(cfg.tags||[]).map(s=>chip(s,n)).join('')+'</div>';
   h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">📈 KPIs Tracked</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+(cfg.kpis||[]).map(s=>chip(s,gold)).join('')+'</div>';
+  if(cfg.snapshot&&cfg.snapshot.platforms&&cfg.snapshot.platforms.length){ h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">📊 Brand Snapshot (live baseline)</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+cfg.snapshot.platforms.map(function(p){return chip((p.name||'')+': '+(p.value!=null?Number(p.value).toLocaleString():'—')+(p.engagement?' · '+p.engagement:''),gold);}).join('')+'</div>'; }
   if(cfg.industryTip){ h+='<div style="margin-top:16px;padding:10px 14px;background:rgba(61,158,92,.06);border-left:3px solid var(--gx);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2)">💡 '+cfg.industryTip+'</div>'; }
   h+='<div style="margin-top:16px;font-size:11px;color:var(--text2);line-height:1.8">';
   h+='<b style="color:var(--gx)">6 Pages:</b> Command Center · Contacts · Pipeline · Deals &amp; Forecast · Tasks · Analytics<br>';
@@ -3511,7 +3526,7 @@ function buildCRMApp(cfg){
   const cfgJson=JSON.stringify({business:cfg.business,color:cfg.color,industry:cfg.industry,
     pipelineStages:cfg.pipelineStages,leadSources:cfg.leadSources,dealTypes:cfg.dealTypes||[],
     taskTypes:cfg.taskTypes||[],kpis:cfg.kpis||[],tags:cfg.tags||[],avgDealValue:cfg.avgDealValue||500,
-    industryTip:cfg.industryTip||''});
+    industryTip:cfg.industryTip||'',snapshot:cfg.snapshot||{platforms:[],verdict:'',growthTargets:{d30:15,d60:35,d90:60}},snapshotRaw:cfg.snapshotRaw||''});
   const initial=(cfg.business||'C').charAt(0).toUpperCase();
   return `<!DOCTYPE html>
 <html lang="en">
@@ -3642,6 +3657,7 @@ tbody tr{transition:.12s}tbody tr:hover td{background:rgba(255,255,255,.025)}
   <div class="tier">◆ POWERED BY GREENAI ◆</div>
   <div class="nav">
     <a class="on" onclick="go('dashboard',this)"><span class="ic">⬡</span> Command Center</a>
+    <a onclick="go('snapshot',this)"><span class="ic">◍</span> Brand Snapshot</a>
     <a onclick="go('contacts',this)"><span class="ic">◎</span> Contacts</a>
     <a onclick="go('pipeline',this)"><span class="ic">▤</span> Pipeline</a>
     <a onclick="go('deals',this)"><span class="ic">◈</span> Deals &amp; Forecast</a>
@@ -3665,6 +3681,13 @@ tbody tr{transition:.12s}tbody tr:hover td{background:rgba(255,255,255,.025)}
       <div class="card"><h3>⚗ Conversion Funnel</h3><div class="funnel" id="funnel"></div></div>
     </div>
     <div class="card"><h3>🕑 Recent Activity</h3><div id="recent"></div></div>
+  </div>
+
+  <div id="v-snapshot" class="view">
+    <div class="card" id="snapVerdict"></div>
+    <div class="kpis" id="snapKpis"></div>
+    <div class="card"><h3>🚀 90-Day Growth Targets <span class="tag">GreenAI projection</span></h3><div id="snapTargets"></div></div>
+    <div class="card"><h3>📋 Baseline Notes</h3><div id="snapNotes"></div></div>
   </div>
 
   <div id="v-contacts" class="view">
@@ -3753,7 +3776,7 @@ function wonStage(){return CFG.pipelineStages[CFG.pipelineStages.length-2];}
 function lostStage(){return CFG.pipelineStages[CFG.pipelineStages.length-1];}
 function stars(n){var h='';for(var i=1;i<=5;i++){h+=i<=n?'★':'<span class="off">★</span>';}return '<span class="stars">'+h+'</span>';}
 
-var TITLES={dashboard:['Command Center','Your live business overview'],contacts:['Contacts','Every lead in one place'],pipeline:['Pipeline','Move deals toward the close'],deals:['Deals & Forecast','Project your revenue'],tasks:['Tasks','Never miss a follow-up'],analytics:['Analytics','Know what is working'],settings:['Settings','Manage your CRM']};
+var TITLES={dashboard:['Command Center','Your live business overview'],snapshot:['Brand Snapshot','Where their brand sits online today'],contacts:['Contacts','Every lead in one place'],pipeline:['Pipeline','Move deals toward the close'],deals:['Deals & Forecast','Project your revenue'],tasks:['Tasks','Never miss a follow-up'],analytics:['Analytics','Know what is working'],settings:['Settings','Manage your CRM']};
 function go(v,el){
   var views=document.querySelectorAll('.view');for(var i=0;i<views.length;i++)views[i].classList.remove('on');
   document.getElementById('v-'+v).classList.add('on');
@@ -3762,7 +3785,7 @@ function go(v,el){
   document.getElementById('greeting').textContent=TITLES[v][0];
   document.getElementById('subtitle').textContent=TITLES[v][1];
   if(v==='dashboard')renderDash();if(v==='contacts')renderContacts();if(v==='pipeline')renderBoard();
-  if(v==='deals')renderDeals();if(v==='tasks')renderTasks();if(v==='analytics')renderAnalytics();if(v==='settings')renderSettings();
+  if(v==='snapshot')renderSnapshot();if(v==='deals')renderDeals();if(v==='tasks')renderTasks();if(v==='analytics')renderAnalytics();if(v==='settings')renderSettings();
 }
 
 function activeDeals(){var w=wonStage(),l=lostStage();return DB.contacts.filter(function(c){return c.stage!==w&&c.stage!==l;});}
@@ -3895,6 +3918,18 @@ function renderAnalytics(){
   document.getElementById('tagBars').innerHTML=tb||'<div class="empty">No tags yet</div>';
 }
 
+function renderSnapshot(){
+  var sn=CFG.snapshot||{platforms:[],growthTargets:{d30:15,d60:35,d90:60}};
+  var plats=sn.platforms||[];var g=sn.growthTargets||{d30:15,d60:35,d90:60};
+  document.getElementById('snapVerdict').innerHTML='<h3>◍ Brand Positioning</h3><div style="font-size:13.5px;color:var(--txt2);line-height:1.7">'+(sn.verdict?esc(sn.verdict):'Add the brand live numbers in the GreenAI Studio to populate this baseline.')+'</div>';
+  if(!plats.length){document.getElementById('snapKpis').innerHTML='';document.getElementById('snapTargets').innerHTML='<div class="empty"><div class="ico">◍</div>No live stats provided yet.<br>Paste their current numbers in the CRM Innovator to fill this in.</div>';document.getElementById('snapNotes').innerHTML='';return;}
+  var kh='';plats.forEach(function(p){kh+='<div class="kpi"><div class="lbl">'+esc(p.name||'')+'</div><div class="val">'+(p.value!=null?Number(p.value).toLocaleString():'—')+'</div><div class="sub">'+esc(p.metric||'Followers')+(p.engagement?' · '+esc(p.engagement)+' eng':'')+'</div></div>';});
+  document.getElementById('snapKpis').innerHTML=kh;
+  var th='<table><tr><th>Platform</th><th>Today</th><th>30-Day (+'+g.d30+'%)</th><th>60-Day (+'+g.d60+'%)</th><th>90-Day (+'+g.d90+'%)</th></tr>';
+  plats.forEach(function(p){if(p.value==null){th+='<tr><td>'+esc(p.name)+'</td><td colspan="4" style="color:var(--txt2)">no baseline provided</td></tr>';return;}var v=Number(p.value);th+='<tr><td><b>'+esc(p.name)+'</b></td><td>'+v.toLocaleString()+'</td><td style="color:var(--brand)">'+Math.round(v*(1+g.d30/100)).toLocaleString()+'</td><td style="color:var(--brand)">'+Math.round(v*(1+g.d60/100)).toLocaleString()+'</td><td style="color:var(--brand);font-weight:700">'+Math.round(v*(1+g.d90/100)).toLocaleString()+'</td></tr>';});
+  document.getElementById('snapTargets').innerHTML=th+'</table>';
+  document.getElementById('snapNotes').innerHTML='<div style="font-size:12px;color:var(--txt2);white-space:pre-wrap">'+esc(CFG.snapshotRaw||'No raw notes saved.')+'</div>';
+}
 function renderSettings(){
   document.getElementById('setBiz').textContent=CFG.business;
   document.getElementById('setInd').textContent=CFG.industry;
@@ -3947,7 +3982,7 @@ function toggleTask(id){for(var i=0;i<DB.tasks.length;i++){if(DB.tasks[i].id===i
 function delTask(id){DB.tasks=DB.tasks.filter(function(t){return t.id!==id;});save();renderTasks();}
 
 function closeOv(id){document.getElementById(id).classList.remove('on');}
-function refresh(){renderDash();renderContacts();renderBoard();renderDeals();renderTasks();renderAnalytics();}
+function refresh(){renderDash();renderSnapshot();renderContacts();renderBoard();renderDeals();renderTasks();renderAnalytics();}
 
 function exportCSV(){
   var rows=[['Name','Company','Email','Phone','Source','Stage','Priority','Deal Type','Score','Tags','Value','Notes']];
