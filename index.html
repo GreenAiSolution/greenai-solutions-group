@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -20,11 +20,11 @@
   <meta property="og:url" content="https://greenaidigital.com/" />
   <meta property="og:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
   <meta property="og:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses. Based in Gilbert, AZ." />
-  <meta property="og:image" content="https://greenaidigital.com/logo.png" />
+  <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
   <meta name="twitter:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses." />
-  <meta name="twitter:image" content="https://greenaidigital.com/logo.png" />
+  <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
 
   <!-- LocalBusiness structured data -->
   <script type="application/ld+json">
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "GreenAI Solutions Team",
-    "image": "https://greenaidigital.com/logo.png",
+    "image": "https://greenaidigital.com/logo.jpg",
     "url": "https://greenaidigital.com",
     "telephone": "+1-480-798-0753",
     "email": "jaden@greenaidigital.com",
@@ -58,13 +58,7 @@
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
-          <div class="nav__logo-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="17.5" cy="13" r="1.1" fill="currentColor"/>
-            </svg>
-          </div>
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
           <div class="nav__logo-text">
             <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
             <span class="nav__logo-sub">Solutions Team</span>
@@ -151,6 +145,24 @@
 
         <!-- Right side visual: dashboard mockup -->
         <div class="hero__visual" aria-hidden="true">
+          <svg class="hero__visual-traces" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="chartGradStroke" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#4caf6e"/>
+                <stop offset="100%" stop-color="#4dd0e1"/>
+              </linearGradient>
+            </defs>
+            <path d="M-10 40 H80 L100 22 H180 L200 60 H300 L320 32 H410"/>
+            <path d="M-10 250 H90 L115 232 H220 L240 270 H410"/>
+            <path d="M40 -10 V60 L60 80 V150 L40 170 V310"/>
+            <path d="M360 -10 V90 L340 110 V200 L360 220 V310"/>
+            <circle cx="80" cy="40" r="3"/>
+            <circle cx="180" cy="22" r="3"/>
+            <circle cx="320" cy="32" r="3"/>
+            <circle cx="60" cy="80" r="2.5"/>
+            <circle cx="340" cy="110" r="2.5"/>
+            <circle cx="220" cy="232" r="3"/>
+          </svg>
           <div class="hero__visual-glow"></div>
           <div class="hero__visual-card hero__visual-card--main">
             <div class="hero__visual-header">
@@ -210,51 +222,41 @@
     </div>
   </section>
 
-  <!-- ===== BRAND LOGO SECTION ===== -->
-  <section style="background:linear-gradient(135deg,#f0f7f2 0%,#ffffff 50%,#f0f7f2 100%);padding:5rem 0;border-top:1px solid #ddeae0;border-bottom:1px solid #ddeae0;position:relative;overflow:hidden;">
-    <!-- Subtle background grid -->
-    <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(26,92,42,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,92,42,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
-    <!-- Glow blobs -->
-    <div aria-hidden="true" style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(26,92,42,.10) 0%,transparent 70%);pointer-events:none;"></div>
+  <!-- ===== BRAND SHOWCASE SECTION ===== -->
+  <section class="brand-showcase" aria-label="GreenAI brand">
+    <div class="brand-showcase__bg" aria-hidden="true"></div>
+    <div class="brand-showcase__grid" aria-hidden="true"></div>
+    <div class="brand-showcase__glow" aria-hidden="true"></div>
 
-    <div class="container" style="text-align:center;position:relative;">
-      <p style="font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1a5c2a;margin-bottom:.75rem;">Gilbert, Arizona · Serving Businesses Nationwide</p>
-      <p style="font-size:1.05rem;color:#4a6350;margin-bottom:2.5rem;font-style:italic;">"Your business. Amplified by AI."</p>
+    <div class="container brand-showcase__inner">
+      <p class="brand-showcase__eyebrow">Gilbert, Arizona · Serving Businesses Nationwide</p>
 
-      <!-- Futuristic card -->
-      <div style="
-        display:inline-block;
-        position:relative;
-        background:linear-gradient(145deg,#ffffff,#f5faf6);
-        border-radius:24px;
-        padding:2.5rem 3.5rem;
-        box-shadow:0 2px 0 0 rgba(26,92,42,.15) inset,0 -1px 0 0 rgba(26,92,42,.08) inset,0 24px 60px rgba(26,92,42,.12),0 4px 16px rgba(0,0,0,.06);
-        border:1px solid rgba(26,92,42,.15);
-      ">
-        <!-- Corner accent lines -->
-        <div aria-hidden="true" style="position:absolute;top:14px;left:14px;width:28px;height:28px;border-top:2px solid #1a5c2a;border-left:2px solid #1a5c2a;border-radius:4px 0 0 0;opacity:.5;"></div>
-        <div aria-hidden="true" style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-top:2px solid #D4AF37;border-right:2px solid #D4AF37;border-radius:0 4px 0 0;opacity:.6;"></div>
-        <div aria-hidden="true" style="position:absolute;bottom:14px;left:14px;width:28px;height:28px;border-bottom:2px solid #D4AF37;border-left:2px solid #D4AF37;border-radius:0 0 0 4px;opacity:.6;"></div>
-        <div aria-hidden="true" style="position:absolute;bottom:14px;right:14px;width:28px;height:28px;border-bottom:2px solid #1a5c2a;border-right:2px solid #1a5c2a;border-radius:0 0 4px 0;opacity:.5;"></div>
-
-        <img src="logo.png" alt="GreenAI Solutions Team" style="height:140px;width:auto;display:block;position:relative;z-index:1;"/>
+      <div class="brand-showcase__card">
+        <div class="brand-showcase__corner brand-showcase__corner--tl" aria-hidden="true"></div>
+        <div class="brand-showcase__corner brand-showcase__corner--tr" aria-hidden="true"></div>
+        <div class="brand-showcase__corner brand-showcase__corner--bl" aria-hidden="true"></div>
+        <div class="brand-showcase__corner brand-showcase__corner--br" aria-hidden="true"></div>
+        <img src="logo-icon.png" alt="GreenAI Solutions Team — hexagonal AI chip logo" class="brand-showcase__crest" width="280" height="280" loading="lazy"/>
+        <div class="brand-showcase__wordmark">
+          <h2 class="brand-showcase__name">Green<span>AI</span> Solutions</h2>
+          <p class="brand-showcase__tagline">Your business. Amplified by AI.</p>
+        </div>
       </div>
 
-      <!-- Stats row -->
-      <div style="display:flex;justify-content:center;gap:3rem;margin-top:3rem;flex-wrap:wrap;">
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:'Playfair Display',Georgia,serif;">AI-Powered</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">Strategy</div>
+      <div class="brand-pillars">
+        <div class="brand-pillars__item">
+          <div class="brand-pillars__value">AI-Powered</div>
+          <div class="brand-pillars__label">Strategy</div>
         </div>
-        <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#1a5c2a;font-family:'Playfair Display',Georgia,serif;">Gilbert, AZ</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">Based &amp; Built Here</div>
+        <div class="brand-pillars__divider" aria-hidden="true"></div>
+        <div class="brand-pillars__item">
+          <div class="brand-pillars__value">Gilbert, AZ</div>
+          <div class="brand-pillars__label">Based &amp; Built Here</div>
         </div>
-        <div style="width:1px;background:linear-gradient(to bottom,transparent,#c8dccb,transparent);"></div>
-        <div style="text-align:center;">
-          <div style="font-size:1.6rem;font-weight:800;color:#b8941f;font-family:'Playfair Display',Georgia,serif;">Results First</div>
-          <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6f5d;margin-top:.25rem;">No Long Contracts</div>
+        <div class="brand-pillars__divider" aria-hidden="true"></div>
+        <div class="brand-pillars__item brand-pillars__item--gold">
+          <div class="brand-pillars__value">Results First</div>
+          <div class="brand-pillars__label">No Long Contracts</div>
         </div>
       </div>
     </div>
@@ -306,6 +308,18 @@
     </div>
   </section>
 
+  <!-- Circuit divider -->
+  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+      <circle class="cd-node" cx="290" cy="12" r="3"/>
+      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+      <circle class="cd-node" cx="850" cy="22" r="3"/>
+      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+    </svg>
+  </div>
   <!-- ===== VALUE PROPS ===== -->
   <section class="section bg-gray" aria-labelledby="value-heading">
     <div class="container">
@@ -318,36 +332,43 @@
 
       <div class="features-grid">
         <div class="feature-card reveal reveal-delay-1">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
           <h3>Social Media That Sells</h3>
           <p>We handle your Instagram, TikTok, and Facebook end-to-end — content, posting, engagement, and growth. You run the business. We make sure everyone knows about it.</p>
         </div>
         <div class="feature-card reveal reveal-delay-2">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div>
           <h3>AI-Powered Business Systems</h3>
           <p>Stop losing leads to slow follow-up. Our AI responds to prospects in under 5 minutes, automates your CRM, and builds workflows that run while you sleep.</p>
         </div>
         <div class="feature-card reveal reveal-delay-3">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <h3>Custom Website Design</h3>
           <p>Your website is your first impression. We build fast, conversion-focused custom sites from scratch — no templates, no page builders, just clean professional work.</p>
         </div>
         <div class="feature-card reveal reveal-delay-1">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <h3>Real Estate Specialization</h3>
           <p>From AI listing optimization to automated lead follow-up, we know the real estate game inside and out. Agents across the Phoenix metro trust GreenAI to fill their pipeline.</p>
         </div>
         <div class="feature-card reveal reveal-delay-2">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
           <h3>ROI You Can Measure</h3>
           <p>Every service comes with clear metrics. You'll see exactly what's working, what it's generating, and what your return looks like — month over month.</p>
         </div>
         <div class="feature-card reveal reveal-delay-3">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>A Real Partner, Not a Vendor</h3>
           <p>You work directly with Jaden — not an account manager. We keep our client roster small so every business gets the attention and hustle it deserves.</p>
         </div>
         <div class="feature-card reveal reveal-delay-1" style="border-color: rgba(212,175,55,.3); position: relative; overflow: hidden;">
+          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
           <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37, #b8941f);"></div>
           <div class="feature-icon" aria-hidden="true" style="background: linear-gradient(135deg, #06100A, #0d1a0f);">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -360,6 +381,18 @@
     </div>
   </section>
 
+  <!-- Circuit divider -->
+  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+      <circle class="cd-node" cx="290" cy="12" r="3"/>
+      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+      <circle class="cd-node" cx="850" cy="22" r="3"/>
+      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+    </svg>
+  </div>
   <!-- ===== SERVICES OVERVIEW ===== -->
   <section class="section" aria-labelledby="services-heading">
     <div class="container">
@@ -462,6 +495,18 @@
     </div>
   </section>
 
+  <!-- Circuit divider -->
+  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+      <circle class="cd-node" cx="290" cy="12" r="3"/>
+      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+      <circle class="cd-node" cx="850" cy="22" r="3"/>
+      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+    </svg>
+  </div>
   <!-- ===== HOW IT WORKS ===== -->
   <section class="section bg-pale" aria-labelledby="how-heading">
     <div class="container">
@@ -497,6 +542,18 @@
     </div>
   </section>
 
+  <!-- Circuit divider -->
+  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+      <circle class="cd-node" cx="290" cy="12" r="3"/>
+      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+      <circle class="cd-node" cx="850" cy="22" r="3"/>
+      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+    </svg>
+  </div>
   <!-- ===== TESTIMONIALS ===== -->
   <section class="section" aria-labelledby="testimonials-heading">
     <div class="container">
@@ -612,14 +669,26 @@
     </div>
   </section>
 
-  <!-- ===== GUARANTEE ===== -->
-  <section class="section" aria-label="Results guarantee">
-    <div class="container">
-    </div>
-  </section>
-
+  <!-- Circuit divider -->
+  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+      <circle class="cd-node" cx="290" cy="12" r="3"/>
+      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+      <circle class="cd-node" cx="850" cy="22" r="3"/>
+      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+    </svg>
+  </div>
   <!-- ===== CTA BAND ===== -->
   <section class="cta-band" aria-labelledby="cta-heading">
+      <svg class="cta-net" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M144 108 L336 252 L576 79 L744 216 L960 100 L1080 270"/>
+        <path d="M120 250 L290 130 L460 290 L640 150 L820 280 L1020 130"/>
+        <path d="M50 50 L260 230 L500 60 L720 240 L900 80 L1140 240"/>
+        <path d="M80 320 L300 200 L520 340 L780 180 L1020 320 L1180 200"/>
+      </svg>
     <div class="container">
       <div class="cta-band__scarcity" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.5rem">
         <span style="width:8px;height:8px;background:#ff4444;border-radius:50%;animation:pulse 2s infinite"></span>
@@ -640,13 +709,7 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="index.html" class="footer__logo" aria-label="GreenAI home">
-            <div class="footer__logo-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2.5L20.8 7.5V17.5L12 22.5L3.2 17.5V7.5L12 2.5Z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/>
-                <path d="M15.2 9.8C14.4 8.9 13.3 8.3 12 8.3C9.4 8.3 7.3 10.4 7.3 13C7.3 15.6 9.4 17.7 12 17.7C13.9 17.7 15.6 16.6 16.4 15H12.8V13.3H17.5V14" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="17.5" cy="13" r="1.1" fill="white"/>
-              </svg>
-            </div>
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
             <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
           </a>
           <p class="footer__tagline">Growing Arizona businesses with AI-powered strategy, social media that converts, and professionally built websites — all from one dedicated partner.</p>

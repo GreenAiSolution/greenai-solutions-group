@@ -1923,3 +1923,622 @@ p { color: var(--gray-600); }
   transition: color .2s;
 }
 .footer__legal a:hover { color: #4caf6e; }
+
+/* =============================================
+   v5 — New logo integration + tech-vibe palette
+   ============================================= */
+
+/* Updated palette — slightly deeper green base, with cyan accent for tech */
+:root {
+  --green-deepest: #0a2614;
+  --green-richer:  #15482a;
+  --cyan-accent:   #4dd0e1;
+  --cyan-glow:     rgba(77, 208, 225, 0.18);
+  --gold-accent:   #d4af37;
+}
+
+/* Nav logo image — replace inline SVG */
+.nav__logo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(77, 208, 225, 0.15), 0 1px 3px rgba(0,0,0,.2);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.nav__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nav__logo:hover .nav__logo-icon {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 4px 14px rgba(77, 208, 225, 0.35), 0 2px 6px rgba(0,0,0,.25);
+}
+
+/* Footer logo image */
+.footer__logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(77, 208, 225, 0.2);
+}
+.footer__logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== BRAND SHOWCASE section — replaces old logo card ===== */
+.brand-showcase {
+  position: relative;
+  background: linear-gradient(135deg, #0a2614 0%, #15482a 50%, #0a2614 100%);
+  padding: 5.5rem 0 5rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(77, 208, 225, 0.08);
+  border-bottom: 1px solid rgba(77, 208, 225, 0.08);
+}
+.brand-showcase__bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(77, 208, 225, .08), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, .06), transparent 50%);
+  pointer-events: none;
+}
+.brand-showcase__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(77, 208, 225, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 208, 225, .04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+.brand-showcase__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(77, 208, 225, .12), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.brand-showcase__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.brand-showcase__eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cyan-accent);
+  margin-bottom: 2.5rem;
+}
+
+/* The card holding logo + wordmark */
+.brand-showcase__card {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(77,208,225,.04));
+  border: 1px solid rgba(77, 208, 225, 0.2);
+  border-radius: 24px;
+  padding: 2rem 3rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .35),
+    0 8px 24px rgba(77, 208, 225, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.brand-showcase__corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+.brand-showcase__corner--tl { top: 12px; left: 12px; border-top: 2px solid var(--cyan-accent); border-left: 2px solid var(--cyan-accent); border-radius: 4px 0 0 0; opacity: .65; }
+.brand-showcase__corner--tr { top: 12px; right: 12px; border-top: 2px solid var(--gold-accent); border-right: 2px solid var(--gold-accent); border-radius: 0 4px 0 0; opacity: .7; }
+.brand-showcase__corner--bl { bottom: 12px; left: 12px; border-bottom: 2px solid var(--gold-accent); border-left: 2px solid var(--gold-accent); border-radius: 0 0 0 4px; opacity: .7; }
+.brand-showcase__corner--br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--cyan-accent); border-right: 2px solid var(--cyan-accent); border-radius: 0 0 4px 0; opacity: .65; }
+
+.brand-showcase__crest {
+  width: 180px;
+  height: 180px;
+  border-radius: 18px;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 4px 12px rgba(77, 208, 225, .2);
+  animation: crest-pulse 4s ease-in-out infinite;
+}
+@keyframes crest-pulse {
+  0%, 100% { box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 4px 12px rgba(77, 208, 225, .2); }
+  50%      { box-shadow: 0 18px 48px rgba(0,0,0,.45), 0 6px 18px rgba(77, 208, 225, .4); }
+}
+
+.brand-showcase__wordmark {
+  text-align: left;
+}
+.brand-showcase__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 .35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.brand-showcase__name span {
+  background: linear-gradient(135deg, #ffd97d 0%, #d4af37 50%, #b8941f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-showcase__tagline {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, .75);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: .01em;
+}
+
+/* Pillars (former stats row) */
+.brand-pillars {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+.brand-pillars__item { text-align: center; min-width: 140px; }
+.brand-pillars__value {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.brand-pillars__item--gold .brand-pillars__value {
+  background: linear-gradient(135deg, #ffd97d, #d4af37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-pillars__label {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cyan-accent);
+  margin-top: .35rem;
+  font-weight: 600;
+}
+.brand-pillars__divider {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(77, 208, 225, .35), transparent);
+  align-self: stretch;
+}
+
+/* Mobile brand showcase */
+@media (max-width: 720px) {
+  .brand-showcase { padding: 4rem 0 3.5rem; }
+  .brand-showcase__card {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+    width: calc(100% - 2rem);
+    max-width: 420px;
+  }
+  .brand-showcase__wordmark { text-align: center; }
+  .brand-showcase__crest { width: 140px; height: 140px; }
+  .brand-pillars { gap: 1.5rem; margin-top: 2.5rem; }
+  .brand-pillars__divider { display: none; }
+}
+
+/* Tech-vibe accent in the hero dashboard mockup */
+.hero__visual-status--cyan {
+  background: var(--cyan-accent);
+  box-shadow: 0 0 0 3px rgba(77, 208, 225, .25);
+}
+
+/* Subtle cyan accent on nav hover */
+.nav__link:hover { color: var(--cyan-accent); }
+.nav__link.active { color: var(--cyan-accent); }
+
+/* Hero stats are gone now, but make sure leftover old hero classes don't render anything */
+.hero__stats, .hero__stat { display: none !important; }
+.hero__data-tag, .hero__terminal { display: none !important; }
+
+/* Mobile nav logo — slightly smaller */
+@media (max-width: 600px) {
+  .nav__logo-icon { width: 38px; height: 38px; }
+  .footer__logo-icon { width: 34px; height: 34px; }
+}
+
+/* =============================================
+   v6 — Push the vibe further (circuit dividers,
+   hex grids, network nodes, tech cards, page hero)
+   ============================================= */
+
+/* ---------- Circuit-line section divider ---------- */
+.circuit-divider {
+  position: relative;
+  height: 64px;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+.circuit-divider svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.circuit-divider .cd-line {
+  stroke: var(--cyan-accent, #4dd0e1);
+  stroke-width: 1.2;
+  fill: none;
+  opacity: .55;
+  stroke-dasharray: 6 8;
+  animation: cd-march 6s linear infinite;
+}
+.circuit-divider .cd-line--alt {
+  opacity: .35;
+  stroke-dasharray: 3 10;
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+.circuit-divider .cd-node {
+  fill: var(--cyan-accent, #4dd0e1);
+  filter: drop-shadow(0 0 4px rgba(77,208,225,.65));
+  animation: cd-pulse 2.6s ease-in-out infinite;
+}
+.circuit-divider .cd-node:nth-child(odd) { animation-delay: .9s; }
+.circuit-divider .cd-node--gold {
+  fill: var(--gold-accent, #d4af37);
+  filter: drop-shadow(0 0 4px rgba(212,175,55,.55));
+}
+@keyframes cd-march {
+  to { stroke-dashoffset: -200; }
+}
+@keyframes cd-pulse {
+  0%, 100% { opacity: .35; transform: scale(1); }
+  50%      { opacity: 1;  transform: scale(1.4); }
+}
+/* Dark backdrop variant (over green sections) */
+.circuit-divider--on-dark { background: linear-gradient(180deg, transparent, rgba(10,38,20,.06), transparent); }
+/* Light backdrop variant (over light/gray sections) */
+.circuit-divider--on-light .cd-line { opacity: .42; }
+.circuit-divider--on-light .cd-node { filter: drop-shadow(0 0 3px rgba(77,208,225,.55)); }
+
+/* ---------- Hex-grid backdrop on bg-gray section ---------- */
+.section.bg-gray,
+.section.bg-pale {
+  position: relative;
+  isolation: isolate;
+}
+.section.bg-gray::before,
+.section.bg-pale::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='64' viewBox='0 0 56 64'><g fill='none' stroke='%231a5c2a' stroke-opacity='0.07' stroke-width='1'><path d='M28 1l24 14v34L28 63 4 49V15z'/><path d='M28 17l12 7v16l-12 7-12-7V24z'/></g></svg>");
+  background-size: 80px 92px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  opacity: .9;
+}
+.section.bg-gray > .container,
+.section.bg-pale > .container { position: relative; z-index: 1; }
+
+/* Add a subtle cyan glow blob in value-props */
+.section.bg-gray::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 10%;
+  right: -10%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(77,208,225,.10), transparent 65%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* ---------- Feature card: tech-card upgrade ---------- */
+.feature-card {
+  background:
+    linear-gradient(180deg, #ffffff, #fbfcfb);
+}
+.feature-card::before {
+  /* upgrade the top accent line to gradient w/ cyan */
+  background: linear-gradient(90deg, var(--green-dark), #4caf6e 50%, var(--cyan-accent, #4dd0e1));
+  height: 2px;
+}
+/* Corner brackets */
+.feature-card > .fc-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.feature-card > .fc-corner--tl { top: 10px; left: 10px;  border-top: 2px solid var(--cyan-accent, #4dd0e1); border-left: 2px solid var(--cyan-accent, #4dd0e1); }
+.feature-card > .fc-corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--cyan-accent, #4dd0e1); border-right: 2px solid var(--cyan-accent, #4dd0e1); }
+.feature-card > .fc-corner--bl { bottom: 10px; left: 10px;  border-bottom: 2px solid var(--cyan-accent, #4dd0e1); border-left: 2px solid var(--cyan-accent, #4dd0e1); }
+.feature-card > .fc-corner--br { bottom: 10px; right: 10px; border-bottom: 2px solid var(--cyan-accent, #4dd0e1); border-right: 2px solid var(--cyan-accent, #4dd0e1); }
+.feature-card:hover > .fc-corner { opacity: .65; }
+
+/* Subtle inner grid that fades in on hover */
+.feature-card > .fc-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(77,208,225,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,208,225,.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 80% 0%, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 80% 0%, black, transparent 70%);
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.feature-card:hover > .fc-grid { opacity: 1; }
+
+.feature-card:hover {
+  border-color: rgba(77,208,225,.45);
+  box-shadow:
+    0 16px 40px rgba(26,92,42,.12),
+    0 0 0 1px rgba(77,208,225,.18),
+    0 0 24px rgba(77,208,225,.15);
+}
+
+/* Icon glow on hover */
+.feature-card .feature-icon {
+  position: relative;
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.feature-card .feature-icon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(77,208,225,.35), transparent 70%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: -1;
+}
+.feature-card:hover .feature-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(77,208,225,.22);
+}
+.feature-card:hover .feature-icon::after { opacity: 1; }
+
+/* ---------- Network node constellation behind CTA band ---------- */
+.cta-band { isolation: isolate; }
+.cta-band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 30%, rgba(77,208,225,.7) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 28% 70%, rgba(77,208,225,.55) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 48% 22%, rgba(212,175,55,.55) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 62% 60%, rgba(77,208,225,.65) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 80% 28%, rgba(77,208,225,.4)  0 1.5px, transparent 2px),
+    radial-gradient(circle at 90% 75%, rgba(212,175,55,.4)  0 1.5px, transparent 2px);
+  opacity: .85;
+  mask-image: linear-gradient(180deg, black 0%, black 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, black 0%, black 75%, transparent 100%);
+}
+.cta-band .cta-net {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .55;
+}
+.cta-band .cta-net path {
+  stroke: rgba(77,208,225,.45);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 4 8;
+  animation: cd-march 8s linear infinite;
+}
+.cta-band .cta-net path:nth-child(even) {
+  stroke: rgba(212,175,55,.32);
+  animation-duration: 11s;
+  animation-direction: reverse;
+}
+
+/* Bigger emphasis on cta-band content above the net */
+.cta-band > .container { position: relative; z-index: 2; }
+
+/* ---------- Hero dashboard mockup cyan + circuit upgrade ---------- */
+.hero__visual { position: relative; }
+.hero__visual::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(77,208,225,.16), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(76,175,110,.18), transparent 55%);
+  filter: blur(8px);
+}
+.hero__visual > * { position: relative; z-index: 1; }
+
+.hero__visual-card--main {
+  border-color: rgba(77,208,225,.18) !important;
+  box-shadow:
+    0 30px 60px rgba(10,38,20,.18),
+    0 0 0 1px rgba(77,208,225,.12),
+    0 0 30px rgba(77,208,225,.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.hero__visual-card--main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(77,208,225,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,208,225,.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at 100% 0%, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 100% 0%, black, transparent 70%);
+  z-index: 0;
+}
+.hero__visual-card--main > * { position: relative; z-index: 1; }
+
+/* circuit traces overlay svg in hero */
+.hero__visual-traces {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .55;
+}
+.hero__visual-traces path {
+  stroke: var(--cyan-accent, #4dd0e1);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 5 7;
+  animation: cd-march 7s linear infinite;
+}
+.hero__visual-traces circle {
+  fill: var(--cyan-accent, #4dd0e1);
+  filter: drop-shadow(0 0 4px rgba(77,208,225,.7));
+  animation: cd-pulse 2.6s ease-in-out infinite;
+}
+
+/* Cyan-tinted chart line in hero (override green) */
+.hero__visual-card--main .hero__visual-chart svg path[stroke="#4caf6e"] {
+  stroke: url(#chartGradStroke);
+}
+
+/* ---------- Page hero tech reskin (about/services/contact) ---------- */
+.page-hero {
+  position: relative;
+  background: linear-gradient(160deg, var(--green-deepest, #0a2614) 0%, var(--green-richer, #15482a) 55%, #1a5c2a 100%);
+  color: #fff;
+  padding: 5.5rem 0 4.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(77,208,225,.12);
+}
+.page-hero::before {
+  /* hex grid faded out */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='64' viewBox='0 0 56 64'><g fill='none' stroke='%234dd0e1' stroke-opacity='0.10' stroke-width='1'><path d='M28 1l24 14v34L28 63 4 49V15z'/></g></svg>");
+  background-size: 90px 104px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  opacity: .9;
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(77,208,225,.16), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(212,175,55,.10), transparent 55%);
+  pointer-events: none;
+}
+.page-hero > .container { position: relative; z-index: 1; }
+.page-hero h1 { color: #fff; }
+.page-hero p { color: rgba(255,255,255,.78); max-width: 640px; }
+.page-hero .section-label { color: var(--cyan-accent, #4dd0e1) !important; }
+
+/* Tech badge that replaces hidden hero__terminal */
+.page-hero__chip {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  gap: .55rem;
+  background: rgba(77,208,225,.10);
+  border: 1px solid rgba(77,208,225,.28);
+  color: var(--cyan-accent, #4dd0e1);
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .4rem .9rem;
+  border-radius: 100px;
+  margin-bottom: 1.1rem;
+}
+/* (page-hero is text-align:center by default, so chip stays centered) */
+.page-hero__chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan-accent, #4dd0e1);
+  box-shadow: 0 0 0 3px rgba(77,208,225,.20);
+  animation: cd-pulse 2.2s ease-in-out infinite;
+}
+
+/* ---------- How-it-works step circles get cyan ring ---------- */
+.section.bg-pale [style*="border-radius:50%"][style*="56px"] {
+  position: relative;
+  box-shadow: 0 0 0 4px rgba(77,208,225,.12), 0 8px 22px rgba(26,92,42,.18);
+}
+
+/* ---------- Honor reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .circuit-divider .cd-line,
+  .circuit-divider .cd-node,
+  .cta-band .cta-net path,
+  .hero__visual-traces path,
+  .hero__visual-traces circle,
+  .page-hero__chip-dot,
+  .brand-showcase__crest {
+    animation: none !important;
+  }
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 720px) {
+  .circuit-divider { height: 44px; }
+  .section.bg-gray::after { display: none; }
+  .hero__visual-traces { opacity: .35; }
+  .feature-card > .fc-corner { display: none; }
+}

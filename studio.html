@@ -478,6 +478,145 @@ textarea.fi{resize:vertical;line-height:1.65}
 .seo-meta-title{font-size:14px;color:#60a5fa;font-weight:600;margin-bottom:4px;line-height:1.3}
 .seo-meta-desc{font-size:12px;color:var(--text2);line-height:1.5}
 
+
+/* ════════════════════════════════════════════════════════════════
+   GreenAI Studio v7 — Command-Center Visual Layer
+   Hex grid, cyan circuit traces, glassmorphic cards, scanning lines
+   ════════════════════════════════════════════════════════════════ */
+:root{
+  --cyan:#4dd0e1;
+  --cyan-soft:rgba(77,208,225,.20);
+  --cyan-dim:rgba(77,208,225,.08);
+  --gold:#d4af37;
+  --gold-soft:rgba(212,175,55,.22);
+}
+/* Hex-grid backdrop layered over the orbs */
+.bg-orbs::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(77,208,225,.04) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='64' viewBox='0 0 56 64'><path d='M28 0 L52 14 L52 50 L28 64 L4 50 L4 14 Z' fill='none' stroke='%234dd0e1' stroke-opacity='0.06' stroke-width='1'/></svg>");
+  background-size:auto, 56px 64px;
+  animation:hex-drift 60s linear infinite;
+}
+@keyframes hex-drift{from{background-position:0 0,0 0}to{background-position:0 0,56px 64px}}
+
+/* Circuit-trace overlay along the topbar */
+.topbar::after{
+  content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none;
+  background:linear-gradient(90deg, transparent 0%, var(--cyan) 50%, transparent 100%);
+  opacity:.55;
+  animation:scan-x 6s ease-in-out infinite;
+}
+@keyframes scan-x{0%,100%{transform:translateX(-30%);opacity:.3}50%{transform:translateX(30%);opacity:.7}}
+
+/* Topbar glow upgrade */
+.topbar{box-shadow:0 1px 0 rgba(77,208,225,.08), 0 8px 32px rgba(0,0,0,.5)}
+
+/* Sidebar v7 — fine cyan rail */
+.sidebar{position:relative}
+.sidebar::after{content:'';position:absolute;top:0;bottom:0;right:0;width:1px;
+  background:linear-gradient(180deg, transparent 0%, var(--cyan-soft) 50%, transparent 100%);
+  opacity:.6}
+
+/* Nav item v7 — hex marker on hover/active */
+.nav-item{position:relative;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.nav-item::before{
+  content:'';position:absolute;left:6px;top:50%;transform:translateY(-50%) rotate(0deg);
+  width:6px;height:6px;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:var(--cyan);opacity:0;transition:opacity .25s, transform .4s;
+}
+.nav-item:hover::before{opacity:.6}
+.nav-item.active::before{opacity:1;transform:translateY(-50%) rotate(180deg);box-shadow:0 0 8px var(--cyan)}
+.nav-item.active{background:linear-gradient(90deg, rgba(77,208,225,.06), transparent 60%) !important}
+
+/* Glassmorphic tool cards — apply to existing panels */
+.panel{position:relative}
+.panel.active{animation:panel-in .35s ease-out}
+@keyframes panel-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Cards / inputs get a cyan circuit corner */
+.card, .gen-card, .out-card, .input-grid, .out-box{position:relative}
+.card::before, .gen-card::before, .out-card::before{
+  content:'';position:absolute;top:0;left:0;width:18px;height:18px;
+  border-top:1px solid var(--cyan-soft);border-left:1px solid var(--cyan-soft);
+  border-top-left-radius:inherit;pointer-events:none;opacity:.7
+}
+.card::after, .gen-card::after, .out-card::after{
+  content:'';position:absolute;bottom:0;right:0;width:18px;height:18px;
+  border-bottom:1px solid var(--cyan-soft);border-right:1px solid var(--cyan-soft);
+  border-bottom-right-radius:inherit;pointer-events:none;opacity:.7
+}
+
+/* Generate buttons — gold + cyan dual sheen */
+.gen-btn, .auth-btn{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#15482a 0%,#1a5c2a 50%,#3d9e5c 100%);
+  border:1px solid rgba(212,175,55,.35) !important;
+  box-shadow:0 0 0 1px rgba(77,208,225,.15), 0 8px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+  letter-spacing:.04em
+}
+.gen-btn::before, .auth-btn::before{
+  content:'';position:absolute;inset:-2px;border-radius:inherit;
+  background:conic-gradient(from 0deg, transparent 0%, var(--cyan-soft) 25%, transparent 50%, var(--gold-soft) 75%, transparent 100%);
+  opacity:0;transition:opacity .3s;z-index:-1;
+}
+.gen-btn:hover::before, .auth-btn:hover::before{opacity:1;animation:spin-slow 4s linear infinite}
+.gen-btn:hover, .auth-btn:hover{transform:translateY(-1px);box-shadow:0 0 0 1px var(--cyan), 0 12px 32px rgba(77,208,225,.25), inset 0 1px 0 rgba(255,255,255,.12)}
+
+/* Auth screen v7 — pulsing constellation */
+#auth-screen::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, var(--cyan) 0%, transparent 100%),
+    radial-gradient(2px 2px at 70% 60%, var(--cyan) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, var(--cyan) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 20%, var(--gold) 0%, transparent 100%),
+    radial-gradient(2px 2px at 15% 70%, var(--gold) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, var(--cyan) 0%, transparent 100%);
+  background-size:100% 100%;
+  opacity:.5;
+  animation:twinkle 4s ease-in-out infinite alternate
+}
+@keyframes twinkle{from{opacity:.25}to{opacity:.7}}
+
+/* Auth card upgrade */
+.auth-card{
+  border-color:rgba(77,208,225,.18) !important;
+  box-shadow:var(--shadow-lg), 0 0 0 1px rgba(77,208,225,.08), 0 0 80px rgba(77,208,225,.08) !important;
+}
+.auth-card::before{
+  content:'';position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg, transparent 30%, rgba(77,208,225,.25) 50%, transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  padding:1px;
+}
+
+/* API dot upgrade — live system indicator */
+.api-dot.on{box-shadow:0 0 8px #4ade80, 0 0 16px rgba(74,222,128,.4);animation:pulse-on 2.4s ease-in-out infinite}
+@keyframes pulse-on{0%,100%{box-shadow:0 0 8px #4ade80, 0 0 0 rgba(74,222,128,0)}50%{box-shadow:0 0 12px #4ade80, 0 0 18px rgba(74,222,128,.55)}}
+
+/* Panel headings — gain a scan-line accent */
+.gen-card h2, .panel h1, .panel h2{position:relative}
+.gen-card h2::after, .panel h1::after, .panel h2::after{
+  content:'';display:block;height:1px;width:48px;margin-top:8px;
+  background:linear-gradient(90deg, var(--cyan), transparent);
+  box-shadow:0 0 6px var(--cyan-soft)
+}
+
+/* Loading state on buttons — cyan ring */
+.gen-btn.loading::after{border-top-color:var(--cyan) !important;border-right-color:var(--cyan) !important}
+
+/* Image grid cards — hex corners */
+.img-card, .img-loading{position:relative}
+
+/* Mobile tightening */
+@media (max-width: 640px){
+  .topbar::after{height:1px}
+  .nav-item::before{left:4px;width:5px;height:5px}
+}
 </style>
 </head>
 <body>
@@ -571,13 +710,13 @@ textarea.fi{resize:vertical;line-height:1.65}
     </div>
     <div class="tb-status"><div class="live-dot"></div>AI ONLINE</div>
       <div class="tb-spacer"></div>
-    <div class="api-pill" onclick="openModal('api-modal')" id="api-pill">
+    <div class="api-pill" id="api-pill" title="Server-side backend">
       <div class="api-dot off" id="api-dot"></div>
-      <span id="api-text">Connect API</span>
+      <span id="api-text">Backend</span>
     </div>
-    <div class="api-pill" onclick="openModal('gemini-modal')" id="gemini-pill" style="margin-left:6px">
+    <div class="api-pill" id="gemini-pill" style="margin-left:6px" title="Image engine">
       <div class="api-dot off" id="gemini-dot"></div>
-      <span id="gemini-text">Gemini Images</span>
+      <span id="gemini-text">Flux Engine</span>
     </div>
   </div>
 
@@ -1820,10 +1959,16 @@ textarea.fi{resize:vertical;line-height:1.65}
 </div><!-- /app -->
 
 <script>
+// ══ BACKEND CONFIG ══
+// Replace these two values after deploying the Cloudflare Worker (see worker/README.md)
+const STUDIO_API_URL   = "https://greenai-studio-api.jadengreen808.workers.dev";
+const STUDIO_API_TOKEN = "1da9f3154e96c20a6f18c4324b40d168";
+
 // ══ STATE ══
 const PASS='GreenAI2026';
-let apiKey=sessionStorage.getItem('gai_key')||'';
-let geminiKey=sessionStorage.getItem('gai_gemini')||'';
+// Legacy locals (kept so older code paths don't throw — real auth is the access code)
+let apiKey='backend';
+let geminiKey='backend';
 let sPlat='ig',sTone='professional',lTone='warm',imgStyle='cinematic',imgW=1080,imgH=1080,imgQty=1,hStrat='balanced',reviewStar=5,reviewSrc='google';
 let cpPlats={ig:false,tt:false,fb:false};
 let clients=JSON.parse(localStorage.getItem('gai_clients2')||'[]');
@@ -1837,7 +1982,11 @@ function enterStudio(){
   document.getElementById('app').style.display='flex';
   try{document.getElementById('tb-ds-logo').style.display='block';}catch(e){}
   try{document.getElementById('sidebar-ds-logo').style.display='block';}catch(e){}
-  if(!apiKey)setTimeout(()=>openModal('api-modal'),500);else setAPI(true);
+  setAPI(true); setGemini(true);
+  // Optional health ping (non-blocking)
+  fetch(STUDIO_API_URL + '/api/health').then(r=>r.json()).then(d=>{
+    if(!d.has_key){ toast('⚠️ Backend missing ANTHROPIC_API_KEY'); setAPI(false); }
+  }).catch(()=>{ toast('⚠️ Backend offline — tools will fail'); setAPI(false); });
 }
 
 // ══ API ══
@@ -1851,7 +2000,7 @@ function saveApiKey(){
 }
 function setAPI(on){
   document.getElementById('api-dot').className='api-dot '+(on?'on':'off');
-  document.getElementById('api-text').textContent=on?'AI Active':'Connect API';
+  document.getElementById('api-text').textContent=on?'AI Active':'Backend Offline';
 }
 function saveGeminiKey(){
   const k=document.getElementById('gemini-key-input').value.trim();
@@ -1861,7 +2010,7 @@ function saveGeminiKey(){
 }
 function setGemini(on){
   document.getElementById('gemini-dot').className='api-dot '+(on?'on':'off');
-  document.getElementById('gemini-text').textContent=on?'Imagen 3 Active':'Gemini Images';
+  document.getElementById('gemini-text').textContent=on?'Flux Active':'Flux Engine';
 }
 // Auto-restore Gemini key on load
 if(geminiKey){setGemini(true);}
@@ -1901,26 +2050,17 @@ function toggleCP(p){cpPlats[p]=!cpPlats[p];document.getElementById('cp-'+p).cla
 
 // ══ CLAUDE API ══
 async function claude(prompt,maxTok=1500){
-  if(!apiKey){
-    openModal('api-modal');
-    toast('⚠️ Add your API key to generate content');
-    throw new Error('No API key — please connect your Anthropic API key');
-  }
-  const r=await fetch('https://api.anthropic.com/v1/messages',{
+  const r=await fetch(STUDIO_API_URL+'/api/text',{
     method:'POST',
-    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTok,messages:[{role:'user',content:prompt}]})
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+STUDIO_API_TOKEN},
+    body:JSON.stringify({prompt:prompt,max_tokens:maxTok})
   });
   if(!r.ok){
     const e=await r.json().catch(()=>({}));
-    const msg=e.error?.message||'API error';
-    if(msg.includes('invalid x-api-key')||msg.includes('authentication')){
-      apiKey='';sessionStorage.removeItem('gai_key');setAPI(false);openModal('api-modal');
-      throw new Error('Invalid API key — please reconnect');
-    }
-    throw new Error(msg);
+    throw new Error(e.error || ('API error '+r.status));
   }
-  return (await r.json()).content[0].text;
+  const d=await r.json();
+  return d.text || '';
 }
 
 // ══ STREAM ══
@@ -1941,7 +2081,6 @@ function setLoading(btnId,on){const b=document.getElementById(btnId);if(!b)retur
 
 // ══ CONTENT STUDIO ══
 async function genContent(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('biz-name').value||'this business';
   const niche=document.getElementById('s-niche').value;
   const type=document.getElementById('s-type').value;
@@ -1968,7 +2107,6 @@ async function tweakS(instr){
 
 // ══ LEAD RESPONSE ══
 async function genLead(){
-  if(!apiKey){openModal('api-modal');return}
   const msg=document.getElementById('l-input').value.trim();
   if(!msg){toast('Paste the lead message first');return}
   const biz=document.getElementById('l-biz').value||'our business';
@@ -1998,10 +2136,7 @@ const stylePrompts={
   product:'commercial product photography, studio lighting, clean background, highly detailed, professional advertising'
 };
 async function genImages(){
-  if(!apiKey&&!geminiKey){openModal('gemini-modal');toast('⚠️ Connect Gemini for images or Claude API');return}
-  const useGemini=!!geminiKey;
   const biz=document.getElementById('img-biz').value||'professional business';
-  // Gemini Imagen 3 (preferred) or Pollinations fallback
   const detail=document.getElementById('img-detail').value;
   const style=stylePrompts[imgStyle];
   setLoading('img-btn',true);
@@ -2009,111 +2144,55 @@ async function genImages(){
   const imgResult=document.getElementById('img-result');if(imgResult)imgResult.style.display='block';
   const grid=document.getElementById('img-grid');
   grid.innerHTML='';
-  // Generate prompt first with AI, then use Pollinations
   let aiPrompt=`${biz} ${detail||'premium marketing photo'}, ${style}`;
   try{
-    const p=await claude(`Write a vivid, detailed image generation prompt for: "${biz}" — ${detail||'a premium marketing image'}. Style: ${imgStyle}. Be specific about lighting, composition, colors. Return ONLY the prompt text, no markdown, no hashtags, no intro text, no labels.`);
-    // Strip markdown, hashtags, leading labels
+    const p=await claude(`Write a vivid, detailed image generation prompt for: "${biz}" — ${detail||'a premium marketing image'}. Style: ${imgStyle}. Be specific about lighting, composition, colors. Return ONLY the prompt text, no markdown, no hashtags, no intro text, no labels.`, 400);
     const cleaned=p.replace(/#{1,6}\s*/g,'').replace(/[*_`]/g,'').replace(/^(prompt|image|description|result)[:\s]*/i,'').trim();
     aiPrompt=cleaned+', '+style;
     document.getElementById('img-prompt-label').textContent='Prompt: '+cleaned.substring(0,60)+'...';
-  }catch(e){}
-  // show loading placeholders
+  }catch(e){ /* fall through with default prompt */ }
   for(let i=0;i<imgQty;i++){const d=document.createElement('div');d.className='img-loading';d.textContent='🎨';d.id='img-load-'+i;grid.appendChild(d)}
-  if(useGemini){
-    // ── Gemini Image Generation ──
-    try{
-      // Use gemini-2.0-flash-preview-image-generation (free tier, no billing required)
-      const generateOne = async () => {
-        const r = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${geminiKey}`,
-          {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-              contents:[{parts:[{text:aiPrompt}]}],
-              generationConfig:{responseModalities:['IMAGE','TEXT']}
-            })
-          }
-        );
-        const data = await r.json();
-        if(!r.ok){
-          const msg = data?.error?.message || ('API error '+r.status);
-          throw new Error(msg);
-        }
-        // Extract base64 image from response
-        const parts = data?.candidates?.[0]?.content?.parts || [];
-        const imgPart = parts.find(p => p.inlineData);
-        if(!imgPart) throw new Error('No image in response — model may not support image output');
-        return 'data:'+imgPart.inlineData.mimeType+';base64,'+imgPart.inlineData.data;
-      };
-
-      const requests = Array.from({length:imgQty}, () => generateOne());
-      const results = await Promise.allSettled(requests);
-      results.forEach((res,i)=>{
-        const card=grid.children[i];
-        if(!card) return;
-        if(res.status==='fulfilled'){
-          card.innerHTML='';
-          const imgEl=document.createElement('img');
-          imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--r)';
-          imgEl.src=res.value;
-          const overlay=document.createElement('div');overlay.className='img-card-overlay';
-          const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Download';
-          btn.onclick=()=>{const a=document.createElement('a');a.href=res.value;a.download='greenai-image-'+(i+1)+'.png';a.click()};
-          overlay.appendChild(btn);card.appendChild(imgEl);card.appendChild(overlay);
-        } else {
-          const errMsg = res.reason?.message || 'Unknown error';
-          card.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:16px;text-align:center"><span style="font-size:20px">⚠️</span><span style="font-size:11px;color:#f87171;font-weight:600">'+errMsg+'</span><button class="btn-sm" onclick="genImages()" style="font-size:10px;margin-top:4px">Retry</button></div>';
-        }
-      });
-      const successCount = results.filter(r=>r.status==='fulfilled').length;
-      const lbl=document.getElementById('img-prompt-label');if(lbl)lbl.textContent='Gemini · '+successCount+' image'+(successCount!==1?'s':'')+' generated';
-      if(successCount===0){
-        const firstErr = results[0]?.reason?.message||'Unknown';
-        toast('⚠️ Gemini: '+firstErr);
-        if(firstErr.toLowerCase().includes('api key')||firstErr.toLowerCase().includes('invalid')||firstErr.includes('403')){
-          geminiKey='';sessionStorage.removeItem('gai_gemini');setGemini(false);openModal('gemini-modal');
-        }
-      }
-    }catch(e){
-      toast('⚠️ '+e.message);
-      grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:#f87171;font-size:13px">'+e.message+'</div>';
-    }
-  } else {
-    // ── Pollinations fallback ──
-    const encodedPrompt=encodeURIComponent(aiPrompt);
-    const seeds=Array.from({length:imgQty},()=>Math.floor(Math.random()*999999));
-    const loadImgs=seeds.map((seed,i)=>new Promise(resolve=>{
-      const card=grid.children[i];
-      if(!card){resolve();return}
-      const src=`https://image.pollinations.ai/prompt/${encodedPrompt}?width=${imgW}&height=${imgH}&seed=${seed}&nologo=true&model=flux&enhance=true`;
+  try{
+    const r=await fetch(STUDIO_API_URL+'/api/image',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+STUDIO_API_TOKEN},
+      body:JSON.stringify({prompt:aiPrompt, width:imgW, height:imgH, count:imgQty, include_logo:false})
+    });
+    if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error||'Image API error');}
+    const data=await r.json();
+    const urls=data.images||[];
+    let loaded=0;
+    await Promise.all(urls.map((src,i)=>new Promise(resolve=>{
+      const card=grid.children[i]; if(!card){resolve();return}
       const imgEl=document.createElement('img');
-      imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+      imgEl.style.cssText='width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--r)';
       imgEl.alt='Generated image '+(i+1);
       imgEl.onload=()=>{
         card.innerHTML='';
         card.appendChild(imgEl);
         const overlay=document.createElement('div');overlay.className='img-card-overlay';
         const btn=document.createElement('button');btn.className='img-card-btn';btn.textContent='⬇ Download';
-        btn.onclick=()=>{const a=document.createElement('a');a.href=src;a.download='greenai-'+(i+1)+'.jpg';a.click()};
-        overlay.appendChild(btn);card.appendChild(overlay);resolve();
+        btn.onclick=()=>{const a=document.createElement('a');a.href=src;a.download='greenai-image-'+(i+1)+'.jpg';a.click()};
+        overlay.appendChild(btn);card.appendChild(overlay);
+        loaded++; resolve();
       };
       imgEl.onerror=()=>{
-        card.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:16px;text-align:center"><span style="font-size:20px">⚠️</span><span style="font-size:11px;color:var(--text3)">Rate limited — add Gemini key for unlimited images</span><button class="btn-sm" onclick="openModal(&apos;gemini-modal&apos;)" style="font-size:10px;margin-top:4px">Add Gemini Key</button></div>';
+        card.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:16px;text-align:center"><span style="font-size:20px">⚠️</span><span style="font-size:11px;color:#f87171;font-weight:600">Image failed</span><button class="btn-sm" onclick="genImages()" style="font-size:10px;margin-top:4px">Retry</button></div>';
         resolve();
       };
       imgEl.src=src;
-    }));
-    await Promise.all(loadImgs);
-    const lbl2=document.getElementById('img-prompt-label');if(lbl2)lbl2.textContent='Flux · '+imgQty+' image'+(imgQty>1?'s':'')+' generated';
+    })));
+    const lbl=document.getElementById('img-prompt-label');
+    if(lbl)lbl.textContent='Flux · '+loaded+' image'+(loaded!==1?'s':'')+' generated';
+  }catch(e){
+    toast('⚠️ '+e.message);
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:#f87171;font-size:13px">'+e.message+'</div>';
   }
   setLoading('img-btn',false);
 }
 
 // ══ HASHTAG LAB ══
 async function genHashtags(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('h-biz').value||'business';
   const niche=document.getElementById('h-niche').value;
   const topic=document.getElementById('h-topic').value;
@@ -2149,7 +2228,6 @@ function copyHashtags(){navigator.clipboard.writeText(allHashtags.join(' ')).the
 
 // ══ REVIEW MANAGER ══
 async function genReview(){
-  if(!apiKey){openModal('api-modal');return}
   const review=document.getElementById('r-input').value.trim();
   if(!review){toast('Paste the review first');return}
   const biz=document.getElementById('r-biz').value||'our business';
@@ -2172,7 +2250,6 @@ async function tweakR(instr){
 
 // ══ VIRAL DECODER ══
 async function genViralDecode(){
-  if(!apiKey){openModal('api-modal');return}
   const post=document.getElementById('vd-input').value.trim();
   if(!post){toast('Paste a viral post first');return}
   const biz=document.getElementById('vd-biz').value||'my business';
@@ -2248,7 +2325,6 @@ VARIATION 5:
 
 // ══ CAMPAIGN BUILDER ══
 async function genCampaign(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('cb-biz').value||'my business';
   const niche=document.getElementById('cb-niche').value;
   const goal=document.getElementById('cb-goal').value;
@@ -2298,7 +2374,6 @@ function copyCampaign(){
 // ══ DM SEQUENCE ══
 let dmMessages=[];
 async function genDMSequence(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('dm-biz').value||'my business';
   const prospect=document.getElementById('dm-prospect').value||'potential customers';
   const offer=document.getElementById('dm-offer').value||'our services';
@@ -2424,7 +2499,6 @@ function selGS(t){gsTL=t;['30','60','90'].forEach(x=>document.getElementById('gs
 function selGB(b){gsBudget=b;['organic','low','mid'].forEach(x=>document.getElementById('gb-'+x).classList.toggle('active',x===b))}
 
 async function genAdCopy(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('ad-biz').value||'this business';
   const niche=document.getElementById('ad-niche').value;
   const obj=document.getElementById('ad-obj').value;
@@ -2488,7 +2562,6 @@ Please ${instr}. Output ONLY the revised ad copy.`);lastAd=t;await stream(box,t)
 
 // ══ EMAIL CAMPAIGNS ══
 async function genEmail(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('em-biz').value||'this business';
   const niche=document.getElementById('em-niche').value;
   const type=document.getElementById('em-type').value;
@@ -2533,7 +2606,6 @@ Please ${instr}. Output ONLY the revised email.`);lastEM=t;await stream(box,t)}c
 
 // ══ GROWTH STRATEGIST ══
 async function genStrategy(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('gs-biz').value||'this business';
   const stratDur=document.querySelector('#gs-dur-pills .pill.active')?.textContent||'30 Days';
   const stratDays=parseInt(stratDur)||30;
@@ -2643,7 +2715,6 @@ document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{
 
 /* ══ HOOK FACTORY ══ */
 async function genHooks(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-hook .gen-btn');
   const topic=document.getElementById('hook-topic').value.trim();
   const goal=document.getElementById('hook-goal').value;
@@ -2682,7 +2753,6 @@ Make hooks specific, punchy, under 15 words each. Score each on viral potential 
 
 /* ══ BRAND DNA ══ */
 async function genDNA(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-dna .gen-btn');
   const biz=document.getElementById('dna-biz').value.trim();
   const customer=document.getElementById('dna-customer').value.trim();
@@ -2729,7 +2799,6 @@ IDEAL POSTING STYLE: (brief description of visual and copy style)`,3000);
 
 /* ══ STORY BUILDER ══ */
 async function genStory(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-story .gen-btn');
   const topic=document.getElementById('story-topic').value.trim();
   const biz=document.getElementById('story-biz').value.trim();
@@ -2773,7 +2842,6 @@ Make each slide punchy, visual, and scroll-stopping.`,2000);
 
 /* ══ MULTI-PLATFORM BLAST ══ */
 async function genBlast(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-blast .gen-btn');
   const input=document.getElementById('blast-input').value.trim();
   const biz=document.getElementById('blast-biz').value.trim();
@@ -2817,7 +2885,6 @@ FACEBOOK:
 
 /* ══ COMPETITOR INTEL ══ */
 async function genIntel(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-intel .gen-btn');
   const you=document.getElementById('intel-you').value.trim();
   const comp=document.getElementById('intel-comp').value.trim();
@@ -2852,7 +2919,6 @@ Be specific, tactical, and brutally honest.`,3500);
 
 /* ══ BIO OPTIMIZER ══ */
 async function genBio(){
-  if(!apiKey){openModal('api-modal');return}
   const btn=document.querySelector('#panel-bio .gen-btn');
   const input=document.getElementById('bio-input').value.trim();
   const platform=document.querySelector('#bio-plat-pills .pill.active')?.textContent||'Instagram';
@@ -2906,7 +2972,6 @@ function filterTools(q){
 
 /* ══ REEL SCRIPT WRITER ══ */
 async function genReel(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('reel-biz').value.trim()||'local business';
   const topic=document.getElementById('reel-topic').value.trim();
   const type=document.getElementById('reel-type').value;
@@ -2974,7 +3039,6 @@ CAPTION HOOK:
 
 /* ══ CAPTION LAB ══ */
 async function genCaption(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('cap-biz').value.trim()||'this business';
   const topic=document.getElementById('cap-topic').value.trim();
   const formula=capFormula||'AIDA';
@@ -3032,7 +3096,6 @@ Use line breaks for readability, relevant emojis, strong hook on line 1.`,2500);
 
 /* ══ REPURPOSE ENGINE ══ */
 async function genRepurpose(){
-  if(!apiKey){openModal('api-modal');return}
   const input=document.getElementById('rep-input').value.trim();
   const biz=document.getElementById('rep-biz').value.trim()||'local business';
   if(!input){document.getElementById('rep-input').focus();return}
@@ -3102,7 +3165,6 @@ BLOG INTRO:
 
 /* ══ SALES SCRIPT BUILDER ══ */
 async function genSales(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('sales-biz').value.trim()||'my business';
   const offer=document.getElementById('sales-offer').value.trim()||'my service';
   const target=document.getElementById('sales-target').value.trim()||'potential customers';
@@ -3152,7 +3214,6 @@ Make it sound natural conversational and human not salesy. Use their psychology.
 
 /* ══ TESTIMONIAL PRO ══ */
 async function genTestimonial(){
-  if(!apiKey){openModal('api-modal');return}
   const raw=document.getElementById('test-raw').value.trim();
   const biz=document.getElementById('test-biz').value.trim()||'my business';
   const service=document.getElementById('test-service').value.trim()||'the service';
@@ -3195,7 +3256,6 @@ OWNER RESPONSE:
 
 /* ══ OFFER BUILDER ══ */
 async function genOffer(){
-  if(!apiKey){openModal('api-modal');return}
   const service=document.getElementById('offer-service').value.trim()||'my service';
   const price=document.getElementById('offer-price').value.trim()||'competitive pricing';
   const comp=document.getElementById('offer-comp').value.trim()||'higher than average';
@@ -3247,7 +3307,6 @@ SMS VERSION:
 
 /* ══ SEO CONTENT WRITER ══ */
 async function genSEO(){
-  if(!apiKey){openModal('api-modal');return}
   const biz=document.getElementById('seo-biz').value.trim()||'local business';
   const keyword=document.getElementById('seo-keyword').value.trim();
   const type=document.getElementById('seo-type').value;
@@ -3291,7 +3350,6 @@ CONTENT:
 
 /* ══ INSIGHT ENGINE ══ */
 async function genInsight(){
-  if(!apiKey){openModal('api-modal');return}
   const data=document.getElementById('insight-data').value.trim();
   const goal=document.getElementById('insight-goal').value;
   const platform=document.querySelector('#insight-plat-pills .pill.active')?.textContent||'Instagram';
