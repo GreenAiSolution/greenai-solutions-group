@@ -85,27 +85,38 @@ async function handleImage(req, env, cors) {
   let body;
   try { body = await req.json(); } catch { return json({ error: "Invalid JSON" }, 400, cors); }
   const prompt = (body.prompt || "").trim();
-  const width = Math.min(Math.max(parseInt(body.width || 1080, 10), 256), 2048);
-  const height = Math.min(Math.max(parseInt(body.height || 1080, 10), 256), 2048);
   const count = Math.min(Math.max(parseInt(body.count || 1, 10), 1), 4);
   const includeLogo = !!body.include_logo;
   if (!prompt) return json({ error: "Missing prompt" }, 400, cors);
+  if (!env.AI) return json({ error: "Workers AI binding not configured. Add [ai] binding = \"AI\" to wrangler.toml and redeploy." }, 500, cors);
 
-  // Pollinations.ai — free, no key required, supports Flux model
-  // Logo "img2img" trick: we append a strong text instruction to the prompt
-  // because Pollinations doesn't accept reference image uploads on its free endpoint.
   const logoHint = includeLogo
     ? ", incorporate a subtle hexagonal emerald and gold logo crest watermark in lower right corner, brand mark for GreenAI Solutions Team"
     : "";
   const finalPrompt = prompt + logoHint;
-  const encoded = encodeURIComponent(finalPrompt);
 
-  const urls = [];
+  // Cloudflare Workers AI — free tier, runs Flux 1 Schnell
+  // Returns binary image; we convert each to data URL so the front-end can render without extra fetches.
+  const out = [];
+  const errors = [];
   for (let i = 0; i < count; i++) {
-    const seed = Math.floor(Math.random() * 999999);
-    urls.push(`https://image.pollinations.ai/prompt/${encoded}?width=${width}&height=${height}&seed=${seed}&nologo=true&model=flux&enhance=true`);
+    try {
+      const seed = Math.floor(Math.random() * 999999);
+      const res = await env.AI.run("@cf/black-forest-labs/flux-1-schnell", {
+        prompt: finalPrompt,
+        steps: 4,
+        seed,
+      });
+      // Workers AI returns { image: "<base64 jpeg>" } for Flux Schnell
+      const b64 = res.image || (res.images && res.images[0]) || null;
+      if (!b64) throw new Error("No image in response");
+      out.push("data:image/jpeg;base64," + b64);
+    } catch (e) {
+      errors.push(e.message || String(e));
+    }
   }
-  return json({ images: urls, prompt: finalPrompt }, 200, cors);
+  if (out.length === 0) return json({ error: errors[0] || "Image generation failed" }, 500, cors);
+  return json({ images: out, prompt: finalPrompt, errors: errors.length ? errors : undefined }, 200, cors);
 }
 
 export default {

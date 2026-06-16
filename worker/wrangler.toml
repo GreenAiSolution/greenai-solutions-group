@@ -2,6 +2,10 @@ name = "greenai-studio-api"
 main = "src/worker.js"
 compatibility_date = "2025-01-15"
 
+# Workers AI — free image generation (Flux 1 Schnell)
+[ai]
+binding = "AI"
+
 # Public variables (NOT secrets — okay to commit)
 [vars]
 ALLOWED_ORIGIN = "https://greenaidigital.com,https://www.greenaidigital.com"
