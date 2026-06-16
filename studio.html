@@ -614,6 +614,8 @@ textarea.fi{resize:vertical;line-height:1.65}
       <div class="nav-item" id="nav-offer" onclick="switchPanel('offer')"><span class="nav-icon">💰</span><span class="nav-label">Offer Builder</span><span class="nav-badge-pro">PRO</span></div>
       <div class="nav-item" id="nav-seo" onclick="switchPanel('seo')"><span class="nav-icon">🔎</span><span class="nav-label">SEO Content</span><span class="nav-badge-pro">PRO</span></div>
       <div class="nav-item" id="nav-insight" onclick="switchPanel('insight')"><span class="nav-icon">📊</span><span class="nav-label">Insight Engine</span><span class="nav-badge-pro">PRO</span></div>
+      <div class="sidebar-section">💎 Deluxe Suite <span class="section-count">1</span></div>
+      <div class="nav-item nav-hot" id="nav-crm" onclick="switchPanel('crm')"><span class="nav-icon">💎</span><span class="nav-label">CRM Innovator</span><span class="nav-badge-pro">ELITE</span></div>
       <div class="sidebar-section">Management</div>
       <div class="nav-item" id="nav-clients" onclick="switchPanel('clients')"><span class="nav-icon">👥</span><span class="nav-label">Client Dashboard</span></div>
       <div class="sidebar-bottom">
@@ -1774,6 +1776,45 @@ textarea.fi{resize:vertical;line-height:1.65}
         </div>
       </div>
 
+      <div class="panel" id="panel-crm">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-label">💎 CRM Innovator <span class="nav-badge-pro" style="font-size:9px">ELITE</span></div>
+            <div class="card-title">Build a Complete Custom CRM</div>
+            <div class="card-sub">Our most advanced tool. AI designs a full CRM tailored to your client&apos;s exact business &mdash; pipeline, lead sources, deal types &amp; KPIs &mdash; then builds a ready-to-use app, numbers reset to zero, downloadable in one click. Works 100% offline.</div>
+            <div class="fg"><label class="fl">Client / Business Name</label><input class="fi" id="crm-biz" placeholder="e.g. Desert Steam Detail"/></div>
+            <div class="fg"><label class="fl">Industry</label><input class="fi" id="crm-industry" placeholder="e.g. Auto detailing, Med spa, Real estate"/></div>
+            <div class="fg"><label class="fl">Main Services / Products</label><textarea class="fi" id="crm-services" rows="3" placeholder="e.g. Ceramic coating, interior detail, paint correction, monthly maintenance plans"></textarea></div>
+            <div class="fg"><label class="fl">Business Type</label>
+              <div class="pill-row" id="crm-type-pills">
+                <button class="pill active" onclick="setPill(this,'crm-type-pills')">Service Business</button>
+                <button class="pill" onclick="setPill(this,'crm-type-pills')">Retail / E-Commerce</button>
+                <button class="pill" onclick="setPill(this,'crm-type-pills')">Real Estate</button>
+                <button class="pill" onclick="setPill(this,'crm-type-pills')">Healthcare / Wellness</button>
+                <button class="pill" onclick="setPill(this,'crm-type-pills')">B2B / Agency</button>
+              </div></div>
+            <div class="fg"><label class="fl">Brand Color</label><input type="color" class="fi" id="crm-color" value="#2e8b47" style="height:44px;padding:4px;cursor:pointer"/></div>
+            <button class="gen-btn" onclick="genCRM()">
+              <span class="bt">💎 Build Complete CRM</span>
+              <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+            <div id="crm-status" style="font-size:12px;color:var(--gx);margin-top:12px;text-align:center;min-height:16px"></div>
+          </div>
+          <div class="card">
+            <div class="card-label">Your CRM Blueprint</div>
+            <div id="crm-empty" class="out-empty" style="min-height:300px"><div class="oe-icon">💎</div><p>AI designs a complete CRM tailored<br>to your client &mdash; then builds a real,<br>downloadable app ready to use.</p></div>
+            <div id="crm-result" style="display:none">
+              <div id="crm-download-row" style="display:none;gap:10px;margin-bottom:16px">
+                <button class="gen-btn" style="margin:0" onclick="downloadCRM()">
+                  <span class="bt">⬇ Download CRM App</span>
+                </button>
+              </div>
+              <div id="crm-output" style="font-size:13px;line-height:1.7"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /main -->
   </div><!-- /layout -->
 </div><!-- /app -->
@@ -1834,7 +1875,7 @@ function setPill(el, groupId){
 
 // ══ NAV ══
 function switchPanel(p){
-  ['studio','lead','image','hashtag','review','viral','campaign','dm','adcopy','email','strategy','clients','hook','dna','story','blast','intel','bio','reel','caption','repurpose','sales','testimonial','offer','seo','insight'].forEach(x=>{
+  ['studio','lead','image','hashtag','review','viral','campaign','dm','adcopy','email','strategy','clients','hook','dna','story','blast','intel','bio','reel','caption','repurpose','sales','testimonial','offer','seo','insight','crm'].forEach(x=>{
     const panel=document.getElementById('panel-'+x);
     const nav=document.getElementById('nav-'+x);
     if(panel)panel.classList.toggle('active',x===p);
@@ -3306,6 +3347,356 @@ function copyAll(containerId){
   const items=document.querySelectorAll('#'+containerId+' .hook-text');
   const text=Array.from(items).map((el,i)=>(i+1)+'. '+el.textContent).join('\n');
   navigator.clipboard.writeText(text);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   💎 CRM INNOVATOR — GreenAI's most advanced tool
+   Generates a complete, tailored, ready-to-use CRM web app
+   ══════════════════════════════════════════════════════════ */
+async function genCRM(){
+  if(!apiKey){openModal('api-modal');return}
+  const biz=document.getElementById('crm-biz').value.trim();
+  const industry=document.getElementById('crm-industry').value.trim();
+  const services=document.getElementById('crm-services').value.trim();
+  const color=document.getElementById('crm-color').value||'#2e8b47';
+  const teamType=document.querySelector('#crm-type-pills .pill.active')?.textContent||'Service Business';
+  if(!biz){document.getElementById('crm-biz').focus();return}
+  const btn=document.querySelector('#panel-crm .gen-btn');btn.disabled=true;btn.classList.add('loading');
+  const status=document.getElementById('crm-status');
+  try{
+    status.textContent='🧠 Designing your custom CRM architecture...';
+    const res=await claude(`You are a senior CRM systems architect. Design a tailored CRM schema for this business. Return ONLY valid JSON — no markdown fences, no commentary.
+
+Business: ${biz}
+Industry: ${industry||teamType}
+Services/Products: ${services||'general services'}
+Business type: ${teamType}
+
+Return JSON with EXACTLY this shape:
+{
+  "pipelineStages": [array of 6 stage names tailored to how THIS business actually closes deals, from first contact to won and lost],
+  "leadSources": [array of 6-8 realistic lead sources specific to this business],
+  "dealTypes": [array of 3-5 service or product categories they sell],
+  "taskTypes": [array of 5 common follow-up task types for this business],
+  "kpis": [array of 4 short KPI label strings this business should track],
+  "industryTip": "one sentence pro tip for managing this specific pipeline"
+}
+
+Every value must be specific to ${biz} and its industry — never generic.`,1500);
+    let cfg=null;
+    try{ cfg=JSON.parse(res.replace(/```json/g,'').replace(/```/g,'').trim()); }catch(e){ cfg=null; }
+    if(!cfg||!cfg.pipelineStages){
+      cfg={pipelineStages:['New Lead','Contacted','Qualified','Proposal Sent','Won','Lost'],
+        leadSources:['Website','Referral','Instagram','Facebook','Google','Walk-in','Phone Call','Email'],
+        dealTypes:['Standard Service','Premium Package','Consultation'],
+        taskTypes:['Call','Email','Follow-up','Send Quote','Schedule Meeting'],
+        kpis:['Total Contacts','Active Deals','Pipeline Value','Won This Month'],
+        industryTip:'Follow up with every new lead within 24 hours to maximize conversion.'};
+    }
+    cfg.business=biz; cfg.color=color; cfg.industry=industry||teamType;
+    status.textContent='🛠 Building your downloadable CRM app...';
+    const html=buildCRMApp(cfg);
+    renderCRMPreview(cfg);
+    window._crmBlob=html;
+    window._crmName=(biz.replace(/[^a-z0-9]/gi,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')||'Client')+'-CRM.html';
+    document.getElementById('crm-download-row').style.display='flex';
+    document.getElementById('crm-result').style.display='block';
+    document.getElementById('crm-empty').style.display='none';
+    status.textContent='';
+    toast('💎 CRM generated — ready to download!');
+  }catch(e){ status.textContent=''; toast('⚠️ '+e.message); }
+  btn.disabled=false;btn.classList.remove('loading');
+}
+
+function downloadCRM(){
+  if(!window._crmBlob){toast('⚠️ Generate a CRM first');return}
+  const blob=new Blob([window._crmBlob],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=window._crmName||'CRM.html';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  toast('⬇️ '+(window._crmName||'CRM')+' downloaded');
+}
+
+function renderCRMPreview(cfg){
+  const el=document.getElementById('crm-output');
+  const chip=(s,style)=>'<span style="'+style+';padding:3px 10px;border-radius:20px;font-size:11px;display:inline-block">'+s+'</span>';
+  const g='background:rgba(61,158,92,.12);border:1px solid rgba(61,158,92,.25)';
+  const n='background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)';
+  const gold='background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25);color:#c9a83d';
+  let h='';
+  h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:3px;background:'+cfg.color+'"></div><div style="font-size:15px;font-weight:700;color:var(--gx)">'+cfg.business+' — Custom CRM</div></div>';
+  h+='<div style="font-size:12px;color:var(--text2);margin-bottom:16px">'+cfg.industry+' · All numbers reset to zero · Fully functional offline app</div>';
+  h+='<div style="font-weight:600;margin:10px 0 6px;font-size:12px">📊 Pipeline Stages</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+cfg.pipelineStages.map(s=>chip(s,g)).join('')+'</div>';
+  h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">📥 Lead Sources</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+cfg.leadSources.map(s=>chip(s,n)).join('')+'</div>';
+  h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">💼 Deal Types</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+(cfg.dealTypes||[]).map(s=>chip(s,n)).join('')+'</div>';
+  h+='<div style="font-weight:600;margin:14px 0 6px;font-size:12px">📈 KPIs Tracked</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+(cfg.kpis||[]).map(s=>chip(s,gold)).join('')+'</div>';
+  if(cfg.industryTip){ h+='<div style="margin-top:16px;padding:10px 14px;background:rgba(61,158,92,.06);border-left:3px solid var(--gx);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2)">💡 '+cfg.industryTip+'</div>'; }
+  h+='<div style="margin-top:16px;font-size:11px;color:var(--text2);line-height:1.7">✓ Dashboard with live KPIs &nbsp; ✓ Contact manager &nbsp; ✓ Drag-free pipeline board<br>✓ Task tracker &nbsp; ✓ CSV export &nbsp; ✓ Auto-saves in browser &nbsp; ✓ Works 100% offline</div>';
+  el.innerHTML=h;
+}
+
+/* Builds the full, self-contained downloadable CRM web app */
+function buildCRMApp(cfg){
+  const cfgJson=JSON.stringify({business:cfg.business,color:cfg.color,industry:cfg.industry,
+    pipelineStages:cfg.pipelineStages,leadSources:cfg.leadSources,dealTypes:cfg.dealTypes||[],
+    taskTypes:cfg.taskTypes||[],kpis:cfg.kpis||[],industryTip:cfg.industryTip||''});
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${cfg.business} — CRM</title>
+<style>
+:root{--brand:${cfg.color};--bg:#0e1117;--panel:#161b22;--panel2:#1c232c;--line:rgba(255,255,255,.08);--txt:#e8eef2;--txt2:#90a0ad}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:var(--bg);color:var(--txt);display:flex;min-height:100vh}
+a{color:var(--brand)}
+.side{width:230px;background:var(--panel);border-right:1px solid var(--line);padding:22px 14px;flex-shrink:0;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.brand .dot{width:30px;height:30px;border-radius:8px;background:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+.brand b{font-size:15px}
+.sub{font-size:10px;color:var(--txt2);margin-bottom:24px;padding-left:2px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav a{padding:10px 14px;border-radius:9px;color:var(--txt2);text-decoration:none;font-size:13.5px;font-weight:500;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:10px}
+.nav a:hover{background:var(--panel2);color:var(--txt)}
+.nav a.on{background:var(--brand);color:#fff}
+.foot{position:absolute;bottom:18px;left:14px;right:14px;font-size:9.5px;color:var(--txt2);text-align:center;line-height:1.5}
+.main{flex:1;padding:30px 38px;overflow:auto}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.head h1{font-size:22px}
+.head .actions{display:flex;gap:10px}
+.btn{background:var(--brand);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+.view{display:none}.view.on{display:block}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.kpi .lbl{font-size:11px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em}
+.kpi .val{font-size:30px;font-weight:800;margin-top:8px;color:var(--brand)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h3{font-size:14px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--txt2);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line)}
+tr:hover td{background:var(--panel2)}
+.pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10.5px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+.empty{text-align:center;padding:50px 20px;color:var(--txt2)}
+.empty .ico{font-size:38px;margin-bottom:10px}
+.lnk{color:var(--brand);cursor:pointer;font-size:12px}
+.del{color:#e57373;cursor:pointer;font-size:12px}
+.board{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px}
+.col{min-width:230px;flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.col h4{font-size:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.col h4 span{background:var(--panel2);border-radius:20px;padding:1px 8px;font-size:10px;color:var(--txt2)}
+.deal{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:11px;margin-bottom:9px}
+.deal b{font-size:12.5px}
+.deal .meta{font-size:10.5px;color:var(--txt2);margin-top:3px}
+.deal .val{color:var(--brand);font-weight:700;font-size:12px;margin-top:5px}
+.deal select{width:100%;margin-top:7px;background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:4px;font-size:11px}
+.task{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid var(--line)}
+.task input{width:17px;height:17px;accent-color:var(--brand)}
+.task.done b{text-decoration:line-through;color:var(--txt2)}
+.task .meta{font-size:10.5px;color:var(--txt2)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);align-items:center;justify-content:center;z-index:50;padding:20px}
+.ov.on{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;width:100%;max-width:480px;max-height:90vh;overflow:auto}
+.modal h2{font-size:17px;margin-bottom:18px}
+.fld{margin-bottom:13px}
+.fld label{display:block;font-size:11px;color:var(--txt2);margin-bottom:5px;font-weight:600}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13px}
+.fld textarea{resize:vertical;min-height:60px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mfoot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.tip{background:rgba(0,0,0,.2);border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:11px 15px;font-size:12px;color:var(--txt2);margin-bottom:20px}
+@media(max-width:820px){.side{display:none}.kpis{grid-template-columns:1fr 1fr}.main{padding:20px}}
+</style>
+</head>
+<body>
+<div class="side">
+  <div class="brand"><div class="dot">${(cfg.business||'C').charAt(0).toUpperCase()}</div><b>${cfg.business}</b></div>
+  <div class="sub">CRM · ${cfg.industry}</div>
+  <div class="nav">
+    <a class="on" data-v="dashboard" onclick="go('dashboard',this)">📊 Dashboard</a>
+    <a data-v="contacts" onclick="go('contacts',this)">👤 Contacts</a>
+    <a data-v="pipeline" onclick="go('pipeline',this)">📈 Pipeline</a>
+    <a data-v="tasks" onclick="go('tasks',this)">✅ Tasks</a>
+  </div>
+  <div class="foot">Built by GreenAI Solutions<br>greenaidigital.com</div>
+</div>
+<div class="main">
+  <div id="v-dashboard" class="view on">
+    <div class="head"><h1>Dashboard</h1><div class="actions"><button class="btn" onclick="openContact()">+ New Contact</button></div></div>
+    <div class="tip" id="tipbox"></div>
+    <div class="kpis" id="kpis"></div>
+    <div class="card"><h3>Recent Contacts</h3><div id="recent"></div></div>
+  </div>
+  <div id="v-contacts" class="view">
+    <div class="head"><h1>Contacts</h1><div class="actions"><button class="btn ghost" onclick="exportCSV()">⬇ Export CSV</button><button class="btn" onclick="openContact()">+ New Contact</button></div></div>
+    <div class="card" id="contactsCard"></div>
+  </div>
+  <div id="v-pipeline" class="view">
+    <div class="head"><h1>Pipeline</h1><div class="actions"><button class="btn" onclick="openContact()">+ New Contact</button></div></div>
+    <div class="board" id="board"></div>
+  </div>
+  <div id="v-tasks" class="view">
+    <div class="head"><h1>Tasks</h1><div class="actions"><button class="btn" onclick="openTask()">+ New Task</button></div></div>
+    <div class="card" id="tasksCard"></div>
+  </div>
+</div>
+
+<div class="ov" id="contactOv">
+  <div class="modal">
+    <h2 id="cTitle">New Contact</h2>
+    <input type="hidden" id="cId">
+    <div class="row2"><div class="fld"><label>Name</label><input id="cName" placeholder="Full name"></div><div class="fld"><label>Company</label><input id="cCompany" placeholder="Company"></div></div>
+    <div class="row2"><div class="fld"><label>Email</label><input id="cEmail" placeholder="email@example.com"></div><div class="fld"><label>Phone</label><input id="cPhone" placeholder="(000) 000-0000"></div></div>
+    <div class="row2"><div class="fld"><label>Lead Source</label><select id="cSource"></select></div><div class="fld"><label>Stage</label><select id="cStage"></select></div></div>
+    <div class="row2"><div class="fld"><label>Deal Type</label><select id="cType"></select></div><div class="fld"><label>Deal Value ($)</label><input id="cValue" type="number" placeholder="0"></div></div>
+    <div class="fld"><label>Notes</label><textarea id="cNotes" placeholder="Notes..."></textarea></div>
+    <div class="mfoot"><button class="btn ghost" onclick="closeOv('contactOv')">Cancel</button><button class="btn" onclick="saveContact()">Save Contact</button></div>
+  </div>
+</div>
+<div class="ov" id="taskOv">
+  <div class="modal">
+    <h2>New Task</h2>
+    <div class="fld"><label>Task</label><select id="tType"></select></div>
+    <div class="fld"><label>Details</label><input id="tTitle" placeholder="What needs to happen?"></div>
+    <div class="fld"><label>Due Date</label><input id="tDue" type="date"></div>
+    <div class="mfoot"><button class="btn ghost" onclick="closeOv('taskOv')">Cancel</button><button class="btn" onclick="saveTask()">Save Task</button></div>
+  </div>
+</div>
+
+<script>
+var CFG=${cfgJson};
+var KEY='greenai_crm_'+CFG.business.toLowerCase().replace(/[^a-z0-9]/g,'_');
+var DB={contacts:[],tasks:[]};
+function load(){try{var s=localStorage.getItem(KEY);if(s)DB=JSON.parse(s);}catch(e){}}
+function save(){localStorage.setItem(KEY,JSON.stringify(DB));}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function money(n){return '$'+(Number(n)||0).toLocaleString();}
+function wonStage(){return CFG.pipelineStages[CFG.pipelineStages.length-2];}
+function lostStage(){return CFG.pipelineStages[CFG.pipelineStages.length-1];}
+
+function go(v,el){
+  var views=document.querySelectorAll('.view');for(var i=0;i<views.length;i++)views[i].classList.remove('on');
+  document.getElementById('v-'+v).classList.add('on');
+  var links=document.querySelectorAll('.nav a');for(var j=0;j<links.length;j++)links[j].classList.remove('on');
+  if(el)el.classList.add('on');
+  if(v==='dashboard')renderDash();if(v==='contacts')renderContacts();if(v==='pipeline')renderBoard();if(v==='tasks')renderTasks();
+}
+
+function renderDash(){
+  var won=wonStage(),lost=lostStage();
+  var active=DB.contacts.filter(function(c){return c.stage!==won&&c.stage!==lost;});
+  var pipeVal=active.reduce(function(a,c){return a+(Number(c.value)||0);},0);
+  var month=new Date().getMonth(),year=new Date().getFullYear();
+  var wonMonth=DB.contacts.filter(function(c){return c.stage===won&&c.wonAt&&new Date(c.wonAt).getMonth()===month&&new Date(c.wonAt).getFullYear()===year;});
+  var wonVal=wonMonth.reduce(function(a,c){return a+(Number(c.value)||0);},0);
+  var labels=CFG.kpis&&CFG.kpis.length>=4?CFG.kpis:['Total Contacts','Active Deals','Pipeline Value','Won This Month'];
+  var vals=[DB.contacts.length,active.length,money(pipeVal),money(wonVal)];
+  var h='';for(var i=0;i<4;i++){h+='<div class="kpi"><div class="lbl">'+esc(labels[i])+'</div><div class="val">'+vals[i]+'</div></div>';}
+  document.getElementById('kpis').innerHTML=h;
+  document.getElementById('tipbox').innerHTML='💡 '+esc(CFG.industryTip||'Follow up with every lead within 24 hours.');
+  var recent=DB.contacts.slice(-5).reverse();
+  if(!recent.length){document.getElementById('recent').innerHTML='<div class="empty"><div class="ico">👤</div>No contacts yet. Add your first lead to get started.</div>';return;}
+  var t='<table><tr><th>Name</th><th>Company</th><th>Stage</th><th>Value</th></tr>';
+  recent.forEach(function(c){t+='<tr><td>'+esc(c.name)+'</td><td>'+esc(c.company)+'</td><td><span class="pill">'+esc(c.stage)+'</span></td><td>'+money(c.value)+'</td></tr>';});
+  document.getElementById('recent').innerHTML=t+'</table>';
+}
+
+function renderContacts(){
+  if(!DB.contacts.length){document.getElementById('contactsCard').innerHTML='<div class="empty"><div class="ico">👤</div>No contacts yet.<br>Click "New Contact" to add your first lead.</div>';return;}
+  var t='<table><tr><th>Name</th><th>Company</th><th>Email</th><th>Phone</th><th>Source</th><th>Stage</th><th>Value</th><th></th></tr>';
+  DB.contacts.slice().reverse().forEach(function(c){
+    t+='<tr><td><b>'+esc(c.name)+'</b></td><td>'+esc(c.company)+'</td><td>'+esc(c.email)+'</td><td>'+esc(c.phone)+'</td><td><span class="pill">'+esc(c.source)+'</span></td><td><span class="pill">'+esc(c.stage)+'</span></td><td>'+money(c.value)+'</td><td><span class="lnk" onclick="openContact(\\''+c.id+'\\')">Edit</span> &nbsp; <span class="del" onclick="delContact(\\''+c.id+'\\')">Delete</span></td></tr>';
+  });
+  document.getElementById('contactsCard').innerHTML=t+'</table>';
+}
+
+function renderBoard(){
+  var h='';
+  CFG.pipelineStages.forEach(function(stage){
+    var inStage=DB.contacts.filter(function(c){return c.stage===stage;});
+    h+='<div class="col"><h4>'+esc(stage)+' <span>'+inStage.length+'</span></h4>';
+    inStage.forEach(function(c){
+      var opts='';CFG.pipelineStages.forEach(function(s){opts+='<option'+(s===c.stage?' selected':'')+'>'+esc(s)+'</option>';});
+      h+='<div class="deal"><b>'+esc(c.name)+'</b><div class="meta">'+esc(c.company||c.source||'')+'</div><div class="val">'+money(c.value)+'</div><select onchange="moveDeal(\\''+c.id+'\\',this.value)">'+opts+'</select></div>';
+    });
+    if(!inStage.length)h+='<div style="font-size:11px;color:var(--txt2);text-align:center;padding:14px 0">—</div>';
+    h+='</div>';
+  });
+  document.getElementById('board').innerHTML=h;
+}
+
+function renderTasks(){
+  if(!DB.tasks.length){document.getElementById('tasksCard').innerHTML='<div class="empty"><div class="ico">✅</div>No tasks yet.<br>Add follow-ups so no lead slips through.</div>';return;}
+  var open=DB.tasks.filter(function(t){return !t.done;});
+  var done=DB.tasks.filter(function(t){return t.done;});
+  var h='';
+  open.concat(done).forEach(function(t){
+    h+='<div class="task'+(t.done?' done':'')+'"><input type="checkbox" '+(t.done?'checked':'')+' onchange="toggleTask(\\''+t.id+'\\')"><div style="flex:1"><b>'+esc(t.title)+'</b><div class="meta">'+esc(t.type)+(t.due?' · due '+esc(t.due):'')+'</div></div><span class="del" onclick="delTask(\\''+t.id+'\\')">Delete</span></div>';
+  });
+  document.getElementById('tasksCard').innerHTML=h;
+}
+
+function fillSelect(id,arr,val){var el=document.getElementById(id);var h='';arr.forEach(function(o){h+='<option'+(o===val?' selected':'')+'>'+esc(o)+'</option>';});el.innerHTML=h;}
+
+function openContact(id){
+  document.getElementById('cId').value=id||'';
+  document.getElementById('cTitle').textContent=id?'Edit Contact':'New Contact';
+  fillSelect('cSource',CFG.leadSources,'');
+  fillSelect('cStage',CFG.pipelineStages,'');
+  fillSelect('cType',CFG.dealTypes&&CFG.dealTypes.length?CFG.dealTypes:['General'],'');
+  var c=id?DB.contacts.filter(function(x){return x.id===id;})[0]:null;
+  document.getElementById('cName').value=c?c.name:'';
+  document.getElementById('cCompany').value=c?c.company:'';
+  document.getElementById('cEmail').value=c?c.email:'';
+  document.getElementById('cPhone').value=c?c.phone:'';
+  document.getElementById('cValue').value=c?c.value:'';
+  document.getElementById('cNotes').value=c?c.notes:'';
+  if(c){document.getElementById('cSource').value=c.source;document.getElementById('cStage').value=c.stage;document.getElementById('cType').value=c.type;}
+  document.getElementById('contactOv').classList.add('on');
+}
+function saveContact(){
+  var id=document.getElementById('cId').value;
+  var name=document.getElementById('cName').value.trim();
+  if(!name){document.getElementById('cName').focus();return;}
+  var stage=document.getElementById('cStage').value;
+  var obj={id:id||uid(),name:name,company:document.getElementById('cCompany').value.trim(),
+    email:document.getElementById('cEmail').value.trim(),phone:document.getElementById('cPhone').value.trim(),
+    source:document.getElementById('cSource').value,stage:stage,type:document.getElementById('cType').value,
+    value:Number(document.getElementById('cValue').value)||0,notes:document.getElementById('cNotes').value.trim()};
+  if(stage===wonStage())obj.wonAt=new Date().toISOString();
+  if(id){for(var i=0;i<DB.contacts.length;i++){if(DB.contacts[i].id===id){obj.wonAt=obj.wonAt||DB.contacts[i].wonAt;DB.contacts[i]=obj;}}}
+  else DB.contacts.push(obj);
+  save();closeOv('contactOv');refresh();
+}
+function delContact(id){if(!confirm('Delete this contact?'))return;DB.contacts=DB.contacts.filter(function(c){return c.id!==id;});save();refresh();}
+function moveDeal(id,stage){for(var i=0;i<DB.contacts.length;i++){if(DB.contacts[i].id===id){DB.contacts[i].stage=stage;if(stage===wonStage())DB.contacts[i].wonAt=new Date().toISOString();}}save();renderBoard();}
+
+function openTask(){fillSelect('tType',CFG.taskTypes&&CFG.taskTypes.length?CFG.taskTypes:['Call','Email','Follow-up'],'');document.getElementById('tTitle').value='';document.getElementById('tDue').value='';document.getElementById('taskOv').classList.add('on');}
+function saveTask(){var title=document.getElementById('tTitle').value.trim();if(!title){document.getElementById('tTitle').focus();return;}DB.tasks.push({id:uid(),type:document.getElementById('tType').value,title:title,due:document.getElementById('tDue').value,done:false});save();closeOv('taskOv');renderTasks();}
+function toggleTask(id){for(var i=0;i<DB.tasks.length;i++){if(DB.tasks[i].id===id)DB.tasks[i].done=!DB.tasks[i].done;}save();renderTasks();}
+function delTask(id){DB.tasks=DB.tasks.filter(function(t){return t.id!==id;});save();renderTasks();}
+
+function closeOv(id){document.getElementById(id).classList.remove('on');}
+function refresh(){renderDash();renderContacts();renderBoard();renderTasks();}
+
+function exportCSV(){
+  var rows=[['Name','Company','Email','Phone','Source','Stage','Deal Type','Value','Notes']];
+  DB.contacts.forEach(function(c){rows.push([c.name,c.company,c.email,c.phone,c.source,c.stage,c.type,c.value,(c.notes||'').replace(/\\n/g,' ')]);});
+  var csv=rows.map(function(r){return r.map(function(f){return '"'+String(f==null?'':f).replace(/"/g,'""')+'"';}).join(',');}).join('\\n');
+  var blob=new Blob([csv],{type:'text/csv'});var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download=CFG.business.replace(/[^a-z0-9]/gi,'-')+'-contacts.csv';a.click();
+}
+
+load();renderDash();
+<\/script>
+</body>
+</html>`;
 }
 
 </script>
