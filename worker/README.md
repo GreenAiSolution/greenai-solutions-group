@@ -54,3 +54,4 @@ Cloudflare Workers free tier = 100,000 requests/day, more than enough. Anthropic
 - `POST /api/image`  — Pollinations image generation. Body: `{ prompt, width, height, count, include_logo }`
 
 Every request except `/api/health` needs `Authorization: Bearer <STUDIO_ACCESS_TOKEN>`.
+
