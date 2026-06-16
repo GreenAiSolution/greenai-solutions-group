@@ -58,6 +58,17 @@ async function handleText(req, env, cors) {
   if (!env.ANTHROPIC_API_KEY) return json({ error: "Server not configured: ANTHROPIC_API_KEY missing" }, 500, cors);
 
   const model = env.CLAUDE_MODEL || DEFAULT_MODEL;
+  const payload = {
+    model,
+    max_tokens: maxTok,
+    messages: [{ role: "user", content: prompt }],
+  };
+  // When the front-end asks for live research, enable Anthropic's server-side
+  // web search tool so Claude can pull real, public numbers (never fabricated).
+  if (body.web_search) {
+    payload.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
+  }
+
   const upstream = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -65,11 +76,7 @@ async function handleText(req, env, cors) {
       "x-api-key": env.ANTHROPIC_API_KEY,
       "anthropic-version": "2023-06-01",
     },
-    body: JSON.stringify({
-      model,
-      max_tokens: maxTok,
-      messages: [{ role: "user", content: prompt }],
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!upstream.ok) {
@@ -77,7 +84,9 @@ async function handleText(req, env, cors) {
     return json({ error: err.error?.message || `Upstream ${upstream.status}` }, upstream.status, cors);
   }
   const data = await upstream.json();
-  const text = data.content?.[0]?.text || "";
+  // With tool use the response holds multiple blocks — concatenate every text block.
+  const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("").trim()
+    || data.content?.[0]?.text || "";
   return json({ text, model }, 200, cors);
 }
 

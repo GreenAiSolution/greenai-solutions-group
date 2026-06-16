@@ -1924,7 +1924,8 @@ textarea.fi{resize:vertical;line-height:1.65}
             <div class="fg"><label class="fl">Client / Business Name</label><input class="fi" id="crm-biz" placeholder="e.g. Desert Steam Detail"/></div>
             <div class="fg"><label class="fl">Industry</label><input class="fi" id="crm-industry" placeholder="e.g. Auto detailing, Med spa, Real estate"/></div>
             <div class="fg"><label class="fl">Main Services / Products</label><textarea class="fi" id="crm-services" rows="3" placeholder="e.g. Ceramic coating, interior detail, paint correction, monthly maintenance plans"></textarea></div>
-            <div class="fg"><label class="fl">📊 Current Brand Stats <span style="color:var(--text2);font-weight:400;font-size:11px">(paste their live numbers — optional)</span></label><textarea class="fi" id="crm-stats" rows="4" placeholder="Paste whatever you can grab from their profiles:&#10;Instagram: 847 followers, 3.2% engagement&#10;TikTok: 8,900 followers&#10;Facebook: 1,240 likes&#10;Google: 4.9 stars (112 reviews)&#10;Website: ~1,200 visits/mo"></textarea></div>
+            <div class="fg"><label class="fl">Website or Social Handle <span style="color:var(--text2);font-weight:400;font-size:11px">(optional — helps find the right business)</span></label><input class="fi" id="crm-web" placeholder="e.g. desertsteamdetail.com  or  @desertsteamdetail"/></div>
+            <div class="fg"><label class="fl">📊 Current Brand Stats <span style="color:var(--text2);font-weight:400;font-size:11px">(optional — leave blank and AI auto-researches their live numbers online)</span></label><textarea class="fi" id="crm-stats" rows="3" placeholder="Leave blank to auto-collect from the web, or paste known numbers:&#10;Instagram: 847 followers, 3.2% engagement&#10;Google: 4.9 stars (112 reviews)"></textarea></div>
             <div class="fg"><label class="fl">Business Type</label>
               <div class="pill-row" id="crm-type-pills">
                 <button class="pill active" onclick="setPill(this,'crm-type-pills')">Service Business</button>
@@ -2060,6 +2061,18 @@ async function claude(prompt,maxTok=1500){
     const e=await r.json().catch(()=>({}));
     throw new Error(e.error || ('API error '+r.status));
   }
+  const d=await r.json();
+  return d.text || '';
+}
+
+// ══ CLAUDE + LIVE WEB SEARCH (server runs Anthropic web_search tool) ══
+async function claudeSearch(prompt,maxTok=2500){
+  const r=await fetch(STUDIO_API_URL+'/api/text',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+STUDIO_API_TOKEN},
+    body:JSON.stringify({prompt:prompt,max_tokens:maxTok,web_search:true})
+  });
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error||('API error '+r.status));}
   const d=await r.json();
   return d.text || '';
 }
@@ -3421,11 +3434,24 @@ async function genCRM(){
   const services=document.getElementById('crm-services').value.trim();
   const color=document.getElementById('crm-color').value||'#2e8b47';
   const stats=document.getElementById('crm-stats').value.trim();
+  const handle=document.getElementById('crm-web').value.trim();
   const teamType=document.querySelector('#crm-type-pills .pill.active')?.textContent||'Service Business';
   if(!biz){document.getElementById('crm-biz').focus();return}
   const btn=document.querySelector('#panel-crm .gen-btn');btn.disabled=true;btn.classList.add('loading');
   const status=document.getElementById('crm-status');
   try{
+    let researched='';
+    if(!stats){
+      status.textContent='🔎 Researching '+biz+' online for live numbers...';
+      try{
+        researched=await claudeSearch(`Search the web for the business "${biz}"${handle?(' ('+handle+')'):''}${industry?(' — '+industry+' in their area'):''}. Find their CURRENT public numbers: Instagram followers, TikTok followers, Facebook followers or likes, YouTube subscribers, and Google or Yelp review count and star rating. Use ONLY real numbers that actually appear in search results — never guess, estimate, or round to make it look better. If you are not confident a number belongs to THIS exact business, leave it out.
+
+Reply with ONLY a JSON object, no commentary:
+{"platforms":[{"name":"Instagram","metric":"Followers","value":<integer or null>,"engagement":<"3.2%" or null>}], "found":<true or false>, "notes":"<one short sentence on what you found and roughly when>"}
+Include an entry in "platforms" ONLY for platforms where you found a real number. If you find nothing reliable, return {"platforms":[],"found":false,"notes":"No reliable public numbers found"}.`,2500);
+      }catch(e){ researched=''; }
+    }
+    const statsForPrompt = stats || researched || '(none provided)';
     status.textContent='🧠 Designing your custom CRM architecture...';
     const res=await claude(`You are a senior CRM systems architect. Design a tailored CRM schema for this business. Return ONLY valid JSON — no markdown fences, no commentary.
 
@@ -3434,8 +3460,8 @@ Industry: ${industry||teamType}
 Services/Products: ${services||'general services'}
 Business type: ${teamType}
 
-Current brand stats provided by the user — use ONLY these real numbers for brandSnapshot, NEVER invent or estimate follower counts:
-${stats||'(none provided)'}
+Current brand stats (from the user, or auto-researched live from the public web) — use ONLY these real numbers for brandSnapshot, NEVER invent or estimate follower counts:
+${statsForPrompt}
 
 Return JSON with EXACTLY this shape:
 {
@@ -3473,7 +3499,13 @@ Rules: every value must be specific to ${biz} and its industry. For brandSnapsho
     cfg.snapshot=cfg.brandSnapshot||{platforms:[],verdict:'',growthTargets:{d30:15,d60:35,d90:60}};
     if(!cfg.snapshot.growthTargets)cfg.snapshot.growthTargets={d30:15,d60:35,d90:60};
     if(!cfg.snapshot.platforms)cfg.snapshot.platforms=[];
-    cfg.snapshotRaw=stats;
+    if(stats){ cfg.snapshotRaw=stats; }
+    else {
+      let rd=null;
+      try{ rd=JSON.parse(researched.slice(researched.indexOf('{'),researched.lastIndexOf('}')+1)); }catch(e){}
+      if(rd&&rd.platforms&&rd.platforms.length){ cfg.snapshot.platforms=rd.platforms; }
+      cfg.snapshotRaw = (rd&&rd.notes) ? ('🔎 Auto-collected from the public web: '+rd.notes) : (researched || 'No public numbers found online — you can paste them in to fill this baseline.');
+    }
     status.textContent='🛠 Engineering your luxury CRM app...';
     const html=buildCRMApp(cfg);
     renderCRMPreview(cfg);
