@@ -2542,3 +2542,39 @@ p { color: var(--gray-600); }
   .hero__visual-traces { opacity: .35; }
   .feature-card > .fc-corner { display: none; }
 }
+
+/* ============================================================
+   Premium motion polish — added natively (no framework needed)
+   GPU-friendly (transform/opacity), respects reduced-motion
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Smoother, more premium scroll-reveal with a subtle settle */
+  .reveal { transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transform: translateY(30px) scale(.99); }
+  .reveal.visible { transform: none; }
+
+  /* Button micro-interactions: lift on hover, press feedback */
+  .btn { transition: transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, background .3s ease, color .3s ease; will-change: transform; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.97); }
+
+  /* Pulsing glow on the primary signup CTA — draws the eye, builds momentum */
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 8px 22px rgba(26,92,42,.18); }
+    50%      { box-shadow: 0 12px 36px rgba(46,139,71,.50); }
+  }
+  .btn-primary { animation: ctaPulse 3.2s ease-in-out infinite; }
+  .btn-primary:hover { animation: none; }
+
+  /* Nav links: underline grows from left on hover */
+  .nav__link { position: relative; }
+  .nav__link::after {
+    content: ""; position: absolute; left: 0; bottom: -4px;
+    height: 2px; width: 0; background: var(--green-light, #2e8b47);
+    transition: width .28s cubic-bezier(.2,.7,.2,1); border-radius: 2px;
+  }
+  .nav__link:hover::after { width: 100%; }
+
+  /* Section headings & icons get a gentle hover life */
+  .feature-icon { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .feature-card:hover .feature-icon { transform: translateY(-3px) rotate(-4deg); }
+}

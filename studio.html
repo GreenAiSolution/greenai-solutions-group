@@ -618,6 +618,28 @@ textarea.fi{resize:vertical;line-height:1.65}
   .nav-item::before{left:4px;width:5px;height:5px}
 }
 </style>
+<style id="polish-fx">
+@media (prefers-reduced-motion: no-preference){
+  /* Staggered card entrance each time a tool panel opens */
+  @keyframes cardRise{from{opacity:0;transform:translateY(16px) scale(.992)}to{opacity:1;transform:none}}
+  .panel.active .card{animation:cardRise .5s cubic-bezier(.2,.7,.2,1) both}
+  .panel.active .card:nth-child(2){animation-delay:.07s}
+  .panel.active .card:nth-child(3){animation-delay:.13s}
+  .panel.active .two-col>.card:nth-child(2){animation-delay:.09s}
+  /* Nav items slide slightly on hover */
+  .nav-item{transition:background .18s ease,color .18s ease,transform .18s cubic-bezier(.2,.7,.2,1)}
+  .nav-item:hover{transform:translateX(3px)}
+  /* Pills & small buttons lift */
+  .pill,.btn-sm{transition:all .16s ease}
+  .pill:hover{transform:translateY(-1px)}
+  .btn-sm:hover{transform:translateY(-1px)}
+  /* Press feedback on primary buttons */
+  .gen-btn:active,.auth-btn:active{transform:translateY(0) scale(.99)}
+  /* Soft breathing glow on the active tool */
+  @keyframes navBreathe{0%,100%{box-shadow:inset 0 0 0 1px rgba(45,140,255,.22),0 0 22px rgba(45,140,255,.06)}50%{box-shadow:inset 0 0 0 1px rgba(45,140,255,.34),0 0 30px rgba(45,140,255,.13)}}
+  .nav-item.active{animation:navBreathe 3.6s ease-in-out infinite}
+}
+</style>
 </head>
 <body>
 <canvas id="neural-canvas"></canvas>
