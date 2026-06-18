@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GreenAI — The Studio, Alive</title>
+<meta name="description" content="An immersive look at GreenAI Solutions — a luxury AI studio that builds, automates, and grows businesses. Enter the experience." />
+<link rel="canonical" href="https://greenaidigital.com/experience.html" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#070b10; --bg2:#0a1017; --panel:rgba(14,22,30,.55);
+    --emerald:#2fe6a0; --emerald-2:#19b97e; --emerald-deep:#0c6b46;
+    --gold:#d8b252; --gold-2:#f0d488;
+    --ink:#eaf3ee; --muted:#8499a0; --line:rgba(47,230,160,.16);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+  ::selection{background:rgba(47,230,160,.25)}
+  ::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:rgba(47,230,160,.22);border-radius:6px}
+  a{color:inherit;text-decoration:none}
+  /* fixed WebGL canvas behind everything */
+  #scene{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+    background:radial-gradient(120% 80% at 50% 0%,transparent 40%,rgba(0,0,0,.55) 100%)}
+  .wrap{position:relative;z-index:2}
+  /* top bar */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;backdrop-filter:blur(6px)}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.02em}
+  .brand .mk{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--emerald-deep),var(--emerald));
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#04140d;box-shadow:0 0 26px rgba(47,230,160,.4)}
+  .brand b{font-weight:600}.brand .g{color:var(--gold)}
+  .bar nav{display:flex;gap:26px;font-size:13.5px;color:var(--muted)}
+  .bar nav a{transition:color .2s}.bar nav a:hover{color:var(--emerald)}
+  .bar .enter{font-size:13px;border:1px solid var(--line);padding:9px 18px;border-radius:99px;color:var(--ink);transition:.25s}
+  .bar .enter:hover{border-color:var(--emerald);box-shadow:0 0 24px rgba(47,230,160,.25);color:var(--emerald)}
+  @media(max-width:760px){.bar nav{display:none}.bar{padding:16px 18px}}
+
+  section{position:relative;padding:0 32px}
+  .container{max-width:1180px;margin:0 auto}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--emerald)}
+  .eyebrow.gold{color:var(--gold)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(3.2rem,11vw,9rem);line-height:.92;letter-spacing:-.01em;margin:18px 0 0}
+  .hero h1 .it{font-style:italic;color:var(--emerald)}
+  .hero p{max-width:560px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.18rem);margin:26px auto 0}
+  .hero .cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:99px;cursor:pointer;transition:.25s;border:1px solid transparent}
+  .btn-em{background:linear-gradient(135deg,var(--emerald),var(--emerald-2));color:#04140d;box-shadow:0 12px 40px rgba(47,230,160,.3)}
+  .btn-em:hover{transform:translateY(-2px);box-shadow:0 18px 54px rgba(47,230,160,.45)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--emerald);color:var(--emerald)}
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.6}50%{transform:translateX(-50%) translateY(8px);opacity:1}}
+
+  /* generic content section */
+  .block{padding:14vh 32px}
+  .lead{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;letter-spacing:-.01em;margin:14px 0 0;max-width:14ch}
+  .lead .em{color:var(--emerald)} .lead .gd{color:var(--gold)}
+  .sub{color:var(--muted);max-width:48ch;margin-top:20px;font-size:1.05rem}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  @media(max-width:860px){.split{grid-template-columns:1fr;gap:32px}}
+
+  .stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+  .stat .n{font-family:var(--serif);font-size:2.6rem;font-weight:700;color:var(--emerald)}
+  .stat .l{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+
+  /* ecosystem portals */
+  .portals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  @media(max-width:900px){.portals{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.portals{grid-template-columns:1fr}}
+  .portal{position:relative;display:block;padding:30px 26px;border-radius:18px;overflow:hidden;
+    background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(14px);
+    transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s;will-change:transform}
+  .portal:hover{transform:translateY(-7px);border-color:rgba(47,230,160,.5);box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 40px rgba(47,230,160,.1)}
+  .portal .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;
+    background:linear-gradient(135deg,rgba(47,230,160,.16),rgba(47,230,160,.04));border:1px solid var(--line);margin-bottom:18px}
+  .portal.gold .ic{background:linear-gradient(135deg,rgba(216,178,82,.18),rgba(216,178,82,.04));border-color:rgba(216,178,82,.3)}
+  .portal h3{font-family:var(--serif);font-size:1.6rem;font-weight:600;margin-bottom:6px}
+  .portal.gold h3{color:var(--gold)}
+  .portal p{color:var(--muted);font-size:.93rem;line-height:1.5}
+  .portal .go{margin-top:18px;font-size:12.5px;font-weight:600;color:var(--emerald);letter-spacing:.04em}
+  .portal.gold .go{color:var(--gold)}
+
+  .final{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .final h2{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,8vw,6rem);line-height:1;letter-spacing:-.01em}
+  .final h2 .em{color:var(--emerald);font-style:italic}
+  footer{padding:40px 32px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+  footer a{color:var(--emerald)}
+
+  .reveal{opacity:0;transform:translateY(34px)}
+  /* hero text is ALWAYS visible (opacity never drops); only a gentle slide entrance */
+  @keyframes heroSlide{from{transform:translateY(26px)}to{transform:none}}
+  .hero .reveal{opacity:1;animation:heroSlide .9s cubic-bezier(.2,.7,.2,1) backwards}
+  .hero .container>.reveal:nth-child(1){animation-delay:.10s}
+  .hero .container>.reveal:nth-child(2){animation-delay:.22s}
+  .hero .container>.reveal:nth-child(3){animation-delay:.34s}
+  .hero .container>.reveal:nth-child(4){animation-delay:.46s}
+  @media (prefers-reduced-motion: reduce){.reveal,.hero .reveal{opacity:1!important;transform:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="bar">
+    <a href="index.html" class="brand"><span class="mk">G</span> <b>Green<span class="g">AI</span></b></a>
+    <nav>
+      <a href="#studio">The Studio</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#impact">Impact</a>
+      <a href="testimonials.html">Results</a>
+    </nav>
+    <a href="studio.html" class="enter">Enter Studio →</a>
+  </header>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="eyebrow reveal">GreenAI Solutions · Autonomous Studio</div>
+        <h1 class="reveal">The Studio,<br/><span class="it">Alive.</span></h1>
+        <p class="reveal">A luxury AI studio that designs, automates, and grows your business — content, ads, websites, and its own intelligence, working while you sleep.</p>
+        <div class="cta reveal">
+          <a href="studio.html" class="btn btn-em">Enter the Studio</a>
+          <a href="#ecosystem" class="btn btn-ghost">Explore the Ecosystem</a>
+        </div>
+      </div>
+      <div class="scroll-hint">Scroll to awaken</div>
+    </section>
+
+    <!-- STUDIO / BOT -->
+    <section class="block" id="studio">
+      <div class="container split">
+        <div>
+          <div class="eyebrow reveal">The Intelligence</div>
+          <h2 class="lead reveal">Meet the <span class="em">green mind</span> behind your growth.</h2>
+          <p class="sub reveal">It never sleeps. It writes the campaigns, designs the posts, builds the websites, scores the leads, and forecasts the revenue — an entire marketing team, distilled into one luminous core.</p>
+          <div class="stats">
+            <div class="stat reveal"><div class="n">28</div><div class="l">AI tools, one studio</div></div>
+            <div class="stat reveal"><div class="n">24/7</div><div class="l">Always building</div></div>
+            <div class="stat reveal"><div class="n">500%</div><div class="l">Avg client ROI</div></div>
+          </div>
+        </div>
+        <div></div><!-- right column intentionally open so the 3D bot shows through -->
+      </div>
+    </section>
+
+    <!-- ECOSYSTEM PORTALS -->
+    <section class="block" id="ecosystem">
+      <div class="container">
+        <div class="eyebrow reveal">The Ecosystem</div>
+        <h2 class="lead reveal">Every door the bot <span class="gd">opens for you.</span></h2>
+        <div class="portals">
+          <a class="portal reveal" href="index.html"><div class="ic">🏠</div><h3>Home</h3><p>The front door — who we are and how we grow Arizona businesses.</p><div class="go">Visit →</div></a>
+          <a class="portal reveal" href="services.html"><div class="ic">⚡</div><h3>Services</h3><p>Social media, paid ads, AI consulting, and custom web design.</p><div class="go">Explore →</div></a>
+          <a class="portal reveal" href="about.html"><div class="ic">🌿</div><h3>About</h3><p>The team and the mission behind GreenAI Solutions.</p><div class="go">Meet us →</div></a>
+          <a class="portal reveal" href="testimonials.html"><div class="ic">★</div><h3>Testimonials</h3><p>Real businesses, real transformations — see the proof.</p><div class="go">See results →</div></a>
+          <a class="portal reveal" href="contact.html"><div class="ic">✉</div><h3>Contact</h3><p>Start a conversation — a free strategy call is one click away.</p><div class="go">Reach out →</div></a>
+          <a class="portal gold reveal" href="studio.html"><div class="ic">💎</div><h3>GreenAI Studio</h3><p>The flagship. 28 AI tools that build your entire presence — live.</p><div class="go">Enter the studio →</div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="block" id="impact">
+      <div class="container">
+        <div class="eyebrow gold reveal">The Impact</div>
+        <h2 class="lead reveal" style="max-width:22ch">Built with AI. <span class="em">Powered by results.</span></h2>
+        <div class="stats" style="margin-top:48px;gap:64px">
+          <div class="stat reveal"><div class="n">98M+</div><div class="l">Monthly impressions</div></div>
+          <div class="stat reveal"><div class="n">10,000+</div><div class="l">Leads generated</div></div>
+          <div class="stat reveal"><div class="n">98%</div><div class="l">Client retention</div></div>
+          <div class="stat reveal"><div class="n">4.8×</div><div class="l">Average ad ROAS</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final" id="enter">
+      <div class="container">
+        <div class="eyebrow reveal">Your move</div>
+        <h2 class="reveal">Wake the <span class="em">studio.</span></h2>
+        <div class="cta reveal" style="justify-content:center;margin-top:34px">
+          <a href="studio.html" class="btn btn-em">Enter the Studio</a>
+          <a href="contact.html" class="btn btn-ghost">Book a Strategy Call</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 GreenAI Solutions Team · Gilbert, Arizona ·
+      <a href="index.html">greenaidigital.com</a> · (480) 798-0753
+    </footer>
+  </div>
+
+  <!-- GSAP (UMD globals) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js via import map (ES modules) -->
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('scene');
+
+    /* ====================== THREE.JS SCENE ======================
+       Reference Frame Contract:
+       - World units: 1 unit ≈ 1 "studio meter". Bot core radius = 1.0.
+       - Camera sits on +Z looking at origin; bot anchored at origin.
+       - All sizes derived from BOT_R so scaling stays consistent across DPR/devices.
+    ============================================================ */
+    let renderer, scene, camera, bot, rings = [], nodes = [], stars, raf;
+    const BOT_R = 1.0;
+    const pointer = { x: 0, y: 0 };
+    const clock = new THREE.Clock();
+
+    function init() {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x070b10, 0.045);
+
+      camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 8.2);
+
+      // lighting
+      scene.add(new THREE.AmbientLight(0x183024, 1.1));
+      const key = new THREE.PointLight(0x2fe6a0, 60, 40); key.position.set(4, 3, 6); scene.add(key);
+      const rim = new THREE.PointLight(0xd8b252, 26, 40); rim.position.set(-6, -2, 2); scene.add(rim);
+      const fill = new THREE.PointLight(0x19b97e, 24, 40); fill.position.set(-3, 4, -4); scene.add(fill);
+
+      buildBot();
+      buildStars();
+
+      window.addEventListener('resize', onResize, { passive: true });
+      window.addEventListener('pointermove', onPointer, { passive: true });
+      animate();
+    }
+
+    function buildBot() {
+      bot = new THREE.Group();
+
+      // luminous inner core
+      const core = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(BOT_R * 0.62, 2),
+        new THREE.MeshStandardMaterial({ color: 0x0c6b46, emissive: 0x2fe6a0, emissiveIntensity: 1.5, roughness: 0.35, metalness: 0.6 })
+      );
+      bot.add(core);
+
+      // faceted crystal shell (wireframe)
+      const shell = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(BOT_R, 1),
+        new THREE.MeshBasicMaterial({ color: 0x2fe6a0, wireframe: true, transparent: true, opacity: 0.55 })
+      );
+      bot.add(shell);
+      bot.userData.core = core; bot.userData.shell = shell;
+
+      // orbiting rings (different axes) + gold accent ring
+      const ringDefs = [
+        { r: BOT_R * 1.7, tube: 0.012, color: 0x2fe6a0, rot: [Math.PI / 2.4, 0, 0] },
+        { r: BOT_R * 2.15, tube: 0.010, color: 0x19b97e, rot: [Math.PI / 1.7, Math.PI / 5, 0] },
+        { r: BOT_R * 2.6, tube: 0.014, color: 0xd8b252, rot: [Math.PI / 3, -Math.PI / 4, Math.PI / 6] },
+      ];
+      ringDefs.forEach((d, i) => {
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(d.r, d.tube, 16, 140),
+          new THREE.MeshBasicMaterial({ color: d.color, transparent: true, opacity: 0.85 })
+        );
+        ring.rotation.set(...d.rot);
+        ring.userData.speed = 0.12 + i * 0.06;
+        ring.userData.axis = i;
+        bot.add(ring); rings.push(ring);
+
+        // a glowing node travelling on each ring
+        const node = new THREE.Mesh(
+          new THREE.SphereGeometry(0.05 + i * 0.012, 16, 16),
+          new THREE.MeshBasicMaterial({ color: d.color })
+        );
+        node.userData.ring = ring; node.userData.radius = d.r; node.userData.phase = i * 2.1; node.userData.speed = 0.6 - i * 0.12;
+        bot.add(node); nodes.push(node);
+      });
+
+      // floating data motes around the bot
+      const moteCount = 260;
+      const mg = new THREE.BufferGeometry();
+      const mp = new Float32Array(moteCount * 3);
+      for (let i = 0; i < moteCount; i++) {
+        const r = BOT_R * (1.4 + Math.random() * 2.2);
+        const t = Math.random() * Math.PI * 2, p = Math.acos(2 * Math.random() - 1);
+        mp[i*3] = r * Math.sin(p) * Math.cos(t);
+        mp[i*3+1] = r * Math.cos(p) * 0.7;
+        mp[i*3+2] = r * Math.sin(p) * Math.sin(t);
+      }
+      mg.setAttribute('position', new THREE.BufferAttribute(mp, 3));
+      const motes = new THREE.Points(mg, new THREE.PointsMaterial({ color: 0x2fe6a0, size: 0.03, transparent: true, opacity: 0.7, depthWrite: false, blending: THREE.AdditiveBlending }));
+      bot.add(motes); bot.userData.motes = motes;
+
+      // anchor the bot toward the right side on wide screens
+      positionBot();
+      scene.add(bot);
+    }
+
+    function positionBot() {
+      const wide = window.innerWidth > 860;
+      bot.position.set(wide ? 2.5 : 0, wide ? 0.1 : 1.4, 0);
+      const s = wide ? 1 : 0.7;
+      bot.scale.setScalar(s);
+      bot.userData.baseScale = s;
+    }
+
+    function buildStars() {
+      const count = Math.min(3200, Math.floor(window.innerWidth * 2.2));
+      const g = new THREE.BufferGeometry();
+      const pos = new Float32Array(count * 3);
+      const col = new Float32Array(count * 3);
+      const cA = new THREE.Color(0x2fe6a0), cB = new THREE.Color(0x35506a), cG = new THREE.Color(0xd8b252);
+      for (let i = 0; i < count; i++) {
+        pos[i*3] = (Math.random() - 0.5) * 60;
+        pos[i*3+1] = (Math.random() - 0.5) * 40;
+        pos[i*3+2] = (Math.random() - 0.5) * 40 - 8;
+        const c = Math.random() < 0.08 ? cG : (Math.random() < 0.4 ? cA : cB);
+        col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+      }
+      g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+      stars = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.8, depthWrite: false, blending: THREE.AdditiveBlending }));
+      scene.add(stars);
+    }
+
+    function onResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      positionBot();
+    }
+    function onPointer(e) { pointer.x = (e.clientX / window.innerWidth) * 2 - 1; pointer.y = (e.clientY / window.innerHeight) * 2 - 1; }
+
+    function animate() {
+      raf = requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      if (bot) {
+        bot.rotation.y = t * 0.18;
+        bot.userData.shell.rotation.y = -t * 0.35;
+        bot.userData.shell.rotation.x = t * 0.12;
+        const pulse = 1 + Math.sin(t * 1.6) * 0.06;
+        bot.userData.core.scale.setScalar(pulse);
+        bot.userData.core.material.emissiveIntensity = 1.2 + Math.sin(t * 1.6) * 0.5;
+        bot.userData.motes.rotation.y = -t * 0.08;
+        bot.position.y += Math.sin(t * 0.8) * 0.0016;
+
+        rings.forEach((r, i) => { r.rotation.z += 0.002 * (i + 1); });
+        nodes.forEach((n) => {
+          const a = t * n.userData.speed + n.userData.phase;
+          const r = n.userData.radius;
+          const ring = n.userData.ring;
+          // place node on its ring's local circle, then transform by ring orientation
+          const local = new THREE.Vector3(Math.cos(a) * r, Math.sin(a) * r, 0);
+          local.applyEuler(ring.rotation);
+          n.position.copy(local);
+        });
+      }
+      if (stars) { stars.rotation.y = t * 0.012; stars.rotation.x = t * 0.005; }
+
+      // smooth parallax
+      const tx = pointer.x * 0.6, ty = -pointer.y * 0.4;
+      camera.position.x += (tx - camera.position.x) * 0.04;
+      camera.position.y += (ty - camera.position.y) * 0.04;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+    }
+
+    function dispose() {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('pointermove', onPointer);
+      scene && scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } });
+      renderer && renderer.dispose();
+    }
+    window.addEventListener('beforeunload', dispose);
+
+    // start (graceful fallback if WebGL unavailable)
+    try { init(); }
+    catch (e) {
+      console.warn('WebGL unavailable, using static backdrop', e);
+      document.body.style.background = 'radial-gradient(120% 90% at 70% 10%, #0c2a1e 0%, #070b10 55%)';
+    }
+
+    /* ====================== GSAP SCROLLTRIGGER ====================== */
+    if (window.gsap && window.ScrollTrigger && !reduce) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // hero entrance is handled by pure CSS (heroUp) — bulletproof, no JS dependency.
+      // everything else: reveal on scroll into view (hero excluded)
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        if (el.closest('.hero')) return;
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' }
+        });
+      });
+
+      // bot reacts to scroll: scale up as you enter "studio", drift across sections
+      if (bot) {
+        ScrollTrigger.create({
+          trigger: '#studio', start: 'top bottom', end: 'bottom top', scrub: 1,
+          onUpdate: (self) => {
+            const s = bot.userData.baseScale * (1 + self.progress * 0.45);
+            bot.scale.setScalar(s);
+          }
+        });
+        // move the bot to center for the ecosystem, then back
+        gsap.to(camera.position, {
+          z: 7.2, ease: 'none',
+          scrollTrigger: { trigger: '#ecosystem', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+        });
+      }
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    }
+  </script>
+</body>
+</html>
