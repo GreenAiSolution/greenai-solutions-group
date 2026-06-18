@@ -2692,3 +2692,18 @@ p { color: var(--gray-600); }
   .cs-inner { grid-template-columns: 1fr; gap: 48px; }
   .cs-image-wrap { max-width: 420px; margin: 0 auto; }
 }
+
+/* ============================================================
+   FAILSAFE: content must never stay invisible.
+   The homepage hides .reveal elements (opacity:0) until JS adds
+   .visible. If that JS is ever broken or replaced again, this
+   CSS fallback fades the content in automatically after a short
+   delay — so the page can NEVER render blank below the hero.
+   Normal scroll-reveal (JS) still fires first and wins.
+   ============================================================ */
+@keyframes revealFailsafe { to { opacity: 1; transform: none; } }
+.reveal { animation: revealFailsafe .6s ease 3.5s forwards; }
+.reveal.visible { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
