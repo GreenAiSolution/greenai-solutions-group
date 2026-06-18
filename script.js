@@ -289,3 +289,26 @@
   });
 
 })();
+
+/* ---- Restore scroll-reveal for legacy .reveal elements (homepage & inner pages) ---- */
+(function () {
+  function initLegacyReveal() {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    if ('IntersectionObserver' in window) {
+      var ob = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); ob.unobserve(e.target); }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+      els.forEach(function (el) { ob.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add('visible'); });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLegacyReveal);
+  } else {
+    initLegacyReveal();
+  }
+})();
