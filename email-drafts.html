@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenAI — 16 Outreach Email Drafts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark:   #1a5c2a;
+      --green-mid:    #2d7a41;
+      --green-accent: #4CAF50;
+      --gold:         #D4AF37;
+      --bg:           #f4f7f4;
+      --surface:      #ffffff;
+      --border:       #e0e8e1;
+      --text:         #1a2e1d;
+      --muted:        #5a7060;
+      --red:          #c0392b;
+      --amber:        #e67e22;
+      --blue:         #2563eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── HEADER ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, #0f3d1a 100%);
+      color: #fff; padding: 2.5rem 2rem 2rem;
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+    .header-logo { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; opacity: .85; }
+    .header-logo span { color: var(--gold); }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .5rem; }
+    .page-header p { font-size: .95rem; color: rgba(255,255,255,.72); max-width: 560px; line-height: 1.6; }
+    .header-stats { display: flex; gap: 2rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .hstat .num { display: block; font-size: 1.7rem; font-weight: 800; color: var(--gold); }
+    .hstat .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.55); }
+
+    /* ── NOTICE BAR ── */
+    .notice {
+      background: #fff8e1; border-bottom: 2px solid var(--gold);
+      padding: .85rem 2rem; font-size: .85rem; color: #5c4200;
+    }
+    .notice strong { color: #3d2b00; }
+    .notice-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: .6rem; }
+
+    /* ── SEND ALL BAR ── */
+    .sendbar {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .75rem 2rem; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .sendbar-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .sendbar-label { font-size: .8rem; font-weight: 600; color: var(--muted); flex: 1; }
+    .btn-send-all {
+      background: var(--green-dark); color: #fff; border: none; border-radius: 8px;
+      padding: .5rem 1.4rem; font-size: .85rem; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: background .15s;
+    }
+    .btn-send-all:hover { background: var(--green-mid); }
+    .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; min-width: 80px; }
+    .progress-fill { height: 100%; background: var(--green-accent); border-radius: 3px; width: 0%; transition: width .4s; }
+    .progress-text { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── MAIN ── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+    /* ── EMAIL CARD ── */
+    .email-card {
+      background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+      margin-bottom: 1.5rem; overflow: hidden;
+      transition: box-shadow .15s;
+    }
+    .email-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.07); }
+    .email-card.sent { border-left: 4px solid var(--green-accent); opacity: .75; }
+    .email-card.sending { border-left: 4px solid var(--gold); }
+
+    .card-meta {
+      padding: 1rem 1.25rem .8rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .num-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--green-dark); color: #fff;
+      font-size: .8rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .meta-details { flex: 1; min-width: 0; }
+    .biz-name-label { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .to-line { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+    .to-line a { color: var(--green-dark); font-weight: 600; text-decoration: none; }
+    .to-line a:hover { text-decoration: underline; }
+    .method-badge {
+      font-size: .7rem; font-weight: 700; border-radius: 20px; padding: .2rem .65rem;
+      border: 1.5px solid; white-space: nowrap; align-self: flex-start;
+    }
+    .method-email  { color: #1565c0; border-color: #90caf9; background: #e3f2fd; }
+    .method-form   { color: #7b1fa2; border-color: #ce93d8; background: #f3e5f5; }
+    .subject-line {
+      font-size: .82rem; font-weight: 600; color: var(--text);
+      padding: .55rem 1.25rem;
+      background: #f9fbf9; border-bottom: 1px solid var(--border);
+    }
+    .subject-line span { color: var(--muted); font-weight: 400; }
+
+    .email-body {
+      display: block;
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      font-size: .88rem; line-height: 1.72; color: #2a3d2d;
+      font-family: 'Georgia', serif;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      resize: vertical;
+      min-height: 320px;
+      background: #fff;
+      outline: none;
+      cursor: text;
+    }
+    .email-body:focus {
+      background: #fafffe;
+      box-shadow: inset 0 0 0 2px var(--green-accent);
+    }
+
+    .card-footer {
+      padding: .7rem 1.25rem;
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    }
+    .status-badge {
+      font-size: .75rem; font-weight: 700; color: var(--muted);
+    }
+    .btn-copy {
+      background: transparent; border: 1.5px solid var(--border); border-radius: 6px;
+      padding: .3rem .8rem; font-size: .78rem; font-weight: 600; cursor: pointer;
+      color: var(--muted); font-family: inherit; transition: all .15s;
+    }
+    .btn-copy:hover { border-color: var(--green-mid); color: var(--green-mid); }
+    .btn-copy.copied { border-color: var(--green-accent); color: var(--green-accent); }
+    .industry-tag {
+      font-size: .72rem; font-weight: 600; border-radius: 20px; padding: .2rem .6rem;
+      background: var(--bg); border: 1.5px solid var(--border); color: var(--muted);
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-logo">Green<span>AI</span> Solutions Team — jaden@greenaidigital.com</div>
+    <h1>16 Outreach Email Drafts</h1>
+    <p>Each email is uniquely written and personally tailored to that specific business. Review all drafts below, then use the Send All button or copy individually.</p>
+    <div class="header-stats">
+      <div class="hstat"><span class="num">16</span><span class="lbl">Total Emails</span></div>
+      <div class="hstat"><span class="num">10</span><span class="lbl">Direct Email</span></div>
+      <div class="hstat"><span class="num">6</span><span class="lbl">Via Contact Form</span></div>
+      <div class="hstat"><span class="num">7</span><span class="lbl">Industries</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="notice">
+  <div class="notice-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div><strong>Review before sending.</strong> All 16 drafts are ready below. Emails marked <em>Contact Form</em> will be submitted through each business's website. Direct emails send from jaden@greenaidigital.com. Confirm each is correct, then proceed.</div>
+  </div>
+</div>
+
+<div class="sendbar">
+  <div class="sendbar-inner">
+    <span class="sendbar-label" id="send-label">16 emails ready — review drafts below</span>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    <span class="progress-text" id="prog-text">0 / 16 sent</span>
+    <button class="btn-send-all" onclick="alert('Open your email client (Gmail or Apple Mail) and use the Copy buttons below to paste each email. For contact-form entries, click the website link and paste the body into their form.')">
+      📋 How to Send All
+    </button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 1 — GILLETTE GROUP -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-1">
+  <div class="card-meta">
+    <div class="num-badge">1</div>
+    <div class="meta-details">
+      <div class="biz-name-label">The Gillette Group — Shannon Gillette</div>
+      <div class="to-line">To: <a href="mailto:shannon@gillette-group.com">shannon@gillette-group.com</a> &nbsp;·&nbsp; <a href="https://gillettegroupaz.com" target="_blank">gillettegroupaz.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>How top East Valley teams are filling their pipeline without paying Zillow referrals</div>
+  <div class="email-body" id="body-1">Hi Shannon,
+
+I came across the Gillette Group while researching top-producing teams in Queen Creek and the East Valley — congratulations on ranking among the best in the area. That's a real achievement, and it's clear the work ethic behind your team is exceptional.
+
+I'm Jaden Green, founder of GreenAI Solutions Team, based right here in Gilbert. We work exclusively with Arizona businesses to build the kind of digital presence that generates leads on autopilot — specifically through social media management, AI-powered follow-up systems, and website optimization.
+
+I looked at your social channels and I see a team doing serious volume without the social presence to match it. That's actually an enormous opportunity. Real estate teams in the East Valley that post daily market updates, neighborhood tours, and client stories on Instagram and TikTok are generating 3x more inbound leads than teams relying solely on referrals and portal advertising.
+
+Here's what we'd build for the Gillette Group specifically:
+— A daily content calendar of listing Reels, neighborhood spotlights, and buyer/seller education tailored to Queen Creek, Gilbert, and Chandler
+— AI-powered lead follow-up that responds to every new inquiry within 5 minutes — even at 10pm on a Sunday
+— A CRM workflow that nurtures cold contacts over 90 days without you lifting a finger
+
+Our social management starts at $700/month with zero long-term contracts. You'd work directly with me — no account managers, no handoffs.
+
+If you have 20 minutes this week, I'd love to show you exactly what this looks like for your market. No pitch deck, just a real conversation.
+
+Warm regards,
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-1">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(1)">Copy Email Body</button>
+    <span class="industry-tag">Real Estate</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 2 — FIND AZ VALLEY HOMES -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-2">
+  <div class="card-meta">
+    <div class="num-badge">2</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Find AZ Valley Homes</div>
+      <div class="to-line">Via: <a href="https://www.findazvalleyhomes.com" target="_blank">findazvalleyhomes.com</a> contact form</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Your listings deserve more than Zillow traffic — here's an alternative</div>
+  <div class="email-body" id="body-2">Hello,
+
+My name is Jaden Green and I run GreenAI Solutions Team out of Gilbert, AZ. I found your site while researching active real estate teams serving the Phoenix East Valley — you're clearly doing serious business across Gilbert, Chandler, and Queen Creek.
+
+I want to be straightforward: I noticed your website has excellent listing inventory, but very little organic social media traffic driving buyers and sellers to it. That gap is something we fix specifically for Arizona real estate teams.
+
+The agents and teams we work with were spending $1,500–$3,000/month on Zillow Premier Agent and other lead portals — and still competing against 12 other agents for the same buyer. We help them stop renting leads and start owning their audience instead.
+
+What we build:
+— Daily Instagram, TikTok, and Facebook content that positions your team as the local authority
+— AI follow-up that contacts every new inquiry within 5 minutes and nurtures them for 90 days
+— SEO-optimized landing pages for every neighborhood you serve
+
+Social media management starts at $700/month. Month-to-month, no contracts.
+
+If this sounds relevant to where your business is headed, I'd welcome a 15-minute call to see if there's a fit.
+
+Best,
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-2">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(2)">Copy Email Body</button>
+    <span class="industry-tag">Real Estate</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 3 — PRISTINE GREEN LLC -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-3">
+  <div class="card-meta">
+    <div class="num-badge">3</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Pristine Green LLC</div>
+      <div class="to-line">To: <a href="mailto:admin@pristinegreenaz.com">admin@pristinegreenaz.com</a> &nbsp;·&nbsp; <a href="https://pristinegreenaz.com" target="_blank">pristinegreenaz.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Your before-and-after photos should be everywhere — they're not yet</div>
+  <div class="email-body" id="body-3">Hi there,
+
+I've been following Pristine Green's work online and I want to say — the backyard transformations your team pulls off are genuinely impressive. 4.9 stars across 175+ reviews tells me your craftsmanship speaks for itself. That's rare.
+
+Here's what caught my attention: that same quality is almost completely invisible on social media.
+
+I'm Jaden Green, founder of GreenAI Solutions Team in Gilbert. We help local Arizona businesses turn exceptional work into content that reaches thousands of potential customers every single week — without the business owner spending a single hour on it.
+
+Before-and-after landscape transformations are among the highest-performing content categories on Instagram and TikTok right now. Paver patios, turf installs, lighting reveals — these drive massive organic reach and turn viewers into booked estimates. We manage that entire content process for you: filming strategy, editing, posting, captioning, engagement. You focus on the builds. We handle the brand.
+
+Beyond social, we also offer:
+— AI-powered estimate follow-up that contacts leads within 5 minutes of a form submission
+— City-specific landing pages (Gilbert, Chandler, Mesa, Queen Creek) to capture more Google searches
+— Monthly reporting so you can see exactly what's converting
+
+Social management starts at $700/month. No long-term contracts.
+
+Happy to jump on a quick call this week if you're open to it. No pressure at all.
+
+Thank you for the great work you put into Gilbert's backyards.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-3">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(3)">Copy Email Body</button>
+    <span class="industry-tag">Landscaping</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 4 — AZ NATIVESCAPES -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-4">
+  <div class="card-meta">
+    <div class="num-badge">4</div>
+    <div class="meta-details">
+      <div class="biz-name-label">AZ NativeScapes — Craig (Owner)</div>
+      <div class="to-line">Via: <a href="https://aznativescapes.com/contact-us.html" target="_blank">aznativescapes.com/contact-us.html</a> contact form</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>20 years of award-winning work deserves an audience that matches it</div>
+  <div class="email-body" id="body-4">Hi Craig,
+
+Twenty years of owner-supervised landscape work in Arizona, award recognition, and a reputation built entirely on referrals — that's the foundation most businesses can only dream about.
+
+My name is Jaden Green. I run GreenAI Solutions Team in Gilbert, and I work with local Arizona contractors who have built something truly excellent and are now ready to scale it.
+
+I visited your website and I want to be honest with you: the online presence doesn't yet reflect the quality of work AZ NativeScapes delivers. That's actually good news, because the gap between where you are and where you could be digitally is one we can close quickly.
+
+Here's what I'd propose for your business specifically:
+
+A complete website rebuild — modern, fast, mobile-first, with individual service pages for each city you serve (Chandler, Gilbert, Mesa, Ahwatukee, Sun Lakes, Tempe). Every page built to rank on Google for local searches. One-time investment starting at $500, delivered in 7 business days.
+
+Ongoing social media management — project documentation, transformation videos, and owner spotlight content that tells the AZ NativeScapes story to tens of thousands of potential customers in your service area. Starting at $700/month, no contracts.
+
+You spent 20 years building the reputation. We'll make sure the right people can find it.
+
+Worth a 15-minute call?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-4">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(4)">Copy Email Body</button>
+    <span class="industry-tag">Landscaping</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 5 — DESERT AUTO WORKS -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-5">
+  <div class="card-meta">
+    <div class="num-badge">5</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Desert Auto Works — Mesa, AZ</div>
+      <div class="to-line">To: <a href="mailto:desertautoworks@gmail.com">desertautoworks@gmail.com</a> &nbsp;·&nbsp; <a href="https://desertautoworks.com" target="_blank">desertautoworks.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Saving customers $700 on AC compressors is a story TikTok was made for</div>
+  <div class="email-body" id="body-5">Hello,
+
+A customer of yours left a review that stuck with me: Desert Auto Works charged nearly $700 less than a previous quote for an AC compressor replacement. That kind of honest, transparent service is genuinely rare in the auto repair industry — and it's exactly the story that goes viral.
+
+I'm Jaden Green, founder of GreenAI Solutions Team in Gilbert. We help local Arizona shops build the kind of online reputation and social presence that fills their bays without spending a dollar on advertising.
+
+Here's the reality: most people searching for an auto shop in Mesa are choosing based on social proof and visibility. Desert Auto Works has 17 years of honest service behind it — but that story is invisible to anyone who hasn't already driven past your shop. We fix that.
+
+What we build for auto repair clients:
+— Short-form video content: "What dealers won't tell you," customer savings spotlights, quick maintenance tips — the kind of content Mesa residents share with their neighbors
+— An AI-powered appointment reminder and follow-up system that reduces no-shows by an average of 30% and brings lapsed customers back in
+— An updated website with online scheduling so customers can book at midnight after reading a positive review
+
+Social management starts at $700/month, website from $500 one-time. No long-term commitments.
+
+I'd love to show you a few examples of what we've built for shops in the Valley. Would a quick 15-minute call this week work?
+
+Appreciate what you've built over 17 years.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-5">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(5)">Copy Email Body</button>
+    <span class="industry-tag">Auto Repair</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 6 — CRAWFORD'S AUTO REPAIR -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-6">
+  <div class="card-meta">
+    <div class="num-badge">6</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Crawford's Auto Repair — Brad & Jeff</div>
+      <div class="to-line">Via: <a href="https://crawfordsautoservice.com" target="_blank">crawfordsautoservice.com</a> contact form</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>No service writers. No commissions. No fluff. That's a brand — let's tell it.</div>
+  <div class="email-body" id="body-6">Hi Brad and Jeff,
+
+I read through your story — two senior master technicians, founded on the principle of no service writers, no commissions, no unnecessary repairs. In an industry full of upselling and distrust, that position is genuinely powerful.
+
+My name is Jaden Green. I founded GreenAI Solutions Team in Gilbert, and I specialize in helping honest local businesses in the East Valley build digital brands that reflect who they actually are.
+
+The problem I see for Crawford's: your reputation is strong among people who already know you. But in Chandler and Gilbert, there are thousands of car owners who still take their vehicles to the dealership or a chain shop because they haven't discovered you yet. That's the opportunity.
+
+Here's what I'd do specifically for your shop:
+
+Content that builds trust: "Why we don't pay commissions," "What a dealer service writer's job actually is," "How we diagnose without upselling" — educational short-form videos that make Crawford's the most trusted name in East Valley auto repair on social media.
+
+Automated review generation: an AI system that follows up with every customer 48 hours after service and makes it one tap to leave a Google review. More reviews = more trust = more new customers.
+
+Online presence overhaul: faster website with online scheduling, and local SEO that makes you appear first when someone in Chandler searches "honest auto repair near me."
+
+Social management from $700/month. Website from $500. No contracts.
+
+Would love 20 minutes to walk you through what this looks like in practice.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-6">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(6)">Copy Email Body</button>
+    <span class="industry-tag">Auto Repair</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 7 — BRENNAN DENTAL -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-7">
+  <div class="card-meta">
+    <div class="num-badge">7</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Brennan Dental — Dr. Elliott</div>
+      <div class="to-line">Via: <a href="https://brennandentalaz.com/contact-us" target="_blank">brennandentalaz.com/contact-us</a> contact form</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>791 five-star patients — and almost none of them know you're on social media</div>
+  <div class="email-body" id="body-7">Dr. Elliott,
+
+I want to lead with something specific: 791 reviews at 4.8 stars is one of the strongest review profiles I've encountered for a dental practice in the East Valley. The patient loyalty and trust you've built at Brennan Dental is remarkable.
+
+Here's what I noticed: that trust is almost entirely invisible online outside of review platforms. A dental practice with your caliber of patient outcomes should have a social media presence that is just as strong — and right now, there's a significant gap.
+
+My name is Jaden Green. I founded GreenAI Solutions Team in Gilbert, and I help Arizona healthcare and dental practices translate their patient experience into a digital brand that consistently attracts new patients.
+
+What we'd build for Brennan Dental:
+— A weekly social content plan: patient transformation spotlights (with consent), cosmetic dentistry before-and-afters, quick educational videos ("What to do if you chip a tooth," "Is your toothbrush actually working?") — content that builds authority and trust with East Valley families on Instagram and Facebook
+— An AI-driven appointment reminder and re-engagement system that automatically follows up with patients who haven't been seen in 12+ months
+— A patient-conversion-focused website review and optimization
+
+Social management starts at $700/month. No long-term contracts. Direct access to me on every call.
+
+I'd love to share a few examples with you at your convenience. Even a 15-minute call would be valuable.
+
+Thank you for what you do for patients in Chandler.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-7">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(7)">Copy Email Body</button>
+    <span class="industry-tag">Dental</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 8 — GATEWAY FAMILY DENTISTRY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-8">
+  <div class="card-meta">
+    <div class="num-badge">8</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Gateway Family Dentistry — Dr. Gailey</div>
+      <div class="to-line">To: <a href="mailto:info@gatewayfamilydentistry.com">info@gatewayfamilydentistry.com</a> &nbsp;·&nbsp; <a href="https://www.gatewayfamilydentistry.com" target="_blank">gatewayfamilydentistry.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>400 Google reviews is proof. Social media is how new patients find it.</div>
+  <div class="email-body" id="body-8">Dear Dr. Gailey,
+
+Twenty years of gentle, family-centered dental care in Chandler — and 400 Google reviews to show for it. That level of patient loyalty speaks directly to the quality of care your practice delivers.
+
+I'm reaching out because I believe Gateway Family Dentistry is sitting on an untapped opportunity that your competitors are starting to notice.
+
+My name is Jaden Green, founder of GreenAI Solutions Team in Gilbert. We help established Arizona practices build the digital presence that matches the reputation they've earned in-person.
+
+The families moving into Chandler, Gilbert, and the East Valley every month are searching for a dentist on Instagram and Google before they ever call a phone number. Right now, if someone searches "family dentist Chandler AZ" on Instagram, your practice isn't part of that conversation — despite having one of the strongest patient satisfaction records in the area.
+
+We'd change that with:
+— A consistent social media presence on Instagram and Facebook: family dental tips, patient-approved smile transformations, team introductions, seasonal oral health campaigns — all handled for you
+— An automated new-patient referral system that gently encourages your satisfied patients to recommend Gateway to friends and family
+— Ongoing content that positions Dr. Gailey as the trusted family dental expert in the East Valley
+
+Social management starts at $700/month with no long-term commitment. You'd work directly with me, not a junior account manager.
+
+Would you be open to a brief call this week to see if this is a fit?
+
+With respect for the practice you've built,
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-8">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(8)">Copy Email Body</button>
+    <span class="industry-tag">Dental</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 9 — THE COLLECTIVE -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-9">
+  <div class="card-meta">
+    <div class="num-badge">9</div>
+    <div class="meta-details">
+      <div class="biz-name-label">The Collective Gilbert — Fitness Studio</div>
+      <div class="to-line">Via: <a href="https://thecollectivegilbert.com" target="_blank">thecollectivegilbert.com</a> contact form &nbsp;·&nbsp; or call (480) 503-2307</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Your members are transforming. That story should be on TikTok.</div>
+  <div class="email-body" id="body-9">Hi there,
+
+I discovered The Collective while looking at the top fitness studios in Gilbert, and your 4.9-star rating with 234 reviews genuinely stands out. A studio that combines strength coaching, cycle, and recovery under one roof — that concept has tremendous content potential.
+
+I'm Jaden Green, founder of GreenAI Solutions Team in Gilbert. We help local fitness studios and wellness businesses build social media strategies that turn viewers into trial members — and trial members into long-term clients.
+
+Here's what I see for The Collective specifically:
+
+The transformation content opportunity is massive. 30-day strength challenge results, member spotlights, "a week at The Collective" Reel series, coach-led tip videos — this is exactly the content that the Gilbert and Chandler fitness community engages with and shares. We handle the full production strategy: what to film, how to frame it, when to post, and how to drive it to trial sign-ups.
+
+We'd also set up an AI follow-up sequence for trial class inquiries — a simple automated workflow that contacts every potential new member within minutes of their first message, answers common questions, and books their first class without any manual effort from your team.
+
+Social management starts at $700/month. No long-term contracts, and you'd have direct access to me.
+
+Happy to set up a time to walk through what this could look like for The Collective. I'm local to Gilbert so in-person works too.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-9">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(9)">Copy Email Body</button>
+    <span class="industry-tag">Fitness</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 10 — SARGENT ROOFS (AUSTIN) -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-10">
+  <div class="card-meta">
+    <div class="num-badge">10</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Sargent Roofs — Austin</div>
+      <div class="to-line">To: <a href="mailto:austin@sargentroofs.com">austin@sargentroofs.com</a> &nbsp;·&nbsp; <a href="https://sargentroofs.com" target="_blank">sargentroofs.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Monsoon season is 6 weeks out — here's how roofing companies are using it to book solid</div>
+  <div class="email-body" id="body-10">Hi Austin,
+
+With monsoon season approaching, homeowners across the East Valley are going to start thinking about their roofs — and the companies already showing up in their social feeds when that thought hits are the ones booking the estimates.
+
+My name is Jaden Green. I run GreenAI Solutions Team out of Gilbert, and I work with Arizona contractors to build the kind of digital presence that generates inbound leads before customers even go searching.
+
+Sargent Roofs has an incredible story — family-owned since 1984, four decades of craftsmanship in the Phoenix market. That's a legacy that resonates deeply with Arizona homeowners who want someone they can trust. The challenge is that story isn't being told consistently online.
+
+Here's what a seasonal social media strategy looks like for a roofing company like yours:
+— Pre-monsoon: "5 signs your roof won't survive this storm season" — high-share educational content that drives inspection bookings
+— Active season: storm damage documentation and rapid response content that positions Sargent as the go-to post-storm resource in the Valley
+— Off-season: family business story content, project showcases, and home improvement planning posts that keep your name front of mind year-round
+
+We'd also implement an AI-powered quote follow-up system so that every lead who fills out a form on your website gets a response within 5 minutes — significantly increasing close rates.
+
+Social management from $700/month, AI systems from $750/month. No contracts.
+
+Would a 15-minute call this week work for you?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-10">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(10)">Copy Email Body</button>
+    <span class="industry-tag">Roofing</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 11 — SARGENT ROOFS (JOEL) -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-11">
+  <div class="card-meta">
+    <div class="num-badge">11</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Sargent Roofs — Joel</div>
+      <div class="to-line">To: <a href="mailto:joel@sargentroofs.com">joel@sargentroofs.com</a> &nbsp;·&nbsp; <a href="https://sargentroofs.com" target="_blank">sargentroofs.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>A quick question about your estimate follow-up process</div>
+  <div class="email-body" id="body-11">Hi Joel,
+
+Quick question before my actual pitch: when a homeowner fills out a quote request on your website right now, how long does it typically take for your team to follow up?
+
+I ask because the number-one reason roofing companies lose quotes they should win isn't price — it's response time. Studies consistently show that leads contacted within the first 5 minutes are 9x more likely to convert than leads contacted after 30 minutes.
+
+My name is Jaden Green, founder of GreenAI Solutions Team in Gilbert. We build AI-powered business systems for Arizona contractors — specifically to close the response-time gap that costs most roofing companies significant revenue every week.
+
+What we'd set up for Sargent Roofs:
+— An AI follow-up system that responds to every new quote request within minutes, 24/7, with a personalized message and an option to schedule an inspection — all before any human has to pick up the phone
+— Automated follow-up sequences for leads that don't respond after the first contact (most conversions happen on the 3rd or 4th touch)
+— Monthly reporting showing how many leads came in, how many were contacted, and what the conversion rate looks like over time
+
+This alone — without changing anything else about your business — typically adds 15–25% more closed estimates for roofing clients.
+
+AI business systems start at $750/month. No long-term contracts.
+
+Happy to walk you through exactly how it works. 15 minutes is all it takes.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-11">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(11)">Copy Email Body</button>
+    <span class="industry-tag">Roofing</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 12 — TOBLER LAW -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-12">
+  <div class="card-meta">
+    <div class="num-badge">12</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Tobler Law — Mesa, AZ</div>
+      <div class="to-line">To: <a href="mailto:info@toblerlaw.com">info@toblerlaw.com</a> &nbsp;·&nbsp; <a href="https://toblerlaw.com" target="_blank">toblerlaw.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Legal content is exploding on social media — personal injury firms are finally taking notice</div>
+  <div class="email-body" id="body-12">Hello,
+
+I'll be brief because I know your time is valuable.
+
+"Know your rights" content on TikTok and Instagram is currently generating millions of views per month for personal injury attorneys across the country. Firms that were unknown 18 months ago now have waiting lists — not because they changed their legal practice, but because they started showing up where their future clients spend their time.
+
+My name is Jaden Green, founder of GreenAI Solutions Team in Gilbert. We help Arizona law firms build the social media presence and AI intake infrastructure that turns online visibility into booked consultations.
+
+For a firm like Tobler Law — exclusively focused on personal injury and medical malpractice with a no-fee-unless-you-win model — the message practically writes itself. Here's what we'd build:
+
+Social media strategy: a consistent stream of short-form content that educates Arizona residents about their rights after accidents, what to do at the scene, how insurance companies minimize payouts, and why hiring the right attorney matters. Non-promotional, value-first content that builds trust with your exact target audience.
+
+AI consultation intake: a website chatbot that qualifies leads 24/7, answers common intake questions, and books free consultations automatically — so your team never loses a lead to slow follow-up or after-hours timing.
+
+Social management from $700/month. AI systems from $750/month.
+
+Would a 15-minute call this week work?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-12">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(12)">Copy Email Body</button>
+    <span class="industry-tag">Legal</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 13 — EAST VALLEY INJURY LAW -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-13">
+  <div class="card-meta">
+    <div class="num-badge">13</div>
+    <div class="meta-details">
+      <div class="biz-name-label">East Valley Injury Law — Mesa, AZ</div>
+      <div class="to-line">Via: <a href="https://eastvalleyinjurylaw.com/free-consultation/" target="_blank">eastvalleyinjurylaw.com</a> contact form</div>
+    </div>
+    <span class="method-badge method-form">🌐 Contact Form</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>Being the "neighborhood attorney" is your edge — here's how to own it online</div>
+  <div class="email-body" id="body-13">Hello,
+
+East Valley Injury Law has something that Goldberg & Osborne and the other statewide advertisers can never buy: genuine community roots in Mesa, Chandler, and Gilbert. That's a real competitive advantage — if the right people can find it.
+
+My name is Jaden Green, founder of GreenAI Solutions Team in Gilbert. I help Arizona businesses compete against larger players by using digital marketing tools that level the playing field.
+
+Here's the honest picture: when someone in Mesa gets into a car accident tonight, they're going to search "personal injury lawyer near me" — and the firms with the strongest social media presence and fastest website response will win that client before they ever read a word of your case history.
+
+What I'd build for East Valley Injury Law:
+
+Hyper-local content strategy: Community-first videos and posts — Mesa accident hotspots, local traffic law explainers, "what to do after a Chandler intersection accident" — content that positions your firm as the East Valley expert, not just another injury attorney.
+
+AI consultation booking: A system that responds to every website inquiry instantly, walks potential clients through a brief intake, and books free consultations automatically. You go to sleep. The AI books your morning calendar.
+
+Local SEO-focused website content to capture "personal injury attorney Mesa/Chandler/Gilbert" searches.
+
+Social management from $700/month. AI systems from $750/month. No contracts.
+
+Would 15 minutes this week work?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-13">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(13)">Copy Email Body</button>
+    <span class="industry-tag">Legal</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 14 — HANSEN FAMILY PLUMBING & AIR -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-14">
+  <div class="card-meta">
+    <div class="num-badge">14</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Hansen Family Plumbing & Air — Mesa, AZ</div>
+      <div class="to-line">To: <a href="mailto:info@hansenfamilyplumbing.com">info@hansenfamilyplumbing.com</a> &nbsp;·&nbsp; <a href="https://hansenfamilyplumbing.com" target="_blank">hansenfamilyplumbing.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>It's 105° in Gilbert and someone's AC just went out — are you the first name they see?</div>
+  <div class="email-body" id="body-14">Hi,
+
+Right now, today, hundreds of East Valley homeowners are opening Instagram and TikTok searching for HVAC help — not because it's a great way to find a plumber, but because short-form video has become how people find businesses they trust before they need them.
+
+The companies showing up in those moments are building books of business that are full before summer even starts.
+
+My name is Jaden Green. I run GreenAI Solutions Team in Gilbert, and I help Arizona home services companies build a consistent digital presence that turns casual viewers into loyal customers.
+
+Hansen Family has done impressive work building a reputation across Mesa and Gilbert. I want to help make that reputation visible before customers are already in crisis mode.
+
+Here's what a social media strategy looks like for a plumbing and HVAC company in Arizona:
+— Summer prep content: "5 things to check before the heat hits," AC maintenance tips, water heater guides — educational content that earns trust before there's ever an emergency
+— Emergency response content: real-time availability posts, quick-response reels that drive same-day calls
+— Customer testimonial highlights that showcase the quality and reliability Hansen Family is known for
+
+On top of that, we can implement an AI-driven booking system that responds to website and social media inquiries instantly — no more missed leads after hours.
+
+Social management starts at $700/month with no long-term contracts.
+
+Happy to set up a quick call at your convenience.
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-14">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(14)">Copy Email Body</button>
+    <span class="industry-tag">HVAC / Plumbing</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 15 — LARSON AIR CONDITIONING -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-15">
+  <div class="card-meta">
+    <div class="num-badge">15</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Larson Air Conditioning — Scottsdale / East Valley</div>
+      <div class="to-line">To: <a href="mailto:marketing@larsonairaz.com">marketing@larsonairaz.com</a> &nbsp;·&nbsp; <a href="https://larsonairaz.com" target="_blank">larsonairaz.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>One idea for your Chandler and Gilbert growth this summer</div>
+  <div class="email-body" id="body-15">Hi,
+
+I wanted to reach out with a specific observation about Larson Air Conditioning's digital footprint in the Chandler and Gilbert markets.
+
+You have dedicated service pages for both cities on your website — that's smart SEO thinking. But the social media presence serving those East Valley markets is minimal, and those are two of the fastest-growing areas in the entire Phoenix metro. The opportunity to dominate local HVAC awareness before peak cooling season is significant.
+
+My name is Jaden Green. I founded GreenAI Solutions Team in Gilbert, and I work with home services companies to build integrated digital marketing strategies that drive real inbound business.
+
+For an established company like Larson with strong service infrastructure and a loyal Scottsdale base, expanding your social media presence specifically into Chandler and Gilbert would be a focused, measurable growth lever.
+
+What that looks like:
+— Geo-targeted social content: posts and Reels specifically tagged and targeted to Chandler, Gilbert, and Queen Creek homeowners — building brand awareness before the AC emergency happens
+— Educational content series: maintenance tips, energy efficiency guides, and seasonal prep content that positions Larson as the trusted authority in each market
+— AI-powered lead follow-up for new inquiries from those markets — responses within 5 minutes, automated scheduling, zero manual overhead
+
+Social management from $700/month. Month-to-month contracts only.
+
+Since you're already managing marketing, I'd love to share what we've seen work specifically for HVAC companies in this market. Would a brief call this week be possible?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-15">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(15)">Copy Email Body</button>
+    <span class="industry-tag">HVAC</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- EMAIL 16 — ROSE CREST DENTAL -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="email-card" id="card-16">
+  <div class="card-meta">
+    <div class="num-badge">16</div>
+    <div class="meta-details">
+      <div class="biz-name-label">Rose Crest Dental — Chandler, AZ</div>
+      <div class="to-line">To: <a href="mailto:office@rosecrestdental.com">office@rosecrestdental.com</a> &nbsp;·&nbsp; <a href="https://www.rosecrestdental.com" target="_blank">rosecrestdental.com</a></div>
+    </div>
+    <span class="method-badge method-email">✉ Direct Email</span>
+  </div>
+  <div class="subject-line"><span>Subject: </span>New East Valley families choose their dentist on Instagram now — here's how to be the one they find</div>
+  <div class="email-body" id="body-16">Hello,
+
+Chandler is one of the fastest-growing cities in the United States. Thousands of new families are moving into the East Valley every quarter — and the first thing many of them do when looking for a dentist is pull up Instagram, search "dentist Chandler AZ," and see who looks trustworthy.
+
+Right now, Rose Crest Dental is not part of that discovery process — despite having the patient reviews, the clinical quality, and the welcoming environment to win those families over immediately.
+
+My name is Jaden Green. I founded GreenAI Solutions Team in Gilbert, and I help Arizona dental practices build the social media presence that turns new residents into long-term patients.
+
+Rose Crest's positioning is ideal for social media. A conservative treatment philosophy, a calm and comfortable environment, and a team patients clearly love — that's the story families want to see before they book. We'd bring it to life through:
+
+A consistent Instagram and Facebook presence: real patient testimonials (with consent), meet-the-team content, educational posts about treatments and oral health, and practice culture videos that feel warm and approachable — not clinical and intimidating.
+
+An automated new-patient follow-up sequence: every inquiry, form fill, or call-back request gets a personalized AI response within minutes, with easy online booking attached.
+
+The combination of strong social presence and fast follow-up typically doubles the new-patient conversion rate for practices we work with.
+
+Social management from $700/month. No contracts. Direct founder access on every call.
+
+I'd love 15 minutes to walk through what this looks like in practice. Would this week work?
+
+Jaden Green
+Founder, GreenAI Solutions Team
+📱 (480) 798-0753
+✉ jaden@greenaidigital.com
+🌐 greenaidigital.com
+📍 Gilbert, AZ 85296
+—
+Google Ads Certified · Meta Blueprint Certified · HubSpot Digital Marketing Certified</div>
+  <div class="card-footer">
+    <span class="status-badge" id="status-16">⚪ Not Sent</span>
+    <button class="btn-copy" onclick="copyEmail(16)">Copy Email Body</button>
+    <span class="industry-tag">Dental</span>
+  </div>
+</div>
+
+</main>
+
+<script>
+  function copyEmail(n) {
+    const body = document.getElementById('body-' + n).innerText;
+    const subjectEl = document.querySelector('#card-' + n + ' .subject-line');
+    const subject = subjectEl ? subjectEl.innerText.replace('Subject: ', '').trim() : '';
+    const full = 'Subject: ' + subject + '\n\n' + body;
+    navigator.clipboard.writeText(full).then(() => {
+      const btn = document.querySelector('#card-' + n + ' .btn-copy');
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy Email Body'; btn.classList.remove('copied'); }, 2500);
+    });
+  }
+</script>
+</body>
+</html>
