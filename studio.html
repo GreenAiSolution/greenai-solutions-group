@@ -1989,7 +1989,7 @@ const STUDIO_API_URL   = "https://greenai-studio-api.jadengreen808.workers.dev";
 const STUDIO_API_TOKEN = "1da9f3154e96c20a6f18c4324b40d168";
 
 // ══ STATE ══
-const PASS='GreenAI2026';
+const PASS='luxai2026';
 // Legacy locals (kept so older code paths don't throw — real auth is the access code)
 let apiKey='backend';
 let geminiKey='backend';
@@ -2000,7 +2000,7 @@ let lastS='',lastL='',lastR='';
 let allHashtags=[];
 
 // ══ AUTH ══
-function checkPasscode(){const v=document.getElementById('passcode-input').value.trim();if(v==='greenai2026'){enterStudio();}else{document.getElementById('auth-error').textContent='Incorrect access code';document.getElementById('passcode-input').style.borderColor='#ff6b6b';setTimeout(()=>{document.getElementById('auth-error').textContent='';document.getElementById('passcode-input').style.borderColor='';},2000);}}
+function checkPasscode(){const v=document.getElementById('passcode-input').value.trim().toLowerCase();if(v==='luxai2026'){enterStudio();}else{document.getElementById('auth-error').textContent='Incorrect access code';document.getElementById('passcode-input').style.borderColor='#ff6b6b';setTimeout(()=>{document.getElementById('auth-error').textContent='';document.getElementById('passcode-input').style.borderColor='';},2000);}}
 function enterStudio(){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app').style.display='flex';
