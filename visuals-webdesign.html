@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenAI — Web Design for Detailers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #040b06; color: #f0f7f1; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ---- TOP BAR ---- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(4,11,6,0.96); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,230,118,0.12);
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 200;
+}
+.topbar-logo { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 900; }
+.topbar-logo span:first-child { color: #00e676; }
+.topbar-logo span:last-child { color: #D4AF37; }
+.topbar-badge {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #D4AF37; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+.page { max-width: 1160px; margin: 0 auto; padding: 88px 32px 80px; }
+
+/* ---- SECTION HEADER ---- */
+.sec-hdr { text-align: center; margin-bottom: 3rem; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #00e676; background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.18);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 1rem;
+}
+.sec-hdr h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; color: #fff;
+  line-height: 1.12; margin-bottom: 0.75rem;
+}
+.sec-hdr h2 em { color: #00e676; font-style: normal; }
+.sec-hdr p { font-size: 1rem; color: #5a8a62; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,230,118,0.15), transparent); margin: 5rem 0; }
+
+/* ============================================================
+   HERO — COLLIN SPECIFIC
+   ============================================================ */
+.hero {
+  text-align: center;
+  padding: 4rem 0 5rem;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,230,118,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #00e676; background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.2);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 1.75rem;
+}
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; color: #fff;
+  line-height: 1.05; margin-bottom: 1.25rem;
+}
+.hero h1 .green { color: #00e676; }
+.hero h1 .gold { color: #D4AF37; }
+.hero-sub { font-size: 1.1rem; color: #5a8a62; max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.7; }
+
+.hero-urgency {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.2);
+  border-radius: 12px; padding: 14px 22px; margin-bottom: 2rem;
+}
+.urgency-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff5050; flex-shrink: 0; animation: pulse-red 1.5s infinite; }
+@keyframes pulse-red { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.urgency-text { font-size: 0.88rem; color: rgba(255,180,180,0.9); font-weight: 600; text-align: left; }
+.urgency-text strong { color: #ff8080; }
+
+/* ============================================================
+   THE COLD HARD TRUTH
+   ============================================================ */
+.truth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.truth-card {
+  border-radius: 18px; padding: 2rem; position: relative; overflow: hidden;
+}
+.truth-card.bad {
+  background: rgba(30,5,5,0.8); border: 1px solid rgba(255,60,60,0.2);
+}
+.truth-card.good {
+  background: rgba(5,25,10,0.8); border: 1px solid rgba(0,230,118,0.25);
+}
+.truth-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.truth-card.bad::before { background: linear-gradient(90deg, transparent, rgba(255,60,60,0.6), transparent); }
+.truth-card.good::before { background: linear-gradient(90deg, transparent, #00e676, transparent); }
+.truth-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+}
+.truth-label.red { color: #ff5050; }
+.truth-label.green { color: #00e676; }
+.truth-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.truth-card.bad h3 { color: rgba(255,220,220,0.9); }
+.truth-card.good h3 { color: #f0f7f1; }
+.truth-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.6rem; font-size: 0.84rem; line-height: 1.4; }
+.truth-item.bad { color: rgba(255,160,160,0.7); }
+.truth-item.good { color: #7a9e82; }
+
+/* ============================================================
+   BROWSER MOCKUPS
+   ============================================================ */
+.browser-hero-wrap { margin-bottom: 1.5rem; }
+.browser-card {
+  background: #0a0f0a;
+  border: 1px solid rgba(0,230,118,0.15);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,230,118,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.browser-card:hover { transform: translateY(-4px); box-shadow: 0 50px 120px rgba(0,0,0,0.7), 0 0 40px rgba(0,230,118,0.06); }
+.browser-chrome {
+  background: #111; padding: 11px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.b-dots { display: flex; gap: 5px; }
+.b-dot { width: 11px; height: 11px; border-radius: 50%; }
+.b-dot.r { background: #ff5f57; } .b-dot.y { background: #febc2e; } .b-dot.g { background: #28c840; }
+.b-bar {
+  flex: 1; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 5px 12px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.62rem; color: rgba(255,255,255,0.3); font-family: monospace;
+}
+.b-lock { color: #28c840; }
+.b-speed {
+  margin-left: auto; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.06em;
+  color: #28c840; background: rgba(40,200,64,0.12); border: 1px solid rgba(40,200,64,0.25);
+  padding: 2px 8px; border-radius: 4px;
+}
+.browser-screen canvas { width: 100%; display: block; }
+
+.browser-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+/* BROWSER LABEL */
+.b-label {
+  padding: 12px 16px; border-top: 1px solid rgba(0,230,118,0.08);
+  background: rgba(13,24,16,0.6);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.b-label-name { font-size: 0.85rem; font-weight: 700; color: #f0f7f1; }
+.b-label-tag { font-size: 0.65rem; font-weight: 700; color: #00e676; letter-spacing: 0.07em; text-transform: uppercase; }
+
+/* ============================================================
+   PHONE FRAMES — CSS-ONLY
+   ============================================================ */
+.phones-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; align-items: start; }
+.phone-col { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+
+.phone-outer {
+  width: 240px;
+  background: #0d0d0d;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 2px #1a1a1a,
+    0 0 0 4px #0a0a0a,
+    0 40px 80px rgba(0,0,0,0.7),
+    0 0 60px rgba(0,230,118,0.05);
+}
+.phone-notch-bar {
+  width: 88px; height: 22px; background: #0d0d0d;
+  border-radius: 0 0 14px 14px; margin: 0 auto 10px;
+  position: relative;
+}
+.phone-notch-bar::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: #1a1a1a; border: 1px solid #222;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+.phone-screen-wrap {
+  border-radius: 28px; overflow: hidden;
+  background: #111;
+  position: relative;
+}
+.phone-screen-wrap canvas { width: 100%; display: block; }
+
+.phone-info { text-align: center; }
+.phone-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #f0f7f1; }
+.phone-sub { font-size: 0.72rem; color: #5a8a62; margin-top: 3px; }
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-band {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(0,230,118,0.08);
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(0,230,118,0.12);
+}
+.stat-cell {
+  background: rgba(13,24,16,0.8); padding: 1.75rem;
+  text-align: center;
+}
+.sc-num { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 700; color: #00e676; line-height: 1; }
+.sc-num.gold { color: #D4AF37; }
+.sc-lbl { font-size: 0.7rem; color: #5a8a62; margin-top: 6px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ============================================================
+   COMPARE
+   ============================================================ */
+.compare-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.cmp-col {
+  border-radius: 16px; padding: 2rem;
+}
+.cmp-col.green { background: rgba(0,230,118,0.05); border: 1px solid rgba(0,230,118,0.22); }
+.cmp-col.red { background: rgba(255,60,60,0.03); border: 1px solid rgba(255,60,60,0.12); }
+.cmp-col h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; }
+.cmp-col.green h3 { color: #00e676; }
+.cmp-col.red h3 { color: rgba(255,100,100,0.8); }
+.cmp-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.7rem; font-size: 0.84rem; line-height: 1.4; }
+.cmp-item.g { color: #a0c8a8; }
+.cmp-item.r { color: #3a2020; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.price-solo {
+  max-width: 520px; margin: 0 auto;
+  background: rgba(13,24,16,0.8);
+  border: 1px solid rgba(0,230,118,0.25);
+  border-radius: 24px; padding: 2.5rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.price-solo::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #00e676, transparent);
+}
+.price-solo-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5a8a62; margin-bottom: 0.5rem; }
+.price-solo-amount { font-family: 'Orbitron', monospace; font-size: 4rem; font-weight: 700; color: #00e676; line-height: 1; }
+.price-solo-amount sup { font-size: 1.6rem; vertical-align: super; }
+.price-solo-sub { font-size: 0.8rem; color: #3a4a3f; margin-top: 6px; margin-bottom: 2rem; }
+.price-feats { list-style: none; text-align: left; margin-bottom: 2rem; }
+.price-feats li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #7a9e82; padding: 8px 0; border-bottom: 1px solid rgba(0,230,118,0.06); }
+.price-feats li:last-child { border: none; }
+.pfc { color: #00e676; }
+.price-note { font-size: 0.78rem; color: #D4AF37; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 10px 16px; }
+.price-cta { display: block; margin-top: 1.5rem; padding: 14px; background: linear-gradient(135deg, #00c853, #00e676); color: #040b06; font-weight: 800; font-size: 0.95rem; border-radius: 14px; text-decoration: none; }
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+.cta-box {
+  background: rgba(0,230,118,0.04); border: 1px solid rgba(0,230,118,0.15);
+  border-radius: 24px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;
+  margin-top: 2rem;
+}
+.cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #00e676, transparent); }
+.cta-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+.cta-box h2 em { color: #00e676; font-style: normal; }
+.cta-box p { font-size: 1rem; color: #5a8a62; max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.6; }
+.cta-row { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.btn-green { padding: 15px 36px; background: linear-gradient(135deg, #00c853, #00e676); color: #040b06; font-weight: 800; font-size: 0.95rem; border-radius: 100px; text-decoration: none; }
+.btn-outline { padding: 15px 36px; border: 1px solid rgba(0,230,118,0.3); color: #00e676; font-weight: 700; font-size: 0.95rem; border-radius: 100px; text-decoration: none; }
+
+@media (max-width: 960px) {
+  .truth-grid { grid-template-columns: 1fr; }
+  .browser-grid-3 { grid-template-columns: 1fr; }
+  .phones-row { grid-template-columns: 1fr; align-items: center; }
+  .phone-col { flex-direction: row; align-items: center; gap: 1.5rem; }
+  .phone-outer { width: 180px; }
+  .stats-band { grid-template-columns: repeat(2,1fr); }
+  .compare-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .page { padding: 80px 16px 60px; }
+  .phone-col { flex-direction: column; }
+  .phone-outer { width: 200px; }
+  .stats-band { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo"><span>Green</span><span>AI</span></div>
+  <div class="topbar-badge">🌐 Web Design — Collin Demo</div>
+</div>
+
+<div class="page">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <div class="hero">
+    <div class="hero-eyebrow">🚗 Built for Auto Detailers</div>
+    <h1>Your Competitors Are<br>Booking <span class="green">Your</span> Customers<br><span class="gold">Right Now.</span></h1>
+    <p class="hero-sub">Every day without a website, someone in Gilbert Googles "car detailer near me" — and books the guy who has one. We fix that in 7 days.</p>
+
+    <div class="hero-urgency">
+      <div class="urgency-dot"></div>
+      <div class="urgency-text">
+        <strong>1,200+ people</strong> search "car detailer Gilbert AZ" every month on Google.<br>
+        Without a website, <strong>none of them can find you.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       THE COLD HARD TRUTH
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">⚡ The Reality</div>
+    <h2>What's Happening to <em>Collin</em><br>Without a Website Right Now</h2>
+    <p>This isn't hypothetical. This is what's happening every single day.</p>
+  </div>
+
+  <div class="truth-grid">
+    <div class="truth-card bad">
+      <div class="truth-label red">❌ Without a GreenAI Website</div>
+      <h3>Invisible. Losing Money Daily.</h3>
+      <div class="truth-item bad"><span>❌</span> Customers Google "detailer near me" and can't find you — they book someone else</div>
+      <div class="truth-item bad"><span>❌</span> Your TikTok and Instagram send traffic... nowhere. No place to book or call</div>
+      <div class="truth-item bad"><span>❌</span> You have to quote every single person manually — no automated pricing or booking</div>
+      <div class="truth-item bad"><span>❌</span> Customers can't verify you're legit — no reviews page, no before/afters, no credibility</div>
+      <div class="truth-item bad"><span>❌</span> You look smaller than competitors who have a $500 Wix site that still outranks you</div>
+      <div class="truth-item bad"><span>❌</span> Every lead you don't capture is money going directly to your competitor</div>
+    </div>
+    <div class="truth-card good">
+      <div class="truth-label green">✅ With a GreenAI Website</div>
+      <h3>Fully Booked. On Autopilot.</h3>
+      <div class="truth-item good"><span>✅</span> You show up #1 when people search "car detailer Gilbert AZ" — capturing all that traffic</div>
+      <div class="truth-item good"><span>✅</span> Every TikTok and Instagram viewer lands on a site that converts them to a booking</div>
+      <div class="truth-item good"><span>✅</span> Online booking system handles appointments 24/7 — even while you're detailing</div>
+      <div class="truth-item good"><span>✅</span> Gallery of your best work, 5-star reviews, and certifications build instant trust</div>
+      <div class="truth-item good"><span>✅</span> You look premium — ceramic coating clients expect a professional online presence</div>
+      <div class="truth-item good"><span>✅</span> Desert Steam went from 0 to fully booked in 90 days. This is how.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       HERO BROWSER MOCKUP — DESERT STEAM SITE
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">🔥 Your Website Preview</div>
+    <h2>This Is What <em>Collin's Site</em><br>Could Look Like — Built This Week</h2>
+    <p>A custom-designed, fully professional detailing website. Fast, bookable, and ranked on Google.</p>
+  </div>
+
+  <div class="browser-hero-wrap">
+    <div class="browser-card">
+      <div class="browser-chrome">
+        <div class="b-dots"><div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div></div>
+        <div class="b-bar"><span class="b-lock">🔒</span> collindetailing.com</div>
+        <div class="b-speed">⚡ PageSpeed 98</div>
+      </div>
+      <div class="browser-screen"><canvas id="heroSite" width="1400" height="680"></canvas></div>
+      <div class="b-label"><span class="b-label-name">Collin's Detailing — Featured Build</span><span class="b-label-tag">Premium Dark Style</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       3 MORE STYLE OPTIONS
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">🎨 Style Options</div>
+    <h2>Pick Your Look. We Build It.</h2>
+    <p>Three different visual directions — all built to convert. You pick, we build.</p>
+  </div>
+
+  <div class="browser-grid-3" id="styleGrid"></div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       PHONE MOCKUPS
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">📱 Mobile Experience</div>
+    <h2>65% of Customers Are<br>Searching From Their Phone</h2>
+    <p>Every site we build is designed mobile-first. If it doesn't convert on a phone, it doesn't convert.</p>
+  </div>
+
+  <div class="phones-row">
+    <div class="phone-col">
+      <div class="phone-outer">
+        <div class="phone-notch-bar"></div>
+        <div class="phone-screen-wrap"><canvas id="phone1" width="320" height="600"></canvas></div>
+      </div>
+      <div class="phone-info"><div class="phone-name">Homepage</div><div class="phone-sub">Hook + Book Now CTA</div></div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-outer">
+        <div class="phone-notch-bar"></div>
+        <div class="phone-screen-wrap"><canvas id="phone2" width="320" height="600"></canvas></div>
+      </div>
+      <div class="phone-info"><div class="phone-name">Services Page</div><div class="phone-sub">Packages + Pricing</div></div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-outer">
+        <div class="phone-notch-bar"></div>
+        <div class="phone-screen-wrap"><canvas id="phone3" width="320" height="600"></canvas></div>
+      </div>
+      <div class="phone-info"><div class="phone-name">Booking Page</div><div class="phone-sub">Appointment Scheduler</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       PERFORMANCE STATS
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">📊 Performance Guaranteed</div>
+    <h2>Built to Be the Fastest<br>Detailing Site in Your City</h2>
+  </div>
+
+  <div class="stats-band">
+    <div class="stat-cell"><div class="sc-num">98</div><div class="sc-lbl">Google PageSpeed Score</div></div>
+    <div class="stat-cell"><div class="sc-num">0.8s</div><div class="sc-lbl">Load Time</div></div>
+    <div class="stat-cell"><div class="sc-num gold">97</div><div class="sc-lbl">SEO Score</div></div>
+    <div class="stat-cell"><div class="sc-num">100</div><div class="sc-lbl">Mobile Score</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       GREENAI VS EVERYONE ELSE
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">⚔️ Why GreenAI Builds Different</div>
+    <h2>Not All Websites Are Created Equal</h2>
+    <p>Most detailers who have websites still don't get leads from them. Here's why ours work.</p>
+  </div>
+
+  <div class="compare-cols">
+    <div class="cmp-col green">
+      <h3>✅ GreenAI Website</h3>
+      <div class="cmp-item g"><span>✅</span> Loads in under 1 second — zero bounce rate from slow loading</div>
+      <div class="cmp-item g"><span>✅</span> Ranks on Google Page 1 for "car detailer [your city]"</div>
+      <div class="cmp-item g"><span>✅</span> Booking system built in — customers book 24/7 without calling</div>
+      <div class="cmp-item g"><span>✅</span> Before/after gallery that converts browsers to buyers</div>
+      <div class="cmp-item g"><span>✅</span> 5-star review section with Google review integration</div>
+      <div class="cmp-item g"><span>✅</span> Service menu with pricing — no wasted quote requests</div>
+      <div class="cmp-item g"><span>✅</span> Mobile-first — works perfectly on any phone</div>
+      <div class="cmp-item g"><span>✅</span> SSL secured, spam-free contact forms</div>
+      <div class="cmp-item g"><span>✅</span> Delivered in 7–10 days, you own it forever</div>
+      <div class="cmp-item g"><span>✅</span> $500 one-time. No monthly fees.</div>
+    </div>
+    <div class="cmp-col red">
+      <h3>❌ DIY / Wix / Template</h3>
+      <div class="cmp-item r"><span>❌</span> Loads in 4–8 seconds — 53% of visitors leave if it takes over 3s</div>
+      <div class="cmp-item r"><span>❌</span> No SEO — invisible on Google, buried behind competitors</div>
+      <div class="cmp-item r"><span>❌</span> No booking system — customers have to call or DM to book</div>
+      <div class="cmp-item r"><span>❌</span> Generic stock photos — no trust, no differentiation</div>
+      <div class="cmp-item r"><span>❌</span> No review integration — credibility stays hidden</div>
+      <div class="cmp-item r"><span>❌</span> No pricing visibility — drives away ready-to-buy customers</div>
+      <div class="cmp-item r"><span>❌</span> Broken on mobile — menu doesn't work, text too small</div>
+      <div class="cmp-item r"><span>❌</span> Spam-filled contact forms with no notification</div>
+      <div class="cmp-item r"><span>❌</span> Takes weeks to build yourself, looks unprofessional</div>
+      <div class="cmp-item r"><span>❌</span> $25–40/month forever, plus your time to maintain it</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       PRICING
+       ============================================================ -->
+  <div class="sec-hdr">
+    <div class="eyebrow">💰 Investment</div>
+    <h2>$500. One Time. <em>Fully Yours.</em></h2>
+    <p>One new ceramic coating client pays for the entire website. And then it keeps generating leads forever.</p>
+  </div>
+
+  <div class="price-solo">
+    <div class="price-solo-tag">Detailing Website Package</div>
+    <div class="price-solo-amount"><sup>$</sup>500</div>
+    <div class="price-solo-sub">One-Time Payment · No Monthly Fees · You Own It Forever</div>
+    <ul class="price-feats">
+      <li><span class="pfc">✓</span> Fully custom design — no templates</li>
+      <li><span class="pfc">✓</span> Services & pricing page</li>
+      <li><span class="pfc">✓</span> Before/after gallery section</li>
+      <li><span class="pfc">✓</span> Online booking / contact form</li>
+      <li><span class="pfc">✓</span> 5-star review section</li>
+      <li><span class="pfc">✓</span> Mobile-first responsive build</li>
+      <li><span class="pfc">✓</span> Full SEO setup (Google will find you)</li>
+      <li><span class="pfc">✓</span> PageSpeed 98+ guaranteed</li>
+      <li><span class="pfc">✓</span> SSL certificate included</li>
+      <li><span class="pfc">✓</span> Delivered in 7–10 days</li>
+    </ul>
+    <div class="price-note">⭐ Included FREE inside the Dominator Plan ($1,950/mo) — combine with social media for maximum impact.</div>
+    <a href="onboarding.html" class="price-cta">Build My Website →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <div class="cta-box">
+    <h2>Every Day Without a Website<br>Is a Day <em>Your Competitor Wins.</em></h2>
+    <p>Let's build yours this week. Fill out the onboarding form — we'll have a design preview ready in 5 days.</p>
+    <div class="cta-row">
+      <a href="onboarding.html" class="btn-green">Start Onboarding — Let's Build It →</a>
+      <a href="subscribe-webdesign.html" class="btn-outline">See All Plans</a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ── Helpers ─────────────────────────────────────────────── */
+function rr(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function wt(ctx,text,x,y,maxW,lh){
+  const words=text.split(' ');let line='',lines=[];
+  for(const w of words){const t=line+w+' ';if(ctx.measureText(t).width>maxW&&line){lines.push(line.trim());line=w+' ';}else line=t;}
+  if(line.trim())lines.push(line.trim());
+  lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lh));return lines.length;
+}
+
+/* ── Draw a full website canvas ────────────────────────────
+   cfg: { bg1, bg2, navBg, accent, gold, headColor, subColor,
+          ctaBg, ctaColor, logo, tagline, headline, sub, cta,
+          services, isLight }
+*/
+function drawWebsite(canvas, cfg){
+  const ctx=canvas.getContext('2d'), W=canvas.width, H=canvas.height;
+  const C=cfg;
+
+  // Background
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,C.bg1);bg.addColorStop(1,C.bg2);
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  // Subtle noise/grid
+  ctx.strokeStyle=C.isLight?'rgba(0,0,0,0.04)':'rgba(255,255,255,0.025)';
+  ctx.lineWidth=0.5;
+  const gs=Math.round(W/10);
+  for(let x=0;x<=W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<=H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Glow
+  const glow=ctx.createRadialGradient(W*.5,H*.32,0,W*.5,H*.32,W*.55);
+  glow.addColorStop(0,C.accent.replace('rgb','rgba').replace(')',',0.1)'));
+  glow.addColorStop(1,'transparent');
+  ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+
+  // Decorative circles (right side abstract)
+  [W*.72,W*.85,W*.95].forEach((r,i)=>{
+    ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',(`,${0.06-i*0.015})`));
+    ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(W*.88,H*.35,r*0.55,0,Math.PI*2);ctx.stroke();
+  });
+  // Abstract car shape (3 rectangles + 2 circles = simplified car)
+  const cx=W*.85, cy=H*.35, csc=W*.12;
+  ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.06)');
+  rr(ctx,cx-csc,cy-csc*.3,csc*2,csc*.6,csc*.08);ctx.fill();
+  rr(ctx,cx-csc*.7,cy-csc*.7,csc*1.4,csc*.4,csc*.06);ctx.fill();
+  [cx-csc*.55,cx+csc*.35].forEach(wx=>{
+    ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.12)');
+    ctx.beginPath();ctx.arc(wx,cy+csc*.4,csc*.2,0,Math.PI*2);ctx.fill();
+  });
+
+  // ── NAV BAR ─────────────────────────────────────────────
+  const navH=Math.round(H*.12);
+  ctx.fillStyle=C.navBg;ctx.fillRect(0,0,W,navH);
+  ctx.strokeStyle=C.isLight?'rgba(0,0,0,0.08)':C.accent.replace('rgb','rgba').replace(')',',0.12)');
+  ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,navH);ctx.lineTo(W,navH);ctx.stroke();
+
+  // Logo
+  ctx.font=`900 ${Math.round(W*.042)}px Orbitron,monospace`;
+  ctx.fillStyle=C.accent;ctx.textAlign='left';
+  ctx.fillText(C.logo,Math.round(W*.05),Math.round(navH*.65));
+
+  // Nav links
+  const navLinks=['Home','Services','Gallery','Reviews','Book Now'];
+  navLinks.forEach((lnk,i)=>{
+    const isLast=i===navLinks.length-1;
+    const nx=W*.42+i*(W*.11);
+    if(isLast){
+      ctx.fillStyle=C.accent;
+      rr(ctx,nx-8,navH*.2,ctx.measureText(lnk).width+24,navH*.58,navH*.29);ctx.fill();
+      ctx.fillStyle=C.isLight?'#fff':C.bg1;
+    }else{
+      ctx.fillStyle=C.isLight?'rgba(0,0,0,0.45)':'rgba(255,255,255,0.45)';
+    }
+    ctx.font=`${isLast?700:500} ${Math.round(W*.028)}px Inter`;
+    ctx.textAlign='left';ctx.fillText(lnk,nx,Math.round(navH*.65));
+  });
+
+  // ── HERO CONTENT ─────────────────────────────────────────
+  const heroY=navH+Math.round(H*.07);
+  const pad=Math.round(W*.05);
+
+  // Tagline chip
+  const chipH=Math.round(H*.055);
+  ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.1)');
+  rr(ctx,pad,heroY,Math.round(W*.28),chipH,chipH/2);ctx.fill();
+  ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',',0.25)');
+  ctx.lineWidth=1;rr(ctx,pad,heroY,Math.round(W*.28),chipH,chipH/2);ctx.stroke();
+  ctx.font=`700 ${Math.round(W*.026)}px Inter`;ctx.fillStyle=C.accent;ctx.textAlign='left';
+  ctx.fillText(C.tagline,pad+12,heroY+chipH*.65);
+
+  // Headline
+  const headY=heroY+chipH+Math.round(H*.045);
+  ctx.font=`900 ${Math.round(W*.075)}px Space Grotesk,sans-serif`;
+  ctx.fillStyle=C.headColor;
+  const lines=wt(ctx,C.headline,pad,headY,W*.52,Math.round(W*.085));
+
+  // Accent underline
+  ctx.fillStyle=C.accent;
+  ctx.fillRect(pad,headY+lines*Math.round(W*.085)+4,Math.round(W*.18),3);
+
+  // Sub text
+  ctx.font=`400 ${Math.round(W*.032)}px Inter`;
+  ctx.fillStyle=C.subColor;
+  wt(ctx,C.sub,pad,headY+lines*Math.round(W*.085)+22,W*.44,Math.round(W*.042));
+
+  // CTA buttons
+  const ctaY=headY+lines*Math.round(W*.085)+Math.round(H*.22);
+  const ctaW=Math.round(W*.18),ctaH=Math.round(H*.08);
+  // Primary
+  const ctaG=ctx.createLinearGradient(pad,0,pad+ctaW,0);
+  ctaG.addColorStop(0,C.ctaBg);ctaG.addColorStop(1,C.ctaBg2||C.ctaBg);
+  ctx.fillStyle=ctaG;rr(ctx,pad,ctaY,ctaW,ctaH,ctaH/2);ctx.fill();
+  ctx.font=`800 ${Math.round(W*.03)}px Inter`;ctx.fillStyle=C.ctaColor;ctx.textAlign='center';
+  ctx.fillText(C.cta,pad+ctaW/2,ctaY+ctaH*.64);
+
+  // Secondary ghost button
+  const sb2X=pad+ctaW+Math.round(W*.015);
+  ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',',0.4)');
+  ctx.lineWidth=1;rr(ctx,sb2X,ctaY,Math.round(W*.16),ctaH,ctaH/2);ctx.stroke();
+  ctx.font=`600 ${Math.round(W*.028)}px Inter`;ctx.fillStyle=C.accent;ctx.textAlign='center';
+  ctx.fillText('Our Work',sb2X+Math.round(W*.08),ctaY+ctaH*.64);
+
+  // ── SERVICE CARDS ROW ─────────────────────────────────────
+  const svY=Math.round(H*.78);
+  const svCount=C.services.length, svW=(W-pad*2-(svCount-1)*Math.round(W*.015))/svCount;
+  C.services.forEach((sv,i)=>{
+    const svX=pad+i*(svW+Math.round(W*.015));
+    ctx.fillStyle=C.isLight?'rgba(0,0,0,0.04)':C.accent.replace('rgb','rgba').replace(')',',0.06)');
+    rr(ctx,svX,svY,svW,Math.round(H*.18),10);ctx.fill();
+    ctx.strokeStyle=C.isLight?'rgba(0,0,0,0.08)':C.accent.replace('rgb','rgba').replace(')',',0.15)');
+    ctx.lineWidth=1;rr(ctx,svX,svY,svW,Math.round(H*.18),10);ctx.stroke();
+
+    ctx.font=`${Math.round(W*.04)}px serif`;ctx.textAlign='center';ctx.fillText(sv.icon,svX+svW/2,svY+Math.round(H*.075));
+    ctx.font=`700 ${Math.round(W*.026)}px Space Grotesk,sans-serif`;
+    ctx.fillStyle=C.headColor;ctx.textAlign='center';
+    ctx.fillText(sv.name,svX+svW/2,svY+Math.round(H*.11));
+    ctx.font=`400 ${Math.round(W*.022)}px Inter`;
+    ctx.fillStyle=C.subColor;
+    wt(ctx,sv.price,svX+svW/2-svW*.4,svY+Math.round(H*.135),svW*.8,Math.round(W*.028));
+  });
+
+  ctx.textAlign='left';
+}
+
+/* ── Draw mobile phone screen ─────────────────────────── */
+function drawPhone(canvas, type, cfg){
+  const ctx=canvas.getContext('2d'), W=canvas.width, H=canvas.height;
+  const C=cfg;
+
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,C.bg1);bg.addColorStop(1,C.bg2);
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  const glow=ctx.createRadialGradient(W*.5,H*.25,0,W*.5,H*.25,W*.7);
+  glow.addColorStop(0,C.accent.replace('rgb','rgba').replace(')',',0.1)'));
+  glow.addColorStop(1,'transparent');
+  ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+
+  // Mobile nav
+  const navH=Math.round(H*.08);
+  ctx.fillStyle=C.navBg;ctx.fillRect(0,0,W,navH);
+  ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',',0.1)');
+  ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,navH);ctx.lineTo(W,navH);ctx.stroke();
+  ctx.font=`800 ${Math.round(W*.07)}px Orbitron,monospace`;ctx.fillStyle=C.accent;
+  ctx.textAlign='left';ctx.fillText(C.logo,Math.round(W*.06),Math.round(navH*.7));
+  // Hamburger
+  [0.25,0.5,0.75].forEach(fy=>{
+    ctx.fillStyle=C.accent;ctx.fillRect(W*.78,navH*fy,W*.14,2);
+  });
+
+  const pad=Math.round(W*.07), contentY=navH+Math.round(H*.04);
+
+  if(type==='home'){
+    // Chip
+    const chipH=Math.round(H*.045);
+    ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.1)');
+    rr(ctx,pad,contentY,Math.round(W*.75),chipH,chipH/2);ctx.fill();
+    ctx.font=`600 ${Math.round(W*.052)}px Inter`;ctx.fillStyle=C.accent;
+    ctx.textAlign='left';ctx.fillText(C.tagline,pad+10,contentY+chipH*.67);
+
+    const headY=contentY+chipH+Math.round(H*.03);
+    ctx.font=`900 ${Math.round(W*.1)}px Space Grotesk,sans-serif`;ctx.fillStyle=C.headColor;
+    wt(ctx,C.headline,pad,headY,W-pad*2,Math.round(H*.115));
+
+    ctx.font=`400 ${Math.round(W*.058)}px Inter`;ctx.fillStyle=C.subColor;
+    wt(ctx,C.sub,pad,headY+Math.round(H*.3),W-pad*2,Math.round(H*.075));
+
+    // Full width CTA
+    const ctaY=headY+Math.round(H*.5),ctaH=Math.round(H*.075);
+    const cg=ctx.createLinearGradient(pad,0,W-pad,0);
+    cg.addColorStop(0,C.ctaBg);cg.addColorStop(1,C.ctaBg2||C.ctaBg);
+    ctx.fillStyle=cg;rr(ctx,pad,ctaY,W-pad*2,ctaH,ctaH/2);ctx.fill();
+    ctx.font=`800 ${Math.round(W*.062)}px Inter`;ctx.fillStyle=C.ctaColor;ctx.textAlign='center';
+    ctx.fillText(C.cta,W/2,ctaY+ctaH*.64);
+
+    // Stars
+    ctx.font=`${Math.round(W*.08)}px serif`;ctx.fillStyle='#F4C542';ctx.textAlign='center';
+    ctx.fillText('★★★★★',W/2,ctaY+ctaH+Math.round(H*.065));
+    ctx.font=`500 ${Math.round(W*.054)}px Inter`;ctx.fillStyle=C.subColor;
+    ctx.fillText('120+ Five-Star Reviews',W/2,ctaY+ctaH+Math.round(H*.11));
+
+  } else if(type==='services'){
+    ctx.font=`800 ${Math.round(W*.085)}px Space Grotesk,sans-serif`;ctx.fillStyle=C.headColor;
+    ctx.textAlign='left';ctx.fillText('Our Services',pad,contentY+Math.round(H*.06));
+
+    const svs=[
+      {icon:'✨',name:'Full Detail',price:'From $199'},
+      {icon:'🛡️',name:'Ceramic Coat',price:'From $399'},
+      {icon:'🔧',name:'Paint Correction',price:'From $299'},
+      {icon:'🚗',name:'Interior Detail',price:'From $99'},
+    ];
+    svs.forEach((sv,i)=>{
+      const sy=contentY+Math.round(H*.12)+i*Math.round(H*.2);
+      ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.07)');
+      rr(ctx,pad,sy,W-pad*2,Math.round(H*.17),10);ctx.fill();
+      ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',',0.15)');
+      ctx.lineWidth=1;rr(ctx,pad,sy,W-pad*2,Math.round(H*.17),10);ctx.stroke();
+
+      ctx.font=`${Math.round(W*.07)}px serif`;ctx.textAlign='left';ctx.fillText(sv.icon,pad+Math.round(W*.04),sy+Math.round(H*.11));
+      ctx.font=`700 ${Math.round(W*.065)}px Space Grotesk,sans-serif`;ctx.fillStyle=C.headColor;
+      ctx.fillText(sv.name,pad+Math.round(W*.14),sy+Math.round(H*.085));
+      ctx.font=`600 ${Math.round(W*.056)}px Inter`;ctx.fillStyle=C.accent;
+      ctx.fillText(sv.price,pad+Math.round(W*.14),sy+Math.round(H*.133));
+    });
+
+  } else if(type==='booking'){
+    ctx.font=`800 ${Math.round(W*.085)}px Space Grotesk,sans-serif`;ctx.fillStyle=C.headColor;
+    ctx.textAlign='left';ctx.fillText('Book Appointment',pad,contentY+Math.round(H*.055));
+
+    const fields=[
+      {label:'Your Name','val':'Collin Smith'},
+      {label:'Service','val':'Ceramic Coating'},
+      {label:'Date','val':'June 18, 2026'},
+      {label:'Time','val':'10:00 AM'},
+    ];
+    fields.forEach((f,i)=>{
+      const fy=contentY+Math.round(H*.1)+i*Math.round(H*.145);
+      ctx.font=`600 ${Math.round(W*.052)}px Inter`;ctx.fillStyle=C.subColor;ctx.textAlign='left';
+      ctx.fillText(f.label,pad,fy);
+      ctx.fillStyle=C.accent.replace('rgb','rgba').replace(')',',0.06)');
+      rr(ctx,pad,fy+Math.round(H*.02),W-pad*2,Math.round(H*.09),8);ctx.fill();
+      ctx.strokeStyle=C.accent.replace('rgb','rgba').replace(')',',0.2)');
+      ctx.lineWidth=1;rr(ctx,pad,fy+Math.round(H*.02),W-pad*2,Math.round(H*.09),8);ctx.stroke();
+      ctx.font=`500 ${Math.round(W*.058)}px Inter`;ctx.fillStyle=C.headColor;
+      ctx.fillText(f.val,pad+Math.round(W*.04),fy+Math.round(H*.075));
+    });
+
+    // Book button
+    const btnY=contentY+Math.round(H*.7),btnH=Math.round(H*.09);
+    const bg2=ctx.createLinearGradient(pad,0,W-pad,0);
+    bg2.addColorStop(0,C.ctaBg);bg2.addColorStop(1,C.ctaBg2||C.ctaBg);
+    ctx.fillStyle=bg2;rr(ctx,pad,btnY,W-pad*2,btnH,btnH/2);ctx.fill();
+    ctx.font=`800 ${Math.round(W*.065)}px Inter`;ctx.fillStyle=C.ctaColor;ctx.textAlign='center';
+    ctx.fillText('Confirm Booking',W/2,btnY+btnH*.64);
+  }
+
+  ctx.textAlign='left';
+}
+
+/* ── SITE CONFIGS ─────────────────────────────────────── */
+const COLLIN_DARK = {
+  bg1:'#061208', bg2:'#0a1e0c', navBg:'rgba(4,10,6,0.97)',
+  accent:'rgb(0,230,118)', gold:'#D4AF37',
+  headColor:'#f0f7f1', subColor:'rgba(240,247,241,0.55)',
+  ctaBg:'#00c853', ctaBg2:'#00e676', ctaColor:'#040b06',
+  logo:"COLLIN'S DETAIL", tagline:'Gilbert, AZ · Same-Day Available',
+  headline:'Premium Auto Detailing Gilbert Trusts',
+  sub:'Ceramic coating, paint correction & full details. Fully booked by appointment. Get your quote today.',
+  cta:'Book Now',
+  services:[
+    {icon:'✨',name:'Full Detail',price:'From $199'},
+    {icon:'🛡️',name:'Ceramic Coat',price:'From $399'},
+    {icon:'🔧',name:'Paint Correction',price:'From $299'},
+    {icon:'⭐',name:'Interior',price:'From $99'},
+  ],
+  isLight:false
+};
+
+const STYLE_VARIANTS = [
+  {
+    id:'gold', label:'Gold Luxury Style', tag:'Best for high-end clients',
+    url:'collindetailing.com',
+    cfg:{
+      bg1:'#180e02',bg2:'#241503',navBg:'rgba(18,8,2,0.97)',
+      accent:'rgb(212,175,55)',headColor:'#f5e6c8',subColor:'rgba(245,230,200,0.55)',
+      ctaBg:'#c49b2a',ctaBg2:'#f0d060',ctaColor:'#180a02',
+      logo:"COLLIN'S DETAIL",tagline:'Gilbert, AZ · Luxury Auto Care',
+      headline:'Your Car Deserves the Best Treatment',
+      sub:'Ceramic coating & premium detailing. Hand-selected clients only. Book your appointment.',
+      cta:'Book Now',
+      services:[
+        {icon:'✨',name:'Full Detail',price:'From $199'},
+        {icon:'🛡️',name:'Ceramic',price:'From $399'},
+        {icon:'🔧',name:'Paint Correction',price:'From $299'},
+        {icon:'🏆',name:'Elite Package',price:'From $699'},
+      ],
+      isLight:false
+    }
+  },
+  {
+    id:'clean', label:'Clean Light Style', tag:'High trust, approachable',
+    url:'collindetailing.com',
+    cfg:{
+      bg1:'#f4f8f5',bg2:'#e8f2ea',navBg:'rgba(255,255,255,0.96)',
+      accent:'rgb(0,160,72)',headColor:'#0a1f0e',subColor:'rgba(10,31,14,0.55)',
+      ctaBg:'#00a848',ctaBg2:'#00c853',ctaColor:'#fff',
+      logo:"COLLIN'S DETAIL",tagline:'Gilbert, AZ · Top Rated 2026',
+      headline:"Gilbert's #1 Rated Auto Detailer",
+      sub:'Same-day ceramic coating, full details, and paint correction. Book online in 60 seconds.',
+      cta:'Book Online',
+      services:[
+        {icon:'✨',name:'Full Detail',price:'From $199'},
+        {icon:'🛡️',name:'Ceramic',price:'From $399'},
+        {icon:'🔧',name:'Paint',price:'From $299'},
+        {icon:'🚗',name:'Interior',price:'From $99'},
+      ],
+      isLight:true
+    }
+  },
+  {
+    id:'navy', label:'Navy Pro Style', tag:'Corporate, trust-building',
+    url:'collindetailing.com',
+    cfg:{
+      bg1:'#030c20',bg2:'#05142e',navBg:'rgba(3,8,24,0.97)',
+      accent:'rgb(96,165,250)',headColor:'#e8f0ff',subColor:'rgba(232,240,255,0.5)',
+      ctaBg:'#1d4ed8',ctaBg2:'#3b82f6',ctaColor:'#fff',
+      logo:"COLLIN'S DETAIL",tagline:'Gilbert, AZ · Professionally Certified',
+      headline:'Certified Auto Detailing You Can Trust',
+      sub:'Paint correction specialists. Ceramic coating. Mobile & on-site. Gilbert\'s most trusted.',
+      cta:'Get a Quote',
+      services:[
+        {icon:'✨',name:'Full Detail',price:'From $199'},
+        {icon:'🛡️',name:'Ceramic',price:'From $399'},
+        {icon:'🔧',name:'Paint',price:'From $299'},
+        {icon:'🚗',name:'Interior',price:'From $99'},
+      ],
+      isLight:false
+    }
+  },
+];
+
+/* ── RENDER HERO SITE ─────────────────────────────────── */
+drawWebsite(document.getElementById('heroSite'), COLLIN_DARK);
+
+/* ── RENDER STYLE GRID ────────────────────────────────── */
+const grid = document.getElementById('styleGrid');
+STYLE_VARIANTS.forEach(v => {
+  const card = document.createElement('div');
+  card.className = 'browser-card';
+
+  const chrome = document.createElement('div');
+  chrome.className = 'browser-chrome';
+  chrome.innerHTML = `
+    <div class="b-dots"><div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div></div>
+    <div class="b-bar"><span class="b-lock">🔒</span>${v.url}</div>
+    <div class="b-speed">⚡ 98</div>
+  `;
+
+  const screen = document.createElement('div');
+  screen.className = 'browser-screen';
+  const canvas = document.createElement('canvas');
+  canvas.width = 800; canvas.height = 520;
+  drawWebsite(canvas, v.cfg);
+  screen.appendChild(canvas);
+
+  const label = document.createElement('div');
+  label.className = 'b-label';
+  label.innerHTML = `<span class="b-label-name">${v.label}</span><span class="b-label-tag">${v.tag}</span>`;
+
+  card.appendChild(chrome); card.appendChild(screen); card.appendChild(label);
+  grid.appendChild(card);
+});
+
+/* ── RENDER PHONES ────────────────────────────────────── */
+drawPhone(document.getElementById('phone1'),'home', COLLIN_DARK);
+drawPhone(document.getElementById('phone2'),'services', COLLIN_DARK);
+drawPhone(document.getElementById('phone3'),'booking', COLLIN_DARK);
+</script>
+</body>
+</html>

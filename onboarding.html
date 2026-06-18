@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GreenAI Solutions — Client Onboarding. Get started with your AI-powered marketing setup in minutes.">
+<title>Client Onboarding | GreenAI Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ---- ONBOARDING PAGE SPECIFIC ---- */
+
+.ob-page {
+  min-height: 100vh;
+  background: var(--black);
+  padding: 100px 24px 80px;
+}
+
+.ob-hero {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.ob-hero .section-tag { margin-bottom: 1rem; }
+
+.ob-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.ob-hero p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---- PROGRESS BAR ---- */
+.ob-progress {
+  max-width: 860px;
+  margin: 0 auto 2.5rem;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.step-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dark-3);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  transition: var(--transition);
+  font-family: var(--font-mono);
+}
+
+.step-circle.active {
+  background: var(--green-bright);
+  border-color: var(--green-neon);
+  color: var(--black);
+  box-shadow: 0 0 16px rgba(0, 230, 118, 0.4);
+}
+
+.step-circle.done {
+  background: rgba(0, 230, 118, 0.15);
+  border-color: var(--green-neon);
+  color: var(--green-neon);
+}
+
+.step-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.step-node.active .step-label,
+.step-node.done .step-label { color: var(--green-neon); }
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  margin: 0 4px;
+  margin-bottom: 22px;
+  transition: background 0.4s ease;
+}
+
+.step-line.done { background: var(--green-neon); }
+
+/* ---- FORM SHELL ---- */
+.ob-form-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ob-step {
+  display: none;
+  animation: fadeUp 0.4s ease both;
+}
+
+.ob-step.active { display: block; }
+
+.ob-card {
+  background: var(--dark-2);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ob-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.ob-card-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ob-card-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.2rem;
+}
+
+.ob-card-header p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ---- FORM FIELDS ---- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .ob-card { padding: 1.5rem; }
+}
+
+.form-grid .full { grid-column: 1 / -1; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.field label .req {
+  color: var(--green-neon);
+  margin-left: 2px;
+}
+
+.field label .opt {
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 0.72rem;
+  margin-left: 4px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: var(--dark-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: var(--text-white);
+  font-size: 0.9rem;
+  font-family: var(--font-main);
+  transition: var(--transition);
+  width: 100%;
+  outline: none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-dim); }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--green-neon);
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.1);
+  background: var(--dark-3);
+}
+
+.field select option { background: var(--dark-2); }
+
+.field textarea { resize: vertical; min-height: 90px; }
+
+.field-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* ---- CHECKBOX / TOGGLE GROUPS ---- */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .check-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--dark-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.check-item:hover {
+  border-color: var(--border-bright);
+  background: var(--dark-4);
+}
+
+.check-item.selected {
+  border-color: var(--green-neon);
+  background: rgba(0, 230, 118, 0.07);
+}
+
+.check-item input[type=checkbox] { display: none; }
+
+.check-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-bright);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.check-item.selected .check-box {
+  background: var(--green-neon);
+  border-color: var(--green-neon);
+}
+
+.check-box::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: 2px solid var(--black);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+  display: none;
+}
+
+.check-item.selected .check-box::after { display: block; }
+
+.check-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.check-item .plat-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* ---- RADIO GROUP ---- */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.radio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--dark-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.radio-item:hover { border-color: var(--border-bright); }
+.radio-item.selected {
+  border-color: var(--green-neon);
+  background: rgba(0, 230, 118, 0.06);
+}
+
+.radio-item input[type=radio] { display: none; }
+
+.radio-dot {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-bright);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.radio-item.selected .radio-dot { border-color: var(--green-neon); }
+
+.radio-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--green-neon);
+  border-radius: 50%;
+  display: none;
+}
+
+.radio-item.selected .radio-dot::after { display: block; }
+
+.radio-text strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 2px;
+}
+
+.radio-text span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ---- PLATFORM ROWS ---- */
+.platform-input-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.platform-input-row:last-child { border-bottom: none; }
+
+.plat-emoji { font-size: 1.2rem; text-align: center; }
+
+/* ---- FILE UPLOAD ---- */
+.file-drop {
+  border: 2px dashed var(--border-bright);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--dark-3);
+  position: relative;
+}
+
+.file-drop:hover, .file-drop.dragover {
+  border-color: var(--green-neon);
+  background: rgba(0, 230, 118, 0.04);
+}
+
+.file-drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.file-drop-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.file-drop p { font-size: 0.85rem; color: var(--text-muted); }
+.file-drop small { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; display: block; }
+
+/* ---- PACKAGE CARDS ---- */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .pkg-grid { grid-template-columns: 1fr; }
+}
+
+.pkg-card {
+  background: var(--dark-3);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  text-align: center;
+  user-select: none;
+}
+
+.pkg-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+.pkg-card.selected {
+  border-color: var(--green-neon);
+  background: rgba(0, 230, 118, 0.06);
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, 0.2), var(--shadow-green);
+}
+
+.pkg-popular {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--green-bright), var(--green-neon));
+  color: var(--black);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.pkg-card input[type=radio] { display: none; }
+.pkg-name { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+.pkg-price { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.25rem; }
+.pkg-period { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 1rem; }
+.pkg-features { font-size: 0.75rem; color: var(--text-muted); line-height: 1.8; text-align: left; }
+
+/* ---- SIGNATURE ---- */
+.sig-pad {
+  background: var(--dark-3);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-sm);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  cursor: crosshair;
+  position: relative;
+  overflow: hidden;
+}
+
+.sig-pad canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.sig-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-sig-clear {
+  padding: 7px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-sig-clear:hover {
+  border-color: var(--border-bright);
+  color: var(--text-white);
+}
+
+/* ---- TERMS CHECKBOX ---- */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 1.25rem;
+  background: var(--dark-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+}
+
+.terms-row:hover { border-color: var(--border-bright); }
+.terms-row input { display: none; }
+
+.terms-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-bright);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.terms-row.checked .terms-box {
+  background: var(--green-neon);
+  border-color: var(--green-neon);
+}
+
+.terms-box::after {
+  content: '&#10003;';
+  color: var(--black);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: none;
+}
+
+.terms-row.checked .terms-box::after { display: block; }
+
+.terms-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.terms-text a { color: var(--green-neon); text-decoration: underline; }
+
+/* ---- NAV BUTTONS ---- */
+.ob-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.btn-ob-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-ob-back:hover {
+  border-color: var(--border-bright);
+  color: var(--text-white);
+}
+
+.btn-ob-next {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-neon));
+  color: var(--black);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-ob-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 230, 118, 0.35);
+}
+
+.step-counter {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+/* ---- SUCCESS SCREEN ---- */
+.ob-success {
+  display: none;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  animation: fadeUp 0.6s ease both;
+}
+
+.ob-success.active { display: block; }
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 2px solid var(--green-neon);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 40px rgba(0, 230, 118, 0.3);
+  animation: orb-breathe 2s ease-in-out infinite;
+}
+
+.ob-success h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 1rem;
+}
+
+.ob-success p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.success-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+  background: var(--dark-2);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.success-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.ss-num {
+  width: 26px;
+  height: 26px;
+  background: rgba(0, 230, 118, 0.15);
+  border: 1px solid var(--green-neon);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green-neon);
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+/* ---- VALIDATION ---- */
+.field.error input,
+.field.error select,
+.field.error textarea {
+  border-color: #ff5555;
+  box-shadow: 0 0 0 3px rgba(255, 85, 85, 0.1);
+}
+
+.field-error-msg {
+  font-size: 0.72rem;
+  color: #ff5555;
+  display: none;
+}
+
+.field.error .field-error-msg { display: block; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-green">Green</span><span class="logo-ai">AI</span>
+      <span class="logo-badge">SOLUTIONS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn-nav-cta">Book a Call <span class="arrow">&#8594;</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main class="ob-page">
+
+  <!-- HERO -->
+  <div class="ob-hero" id="obHero">
+    <div class="section-tag">&#128640; New Client Setup</div>
+    <h1>Welcome to <span class="gradient-text">GreenAI</span></h1>
+    <p>Complete your onboarding in under 10 minutes. We use this to build your custom AI marketing system, set up all your platforms, and prepare your first month of content.</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="ob-progress" id="obProgress">
+    <div class="progress-steps" id="progressSteps">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="ob-form-wrap" id="obFormWrap">
+
+    <!-- STEP 1: BUSINESS BASICS -->
+    <div class="ob-step active" data-step="1">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#127968;</div>
+          <div>
+            <h2>Business Basics</h2>
+            <p>Tell us about your business so we can tailor everything to you.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label>Business / Brand Name <span class="req">*</span></label>
+            <input type="text" id="bizName" placeholder="e.g. Desert Steam Detail" required>
+          </div>
+          <div class="field">
+            <label>Owner / Contact Name <span class="req">*</span></label>
+            <input type="text" id="ownerName" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" placeholder="(480) 000-0000" required>
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@yourbusiness.com" required>
+          </div>
+          <div class="field full">
+            <label>Business Address <span class="opt">(optional — helps for local SEO)</span></label>
+            <input type="text" id="address" placeholder="123 Main St, Gilbert, AZ 85296">
+          </div>
+          <div class="field">
+            <label>Existing Website URL <span class="opt">(if any)</span></label>
+            <input type="url" id="website" placeholder="https://yoursite.com">
+          </div>
+          <div class="field">
+            <label>Industry / Niche <span class="req">*</span></label>
+            <select id="industry" required>
+              <option value="" disabled selected>Select your industry</option>
+              <option>Real Estate</option>
+              <option>Auto Detailing</option>
+              <option>Restaurant / Food</option>
+              <option>HVAC / Home Services</option>
+              <option>Fitness / Wellness</option>
+              <option>Retail / E-Commerce</option>
+              <option>Healthcare / Med Spa</option>
+              <option>Construction / Contractors</option>
+              <option>Professional Services</option>
+              <option>Beauty / Salon</option>
+              <option>Finance / Insurance</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Business Size</label>
+            <select id="bizSize">
+              <option value="" disabled selected>Select size</option>
+              <option>Solo / Owner-Operator</option>
+              <option>2–5 Employees</option>
+              <option>6–20 Employees</option>
+              <option>20+ Employees</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Who is your target customer? <span class="req">*</span></label>
+            <textarea id="targetCustomer" placeholder="e.g. Homeowners in the East Valley aged 30-55 who want premium auto detailing and care about quality over price…" required></textarea>
+          </div>
+          <div class="field full">
+            <label>What makes you different from competitors? <span class="req">*</span></label>
+            <textarea id="usp" placeholder="e.g. We use all-ceramic coatings, offer same-day booking, and personally follow up with every client…" required></textarea>
+          </div>
+          <div class="field full">
+            <label>Who are your top 2–3 competitors? <span class="opt">(names or websites)</span></label>
+            <textarea id="competitors" placeholder="e.g. Competitor A (competitor-a.com), Local Detailing Co, etc." style="min-height:70px"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: BRANDING -->
+    <div class="ob-step" data-step="2">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#127912;</div>
+          <div>
+            <h2>Branding &amp; Assets</h2>
+            <p>Upload your existing brand assets and describe your visual identity.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field full">
+            <label>Upload Logo <span class="opt">(PNG, SVG, PDF — high res preferred)</span></label>
+            <div class="file-drop" id="logoDropzone">
+              <input type="file" id="logoFile" accept=".png,.svg,.pdf,.jpg,.jpeg" multiple>
+              <div class="file-drop-icon">&#128444;&#65039;</div>
+              <p>Drag &amp; drop your logo here or <strong style="color:var(--green-neon)">click to browse</strong></p>
+              <small>PNG, SVG, PDF, JPG up to 20MB each. Upload light + dark versions if available.</small>
+              <div id="logoFileNames" style="margin-top:8px;font-size:0.78rem;color:var(--green-neon)"></div>
+            </div>
+          </div>
+          <div class="field full">
+            <label>Upload Brand Photos / Images <span class="opt">(product shots, team photos, location)</span></label>
+            <div class="file-drop" id="photoDropzone">
+              <input type="file" id="photoFiles" accept="image/*" multiple>
+              <div class="file-drop-icon">&#128247;</div>
+              <p>Drag &amp; drop photos or <strong style="color:var(--green-neon)">click to browse</strong></p>
+              <small>Any existing photos, before/afters, team shots, or product images.</small>
+              <div id="photoFileNames" style="margin-top:8px;font-size:0.78rem;color:var(--green-neon)"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Primary Brand Color <span class="opt">(hex code)</span></label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="color" id="brandColor1" value="#00c853" style="width:44px;height:44px;padding:2px;border-radius:8px;cursor:pointer">
+              <input type="text" id="brandColor1Hex" placeholder="#00c853" style="flex:1">
+            </div>
+          </div>
+          <div class="field">
+            <label>Secondary Brand Color <span class="opt">(hex code)</span></label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="color" id="brandColor2" value="#D4AF37" style="width:44px;height:44px;padding:2px;border-radius:8px;cursor:pointer">
+              <input type="text" id="brandColor2Hex" placeholder="#D4AF37" style="flex:1">
+            </div>
+          </div>
+          <div class="field">
+            <label>Brand Tone of Voice <span class="req">*</span></label>
+            <select id="brandTone" required>
+              <option value="" disabled selected>Select tone</option>
+              <option>Professional &amp; Trustworthy</option>
+              <option>Bold &amp; Energetic</option>
+              <option>Luxury &amp; Premium</option>
+              <option>Friendly &amp; Casual</option>
+              <option>Educational &amp; Expert</option>
+              <option>Funny &amp; Relatable</option>
+              <option>Inspirational &amp; Motivational</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Do you have existing brand guidelines?</label>
+            <select id="brandGuidelines">
+              <option value="" disabled selected>Select</option>
+              <option value="yes-upload">Yes — I'll upload them</option>
+              <option value="yes-nofile">Yes — but I don't have a file</option>
+              <option value="no">No — build them from scratch</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Describe your ideal brand aesthetic <span class="req">*</span></label>
+            <textarea id="aesthetic" placeholder="e.g. Clean and modern with dark backgrounds. Premium feel like Apple. Black and gold. Photography over illustrations…" required></textarea>
+          </div>
+          <div class="field full">
+            <label>Brands / businesses you admire visually <span class="opt">(names or websites)</span></label>
+            <input type="text" id="brandInspo" placeholder="e.g. Apple, Rolls-Royce, Nike, @yourinspiration on Instagram…">
+            <span class="field-hint">We use these as style references — you don't have to copy them.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: SOCIAL MEDIA -->
+    <div class="ob-step" data-step="3">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#128241;</div>
+          <div>
+            <h2>Social Media Accounts</h2>
+            <p>We need access to manage and grow your platforms. Enter your handles below.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.75rem">
+          <label style="font-size:0.82rem;font-weight:600;color:var(--text-muted);display:block;margin-bottom:1rem">Which platforms are we managing? <span style="color:var(--green-neon)">*</span></label>
+          <div class="check-grid">
+            <label class="check-item selected" data-platform="instagram">
+              <input type="checkbox" name="platforms" value="instagram" checked>
+              <div class="check-box"></div>
+              <span class="plat-icon">📸</span>
+              <span class="check-label">Instagram</span>
+            </label>
+            <label class="check-item selected" data-platform="tiktok">
+              <input type="checkbox" name="platforms" value="tiktok" checked>
+              <div class="check-box"></div>
+              <span class="plat-icon">🎵</span>
+              <span class="check-label">TikTok</span>
+            </label>
+            <label class="check-item" data-platform="facebook">
+              <input type="checkbox" name="platforms" value="facebook">
+              <div class="check-box"></div>
+              <span class="plat-icon">👥</span>
+              <span class="check-label">Facebook</span>
+            </label>
+            <label class="check-item" data-platform="youtube">
+              <input type="checkbox" name="platforms" value="youtube">
+              <div class="check-box"></div>
+              <span class="plat-icon">▶️</span>
+              <span class="check-label">YouTube</span>
+            </label>
+            <label class="check-item" data-platform="linkedin">
+              <input type="checkbox" name="platforms" value="linkedin">
+              <div class="check-box"></div>
+              <span class="plat-icon">💼</span>
+              <span class="check-label">LinkedIn</span>
+            </label>
+            <label class="check-item" data-platform="twitter">
+              <input type="checkbox" name="platforms" value="twitter">
+              <div class="check-box"></div>
+              <span class="plat-icon">✖️</span>
+              <span class="check-label">X / Twitter</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="margin-bottom:2rem">
+          <label style="font-size:0.82rem;font-weight:600;color:var(--text-muted);display:block;margin-bottom:1rem">Account handles &amp; current follower counts</label>
+          <div style="background:var(--dark-3);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
+            <div style="display:grid;grid-template-columns:36px 1fr 1fr;gap:0.75rem;padding:10px 16px;background:var(--dark-4);border-bottom:1px solid var(--border)">
+              <div></div>
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em">Username / Handle</div>
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em">Current Followers</div>
+            </div>
+            <div style="padding:0.75rem 1rem;display:flex;flex-direction:column;gap:0">
+              <div class="platform-input-row"><span class="plat-emoji">📸</span><input type="text" placeholder="@yourhandle" id="igHandle"><input type="number" placeholder="e.g. 1,200" id="igFollowers"></div>
+              <div class="platform-input-row"><span class="plat-emoji">🎵</span><input type="text" placeholder="@yourhandle" id="tkHandle"><input type="number" placeholder="e.g. 500" id="tkFollowers"></div>
+              <div class="platform-input-row"><span class="plat-emoji">👥</span><input type="text" placeholder="Page name or URL" id="fbHandle"><input type="number" placeholder="e.g. 800" id="fbFollowers"></div>
+              <div class="platform-input-row"><span class="plat-emoji">▶️</span><input type="text" placeholder="Channel name or URL" id="ytHandle"><input type="number" placeholder="e.g. 200" id="ytFollowers"></div>
+              <div class="platform-input-row"><span class="plat-emoji">💼</span><input type="text" placeholder="Profile or Company URL" id="liHandle"><input type="number" placeholder="e.g. 300" id="liFollowers"></div>
+              <div class="platform-input-row" style="border:none"><span class="plat-emoji">✖️</span><input type="text" placeholder="@yourhandle" id="twHandle"><input type="number" placeholder="e.g. 150" id="twFollowers"></div>
+            </div>
+          </div>
+          <p style="font-size:0.72rem;color:var(--text-dim);margin-top:0.5rem">&#128274; We'll separately send you a secure access request for each platform via email. Don't share passwords in this form.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="field full">
+            <label>Do you have a Facebook Business Manager account?</label>
+            <div class="radio-group" id="fbBmGroup">
+              <label class="radio-item selected">
+                <input type="radio" name="fbBm" value="yes-have" checked>
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Yes — I have one</strong><span>I'll add GreenAI as an admin (we'll send instructions)</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="fbBm" value="no-create">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>No — create one for me</strong><span>We'll set up your Business Manager from scratch</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="fbBm" value="unsure">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Not sure</strong><span>We'll figure it out together on our onboarding call</span></div>
+              </label>
+            </div>
+          </div>
+          <div class="field full">
+            <label>Content Approval Preference</label>
+            <div class="radio-group" id="approvalGroup">
+              <label class="radio-item selected">
+                <input type="radio" name="approval" value="review-all" checked>
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Review &amp; approve every post</strong><span>We send content for your sign-off before it goes live</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="approval" value="review-weekly">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Weekly batch review</strong><span>Review the whole week's content every Monday</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="approval" value="autopilot">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Full autopilot</strong><span>Trust us to post — you just see the results</span></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: ADS & ANALYTICS -->
+    <div class="ob-step" data-step="4">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#127919;</div>
+          <div>
+            <h2>Ads &amp; Analytics</h2>
+            <p>Set up paid advertising and tracking so we can measure every dollar.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field full">
+            <label>Are you running (or want to run) paid ads?</label>
+            <div class="radio-group" id="adsGroup">
+              <label class="radio-item selected">
+                <input type="radio" name="adsStatus" value="yes-ready" checked>
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Yes — ready to go</strong><span>I have an ad budget and want to start ASAP</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="adsStatus" value="yes-later">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Yes — but later</strong><span>Start with organic, add paid ads in 60–90 days</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="adsStatus" value="organic-only">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Organic only for now</strong><span>No paid ads — focus on content and community</span></div>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Monthly Ad Budget <span class="opt">(if running ads)</span></label>
+            <div style="display:flex;align-items:center;background:var(--dark-4);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
+              <span style="padding:11px 14px;background:rgba(0,230,118,0.08);color:var(--green-neon);font-weight:700;border-right:1px solid var(--border)">$</span>
+              <input type="number" id="adBudget" placeholder="e.g. 500" style="flex:1;background:transparent;border:none;padding:11px 14px;color:var(--text-white);font-size:0.9rem;outline:none">
+            </div>
+            <span class="field-hint">This goes directly to the ad platforms (Facebook, Google, etc.) — not to GreenAI.</span>
+          </div>
+          <div class="field">
+            <label>Preferred Ad Platforms</label>
+            <select id="adPlatforms">
+              <option value="" disabled selected>Select primary</option>
+              <option>Facebook + Instagram</option>
+              <option>TikTok Ads</option>
+              <option>Google Ads</option>
+              <option>All of the above</option>
+              <option>Not sure — recommend for me</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Facebook Business Manager ID <span class="opt">(if known)</span></label>
+            <input type="text" id="fbBmId" placeholder="e.g. 123456789012345">
+            <span class="field-hint">Found in Business Settings &gt; Business Info. We'll help you locate this.</span>
+          </div>
+          <div class="field">
+            <label>Google Ads Customer ID <span class="opt">(if known)</span></label>
+            <input type="text" id="googleAdsId" placeholder="e.g. 123-456-7890">
+            <span class="field-hint">10-digit number found at the top of your Google Ads dashboard.</span>
+          </div>
+          <div class="field full" style="background:var(--dark-3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem">
+            <label style="margin-bottom:0.75rem;display:block">Tracking &amp; Analytics Setup</label>
+            <div style="display:flex;flex-direction:column;gap:0.6rem">
+              <label class="check-item" style="margin:0">
+                <input type="checkbox" id="hasGA4">
+                <div class="check-box"></div>
+                <span class="check-label">I have Google Analytics 4 installed on my website</span>
+              </label>
+              <label class="check-item" style="margin:0">
+                <input type="checkbox" id="hasMetaPixel">
+                <div class="check-box"></div>
+                <span class="check-label">I have a Meta Pixel installed on my website</span>
+              </label>
+              <label class="check-item" style="margin:0">
+                <input type="checkbox" id="hasSearchConsole">
+                <div class="check-box"></div>
+                <span class="check-label">I have Google Search Console set up</span>
+              </label>
+              <label class="check-item" style="margin:0">
+                <input type="checkbox" id="hasCrm">
+                <div class="check-box"></div>
+                <span class="check-label">I use a CRM (HubSpot, GoHighLevel, Salesforce, etc.)</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label>CRM Platform Name <span class="opt">(if using one)</span></label>
+            <input type="text" id="crmName" placeholder="e.g. GoHighLevel, HubSpot, Zoho…">
+          </div>
+          <div class="field">
+            <label>Primary Business Goal for Ads</label>
+            <select id="adsGoal">
+              <option value="" disabled selected>Select main goal</option>
+              <option>More phone calls / bookings</option>
+              <option>Website leads (form fills)</option>
+              <option>Online product sales</option>
+              <option>Grow social media following</option>
+              <option>Brand awareness / impressions</option>
+              <option>Drive foot traffic</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: WEBSITE -->
+    <div class="ob-step" data-step="5">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#127760;</div>
+          <div>
+            <h2>Website Needs</h2>
+            <p>Tell us about your website requirements — new build, redesign, or landing pages.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field full">
+            <label>Website Service Needed <span class="req">*</span></label>
+            <div class="radio-group" id="webServiceGroup">
+              <label class="radio-item selected">
+                <input type="radio" name="webService" value="new-website" checked>
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Build a brand new website</strong><span>Starting from scratch — custom design, SEO-optimized, fully yours</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="webService" value="redesign">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Redesign existing website</strong><span>I have a site but it needs a major upgrade</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="webService" value="landing-pages">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>Landing pages only</strong><span>Dedicated conversion pages for campaigns/ads</span></div>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="webService" value="no-website">
+                <div class="radio-dot"></div>
+                <div class="radio-text"><strong>No website needed right now</strong><span>Social media and ads only</span></div>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Domain Name <span class="opt">(existing or desired)</span></label>
+            <input type="text" id="domainName" placeholder="e.g. yourbusiness.com">
+            <span class="field-hint">If you don't have one yet, we'll help you purchase the perfect domain.</span>
+          </div>
+          <div class="field">
+            <label>Domain Registrar <span class="opt">(if you own it)</span></label>
+            <select id="domainRegistrar">
+              <option value="" disabled selected>Select registrar</option>
+              <option>GoDaddy</option>
+              <option>Namecheap</option>
+              <option>Google Domains</option>
+              <option>Cloudflare</option>
+              <option>Other</option>
+              <option>Don't have a domain yet</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Pages needed on your website <span class="opt">(check all that apply)</span></label>
+            <div class="check-grid" style="grid-template-columns:repeat(4,1fr)">
+              <label class="check-item selected"><input type="checkbox" value="home" checked><div class="check-box"></div><span class="check-label">Home</span></label>
+              <label class="check-item selected"><input type="checkbox" value="about" checked><div class="check-box"></div><span class="check-label">About</span></label>
+              <label class="check-item selected"><input type="checkbox" value="services" checked><div class="check-box"></div><span class="check-label">Services</span></label>
+              <label class="check-item selected"><input type="checkbox" value="contact" checked><div class="check-box"></div><span class="check-label">Contact</span></label>
+              <label class="check-item"><input type="checkbox" value="portfolio"><div class="check-box"></div><span class="check-label">Portfolio</span></label>
+              <label class="check-item"><input type="checkbox" value="blog"><div class="check-box"></div><span class="check-label">Blog</span></label>
+              <label class="check-item"><input type="checkbox" value="booking"><div class="check-box"></div><span class="check-label">Booking</span></label>
+              <label class="check-item"><input type="checkbox" value="shop"><div class="check-box"></div><span class="check-label">Shop / Store</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Primary Website CTA Goal</label>
+            <select id="webCta">
+              <option value="" disabled selected>What should visitors do?</option>
+              <option>Book an appointment / call</option>
+              <option>Fill out a contact form</option>
+              <option>Call directly</option>
+              <option>Buy a product online</option>
+              <option>Get a quote</option>
+              <option>Sign up / subscribe</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Booking System <span class="opt">(if applicable)</span></label>
+            <select id="bookingSystem">
+              <option value="" disabled selected>Select</option>
+              <option>Calendly</option>
+              <option>Square Appointments</option>
+              <option>Acuity Scheduling</option>
+              <option>Booksy</option>
+              <option>Custom / Build for me</option>
+              <option>No booking needed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>E-Commerce Needed?</label>
+            <select id="ecommerce">
+              <option value="" disabled selected>Select</option>
+              <option>Yes — Shopify</option>
+              <option>Yes — WooCommerce</option>
+              <option>Yes — custom build</option>
+              <option>No e-commerce needed</option>
+              <option>Maybe later</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Website Timeline</label>
+            <select id="webTimeline">
+              <option value="" disabled selected>How soon?</option>
+              <option>ASAP (1–2 weeks)</option>
+              <option>Within 30 days</option>
+              <option>Within 60 days</option>
+              <option>No rush</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Website reference sites you love <span class="opt">(paste URLs)</span></label>
+            <textarea id="webInspo" placeholder="e.g. https://apple.com, https://squarespace.com/templates — or describe what you like about them" style="min-height:70px"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: CONTENT & GOALS -->
+    <div class="ob-step" data-step="6">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#128202;</div>
+          <div>
+            <h2>Content &amp; Goals</h2>
+            <p>Help us create content that converts and set clear targets together.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label>90-Day Follower Goal <span class="opt">(total across all platforms)</span></label>
+            <input type="number" id="followerGoal" placeholder="e.g. 9,000">
+          </div>
+          <div class="field">
+            <label>90-Day Revenue Goal</label>
+            <div style="display:flex;align-items:center;background:var(--dark-4);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
+              <span style="padding:11px 14px;background:rgba(0,230,118,0.08);color:var(--green-neon);font-weight:700;border-right:1px solid var(--border)">$</span>
+              <input type="number" id="revenueGoal" placeholder="e.g. 25,000" style="flex:1;background:transparent;border:none;padding:11px 14px;color:var(--text-white);font-size:0.9rem;outline:none">
+            </div>
+          </div>
+          <div class="field">
+            <label>Monthly Lead Goal <span class="opt">(new inquiries per month)</span></label>
+            <input type="number" id="leadGoal" placeholder="e.g. 50">
+          </div>
+          <div class="field">
+            <label>Current Monthly Revenue <span class="opt">(approx.)</span></label>
+            <div style="display:flex;align-items:center;background:var(--dark-4);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
+              <span style="padding:11px 14px;background:rgba(0,230,118,0.08);color:var(--green-neon);font-weight:700;border-right:1px solid var(--border)">$</span>
+              <input type="number" id="currentRevenue" placeholder="e.g. 5,000" style="flex:1;background:transparent;border:none;padding:11px 14px;color:var(--text-white);font-size:0.9rem;outline:none">
+            </div>
+          </div>
+          <div class="field full">
+            <label>Top services / products to feature in content <span class="req">*</span></label>
+            <textarea id="contentFocus" placeholder="e.g. Our $99 full detail package, ceramic coating upsell, gift cards, and our new mobile detailing service launching next month…" required></textarea>
+          </div>
+          <div class="field full">
+            <label>Upcoming events, promotions, or launches <span class="opt">(next 90 days)</span></label>
+            <textarea id="upcomingEvents" placeholder="e.g. Summer sale in July, new product launch in August, sponsoring a local car show on June 20th…" style="min-height:70px"></textarea>
+          </div>
+          <div class="field full">
+            <label>Topics / content that is OFF LIMITS</label>
+            <textarea id="offLimits" placeholder="e.g. Don't mention competitor X, no political content, don't show the owner on camera, never discuss pricing publicly…" style="min-height:70px"></textarea>
+          </div>
+          <div class="field full">
+            <label>Customer testimonials to feature <span class="opt">(paste text, describe, or skip)</span></label>
+            <textarea id="testimonials" placeholder="Paste any great Google reviews, client quotes, or video testimonial descriptions here…" style="min-height:90px"></textarea>
+          </div>
+          <div class="field full">
+            <label>Anything else we should know?</label>
+            <textarea id="anythingElse" placeholder="Seasonal patterns, special certifications, industry awards, upcoming events, things that set you apart that we haven't asked about yet…" style="min-height:80px"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7: PACKAGE & BILLING -->
+    <div class="ob-step" data-step="7">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#128176;</div>
+          <div>
+            <h2>Package &amp; Billing</h2>
+            <p>Confirm your service package and billing contact for invoicing.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom:2rem">
+          <label style="font-size:0.82rem;font-weight:600;color:var(--text-muted);display:block;margin-bottom:1rem">Select Your Package <span style="color:var(--green-neon)">*</span></label>
+          <div class="pkg-grid">
+            <label class="pkg-card">
+              <input type="radio" name="package" value="starter">
+              <div class="pkg-name">Starter</div>
+              <div class="pkg-price">$700</div>
+              <div class="pkg-period">per month</div>
+              <div class="pkg-features">
+                ✅ 1 Platform<br>
+                ✅ 12 Posts/Month<br>
+                ✅ AI Content<br>
+                ✅ Monthly Report<br>
+                ❌ Paid Ads<br>
+                ❌ Website
+              </div>
+            </label>
+            <label class="pkg-card selected">
+              <div class="pkg-popular">Most Popular</div>
+              <input type="radio" name="package" value="growth" checked>
+              <div class="pkg-name">Growth</div>
+              <div class="pkg-price">$1,200</div>
+              <div class="pkg-period">per month</div>
+              <div class="pkg-features">
+                ✅ 3 Platforms<br>
+                ✅ 30 Posts/Month<br>
+                ✅ AI Content Suite<br>
+                ✅ Weekly Reports<br>
+                ✅ Paid Ads (up to $2K)<br>
+                ✅ 1 Landing Page
+              </div>
+            </label>
+            <label class="pkg-card">
+              <input type="radio" name="package" value="dominator">
+              <div class="pkg-name">Dominator</div>
+              <div class="pkg-price">$1,950</div>
+              <div class="pkg-period">per month</div>
+              <div class="pkg-features">
+                ✅ All 6 Platforms<br>
+                ✅ Unlimited Content<br>
+                ✅ Full Ads Suite<br>
+                ✅ Daily Dashboard<br>
+                ✅ Full Website<br>
+                ✅ Weekly Strategy Calls
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Add Website Build? <span class="opt">(one-time)</span></label>
+            <select id="webAddon">
+              <option value="no">No, not right now</option>
+              <option value="yes-500">Yes — Standard ($500)</option>
+              <option value="yes-custom">Yes — Custom (we'll quote)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Billing Frequency</label>
+            <select id="billingFreq">
+              <option value="monthly" selected>Monthly (most common)</option>
+              <option value="quarterly">Quarterly (save 10%)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Billing Contact Name <span class="req">*</span></label>
+            <input type="text" id="billingName" placeholder="Name on the invoice" required>
+          </div>
+          <div class="field">
+            <label>Billing Email <span class="req">*</span></label>
+            <input type="email" id="billingEmail" placeholder="billing@yourbusiness.com" required>
+          </div>
+          <div class="field full">
+            <label>Point of Contact for Content Approvals <span class="req">*</span></label>
+            <input type="text" id="pocName" placeholder="Who should we reach for quick approvals? (name + best contact method)" required>
+          </div>
+          <div class="field full">
+            <label>Preferred Communication Method</label>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+              <label class="check-item selected" style="flex:1;min-width:120px">
+                <input type="checkbox" id="commText" checked>
+                <div class="check-box"></div>
+                <span class="check-label">Text / SMS</span>
+              </label>
+              <label class="check-item" style="flex:1;min-width:120px">
+                <input type="checkbox" id="commEmail">
+                <div class="check-box"></div>
+                <span class="check-label">Email</span>
+              </label>
+              <label class="check-item" style="flex:1;min-width:120px">
+                <input type="checkbox" id="commCall">
+                <div class="check-box"></div>
+                <span class="check-label">Phone Call</span>
+              </label>
+              <label class="check-item" style="flex:1;min-width:120px">
+                <input type="checkbox" id="commSlack">
+                <div class="check-box"></div>
+                <span class="check-label">Slack / Discord</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8: AGREEMENT -->
+    <div class="ob-step" data-step="8">
+      <div class="ob-card">
+        <div class="ob-card-header">
+          <div class="ob-card-icon">&#128221;</div>
+          <div>
+            <h2>Service Agreement &amp; Signature</h2>
+            <p>Review and sign our standard service agreement to get started.</p>
+          </div>
+        </div>
+
+        <div style="background:var(--dark-3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;margin-bottom:1.5rem;max-height:280px;overflow-y:auto;line-height:1.7;font-size:0.85rem;color:var(--text-muted)">
+          <strong style="color:var(--text-white);font-size:0.95rem;display:block;margin-bottom:1rem">GreenAI Solutions — Service Agreement Summary</strong>
+
+          <strong style="color:var(--green-neon)">1. Services</strong><br>
+          GreenAI Solutions agrees to provide the selected social media management, advertising, and/or website development services as outlined in the chosen package. Specific deliverables will be confirmed in a separate scope document within 3 business days of signing.
+          <br><br>
+          <strong style="color:var(--green-neon)">2. Payment Terms</strong><br>
+          Monthly retainer fees are due on the 1st of each billing month. A valid payment method must be on file. Late payments (beyond 7 days) may result in a pause in services. Website projects require a 50% deposit before work begins.
+          <br><br>
+          <strong style="color:var(--green-neon)">3. No Long-Term Contract</strong><br>
+          Services are provided on a month-to-month basis. Either party may cancel with 14 days written notice. No cancellation fees apply.
+          <br><br>
+          <strong style="color:var(--green-neon)">4. Content Approval</strong><br>
+          Client maintains final approval on all content based on the approval preference selected. GreenAI is not liable for delays caused by late client approvals. Autopilot clients grant GreenAI posting authority.
+          <br><br>
+          <strong style="color:var(--green-neon)">5. Account Access &amp; Security</strong><br>
+          Client grants GreenAI manager-level access to all managed platforms. GreenAI will never request account passwords — access is granted via official platform admin tools only. Client retains full ownership of all accounts.
+          <br><br>
+          <strong style="color:var(--green-neon)">6. Ad Spend</strong><br>
+          Ad budgets are billed directly to the client's ad accounts. GreenAI management fees are separate from ad spend. GreenAI is not responsible for platform policy violations outside our control.
+          <br><br>
+          <strong style="color:var(--green-neon)">7. Results &amp; Guarantees</strong><br>
+          GreenAI guarantees measurable improvement within 30 days or will work the following month at no charge. Specific guarantees are contingent on client providing timely access, approvals, and cooperation.
+          <br><br>
+          <strong style="color:var(--green-neon)">8. Intellectual Property</strong><br>
+          All content created by GreenAI for the client becomes the client's property upon full payment. GreenAI may use anonymized performance data and non-identifiable work samples in its portfolio unless the client opts out in writing.
+          <br><br>
+          <strong style="color:var(--green-neon)">9. Confidentiality</strong><br>
+          Both parties agree to keep proprietary information confidential. GreenAI will not share client business data, strategy, or financials with third parties.
+        </div>
+
+        <div class="form-grid">
+          <div class="field full">
+            <label>Electronic Signature <span class="req">*</span> — Draw your signature below</label>
+            <div class="sig-pad" id="sigPad">
+              <canvas id="sigCanvas"></canvas>
+              <span id="sigHint" style="pointer-events:none;z-index:1;position:relative">Sign here with mouse or touch &#9998;</span>
+            </div>
+            <div class="sig-actions">
+              <button type="button" class="btn-sig-clear" id="sigClear">Clear Signature</button>
+              <span style="font-size:0.72rem;color:var(--text-dim);align-self:center">This constitutes a valid electronic signature under applicable law.</span>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>Type Your Full Name to Confirm <span class="req">*</span></label>
+            <input type="text" id="sigName" placeholder="Type your full legal name" required>
+          </div>
+
+          <div class="field full">
+            <label>Today's Date</label>
+            <input type="date" id="sigDate" readonly style="cursor:default">
+          </div>
+
+          <div class="field full" style="margin-top:0.5rem">
+            <label class="terms-row" id="termsRow">
+              <input type="checkbox" id="termsCheck">
+              <div class="terms-box" id="termsBox">&#10003;</div>
+              <span class="terms-text">I have read and agree to the GreenAI Solutions Service Agreement above. I understand that this constitutes a binding agreement and that services will begin within 3 business days of submission. I confirm all information provided is accurate.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ob-nav">
+        <button class="btn-ob-back" id="finalBack">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span class="step-counter">Step 8 of 8</span>
+          <button class="btn-ob-next" id="submitBtn">
+            <span>Submit Onboarding</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFAULT NAV (steps 1-7) -->
+    <div class="ob-nav" id="defaultNav">
+      <button class="btn-ob-back" id="backBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <span class="step-counter" id="stepCounter">Step 1 of 8</span>
+        <button class="btn-ob-next" id="nextBtn">
+          <span>Continue</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /form wrap -->
+
+  <!-- SUCCESS SCREEN -->
+  <div class="ob-success" id="obSuccess">
+    <div class="success-icon">&#10003;</div>
+    <h2>You're All Set, <span class="gradient-text" id="successName">Champion</span>!</h2>
+    <p>Your onboarding is complete. Jaden will review everything and reach out within <strong style="color:var(--green-neon)">1 business day</strong> to schedule your kickoff call and get access to your platforms.</p>
+    <div class="success-steps">
+      <div class="success-step"><span class="ss-num">1</span>You'll receive a confirmation email with your intake summary</div>
+      <div class="success-step"><span class="ss-num">2</span>Jaden reviews your onboarding and builds your custom strategy</div>
+      <div class="success-step"><span class="ss-num">3</span>Kickoff call scheduled — we walk through your 90-day plan</div>
+      <div class="success-step"><span class="ss-num">4</span>Platform access requests sent — you approve each one</div>
+      <div class="success-step"><span class="ss-num">5</span>First content batch delivered within 7 days of kickoff</div>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn-ghost-hero">&#8592; Back to Home</a>
+      <a href="dashboard.html" class="btn-primary-hero">
+        <span>View Client Dashboard</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+<script>
+(function() {
+  const TOTAL_STEPS = 8;
+  let currentStep = 1;
+
+  const steps = document.querySelectorAll('.ob-step');
+  const progressStepsEl = document.getElementById('progressSteps');
+  const defaultNav = document.getElementById('defaultNav');
+  const stepCounter = document.getElementById('stepCounter');
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const finalBack = document.getElementById('finalBack');
+  const submitBtn = document.getElementById('submitBtn');
+  const obHero = document.getElementById('obHero');
+  const obProgress = document.getElementById('obProgress');
+  const obFormWrap = document.getElementById('obFormWrap');
+  const obSuccess = document.getElementById('obSuccess');
+
+  const STEP_LABELS = ['Business', 'Branding', 'Social', 'Ads & Analytics', 'Website', 'Content', 'Package', 'Agreement'];
+
+  // Build progress bar
+  const buildProgress = () => {
+    progressStepsEl.innerHTML = '';
+    STEP_LABELS.forEach((label, i) => {
+      const num = i + 1;
+      const isDone = num < currentStep;
+      const isActive = num === currentStep;
+
+      const node = document.createElement('div');
+      node.className = 'step-node' + (isActive ? ' active' : '') + (isDone ? ' done' : '');
+      node.innerHTML = `
+        <div class="step-circle ${isActive ? 'active' : isDone ? 'done' : ''}">
+          ${isDone ? '&#10003;' : num}
+        </div>
+        <span class="step-label">${label}</span>`;
+      progressStepsEl.appendChild(node);
+
+      if (i < STEP_LABELS.length - 1) {
+        const line = document.createElement('div');
+        line.className = 'step-line' + (isDone ? ' done' : '');
+        progressStepsEl.appendChild(line);
+      }
+    });
+  };
+
+  const showStep = (n) => {
+    steps.forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`.ob-step[data-step="${n}"]`);
+    if (target) target.classList.add('active');
+
+    const isLastStep = n === TOTAL_STEPS;
+    defaultNav.style.display = isLastStep ? 'none' : 'flex';
+    if (!isLastStep) stepCounter.textContent = `Step ${n} of ${TOTAL_STEPS}`;
+
+    backBtn.style.visibility = n === 1 ? 'hidden' : 'visible';
+    buildProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const goNext = () => {
+    if (currentStep < TOTAL_STEPS) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  };
+
+  const goBack = () => {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  };
+
+  nextBtn.addEventListener('click', goNext);
+  backBtn.addEventListener('click', goBack);
+  if (finalBack) finalBack.addEventListener('click', goBack);
+
+  // Submit
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const sigName = document.getElementById('sigName');
+      const termsCheck = document.getElementById('termsCheck');
+      if (!sigName.value.trim()) {
+        sigName.style.borderColor = '#ff5555';
+        sigName.focus();
+        return;
+      }
+      if (!termsCheck.checked) {
+        document.getElementById('termsRow').style.borderColor = '#ff5555';
+        return;
+      }
+
+      const name = sigName.value.trim().split(' ')[0];
+      document.getElementById('successName').textContent = name || 'Champion';
+
+      obHero.style.display = 'none';
+      obProgress.style.display = 'none';
+      obFormWrap.style.display = 'none';
+      obSuccess.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Check items
+  document.querySelectorAll('.check-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const cb = item.querySelector('input[type=checkbox]');
+      if (cb) {
+        cb.checked = !cb.checked;
+        item.classList.toggle('selected', cb.checked);
+      }
+    });
+  });
+
+  // Radio items
+  document.querySelectorAll('.radio-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const rb = item.querySelector('input[type=radio]');
+      if (!rb) return;
+      const group = document.querySelectorAll(`input[name="${rb.name}"]`);
+      group.forEach(r => r.closest('.radio-item')?.classList.remove('selected'));
+      rb.checked = true;
+      item.classList.add('selected');
+    });
+  });
+
+  // Package cards
+  document.querySelectorAll('.pkg-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const rb = card.querySelector('input[type=radio]');
+      if (rb) rb.checked = true;
+    });
+  });
+
+  // Terms
+  const termsRow = document.getElementById('termsRow');
+  const termsCheck = document.getElementById('termsCheck');
+  const termsBox = document.getElementById('termsBox');
+  if (termsRow) {
+    termsRow.addEventListener('click', () => {
+      termsCheck.checked = !termsCheck.checked;
+      termsRow.classList.toggle('checked', termsCheck.checked);
+      termsRow.style.borderColor = termsCheck.checked ? 'var(--green-neon)' : '';
+    });
+  }
+
+  // File drops
+  const setupDrop = (dropId, inputId, namesId) => {
+    const drop = document.getElementById(dropId);
+    const input = document.getElementById(inputId);
+    const names = document.getElementById(namesId);
+    if (!drop || !input) return;
+
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('dragover'); });
+    drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+    drop.addEventListener('drop', e => {
+      e.preventDefault();
+      drop.classList.remove('dragover');
+      input.files = e.dataTransfer.files;
+      showFileNames(input.files, names);
+    });
+    input.addEventListener('change', () => showFileNames(input.files, names));
+  };
+
+  const showFileNames = (files, el) => {
+    if (!el) return;
+    el.textContent = Array.from(files).map(f => f.name).join(', ');
+  };
+
+  setupDrop('logoDropzone', 'logoFile', 'logoFileNames');
+  setupDrop('photoDropzone', 'photoFiles', 'photoFileNames');
+
+  // Color sync
+  const syncColor = (colorId, hexId) => {
+    const c = document.getElementById(colorId);
+    const h = document.getElementById(hexId);
+    if (!c || !h) return;
+    c.addEventListener('input', () => { h.value = c.value; });
+    h.addEventListener('input', () => {
+      if (/^#[0-9A-Fa-f]{6}$/.test(h.value)) c.value = h.value;
+    });
+  };
+
+  syncColor('brandColor1', 'brandColor1Hex');
+  syncColor('brandColor2', 'brandColor2Hex');
+
+  // Signature canvas
+  const sigCanvas = document.getElementById('sigCanvas');
+  const sigHint = document.getElementById('sigHint');
+  const sigClear = document.getElementById('sigClear');
+
+  if (sigCanvas) {
+    const ctx = sigCanvas.getContext('2d');
+    let drawing = false;
+    let hasSig = false;
+
+    const resize = () => {
+      const pad = sigCanvas.parentElement;
+      sigCanvas.width = pad.offsetWidth;
+      sigCanvas.height = pad.offsetHeight;
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    const getPos = e => {
+      const r = sigCanvas.getBoundingClientRect();
+      const t = e.touches ? e.touches[0] : e;
+      return { x: t.clientX - r.left, y: t.clientY - r.top };
+    };
+
+    sigCanvas.addEventListener('mousedown', e => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+    sigCanvas.addEventListener('mousemove', e => {
+      if (!drawing) return;
+      const p = getPos(e);
+      ctx.lineTo(p.x, p.y);
+      ctx.strokeStyle = '#00e676';
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+      if (!hasSig) { hasSig = true; sigHint.style.display = 'none'; }
+    });
+    sigCanvas.addEventListener('mouseup', () => { drawing = false; });
+    sigCanvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+    sigCanvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = '#00e676'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.stroke(); if (!hasSig) { hasSig = true; sigHint.style.display = 'none'; } }, { passive: false });
+    sigCanvas.addEventListener('touchend', () => { drawing = false; });
+
+    sigClear.addEventListener('click', () => {
+      ctx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+      hasSig = false;
+      sigHint.style.display = '';
+    });
+  }
+
+  // Set today's date
+  const sigDate = document.getElementById('sigDate');
+  if (sigDate) {
+    const today = new Date().toISOString().split('T')[0];
+    sigDate.value = today;
+  }
+
+  // Init
+  buildProgress();
+  showStep(1);
+
+})();
+</script>
+</body>
+</html>
