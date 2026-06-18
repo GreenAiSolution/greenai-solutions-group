@@ -337,6 +337,7 @@ p { color: var(--gray-600); }
   padding: 1rem 0 .5rem;
   border-top: 1px solid var(--gray-200);
   margin-top: .75rem;
+  background: #fff;
 }
 
 .nav__mobile.open { display: flex; }
@@ -2691,4 +2692,183 @@ p { color: var(--gray-600); }
 @media (max-width: 860px) {
   .cs-inner { grid-template-columns: 1fr; gap: 48px; }
   .cs-image-wrap { max-width: 420px; margin: 0 auto; }
+}
+
+/* =============================================
+   MOBILE OVERHAUL — comprehensive fix
+   ============================================= */
+
+/* ---- PREVENT HORIZONTAL SCROLL GLOBALLY ---- */
+html, body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---- GREENFIT FEATURED CARD — mobile stack ---- */
+@media (max-width: 680px) {
+  .greenfit-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 1.75rem 1.25rem !important;
+  }
+  .greenfit-card-price {
+    padding-left: 0 !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  .greenfit-card-price a {
+    width: 100%;
+    justify-content: center !important;
+  }
+}
+
+/* ---- CASE STUDY STATS — stack on small phones ---- */
+@media (max-width: 480px) {
+  .cs-stats { grid-template-columns: 1fr 1fr; }
+  .cs-image-wrap { margin-bottom: 1.5rem; }
+  .cs-badge { font-size: .62rem; padding: 6px 14px; }
+}
+
+/* ---- GRID-4 — full single column on mobile ---- */
+@media (max-width: 600px) {
+  .grid-4 { grid-template-columns: 1fr !important; }
+}
+
+/* ---- SECTION PADDING — reduce vertical space on mobile ---- */
+@media (max-width: 768px) {
+  .section--lg { padding: 4rem 0; }
+  .elite-section { padding: 4rem 0 !important; }
+  .page-hero { padding: 3.5rem 0 2.5rem !important; }
+  .hero { padding-bottom: 3rem; }
+
+  /* Elite form card padding */
+  .elite-form-card { padding: 1.75rem !important; }
+
+  /* Section headers */
+  .section-header { margin-bottom: 2.5rem; }
+
+  /* Pricing cards */
+  .pricing-card { padding: 1.75rem 1.5rem !important; }
+  .pricing-card--featured { transform: none !important; }
+
+  /* Contact form */
+  .contact-form-card { padding: 1.75rem !important; }
+
+  /* Footer tighten */
+  .footer { padding: 3rem 0 1.5rem; }
+}
+
+/* ---- HERO HEADING — prevent oversized text on phones ---- */
+@media (max-width: 600px) {
+  .hero--split h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem) !important;
+  }
+  .hero__sub { font-size: 1rem !important; }
+  .hero__stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .hero__stat { min-width: 80px; }
+}
+
+/* ---- NAV MOBILE MENU — ensure readability ---- */
+@media (max-width: 768px) {
+  .nav__mobile {
+    background: #fff;
+    padding: 1rem 1.25rem 1.25rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+
+  /* When nav is still transparent (top of page) keep mobile menu opaque */
+  .nav.transparent .nav__mobile {
+    background: rgba(5, 20, 8, 0.97);
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+  .nav.transparent .nav__mobile .nav__link { color: #fff; }
+  .nav.transparent .nav__mobile .btn-primary { background: #00e676; color: #000; }
+}
+
+/* ---- BUTTONS — prevent overflow ---- */
+@media (max-width: 480px) {
+  .btn { white-space: normal; text-align: center; }
+  .btn-lg { padding: .85rem 1.5rem; font-size: .9rem; }
+  .hero__actions .btn,
+  .cta-band__actions .btn { width: 100%; justify-content: center; }
+}
+
+/* ---- TESTIMONIALS — readable padding on mobile ---- */
+@media (max-width: 600px) {
+  .testimonial-card { padding: 1.5rem; }
+  .stars { font-size: 1rem; }
+}
+
+/* ---- COMPARISON TABLE — horizontal scroll container ---- */
+.compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 600px) {
+  .compare-wrap table,
+  .compare-wrap .compare-table { min-width: 520px; }
+}
+
+/* ---- BRAND SHOWCASE — tighten on mobile ---- */
+@media (max-width: 600px) {
+  .brand-showcase__card {
+    padding: 1.5rem !important;
+    gap: 1.25rem !important;
+  }
+  .brand-showcase__name { font-size: 1.5rem !important; }
+  .brand-showcase__tagline { font-size: .85rem; }
+}
+
+/* ---- ABOUT PAGE — stat badges always stack on mobile ---- */
+@media (max-width: 768px) {
+  .about-stat-badge--1,
+  .about-stat-badge--2 { position: static !important; margin-top: .75rem; }
+}
+
+/* ---- CTA BAND ---- */
+@media (max-width: 600px) {
+  .cta-band { padding: 3rem 1.25rem; text-align: center; }
+  .cta-band__actions { flex-direction: column; align-items: center; gap: 1rem; }
+}
+
+/* ---- FOOTER ---- */
+@media (max-width: 480px) {
+  .footer__brand p { font-size: .85rem; }
+  .footer__col h4 { font-size: .9rem; }
+  .footer__links a { font-size: .85rem; }
+  .footer__bottom { font-size: .75rem; }
+}
+
+/* ---- SERVICES PAGE — pricing card stack ---- */
+@media (max-width: 640px) {
+  .service-pricing-grid,
+  [class*="pricing"] > .grid-2,
+  [class*="pricing"] > .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- CONTACT PAGE — form tighten ---- */
+@media (max-width: 600px) {
+  .contact-info-card { padding: 1.5rem; }
+  .contact-info-item { font-size: .9rem; }
+}
+
+/* ---- GENERAL CONTAINER — safe padding on very small screens ---- */
+@media (max-width: 380px) {
+  .container { padding: 0 1rem; }
+  h1 { font-size: clamp(1.7rem, 8vw, 2.2rem) !important; }
+  h2 { font-size: clamp(1.4rem, 6vw, 1.8rem) !important; }
+  .section-label { font-size: .65rem; }
+}
+
+/* ---- IMAGE OVERFLOW SAFETY ---- */
+img, video, canvas, iframe, svg {
+  max-width: 100%;
 }
