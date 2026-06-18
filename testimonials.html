@@ -86,7 +86,7 @@
           <li><a href="index.html"        class="nav__link" data-page="index.html">Home</a></li>
           <li><a href="services.html"     class="nav__link" data-page="services.html">Services</a></li>
           <li><a href="about.html"        class="nav__link" data-page="about.html">About</a></li>
-          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Testimonials</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Testimonials <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#web-design">Web Design</a></li><li><a href="testimonials.html#social-media">Social Media</a></li><li><a href="testimonials.html#ai-automation">AI &amp; Automation</a></li><li><a href="testimonials.html">All Testimonials</a></li></ul></li>
           <li><a href="contact.html"      class="nav__link" data-page="contact.html">Contact</a></li>
         </ul>
 
@@ -100,7 +100,7 @@
         <li><a href="index.html"        class="nav__link">Home</a></li>
         <li><a href="services.html"     class="nav__link">Services</a></li>
         <li><a href="about.html"        class="nav__link">About</a></li>
-        <li><a href="testimonials.html" class="nav__link">Testimonials</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link">Testimonials</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#web-design">Web Design</a></li><li><a href="testimonials.html#social-media">Social Media</a></li><li><a href="testimonials.html#ai-automation">AI &amp; Automation</a></li><li><a href="testimonials.html">All Testimonials</a></li></ul></li>
         <li><a href="contact.html"      class="nav__link">Contact</a></li>
         <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Get a Consultation</a></li>
       </ul>
@@ -119,9 +119,10 @@
     </div>
   </div>
 
-  <!-- ===== FEATURED TESTIMONIAL — JULIA'S PERFORMANCE LAB ===== -->
-  <section class="section" aria-labelledby="julia-heading">
+  <!-- ===== WEB DESIGN — JULIA'S PERFORMANCE LAB ===== -->
+  <section class="section" id="web-design" aria-labelledby="julia-heading">
     <div class="container">
+      <div class="reveal" style="margin-bottom:1.75rem"><span class="section-label" style="color:var(--green-accent)">Web Design</span></div>
       <div class="t-feature reveal">
         <div class="t-feature__media">
           <img src="julia-case-study.png" alt="GreenAI Solutions website and AI infrastructure built for Julia's Performance Lab, shown on mobile with the brand crest." width="1024" height="1024" loading="lazy" decoding="async" />
@@ -150,6 +151,30 @@
 
           <a href="contact.html" class="btn btn-primary" style="margin-top:1.75rem">Start Your Project →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL MEDIA ===== -->
+  <section class="section" id="social-media" style="padding-top:0">
+    <div class="container">
+      <div class="reveal" style="text-align:center;border:1px dashed rgba(76,175,110,.4);border-radius:18px;padding:2.75rem 1.5rem;background:rgba(76,175,110,.04)">
+        <span class="section-label" style="color:var(--green-accent)">Social Media</span>
+        <h2 style="margin:.4rem 0 .75rem">Social media success stories — coming soon</h2>
+        <p style="color:#4b5563;max-width:560px;margin:0 auto 1.6rem">We're growing brands across Instagram, TikTok &amp; Facebook right now. Want to be our first featured social media transformation?</p>
+        <a href="contact.html" class="btn btn-primary">Become a Featured Client →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI & AUTOMATION ===== -->
+  <section class="section" id="ai-automation" style="padding-top:0">
+    <div class="container">
+      <div class="reveal" style="text-align:center;border:1px dashed rgba(76,175,110,.4);border-radius:18px;padding:2.75rem 1.5rem;background:rgba(76,175,110,.04)">
+        <span class="section-label" style="color:var(--green-accent)">AI &amp; Automation</span>
+        <h2 style="margin:.4rem 0 .75rem">AI &amp; automation wins — coming soon</h2>
+        <p style="color:#4b5563;max-width:560px;margin:0 auto 1.6rem">We're building AI systems and automations that save businesses hours every week. Be the first AI success story we showcase.</p>
+        <a href="contact.html" class="btn btn-primary">Become a Featured Client →</a>
       </div>
     </div>
   </section>

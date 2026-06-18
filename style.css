@@ -2707,3 +2707,41 @@ p { color: var(--gray-600); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   Testimonials nav hover dropdown (service categories)
+   ============================================================ */
+.nav__dropdown { position: relative; }
+.nav__dropdown > .nav__link .nav__caret { font-size: .7em; opacity: .65; margin-left: .15rem; display: inline-block; transition: transform .2s ease; }
+.nav__dropdown:hover > .nav__link .nav__caret { transform: rotate(180deg); }
+/* invisible bridge so the menu doesn't close in the gap between link and submenu */
+.nav__dropdown::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; }
+.nav__submenu {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  min-width: 210px; margin: 0; padding: .45rem; list-style: none;
+  background: #0f2417; border: 1px solid rgba(76,175,110,.28);
+  border-radius: 14px; box-shadow: 0 20px 55px rgba(0,0,0,.45);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s; z-index: 200;
+}
+.nav__dropdown:hover .nav__submenu,
+.nav__dropdown:focus-within .nav__submenu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav__submenu li { margin: 0; }
+.nav__submenu a {
+  display: block; padding: .6rem .9rem; border-radius: 9px;
+  color: rgba(255,255,255,.82); font-size: .9rem; font-weight: 500;
+  text-decoration: none; white-space: nowrap;
+  transition: background .15s ease, color .15s ease, padding-left .15s ease;
+}
+.nav__submenu a:hover { background: rgba(76,175,110,.16); color: #fff; padding-left: 1.15rem; }
+/* Mobile: show the service links indented under Testimonials */
+.nav__mobile .nav__submenu {
+  position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+  background: transparent; border: none; box-shadow: none; min-width: 0;
+  padding: 0 0 .25rem 1.25rem;
+}
+.nav__mobile .nav__submenu a { color: rgba(255,255,255,.7); padding: .45rem .25rem; }
