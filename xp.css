@@ -28,8 +28,13 @@ img{max-width:100%;display:block}
   padding:16px 30px;backdrop-filter:blur(10px);background:linear-gradient(180deg,rgba(5,8,13,.7),rgba(5,8,13,0));transition:background .3s}
 .xnav.solid{background:rgba(5,8,13,.86);border-bottom:1px solid var(--line)}
 .xbrand{display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.01em;font-size:16px}
-.xbrand .mk{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--emerald-deep),var(--emerald));
-  display:flex;align-items:center;justify-content:center;font-weight:700;color:#04140d;box-shadow:0 0 26px rgba(47,230,160,.45)}
+.xbrand .mk{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  perspective:460px;box-shadow:0 0 28px rgba(47,230,160,.35)}
+.xbrand .mk img{width:100%;height:100%;object-fit:contain;border-radius:10px;transform-style:preserve-3d;
+  filter:drop-shadow(0 0 9px rgba(47,230,160,.55));animation:logo3d 6s ease-in-out infinite;will-change:transform}
+.xbrand:hover .mk img{animation-duration:2.6s}
+@keyframes logo3d{0%,100%{transform:rotateY(-20deg) rotateX(8deg) translateY(0)}50%{transform:rotateY(20deg) rotateX(-6deg) translateY(-2px)}}
+@media (prefers-reduced-motion: reduce){.xbrand .mk img{animation:none;transform:none}}
 .xbrand .nm{display:flex;flex-direction:column;line-height:1}
 .xbrand .nm b{font-weight:600}.xbrand .nm b .g{color:var(--gold)}
 .xbrand .nm span{font-size:9.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:3px}
