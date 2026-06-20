@@ -120,6 +120,21 @@
   .reveal{opacity:0;transform:translateY(26px);transition:.8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+  /* live demo */
+  .demo{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(14px);margin-top:34px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+  .demo-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:12px}
+  .demo-title{font-weight:600;letter-spacing:.04em;color:var(--em)}
+  .demo-body{min-height:210px}
+  .demo-empty{color:var(--muted);text-align:center;padding:64px 10px;font-size:14px}
+  .dstep{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);opacity:0;transform:translateY(8px);transition:.45s}
+  .dstep.show{opacity:1;transform:none}
+  .dstep .dic{width:36px;height:36px;border-radius:9px;background:rgba(47,230,160,.1);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+  .dstep .dtx{flex:1;font-size:13.5px}.dstep .dtx b{color:var(--ink)}.dstep .dtx small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+  .dstep .dck{color:var(--em);font-weight:800;opacity:0;transition:.3s;font-size:16px}.dstep.done .dck{opacity:1}
+  .dstep.thinking .dic{animation:corepulse 1s infinite}
+  .dreply{background:linear-gradient(135deg,rgba(47,230,160,.07),transparent);border:1px solid var(--line);border-radius:14px;padding:15px 17px;margin:10px 0 2px;font-size:13.5px;line-height:1.6;white-space:pre-wrap;color:#dce8e1;min-height:18px}
+  .dtimer{text-align:center;margin-top:18px;color:var(--em);font-weight:600;opacity:0;transition:.45s}
+  .dtimer.show{opacity:1}
 </style>
 </head>
 <body>
@@ -157,6 +172,22 @@
       </div>
     </div>
   </div></header>
+
+  <!-- SEE IT IN ACTION -->
+  <section id="demo"><div class="container">
+    <div class="eyebrow reveal">See It In Action</div>
+    <h2 class="lead reveal">Watch a lead get handled <span class="em">in real time.</span></h2>
+    <p class="sub reveal">This is exactly what happens the moment a lead comes in — at 11:47pm, while you're asleep.</p>
+    <div class="demo reveal">
+      <div class="demo-head">
+        <div class="demo-title">⚡ Live Automation Demo</div>
+        <button class="btn btn-em" id="demoBtn" onclick="runDemo()">▶ Run it</button>
+      </div>
+      <div class="demo-body" id="demoBody">
+        <div class="demo-empty">Hit &ldquo;Run it&rdquo; to watch the GreenAI system handle a new lead end-to-end.</div>
+      </div>
+    </div>
+  </div></section>
 
   <!-- INTEGRATIONS -->
   <section><div class="container">
@@ -362,6 +393,43 @@
     var url='mailto:jaden@greenaidigital.com?subject='+encodeURIComponent('AI Automation Request — '+biz)+'&body='+encodeURIComponent(body);
     window.location.href=url;
     setTimeout(function(){alert('Your request is ready in your email app — just hit send! (Or call Jaden at (480) 798-0753.)');},400);
+  };
+
+  /* ---------- live "see it in action" demo ---------- */
+  window.runDemo=function(){
+    if(window._demoRunning)return; window._demoRunning=true;
+    var btn=document.getElementById('demoBtn'); btn.disabled=true; btn.textContent='Running…';
+    var body=document.getElementById('demoBody'); body.innerHTML='';
+    var steps=[
+      {ic:'📥',t:'New lead captured',s:'Marcus · interested in ceramic coating · via website form · 11:47 PM',delay:700},
+      {ic:'🧠',t:'GreenAI Brain analyzing…',s:'High intent · est. value $1,200 · lead score 9/10',delay:1200,thinking:true},
+      {ic:'✍️',t:'Writing a personalized reply…',s:'',reply:true},
+      {ic:'📲',t:'Reply sent by text',s:'Delivered to Marcus instantly',delay:1000},
+      {ic:'📅',t:'Booking link included',s:'Marcus can self-book in one tap',delay:800},
+      {ic:'📊',t:'Added to CRM as a Hot Lead',s:'Pipeline updated automatically',delay:800}
+    ];
+    var i=0;
+    function typeOut(node,text,cb){var k=0;(function tick(){if(k<=text.length){node.textContent=text.slice(0,k);k+=2;setTimeout(tick,16);}else{node.textContent=text;cb&&cb();}})();}
+    function next(){
+      if(i>=steps.length){finish();return;}
+      var st=steps[i];
+      var el=document.createElement('div'); el.className='dstep'+(st.thinking?' thinking':'');
+      el.innerHTML='<div class="dic">'+st.ic+'</div><div class="dtx"><b>'+st.t+'</b>'+(st.s?'<small>'+st.s+'</small>':'')+(st.reply?'<div class="dreply" id="dreply"></div>':'')+'</div><div class="dck">✓</div>';
+      body.appendChild(el);
+      requestAnimationFrame(function(){el.classList.add('show');});
+      if(st.reply){
+        var reply="Hey Marcus! 🚗 Thanks for reaching out about ceramic coating — great choice, it keeps that finish showroom-fresh for years. We've got an opening this week. Want me to lock in a time? Here's your booking link 👇";
+        setTimeout(function(){ typeOut(document.getElementById('dreply'), reply, function(){ el.classList.remove('thinking'); el.classList.add('done'); i++; setTimeout(next,500); }); }, 350);
+      } else {
+        setTimeout(function(){ el.classList.remove('thinking'); el.classList.add('done'); i++; setTimeout(next,250); }, st.delay);
+      }
+    }
+    function finish(){
+      var t=document.createElement('div'); t.className='dtimer'; t.textContent='✅ Handled end-to-end in 1.9 seconds — while you were asleep.';
+      body.appendChild(t); requestAnimationFrame(function(){t.classList.add('show');});
+      btn.disabled=false; btn.textContent='▶ Run it again'; window._demoRunning=false;
+    }
+    setTimeout(next,300);
   };
 
   /* ---------- reveal on scroll ---------- */
