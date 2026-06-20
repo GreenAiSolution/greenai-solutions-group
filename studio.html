@@ -3830,6 +3830,8 @@ tbody tr{transition:.12s}tbody tr:hover td{background:rgba(255,255,255,.025)}
     <a onclick="go('deals',this)"><span class="ic">◈</span> Deals &amp; Forecast</a>
     <a onclick="go('tasks',this)"><span class="ic">✓</span> Tasks</a>
     <a onclick="go('analytics',this)"><span class="ic">◴</span> Analytics</a>
+    <a onclick="go('invoices',this)"><span class="ic">💵</span> Invoices</a>
+    <a onclick="go('integrations',this)"><span class="ic">🔌</span> Integrations</a>
     <a onclick="go('settings',this)"><span class="ic">⚙</span> Settings</a>
   </div>
   <div class="foot">Engineered by <b>GreenAI Solutions</b><br>greenaidigital.com</div>
@@ -3891,6 +3893,27 @@ tbody tr{transition:.12s}tbody tr:hover td{background:rgba(255,255,255,.025)}
     <div class="card"><h3>🏷 Tag Breakdown</h3><div id="tagBars"></div></div>
   </div>
 
+  <div id="v-invoices" class="view">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn" onclick="openInvoice()">+ New Invoice</button></div>
+    <div class="metrics3" id="invKpis"></div>
+    <div class="card"><h3>💵 Invoices &amp; Billing</h3><div id="invTable"></div></div>
+  </div>
+
+  <div id="v-integrations" class="view">
+    <div class="card">
+      <h3>🟢 QuickBooks</h3>
+      <div class="d" id="intStats" style="margin-bottom:14px;color:var(--txt2)"></div>
+      <div class="set-row"><div><div class="k">Export Customers → QuickBooks</div><div class="d">QuickBooks-ready customer CSV (in QB: Customers ▸ Import)</div></div><button class="btn" onclick="exportQBCustomers()">Export Customers</button></div>
+      <div class="set-row"><div><div class="k">Export Invoices → QuickBooks</div><div class="d">Invoice CSV formatted for QuickBooks import</div></div><button class="btn" onclick="exportQBInvoices()">Export Invoices</button></div>
+      <div class="set-row"><div><div class="k">Open QuickBooks Online</div><div class="d">Sign in, then import the files above</div></div><a class="btn ghost" href="https://qbo.intuit.com" target="_blank" rel="noopener">Open QuickBooks</a></div>
+    </div>
+    <div class="card">
+      <h3>🔁 Import From Your CRM</h3>
+      <div class="set-row"><div><div class="k">Import contacts (CSV)</div><div class="d">Works with exports from HubSpot, Salesforce, Zoho, Excel — any CRM</div></div><label class="btn" style="cursor:pointer">Import CSV<input type="file" accept=".csv" style="display:none" onchange="importContactsCSV(event)"></label></div>
+      <div class="set-row"><div><div class="k">Export everything (CSV)</div><div class="d">Your data is yours — take it anywhere, anytime</div></div><button class="btn ghost" onclick="exportCSV()">Export Contacts</button></div>
+    </div>
+  </div>
+
   <div id="v-settings" class="view">
     <div class="card">
       <h3>⚙ Business Profile</h3>
@@ -3928,13 +3951,22 @@ tbody tr{transition:.12s}tbody tr:hover td{background:rgba(255,255,255,.025)}
   <div class="mfoot"><button class="btn ghost" onclick="closeOv('taskOv')">Cancel</button><button class="btn" onclick="saveTask()">Save Task</button></div>
 </div></div>
 
+<div class="ov" id="invOv"><div class="modal">
+  <h2>New Invoice</h2><input type="hidden" id="ivId">
+  <div class="fld"><label>Client</label><select id="ivClient"></select></div>
+  <div class="fld"><label>Service / Description</label><input id="ivDesc" placeholder="e.g. Ceramic coating package"></div>
+  <div class="row2"><div class="fld"><label>Amount ($)</label><input id="ivAmount" type="number" placeholder="0"></div><div class="fld"><label>Status</label><select id="ivStatus"><option>Draft</option><option>Sent</option><option>Paid</option><option>Overdue</option></select></div></div>
+  <div class="fld"><label>Due Date</label><input id="ivDue" type="date"></div>
+  <div class="mfoot"><button class="btn ghost" onclick="closeOv('invOv')">Cancel</button><button class="btn" onclick="saveInvoice()">Save Invoice</button></div>
+</div></div>
+
 <script>
 var CFG=${cfgJson};
 var PALETTE=['#1f7fff','#1b6cff','#d4af37','#e573a0','#22c1c3','#9b6cff','#ff9f43','#43e0a0'];
 var KEY='greenai_crm_'+CFG.business.toLowerCase().replace(/[^a-z0-9]/g,'_');
-var DB={contacts:[],tasks:[]};
+var DB={contacts:[],tasks:[],invoices:[]};
 var pickScore=3,pickTags=[];
-function load(){try{var s=localStorage.getItem(KEY);if(s)DB=JSON.parse(s);}catch(e){}}
+function load(){try{var s=localStorage.getItem(KEY);if(s)DB=JSON.parse(s);}catch(e){}if(!DB.invoices)DB.invoices=[];}
 function save(){localStorage.setItem(KEY,JSON.stringify(DB));}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -3943,7 +3975,7 @@ function wonStage(){return CFG.pipelineStages[CFG.pipelineStages.length-2];}
 function lostStage(){return CFG.pipelineStages[CFG.pipelineStages.length-1];}
 function stars(n){var h='';for(var i=1;i<=5;i++){h+=i<=n?'★':'<span class="off">★</span>';}return '<span class="stars">'+h+'</span>';}
 
-var TITLES={dashboard:['Command Center','Your live business overview'],snapshot:['Brand Snapshot','Where their brand sits online today'],contacts:['Contacts','Every lead in one place'],pipeline:['Pipeline','Move deals toward the close'],deals:['Deals & Forecast','Project your revenue'],tasks:['Tasks','Never miss a follow-up'],analytics:['Analytics','Know what is working'],settings:['Settings','Manage your CRM']};
+var TITLES={dashboard:['Command Center','Your live business overview'],snapshot:['Brand Snapshot','Where their brand sits online today'],contacts:['Contacts','Every lead in one place'],pipeline:['Pipeline','Move deals toward the close'],deals:['Deals & Forecast','Project your revenue'],tasks:['Tasks','Never miss a follow-up'],analytics:['Analytics','Know what is working'],invoices:['Invoices & Billing','Bill clients and get paid'],integrations:['Integrations','QuickBooks & import from any CRM'],settings:['Settings','Manage your CRM']};
 function go(v,el){
   var views=document.querySelectorAll('.view');for(var i=0;i<views.length;i++)views[i].classList.remove('on');
   document.getElementById('v-'+v).classList.add('on');
@@ -3952,7 +3984,7 @@ function go(v,el){
   document.getElementById('greeting').textContent=TITLES[v][0];
   document.getElementById('subtitle').textContent=TITLES[v][1];
   if(v==='dashboard')renderDash();if(v==='contacts')renderContacts();if(v==='pipeline')renderBoard();
-  if(v==='snapshot')renderSnapshot();if(v==='deals')renderDeals();if(v==='tasks')renderTasks();if(v==='analytics')renderAnalytics();if(v==='settings')renderSettings();
+  if(v==='snapshot')renderSnapshot();if(v==='deals')renderDeals();if(v==='tasks')renderTasks();if(v==='analytics')renderAnalytics();if(v==='invoices')renderInvoices();if(v==='integrations')renderIntegrations();if(v==='settings')renderSettings();
 }
 
 function activeDeals(){var w=wonStage(),l=lostStage();return DB.contacts.filter(function(c){return c.stage!==w&&c.stage!==l;});}
@@ -4149,7 +4181,95 @@ function toggleTask(id){for(var i=0;i<DB.tasks.length;i++){if(DB.tasks[i].id===i
 function delTask(id){DB.tasks=DB.tasks.filter(function(t){return t.id!==id;});save();renderTasks();}
 
 function closeOv(id){document.getElementById(id).classList.remove('on');}
-function refresh(){renderDash();renderSnapshot();renderContacts();renderBoard();renderDeals();renderTasks();renderAnalytics();}
+function refresh(){renderDash();renderSnapshot();renderContacts();renderBoard();renderDeals();renderTasks();renderAnalytics();renderInvoices();}
+
+function invNum(){return 'INV-'+(1001+((DB.invoices||[]).length));}
+function renderInvoices(){
+  if(!DB.invoices)DB.invoices=[];
+  var billed=0,paid=0;
+  DB.invoices.forEach(function(iv){billed+=Number(iv.amount)||0;if(iv.status==='Paid')paid+=Number(iv.amount)||0;});
+  document.getElementById('invKpis').innerHTML=
+    '<div class="metric"><div class="v">'+money(billed)+'</div><div class="l">Total Billed</div></div>'+
+    '<div class="metric"><div class="v">'+money(paid)+'</div><div class="l">Paid</div></div>'+
+    '<div class="metric"><div class="v">'+money(billed-paid)+'</div><div class="l">Outstanding</div></div>';
+  if(!DB.invoices.length){document.getElementById('invTable').innerHTML='<div class="empty"><div class="ico">💵</div>No invoices yet.<br>Create one from a contact, then export it straight to QuickBooks.</div>';return;}
+  var t='<table><tr><th>Invoice #</th><th>Client</th><th>Service</th><th>Amount</th><th>Status</th><th>Due</th><th></th></tr>';
+  DB.invoices.slice().reverse().forEach(function(iv){
+    var sc=iv.status==='Paid'?'#19b97e':(iv.status==='Overdue'?'#e57373':'var(--brand)');
+    t+='<tr><td><b>'+esc(iv.num)+'</b></td><td>'+esc(iv.client)+'</td><td>'+esc(iv.desc)+'</td><td>'+money(iv.amount)+'</td><td><span class="pill" style="color:'+sc+'">'+esc(iv.status)+'</span></td><td>'+esc(iv.due||'—')+'</td><td style="white-space:nowrap">'+(iv.status!=='Paid'?'<span class="lnk" onclick="markPaid(\\''+iv.id+'\\')">Mark Paid</span> · ':'')+'<span class="lnk" onclick="printInvoice(\\''+iv.id+'\\')">Print</span> · <span class="del" onclick="delInvoice(\\''+iv.id+'\\')">Delete</span></td></tr>';
+  });
+  document.getElementById('invTable').innerHTML=t+'</table>';
+}
+function openInvoice(id){
+  if(!DB.contacts.length){alert('Add a contact first, then you can invoice them.');return;}
+  document.getElementById('ivId').value=id||'';
+  var sel=document.getElementById('ivClient'),h='';
+  DB.contacts.forEach(function(c){h+='<option value="'+c.id+'">'+esc(c.name)+(c.company?' ('+esc(c.company)+')':'')+'</option>';});
+  sel.innerHTML=h;
+  var iv=id?DB.invoices.filter(function(x){return x.id===id;})[0]:null;
+  document.getElementById('ivDesc').value=iv?iv.desc:((CFG.dealTypes&&CFG.dealTypes[0])||'Service');
+  document.getElementById('ivAmount').value=iv?iv.amount:(CFG.avgDealValue||0);
+  document.getElementById('ivStatus').value=iv?iv.status:'Draft';
+  document.getElementById('ivDue').value=iv?iv.due:'';
+  if(iv)sel.value=iv.clientId;
+  document.getElementById('invOv').classList.add('on');
+}
+function saveInvoice(){
+  var id=document.getElementById('ivId').value,sel=document.getElementById('ivClient');
+  var cname=sel.options[sel.selectedIndex]?sel.options[sel.selectedIndex].text:'';
+  var obj={id:id||uid(),num:invNum(),clientId:sel.value,client:cname.replace(/ \(.*\)$/,''),desc:document.getElementById('ivDesc').value.trim(),amount:Number(document.getElementById('ivAmount').value)||0,status:document.getElementById('ivStatus').value,due:document.getElementById('ivDue').value,createdAt:new Date().toISOString()};
+  if(id){for(var i=0;i<DB.invoices.length;i++){if(DB.invoices[i].id===id){obj.num=DB.invoices[i].num;obj.createdAt=DB.invoices[i].createdAt;DB.invoices[i]=obj;}}}
+  else DB.invoices.push(obj);
+  save();closeOv('invOv');renderInvoices();
+}
+function markPaid(id){for(var i=0;i<DB.invoices.length;i++){if(DB.invoices[i].id===id)DB.invoices[i].status='Paid';}save();renderInvoices();}
+function delInvoice(id){if(!confirm('Delete this invoice?'))return;DB.invoices=DB.invoices.filter(function(x){return x.id!==id;});save();renderInvoices();}
+function printInvoice(id){
+  var iv=DB.invoices.filter(function(x){return x.id===id;})[0];if(!iv)return;
+  var w=window.open('','_blank');if(!w){alert('Allow pop-ups to print invoices.');return;}
+  var H='<html><head><title>'+esc(iv.num)+'</title><style>body{font-family:Arial,Helvetica,sans-serif;color:#1b2430;max-width:720px;margin:40px auto;padding:0 24px}h1{margin:0;color:'+CFG.color+'}table{width:100%;border-collapse:collapse;margin:26px 0}td,th{padding:11px;border-bottom:1px solid #eee;text-align:left}.tot{font-size:22px;font-weight:800;color:'+CFG.color+';text-align:right}.muted{color:#888;font-size:13px}</style></head><body>';
+  H+='<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h1>'+esc(CFG.business)+'</h1><div class="muted">'+esc(CFG.industry||'')+'</div></div><div style="text-align:right"><h2 style="margin:0">INVOICE</h2><div class="muted">'+esc(iv.num)+'</div></div></div>';
+  H+='<p><b>Bill to:</b> '+esc(iv.client)+'<br><span class="muted">Date: '+new Date(iv.createdAt).toLocaleDateString()+(iv.due?' &middot; Due: '+esc(iv.due):'')+'</span></p>';
+  H+='<table><tr><th>Description</th><th style="text-align:right">Amount</th></tr><tr><td>'+esc(iv.desc)+'</td><td style="text-align:right">'+money(iv.amount)+'</td></tr></table>';
+  H+='<div class="tot">Total: '+money(iv.amount)+'</div>';
+  H+='<p class="muted" style="margin-top:46px;text-align:center">Status: '+esc(iv.status)+' &middot; Powered by GreenAI Solutions</p></body></html>';
+  w.document.write(H);w.document.close();w.focus();setTimeout(function(){w.print();},350);
+}
+function csvCell(v){return '"'+String(v==null?'':v).replace(/"/g,'""')+'"';}
+function exportQBCustomers(){
+  var rows=[['Name','Company','Email','Phone','Notes']];
+  DB.contacts.forEach(function(c){rows.push([c.name,c.company,c.email,c.phone,(c.notes||'').replace(/\\n/g,' ')]);});
+  dl(new Blob([rows.map(function(r){return r.map(csvCell).join(',');}).join('\\n')],{type:'text/csv'}),CFG.business.replace(/[^a-z0-9]/gi,'-')+'-quickbooks-customers.csv');
+}
+function exportQBInvoices(){
+  if(!DB.invoices||!DB.invoices.length){alert('Create an invoice first, then export it to QuickBooks.');return;}
+  var rows=[['InvoiceNo','Customer','InvoiceDate','DueDate','Item','ItemDescription','ItemAmount','Status']];
+  DB.invoices.forEach(function(iv){rows.push([iv.num,iv.client,new Date(iv.createdAt).toLocaleDateString(),iv.due||'',iv.desc,iv.desc,iv.amount,iv.status]);});
+  dl(new Blob([rows.map(function(r){return r.map(csvCell).join(',');}).join('\\n')],{type:'text/csv'}),CFG.business.replace(/[^a-z0-9]/gi,'-')+'-quickbooks-invoices.csv');
+}
+function parseCSVLine(line){var out=[],cur='',q=false;for(var i=0;i<line.length;i++){var ch=line[i];if(q){if(ch==='"'){if(line[i+1]==='"'){cur+='"';i++;}else q=false;}else cur+=ch;}else{if(ch===','){out.push(cur);cur='';}else if(ch==='"')q=true;else cur+=ch;}}out.push(cur);return out;}
+function importContactsCSV(e){
+  var f=e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){
+    try{
+      var lines=r.result.split(/\\r?\\n/).filter(function(l){return l.trim();});
+      if(lines.length<2){alert('That CSV looks empty.');return;}
+      var head=parseCSVLine(lines[0]).map(function(h){return h.toLowerCase().trim();});
+      function idx(){for(var a=0;a<arguments.length;a++){var i=head.indexOf(arguments[a]);if(i>=0)return i;}return -1;}
+      var iN=idx('name','full name','contact','customer','first name'),iC=idx('company','company name','organization'),iE=idx('email','email address'),iP=idx('phone','phone number','mobile');
+      var added=0;
+      for(var k=1;k<lines.length;k++){
+        var cols=parseCSVLine(lines[k]);
+        var nm=iN>=0?cols[iN]:cols[0];if(!nm||!nm.trim())continue;
+        DB.contacts.push({id:uid(),name:nm.trim(),company:iC>=0?(cols[iC]||''):'',email:iE>=0?(cols[iE]||''):'',phone:iP>=0?(cols[iP]||''):'',source:'CRM Import',stage:CFG.pipelineStages[0],type:(CFG.dealTypes&&CFG.dealTypes[0])||'',prio:'Medium',score:3,tags:[],value:0,notes:'Imported from CSV',createdAt:new Date().toISOString()});
+        added++;
+      }
+      save();refresh();renderInvoices();alert('Imported '+added+' contacts from your CRM.');
+    }catch(err){alert('Could not read that CSV file.');}
+  };
+  r.readAsText(f);e.target.value='';
+}
+function renderIntegrations(){var el=document.getElementById('intStats');if(el)el.textContent=DB.contacts.length+' contacts · '+((DB.invoices||[]).length)+' invoices ready to sync.';}
 
 function exportCSV(){
   var rows=[['Name','Company','Email','Phone','Source','Stage','Priority','Deal Type','Score','Tags','Value','Notes']];
