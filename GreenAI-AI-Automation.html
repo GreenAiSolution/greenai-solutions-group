@@ -135,6 +135,23 @@
   .dreply{background:linear-gradient(135deg,rgba(47,230,160,.07),transparent);border:1px solid var(--line);border-radius:14px;padding:15px 17px;margin:10px 0 2px;font-size:13.5px;line-height:1.6;white-space:pre-wrap;color:#dce8e1;min-height:18px}
   .dtimer{text-align:center;margin-top:18px;color:var(--em);font-weight:600;opacity:0;transition:.45s}
   .dtimer.show{opacity:1}
+  /* self-healing mini-animation */
+  .heal{margin:30px 0 6px;background:rgba(0,0,0,.25);border:1px solid var(--line-gold);border-radius:16px;padding:24px 20px}
+  .heal-row{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+  .hnode{width:92px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:12px 6px;background:var(--panel2);transition:.4s}
+  .hnode .hic{font-size:20px}.hnode .hl{font-size:11px;color:var(--muted);margin-top:3px}
+  .hnode.ok{border-color:rgba(47,230,160,.5);box-shadow:0 0 22px rgba(47,230,160,.15)}
+  .hnode.fail{border-color:#e57373;box-shadow:0 0 26px rgba(229,115,115,.35);animation:hshake .4s}
+  .hnode.retry{border-color:var(--gold);box-shadow:0 0 26px rgba(224,184,90,.3);animation:corepulse .8s infinite}
+  @keyframes hshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+  .hbar{flex:1;max-width:56px;height:2px;background:rgba(47,230,160,.25);border-radius:2px;position:relative;overflow:hidden}
+  .hpkt{position:absolute;top:-2px;left:0;width:6px;height:6px;border-radius:50%;background:var(--em);box-shadow:0 0 8px var(--em);animation:hflow 1.6s linear infinite}
+  @keyframes hflow{from{left:-6px}to{left:100%}}
+  .heal-status{margin-top:20px;text-align:center;font-size:13.5px;font-weight:600;transition:.3s}
+  .heal-status .hdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle}
+  .hs-ok{color:var(--em)}.hs-ok .hdot{background:var(--em);box-shadow:0 0 10px var(--em)}
+  .hs-fail{color:#ff8a80}.hs-fail .hdot{background:#e57373;box-shadow:0 0 10px #e57373}
+  .hs-retry{color:var(--gold)}.hs-retry .hdot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
 </style>
 </head>
 <body>
@@ -216,6 +233,18 @@
       <span class="badge">★ What sets us apart</span>
       <h2>The <span class="gd">Self-Healing Autopilot™</span></h2>
       <p class="sub">Most automations break quietly and you find out when a customer slips through. Ours doesn't. The Self-Healing Autopilot watches every workflow around the clock, retries instantly if anything hiccups, and alerts us before it ever reaches you — so your automation just keeps running.</p>
+      <div class="heal" id="heal">
+        <div class="heal-row">
+          <div class="hnode ok" id="hn0"><div class="hic">⚡</div><div class="hl">Trigger</div></div>
+          <div class="hbar"><span class="hpkt"></span></div>
+          <div class="hnode ok" id="hn1"><div class="hic">🔗</div><div class="hl">Connect</div></div>
+          <div class="hbar"><span class="hpkt"></span></div>
+          <div class="hnode ok" id="hn2"><div class="hic">🧠</div><div class="hl">AI Step</div></div>
+          <div class="hbar"><span class="hpkt"></span></div>
+          <div class="hnode ok" id="hn3"><div class="hic">✅</div><div class="hl">Done</div></div>
+        </div>
+        <div class="heal-status hs-ok" id="healStatus"><span class="hdot"></span> All systems healthy · running 24/7</div>
+      </div>
       <div class="sep-grid">
         <div class="sep-item"><div class="ic">🛡️</div><h4>Auto-Retry</h4><p>Any hiccup is retried instantly — no lost leads, no missed messages.</p></div>
         <div class="sep-item"><div class="ic">👁️</div><h4>24/7 Watchdog</h4><p>Every workflow is monitored live, day and night.</p></div>
@@ -431,6 +460,23 @@
     }
     setTimeout(next,300);
   };
+
+  /* ---------- self-healing autopilot loop ---------- */
+  try{
+    var hn=[0,1,2,3].map(function(i){return document.getElementById('hn'+i);});
+    var hs=document.getElementById('healStatus');
+    function setStatus(cls,txt){hs.className='heal-status '+cls;hs.innerHTML='<span class="hdot"></span> '+txt;}
+    function allOk(){hn.forEach(function(n){n.className='hnode ok';});}
+    function cycle(){
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches){allOk();setStatus('hs-ok','All systems healthy · running 24/7');return;}
+      allOk();setStatus('hs-ok','All systems healthy · running 24/7');
+      setTimeout(function(){hn[2].className='hnode fail';setStatus('hs-fail','⚠ Hiccup detected on the AI step');},2600);
+      setTimeout(function(){hn[2].className='hnode retry';setStatus('hs-retry','🛡️ Self-Healing Autopilot auto-retrying…');},3700);
+      setTimeout(function(){hn[2].className='hnode ok';setStatus('hs-ok','✓ Recovered in 0.3s — kept running. You never noticed.');},5200);
+      setTimeout(function(){setStatus('hs-ok','All systems healthy · running 24/7');},7000);
+    }
+    if(hs){ cycle(); setInterval(cycle,8200); }
+  }catch(e){}
 
   /* ---------- reveal on scroll ---------- */
   try{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
