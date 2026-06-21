@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AETHER Sales Playbook — GreenAI Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0c14; --ink:#eef1f8; --muted:#9aa3bd; --soft:#1a1f2e;
+    --accent:#5eead4; --accent2:#7c5cff; --accent3:#22d3ee;
+    --warn:#fbbf24; --danger:#f87171; --line:rgba(255,255,255,.10);
+    --card:rgba(18,22,33,.7);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;font-weight:400;line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(50% 50% at 20% 0%,rgba(94,234,212,.06) 0%,transparent 60%),
+      radial-gradient(40% 40% at 90% 30%,rgba(124,92,255,.05) 0%,transparent 60%);
+    background-attachment:fixed;
+  }
+  .doc{max-width:880px;margin:0 auto;padding:5rem 2rem 8rem}
+  /* ---- typography ---- */
+  h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+  h1{font-size:clamp(2.4rem,5vw,3.4rem);margin-bottom:1rem;
+    background:linear-gradient(120deg,var(--accent),var(--accent3) 60%,var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  h2{font-size:2rem;margin:4rem 0 1.4rem;padding-top:2rem;border-top:1px solid var(--line);color:#fff}
+  h3{font-size:1.35rem;margin:2.4rem 0 .9rem;color:var(--accent)}
+  h4{font-size:1.1rem;margin:1.6rem 0 .6rem;color:#fff}
+  p{margin-bottom:1.1rem;color:#dde2ee}
+  ul,ol{margin:0 0 1.3rem 1.3rem;color:#dde2ee}
+  li{margin-bottom:.5rem}
+  strong{color:#fff;font-weight:600}
+  em{color:var(--accent);font-style:normal;font-weight:500}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(94,234,212,.3);transition:border-color .25s}
+  a:hover{border-color:var(--accent)}
+  code{font-family:ui-monospace,SF Mono,Menlo,monospace;font-size:.9em;background:rgba(94,234,212,.08);color:var(--accent);padding:.1em .4em;border-radius:4px;border:1px solid rgba(94,234,212,.15)}
+  /* ---- header ---- */
+  .hd{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;font-family:"Space Grotesk",sans-serif;letter-spacing:.22em;font-size:.85rem;font-weight:600;color:var(--muted)}
+  .hd-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+  .meta{color:var(--muted);font-size:.85rem;letter-spacing:.04em;margin-bottom:3rem}
+  .meta span{margin-right:1.4rem}
+  /* ---- TOC ---- */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.6rem 2rem;margin:3rem 0 4rem;backdrop-filter:blur(8px)}
+  .toc-title{font-family:"Space Grotesk",sans-serif;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+  .toc ol{margin:0;list-style:none;counter-reset:toc;column-count:2;column-gap:2rem}
+  .toc li{counter-increment:toc;padding:.35rem 0;font-size:.95rem;break-inside:avoid}
+  .toc li::before{content:"0" counter(toc);color:var(--muted);margin-right:.7rem;font-family:"Space Grotesk";font-weight:500}
+  .toc a{border:none;color:#dde2ee}
+  .toc a:hover{color:var(--accent)}
+  /* ---- callouts ---- */
+  .script{background:linear-gradient(135deg,rgba(94,234,212,.08),rgba(124,92,255,.06));border:1px solid rgba(94,234,212,.25);border-radius:14px;padding:1.6rem 1.8rem;margin:1.4rem 0 1.8rem;position:relative}
+  .script::before{content:"SCRIPT";position:absolute;top:-9px;left:18px;background:var(--bg);padding:0 10px;font-family:"Space Grotesk";font-size:.7rem;letter-spacing:.25em;color:var(--accent);font-weight:600}
+  .script p{font-family:Inter;font-style:italic;color:#fff;font-size:1.02rem;line-height:1.7;margin-bottom:.7rem}
+  .script p:last-child{margin-bottom:0}
+  .script p.you::before{content:"YOU: ";font-style:normal;font-weight:600;color:var(--accent);font-size:.78rem;letter-spacing:.15em;margin-right:.4rem}
+  .script p.them::before{content:"THEM: ";font-style:normal;font-weight:600;color:var(--muted);font-size:.78rem;letter-spacing:.15em;margin-right:.4rem}
+  .objection{background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:1.2rem 1.4rem;margin:1rem 0 1.4rem}
+  .objection .q{font-weight:600;color:var(--warn);margin-bottom:.5rem;font-family:"Space Grotesk"}
+  .objection .a{color:#dde2ee;font-size:.97rem}
+  .warn{background:rgba(248,113,113,.06);border-left:3px solid var(--danger);padding:1rem 1.3rem;border-radius:0 8px 8px 0;margin:1.2rem 0}
+  .warn strong{color:var(--danger)}
+  .note{background:rgba(94,234,212,.06);border-left:3px solid var(--accent);padding:1rem 1.3rem;border-radius:0 8px 8px 0;margin:1.2rem 0}
+  /* ---- stack / vertical cards ---- */
+  .stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0 2rem}
+  .stack-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.3rem}
+  .stack-card h4{margin-top:0;color:var(--accent3);font-size:1rem}
+  .stack-card p{font-size:.92rem;color:var(--muted);margin:0}
+  .stack-card .role{display:block;font-size:.7rem;letter-spacing:.2em;color:var(--accent);margin-bottom:.4rem;text-transform:uppercase;font-weight:600}
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;margin:1.4rem 0 2rem;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.95rem}
+  th,td{padding:.85rem 1.1rem;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:rgba(94,234,212,.06);color:var(--accent);font-family:"Space Grotesk";font-weight:500;letter-spacing:.04em;font-size:.85rem;text-transform:uppercase}
+  tr:last-child td{border-bottom:none}
+  td strong{color:#fff}
+  /* ---- vertical playbook ---- */
+  .vert{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem 2.2rem;margin:1.6rem 0 2.2rem}
+  .vert h3{margin-top:0;color:#fff;font-size:1.5rem}
+  .vert h3 .tag{display:inline-block;font-size:.7rem;letter-spacing:.2em;color:var(--accent);background:rgba(94,234,212,.1);padding:.25rem .7rem;border-radius:999px;margin-left:.7rem;vertical-align:middle;font-family:"Space Grotesk";font-weight:600}
+  .vert h4{color:var(--accent3);font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;margin-top:1.4rem;margin-bottom:.6rem}
+  .roi{background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.18);border-radius:8px;padding:.9rem 1.1rem;margin:1rem 0;font-size:.93rem;font-family:ui-monospace,SF Mono,Menlo,monospace;color:#dde2ee}
+  /* ---- footer ---- */
+  .foot{margin-top:6rem;padding-top:2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;text-align:center;letter-spacing:.04em}
+  /* ---- print ---- */
+  @media print{
+    body{background:white;color:#222;background-image:none}
+    .doc{padding:1.5rem;max-width:100%}
+    h1{-webkit-text-fill-color:#0a0c14;background:none;color:#0a0c14}
+    h2,h3,h4,p,li,td{color:#222}
+    .script,.objection,.warn,.note,.stack-card,.toc,.vert,table{background:#fafafa;border-color:#ddd;break-inside:avoid}
+    h2,h3{break-after:avoid}
+    a{color:#0a4a3f}
+    .meta{display:none}
+  }
+  @media (max-width:680px){
+    .doc{padding:3rem 1.2rem 5rem}
+    .toc ol{column-count:1}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="hd"><span class="hd-dot"></span>AETHER · BY GREENAI · SALES PLAYBOOK</div>
+  <h1>The AETHER Sales Playbook</h1>
+  <p class="meta"><span>v1.0 · 2026-06-20</span><span>Internal — Jaden Green</span><span>Print-ready</span></p>
+
+  <p style="font-size:1.15rem;color:#dde2ee">This is your working manual for selling AETHER. Read it once end-to-end to understand what you're actually selling. Then keep it open during cold calls — every script, objection handler, and vertical pitch you need is in here. By the end of Part 1 you'll be able to answer any technical question a prospect throws at you without making anything up.</p>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#part1">What you're actually selling</a></li>
+      <li><a href="#part2">How AETHER actually works</a></li>
+      <li><a href="#part3">The cold-call framework</a></li>
+      <li><a href="#part4">Objection handlers</a></li>
+      <li><a href="#part5">Vertical playbooks</a></li>
+      <li><a href="#part6">After the call</a></li>
+    </ol>
+  </div>
+
+  <!-- ====================== PART 1 ====================== -->
+  <h2 id="part1">Part 1 · What you're actually selling</h2>
+
+  <h3>The one-sentence definition</h3>
+  <p><strong>AETHER builds custom AI employees that handle specific business workflows end-to-end — autonomously, 24/7, for less than the cost of a part-time hire.</strong></p>
+  <p>That's it. If you remember nothing else, remember that sentence. It's a "who do I hire?" conversation, not a "what software should I buy?" conversation. Position it as staffing, not SaaS.</p>
+
+  <h3>The three truths that make AETHER different</h3>
+  <p><strong>1. It's not a chatbot. It's an agent.</strong> A chatbot replies to messages. An agent <em>decides what to do</em> and then <em>does it</em>. It can read a form submission, look up the prospect in your CRM, check three calendars, send an email, book a meeting, log it all, and Slack the right rep — without a human in the loop. That's a categorically different product than ChatGPT or Intercom.</p>
+  <p><strong>2. It's custom, not templated.</strong> Off-the-shelf AI products (Drift, Intercom Fin, HubSpot Breeze) are one-size-fits-all. We build each agent around the client's actual workflow, their actual tools, their actual tone of voice, and their actual rules. That's why we can charge $2,997+/mo while they charge $99.</p>
+  <p><strong>3. It's delivered, not sold.</strong> Most AI startups hand the client a login and wish them luck. We onboard them, build their agent, integrate with their tools, monitor it, and tune it monthly. We're a service business with software-level margins.</p>
+
+  <h3>Three things to NEVER promise</h3>
+  <div class="warn"><strong>Never:</strong> "It can do anything." It can't. It can do <em>specific defined workflows</em> extremely well. Vagueness kills deals at the discovery stage.</div>
+  <div class="warn"><strong>Never:</strong> "It will replace your staff." It augments staff. Position it as freeing up senior people from junior work, not firing them. This matters legally and emotionally.</div>
+  <div class="warn"><strong>Never:</strong> "It's 100% accurate." All AI models occasionally hallucinate. We mitigate with guardrails, knowledge bases, and human-in-the-loop on critical actions. Honesty here builds trust — overselling here ends careers.</div>
+
+  <h3>The economics (the math you can do on a call)</h3>
+  <p>Have these numbers memorized. Every cold-call objection ends with someone doing this math in their head.</p>
+  <table>
+    <tr><th>Alternative</th><th>Cost</th><th>Hours/week</th><th>Response time</th></tr>
+    <tr><td><strong>A virtual assistant</strong></td><td>$3,500–$5,500/mo</td><td>40</td><td>Hours</td></tr>
+    <tr><td><strong>A junior in-house hire</strong></td><td>$5,500–$8,000/mo (loaded)</td><td>40</td><td>Hours</td></tr>
+    <tr><td><strong>An agency (e.g. answering service)</strong></td><td>$2,000–$4,000/mo</td><td>168 (capped capacity)</td><td>Minutes</td></tr>
+    <tr><td><strong>AETHER Catalyst</strong></td><td>$2,997/mo + $4,997 setup</td><td>168 (infinite capacity)</td><td>~90 seconds</td></tr>
+  </table>
+  <p>Frame it like this on calls: <em>"You're not deciding whether to spend $3K a month. You're deciding which of these four options is cheapest for the same outcome — and ours is the only one that works at 2am on a Sunday."</em></p>
+
+  <!-- ====================== PART 2 ====================== -->
+  <h2 id="part2">Part 2 · How AETHER actually works</h2>
+  <p>You don't need to be technical to sell this. But you do need to understand the stack well enough to answer the inevitable <em>"so how does this actually work?"</em> without bluffing. Here's the whole thing in plain English.</p>
+
+  <h3>The five components</h3>
+  <div class="stack">
+    <div class="stack-card">
+      <span class="role">The Brain</span>
+      <h4>Claude (Anthropic)</h4>
+      <p>The reasoning engine. We use Claude Opus 4.8 for hard thinking (planning, judgment calls) and Claude Sonnet 4.6 for routine turns (drafting an email). Frontier-grade — same model class as the largest enterprises in the world use.</p>
+    </div>
+    <div class="stack-card">
+      <span class="role">The Body</span>
+      <h4>n8n (the runtime)</h4>
+      <p>Where the agent actually <em>runs</em>. n8n receives the trigger (form-fill, missed call, incoming email), calls Claude, executes whatever tools Claude asks for, loops until done. Think of it as the central nervous system.</p>
+    </div>
+    <div class="stack-card">
+      <span class="role">The Hands</span>
+      <h4>Pipedream + Zapier</h4>
+      <p>The connectors that let the agent <em>act</em> on the world. Pipedream handles secure OAuth into client tools (Gmail, Calendar, CRM). Zapier covers the long tail — 8,000+ apps. Between them: anything a client uses, we connect to.</p>
+    </div>
+    <div class="stack-card">
+      <span class="role">The Memory</span>
+      <h4>Supabase + pgvector</h4>
+      <p>Where the agent <em>remembers</em>. Two parts: a structured database of every action it's taken, and a vector store of the client's knowledge base (case studies, FAQs, pricing rules, brand voice docs). The agent searches this on every turn so it never sounds generic.</p>
+    </div>
+    <div class="stack-card">
+      <span class="role">The Eyes</span>
+      <h4>Langfuse</h4>
+      <p>Observability. Every decision the agent makes, every tool it calls, every prompt it sees — all logged. So we can debug, audit, and prove to the client what the agent did and why. Mandatory for any regulated industry (legal, medical, financial).</p>
+    </div>
+  </div>
+
+  <h3>How a single turn actually flows (memorize this)</h3>
+  <ol>
+    <li><strong>Trigger fires.</strong> A prospect fills out the client's contact form → webhook hits n8n.</li>
+    <li><strong>n8n loads context.</strong> Pulls the agent's <em>system prompt</em> (its "job description"), the conversation history from Supabase, and any relevant knowledge-base entries.</li>
+    <li><strong>n8n calls Claude.</strong> Sends all of the above plus the new message. Claude reads it and responds with either a message <em>or</em> a tool call (e.g. "I want to call <code>calendar.list_slots(window=7)</code>").</li>
+    <li><strong>n8n executes the tool.</strong> Hits the right connector (Google Calendar via Pipedream), gets the result, sends it back to Claude.</li>
+    <li><strong>Claude decides what's next.</strong> Maybe call another tool. Maybe respond to the prospect. Maybe escalate to a human via Slack.</li>
+    <li><strong>Loop until done.</strong> Every step gets logged to Langfuse. Final state persisted to Supabase.</li>
+  </ol>
+  <p>That's the entire system. Every agent we sell follows this loop. The only thing that changes per client is the system prompt, the tools available, and the knowledge base.</p>
+
+  <h3>Why this stack is structurally powerful</h3>
+  <p>The reason this works — and the reason a $99/mo SaaS competitor <em>can't</em> beat it — is that we own the orchestration layer. Drift owns chat. Intercom owns support. HubSpot owns CRM. But none of them own the <em>decision-making</em> across all those tools. We do. We're not selling a feature in someone's app — we're selling an employee that uses all of those apps.</p>
+  <div class="note">Use this analogy on calls: <em>"Salesforce is the office. Slack is the phone. Gmail is the mailroom. AETHER is the employee who walks between all of them and gets things done."</em></div>
+
+  <h3>What it CAN do</h3>
+  <ul>
+    <li>Respond to any digital input (email, chat, SMS, form, webhook) in under 2 minutes, 24/7</li>
+    <li>Make decisions based on multi-step reasoning (qualify a lead, triage a ticket, route a document)</li>
+    <li>Use any tool with an API — book calendars, update CRMs, send messages, query databases, draft documents</li>
+    <li>Maintain long-term memory of every customer interaction and use it to personalize future ones</li>
+    <li>Escalate to a human the moment it's outside its scope, with full conversation context</li>
+    <li>Run continuously without breaks, vacations, or sick days</li>
+  </ul>
+
+  <h3>What it CAN'T do (be honest about this on every call)</h3>
+  <ul>
+    <li>Make physical phone calls reliably yet — voice agents exist but quality is inconsistent. We can handle inbound voice via transcription and text reply, but outbound cold-calling is human work for now.</li>
+    <li>Provide regulated advice (legal opinions, medical diagnoses, specific financial recommendations). We can intake, qualify, schedule, and follow up around all of these — but the licensed human makes the regulated call.</li>
+    <li>Move money or sign contracts without a human approval step. We design this in deliberately.</li>
+    <li>Replace deep relationship work — complex negotiation, high-stakes closes, sensitive client moments.</li>
+    <li>Work well with bad data. If a client's CRM is a mess, the agent's output is a mess. Sometimes the first phase of a deployment is helping them clean their data.</li>
+  </ul>
+
+  <!-- ====================== PART 3 ====================== -->
+  <h2 id="part3">Part 3 · The cold-call framework</h2>
+  <p>This framework closes a 15-minute strategy call from cold dial roughly 1 in 8 times when the list is targeted and the research is done. That's a strong ratio for a $3K–$8K/mo product.</p>
+
+  <h3>Before you dial</h3>
+  <ul>
+    <li><strong>Pick a vertical, not a list.</strong> Don't call "small businesses." Call "personal-injury law firms in Phoenix with 3–15 attorneys." Specificity = research-ability = relevance = answers.</li>
+    <li><strong>Spend 90 seconds on each prospect.</strong> Their website, their Google reviews (look for service complaints), their LinkedIn headcount, recent press. You need <em>one</em> researched fact to drop in the opener.</li>
+    <li><strong>Know one number cold.</strong> The vertical's specific pain stat (e.g. "law firms lose 42% of inbound leads to slow follow-up — that's a Clio benchmark"). Numbers separate you from every other cold caller.</li>
+    <li><strong>Call between 8–10am or 4–5pm local time.</strong> Decision-makers are at their desks, gatekeepers aren't.</li>
+  </ul>
+
+  <h3>The opener (12 seconds, no improvisation)</h3>
+  <div class="script">
+    <p class="you">Hi [Name], this is Jaden Green with GreenAI Solutions. I'll be straight with you — this is a cold call. Mind if I take 27 seconds to explain why I called, and then you tell me if it's worth more time?</p>
+  </div>
+  <p><strong>Why this works:</strong> Cold-call defenses fire when they detect a script. You disarm them by <em>naming the call</em>. "27 seconds" is more believable than "30." The permission-ask reverses control — they're now in charge, which lowers their guard. Roughly 70% will say yes.</p>
+
+  <h3>The hook (the 27 seconds)</h3>
+  <p>Three sentences. Pain, solution, why-you-specifically.</p>
+  <div class="script">
+    <p class="you">I work with [vertical] in [region] who are losing [specific number] of [hours/leads/dollars] every week because [specific pain]. We build custom AI agents that handle that work autonomously — clients see [specific outcome] within 30 days, no extra hires. The reason I called you specifically is [one researched fact]. Worth a 15-minute call this week to see if it'd apply to you?</p>
+  </div>
+  <p>Notice what's <em>not</em> there: no "we're the leading provider," no "AI-powered next-gen platform," no buzzwords. Numbers and outcomes only.</p>
+
+  <h3>Two qualifying questions before you pitch further</h3>
+  <p>If they engage, don't launch into the pitch. Ask two questions — they tell you whether this prospect is worth your time, and the answers become your pitch material.</p>
+  <ol>
+    <li><strong>"Out of curiosity — when a new [lead/inquiry/ticket] hits your business today, who handles the first response and how fast?"</strong> (Reveals the pain.)</li>
+    <li><strong>"If you could wave a wand and have one repetitive thing in your business just… handled, what would it be?"</strong> (Reveals the wedge agent to pitch.)</li>
+  </ol>
+
+  <h3>The close (you're booking a strategy call, not a sale)</h3>
+  <div class="script">
+    <p class="you">Based on what you just told me, I think there's a 50/50 chance this is a fit. The way to find out is a 15-minute call where I walk you through exactly what we'd build for [firm name] and what it'd cost. If it's not obvious value in the first five minutes, you'll know. I have Thursday at 10 or Friday at 2 — which works?</p>
+  </div>
+  <p><strong>Always offer two specific times.</strong> "When works for you?" is open-ended and dies. Two options forces a binary decision.</p>
+
+  <!-- ====================== PART 4 ====================== -->
+  <h2 id="part4">Part 4 · Objection handlers</h2>
+  <p>Memorize these. Word-for-word. The fluency matters more than the cleverness — hesitation reads as weakness on a cold call.</p>
+
+  <div class="objection">
+    <div class="q">"How much does it cost?"</div>
+    <div class="a"><em>"Depends on what we build for you — anywhere from $997/mo for a single templated agent to about $8,000/mo for an orchestrated fleet doing multiple jobs. Most clients land in the $3K range. But honestly the price isn't the question — the question is whether it'd actually solve the thing that's costing you money. Worth 15 minutes to figure out which one?"</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"We already use ChatGPT."</div>
+    <div class="a"><em>"Great — then you already know AI can do the thinking. What we build is the second half: the part that actually <em>does</em> the work after the thinking. ChatGPT writes the email; an AETHER agent writes the email, sends it from your Gmail, logs it in your CRM, books the follow-up, and Slacks your rep. Different category."</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"Send me some info first."</div>
+    <div class="a"><em>"Happy to. But I'll be real — generic info won't tell you anything useful, because what we build is custom to your business. The 15-minute call is the info. After it, you'll know exactly what we'd build for you, what it'd cost, and whether it's a fit. Thursday or Friday?"</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"We're not ready for AI."</div>
+    <div class="a"><em>"Totally fair. Can I ask one question, just to know if I should call back in six months or never? What would have to be true for you to be ready?"</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"Why not just hire a VA?"</div>
+    <div class="a"><em>"Great option for some things. A VA costs $4–5K a month, works 40 hours a week, takes vacations, and you're managing them. An AETHER agent costs less, works 168 hours a week, never quits, and we manage it. Different trade-off — VAs are better at judgment calls and relationship work, agents are better at speed and consistency. Most of our clients have both."</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"What about data security?"</div>
+    <div class="a"><em>"Important question. Three things: the model provider, Anthropic, doesn't train on your data — that's contractual. Your agent runs in a dedicated cloud environment, not shared with other clients. And we maintain a SOC-2-ready posture with full audit logging on every action. Happy to share our security one-pager on the call."</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"What if it makes a mistake?"</div>
+    <div class="a"><em>"Will happen occasionally — any AI does. So we design every agent with two safeguards: hard guardrails (it cannot do certain things without human approval — sending money, signing anything, contacting flagged accounts), and instant human escalation (if it's unsure, it stops and Slacks your team). The audit log shows every decision so you can spot patterns and tune."</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"Send a proposal."</div>
+    <div class="a"><em>"Of course. I can't write a useful one without 15 minutes of context — every proposal we send is custom because every agent is custom. The call IS the discovery for the proposal. Worth Thursday or Friday?"</em></div>
+  </div>
+
+  <div class="objection">
+    <div class="q">"I need to think about it."</div>
+    <div class="a"><em>"Makes sense. Before you go — what specifically would you want to think about? Sometimes I can answer it right now and save you a week."</em></div>
+  </div>
+
+  <!-- ====================== PART 5 ====================== -->
+  <h2 id="part5">Part 5 · Vertical playbooks</h2>
+  <p>These are the seven verticals where AETHER closes fastest and delivers the most obvious ROI. For each: the pain you lead with, the agents to pitch, the ROI math, and a verbatim cold-call hook.</p>
+
+  <!-- LAW FIRMS -->
+  <div class="vert">
+    <h3>Law firms <span class="tag">FLAGSHIP VERTICAL</span></h3>
+    <p>This is your highest-margin, highest-retention vertical. Lawyers have measurable revenue per hour ($200–$600 billable), severe intake leakage, and budget. They also have strict requirements — which is good for us, because it raises the bar competitors can't clear.</p>
+
+    <h4>The pain (use these stats on every call)</h4>
+    <ul>
+      <li><strong>42%</strong> of inbound law-firm calls go to voicemail or unanswered (Clio Legal Trends Report)</li>
+      <li><strong>$187,000/year</strong> — average revenue an attorney loses to unbilled admin time</li>
+      <li><strong>15–25%</strong> — typical intake-to-signed-retainer conversion rate. Should be 40–50%.</li>
+      <li><strong>5–8 hours/week per attorney</strong> spent on case status update calls from existing clients</li>
+    </ul>
+
+    <h4>The four agents to pitch</h4>
+    <ol>
+      <li><strong>Intake Agent</strong> — every missed call or form-fill gets responded to within 90 seconds. Qualifies the matter (type, jurisdiction, statute timeline), runs a conflict check against Clio/MyCase/PracticePanther, books the consultation on the right attorney's calendar, opens the prospect file. <em>This alone pays for the entire engagement.</em></li>
+      <li><strong>Status Update Agent</strong> — clients text "what's happening with my case?" → agent pulls latest matter notes + correspondence → sends accurate status (optionally for attorney review first). Eliminates the #1 time sink.</li>
+      <li><strong>Document Triage Agent</strong> — incoming docs (medical records, opposing counsel correspondence, court filings) get auto-categorized, tagged in case management, and routed to the responsible attorney.</li>
+      <li><strong>Follow-up Agent</strong> — leads that don't convert immediately get a 14-touch sequence over 90 days. Stops if they reply, books if they're ready, archives if they unsubscribe.</li>
+    </ol>
+
+    <h4>ROI math (do this on the call)</h4>
+    <div class="roi">
+      Solo practitioner · Spark ($997/mo) · recovers ~5 billable hrs/wk @ $300/hr = <strong>$6,000/mo recovered</strong> · <strong>6× ROI</strong><br>
+      5-attorney firm · Catalyst ($2,997/mo) · 30% intake conversion lift on 60 leads/mo @ $4,500 avg matter = <strong>$27,000/mo new revenue</strong> · <strong>9× ROI</strong><br>
+      15-attorney firm · Momentum ($7,997/mo) · all four agents · ~$60,000/mo recovered + new = <strong>7.5× ROI</strong>
+    </div>
+
+    <h4>The cold-call hook (verbatim)</h4>
+    <div class="script">
+      <p class="you">Hi [Name], this is Jaden with GreenAI Solutions. Cold call — fair if I take 27 seconds, then you tell me whether to keep going?</p>
+      <p class="you">I work with [practice-area] firms across [region]. The data on inbound intake is brutal — Clio's report says 42% of calls to law firms go unanswered, and most signed retainers go to whoever follows up first, not whoever's best.</p>
+      <p class="you">We build a custom AI intake agent for law firms that responds to every missed call and form-fill within 90 seconds, qualifies the matter, conflict-checks against your case management system, and books the consultation on your calendar. The firms we've put live are converting 2–3× more leads with no extra staff.</p>
+      <p class="you">I called you specifically because [one researched fact — recent press, a Super Lawyers listing, a new attorney they hired, etc.]. Worth 15 minutes this week to see if the math works for you?</p>
+    </div>
+
+    <h4>Vertical-specific objections</h4>
+    <div class="objection">
+      <div class="q">"This sounds like unauthorized practice of law."</div>
+      <div class="a"><em>"Good — that question tells me you take this seriously. The agent doesn't give legal advice, ever. It does intake (collecting facts), qualification (matter type, jurisdiction), and scheduling. Same thing your intake coordinator does. The licensed attorney handles every legal opinion. Happy to share our compliance write-up."</em></div>
+    </div>
+    <div class="objection">
+      <div class="q">"Our case management system is [obscure thing]."</div>
+      <div class="a"><em>"If it has any kind of API or even just emails reports out, we can integrate. We've connected to Clio, MyCase, PracticePanther, Smokeball, Filevine, even some old Amicus installs. What are you on?"</em></div>
+    </div>
+  </div>
+
+  <!-- REAL ESTATE -->
+  <div class="vert">
+    <h3>Real estate brokerages</h3>
+    <p><strong>Pain:</strong> Speed-to-lead determines who wins. 78% of buyers go with the first agent who responds. Most agents respond in hours.</p>
+    <p><strong>Agents to pitch:</strong> Lead Speed-to-Contact Agent (90-second response to every Zillow/website lead) · Showing Scheduler · Listing Inquiry Agent · Past-Client Nurture (annual property updates, refi opportunities, life-event triggers).</p>
+    <div class="roi">20-agent brokerage · Catalyst ($2,997/mo) · 1 extra closed deal/mo @ $8,500 avg commission = <strong>$8,500/mo</strong> · 2.8× ROI before counting agent retention</div>
+    <p><strong>Hook:</strong> <em>"78% of buyers sign with the first agent who responds. Your average response time on Zillow leads is probably 2–4 hours. Ours respond in 90 seconds, qualify the buyer, and book the showing — without your agents lifting a finger."</em></p>
+  </div>
+
+  <!-- HEALTHCARE / DENTAL -->
+  <div class="vert">
+    <h3>Healthcare &amp; dental practices</h3>
+    <p><strong>Pain:</strong> No-show rates of 15–30% wreck revenue. New-patient intake is paper-based and slow. Front desk is overwhelmed.</p>
+    <p><strong>Agents to pitch:</strong> Appointment Reminder + Confirmation Agent (cuts no-shows ~40%) · New Patient Intake Agent (insurance verification, forms, history) · Recall Agent (6-month dental cleanings, annual physicals — automated re-engagement).</p>
+    <div class="roi">8-operatory dental practice · Catalyst ($2,997/mo) · no-show rate 22% → 13% · ~30 saved appointments/mo @ $350 avg = <strong>$10,500/mo</strong> · 3.5× ROI</div>
+    <p><strong>Hook:</strong> <em>"No-shows cost the average dental practice around $30K a year. The fix isn't reminders — those are noise — it's a real two-way conversation 24 hours before, where the patient can reschedule with one tap. We build that as a custom agent for your practice. Most clients cut no-shows in half."</em></p>
+    <div class="warn"><strong>HIPAA caveat:</strong> Healthcare deployments need a BAA (Business Associate Agreement) with both us and Anthropic. Sign-up takes ~2 weeks. Don't close deals until BAA is in motion.</div>
+  </div>
+
+  <!-- ACCOUNTING -->
+  <div class="vert">
+    <h3>Accounting &amp; bookkeeping firms</h3>
+    <p><strong>Pain:</strong> Tax season is a wall. Client document collection is a nightmare. Status update questions consume the partners.</p>
+    <p><strong>Agents to pitch:</strong> Document Collection Agent (chases clients for missing W2s, 1099s, receipts on a schedule until they're delivered) · Client Status Agent (answers "where's my return?" from your practice management system) · Onboarding Agent for new clients.</p>
+    <div class="roi">12-person CPA firm · Catalyst ($2,997/mo) · saves ~80 admin hours/mo during Jan–Apr @ $75/hr = <strong>$6,000/mo</strong> in peak months · 2× ROI</div>
+    <p><strong>Hook:</strong> <em>"How many hours did your team spend last March just chasing clients for missing documents? Most CPA firms tell us 80–150 hours during tax season. We build an agent that does that chase autonomously — text, email, follow-ups, until the docs are in. Your team gets January through April back."</em></p>
+  </div>
+
+  <!-- INSURANCE -->
+  <div class="vert">
+    <h3>Insurance agencies</h3>
+    <p><strong>Pain:</strong> Quote requests come in 24/7; agents work 9–5. Renewal management eats time. Cross-sell opportunities get missed.</p>
+    <p><strong>Agents to pitch:</strong> Quote Request Agent · Renewal Reminder &amp; Re-shop Agent · Policy Review Scheduler · Claims Status Agent.</p>
+    <div class="roi">5-producer agency · Catalyst ($2,997/mo) · 20% more quote-to-bind from faster response · ~$15K/mo new premium · <strong>~$3,000/mo commission</strong></div>
+  </div>
+
+  <!-- FINANCIAL ADVISORS -->
+  <div class="vert">
+    <h3>Financial advisors &amp; wealth management</h3>
+    <p><strong>Pain:</strong> Compliance limits what they can automate. But operations is wide open: scheduling, document collection, meeting prep, client check-ins.</p>
+    <p><strong>Agents to pitch:</strong> Client Meeting Prep Agent (pulls portfolio data, recent activity, life-event triggers — produces a brief before each meeting) · Annual Review Scheduler · Document Request Agent · Birthday/Life Event Outreach Agent.</p>
+    <p><strong>Hook angle:</strong> Lead with <em>compliance-safe automation</em> — advisors are wary. Mention you stay clear of anything that constitutes advice; everything you do is operations.</p>
+    <div class="warn"><strong>Compliance caveat:</strong> No agent for an RIA may give specific investment advice or generate marketing content without principal review. Position it as "operations and admin only" and they'll lean in.</div>
+  </div>
+
+  <!-- HOME SERVICES -->
+  <div class="vert">
+    <h3>Home services (HVAC, plumbing, electrical, roofing)</h3>
+    <p><strong>Pain:</strong> Emergency calls at night = lost revenue if no one answers. Quote requests sit. Review-gathering is inconsistent.</p>
+    <p><strong>Agents to pitch:</strong> 24/7 Inbound Triage Agent (emergency vs. non-emergency, dispatch or schedule) · Quote Follow-Up Agent · Post-Job Review-Gathering Agent · Maintenance Reminder Agent (annual furnace tune-ups, etc.).</p>
+    <div class="roi">15-truck HVAC company · Catalyst ($2,997/mo) · 2 extra captured after-hours emergencies/wk @ $650 avg ticket = <strong>$5,600/mo</strong> · 1.9× ROI on emergencies alone</div>
+    <p><strong>Hook:</strong> <em>"How many emergency calls did your shop miss last weekend after 6pm? Most home-service companies leak $5–10K a month in after-hours work they never even knew about. We build an agent that takes the call, triages emergency vs. schedulable, and dispatches your on-call tech — 24/7, no answering service."</em></p>
+  </div>
+
+  <!-- ====================== PART 6 ====================== -->
+  <h2 id="part6">Part 6 · After the call</h2>
+
+  <h3>Within 15 minutes of the call ending</h3>
+  <p>Send a recap email. This single habit closes 20% more deals than reps who skip it.</p>
+  <div class="script">
+    <p class="you">Subject: Recap — AETHER for [Firm Name]</p>
+    <p class="you">[Name],</p>
+    <p class="you">Quick recap of what we discussed and what I'm proposing.</p>
+    <p class="you"><strong>The problem you're solving:</strong> [one sentence in their words]</p>
+    <p class="you"><strong>What we'd build:</strong> A custom [agent type] for [Firm Name] that [specific outcome].</p>
+    <p class="you"><strong>Timeline:</strong> 48 hours from kickoff to live.</p>
+    <p class="you"><strong>Investment:</strong> [tier] — $X/mo + $Y one-time build.</p>
+    <p class="you"><strong>Next step:</strong> If this looks right, I'll send a contract today. If you want me to address anything specific first, reply with what's on your mind.</p>
+    <p class="you">— Jaden</p>
+  </div>
+
+  <h3>The follow-up cadence (if they don't reply)</h3>
+  <table>
+    <tr><th>Day</th><th>Touch</th><th>Channel</th></tr>
+    <tr><td>+0</td><td>Recap email (above)</td><td>Email</td></tr>
+    <tr><td>+2</td><td>"Did this get buried? Happy to clarify anything."</td><td>Email</td></tr>
+    <tr><td>+5</td><td>One specific case-study from their vertical</td><td>Email</td></tr>
+    <tr><td>+9</td><td>Voicemail + text: "Wanted to make sure you got my note"</td><td>Phone + SMS</td></tr>
+    <tr><td>+14</td><td>Breakup email: "Should I close this out or keep it open?"</td><td>Email</td></tr>
+    <tr><td>+90</td><td>"Quarterly check-in — anything changed?"</td><td>Email</td></tr>
+  </table>
+
+  <h3>The two things that close deals at this price point</h3>
+  <p><strong>1. Specificity.</strong> Generic AI pitches lose to specific ones. "We'd build an intake agent for personal-injury intake at your firm that does X, Y, Z" beats "we have AI solutions" every time.</p>
+  <p><strong>2. Speed.</strong> 48 hours from kickoff to live is a meaningful claim. Most enterprise vendors take 3–6 months. Lead with this constantly — it's your unique selling point against anyone selling something more "enterprise."</p>
+
+  <div class="note">Final word: this isn't a script you read. It's a structure you internalize. Read this playbook three times in the next week. After that, every cold call is just the same six moves in different orders. You'll start hearing yourself improvise correctly within 20 calls.</div>
+
+  <div class="foot">
+    AETHER Sales Playbook v1.0 · 2026-06-20<br/>
+    Maintained by GreenAI Solutions · jaden@greenaidigital.com<br/>
+    Internal use only — do not share with prospects
+  </div>
+</div>
+</body>
+</html>
