@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nexus AI — Your AI Employee Network</title>
+<meta name="description" content="Meet APEX, NOVA, and ECHO — three specialized AI employees handling your web design, automation, and social media on demand."/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="nexus.css"/>
+<style>
+/* hero — immediate visibility, no wait */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 30px}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(3rem,10vw,8.5rem);line-height:.92;letter-spacing:-.01em;margin:18px 0 0}
+.hero h1 .it{font-style:italic;color:var(--violet)}
+.hero p{max-width:560px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.18rem);margin:26px auto 0}
+.hero .cta{justify-content:center}
+/* CRITICAL: hero reveals are immediately visible */
+.hero .reveal{opacity:1;transform:none;animation:heroSlide .9s cubic-bezier(.2,.7,.2,1) backwards}
+.hero .reveal:nth-child(2){animation-delay:.08s}
+.hero .reveal:nth-child(3){animation-delay:.2s}
+.hero .reveal:nth-child(4){animation-delay:.32s}
+.hero .reveal:nth-child(5){animation-delay:.44s}
+@keyframes heroSlide{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.hero .reveal{animation:none;opacity:1;transform:none}}
+
+.hero-mark{width:108px;height:108px;margin:0 auto 6px;filter:drop-shadow(0 0 32px rgba(139,92,246,.55));animation:markFloat 7s ease-in-out infinite}
+.hero-mark img{width:100%;height:100%;object-fit:contain;border-radius:20px;transform-style:preserve-3d}
+@keyframes markFloat{0%,100%{transform:translateY(0) rotateY(-14deg) rotateX(6deg)}50%{transform:translateY(-10px) rotateY(14deg) rotateX(-5deg)}}
+@media(prefers-reduced-motion:reduce){.hero-mark{animation:none}}
+
+.status-pill{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  color:var(--violet);padding:6px 14px;border-radius:20px;border:1px solid rgba(139,92,246,.28);
+  background:rgba(139,92,246,.07);margin-bottom:20px}
+.status-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--violet);
+  box-shadow:0 0 8px var(--violet);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* crew */
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+@media(max-width:860px){.crew-grid{grid-template-columns:1fr;max-width:440px;margin:48px auto 0}}
+.crew-card{padding:34px 28px;border-radius:20px;border:1px solid var(--line);background:var(--panel);
+  backdrop-filter:blur(14px);position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.crew-card:hover{transform:translateY(-7px);border-color:rgba(139,92,246,.5);box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 40px rgba(139,92,246,.14)}
+.crew-card.cyan:hover{border-color:rgba(34,211,238,.5);box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 40px rgba(34,211,238,.1)}
+.crew-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(139,92,246,.08) 0%,transparent 60%);pointer-events:none}
+.crew-card.cyan::before{background:radial-gradient(circle at 80% 20%,rgba(34,211,238,.07) 0%,transparent 60%)}
+.bot-avatar{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;
+  margin-bottom:18px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(139,92,246,.16),rgba(139,92,246,.03))}
+.crew-card.cyan .bot-avatar{border-color:var(--line-cyan);background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(34,211,238,.03))}
+.bot-name{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:3px}
+.bot-role{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--violet);margin-bottom:14px;font-weight:600}
+.crew-card.cyan .bot-role{color:var(--cyan)}
+.crew-card p{color:var(--muted);font-size:.92rem;line-height:1.6}
+.svc-list{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.svc-item{display:flex;align-items:center;gap:8px;font-size:.87rem;color:rgba(238,240,251,.75)}
+.svc-item::before{content:"›";color:var(--violet);font-weight:700;flex-shrink:0}
+.crew-card.cyan .svc-item::before{color:var(--cyan)}
+
+/* steps */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:52px}
+@media(max-width:860px){.steps-grid{grid-template-columns:1fr;max-width:440px;margin:52px auto 0}}
+.step{text-align:center}
+.step-num{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;
+  justify-content:center;font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--violet);
+  margin:0 auto 18px;background:rgba(139,92,246,.07)}
+.step h3{font-family:var(--serif);font-size:1.5rem;margin-bottom:10px}
+.step p{color:var(--muted);font-size:.91rem;line-height:1.65;max-width:28ch;margin:0 auto}
+
+/* final */
+.final{min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.final h2{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,8vw,6rem);line-height:1;letter-spacing:-.01em}
+.final h2 .it{color:var(--violet);font-style:italic}
+
+/* nav right cluster */
+.xnav-right{display:flex;gap:10px;align-items:center}
+</style>
+</head>
+<body>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="xnav" id="xnav">
+  <a href="portal.html" class="xbrand">
+    <span class="mk"><img src="logo-mark.png" alt="Nexus AI" width="42" height="42"/></span>
+    <span class="nm"><b>Nexus<span class="v">AI</span></b><span>Employee Network</span></span>
+  </a>
+  <ul class="xlinks">
+    <li><a href="portal.html">Home</a></li>
+    <li><a href="#employees">The Employees</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+  </ul>
+  <div class="xnav-right">
+    <a href="portal-signin.html" class="xenter">Sign In</a>
+    <a href="portal-signup.html" class="btn btn-vi" style="font-size:13px;padding:9px 22px">Hire Your Crew</a>
+  </div>
+  <button class="xburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+<nav class="xmobile" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="portal.html">Home</a></li>
+    <li><a href="#employees">The Employees</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="portal-signin.html">Sign In</a></li>
+    <li><a href="portal-signup.html">Hire Your Crew →</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-mark reveal"><img src="logo-mark.png" alt="Nexus AI" width="108" height="108"/></div>
+    <div class="reveal status-pill">3 AI employees · Online &amp; Ready</div>
+    <h1 class="reveal">Your AI Employees,<br/><span class="it">Ready Now.</span></h1>
+    <p class="reveal">APEX, NOVA, and ECHO work 24/7 on your web design, automation, and social media — so you can run your business instead of running yourself into the ground.</p>
+    <div class="reveal cta">
+      <a href="portal-signup.html" class="btn btn-vi">Hire Your Crew — Free</a>
+      <a href="#employees" class="btn btn-ghost">Meet the Team</a>
+    </div>
+  </section>
+
+  <!-- THE EMPLOYEES -->
+  <section class="block" id="employees">
+    <div class="container">
+      <div class="eyebrow reveal">The Team</div>
+      <h2 class="lead reveal">Three employees. <span class="em">Every capability</span> you need.</h2>
+      <p class="sub reveal">Each Nexus AI employee owns a discipline and executes with the speed and precision no human team can match — around the clock, without burnout.</p>
+      <div class="crew-grid">
+
+        <div class="crew-card reveal">
+          <div class="bot-avatar">⚡</div>
+          <div class="bot-name">APEX</div>
+          <div class="bot-role">Lead Engineer</div>
+          <p>Designs, builds, and ships your entire web presence. Every build is production-ready, mobile-first, and designed to convert.</p>
+          <div class="svc-list">
+            <div class="svc-item">Custom Website Design &amp; Build</div>
+            <div class="svc-item">Landing Pages &amp; Sales Funnels</div>
+            <div class="svc-item">Performance &amp; SEO Optimization</div>
+            <div class="svc-item">Deployment &amp; Hosting</div>
+          </div>
+        </div>
+
+        <div class="crew-card cyan reveal">
+          <div class="bot-avatar">🔄</div>
+          <div class="bot-name">NOVA</div>
+          <div class="bot-role">Automation Architect</div>
+          <p>Builds AI-powered workflows that eliminate repetitive work. Every system NOVA builds runs permanently without maintenance.</p>
+          <div class="svc-list">
+            <div class="svc-item">AI Business Consulting</div>
+            <div class="svc-item">Lead Follow-Up Automation</div>
+            <div class="svc-item">Email &amp; CRM Workflows</div>
+            <div class="svc-item">API &amp; Tool Integrations</div>
+          </div>
+        </div>
+
+        <div class="crew-card reveal">
+          <div class="bot-avatar">🔍</div>
+          <div class="bot-name">ECHO</div>
+          <div class="bot-role">Research Intelligence</div>
+          <p>Digs deep on your market, builds your content strategy, and keeps your brand growing on every platform — with data, not guesswork.</p>
+          <div class="svc-list">
+            <div class="svc-item">Social Media Management</div>
+            <div class="svc-item">Competitor Intelligence</div>
+            <div class="svc-item">Content Calendars &amp; Strategy</div>
+            <div class="svc-item">Brand Voice &amp; Copy</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how-it-works">
+    <div class="container">
+      <div class="eyebrow cyan reveal">The Process</div>
+      <h2 class="lead reveal">Live in <span class="cy">three steps.</span></h2>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <h3>Sign Up</h3>
+          <p>Create your account in under 60 seconds. No credit card required.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <h3>Brief Your Employee</h3>
+          <p>Open APEX, NOVA, or ECHO and tell them exactly what you need. They're ready the moment you log in.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <h3>Watch It Ship</h3>
+          <p>Your AI employee executes. You review. Done — fast, professional, and on brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="block" id="services">
+    <div class="container">
+      <div class="eyebrow reveal">Services</div>
+      <h2 class="lead reveal">Everything your business <span class="em">actually needs.</span></h2>
+      <div class="grid3" style="margin-top:48px">
+        <div class="card reveal"><div class="ic">🌐</div><h3>Web Design</h3><p>Custom sites, landing pages, and funnels built and deployed by APEX.</p><div class="go">APEX handles this →</div></div>
+        <div class="card cyan reveal"><div class="ic">🤖</div><h3>AI Automation</h3><p>Lead follow-up, email sequences, and workflow systems built by NOVA.</p><div class="go">NOVA handles this →</div></div>
+        <div class="card reveal"><div class="ic">📊</div><h3>Social Media</h3><p>Strategy, content calendars, and competitor analysis handled by ECHO.</p><div class="go">ECHO handles this →</div></div>
+        <div class="card reveal"><div class="ic">💡</div><h3>AI Consulting</h3><p>NOVA audits your operations and maps what AI can automate for you.</p><div class="go">NOVA handles this →</div></div>
+        <div class="card reveal"><div class="ic">✍</div><h3>Content &amp; Copy</h3><p>Brand voice, captions, ad copy — ECHO writes it all from your brief.</p><div class="go">ECHO handles this →</div></div>
+        <div class="card cyan reveal"><div class="ic">🚀</div><h3>Launch &amp; Deploy</h3><p>APEX ships to GitHub Pages, Vercel, or any host. Instantly live.</p><div class="go">APEX handles this →</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="block">
+    <div class="container" style="text-align:center">
+      <div class="eyebrow cyan reveal" style="justify-content:center;display:flex">The Numbers</div>
+      <h2 class="lead reveal" style="margin-left:auto;margin-right:auto;text-align:center">Results that <span class="em">speak for themselves.</span></h2>
+      <div class="stats" style="margin-top:48px;gap:60px;justify-content:center">
+        <div class="stat reveal"><div class="n">3</div><div class="l">Specialized AI employees</div></div>
+        <div class="stat reveal"><div class="n">24/7</div><div class="l">Always available</div></div>
+        <div class="stat reveal"><div class="n">500%</div><div class="l">Avg client ROI</div></div>
+        <div class="stat reveal"><div class="n">48h</div><div class="l">First deliverable</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="container">
+      <div class="eyebrow reveal">Your move</div>
+      <h2 class="reveal">Hire the <span class="it">network.</span></h2>
+      <p class="reveal" style="color:var(--muted);margin-top:18px;font-size:1.05rem">Free to start. No contracts. Your AI employees are waiting.</p>
+      <div class="cta reveal" style="justify-content:center;margin-top:34px">
+        <a href="portal-signup.html" class="btn btn-vi">Create Free Account →</a>
+        <a href="portal-signin.html" class="btn btn-ghost">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="xfooter">
+    &copy; 2026 Nexus AI &middot; Powered by GreenAI Solutions &middot;
+    <a href="portal-signup.html">Get Started</a> &middot;
+    <a href="portal-signin.html">Sign In</a>
+  </footer>
+</div>
+
+<script>
+// Nav scroll effect + mobile burger
+(function(){
+  var nav=document.getElementById('xnav');
+  function onScroll(){ if(nav) nav.classList.toggle('solid',window.scrollY>40); }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  var burger=document.querySelector('.xburger'), mobile=document.querySelector('.xmobile');
+  if(burger&&mobile){
+    burger.addEventListener('click',function(){
+      var open=mobile.classList.toggle('open');
+      burger.setAttribute('aria-expanded',open?'true':'false');
+    });
+    mobile.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){mobile.classList.remove('open');});
+    });
+  }
+  // scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var ob=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ob.unobserve(e.target);}});
+    },{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){ob.observe(el);});
+  } else {
+    els.forEach(function(el){el.classList.add('in');});
+  }
+  // redirect if already logged in
+  try{var a=localStorage.getItem('gai_auth');if(a&&JSON.parse(a).loggedIn)window.location.href='portal-dashboard.html';}catch(e){}
+})();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script type="module" src="nexus-bg.js"></script>
+</body>
+</html>

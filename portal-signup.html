@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Create Account — Nexus AI</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#06080f;--panel:rgba(10,12,28,.88);
+  --violet:#8b5cf6;--violet-2:#7c3aed;
+  --cyan:#22d3ee;
+  --ink:#eef0fb;--muted:#7a88a8;--line:rgba(139,92,246,.2);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;padding:40px 20px;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -5%,rgba(139,92,246,.13) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(34,211,238,.07) 0%,transparent 50%);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.03;
+  background-image:linear-gradient(rgba(139,92,246,1) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(139,92,246,1) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.auth-wrap{position:relative;z-index:1;width:100%;max-width:500px}
+
+.brand{display:flex;align-items:center;gap:11px;justify-content:center;margin-bottom:28px;text-decoration:none;color:var(--ink)}
+.brand img{width:44px;height:44px;border-radius:10px;filter:drop-shadow(0 0 12px rgba(139,92,246,.6))}
+.brand-name{font-weight:600;font-size:17px;line-height:1}
+.brand-name .v{color:var(--violet)}
+.brand-sub{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+.employee-row{display:flex;justify-content:center;gap:14px;margin-bottom:26px;flex-wrap:wrap}
+.emp-chip{display:flex;align-items:center;gap:6px;font-size:.76rem;color:rgba(238,240,251,.55);
+  padding:4px 11px;border-radius:20px;border:1px solid rgba(139,92,246,.16);background:rgba(139,92,246,.04)}
+.emp-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 6px var(--violet);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:22px;
+  padding:38px 36px;backdrop-filter:blur(22px);
+  box-shadow:0 40px 100px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.card h1{font-family:var(--serif);font-size:2rem;font-weight:700;margin-bottom:6px}
+.card .subtitle{color:var(--muted);font-size:.91rem;margin-bottom:26px;line-height:1.5}
+
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.form-group input{
+  width:100%;padding:13px 15px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(139,92,246,.2);
+  border-radius:12px;color:var(--ink);font-family:var(--sans);font-size:.93rem;
+  transition:border-color .2s,box-shadow .2s;outline:none;
+}
+.form-group input:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(139,92,246,.14)}
+.form-group input::placeholder{color:rgba(122,136,168,.4)}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.pass-bar{height:3px;border-radius:2px;margin-top:7px;background:rgba(255,255,255,.07);overflow:hidden}
+.pass-bar-fill{height:100%;border-radius:2px;transition:width .3s,background .3s;width:0}
+
+.submit-btn{
+  width:100%;padding:15px;margin-top:8px;
+  background:linear-gradient(135deg,var(--violet),var(--violet-2));
+  color:#f5f0ff;font-family:var(--sans);font-size:.95rem;font-weight:700;
+  border:none;border-radius:12px;cursor:pointer;letter-spacing:.02em;
+  box-shadow:0 12px 40px rgba(139,92,246,.38);transition:transform .2s,box-shadow .2s,opacity .2s;
+}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 18px 54px rgba(139,92,246,.55)}
+.submit-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+.error-msg{display:none;padding:12px 15px;border-radius:10px;border:1px solid rgba(239,68,68,.3);
+  background:rgba(239,68,68,.1);color:#fca5a5;font-size:.87rem;margin-bottom:16px;line-height:1.5}
+.error-msg.show{display:block}
+
+.divider{display:flex;align-items:center;gap:14px;margin:22px 0;color:var(--muted);font-size:.82rem}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.alt-link{text-align:center;color:var(--muted);font-size:.89rem}
+.alt-link a{color:var(--violet);font-weight:600;text-decoration:none}
+.alt-link a:hover{text-decoration:underline}
+
+.terms-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:16px;line-height:1.55}
+.terms-note a{color:var(--violet);text-decoration:none}
+
+@media(max-width:480px){.card{padding:28px 20px}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="auth-wrap">
+
+  <a href="portal.html" class="brand">
+    <img src="logo-mark.png" alt="Nexus AI"/>
+    <div><div class="brand-name">Nexus<span class="v">AI</span></div><div class="brand-sub">Employee Network</div></div>
+  </a>
+
+  <div class="employee-row">
+    <div class="emp-chip"><span class="dot"></span>APEX · Online</div>
+    <div class="emp-chip"><span class="dot"></span>NOVA · Online</div>
+    <div class="emp-chip"><span class="dot"></span>ECHO · Online</div>
+  </div>
+
+  <div class="card">
+    <h1>Create your account</h1>
+    <p class="subtitle">Your AI employees are standing by. Set up your workspace in under 60 seconds.</p>
+
+    <div class="error-msg" id="error-msg" role="alert"></div>
+
+    <form id="signup-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" placeholder="Jane" autocomplete="given-name" required/>
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" placeholder="Smith" autocomplete="family-name" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@company.com" autocomplete="email" required/>
+      </div>
+      <div class="form-group">
+        <label for="business">Business Name <span style="font-size:.9em;opacity:.45">(optional)</span></label>
+        <input type="text" id="business" placeholder="Your Company LLC" autocomplete="organization"/>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="8+ characters" autocomplete="new-password" required/>
+        <div class="pass-bar"><div class="pass-bar-fill" id="strength-bar"></div></div>
+      </div>
+      <div class="form-group">
+        <label for="confirm-pass">Confirm Password</label>
+        <input type="password" id="confirm-pass" placeholder="Repeat password" autocomplete="new-password" required/>
+      </div>
+      <button type="submit" class="submit-btn" id="submit-btn">Hire Your Crew →</button>
+    </form>
+
+    <p class="terms-note">By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="divider">Already have an account?</div>
+    <p class="alt-link"><a href="portal-signin.html">Sign in to your workspace →</a></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  try{var a=localStorage.getItem('gai_auth');if(a&&JSON.parse(a).loggedIn)window.location.href='portal-dashboard.html';}catch(e){}
+
+  var form=document.getElementById('signup-form');
+  var errEl=document.getElementById('error-msg');
+  var btn=document.getElementById('submit-btn');
+  var passInput=document.getElementById('password');
+  var bar=document.getElementById('strength-bar');
+
+  passInput.addEventListener('input',function(){
+    var p=passInput.value,s=0;
+    if(p.length>=8)s++;if(/[A-Z]/.test(p))s++;if(/[0-9]/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;
+    var colors=['#ef4444','#f97316','#eab308','#8b5cf6'];
+    bar.style.width=p.length?((['25%','50%','75%','100%'])[s-1]||'10%'):'0';
+    bar.style.background=p.length?colors[s-1]||'#ef4444':'transparent';
+  });
+
+  function showError(msg){errEl.textContent=msg;errEl.classList.add('show');errEl.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  function hideError(){errEl.classList.remove('show');}
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();hideError();
+    var first=document.getElementById('first-name').value.trim();
+    var last=document.getElementById('last-name').value.trim();
+    var email=document.getElementById('email').value.trim().toLowerCase();
+    var biz=document.getElementById('business').value.trim();
+    var pass=passInput.value;
+    var conf=document.getElementById('confirm-pass').value;
+
+    if(!first){showError('Please enter your first name.');document.getElementById('first-name').focus();return;}
+    if(!last){showError('Please enter your last name.');document.getElementById('last-name').focus();return;}
+    if(!email||!email.includes('@')||!email.includes('.')){showError('Please enter a valid email address.');document.getElementById('email').focus();return;}
+    if(pass.length<8){showError('Password must be at least 8 characters.');passInput.focus();return;}
+    if(pass!==conf){showError('Passwords do not match.');document.getElementById('confirm-pass').focus();return;}
+
+    var users=JSON.parse(localStorage.getItem('gai_users')||'[]');
+    if(users.find(function(u){return u.email===email;})){showError('An account with that email already exists. Sign in instead.');return;}
+
+    var userId='u_'+Date.now();
+    var user={id:userId,name:first+' '+last,first:first,last:last,email:email,business:biz,pass:pass,plan:'Free',createdAt:new Date().toISOString()};
+    users.push(user);
+    localStorage.setItem('gai_users',JSON.stringify(users));
+    localStorage.setItem('gai_auth',JSON.stringify({loggedIn:true,userId:userId,name:user.name,first:user.first,email:user.email,business:biz,plan:'Free'}));
+
+    btn.textContent='Setting up your team...';btn.disabled=true;
+    setTimeout(function(){window.location.href='portal-dashboard.html';},900);
+  });
+})();
+</script>
+</body>
+</html>

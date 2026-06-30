@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Workspace — Nexus AI</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── Variables ── */
+:root{
+  --bg:#06080f;--bg2:#0b0d1a;--panel:rgba(10,12,28,.9);--panel-2:rgba(14,17,38,.88);
+  --violet:#8b5cf6;--violet-2:#7c3aed;--violet-deep:#4c1d95;
+  --cyan:#22d3ee;--cyan-2:#0891b2;
+  --ink:#eef0fb;--muted:#7a88a8;
+  --line:rgba(139,92,246,.15);--line-cyan:rgba(34,211,238,.2);
+  --sidebar-w:262px;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;display:flex}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit}
+input,textarea{font-family:inherit}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(139,92,246,.22);border-radius:4px}
+::selection{background:rgba(139,92,246,.28)}
+
+/* ── Sidebar ── */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  background:rgba(7,9,18,.97);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;height:100vh;
+  position:sticky;top:0;overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1);z-index:20;
+}
+.sidebar-brand{
+  padding:20px 18px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.sidebar-brand img{width:36px;height:36px;border-radius:9px;filter:drop-shadow(0 0 8px rgba(139,92,246,.5))}
+.brand-name{font-weight:600;font-size:15px;line-height:1}
+.brand-name .v{color:var(--violet)}
+.brand-sub{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+.sidebar-user{padding:14px 18px;border-bottom:1px solid var(--line);flex-shrink:0}
+.user-name{font-weight:600;font-size:.9rem;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-email{font-size:.74rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-plan{display:inline-block;margin-top:6px;font-size:.67rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 9px;border-radius:6px;background:rgba(139,92,246,.14);
+  color:var(--violet);border:1px solid rgba(139,92,246,.22)}
+
+.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+.nav-section{font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 12px 4px;margin-top:4px}
+.nav-item{
+  display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:10px;
+  font-size:.87rem;cursor:pointer;color:var(--muted);
+  transition:background .15s,color .15s;border:none;width:100%;text-align:left;
+}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--ink)}
+.nav-item.active{background:rgba(139,92,246,.12);color:var(--violet)}
+.nav-item.active .nav-dot{background:var(--violet);box-shadow:0 0 6px var(--violet)}
+.nav-item.is-cyan.active{background:rgba(34,211,238,.1);color:var(--cyan)}
+.nav-item.is-cyan.active .nav-dot{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+.nav-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(139,92,246,.3);flex-shrink:0;margin-left:auto;transition:.15s}
+
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--line);flex-shrink:0}
+.logout-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:10px;font-size:.84rem;color:var(--muted);width:100%;text-align:left;transition:.15s}
+.logout-btn:hover{background:rgba(239,68,68,.08);color:#fca5a5}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden;min-width:0}
+
+/* mobile topbar */
+.topbar{display:none;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(7,9,18,.97);flex-shrink:0}
+.menu-btn{padding:6px;border-radius:8px;display:flex;flex-direction:column;gap:4px}
+.menu-btn span{width:21px;height:1.5px;background:var(--ink);border-radius:2px;display:block;transition:.2s}
+.topbar-title{font-weight:600;font-size:.88rem}
+
+/* ── Bot panels ── */
+.bot-panel{display:none;flex:1;flex-direction:column;height:100%;overflow:hidden}
+.bot-panel.active{display:flex}
+
+/* bot header */
+.bot-header{
+  padding:16px 24px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:13px;flex-shrink:0;
+  background:rgba(7,9,18,.65);backdrop-filter:blur(12px);
+}
+.bot-avatar-lg{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid var(--line);background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(139,92,246,.03))}
+.bot-avatar-lg.is-cyan{border-color:var(--line-cyan);background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(34,211,238,.03))}
+.bot-header-info{flex:1;min-width:0}
+.bot-header-name{font-family:var(--serif);font-size:1.4rem;font-weight:700;line-height:1}
+.bot-header-role{font-size:.73rem;color:var(--muted);margin-top:2px}
+.bot-online{display:flex;align-items:center;gap:5px;font-size:.73rem;color:var(--violet);white-space:nowrap}
+.bot-online::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 6px var(--violet);animation:blink 2s ease-in-out infinite}
+.bot-online.is-cyan{color:var(--cyan)}
+.bot-online.is-cyan::before{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.header-chip{font-size:.7rem;padding:4px 9px;border-radius:7px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;flex-shrink:0}
+
+/* ── Chat layout ── */
+.chat-layout{display:flex;flex:1;overflow:hidden}
+.chat-main{display:flex;flex-direction:column;flex:1;min-width:0;overflow:hidden}
+
+.chat-messages{flex:1;overflow-y:auto;padding:22px 26px;display:flex;flex-direction:column;gap:13px}
+@media(max-width:640px){.chat-messages{padding:14px 16px}}
+
+.msg{display:flex;gap:9px;max-width:80%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg-body{display:flex;flex-direction:column;gap:4px}
+.msg.user .msg-body{align-items:flex-end}
+
+.msg-bubble{padding:11px 14px;border-radius:15px;font-size:.875rem;line-height:1.6;word-break:break-word}
+.msg.bot .msg-bubble{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:4px 15px 15px 15px}
+.msg.user .msg-bubble{background:linear-gradient(135deg,var(--violet),var(--violet-2));color:#f5f0ff;font-weight:500;border-radius:15px 4px 15px 15px}
+.msg.is-cyan.bot .msg-bubble{border-color:var(--line-cyan)}
+.msg-time{font-size:.67rem;color:var(--muted);padding:0 2px}
+.msg.user .msg-time{text-align:right}
+
+.msg-avatar-sm{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;align-self:flex-end;border:1px solid var(--line);background:rgba(139,92,246,.08)}
+.msg.user .msg-avatar-sm{background:rgba(139,92,246,.18)}
+
+/* typing */
+.typing-indicator{display:none;align-self:flex-start}
+.typing-indicator.show{display:flex;gap:9px}
+.typing-bubble{padding:12px 14px;border-radius:4px 15px 15px 15px;background:var(--panel-2);border:1px solid var(--line);display:flex;gap:5px;align-items:center}
+.typing-bubble span{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:tdots 1.2s ease-in-out infinite}
+.typing-bubble span:nth-child(2){animation-delay:.2s}
+.typing-bubble span:nth-child(3){animation-delay:.4s}
+.typing-bubble.is-cyan span{background:var(--cyan)}
+@keyframes tdots{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+
+/* chat input */
+.chat-input-wrap{padding:14px 24px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:flex-end;flex-shrink:0;background:rgba(7,9,18,.65)}
+@media(max-width:640px){.chat-input-wrap{padding:10px 14px}}
+.chat-input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:11px 15px;color:var(--ink);font-size:.875rem;resize:none;outline:none;transition:border-color .2s,box-shadow .2s;max-height:110px;min-height:44px;line-height:1.5}
+.chat-input:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(139,92,246,.1)}
+.chat-input.is-cyan:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,.1)}
+.send-btn{padding:11px 19px;background:linear-gradient(135deg,var(--violet),var(--violet-2));border:none;border-radius:11px;color:#f5f0ff;font-weight:700;font-size:.83rem;cursor:pointer;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0}
+.send-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(139,92,246,.38)}
+.send-btn.is-cyan{background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#041015}
+.send-btn.is-cyan:hover{box-shadow:0 8px 22px rgba(34,211,238,.3)}
+.send-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ── Right side panel ── */
+.chat-side{width:240px;border-left:1px solid var(--line);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+@media(max-width:1100px){.chat-side{display:none}}
+.side-section{padding:16px 15px;border-bottom:1px solid var(--line)}
+.side-section:last-child{border-bottom:none}
+.side-title{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
+.status-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:.8rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.status-row:last-child{border-bottom:none}
+.status-row .label{color:var(--muted);font-size:.78rem}
+.badge{font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:5px}
+.badge-active{background:rgba(139,92,246,.18);color:var(--violet)}
+.badge-cyan{background:rgba(34,211,238,.14);color:var(--cyan)}
+.badge-pending{background:rgba(255,255,255,.08);color:var(--muted)}
+.quick-btn{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:9px;border:1px solid var(--line);font-size:.79rem;cursor:pointer;transition:.15s;background:none;color:var(--muted);width:100%;text-align:left;margin-bottom:5px}
+.quick-btn:hover{border-color:var(--violet);color:var(--violet);background:rgba(139,92,246,.05)}
+.quick-btn.is-cyan:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(34,211,238,.04)}
+.quick-btn:last-child{margin-bottom:0}
+.qa-icon{font-size:.9rem}
+
+/* toast */
+.toast{position:fixed;bottom:22px;right:22px;z-index:100;padding:11px 17px;border-radius:11px;font-size:.83rem;font-weight:600;background:rgba(10,12,28,.97);border:1px solid var(--violet);color:var(--violet);transform:translateY(70px);opacity:0;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s;backdrop-filter:blur(14px);box-shadow:0 14px 44px rgba(0,0,0,.5);pointer-events:none;max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* mobile overlay */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:19;backdrop-filter:blur(4px)}
+
+@media(max-width:768px){
+  .sidebar{position:fixed;top:0;left:0;bottom:0;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-overlay.open{display:block}
+  .topbar{display:flex}
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <img src="logo-mark.png" alt="Nexus AI"/>
+    <div>
+      <div class="brand-name">Nexus<span class="v">AI</span></div>
+      <div class="brand-sub">Employee Network</div>
+    </div>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="user-name" id="user-name">Loading...</div>
+    <div class="user-email" id="user-email"></div>
+    <div class="user-plan" id="user-plan">Free Plan</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Your Employees</div>
+
+    <button class="nav-item active" data-panel="apex" onclick="switchPanel('apex',this)">
+      <span class="nav-icon">⚡</span><span>APEX — Web Design</span>
+      <span class="nav-dot"></span>
+    </button>
+    <button class="nav-item is-cyan" data-panel="nova" onclick="switchPanel('nova',this)">
+      <span class="nav-icon">🔄</span><span>NOVA — Automation</span>
+      <span class="nav-dot" style="background:rgba(34,211,238,.3)"></span>
+    </button>
+    <button class="nav-item" data-panel="echo" onclick="switchPanel('echo',this)">
+      <span class="nav-icon">🔍</span><span>ECHO — Social Media</span>
+      <span class="nav-dot"></span>
+    </button>
+
+    <div class="nav-section" style="margin-top:8px">Links</div>
+    <a class="nav-item" href="portal.html">
+      <span class="nav-icon">🏠</span><span>Portal Home</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="logout()">
+      <span style="font-size:.95rem">→</span><span>Sign Out</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="topbar" id="topbar">
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title" id="topbar-title">APEX — Web Design</span>
+    <div style="width:34px"></div>
+  </div>
+
+  <!-- ═══════ PANEL: APEX ═══════ -->
+  <div class="bot-panel active" id="panel-apex">
+    <div class="bot-header">
+      <div class="bot-avatar-lg">⚡</div>
+      <div class="bot-header-info">
+        <div class="bot-header-name">APEX</div>
+        <div class="bot-header-role">Lead Engineer · Web Design &amp; Development</div>
+      </div>
+      <span class="bot-online">Online</span>
+      <span class="header-chip">Web &amp; Dev</span>
+    </div>
+    <div class="chat-layout">
+      <div class="chat-main">
+        <div class="chat-messages" id="apex-messages"></div>
+        <div class="typing-indicator" id="apex-typing">
+          <div class="msg-avatar-sm">⚡</div>
+          <div class="typing-bubble"><span></span><span></span><span></span></div>
+        </div>
+        <div class="chat-input-wrap">
+          <textarea class="chat-input" id="apex-input" placeholder="Ask APEX about your website, landing page, or build..." rows="1" aria-label="Message APEX"></textarea>
+          <button class="send-btn" id="apex-send" onclick="sendMessage('apex')">Send</button>
+        </div>
+      </div>
+      <aside class="chat-side">
+        <div class="side-section">
+          <div class="side-title">Project Status</div>
+          <div class="status-row"><span class="label">Website</span><span class="badge badge-pending">Pending Brief</span></div>
+          <div class="status-row"><span class="label">Landing Page</span><span class="badge badge-pending">Pending Brief</span></div>
+          <div class="status-row"><span class="label">Deployment</span><span class="badge badge-pending">—</span></div>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Quick Actions</div>
+          <button class="quick-btn" onclick="injectMessage('apex','I want to start a new website build')"><span class="qa-icon">🌐</span>New Website</button>
+          <button class="quick-btn" onclick="injectMessage('apex','Build me a landing page for my offer')"><span class="qa-icon">⚡</span>Landing Page</button>
+          <button class="quick-btn" onclick="injectMessage('apex','What\'s the status on my build?')"><span class="qa-icon">📊</span>Check Status</button>
+          <button class="quick-btn" onclick="injectMessage('apex','How much does a website cost?')"><span class="qa-icon">💰</span>Pricing</button>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Deliverables</div>
+          <div style="color:var(--muted);font-size:.78rem;line-height:1.6">No files yet. APEX will drop your deliverables here once the build ships.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ═══════ PANEL: NOVA ═══════ -->
+  <div class="bot-panel" id="panel-nova">
+    <div class="bot-header">
+      <div class="bot-avatar-lg is-cyan">🔄</div>
+      <div class="bot-header-info">
+        <div class="bot-header-name">NOVA</div>
+        <div class="bot-header-role">Automation Architect · AI Business Consulting</div>
+      </div>
+      <span class="bot-online is-cyan">Online</span>
+      <span class="header-chip">AI &amp; Automation</span>
+    </div>
+    <div class="chat-layout">
+      <div class="chat-main">
+        <div class="chat-messages" id="nova-messages"></div>
+        <div class="typing-indicator" id="nova-typing">
+          <div class="msg-avatar-sm">🔄</div>
+          <div class="typing-bubble is-cyan"><span></span><span></span><span></span></div>
+        </div>
+        <div class="chat-input-wrap">
+          <textarea class="chat-input is-cyan" id="nova-input" placeholder="Ask NOVA about automation, workflows, AI consulting..." rows="1" aria-label="Message NOVA"></textarea>
+          <button class="send-btn is-cyan" id="nova-send" onclick="sendMessage('nova')">Send</button>
+        </div>
+      </div>
+      <aside class="chat-side">
+        <div class="side-section">
+          <div class="side-title">Automation Status</div>
+          <div class="status-row"><span class="label">Lead Follow-Up</span><span class="badge badge-pending">Not Set Up</span></div>
+          <div class="status-row"><span class="label">Email Sequence</span><span class="badge badge-pending">Not Set Up</span></div>
+          <div class="status-row"><span class="label">CRM Sync</span><span class="badge badge-pending">—</span></div>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Quick Actions</div>
+          <button class="quick-btn is-cyan" onclick="injectMessage('nova','What can you automate for my business?')"><span class="qa-icon">🤖</span>What Can You Automate?</button>
+          <button class="quick-btn is-cyan" onclick="injectMessage('nova','Set up lead follow-up automation')"><span class="qa-icon">📩</span>Lead Follow-Up</button>
+          <button class="quick-btn is-cyan" onclick="injectMessage('nova','Build me an email sequence')"><span class="qa-icon">✉</span>Email Sequence</button>
+          <button class="quick-btn is-cyan" onclick="injectMessage('nova','Do an AI audit of my business operations')"><span class="qa-icon">📋</span>AI Business Audit</button>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Active Workflows</div>
+          <div style="color:var(--muted);font-size:.78rem;line-height:1.6">No workflows live yet. Tell NOVA what to automate and she'll build it.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ═══════ PANEL: ECHO ═══════ -->
+  <div class="bot-panel" id="panel-echo">
+    <div class="bot-header">
+      <div class="bot-avatar-lg">🔍</div>
+      <div class="bot-header-info">
+        <div class="bot-header-name">ECHO</div>
+        <div class="bot-header-role">Research Intelligence · Social Media Management</div>
+      </div>
+      <span class="bot-online">Online</span>
+      <span class="header-chip">Social &amp; Research</span>
+    </div>
+    <div class="chat-layout">
+      <div class="chat-main">
+        <div class="chat-messages" id="echo-messages"></div>
+        <div class="typing-indicator" id="echo-typing">
+          <div class="msg-avatar-sm">🔍</div>
+          <div class="typing-bubble"><span></span><span></span><span></span></div>
+        </div>
+        <div class="chat-input-wrap">
+          <textarea class="chat-input" id="echo-input" placeholder="Ask ECHO about social media, content strategy, competitors..." rows="1" aria-label="Message ECHO"></textarea>
+          <button class="send-btn" id="echo-send" onclick="sendMessage('echo')">Send</button>
+        </div>
+      </div>
+      <aside class="chat-side">
+        <div class="side-section">
+          <div class="side-title">Social Status</div>
+          <div class="status-row"><span class="label">Instagram</span><span class="badge badge-pending">Needs Setup</span></div>
+          <div class="status-row"><span class="label">TikTok</span><span class="badge badge-pending">Needs Setup</span></div>
+          <div class="status-row"><span class="label">Content Calendar</span><span class="badge badge-pending">Not Built</span></div>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Quick Actions</div>
+          <button class="quick-btn" onclick="injectMessage('echo','Build me a 30-day content calendar')"><span class="qa-icon">📅</span>Content Calendar</button>
+          <button class="quick-btn" onclick="injectMessage('echo','Research my top competitors on social media')"><span class="qa-icon">🔍</span>Competitor Analysis</button>
+          <button class="quick-btn" onclick="injectMessage('echo','What content strategy should I use?')"><span class="qa-icon">📈</span>Content Strategy</button>
+          <button class="quick-btn" onclick="injectMessage('echo','Write me a week of Instagram captions')"><span class="qa-icon">✍</span>Write Captions</button>
+        </div>
+        <div class="side-section">
+          <div class="side-title">Reports</div>
+          <div style="color:var(--muted);font-size:.78rem;line-height:1.6">ECHO's research reports and content calendars will appear here.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── AUTH GUARD ── */
+var AUTH=null;
+(function(){
+  try{
+    var raw=localStorage.getItem('gai_auth');
+    if(!raw){window.location.href='portal-signin.html';return;}
+    var a=JSON.parse(raw);
+    if(!a||!a.loggedIn){window.location.href='portal-signin.html';return;}
+    AUTH=a;
+    document.getElementById('user-name').textContent=a.name||(a.first||'User');
+    document.getElementById('user-email').textContent=a.email||'';
+    document.getElementById('user-plan').textContent=(a.plan||'Free')+' Plan';
+  }catch(e){window.location.href='portal-signin.html';}
+})();
+
+/* ── PANEL SWITCHING ── */
+var PANEL_TITLES={apex:'APEX — Web Design',nova:'NOVA — Automation',echo:'ECHO — Social Media'};
+
+function switchPanel(id,btn){
+  document.querySelectorAll('.bot-panel').forEach(function(p){p.classList.remove('active');});
+  var p=document.getElementById('panel-'+id);
+  if(p)p.classList.add('active');
+  document.querySelectorAll('.nav-item[data-panel]').forEach(function(el){el.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  document.getElementById('topbar-title').textContent=PANEL_TITLES[id]||id;
+  closeSidebar();
+  if(!GREETED[id]){GREETED[id]=true;setTimeout(function(){botGreet(id);},350);}
+}
+
+/* ── BOT DEFINITIONS ── */
+var BOTS={
+  apex:{
+    icon:'⚡',
+    greeting:function(n){return 'On it. Welcome to your workspace, '+(n||'friend')+'. I\'m APEX — I own all web design and development here. What are we shipping?';},
+    rules:[
+      {kw:['website','site','build','web','new site'],r:'Got it. To kick off the build I need three things: your brand colors, your target audience, and 3 sites you like the look of. Drop them here and I\'ll start wireframing.'},
+      {kw:['landing page','funnel','sales page','offer','convert'],r:'Landing pages are my specialty — I build them to convert. Tell me: what\'s the offer, who\'s the audience, and what\'s the primary CTA? I\'ll structure the whole thing.'},
+      {kw:['how long','timeline','when','deadline','days','weeks'],r:'Timeline: clean landing page is 3 days. Full multi-page site is 7–10 days. Complex custom build is 2–3 weeks. What\'s the scope and deadline?'},
+      {kw:['price','cost','how much','pricing','rate','charge'],r:'Pricing depends on scope. Check the Services page or email jaden@greenaidigital.com for a quote. Once you share the project brief I can give you an honest estimate.'},
+      {kw:['status','update','progress','revision','done'],r:'→ No active build on file yet — you haven\'t briefed me on a project. Drop the details and I\'ll spin it up immediately.'},
+      {kw:['seo','google','search','rank','meta'],r:'SEO is baked into every build. Semantic HTML, meta tags, schema, Core Web Vitals — all standard. What keywords are you targeting?'},
+      {kw:['mobile','responsive','phone','tablet'],r:'Every build I ship is mobile-first. No exceptions. If it doesn\'t look perfect on a 375px screen, it doesn\'t ship.'},
+      {kw:['ecommerce','shop','store','sell','product'],r:'E-commerce I can build on Shopify or custom. What\'s your product count and do you have a platform preference?'},
+      {kw:['portfolio','example','sample','past work','show me'],r:'→ The best example of my work is greenaidigital.com — I built it. For a full client portfolio deck, email jaden@greenaidigital.com.'},
+      {kw:['hello','hi','hey','what can','sup','yo'],r:'Hey. APEX here. I build websites, landing pages, and custom web apps for Nexus AI clients. Tell me what you need and I\'ll get it done. What are we working on?'},
+    ],
+    defaultReply:'Copy that. The more specific you are, the faster I can execute. What else do you need on this?'
+  },
+  nova:{
+    icon:'🔄',
+    greeting:function(n){return 'Hey, '+(n||'friend')+'! NOVA online. I build the systems that run your business on autopilot. What\'s consuming your time right now that shouldn\'t be?';},
+    rules:[
+      {kw:['automate','automation','workflow','system','pipeline','process'],r:'Actually — let me map this properly. Walk me through your current process step by step and I\'ll flag every single touchpoint that can be automated. Even rough notes help.'},
+      {kw:['lead','follow up','follow-up','prospect','crm','contact','inquiry'],r:'Wait — are your leads going cold right now? I can set up an automated follow-up that fires within 5 minutes of a new inquiry. What\'s your current lead source? (website form, Instagram DM, referral?)'},
+      {kw:['email','sequence','drip','newsletter','campaign','nurture'],r:'Email sequences are pure leverage. What\'s the goal — nurture, onboard, or upsell? And what email platform are you on? I\'ll build the copy framework and the automation logic.'},
+      {kw:['schedule','appointment','booking','calendar','remind'],r:'Appointment automation is a quick win. I can wire up reminders, confirmations, and no-show follow-ups. Are you using Calendly, Cal.com, or something else?'},
+      {kw:['audit','review','consulting','strategy','ai','artificial'],r:'Good call. An AI operations audit is the right starting point. Walk me through a typical work day — everything you do manually more than once a week. I\'ll tell you exactly what gets automated.'},
+      {kw:['integrate','connect','api','zapier','make','webhook','sync'],r:'Integrations are my zone. Which tools need to talk to each other? Drop the full list and I\'ll map the exact data flow. I work with Zapier, Make, native APIs — whatever\'s cleanest.'},
+      {kw:['social','post','schedule','content'],r:'Social posting automation is easy — I connect your calendar to a scheduler (Later, Buffer, or direct API) and it handles posting automatically. What platforms?'},
+      {kw:['cost','price','how much','pricing'],r:'Automation projects are priced by complexity. Simple trigger-action workflows start at $299. Multi-step custom pipelines vary. Email jaden@greenaidigital.com for a scoped quote.'},
+      {kw:['hello','hi','hey','what can','sup','yo'],r:'Hey! NOVA here. I build automation systems so you can stop doing repetitive work — lead follow-up, email sequences, CRM updates, scheduling. What do you want off your plate?'},
+    ],
+    defaultReply:'Interesting. I\'m already thinking about how to systematize that. Give me the specifics and I\'ll have a workflow blueprint ready for you.'
+  },
+  echo:{
+    icon:'🔍',
+    greeting:function(n){return 'ECHO here, '+(n||'friend')+'. Before I give you anything — what industry are you in, and which social platforms are you currently active on? I need the full context first.';},
+    rules:[
+      {kw:['content','post','caption','instagram','tiktok','facebook','reel','social'],r:'Good question. Based on what converts across most niches: 60% educational, 25% social proof, 15% direct offers. But I need your specific niche and audience to go further. What industry and who\'s your ideal customer?'},
+      {kw:['competitor','competition','analysis','research','spy','benchmark'],r:'Competitor analysis is where I live. Give me the handles or names of your top 3 competitors and I\'ll cross-reference their posting frequency, top content types, engagement benchmarks, and the gaps you can exploit.'},
+      {kw:['calendar','plan','schedule','30 day','monthly','weekly','content plan'],r:'I\'ll build a 30-day content calendar. I need: (1) your niche and main offer, (2) your brand voice — formal, casual, or raw, (3) your posting frequency goal, and (4) your target audience\'s single biggest pain point. Drop all four.'},
+      {kw:['strategy','plan','approach','grow','growth','direction'],r:'Strategy before tactics. What\'s your current follower count, average engagement rate, and primary goal — brand awareness, leads, or direct sales? Those three answers change everything about the strategy.'},
+      {kw:['engagement','reach','algorithm','viral','impressions','views'],r:'Engagement over reach — always. An audience of 500 engaged people will outperform 10K passive followers every time. The algorithm rewards saves and shares above everything. What platform are you most focused on?'},
+      {kw:['hashtag','tag','caption','write','copy','post text'],r:'Hashtag mix: niche-specific (under 100K), mid-range (100K–1M), broad (1M+) — about 5 per tier, 15 total max. Captions: hook in line 1, value in 2–4, CTA in last line. What\'s the post topic? I\'ll write an example.'},
+      {kw:['brand','voice','tone','personality','identity','feel'],r:'Brand voice is your most underrated social asset — audiences follow personalities, not logos. Give me 3 adjectives your brand should own and I\'ll write a style guide you can use for every post.'},
+      {kw:['ad','paid','boost','promote','meta ads','facebook ads'],r:'Paid amplifies what already works — if organic engagement is low, ads won\'t fix it. Tell me your current organic engagement rate and I\'ll tell you honestly whether you\'re ready to run paid.'},
+      {kw:['cost','price','how much','pricing','management fee'],r:'Social media management pricing: full management (content creation, posting, engagement, reporting) starts at $500/month. Email jaden@greenaidigital.com with your platform count and needs for a custom quote.'},
+      {kw:['hello','hi','hey','what can','sup','yo'],r:'ECHO here. I handle social media management and competitive intelligence. I don\'t give generic advice — I give you specific numbers and strategies. What do you need?'},
+    ],
+    defaultReply:'Let me dig into that properly. Vague briefs produce vague results — give me the specifics and I\'ll give you something you can actually use.'
+  }
+};
+
+/* ── CHAT ENGINE ── */
+var GREETED={apex:false,nova:false,echo:false};
+var IS_TYPING={apex:false,nova:false,echo:false};
+
+function getTime(){return new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
+
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function addMessage(botId,content,isUser){
+  var container=document.getElementById(botId+'-messages');
+  if(!container)return;
+  var bot=BOTS[botId];
+  var isCyan=botId==='nova';
+  var userInitial=AUTH&&AUTH.first?AUTH.first[0].toUpperCase():'U';
+  var div=document.createElement('div');
+  div.className='msg '+(isUser?'user':'bot')+(isCyan?' is-cyan':'');
+  div.innerHTML=[
+    '<div class="msg-avatar-sm">'+(isUser?userInitial:(bot?bot.icon:'?'))+'</div>',
+    '<div class="msg-body">',
+      '<div class="msg-bubble">'+escapeHtml(content)+'</div>',
+      '<div class="msg-time">'+getTime()+'</div>',
+    '</div>'
+  ].join('');
+  container.appendChild(div);
+  container.scrollTop=container.scrollHeight;
+}
+
+function botGreet(botId){
+  var bot=BOTS[botId];if(!bot)return;
+  var name=AUTH&&AUTH.first?AUTH.first:'friend';
+  showTyping(botId);
+  setTimeout(function(){hideTyping(botId);addMessage(botId,bot.greeting(name),false);},900);
+}
+
+function showTyping(botId){
+  IS_TYPING[botId]=true;
+  var el=document.getElementById(botId+'-typing');if(el)el.classList.add('show');
+  var c=document.getElementById(botId+'-messages');if(c)c.scrollTop=c.scrollHeight;
+  setBtnState(botId,true);
+}
+function hideTyping(botId){
+  IS_TYPING[botId]=false;
+  var el=document.getElementById(botId+'-typing');if(el)el.classList.remove('show');
+  setBtnState(botId,false);
+}
+function setBtnState(botId,disabled){var btn=document.getElementById(botId+'-send');if(btn)btn.disabled=disabled;}
+
+function getBotReply(botId,text){
+  var bot=BOTS[botId];if(!bot)return'Got it.';
+  var lower=text.toLowerCase();
+  for(var i=0;i<bot.rules.length;i++){
+    var rule=bot.rules[i];
+    for(var j=0;j<rule.kw.length;j++){if(lower.indexOf(rule.kw[j])!==-1)return rule.r;}
+  }
+  return bot.defaultReply;
+}
+
+function sendMessage(botId){
+  if(IS_TYPING[botId])return;
+  var input=document.getElementById(botId+'-input');if(!input)return;
+  var text=input.value.trim();if(!text)return;
+  addMessage(botId,text,true);
+  input.value='';autoResize(input);
+  var delay=750+Math.random()*1300;
+  showTyping(botId);
+  setTimeout(function(){hideTyping(botId);addMessage(botId,getBotReply(botId,text),false);},delay);
+}
+
+function injectMessage(botId,text){
+  if(IS_TYPING[botId])return;
+  var input=document.getElementById(botId+'-input');
+  if(input){input.value=text;input.focus();}
+  sendMessage(botId);
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+
+['apex','nova','echo'].forEach(function(id){
+  var input=document.getElementById(id+'-input');if(!input)return;
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage(id);}});
+  input.addEventListener('input',function(){autoResize(input);});
+});
+
+/* ── MOBILE SIDEBAR ── */
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+document.getElementById('menu-btn').addEventListener('click',function(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
+});
+document.getElementById('sidebar-overlay').addEventListener('click',closeSidebar);
+
+/* ── LOGOUT ── */
+function logout(){localStorage.removeItem('gai_auth');window.location.href='portal-signin.html';}
+
+/* ── TOAST ── */
+function showToast(msg,dur){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},dur||3200);}
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded',function(){
+  if(AUTH){
+    GREETED.apex=true;
+    setTimeout(function(){botGreet('apex');},500);
+    showToast('Welcome back, '+(AUTH.first||AUTH.name||'friend')+'. Your team is online.',3500);
+  }
+});
+</script>
+</body>
+</html>
