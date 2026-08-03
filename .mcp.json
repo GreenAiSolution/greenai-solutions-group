@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "greenai-solutions-group": {
+      "command": "node",
+      "args": ["mcp-server/server.mjs"]
+    }
+  }
+}
