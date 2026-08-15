@@ -501,7 +501,7 @@ const CARDS=[
     });
     ctx.textAlign='left';frame(ctx,W,H);
   }},
-  {name:'📈 Ad Campaign AI',stat:'4.8x average ROAS',
+  {name:'📈 Ad Campaign AI',stat:'Ad campaign management',
    fn(ctx,W,H){
     base(ctx,W,H);
     const pts=[.88,.76,.8,.63,.68,.52,.43,.36,.27,.19,.14,.09];
@@ -517,8 +517,8 @@ const CARDS=[
     pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(sx+i*pw,sy+p*sh,3.5,0,Math.PI*2);ctx.fillStyle='#00e676';ctx.fill();});
     ctx.fillStyle='rgba(0,230,118,0.12)';roundRect(ctx,W-96,26,80,38,8);ctx.fill();
     ctx.fillStyle='#00e676';ctx.font=`700 ${Math.round(W*.09)}px Orbitron,monospace`;
-    ctx.textAlign='center';ctx.fillText('4.8x',W-56,52);
-    ctx.font=`600 ${Math.round(W*.045)}px Inter`;ctx.fillStyle='rgba(0,230,118,0.55)';ctx.fillText('ROAS',W-56,65);
+    ctx.textAlign='center';ctx.fillText('ROAS',W-56,52);
+    ctx.font=`600 ${Math.round(W*.045)}px Inter`;ctx.fillStyle='rgba(0,230,118,0.55)';ctx.fillText('tracked',W-56,65);
     ctx.textAlign='left';frame(ctx,W,H);
   }},
   {name:'📊 Analytics & Reporting',stat:'Weekly AI reports',
