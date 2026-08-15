@@ -74,7 +74,7 @@ Triggered by webhook on form-fill on {{COMPANY_URL}}:
 >
 > Hi {first_name} — I'm {{AGENT_NAME}}, the AI SDR at {{COMPANY_NAME}}. Saw you filled out the form re: {form_topic}.
 >
-> Looks like {their_company} is hitting the same {pain} that {similar_company} brought to us last quarter (we cut their {metric} by {%} in 6 weeks — short write-up: {case_study_url}).
+> Looks like {their_company} is hitting the same {pain} that {similar_company} brought to us last quarter (we cut their {metric} by {percent} in 6 weeks — short write-up: {case_study_url}).
 >
 > Worth a 20-min call with our team? Any of these work:
 > - {slot_1}
