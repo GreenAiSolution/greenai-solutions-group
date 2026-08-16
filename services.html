@@ -42,7 +42,9 @@
     .agent__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .agent__img::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, #0c1a0e 4%, rgba(12,26,14,.55) 32%, transparent 62%);
+      /* Kept clear above 42% from the bottom so each robot's chest display —
+         the thing that shows what its job is — is not washed out. */
+      background: linear-gradient(to top, #0c1a0e 0%, #0c1a0e 22%, rgba(12,26,14,.66) 34%, transparent 42%);
     }
     .agent__tag {
       position: absolute; top: .7rem; left: .7rem; z-index: 2;
@@ -189,7 +191,7 @@
         <article class="agent reveal">
           <div class="agent__img">
             <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
-            <img src="agents/agent-sterling.jpg" alt="STERLING, an AI employee who handles inbound sales calls" width="640" height="854" loading="lazy" decoding="async"/>
+            <img src="agents/agent-sterling.svg" alt="STERLING, an AI employee robot equipped with a headset for inbound sales calls" width="640" height="854" loading="lazy" decoding="async"/>
           </div>
           <div class="agent__body">
             <div class="agent__name">STERLING</div>
@@ -201,7 +203,7 @@
         <article class="agent reveal reveal-delay-1">
           <div class="agent__img">
             <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
-            <img src="agents/agent-hunter.jpg" alt="HUNTER, an AI employee who makes outbound and follow-up calls" width="640" height="854" loading="lazy" decoding="async"/>
+            <img src="agents/agent-hunter.svg" alt="HUNTER, an AI employee robot equipped with a boom mic and antenna for outbound calls" width="640" height="854" loading="lazy" decoding="async"/>
           </div>
           <div class="agent__body">
             <div class="agent__name">HUNTER</div>
@@ -213,7 +215,7 @@
         <article class="agent reveal reveal-delay-2">
           <div class="agent__img">
             <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
-            <img src="agents/agent-maven.jpg" alt="MAVEN, an AI employee who handles front desk and customer questions" width="640" height="854" loading="lazy" decoding="async"/>
+            <img src="agents/agent-maven.svg" alt="MAVEN, an AI employee robot equipped with a reception headset for front-desk questions" width="640" height="854" loading="lazy" decoding="async"/>
           </div>
           <div class="agent__body">
             <div class="agent__name">MAVEN</div>
@@ -225,7 +227,7 @@
         <article class="agent reveal reveal-delay-3">
           <div class="agent__img">
             <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
-            <img src="agents/agent-ledger.jpg" alt="LEDGER, an AI employee who handles confirmations and reminders" width="640" height="854" loading="lazy" decoding="async"/>
+            <img src="agents/agent-ledger.svg" alt="LEDGER, an AI employee robot equipped with a precision visor for scheduling and ops" width="640" height="854" loading="lazy" decoding="async"/>
           </div>
           <div class="agent__body">
             <div class="agent__name">LEDGER</div>
@@ -236,7 +238,7 @@
       </div>
 
       <p style="text-align:center;font-size:.8rem;color:var(--gray-400);margin-top:1.1rem">
-        STERLING, HUNTER, MAVEN and LEDGER are AI voice agents, not people. The portraits give each one a face so your team knows who does what.
+        STERLING, HUNTER, MAVEN and LEDGER are AI voice agents. Each is drawn with the kit for its own job, so you can see at a glance who handles what.
       </p>
 
       <div class="callstrip reveal">
