@@ -27,100 +27,252 @@
   <meta name="twitter:image" content="https://greenaidigital.com/julia-case-study.jpg" />
 
   <style>
-    .t-feature {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 2.75rem;
-      align-items: center;
-    }
-    .t-feature__media {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,.28);
-      border: 1px solid rgba(76,175,110,.25);
-    }
-    .t-feature__media img { width: 100%; height: auto; display: block; }
-    .t-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(212,175,55,.12); color: #D4AF37;
-      border: 1px solid rgba(212,175,55,.35);
-      font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: .4rem .85rem; border-radius: 99px; margin-bottom: 1.1rem;
-    }
-    .t-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.45rem; line-height: 1.5; font-weight: 700;
-      margin: 1.1rem 0 1.25rem; position: relative;
-    }
-    .t-quote::before { content: "\201C"; color: #4caf6e; font-size: 2.4rem; line-height: 0; vertical-align: -0.35em; margin-right: .15rem; }
-    .t-author { display: flex; align-items: center; gap: .85rem; margin-top: .25rem; }
-    .t-author__dot { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg,#1a5c2a,#4caf6e); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
-    .t-author__name { font-weight: 700; }
-    .t-author__role { font-size: .85rem; color: #6b7280; }
-    .t-results { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .7rem; }
-    .t-results li { display: flex; gap: .65rem; align-items: flex-start; font-size: .98rem; }
-    .t-results .chk { color: #4caf6e; flex-shrink: 0; font-weight: 800; }
-    .t-next { text-align: center; max-width: 640px; margin: 0 auto; }
+    /* ============================================================
+       WORK — an immersive scroll. The page is a flight forward
+       through the things we have actually shipped.
 
-    /* --- Live product cards --- */
-    .feature-card .p-kicker {
-      font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: #4caf6e; margin: 0 0 .7rem;
-    }
-    .feature-card .p-link {
-      display: inline-flex; align-items: center; gap: .35rem;
-      margin-top: 1.1rem; font-weight: 600; font-size: .9rem;
-      color: var(--green-dark); text-decoration: none;
-      border-bottom: 1px solid rgba(26,92,42,.25); padding-bottom: 2px;
-    }
-    .feature-card .p-link:hover { color: #4caf6e; border-bottom-color: #4caf6e; }
+       Built with CSS 3D and one 2D canvas, deliberately: no WebGL
+       library, nothing to download, and it still runs on a five year
+       old phone in a van. Every effect is scroll-linked, so the
+       visitor is always the one driving.
+       ============================================================ */
 
-    /* --- KILN panel --- */
-    .kiln-panel {
-      background: linear-gradient(150deg,#07160c 0%,#0f2417 45%,#14351d 100%);
-      border: 1px solid rgba(212,175,55,.28);
-      border-radius: 22px; padding: 3rem 2.5rem;
-      box-shadow: 0 30px 70px rgba(0,0,0,.3);
+    :root {
+      --ink: #040a06;
+      --ink-2: #07130c;
+      --emer: #4caf6e;
+      --emer-hi: #7de3a4;
+      --gold: #D4AF37;
+      --paper: #eef4ef;
     }
-    .kiln-panel__head { max-width: 760px; }
-    .kiln-stats {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
-      margin: 2.5rem 0 2rem;
-      border-top: 1px solid rgba(255,255,255,.1);
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      padding: 2rem 0;
+
+    html { scroll-behavior: smooth; }
+    body.work { background: var(--ink); color: #fff; overflow-x: hidden; }
+
+    /* The nav on this page rides over deep space, so its light
+       "scrolled" state would blow a hole in the middle of the flight. */
+    body.work .nav.scrolled {
+      background: rgba(5, 14, 8, .72);
+      backdrop-filter: blur(18px) saturate(1.3);
+      -webkit-backdrop-filter: blur(18px) saturate(1.3);
+      box-shadow: 0 1px 0 rgba(76,175,110,.14);
     }
-    .kiln-stat__num {
+    body.work .nav.scrolled .nav__logo-name,
+    body.work .nav.scrolled .nav__logo-sub { color: #fff; }
+    body.work .nav.scrolled .nav__link { color: rgba(255,255,255,.82); }
+    body.work .nav.scrolled .nav__link:hover { color: #fff; background: rgba(255,255,255,.12); }
+    body.work .nav.scrolled .nav__hamburger span { background: #fff; }
+    body.work .nav__mobile { background: #07130c; box-shadow: 0 14px 24px rgba(0,0,0,.5); }
+    body.work .nav__mobile .nav__link { color: #fff; }
+    body.work .nav__mobile .nav__submenu a { color: rgba(255,255,255,.62); }
+
+    /* ---- the fixed depth field ---- */
+    #deep {
+      position: fixed; inset: 0; z-index: 0;
+      width: 100%; height: 100%; display: block;
+      background:
+        radial-gradient(120% 90% at 50% 12%, #10321b 0%, #071409 46%, #030805 100%);
+    }
+    .veil {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(80% 60% at 50% 50%, transparent 40%, rgba(3,8,5,.72) 100%);
+    }
+
+    .flight { position: relative; z-index: 2; }
+
+    /* ---- shared stage furniture ---- */
+    .stage { position: relative; }
+    .stage__pin {
+      position: sticky; top: 0; height: 100vh;
+      display: flex; flex-direction: column;   /* full-height sections must state this */
+      align-items: center; justify-content: center;
+      padding: 96px 24px 48px; text-align: center;
+    }
+    .kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .7rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--emer-hi); opacity: .85; margin-bottom: 1.1rem;
+    }
+    /* style.css colours headings dark for the light pages; on deep space
+       they have to be stated explicitly or they vanish into the background. */
+    body.work h1, body.work h2, body.work h3, body.work .huge { color: #fff; }
+    .huge {
       font-family: 'Playfair Display', serif; font-weight: 800;
-      font-size: clamp(2.2rem,5vw,3.1rem); line-height: 1; color: #D4AF37;
+      font-size: clamp(2.4rem, 7.2vw, 5.4rem); line-height: .98;
+      letter-spacing: -.02em; margin: 0;
+      text-shadow: 0 2px 40px rgba(0,0,0,.55);
     }
-    .kiln-stat__cap {
-      margin-top: .7rem; font-size: .88rem; line-height: 1.5;
-      color: rgba(255,255,255,.66); max-width: 15rem;
-    }
-    .kiln-actions { display: flex; flex-wrap: wrap; gap: .85rem; }
-    .btn-ghost-light {
-      background: transparent; color: #fff;
-      border: 1px solid rgba(255,255,255,.35);
-    }
-    .btn-ghost-light:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
-    .kiln-foot {
-      margin: 2rem 0 0; padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,.1);
-      font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.5); max-width: 760px;
+    .huge em { font-style: normal; color: var(--gold); }
+    .sub {
+      margin: 1.4rem auto 0; max-width: 46rem;
+      font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 1.7;
+      color: rgba(255,255,255,.68);
     }
 
-    @media (max-width: 860px) {
-      .t-feature { grid-template-columns: 1fr; gap: 1.75rem; }
-      .t-quote { font-size: 1.25rem; }
-      .kiln-panel { padding: 2.25rem 1.5rem; }
-      .kiln-stats { grid-template-columns: 1fr; gap: 1.75rem; padding: 1.75rem 0; }
-      .kiln-stat__cap { max-width: none; }
+    /* ---- 01 entry ---- */
+    .entry__cue {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .55rem;
+      font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(255,255,255,.42); font-weight: 700;
     }
+    .entry__cue i {
+      width: 1px; height: 46px; background: linear-gradient(to bottom, transparent, var(--emer));
+      display: block; animation: cue 2.2s ease-in-out infinite;
+    }
+    @keyframes cue { 0%,100% { opacity:.25; transform: scaleY(.6); } 50% { opacity:1; transform: scaleY(1); } }
+
+    /* ---- 02 client work ---- */
+    .julia {
+      display: grid; grid-template-columns: 1.02fr 1fr; gap: 3rem;
+      align-items: center; max-width: 1080px; width: 100%;
+      text-align: left;
+      transform-style: preserve-3d;
+    }
+    .julia__shot {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(76,175,110,.3);
+      box-shadow: 0 40px 90px rgba(0,0,0,.6);
+      will-change: transform;
+    }
+    .julia__shot img { width: 100%; height: auto; display: block; }
+    .julia h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem,3.6vw,2.9rem); margin: .3rem 0 .8rem; }
+    .quote {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.05rem,1.7vw,1.35rem);
+      line-height: 1.55; color: #fff; margin: 1.1rem 0 1rem;
+      padding-left: 1.1rem; border-left: 2px solid var(--emer);
+    }
+    .byline { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.6rem; }
+    .byline i {
+      width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+      background: linear-gradient(135deg, #1a5c2a, #4caf6e);
+      display: flex; align-items: center; justify-content: center;
+      font-style: normal; font-weight: 800; color: #fff;
+    }
+    .byline b { display: block; font-size: .95rem; }
+    .byline span { font-size: .82rem; color: rgba(255,255,255,.5); }
+
+    /* ---- 03 the ring of products ---- */
+    .ring__scene {
+      perspective: 1400px; width: 100%; height: 380px;
+      margin-top: 2.2rem;
+    }
+    .ring {
+      position: relative; width: 260px; height: 320px; margin: 0 auto;
+      transform-style: preserve-3d; will-change: transform;
+    }
+    .slab {
+      position: absolute; inset: 0;
+      border-radius: 18px; padding: 1.5rem 1.35rem;
+      background: linear-gradient(158deg, rgba(18,44,26,.96), rgba(6,16,10,.98));
+      border: 1px solid rgba(76,175,110,.32);
+      box-shadow: 0 26px 60px rgba(0,0,0,.55);
+      display: flex; flex-direction: column; text-align: left;
+      backface-visibility: hidden;
+    }
+    .slab__tag {
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: .58rem; letter-spacing: .17em; text-transform: uppercase;
+      color: var(--emer-hi); opacity: .9; margin-bottom: .7rem;
+    }
+    .slab h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 0 0 .6rem; line-height: 1.05; }
+    .slab p { font-size: .86rem; line-height: 1.55; color: rgba(255,255,255,.6); margin: 0; flex: 1; }
+    .slab a {
+      margin-top: 1rem; font-size: .8rem; font-weight: 700; color: var(--gold);
+      text-decoration: none; display: inline-flex; align-items: center; gap: .35rem;
+      border-bottom: 1px solid rgba(212,175,55,.35); padding-bottom: 2px; align-self: flex-start;
+    }
+    .slab a:hover { color: #f2dc8a; border-bottom-color: #f2dc8a; }
+
+    .ring__legend {
+      margin-top: 1.6rem; font-family: ui-monospace, Menlo, monospace;
+      font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+    }
+
+    /* ---- 04 kiln ---- */
+    .kiln { max-width: 980px; width: 100%; }
+    .kiln__nums {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem;
+      margin: 2.4rem 0 2rem; padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .kiln__n {
+      font-family: 'Playfair Display', serif; font-weight: 800; color: var(--gold);
+      font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1;
+    }
+    .kiln__c { margin-top: .7rem; font-size: .86rem; line-height: 1.5; color: rgba(255,255,255,.6); }
+    .kiln__acts { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center; }
+
+    /* ---- 05 landing ---- */
+    .land__card {
+      max-width: 760px; width: 100%;
+      background: linear-gradient(150deg, rgba(15,36,23,.9), rgba(26,92,42,.72));
+      border: 1px solid rgba(76,175,110,.34);
+      border-radius: 26px; padding: 3.2rem 2.2rem;
+      box-shadow: 0 40px 90px rgba(0,0,0,.5);
+    }
+
+    .btn-glow {
+      background: linear-gradient(135deg, #c9a12e, #e8c84a); color: #0a0a0a;
+      border: none; font-weight: 800;
+    }
+    .btn-glow:hover { filter: brightness(1.08); color: #0a0a0a; }
+    .btn-wire {
+      background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.38);
+    }
+    .btn-wire:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+    /* ---- reveal, driven by IntersectionObserver (works without rAF) ---- */
+    .rv { opacity: 0; transform: translate3d(0, 34px, 0); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1); }
+    .rv.in { opacity: 1; transform: none; }
+    .rv.d1 { transition-delay: .1s; } .rv.d2 { transition-delay: .2s; } .rv.d3 { transition-delay: .3s; }
+
+    /* ---- responsive ---- */
+    @media (max-width: 900px) {
+      .julia { grid-template-columns: 1fr; gap: 1.6rem; max-width: 520px; }
+      .julia__shot { order: -1; }
+      .ring__scene { height: 340px; perspective: 900px; }
+      .kiln__nums { grid-template-columns: 1fr; gap: 1.5rem; }
+      .stage__pin { padding: 88px 20px 40px; }
+    }
+
+    /* Anyone who asked the OS for less motion gets a plain, complete page.
+       The tall scroll runways are inline styles, so they need !important
+       here or the flattened page keeps 190vh of empty space per section. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .stage { height: auto !important; }
+      .stage__pin { position: relative; height: auto; min-height: 0; padding: 72px 24px; }
+      .ring__scene { perspective: none; height: auto; margin-top: 1.6rem; }
+      .ring { transform: none !important; width: 100%; max-width: 460px; height: auto; }
+      .slab {
+        position: relative; inset: auto; transform: none !important;
+        margin-bottom: 1rem; opacity: 1 !important; backface-visibility: visible;
+      }
+      .rv { opacity: 1; transform: none; transition: none; }
+      .entry__cue { display: none; }
+      #deep, .veil { display: none; }
+      body.work { background: #07130c; }
+    }
+
+    /* Without JS the slabs never get their ring positions, so they would
+       pile up on top of each other. Fall back to a plain stack. */
+    .nojs .stage { height: auto !important; }
+    .nojs .stage__pin { position: relative; height: auto; padding: 72px 24px; }
+    .nojs .ring__scene { perspective: none; height: auto; }
+    .nojs .ring { width: 100%; max-width: 460px; height: auto; transform: none; }
+    .nojs .slab { position: relative; inset: auto; margin-bottom: 1rem; }
+    .nojs .rv { opacity: 1; transform: none; }
   </style>
 </head>
-<body>
+<body class="work nojs">
+  <script>document.body.classList.remove('nojs');</script>
+  <a href="#entry" class="skip-link">Skip to main content</a>
+
+  <canvas id="deep" aria-hidden="true"></canvas>
+  <span class="veil" aria-hidden="true"></span>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -159,185 +311,146 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero" style="position:relative;overflow:hidden">
-    <div class="hero__scan" aria-hidden="true"></div>
-    <div class="hero__grain" aria-hidden="true"></div>
-    <div class="container" style="position:relative;z-index:1">
-      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Built &amp; Shipped</div>
-      <span class="section-label" style="color:var(--green-accent)">Work</span>
-      <h1>Everything Here<br/>Is Live. Click It.</h1>
-      <p>No mock-ups and no borrowed screenshots. A client site, eight products you can open in a new tab right now, and a compiler whose every number a stranger can check for themselves.</p>
-    </div>
-  </div>
+  <main class="flight">
 
-  <!-- ===== WEB DESIGN — JULIA'S PERFORMANCE LAB ===== -->
-  <section class="section" id="client-work" aria-labelledby="julia-heading">
-    <div class="container">
-      <div class="reveal" style="margin-bottom:1.75rem"><span class="section-label" style="color:var(--green-accent)">Client Work</span></div>
-      <div class="t-feature reveal">
-        <div class="t-feature__media">
-          <img src="julia-case-study.jpg" alt="GreenAI Solutions website and AI infrastructure built for Julia's Performance Lab, shown on mobile with the brand crest." width="1024" height="1024" loading="lazy" decoding="async" />
+    <!-- ============ 01 · ENTRY ============ -->
+    <section class="stage" id="entry" style="height:190vh" aria-labelledby="entry-h">
+      <div class="stage__pin">
+        <p class="kicker rv">GreenAI · Built &amp; Shipped</p>
+        <h1 class="huge rv d1" id="entry-h">Everything Here<br/>Is <em>Live</em>. Click It.</h1>
+        <p class="sub rv d2">No mock-ups and no borrowed screenshots. A client site, eight products you can open in a new tab right now, and a compiler whose every number a stranger can check for themselves.</p>
+        <div class="entry__cue" aria-hidden="true"><i></i>Scroll</div>
+      </div>
+    </section>
+
+    <!-- ============ 02 · CLIENT WORK ============ -->
+    <section class="stage" id="client-work" style="height:230vh" aria-labelledby="julia-h">
+      <div class="stage__pin">
+        <div class="julia">
+          <div class="julia__shot rv" data-tilt>
+            <img src="julia-case-study.jpg" alt="The website and digital infrastructure GreenAI Solutions built for Julia's Performance Lab" width="1024" height="1024" loading="lazy" decoding="async"/>
+          </div>
+          <div>
+            <p class="kicker rv" style="margin-bottom:.7rem">Client Work · Our First Build</p>
+            <h2 class="rv d1" id="julia-h">Julia's Performance Lab</h2>
+            <p class="sub rv d1" style="margin:0;max-width:none;font-size:1rem">A complete digital foundation — a custom, high-performance website plus the infrastructure behind it.</p>
+            <blockquote class="quote rv d2">Working with GreenAI completely changed how my business shows up online. They built me a website I'm genuinely proud of — fast, clean, and exactly the energy of my brand. It finally feels real.</blockquote>
+            <div class="byline rv d2">
+              <i>J</i>
+              <div><b>Julia</b><span>Founder — Julia's Performance Lab</span></div>
+            </div>
+            <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:.8rem">
+              <a href="https://performancelab.fitness" class="btn btn-glow" target="_blank" rel="noopener">Visit performancelab.fitness ↗</a>
+              <a href="contact.html" class="btn btn-wire">Start Your Project</a>
+            </div>
+          </div>
         </div>
-        <div class="t-feature__content">
-          <span class="t-badge">★ Featured · Our First Client</span>
-          <h2 id="julia-heading" style="margin-bottom:.5rem">Julia's Performance Lab</h2>
-          <div class="section-divider section-divider--left"></div>
-          <p style="color:#4b5563">Our very first build. We gave Julia's Performance Lab a complete digital foundation — a custom, high-performance website plus the AI and digital infrastructure to help athletes unlock peak human potential.</p>
+      </div>
+    </section>
 
-          <blockquote class="t-quote">Working with GreenAI completely changed how my business shows up online. They built me a website I'm genuinely proud of — fast, clean, and exactly the energy of my brand. It finally feels real.</blockquote>
+    <!-- ============ 03 · THE FLEET ============ -->
+    <section class="stage" id="products" style="height:460vh" aria-labelledby="fleet-h">
+      <div class="stage__pin">
+        <p class="kicker rv">Live Products</p>
+        <h2 class="huge rv d1" id="fleet-h" style="font-size:clamp(2rem,5.2vw,3.6rem)">Eight Built.<br/>Eight <em>Online</em>.</h2>
 
-          <div class="t-author">
-            <div class="t-author__dot" aria-hidden="true">J</div>
+        <div class="ring__scene">
+          <div class="ring" id="ring">
+            <article class="slab">
+              <p class="slab__tag">Construction</p><h3>Bidwell</h3>
+              <p>An estimating desk for contractors — takes a set of plans and turns it into a priced bid.</p>
+              <a href="https://bidwell-ivory.vercel.app" target="_blank" rel="noopener">Open Bidwell ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Construction</p><h3>BINDER</h3>
+              <p>A watchdog for subcontractor insurance — warns before a certificate lapses.</p>
+              <a href="https://binder-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open BINDER ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Home Care</p><h3>RELAY</h3>
+              <p>Hiring and shift-fill for home-care agencies — same-day cover for open shifts.</p>
+              <a href="https://greenai-relay.vercel.app" target="_blank" rel="noopener">Open RELAY ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">AI Visibility</p><h3>ASKED</h3>
+              <p>Reads a business the way an AI assistant does, and scores how ready it is to be answered about.</p>
+              <a href="https://asked-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open ASKED ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Agent Commerce</p><h3>MANDATE</h3>
+              <p>A know-your-agent trust layer — verifies which automated buyer is which before money moves.</p>
+              <a href="https://greenai-mandate.vercel.app" target="_blank" rel="noopener">Open MANDATE ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Consumer</p><h3>WICK</h3>
+              <p>A household almanac on subscription — what a home needs doing, and when.</p>
+              <a href="https://greenai-wick.vercel.app" target="_blank" rel="noopener">Open WICK ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Staffing</p><h3>PHX Growth Staff</h3>
+              <p>The agentic staffing desk — posts, screening and scheduling handled by software.</p>
+              <a href="https://staffbell.vercel.app" target="_blank" rel="noopener">Open Staff ↗</a>
+            </article>
+            <article class="slab">
+              <p class="slab__tag">Small Business</p><h3>PHX Growth Solo</h3>
+              <p>The one-person version of the growth stack, priced for an operator running it all alone.</p>
+              <a href="https://phxgrowth-solo.vercel.app" target="_blank" rel="noopener">Open Solo ↗</a>
+            </article>
+          </div>
+        </div>
+
+        <p class="ring__legend"><span id="ringPos">01</span> / 08 &nbsp;·&nbsp; keep scrolling</p>
+      </div>
+    </section>
+
+    <!-- ============ 04 · KILN ============ -->
+    <section class="stage" id="engineering" style="height:240vh" aria-labelledby="kiln-h">
+      <div class="stage__pin">
+        <div class="kiln">
+          <p class="kicker rv">Open Source · Independently Verifiable</p>
+          <h2 class="huge rv d1" id="kiln-h" style="font-size:clamp(2.4rem,6vw,4.2rem)">KILN</h2>
+          <p class="sub rv d1">Most agencies ask you to take their word for it. This is the opposite: a tensor compiler we wrote from scratch that generates its own machine code — published, MIT-licensed, and reproducible from a fresh clone in about two minutes.</p>
+
+          <div class="kiln__nums rv d2">
             <div>
-              <div class="t-author__name">Julia</div>
-              <div class="t-author__role">Founder — Julia's Performance Lab</div>
+              <div class="kiln__n"><span class="count" data-to="491">0</span><span style="opacity:.45">/491</span></div>
+              <p class="kiln__c">instructions byte-identical to Apple's own assembler</p>
+            </div>
+            <div>
+              <div class="kiln__n"><span class="count" data-to="97.6" data-dec="1">0</span><span style="font-size:.55em">%</span></div>
+              <p class="kiln__c">of the hardware speed ceiling, on a benchmark it measures itself</p>
+            </div>
+            <div>
+              <div class="kiln__n"><span class="count" data-to="2.9" data-dec="1">0</span><span style="font-size:.55em">×</span></div>
+              <p class="kiln__c">median speed-up against numpy across the kernel set</p>
             </div>
           </div>
 
-          <ul class="t-results">
-            <li><span class="chk">✓</span> <span><strong>Custom website</strong> — a professional, mobile-first site that matches her brand and converts visitors into clients.</span></li>
-            <li><span class="chk">✓</span> <span><strong>AI &amp; digital infrastructure</strong> — modern systems built to scale with her growth.</span></li>
-            <li><span class="chk">✓</span> <span><strong>A real online presence</strong> — from idea to launch, fully done-for-her.</span></li>
-          </ul>
+          <div class="kiln__acts rv d3">
+            <a href="https://greenaisolution.github.io/kiln/" class="btn btn-glow" target="_blank" rel="noopener">Read the write-up</a>
+            <a href="https://github.com/GreenAiSolution/kiln" class="btn btn-wire" target="_blank" rel="noopener">View the source</a>
+          </div>
+          <p class="sub rv d3" style="font-size:.86rem;margin-top:1.8rem;color:rgba(255,255,255,.42)">Apple's own Accelerate library still beats it at large matrix multiply, using an on-die coprocessor no public instruction reaches. The write-up says so plainly, which is rather the point.</p>
+        </div>
+      </div>
+    </section>
 
-          <div style="display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.75rem">
-            <a href="https://performancelab.fitness" class="btn btn-primary" target="_blank" rel="noopener">Visit performancelab.fitness ↗</a>
-            <a href="contact.html" class="btn btn-secondary">Start Your Project →</a>
+    <!-- ============ 05 · LANDING ============ -->
+    <section class="stage" id="next" style="height:140vh" aria-labelledby="next-h">
+      <div class="stage__pin">
+        <div class="land__card rv">
+          <p class="kicker">Your Build Next</p>
+          <h2 class="huge" id="next-h" style="font-size:clamp(1.9rem,4.4vw,3rem)">Let's Build You<br/>Something Real.</h2>
+          <p class="sub">Book a free strategy call and we'll map out what to build, in what order, and what it costs — before you commit to anything.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;margin-top:2rem">
+            <a href="contact.html" class="btn btn-glow btn-lg">Book a Free Strategy Call</a>
+            <a href="services.html" class="btn btn-wire btn-lg">See Services</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== LIVE PRODUCTS ===== -->
-  <section class="section" id="products" style="padding-top:0" aria-labelledby="products-heading">
-    <div class="container">
-      <div class="reveal" style="text-align:center;max-width:660px;margin:0 auto 2.5rem">
-        <span class="section-label" style="color:var(--green-accent)">Live Products</span>
-        <h2 id="products-heading" style="margin:.4rem 0 .75rem">Eight Things We Built.<br/>All Eight Are Online.</h2>
-        <p style="color:#4b5563">Each one is a working product, designed and shipped in-house. Open any of them — they load.</p>
-      </div>
-
-      <div class="features-grid">
-
-        <article class="feature-card reveal">
-          <h3 style="margin-bottom:.4rem">Bidwell</h3>
-          <p class="p-kicker">Construction</p>
-          <p>An estimating desk for contractors — takes a set of plans and turns it into a priced bid.</p>
-          <a class="p-link" href="https://bidwell-ivory.vercel.app" target="_blank" rel="noopener">Open Bidwell <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal reveal-delay-1">
-          <h3 style="margin-bottom:.4rem">BINDER</h3>
-          <p class="p-kicker">Construction</p>
-          <p>A watchdog for subcontractor insurance — tracks who is covered and warns before a certificate lapses.</p>
-          <a class="p-link" href="https://binder-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open BINDER <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal reveal-delay-2">
-          <h3 style="margin-bottom:.4rem">RELAY</h3>
-          <p class="p-kicker">Home Care</p>
-          <p>A hiring and shift-fill desk for home-care agencies — caregiver pipeline plus same-day cover for open shifts.</p>
-          <a class="p-link" href="https://greenai-relay.vercel.app" target="_blank" rel="noopener">Open RELAY <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal">
-          <h3 style="margin-bottom:.4rem">ASKED</h3>
-          <p class="p-kicker">Search &amp; AI Visibility</p>
-          <p>Scans a business the way an AI assistant reads it, and scores how ready it is to be answered about.</p>
-          <a class="p-link" href="https://asked-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open ASKED <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal reveal-delay-1">
-          <h3 style="margin-bottom:.4rem">MANDATE</h3>
-          <p class="p-kicker">Agent Commerce</p>
-          <p>A know-your-agent trust layer — verifies which automated buyer is which before money moves.</p>
-          <a class="p-link" href="https://greenai-mandate.vercel.app" target="_blank" rel="noopener">Open MANDATE <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal reveal-delay-2">
-          <h3 style="margin-bottom:.4rem">WICK</h3>
-          <p class="p-kicker">Consumer</p>
-          <p>A household almanac on subscription — the running list of what a home needs doing, and when.</p>
-          <a class="p-link" href="https://greenai-wick.vercel.app" target="_blank" rel="noopener">Open WICK <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal">
-          <h3 style="margin-bottom:.4rem">PHX Growth Staff</h3>
-          <p class="p-kicker">Staffing</p>
-          <p>The agentic staffing desk — job posts, screening and scheduling handled by software rather than a coordinator.</p>
-          <a class="p-link" href="https://staffbell.vercel.app" target="_blank" rel="noopener">Open PHX Growth Staff <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="feature-card reveal reveal-delay-1">
-          <h3 style="margin-bottom:.4rem">PHX Growth Solo</h3>
-          <p class="p-kicker">Small Business</p>
-          <p>The one-person version of the growth stack, priced for an operator running the whole business alone.</p>
-          <a class="p-link" href="https://phxgrowth-solo.vercel.app" target="_blank" rel="noopener">Open PHX Growth Solo <span aria-hidden="true">↗</span></a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ENGINEERING — KILN ===== -->
-  <section class="section" id="engineering" style="padding-top:0" aria-labelledby="kiln-heading">
-    <div class="container">
-      <div class="reveal kiln-panel">
-        <div class="kiln-panel__head">
-          <span class="t-badge" style="margin-bottom:.9rem">◆ Open Source · Independently Verifiable</span>
-          <h2 id="kiln-heading" style="margin:0 0 .6rem;color:#fff">KILN</h2>
-          <p style="color:rgba(255,255,255,.74);max-width:640px;margin:0">
-            Most agencies ask you to take their word for it. This is the opposite: a tensor compiler we wrote
-            from scratch that generates its own machine code — published, MIT-licensed, and reproducible from a
-            fresh clone in about two minutes. Every figure below is one a stranger can check.
-          </p>
-        </div>
-
-        <div class="kiln-stats">
-          <div class="kiln-stat">
-            <div class="kiln-stat__num">491<span style="opacity:.5">/491</span></div>
-            <div class="kiln-stat__cap">instructions byte-identical to Apple's own assembler</div>
-          </div>
-          <div class="kiln-stat">
-            <div class="kiln-stat__num">97.6<span style="font-size:.55em">%</span></div>
-            <div class="kiln-stat__cap">of the hardware speed ceiling, on a benchmark it measures itself</div>
-          </div>
-          <div class="kiln-stat">
-            <div class="kiln-stat__num">2.9<span style="font-size:.55em">×</span></div>
-            <div class="kiln-stat__cap">median speed-up against numpy across the kernel set</div>
-          </div>
-        </div>
-
-        <div class="kiln-actions">
-          <a href="https://greenaisolution.github.io/kiln/" class="btn btn-white" target="_blank" rel="noopener">Read the write-up</a>
-          <a href="https://github.com/GreenAiSolution/kiln" class="btn btn-ghost-light" target="_blank" rel="noopener">View the source</a>
-        </div>
-
-        <p class="kiln-foot">
-          Why a compiler is on a marketing site: it is the clearest evidence we can offer that the work is done
-          properly rather than described well. Apple's own Accelerate library still beats it at large matrix
-          multiply, using an on-die coprocessor no public instruction reaches — KILN's write-up says so plainly,
-          which is rather the point.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA — BE NEXT ===== -->
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <div class="reveal" style="background:linear-gradient(135deg,#0f2417,#1a5c2a);border:1px solid rgba(76,175,110,.3);border-radius:20px;padding:3rem 2rem;text-align:center">
-        <div class="t-next">
-          <span class="section-label" style="color:var(--green-accent)">Your Story Next</span>
-          <h2 style="margin:.5rem 0 1rem">Want to be our next success story?</h2>
-          <p style="color:rgba(255,255,255,.72);margin-bottom:1.75rem">We're taking on a limited number of new businesses. Let's build you a website and digital presence you're proud of — book a free strategy call and we'll map it out.</p>
-          <a href="contact.html" class="btn btn-white btn-lg">Book a Free Strategy Call</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
@@ -407,5 +520,168 @@
   </footer>
 
   <script src="script.js?v=8"></script>
+  <script>
+  (function () {
+    'use strict';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- reveals ----------
+       IntersectionObserver, not rAF: it still fires when the tab is
+       not painting, so the page is never left blank. */
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+
+    /* ---------- counters ---------- */
+    function runCount(el) {
+      var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '0', 10), t0 = null;
+      if (reduce) { el.textContent = to.toFixed(dec); return; }
+      function tick(t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min((t - t0) / 1500, 1), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = (to * e).toFixed(dec);
+        if (k < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); } });
+    }, { threshold: .6 });
+    document.querySelectorAll('.count').forEach(function (el) { cio.observe(el); });
+
+    /* ---------- the ring of products ----------
+       Eight slabs on a cylinder. Scroll through the section rotates it,
+       so the visitor is driving; nothing moves on its own. */
+    var ring = document.getElementById('ring');
+    var slabs = ring ? Array.prototype.slice.call(ring.children) : [];
+    var posEl = document.getElementById('ringPos');
+    var N = slabs.length, STEP = 360 / N, RADIUS = 430;
+
+    function layoutRing() {
+      RADIUS = window.innerWidth < 900 ? 300 : 430;
+      slabs.forEach(function (s, i) {
+        s.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
+      });
+    }
+    if (ring && !reduce) { layoutRing(); window.addEventListener('resize', layoutRing); }
+
+    var stage = document.getElementById('products');
+    var lastIdx = -1;
+
+    function driveRing() {
+      if (!ring || reduce || !stage) return;
+      var r = stage.getBoundingClientRect();
+      var span = r.height - window.innerHeight;
+      var p = span > 0 ? Math.min(Math.max(-r.top / span, 0), 1) : 0;
+      // hold a beat at each face rather than sweeping continuously —
+      // the pause is what makes it feel like it is landing on something
+      var turns = p * (N - 1);
+      ring.style.transform = 'translateZ(-' + RADIUS + 'px) rotateY(' + (-turns * STEP) + 'deg)';
+      var idx = Math.round(turns);
+      if (idx !== lastIdx && posEl) {
+        lastIdx = idx;
+        posEl.textContent = ('0' + (idx + 1)).slice(-2);
+      }
+      slabs.forEach(function (s, i) {
+        var d = Math.abs(((i - turns) % N + N) % N);
+        d = Math.min(d, N - d);
+        s.style.opacity = String(Math.max(0.12, 1 - d * 0.42));
+      });
+    }
+
+    /* ---------- parallax on the case-study shot ---------- */
+    var tilt = document.querySelector('[data-tilt]');
+    function driveTilt() {
+      if (!tilt || reduce) return;
+      var r = tilt.getBoundingClientRect();
+      var c = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      tilt.style.transform = 'perspective(1200px) rotateY(' + (c * -7) + 'deg) rotateX(' + (c * 4) + 'deg) translateZ(0)';
+    }
+
+    /* ---------- the depth field ----------
+       A 3D star + grid field projected by hand onto a 2D canvas.
+       No library, no download, and it degrades to a gradient if the
+       context is refused. */
+    var cv = document.getElementById('deep'), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
+    var stars = [], DEPTH = 900, dpr = 1, w = 0, h = 0, flown = 0, target = 0;
+
+    function seed() {
+      stars.length = 0;
+      var n = window.innerWidth < 900 ? 130 : 260;
+      for (var i = 0; i < n; i++) {
+        stars.push({
+          x: (Math.random() - .5) * 1800,
+          y: (Math.random() - .5) * 1200,
+          z: Math.random() * DEPTH,
+          g: Math.random() < .16
+        });
+      }
+    }
+    function sizeCanvas() {
+      if (!cv) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = cv.clientWidth; h = cv.clientHeight;
+      cv.width = w * dpr; cv.height = h * dpr;
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function paint() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
+      var cx = w / 2, cy = h / 2, F = 520;
+      // horizon grid
+      ctx.lineWidth = 1;
+      for (var g = 1; g <= 14; g++) {
+        var gz = (g * 90 - (flown % 90));
+        if (gz <= 1) continue;
+        var s = F / gz, yy = cy + 240 * s;
+        if (yy > h + 40 || yy < cy) continue;
+        ctx.strokeStyle = 'rgba(76,175,110,' + (0.14 * (1 - gz / (14 * 90))).toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(w, yy); ctx.stroke();
+      }
+      // stars
+      for (var i = 0; i < stars.length; i++) {
+        var st = stars[i], z = st.z - (flown % DEPTH);
+        if (z <= 1) z += DEPTH;
+        var k = F / z, sx = cx + st.x * k, sy = cy + st.y * k;
+        if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
+        var a = Math.min(1, (1 - z / DEPTH) * 1.5), r = Math.max(.4, 2.4 * k);
+        ctx.fillStyle = st.g
+          ? 'rgba(212,175,55,' + (a * .85).toFixed(3) + ')'
+          : 'rgba(150,240,185,' + (a * .7).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(sx, sy, r, 0, 6.2832); ctx.fill();
+      }
+    }
+
+    /* Scroll sets a target depth; the loop eases toward it, which is what
+       makes the field feel like it has weight instead of snapping. */
+    function onScroll() {
+      target = window.scrollY * 0.55;
+      driveRing();
+      driveTilt();
+    }
+
+    function loop() {
+      flown += (target - flown) * 0.06;
+      paint();
+      requestAnimationFrame(loop);
+    }
+
+    if (cv && ctx && !reduce) {
+      sizeCanvas(); seed(); onScroll();
+      paint();                       // paint once synchronously, so a tab that
+                                     // never runs rAF still shows the field
+      window.addEventListener('resize', function () { sizeCanvas(); seed(); paint(); }, { passive: true });
+      requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* test handle: drive a frame by hand when rAF is parked */
+    window.__workStep = function (n) { flown = n || target; paint(); driveRing(); driveTilt(); };
+  })();
+  </script>
 </body>
 </html>
