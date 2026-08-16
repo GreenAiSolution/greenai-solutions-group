@@ -2744,7 +2744,24 @@ p { color: var(--gray-600); }
   background: transparent; border: none; box-shadow: none; min-width: 0;
   padding: 0 0 .25rem 1.25rem;
 }
-.nav__mobile .nav__submenu a { color: rgba(255,255,255,.7); padding: .45rem .25rem; }
+.nav__mobile .nav__submenu a { color: var(--gray-600); padding: .45rem .25rem; }
+
+/* The open mobile panel needs its own solid ground — it hangs below the nav
+   bar, so it inherits no background and the page shows straight through it.
+   Its links are dark to match, including the gold Services submenu, whose
+   desktop styling assumes a near-black dropdown. */
+.nav__mobile {
+  background: var(--white);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  box-shadow: 0 14px 24px rgba(0,0,0,.08);
+}
+.nav__mobile .nav__link { color: var(--gray-800); }
+.nav__mobile .nav__dropdown--gold .nav__submenu a { color: var(--gray-600); }
+.nav__mobile .nav__dropdown--gold .nav__submenu a[href="greenfit-ai-creator.html"] { color: #9a7b1f; }
+.nav__mobile .nav__submenu a:hover { background: var(--green-pale); color: var(--green-dark); }
 
 /* ============================================================
    Gold luxury dropdown (Services) + Contact dropdown icons

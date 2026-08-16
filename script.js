@@ -5,21 +5,39 @@
 (function () {
   'use strict';
 
-  /* ---- NAVBAR ---- */
-  const navbar = document.getElementById('navbar');
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+  /* ---- NAVBAR ----
+     Two generations of nav markup are live: the older pages use
+     #navbar / #hamburger / #navLinks, the main pages use
+     #main-nav / .nav__hamburger / .nav__mobile. Match either. */
+  const navbar = document.getElementById('navbar') || document.getElementById('main-nav');
+  const hamburger = document.getElementById('hamburger') || document.querySelector('.nav__hamburger');
+  const navLinks = document.getElementById('navLinks') || document.querySelector('.nav__mobile');
 
   if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
+    const onScroll = () => {
+      const scrolled = window.scrollY > 40;
+      navbar.classList.toggle('scrolled', scrolled);
+      // The solid bar is light, so the white "transparent" text has to go with it
+      // or the links turn invisible against their own background.
+      if (navbar.dataset.transparent === 'true') {
+        navbar.classList.toggle('transparent', !scrolled);
+      }
+    };
+    if (navbar.classList.contains('transparent')) navbar.dataset.transparent = 'true';
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
       hamburger.setAttribute('aria-expanded', open);
+      // An open menu needs a solid bar behind it even at the top of the page,
+      // otherwise the panel floats over whatever it is covering.
+      if (navbar && navbar.dataset.transparent === 'true') {
+        navbar.classList.toggle('scrolled', open || window.scrollY > 40);
+        navbar.classList.toggle('transparent', !open && window.scrollY <= 40);
+      }
       hamburger.querySelectorAll('span').forEach((s, i) => {
         s.style.transform = open
           ? (i === 0 ? 'translateY(7px) rotate(45deg)' : i === 1 ? 'scaleX(0)' : 'translateY(-7px) rotate(-45deg)')
