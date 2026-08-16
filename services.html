@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services &amp; Pricing — GreenAI Solutions Team</title>
-  <meta name="description" content="Explore GreenAI's services: social media management, AI business consulting, custom web design, and the GreenFit AI Creator platform. Plans starting at $500." />
+  <meta name="description" content="AI employees that answer your phones and make follow-up calls from $497/mo, AI ad creation from $697/mo, AI business consulting, and custom web design for Arizona businesses." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -25,6 +25,102 @@
   <meta name="twitter:title" content="Services & Pricing — GreenAI Solutions Team" />
   <meta name="twitter:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses. Plans starting at $500." />
   <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
+  <style>
+    /* ===== AI EMPLOYEES — agent roster ===== */
+    .roster {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+      margin: 2.5rem 0 0;
+    }
+    .agent {
+      position: relative; border-radius: 18px; overflow: hidden;
+      background: #0c1a0e; border: 1px solid rgba(76,175,110,.22);
+      box-shadow: 0 18px 44px rgba(0,0,0,.22);
+      transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s ease, border-color .35s ease;
+    }
+    .agent:hover { transform: translateY(-6px); box-shadow: 0 28px 60px rgba(0,0,0,.34); border-color: rgba(212,175,55,.45); }
+    .agent__img { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+    .agent__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .agent__img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, #0c1a0e 4%, rgba(12,26,14,.55) 32%, transparent 62%);
+    }
+    .agent__tag {
+      position: absolute; top: .7rem; left: .7rem; z-index: 2;
+      display: inline-flex; align-items: center; gap: .35rem;
+      background: rgba(7,16,9,.82); backdrop-filter: blur(8px);
+      border: 1px solid rgba(76,175,110,.45); color: #6ee29a;
+      font-size: .58rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      padding: .3rem .6rem; border-radius: 99px;
+    }
+    .agent__pulse { width: 5px; height: 5px; border-radius: 50%; background: #4caf6e; box-shadow: 0 0 0 0 rgba(76,175,110,.7); animation: agentPulse 2.4s infinite; }
+    @keyframes agentPulse { 70% { box-shadow: 0 0 0 7px rgba(76,175,110,0); } 100% { box-shadow: 0 0 0 0 rgba(76,175,110,0); } }
+    .agent__body { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.05rem 1.15rem; z-index: 2; }
+    .agent__name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: .01em; line-height: 1; }
+    .agent__role { font-size: .66rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #D4AF37; margin-top: .4rem; }
+    .agent__line { font-size: .84rem; line-height: 1.5; color: rgba(255,255,255,.68); margin-top: .6rem; }
+
+    /* ===== Call strip ===== */
+    .callstrip {
+      margin-top: 2.5rem; background: #07100a; border: 1px solid rgba(76,175,110,.22);
+      border-radius: 18px; padding: 1.5rem 1.6rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .callstrip__head { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem; }
+    .callstrip__head span { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: #6ee29a; font-weight: 700; }
+    .callrow { display: grid; grid-template-columns: 62px 1fr; gap: .9rem; padding: .5rem 0; align-items: start; border-top: 1px solid rgba(255,255,255,.06); }
+    .callrow:first-of-type { border-top: none; }
+    .callrow__t { font-size: .7rem; color: rgba(255,255,255,.34); padding-top: .15rem; }
+    .callrow__b { font-size: .84rem; line-height: 1.5; color: rgba(255,255,255,.8); }
+    .callrow__b b { color: #6ee29a; font-weight: 700; }
+
+    /* ===== Comparison table ===== */
+    .vs { width: 100%; border-collapse: collapse; margin-top: 2.5rem; font-size: .9rem; }
+    .vs th, .vs td { padding: .95rem 1rem; text-align: left; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+    .vs thead th { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gray-400); font-weight: 800; border-bottom: 2px solid var(--gray-200); }
+    .vs .vs-us { background: #f0faf2; }
+    .vs thead .vs-us { color: var(--green-dark); background: #e3f5e8; border-bottom-color: #4caf6e; }
+    .vs tbody th { font-weight: 600; color: var(--gray-800); font-size: .86rem; }
+    .vs td { color: var(--gray-500); }
+    .vs td.vs-us { color: var(--green-dark); font-weight: 600; }
+    .vs-note { font-size: .76rem; color: var(--gray-400); margin-top: .9rem; line-height: 1.6; }
+
+    /* ===== AI AD CREATION — variant wall ===== */
+    .adwall { position: relative; border-radius: 22px; overflow: hidden; background: #07090e; border: 1px solid rgba(212,175,55,.22); padding: 2.5rem 0; }
+    .adtrack { display: flex; gap: .85rem; width: max-content; animation: adScroll 42s linear infinite; }
+    .adtrack--r { animation-direction: reverse; margin-top: .85rem; }
+    .adwall:hover .adtrack { animation-play-state: paused; }
+    @keyframes adScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .adcell {
+      width: 132px; height: 176px; flex-shrink: 0; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: .6rem;
+    }
+    .adcell span { font-size: .6rem; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.9); text-transform: uppercase; line-height: 1.3; position: relative; z-index: 2; }
+    .adcell::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.75), transparent 60%); }
+    .adwall__fade { position: absolute; top: 0; bottom: 0; width: 90px; z-index: 3; pointer-events: none; }
+    .adwall__fade--l { left: 0; background: linear-gradient(to right, #07090e, transparent); }
+    .adwall__fade--r { right: 0; background: linear-gradient(to left, #07090e, transparent); }
+
+    .mathbox { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 2.5rem; border: 1px solid var(--gray-200); border-radius: 16px; overflow: hidden; }
+    .mathcell { padding: 1.6rem 1.4rem; border-right: 1px solid var(--gray-200); }
+    .mathcell:last-child { border-right: none; background: #f0faf2; }
+    .mathcell__k { font-size: .64rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: var(--gray-400); }
+    .mathcell:last-child .mathcell__k { color: var(--green-dark); }
+    .mathcell__v { font-family: var(--font-display); font-size: 2.1rem; font-weight: 800; color: var(--gray-800); margin-top: .5rem; line-height: 1; }
+    .mathcell:last-child .mathcell__v { color: var(--green-dark); }
+    .mathcell__c { font-size: .8rem; color: var(--gray-500); margin-top: .55rem; line-height: 1.5; }
+
+    @media (max-width: 980px) {
+      .roster { grid-template-columns: repeat(2, 1fr); }
+      .mathbox { grid-template-columns: 1fr; }
+      .mathcell { border-right: none; border-bottom: 1px solid var(--gray-200); }
+      .mathcell:last-child { border-bottom: none; }
+    }
+    @media (max-width: 560px) {
+      .roster { grid-template-columns: 1fr; }
+      .vs { font-size: .82rem; }
+      .vs th, .vs td { padding: .7rem .6rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -42,7 +138,7 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#social-media">Social Media Management</a></li><li><a href="services.html#ai-consulting">AI Business Consulting</a></li><li><a href="services.html#web-design">Web Design &amp; Development</a></li><li><a href="greenfit-ai-creator.html">GreenFit AI Creator ✦</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#ai-employees">AI Employees ✦</a></li><li><a href="services.html#ai-ads">AI Ad Creation ✦</a></li><li><a href="services.html#ai-consulting">AI Business Consulting</a></li><li><a href="services.html#web-design">Web Design &amp; Development</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
           <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -56,7 +152,7 @@
       </div>
       <ul class="nav__mobile" role="list">
         <li><a href="index.html"    class="nav__link">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#social-media">Social Media Management</a></li><li><a href="services.html#ai-consulting">AI Business Consulting</a></li><li><a href="services.html#web-design">Web Design &amp; Development</a></li><li><a href="greenfit-ai-creator.html">GreenFit AI Creator ✦</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#ai-employees">AI Employees ✦</a></li><li><a href="services.html#ai-ads">AI Ad Creation ✦</a></li><li><a href="services.html#ai-consulting">AI Business Consulting</a></li><li><a href="services.html#web-design">Web Design &amp; Development</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
         <li><a href="about.html"    class="nav__link">About</a></li>
         <li class="nav__dropdown"><a href="testimonials.html" class="nav__link">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
         <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -74,74 +170,140 @@
 
       <div class="hero__terminal" aria-hidden="true" style="margin-bottom:.75rem"><span>&gt; GREENAI SOLUTIONS · AI ACTIVE</span><span class="hero__terminal-cursor"></span></div>
       <span class="section-label" style="color:var(--green-accent)">What We Do</span>
-      <h1>Four Services.<br/>One Goal: Grow Your Business.</h1>
-      <p>Social media that converts, AI systems that automate, professionally built websites, and the world's most powerful AI software creation platform — all from one dedicated partner.</p>
+      <h1>Staff That Never<br/>Sleeps. Ads That<br/>Never Get Stale.</h1>
+      <p>AI employees who answer your phone and make your follow-up calls, a fresh stream of ads every month, AI systems that automate the rest, and websites built to convert — all from one dedicated partner.</p>
     </div>
   </div>
 
-  <!-- ===== SERVICE 1 — SOCIAL MEDIA ===== -->
-  <section class="section" id="social-media" aria-labelledby="social-heading">
+  <!-- ===== SERVICE 1 — AI EMPLOYEES ===== -->
+  <section class="section" id="ai-employees" aria-labelledby="employees-heading">
     <div class="container">
-      <div class="service-detail">
-        <div class="service-detail__content">
-          <span class="section-label">Service 01</span>
-          <h2 id="social-heading">Social Media Management</h2>
-          <div class="section-divider section-divider--left"></div>
-          <p>Your competitors are posting every day. Are you? Most business owners know they should be on social media — but between running the actual business, it never gets done. That's exactly why we exist. We take over your Instagram, TikTok, and Facebook entirely so you show up consistently, professionally, and powerfully — without touching it yourself.</p>
-          <p>This isn't just posting. It's a full content strategy designed to turn your followers into paying customers. Every caption, every reel, every story has a purpose: get people through your door or on your phone.</p>
+      <div class="text-center reveal" style="max-width:720px;margin:0 auto">
+        <span class="section-label">Service 01</span>
+        <h2 id="employees-heading">AI Employees</h2>
+        <div class="section-divider"></div>
+        <p>They work for you. They answer every call, make the calls you never get around to, and they do it at 2am on a Sunday without being asked twice.</p>
+      </div>
 
-          <ul class="detail-list" aria-label="Social media features">
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Full content strategy &amp; creation</strong> — custom content designed specifically for your brand, voice, and target customer — not generic templates</p>
-            </li>
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Daily posting &amp; scheduling</strong> — consistent presence across Instagram, TikTok, and Facebook so the algorithm keeps showing you to new people</p>
-            </li>
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Community engagement</strong> — we respond to comments and DMs to build real relationships with your audience and keep your page active</p>
-            </li>
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Monthly performance reports</strong> — follower growth, reach, engagement rate, and lead attribution so you can see exactly what's working</p>
-            </li>
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Paid ad management (optional)</strong> — targeted Facebook and Instagram ads to amplify your reach and generate direct leads</p>
-            </li>
-          </ul>
-
-          <div style="background:var(--green-pale);border-radius:var(--radius-md);padding:1rem 1.25rem;margin-bottom:1.5rem;display:inline-block">
-            <span style="font-weight:700;color:var(--green-dark)">Starting at $700/month</span> · No long-term contract required
-          </div><br/>
-          <a href="contact.html" class="btn btn-primary">Get Started with Social Media</a>
-        </div>
-
-        <div class="service-detail__visual">
-          <div class="service-detail__visual-bg" aria-hidden="true"></div>
-          <div class="service-detail__visual-icon" aria-hidden="true"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-          <div class="service-detail__visual-title">Social Media Management</div>
-          <div style="margin-top:1.5rem;width:100%;display:flex;flex-direction:column;gap:.75rem">
-            <div style="background:white;border-radius:10px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,.08)">
-              <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:.6rem">90-Day Growth Results</div>
-              <div style="display:flex;gap:1.5rem">
-                <div><div style="font-size:1.4rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display)">10x</div><div style="font-size:.72rem;color:var(--gray-400)">Follower growth</div></div>
-                <div><div style="font-size:1.4rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display)">3x</div><div style="font-size:.72rem;color:var(--gray-400)">More inbound leads</div></div>
-                <div><div style="font-size:1.4rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display)">0hrs</div><div style="font-size:.72rem;color:var(--gray-400)">Your time spent</div></div>
-              </div>
-            </div>
-            <div style="background:white;border-radius:10px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,.08)">
-              <div style="font-size:.72rem;font-weight:600;color:var(--gray-400);margin-bottom:.4rem">Latest post performance</div>
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <div style="font-size:.85rem;font-weight:600;color:var(--gray-800)">Tuesday Reel </div>
-                <span style="background:#dcfce7;color:#15803d;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px">12.4K views</span>
-              </div>
-              <div style="font-size:.78rem;color:var(--gray-400);margin-top:.25rem">847 likes · 63 comments · 142 shares</div>
-            </div>
+      <div class="roster">
+        <article class="agent reveal">
+          <div class="agent__img">
+            <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
+            <img src="agents/agent-sterling.jpg" alt="STERLING, an AI employee who handles inbound sales calls" width="640" height="854" loading="lazy" decoding="async"/>
           </div>
-        </div>
+          <div class="agent__body">
+            <div class="agent__name">STERLING</div>
+            <div class="agent__role">Inbound Sales</div>
+            <p class="agent__line">Picks up on the first ring, works out what they need, and puts the appointment straight in your calendar.</p>
+          </div>
+        </article>
+
+        <article class="agent reveal reveal-delay-1">
+          <div class="agent__img">
+            <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
+            <img src="agents/agent-hunter.jpg" alt="HUNTER, an AI employee who makes outbound and follow-up calls" width="640" height="854" loading="lazy" decoding="async"/>
+          </div>
+          <div class="agent__body">
+            <div class="agent__name">HUNTER</div>
+            <div class="agent__role">Outbound Calls</div>
+            <p class="agent__line">Rings back every missed call and every lead that went cold months ago. The follow-up you keep meaning to do.</p>
+          </div>
+        </article>
+
+        <article class="agent reveal reveal-delay-2">
+          <div class="agent__img">
+            <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
+            <img src="agents/agent-maven.jpg" alt="MAVEN, an AI employee who handles front desk and customer questions" width="640" height="854" loading="lazy" decoding="async"/>
+          </div>
+          <div class="agent__body">
+            <div class="agent__name">MAVEN</div>
+            <div class="agent__role">Front Desk</div>
+            <p class="agent__line">Hours, pricing, directions, "do you service my area" — answered properly, every time, in your words.</p>
+          </div>
+        </article>
+
+        <article class="agent reveal reveal-delay-3">
+          <div class="agent__img">
+            <span class="agent__tag"><span class="agent__pulse"></span> AI Employee</span>
+            <img src="agents/agent-ledger.jpg" alt="LEDGER, an AI employee who handles confirmations and reminders" width="640" height="854" loading="lazy" decoding="async"/>
+          </div>
+          <div class="agent__body">
+            <div class="agent__name">LEDGER</div>
+            <div class="agent__role">Scheduling &amp; Ops</div>
+            <p class="agent__line">Confirms tomorrow's jobs, chases the no-shows, and reschedules them before the slot goes to waste.</p>
+          </div>
+        </article>
+      </div>
+
+      <p style="text-align:center;font-size:.8rem;color:var(--gray-400);margin-top:1.1rem">
+        STERLING, HUNTER, MAVEN and LEDGER are AI voice agents, not people. The portraits give each one a face so your team knows who does what.
+      </p>
+
+      <div class="callstrip reveal">
+        <div class="callstrip__head"><span class="agent__pulse"></span><span>What a Tuesday looks like</span></div>
+        <div class="callrow"><div class="callrow__t">7:12 am</div><div class="callrow__b">Call before you open. <b>Answered.</b> Quoted, booked for Thursday.</div></div>
+        <div class="callrow"><div class="callrow__t">11:48 am</div><div class="callrow__b">You're on a job and can't pick up. <b>Answered anyway.</b> No voicemail, no lost lead.</div></div>
+        <div class="callrow"><div class="callrow__t">2:30 pm</div><div class="callrow__b">Forty old leads sitting in your phone. <b>Called back.</b> Six want a quote.</div></div>
+        <div class="callrow"><div class="callrow__t">6:05 pm</div><div class="callrow__b">Tomorrow's jobs <b>confirmed by text.</b> The one who cancelled is already replaced.</div></div>
+        <div class="callrow"><div class="callrow__t">9:41 pm</div><div class="callrow__b">Someone's emergency at night. <b>Answered.</b> Your competitor's phone rang out.</div></div>
+      </div>
+
+      <div class="text-center reveal" style="margin-top:3.5rem;max-width:640px;margin-left:auto;margin-right:auto">
+        <h3 style="font-size:1.6rem;margin-bottom:.6rem">Why This Beats What Else Is Out There</h3>
+        <p style="color:var(--gray-500)">There are two ways to buy this today. Both have a catch.</p>
+      </div>
+
+      <div style="overflow-x:auto">
+      <table class="vs reveal">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Build-it-yourself<br/>voice platform</th>
+            <th scope="col">Per-call<br/>answering service</th>
+            <th scope="col" class="vs-us">GreenAI<br/>AI Employees</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">What you pay</th>
+            <td>$50–$450/mo plus roughly $0.07–$0.10 a minute</td>
+            <td>$95–$245/mo, then about $3–$5 every call past a small bundle</td>
+            <td class="vs-us">One flat monthly fee</td>
+          </tr>
+          <tr>
+            <th scope="row">A busy month costs you</th>
+            <td>More minutes, more money</td>
+            <td>More calls, more money</td>
+            <td class="vs-us">Exactly the same</td>
+          </tr>
+          <tr>
+            <th scope="row">Who builds it</th>
+            <td>You do. It's a toolkit.</td>
+            <td>They script it generically</td>
+            <td class="vs-us">We build it around your business</td>
+          </tr>
+          <tr>
+            <th scope="row">Makes outbound calls</th>
+            <td>If you build that too</td>
+            <td>Rarely — they answer</td>
+            <td class="vs-us">Yes, that's HUNTER's whole job</td>
+          </tr>
+          <tr>
+            <th scope="row">Nights and weekends</th>
+            <td>Yes</td>
+            <td>Often costs extra</td>
+            <td class="vs-us">Included</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="vs-note">
+        Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered — check their current pricing before you decide.
+        Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.
+      </p>
+
+      <div class="text-center" style="margin-top:2.5rem">
+        <a href="#pricing" class="btn btn-primary btn-lg">See AI Employee Pricing</a>
       </div>
     </div>
   </section>
@@ -214,96 +376,134 @@
 
   
 
-  <!-- ===== SERVICE 3 — GREENFIT AI CREATOR ===== -->
-  <section class="section" id="ai-creator" aria-labelledby="creator-heading">
+  <!-- ===== SERVICE 3 — AI AD CREATION ===== -->
+  <section class="section" id="ai-ads" aria-labelledby="ads-heading">
     <div class="container">
-      <div class="service-detail">
-        <div class="service-detail__content">
-          <span class="section-label">Service 03 &mdash; Our Most Powerful</span>
-          <h2 id="creator-heading">GreenFit AI Creator</h2>
-          <div class="section-divider section-divider--left"></div>
-          <p>Every major company in the world runs on custom software. That used to require a six-figure budget, a full development team, and months of build time. GreenFit AI Creator changes that completely. Describe any application, tool, CRM, dashboard, or system your business needs in plain English — and we use the world's most advanced AI to build it, deploy it, and keep it evolving every month.</p>
-          <p>This is not a no-code tool. This is not a template builder. This is fully custom, production-grade software created and managed for you — and it is the most powerful and valuable service we have ever offered.</p>
+      <div class="text-center reveal" style="max-width:760px;margin:0 auto 2.5rem">
+        <span class="section-label">Service 03</span>
+        <h2 id="ads-heading">AI Ad Creation</h2>
+        <div class="section-divider"></div>
+        <p>The ad is the last thing the platforms haven't automated. Everything else — the bidding, the targeting, the placement — is a machine now. Creative is where you still win, and creative is the one thing most businesses make one of.</p>
+      </div>
 
-          <ul class="detail-list" aria-label="GreenFit AI Creator features">
+      <div class="adwall reveal" aria-hidden="true">
+        <span class="adwall__fade adwall__fade--l"></span>
+        <span class="adwall__fade adwall__fade--r"></span>
+        <div class="adtrack">
+          <div class="adcell" style="background:linear-gradient(150deg,#1a5c2a,#0c1a0e)"><span>Hook A<br/>Problem</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2d4a7c,#0b1220)"><span>Hook B<br/>Question</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#7c4a2d,#1a0f08)"><span>Hook C<br/>Before / After</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#4a2d7c,#120b1f)"><span>Testimonial<br/>Style</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#7c2d4a,#1f0b14)"><span>Founder<br/>To Camera</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2d7c6a,#081a16)"><span>Offer<br/>Led</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#c9a12e,#3a2e08)"><span>Urgency<br/>Cut</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#3a3a3a,#0a0a0a)"><span>Static<br/>Variant</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#1a5c2a,#0c1a0e)"><span>Hook A<br/>Problem</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2d4a7c,#0b1220)"><span>Hook B<br/>Question</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#7c4a2d,#1a0f08)"><span>Hook C<br/>Before / After</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#4a2d7c,#120b1f)"><span>Testimonial<br/>Style</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#7c2d4a,#1f0b14)"><span>Founder<br/>To Camera</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2d7c6a,#081a16)"><span>Offer<br/>Led</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#c9a12e,#3a2e08)"><span>Urgency<br/>Cut</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#3a3a3a,#0a0a0a)"><span>Static<br/>Variant</span></div>
+        </div>
+        <div class="adtrack adtrack--r">
+          <div class="adcell" style="background:linear-gradient(150deg,#0e4d5c,#04161b)"><span>15s<br/>Vertical</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#5c2f0e,#1b0d04)"><span>30s<br/>Story</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2f5c0e,#0d1b04)"><span>Square<br/>Feed</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#5c0e3f,#1b0412)"><span>Voiceover<br/>Swap</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#0e2f5c,#04101b)"><span>Caption<br/>Test</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#4a4a1a,#151505)"><span>Thumbnail<br/>Variant</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#1a5c2a,#0c1a0e)"><span>Seasonal<br/>Cut</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#3a1a5c,#10051b)"><span>Retarget<br/>Edit</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#0e4d5c,#04161b)"><span>15s<br/>Vertical</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#5c2f0e,#1b0d04)"><span>30s<br/>Story</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#2f5c0e,#0d1b04)"><span>Square<br/>Feed</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#5c0e3f,#1b0412)"><span>Voiceover<br/>Swap</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#0e2f5c,#04101b)"><span>Caption<br/>Test</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#4a4a1a,#151505)"><span>Thumbnail<br/>Variant</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#1a5c2a,#0c1a0e)"><span>Seasonal<br/>Cut</span></div>
+          <div class="adcell" style="background:linear-gradient(150deg,#3a1a5c,#10051b)"><span>Retarget<br/>Edit</span></div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:.8rem;color:var(--gray-400);margin-top:1rem">
+        One product, one month of angles. Volume is the strategy — you cannot pick the winner in advance, you can only find it.
+      </p>
+
+      <div class="service-detail" style="margin-top:3.5rem">
+        <div class="service-detail__content">
+          <h3 style="font-size:1.75rem;margin-bottom:.75rem">Ad fatigue is a clock, not a maybe</h3>
+          <p>Run one ad and it works until the same people have seen it four times. Then your cost per customer climbs every single week, and the platform quietly charges you more to reach the same audience. The only real defence is a fresh angle before the last one tires out.</p>
+          <p>That is a production problem, and production is exactly what got cheap. We write, generate and cut a steady stream of new ads for you every month — different hooks, different formats, different lengths — so there is always another one ready when the current one flattens out.</p>
+
+          <ul class="detail-list" aria-label="AI ad creation features">
             <li class="detail-list__item">
               <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Full custom software in hours</strong> — client portals, CRMs, booking systems, payment platforms, e-commerce, analytics dashboards, and 40+ more types of applications built and deployed same-day</p>
+              <p class="detail-list__text"><strong>A month of ads, not an ad</strong> — multiple hooks, lengths and formats built to be tested against each other, not admired</p>
             </li>
             <li class="detail-list__item">
               <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>No coding or technical knowledge required</strong> — describe what you need in plain English and our AI builds it; you never write a single line of code or manage a single server</p>
+              <p class="detail-list__text"><strong>Written first, generated second</strong> — the script and the hook are the job; the visuals serve them, not the other way round</p>
             </li>
             <li class="detail-list__item">
               <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Cloud hosted &amp; fully managed</strong> — your software runs on enterprise-grade infrastructure with 99.9% uptime, automatic backups, SSL, and security — all included</p>
+              <p class="detail-list__text"><strong>Built for where they run</strong> — vertical for Reels and TikTok, square for feed, with captions burned in for silent autoplay</p>
             </li>
             <li class="detail-list__item">
               <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Monthly iteration sessions</strong> — new features, expansions, and improvements every single month so your software grows as your business grows</p>
+              <p class="detail-list__text"><strong>No shoot, no crew, no calendar</strong> — nothing to schedule, no studio day, no talent to book and re-book</p>
             </li>
             <li class="detail-list__item">
               <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>Complete integration layer</strong> — connects to Stripe, HubSpot, Zapier, Google Workspace, Slack, Twilio, and 500+ other tools your business already uses</p>
-            </li>
-            <li class="detail-list__item">
-              <div class="detail-list__icon" aria-hidden="true">✓</div>
-              <p class="detail-list__text"><strong>You own the code &amp; software</strong> — everything built is 100% your intellectual property; cancel anytime and keep everything we've created for you</p>
+              <p class="detail-list__text"><strong>You own every asset outright</strong> — the files are yours to run anywhere, for as long as you like, with no usage window</p>
             </li>
           </ul>
-
-          <div style="background: linear-gradient(135deg, #06100A, #0d1a0f); border-radius: var(--radius-md); padding: 1.1rem 1.4rem; margin-bottom: 1.75rem; display: inline-block; border: 1px solid rgba(212,175,55,.25);">
-            <span style="font-weight: 800; color: #D4AF37; font-size: 1.05rem;">$1,400/month</span>
-            <span style="color: rgba(255,255,255,.5); font-size: .88rem;"> &nbsp;&middot;&nbsp; Our Most Powerful Service &nbsp;&middot;&nbsp; No long-term contract</span>
-          </div>
-          <br/>
-          <a href="greenfit-ai-creator.html" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #D4AF37, #b8941f); color: #06100A; border: none; font-weight: 800;">Explore GreenFit AI Creator &rarr;</a>
         </div>
 
-        <div class="service-detail__visual" style="background: linear-gradient(145deg, #06100A, #111f13);">
-          <div class="service-detail__visual-bg" aria-hidden="true" style="background: rgba(212,175,55,.05);"></div>
-          <div class="service-detail__visual-icon" aria-hidden="true">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-            </svg>
-          </div>
-          <div class="service-detail__visual-title" style="color: #D4AF37;">GreenFit AI Creator</div>
-          <div style="margin-top: 1.5rem; width: 100%; display: flex; flex-direction: column; gap: .75rem;">
-            <div style="background: rgba(255,255,255,.06); border-radius: 12px; padding: 1rem; border: 1px solid rgba(212,175,55,.15);">
-              <div style="font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #D4AF37; margin-bottom: .7rem;">Your Software Suite</div>
-              <div style="display: flex; flex-direction: column; gap: .45rem;">
-                <div style="display: flex; justify-content: space-between; font-size: .82rem; align-items: center;">
-                  <span style="color: rgba(255,255,255,.7);">Client Portal</span>
-                  <span style="background: rgba(76,175,110,.2); color: #4caf6e; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">LIVE</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: .82rem; align-items: center;">
-                  <span style="color: rgba(255,255,255,.7);">Booking System</span>
-                  <span style="background: rgba(76,175,110,.2); color: #4caf6e; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">LIVE</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: .82rem; align-items: center;">
-                  <span style="color: rgba(255,255,255,.7);">Analytics Dashboard</span>
-                  <span style="background: rgba(212,175,55,.2); color: #D4AF37; font-size: .68rem; font-weight: 700; padding: .2rem .65rem; border-radius: 100px;">BUILDING</span>
-                </div>
-              </div>
+        <div class="service-detail__visual">
+          <div class="service-detail__visual-bg" aria-hidden="true"></div>
+          <div class="service-detail__visual-icon" aria-hidden="true"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div class="service-detail__visual-title">Where the money goes</div>
+          <div style="margin-top:1.25rem;width:100%;display:flex;flex-direction:column;gap:.7rem">
+            <div style="background:white;border-radius:10px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+              <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem">The usual way</div>
+              <div style="font-size:.85rem;color:var(--gray-500);line-height:1.6">A freelance creator or agency charges <strong style="color:var(--gray-800)">$200–$600 for one video</strong>, and asks again for usage rights.</div>
             </div>
-            <div style="background: rgba(255,255,255,.06); border-radius: 12px; padding: 1rem; border: 1px solid rgba(212,175,55,.15);">
-              <div style="display: flex; gap: 1.5rem;">
-                <div>
-                  <div style="font-size: 1.35rem; font-weight: 800; color: #D4AF37; font-family: 'Playfair Display', serif;">4hrs</div>
-                  <div style="font-size: .7rem; color: rgba(255,255,255,.4);">Avg. build time</div>
-                </div>
-                <div>
-                  <div style="font-size: 1.35rem; font-weight: 800; color: #D4AF37; font-family: 'Playfair Display', serif;">40+</div>
-                  <div style="font-size: .7rem; color: rgba(255,255,255,.4);">App types built</div>
-                </div>
-                <div>
-                  <div style="font-size: 1.35rem; font-weight: 800; color: #4caf6e; font-family: 'Playfair Display', serif;">∞</div>
-                  <div style="font-size: .7rem; color: rgba(255,255,255,.4);">Monthly iterations</div>
-                </div>
-              </div>
+            <div style="background:white;border-radius:10px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+              <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem">The tool way</div>
+              <div style="font-size:.85rem;color:var(--gray-500);line-height:1.6">A subscription is <strong style="color:var(--gray-800)">$19–$597 a month</strong> — and then you write, generate, cut and post every one of them yourself.</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#0f2417,#1a5c2a);border-radius:10px;padding:1rem;box-shadow:0 8px 24px rgba(26,92,42,.28)">
+              <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D4AF37;margin-bottom:.5rem">Our way</div>
+              <div style="font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.6">A flat monthly fee, a set number of finished ads, <strong style="color:#fff">done for you</strong> — and you keep them.</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="mathbox reveal">
+        <div class="mathcell">
+          <div class="mathcell__k">25 ads from an agency</div>
+          <div class="mathcell__v">$5,000</div>
+          <div class="mathcell__c">At the low end of the going rate — $200 each, before usage rights.</div>
+        </div>
+        <div class="mathcell">
+          <div class="mathcell__k">25 ads from a tool</div>
+          <div class="mathcell__v">$110–$249<span style="font-size:.5em">/mo</span></div>
+          <div class="mathcell__c">Plus the twenty-odd hours a month you spend actually making them.</div>
+        </div>
+        <div class="mathcell">
+          <div class="mathcell__k">25 ads from us</div>
+          <div class="mathcell__v">$1,297<span style="font-size:.5em">/mo</span></div>
+          <div class="mathcell__c">About $52 an ad, finished and delivered. Your hours stay yours.</div>
+        </div>
+      </div>
+      <p class="vs-note">
+        Agency and tool figures are published market rates for this category as of August 2026, given as ranges because plans and creator rates vary widely.
+      </p>
+
+      <div class="text-center" style="margin-top:2.5rem">
+        <a href="#pricing" class="btn btn-primary btn-lg">See Ad Creation Pricing</a>
       </div>
     </div>
   </section>
@@ -410,25 +610,41 @@
       </div>
 
       <div class="pricing-grid">
-        <!-- Social Media -->
+        <!-- AI Employees -->
         <div class="pricing-card reveal reveal-delay-1">
-          <div class="pricing-tier">Social Media</div>
-          <h3>Social Media Management</h3>
+          <div class="pricing-tier">AI Employees</div>
+          <h3>AI Employees</h3>
           <div class="pricing-price">
-            <span class="amount">$700</span>
+            <span class="amount">$497</span>
             <span class="period">/month</span>
           </div>
-          <p>Full-service social media management for local Arizona businesses ready to dominate Instagram, TikTok, and Facebook.</p>
-          <ul class="pricing-features" aria-label="Social media plan features">
-            <li><span class="check" aria-hidden="true">✓</span> Custom content strategy for your brand</li>
-            <li><span class="check" aria-hidden="true">✓</span> 5–7 posts per week across platforms</li>
-            <li><span class="check" aria-hidden="true">✓</span> Reels &amp; short-form video creation</li>
-            <li><span class="check" aria-hidden="true">✓</span> Community engagement &amp; DM management</li>
-            <li><span class="check" aria-hidden="true">✓</span> Monthly analytics report</li>
-            <li><span class="check" aria-hidden="true">✓</span> Hashtag &amp; SEO optimization</li>
-            <li><span class="x" aria-hidden="true">✗</span> <span style="color:var(--gray-400)">Paid ad management (add-on available)</span></li>
+          <p>One AI employee answering every call, day and night. Flat rate — a busy month costs exactly the same as a quiet one.</p>
+
+          <div style="margin-bottom:1.25rem;border:1px solid var(--gray-200);border-radius:var(--radius-md);overflow:hidden">
+            <div style="display:grid;grid-template-columns:1fr auto auto;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);padding:.5rem .85rem;background:var(--gray-50);border-bottom:1px solid var(--gray-200)">
+              <span>Team</span><span style="text-align:right">Staff</span><span style="text-align:right;padding-left:1rem">Price</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto auto;font-size:.82rem;padding:.6rem .85rem;border-bottom:1px solid var(--gray-200);align-items:center">
+              <span style="font-weight:600;color:var(--gray-800)">Front Desk</span><span style="text-align:right;color:var(--gray-500)">1</span><span style="text-align:right;padding-left:1rem;font-weight:700;color:var(--green-dark)">$497</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto auto;font-size:.82rem;padding:.6rem .85rem;border-bottom:1px solid var(--gray-200);background:#f0faf2;align-items:center">
+              <span style="font-weight:600;color:var(--green-dark)">Front &amp; Follow-Up ★</span><span style="text-align:right;color:var(--gray-500)">2</span><span style="text-align:right;padding-left:1rem;font-weight:700;color:var(--green-dark)">$897</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto auto;font-size:.82rem;padding:.6rem .85rem;align-items:center">
+              <span style="font-weight:600;color:var(--gray-800)">Full Desk</span><span style="text-align:right;color:var(--gray-500)">4</span><span style="text-align:right;padding-left:1rem;font-weight:700;color:var(--green-dark)">$1,497</span>
+            </div>
+          </div>
+
+          <ul class="pricing-features" aria-label="AI employee plan features">
+            <li><span class="check" aria-hidden="true">✓</span> Unlimited calls — no per-call charge</li>
+            <li><span class="check" aria-hidden="true">✓</span> Answers 24/7, nights and weekends</li>
+            <li><span class="check" aria-hidden="true">✓</span> Books straight into your calendar</li>
+            <li><span class="check" aria-hidden="true">✓</span> Outbound follow-up calls (2+ staff)</li>
+            <li><span class="check" aria-hidden="true">✓</span> Texts back every missed call</li>
+            <li><span class="check" aria-hidden="true">✓</span> Trained on your services and pricing</li>
+            <li><span class="check" aria-hidden="true">✓</span> We build and maintain it — not you</li>
           </ul>
-          <a href="contact.html" class="btn btn-secondary" style="width:100%;justify-content:center">Get Started</a>
+          <a href="contact.html" class="btn btn-secondary" style="width:100%;justify-content:center">Hire an AI Employee</a>
         </div>
 
         <!-- AI Consulting (Featured) -->
@@ -494,37 +710,27 @@
 
         </div>
 
-      <!-- ===== GREENFIT AI CREATOR PREMIUM PRICING CARD ===== -->
+      <!-- ===== AI AD CREATION PREMIUM PRICING CARD ===== -->
       <div style="margin-top:3rem;position:relative;">
         <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#c9a12e,#e8c84a);color:#0a0a0a;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.35rem 1.4rem;border-radius:100px;white-space:nowrap;z-index:2;box-shadow:0 2px 12px rgba(212,175,55,.3);">Our Most Powerful Service</div>
         <div style="background:#0c1a0e;border:1px solid rgba(212,175,55,.22);border-radius:24px;overflow:hidden;">
-          <!-- Top bar -->
           <div style="height:3px;background:linear-gradient(90deg,#b8941f,#e8c84a,#b8941f);"></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-            <!-- Left: pricing -->
             <div style="padding:2.75rem 2.5rem;border-right:1px solid rgba(255,255,255,.06);">
-              <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9a12e;margin-bottom:.6rem;">GreenFit AI Creator</div>
-              <h3 style="color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;line-height:1.2;">AI Software Creation<br/>Platform</h3>
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9a12e;margin-bottom:.6rem;">AI Ad Creation · Growth</div>
+              <h3 style="color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;line-height:1.2;">25 New Ads,<br/>Every Month</h3>
               <div style="display:flex;align-items:baseline;gap:.4rem;margin-bottom:.4rem;">
-                <span style="font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:800;color:#D4AF37;line-height:1;">$1,400</span>
+                <span style="font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:800;color:#D4AF37;line-height:1;">$1,297</span>
                 <span style="color:rgba(255,255,255,.35);font-size:.85rem;font-weight:500;">/month</span>
               </div>
               <p style="color:rgba(255,255,255,.4);font-size:.78rem;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid rgba(255,255,255,.07);">No setup fee &nbsp;·&nbsp; No long-term contract &nbsp;·&nbsp; Cancel anytime</p>
-              <p style="color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.75;margin-bottom:2rem;">Describe any application in plain English — CRM, client portal, booking system, or custom dashboard — and watch it go live. Built, deployed, and maintained for you every month.</p>
-              <a href="greenfit-ai-creator.html" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#c9a12e,#e8c84a);color:#0a0a0a;font-weight:700;font-size:.9rem;padding:.8rem 1.75rem;border-radius:100px;text-decoration:none;letter-spacing:.01em;">Explore This Service →</a>
+              <p style="color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.75;margin-bottom:2rem;">The same twenty-five ads bought one at a time from an agency run to roughly $5,000. Volume is what finds the winner, so volume is what we price for.</p>
+              <a href="#ai-ads" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#c9a12e,#e8c84a);color:#0a0a0a;font-weight:700;font-size:.9rem;padding:.8rem 1.75rem;border-radius:100px;text-decoration:none;letter-spacing:.01em;">Explore This Service →</a>
             </div>
-            <!-- Right: features -->
             <div style="padding:2.75rem 2.5rem;">
               <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.5rem;">Everything Included</div>
               <div style="display:flex;flex-direction:column;gap:.9rem;">
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Unlimited custom software builds</strong> — describe anything, we build it</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Monthly iteration sessions</strong> — new features every single month</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Cloud hosting &amp; deployment</strong> — live on your domain, fully managed</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Full-stack development</strong> — frontend, backend, database, APIs</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">500+ tool integrations</strong> — Stripe, HubSpot, Zapier &amp; more</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Custom domain &amp; white-label branding</strong> — your brand, always</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Security, backups &amp; SSL</strong> — enterprise protection included</span></div>
-                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Direct access to Jaden</strong> — same-day priority support, always</span></div>
+                <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">25 finished ads every month</strong> — about $52 each, delivered ready to run</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Scripts and hooks written first</strong> — the angle is the work, the visuals follow it</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Every format you need</strong> — vertical, square, 15s and 30s cuts from one idea</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Captions burned in</strong> — because most of the feed plays on mute</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">A new batch before the last one tires</strong> — fatigue never gets a chance to bite</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">You own every file outright</strong> — run them anywhere, forever, no usage window</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Starter and Scale tiers</strong> — 10 ads at $697, or 60 ads at $2,497</span></div><div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:#4caf6e;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.15rem;">✓</span><span style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;"><strong style="color:#fff;font-weight:600;">Direct access to Jaden</strong> — same-day priority support, always</span></div>
               </div>
             </div>
           </div>
@@ -687,9 +893,9 @@
         <div>
           <h5>Services</h5>
           <ul class="footer__links" role="list">
-            <li><a href="#social-media">Social Media Management</a></li>
+            <li><a href="#ai-employees">AI Employees</a></li>
             <li><a href="#ai-consulting">AI Business Consulting</a></li>
-            <li><a href="greenfit-ai-creator.html" style="color:#D4AF37;font-weight:600">GreenFit AI Creator ✦</a></li>
+            <li><a href="services.html#ai-ads" style="color:#D4AF37;font-weight:600">AI Ad Creation ✦</a></li>
             <li><a href="#web-design">Web Design &amp; Development</a></li>
             <li><a href="#pricing">Pricing Plans</a></li>
           </ul>
