@@ -1768,11 +1768,9 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 .hero__visual {
   position: relative;
   width: 100%;
-  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
 }
 
 /* --- Hero: the four services as a menu ---------------------------------------
@@ -1912,11 +1910,10 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   .hero--split .hero__content { max-width: 100%; }
   /* Hero is one column from here, so the menu must line up with the headline
      and the buttons instead of centring itself in a full-width column. */
-  .hero__visual { min-height: 0; margin-top: 1rem; justify-content: flex-start; }
+  .hero__visual { margin-top: 1rem; justify-content: flex-start; }
   .svcmenu { max-width: 30rem; }
 }
 @media (max-width: 600px) {
-  .hero__visual { min-height: 0; }
   .hero__trust { gap: .75rem 1.25rem; }
   .hero__trust-item { font-size: .85rem; }
   .hero__actions .btn { width: 100%; justify-content: center; }
@@ -2414,7 +2411,9 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 .cta-band > .container { position: relative; z-index: 2; }
 
 /* ---------- Hero dashboard mockup cyan + circuit upgrade ---------- */
-.hero__visual { position: relative; }/* ---------- Page hero tech reskin (about/services/contact) ---------- */
+.hero__visual { position: relative; }
+
+/* ---------- Page hero tech reskin (about/services/contact) ---------- */
 .page-hero {
   position: relative;
   background: linear-gradient(160deg, var(--green-deepest, #0a2614) 0%, var(--green-richer, #15482a) 55%, #1a5c2a 100%);
