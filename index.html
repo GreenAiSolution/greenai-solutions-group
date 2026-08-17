@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=11" />
+  <link rel="stylesheet" href="style.css?v=12" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -143,67 +143,41 @@
           </div>
         </div>
 
-        <!-- Right side visual: the four services as one working day.
-             Not a dashboard and not live data — it is a plain description of
-             what each service does, at the hour a business owner would feel it.
-             Deliberately NOT aria-hidden: it carries real information about the
-             offer, so a screen reader should get it too. -->
+        <!-- Right column: the four services as a menu that leads with the
+             outcome and states the price. No card, no fake window chrome, no
+             decorative glow — the previous version stacked all three and read
+             like a template. A business owner's first two questions are "what
+             does it do for me" and "what does it cost", so those are the two
+             things set in type here. Whole row is one link. -->
         <div class="hero__visual">
-          <div class="hero__visual-glow" aria-hidden="true"></div>
-          <div class="hero__visual-card hero__visual-card--main">
-            <div class="hero__visual-header">
-              <div class="hero__visual-dots" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </div>
-              <div class="hero__visual-label">One day &middot; four services</div>
-            </div>
+          <div class="svcmenu">
+            <p class="svcmenu__eyebrow">What we run for you</p>
 
-            <p class="day__intro">What we handle while you do the work.</p>
+            <a class="svcrow" href="service-ai-employees.html">
+              <span class="svcrow__benefit">Every call, answered.</span>
+              <span class="svcrow__price">from $497<i>/mo</i></span>
+              <span class="svcrow__tag">AI Employees</span>
+            </a>
 
-            <ol class="day" role="list">
-              <li class="day__row day__row--emp">
-                <span class="day__time">7:12<i>am</i></span>
-                <span class="day__body">
-                  <a class="day__svc" href="service-ai-employees.html">AI Employees</a>
-                  <span class="day__what">A call comes in while you are under a sink.
-                    <b>Answered, quoted, booked for Thursday.</b></span>
-                </span>
-              </li>
-              <li class="day__row day__row--ads">
-                <span class="day__time">10:30<i>am</i></span>
-                <span class="day__body">
-                  <a class="day__svc" href="service-ai-ads.html">AI Ad Creation <em>&#10022;</em></a>
-                  <span class="day__what">This month&rsquo;s ads land.
-                    <b>Finished, captioned, ready to run.</b></span>
-                </span>
-              </li>
-              <li class="day__row day__row--cons">
-                <span class="day__time">2:15<i>pm</i></span>
-                <span class="day__body">
-                  <a class="day__svc" href="service-ai-consulting.html">AI Consulting</a>
-                  <span class="day__what">A quote goes quiet.
-                    <b>Chased in four minutes, not four days.</b></span>
-                </span>
-              </li>
-              <li class="day__row day__row--web">
-                <span class="day__time">all<i>day</i></span>
-                <span class="day__body">
-                  <a class="day__svc" href="service-web-design.html">Web Design</a>
-                  <span class="day__what">Your website, working the whole time.
-                    <b>Built to be found and called.</b></span>
-                </span>
-              </li>
-            </ol>
-          </div>
+            <a class="svcrow" href="service-ai-ads.html">
+              <span class="svcrow__benefit">A month of ads, delivered.</span>
+              <span class="svcrow__price">from $697<i>/mo</i></span>
+              <span class="svcrow__tag">AI Ad Creation <em>&#10022;</em></span>
+            </a>
 
-          <div class="hero__visual-card hero__visual-card--floater">
-            <div class="hero__floater-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div>
-              <div class="hero__floater-title">Four services, one partner</div>
-              <div class="hero__floater-sub">One invoice &middot; you own everything</div>
-            </div>
+            <a class="svcrow" href="service-ai-consulting.html">
+              <span class="svcrow__benefit">Leads chased in minutes.</span>
+              <span class="svcrow__price">$750<i>/mo</i></span>
+              <span class="svcrow__tag">AI Business Consulting</span>
+            </a>
+
+            <a class="svcrow" href="service-web-design.html">
+              <span class="svcrow__benefit">A site built to get called.</span>
+              <span class="svcrow__price">from $500 <i>one-time</i></span>
+              <span class="svcrow__tag">Web Design &amp; Development</span>
+            </a>
+
+            <p class="svcmenu__foot">Month to month &middot; no lock-in &middot; you own everything we build</p>
           </div>
         </div>
       </div>
