@@ -48,7 +48,12 @@
     'web-maintenance':           ''  /* $150/mo */
   };
 
-  /* -- Human-readable fallback text when a SKU has no link yet ------------- */
+  /* -- Fallback when a SKU has no link yet ---------------------------------
+     A bare link to contact.html is a dead end: the customer clicked a price
+     and landed on an empty form with no idea why. So we pass the SKU along,
+     and contact.html turns it into a preselected service and a plain-English
+     line explaining what happened. The click becomes a qualified lead rather
+     than a bounce. */
   var FALLBACK_HREF  = 'contact.html';
   var FALLBACK_TITLE = 'Card payment is being switched on — this opens the contact form instead';
 
@@ -74,7 +79,7 @@
         el.removeAttribute('aria-describedby');
         el.setAttribute('rel', 'noopener');
       } else {
-        el.setAttribute('href', FALLBACK_HREF);
+        el.setAttribute('href', FALLBACK_HREF + '?want=' + encodeURIComponent(sku));
         el.setAttribute('title', FALLBACK_TITLE);
         el.setAttribute('data-sku-pending', '1');
       }

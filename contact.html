@@ -159,8 +159,14 @@
           <h3>Send a Message</h3>
           <p>Fill out the form below and we'll be in touch within one business day. All fields marked with * are required.</p>
 
+          <div id="wantNote" hidden style="background:var(--green-pale);border:1px solid rgba(45,106,62,.25);border-left:4px solid var(--green-dark);border-radius:var(--radius-lg);padding:1rem 1.15rem;margin-bottom:1.5rem">
+            <div style="font-weight:700;color:var(--green-dark);margin-bottom:.25rem" id="wantTitle"></div>
+            <p style="font-size:.88rem;margin:0;color:var(--gray-800)">Card checkout for this plan is being switched on. Send this over and Jaden will get you set up personally — usually the same day.</p>
+          </div>
+
           <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Contact form">
             <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
+            <input type="hidden" name="wanted_plan" id="wantedPlan" value="" />
             <input type="hidden" name="to" value="jaden@greenaidigital.com" />
             <input type="hidden" name="subject" value="📩 New Contact Form — GreenAI Solutions Team" />
             <input type="hidden" name="from_name" value="GreenAI Website — Contact Form" />
@@ -333,5 +339,52 @@
   </footer>
 
   <script src="script.js?v=8"></script>
+
+  <!-- Someone clicked a price on a service page before card checkout was live.
+       checkout.js sent the SKU along as ?want=; turn it into a preselected
+       service, a filled-in first line, and a plain explanation of what
+       happened, so the click lands as a real enquiry instead of a bounce. -->
+  <script>
+  (function () {
+    var WANT = {
+      'employees-front-desk':   { pick: 'employees', name: 'AI Employees — Front Desk',        price: '$497/mo'   },
+      'employees-front-follow': { pick: 'employees', name: 'AI Employees — Front & Follow-Up', price: '$897/mo'   },
+      'employees-team-3':       { pick: 'employees', name: 'AI Employees — Team of 3',         price: '$1,197/mo' },
+      'employees-full-desk':    { pick: 'employees', name: 'AI Employees — Full Desk',         price: '$1,497/mo' },
+      'ads-starter':            { pick: 'ads',       name: 'AI Ad Creation — Starter',         price: '$697/mo'   },
+      'ads-growth':             { pick: 'ads',       name: 'AI Ad Creation — Growth',          price: '$1,297/mo' },
+      'ads-scale':              { pick: 'ads',       name: 'AI Ad Creation — Scale',           price: '$2,497/mo' },
+      'consulting':             { pick: 'ai',        name: 'AI Business Consulting',           price: '$750/mo'   },
+      'web-starter':            { pick: 'web',       name: 'Web Design — Starter',             price: '$500'      },
+      'web-business':           { pick: 'web',       name: 'Web Design — Business',            price: '$1,500'    },
+      'web-premium':            { pick: 'web',       name: 'Web Design — Premium',             price: 'from $2,500' },
+      'web-maintenance':        { pick: 'web',       name: 'Site maintenance',                 price: '$150/mo'   }
+    };
+
+    var sku = new URLSearchParams(window.location.search).get('want');
+    var want = sku && WANT[sku];
+    if (!want) return;
+
+    var label = want.name + ' · ' + want.price;
+
+    var note = document.getElementById('wantNote');
+    var title = document.getElementById('wantTitle');
+    if (note && title) { title.textContent = 'You picked: ' + label; note.hidden = false; }
+
+    /* Tell Jaden which plan it was, even if they rewrite the message. */
+    var hidden = document.getElementById('wantedPlan');
+    if (hidden) hidden.value = label;
+
+    var select = document.getElementById('service');
+    if (select) select.value = want.pick;
+
+    var msg = document.getElementById('message');
+    if (msg && !msg.value) {
+      msg.value = 'I want to start ' + want.name + ' (' + want.price + ').\n\nAbout my business: ';
+      /* Land the cursor where they need to type. */
+      try { msg.focus({ preventScroll: true }); msg.setSelectionRange(msg.value.length, msg.value.length); } catch (e) {}
+    }
+  })();
+  </script>
 </body>
 </html>
