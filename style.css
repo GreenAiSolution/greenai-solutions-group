@@ -64,7 +64,6 @@
   to   { left: 100%; }
 }
 
-
 /* --- Reset & Base --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -512,7 +511,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   border-radius: 50%;
 }
 
-
 .hero h1 {
   color: var(--white);
   margin-bottom: 1.5rem;
@@ -562,7 +560,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   color: rgba(255,255,255,.6);
   margin-top: .2rem;
 }
-
 
 /* --- Hero: Terminal chip --- */
 .hero__terminal {
@@ -1820,65 +1817,102 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   text-transform: uppercase;
   color: #5a7560;
 }
-.hero__visual-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem;
-  margin-top: 1rem;
-}
-.hero__visual-metric {
-  background: linear-gradient(135deg, #f0f8f2, #e8f4eb);
-  border: 1px solid rgba(26,92,42,.1);
-  border-radius: 10px;
-  padding: .7rem .85rem;
-}
-.hero__visual-metric-label {
-  font-size: .68rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+
+/* --- Hero: the four services as one working day -----------------------------
+   Replaces a mock "GreenAI Dashboard" that showed invented metrics and a chart,
+   and listed "Instagram post scheduled" — a service the site does not sell.
+   This says the same four things the page sells, at the hour a business owner
+   would actually feel each one. Nothing here is live data, so nothing here can
+   go stale or overstate. Sits on the light card, so colours are the dark set. */
+.day__intro {
+  font-size: .78rem;
   color: #5a7560;
-  font-weight: 600;
+  margin: .9rem 0 1rem;
+  line-height: 1.4;
 }
-.hero__visual-metric-value {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #1a5c2a;
-  margin-top: .15rem;
-  font-family: var(--font-display);
-}
-.hero__visual-trend { color: #4caf6e; font-size: .9rem; }
-.hero__visual-chart {
-  margin: .85rem 0;
-  background: linear-gradient(180deg, #fafdfb, #f0f8f2);
-  border-radius: 10px;
-  padding: .5rem;
-  border: 1px solid rgba(26,92,42,.08);
-}
-.hero__visual-list {
+.day {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  /* The spine. A single border does the whole timeline; each row pins its own
+     dot onto it, so adding a service is one <li> and no extra graphics. */
+  border-left: 2px solid #e4ece6;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1.05rem;
 }
-.hero__visual-list-item {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  font-size: .82rem;
-  color: #2a3b2e;
-  padding: .35rem .25rem;
+.day__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0 .8rem;
+  align-items: start;
 }
-.hero__visual-status {
-  width: 8px; height: 8px;
+.day__row::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.1rem - 6px);
+  top: .34rem;
+  width: 10px; height: 10px;
   border-radius: 50%;
-  flex-shrink: 0;
+  background: var(--day-dot, #4caf6e);
+  /* Plain white ring, no color-mix(): one unsupported function invalidates the
+     whole declaration, and the ring is what lifts the dot off the spine. */
+  box-shadow: 0 0 0 3px #fff;
 }
-.hero__visual-status--green {
-  background: #4caf6e;
-  box-shadow: 0 0 0 3px rgba(76,175,110,.2);
+.day__row--emp  { --day-dot: #1a5c2a; }
+.day__row--ads  { --day-dot: #D4AF37; }
+.day__row--cons { --day-dot: #4caf6e; }
+.day__row--web  { --day-dot: #4dd0e1; }
+
+.day__time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .82rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  padding-top: .05rem;
+  text-align: right;
 }
-.hero__visual-status--gold {
-  background: #d4af37;
-  box-shadow: 0 0 0 3px rgba(212,175,55,.2);
+.day__time i {
+  display: block;
+  font-style: normal;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #8a9a8e;
+}
+.day__body { display: block; min-width: 0; }
+.day__svc {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--day-dot, #1a5c2a);
+  text-decoration: none;
+  margin-bottom: .15rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color .18s ease;
+}
+.day__svc:hover,
+.day__svc:focus-visible { border-bottom-color: currentColor; }
+.day__svc em { font-style: normal; font-size: .9em; }
+.day__what {
+  display: block;
+  font-size: .82rem;
+  line-height: 1.45;
+  color: #5a7560;
+}
+.day__what b { color: #1f2937; font-weight: 650; }
+
+/* The card is narrower on a phone, so the time column stops being a column. */
+@media (max-width: 520px) {
+  .day__row { grid-template-columns: 1fr; gap: .1rem; }
+  .day__time { text-align: left; }
+  .day__time i { display: inline; margin-left: .3rem; }
 }
 .hero__visual-card--floater {
   position: absolute;
@@ -2197,12 +2231,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   .brand-pillars__divider { display: none; }
 }
 
-/* Tech-vibe accent in the hero dashboard mockup */
-.hero__visual-status--cyan {
-  background: var(--cyan-accent);
-  box-shadow: 0 0 0 3px rgba(77, 208, 225, .25);
-}
-
 /* Subtle cyan accent on nav hover */
 .nav__link:hover { color: var(--cyan-accent); }
 .nav__link.active { color: var(--cyan-accent); }
@@ -2285,7 +2313,16 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 .section.bg-gray > .container,
 .section.bg-pale > .container { position: relative; z-index: 1; }
 
-/* Add a subtle cyan glow blob in value-props */
+/* Add a subtle cyan glow blob in value-props.
+   `right: -10%` deliberately bleeds the blob off the edge, so the section has to
+   clip it. Without that it escaped and made the whole document 10% of the
+   viewport wider — index.html and contact.html both scrolled sideways at every
+   width, by 150px at 1500px wide. `clip` not `hidden`, so the section never
+   becomes a scroll container. */
+.section.bg-gray {
+  position: relative;
+  overflow: clip;
+}
 .section.bg-gray::after {
   content: '';
   position: absolute;
@@ -2470,11 +2507,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 .hero__visual-traces circle {
   fill: var(--cyan-accent, #4dd0e1);
   filter: drop-shadow(0 0 4px rgba(77,208,225,.7));
-}
-
-/* Cyan-tinted chart line in hero (override green) */
-.hero__visual-card--main .hero__visual-chart svg path[stroke="#4caf6e"] {
-  stroke: url(#chartGradStroke);
 }
 
 /* ---------- Page hero tech reskin (about/services/contact) ---------- */
