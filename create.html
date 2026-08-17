@@ -495,8 +495,9 @@
         </div>
 
         <p class="cc-note">
-          <b>Start it now</b> takes you to Stripe with exactly the build above — one card entry for
-          the whole thing, monthly items billed monthly and any one-time items on the first invoice.
+          <b>Start it now</b> takes you to the payment portal with exactly the build above — you sign the
+          service agreement and we invoice you, with monthly items billed monthly and any one-time items on
+          the first invoice. Payment is by bank transfer, so no card details are entered on this site.
           <b>Send my build</b> charges nothing at all: it reaches Jaden, he confirms what's involved
           and invoices you, and nothing starts until you say so. No long-term contract either way —
           monthly items can be cancelled any time.
@@ -761,14 +762,13 @@
     });
 
     /* ================= checkout =================================
-       The builder makes a different basket every time, so a fixed Stripe
-       Payment Link cannot cover it — a Checkout Session can, and creating one
-       needs a secret key, which can never live in a page. So the basket goes
-       to the small endpoint in the greenai-checkout project and comes back as
-       a Stripe URL. Prices are NOT sent: only SKUs, resolved server-side.
+       The builder makes a different basket every time, and pay.html handles one
+       plan at a time, so a multi-item build cannot be handed straight to the
+       portal. Until an endpoint exists that can price a whole basket, this stays
+       empty and the button becomes "Send my build": the basket reaches Jaden as
+       a lead and he quotes it. That is a working path, not a dead end.
 
-       Set this to the deployed URL. Empty = not wired yet, and the button
-       quietly becomes "Send my build" so nobody meets a dead end. */
+       Prices are never sent from the page — only SKUs. */
     var CHECKOUT_API = '';
 
     /* Builder selection -> the SKUs in lib/catalog.js */
@@ -835,7 +835,7 @@
         });
     });
 
-    /* Someone who backed out of Stripe lands back here — say so plainly. */
+    /* Someone who backed out of the payment portal lands back here — say so plainly. */
     if (/[?&]checkout=cancelled/.test(window.location.search)) {
       msg.style.color = '#ffb43a';
       msg.textContent = 'Checkout cancelled — nothing was charged. Your build is still here.';

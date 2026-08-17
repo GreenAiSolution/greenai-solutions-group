@@ -55,16 +55,24 @@
     /* AI Business Consulting — monthly */
     'consulting':                '', /* $750/mo */
 
-    /* Web Design — one-time, plus optional monthly care */
+    /* Websites — subscription: a one-off build fee, then a monthly */
+    'web-sub-launch':            '', /* $397 setup + $197/mo · 5 pages  */
+    'web-sub-growth':            '', /* $997 setup + $347/mo · 10 pages */
+
+    /* Websites — one-time build, plus optional monthly care */
     'web-starter':               '', /* $500   · up to 5 pages  */
     'web-business':              '', /* $1,500 · up to 10 pages */
     'web-maintenance':           ''  /* $150/mo · add-on        */
   };
 
-  /* web-premium is deliberately absent: it is "$2,500+, quoted not fixed", so
-     it is not a fixed-price purchase and must not get a pay button. Its buttons
-     go to the contact form for a real quote. */
-  var QUOTE_ONLY = { 'web-premium': true };
+  /* Deliberately absent from CARD_LINKS: anything whose price is quoted rather
+     than fixed must not get a pay button. web-premium is "$2,500+, quoted not
+     fixed"; web-sub-flagship is $597/mo with the setup quoted. Both go to the
+     contact form for a real conversation. */
+  var QUOTE_ONLY = {
+    'web-premium':      true,  /* $2,500+ one-time, quoted not fixed */
+    'web-sub-flagship': true   /* $597/mo with the setup quoted      */
+  };
 
   function wire(root) {
     var nodes = (root || document).querySelectorAll('[data-sku]');

@@ -104,6 +104,32 @@
     .plan__price { font-weight: 700; font-size: .95rem; color: var(--green-dark); white-space: nowrap; }
     .plan__detail { font-size: .84rem; line-height: 1.55; color: var(--gray-600); margin: .2rem 0 0; }
 
+    /* Billing cadence. Yearly is the single highest-leverage thing here for a
+       business without capital: ten months of cash up front instead of one. */
+    .cadence {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
+      padding: .9rem 1rem 1rem; margin: 0 0 1.6rem;
+    }
+    .cadence legend {
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gray-400); font-weight: 700; padding: 0 .35rem;
+    }
+    .cadence__opt {
+      display: flex; align-items: flex-start; gap: .6rem;
+      padding: .5rem .2rem; cursor: pointer;
+    }
+    .cadence__opt input { margin-top: .3rem; accent-color: var(--green-dark); flex-shrink: 0; }
+    .cadence__opt b { display: block; font-size: .9rem; color: var(--gray-800); }
+    .cadence__opt i {
+      display: block; font-style: normal; font-size: .8rem; color: var(--gray-600);
+    }
+    .cadence:has(input[value="yearly"]:checked) { border-color: var(--green-dark); background: var(--green-pale); }
+
+    .pay__lead {
+      font-size: .86rem; line-height: 1.6; color: var(--gray-600);
+      margin: 0 0 .8rem;
+    }
+
     .pay__custom {
       font-size: .88rem; line-height: 1.6; color: var(--gray-600);
       background: var(--gray-100); border-radius: var(--radius-md);
@@ -276,8 +302,10 @@
         <input type="hidden" name="plan_sku"             id="f_sku" />
         <input type="hidden" name="website_care_addon"   id="f_addon" />
         <input type="hidden" name="due_now"              id="f_due" />
-        <input type="hidden" name="recurring_monthly"    id="f_recur" />
-        <input type="hidden" name="agreement_version"    id="f_agrver" value="1.0" />
+        <input type="hidden" name="recurring"            id="f_recur" />
+        <input type="hidden" name="billing_cadence"      id="f_cadence" />
+        <input type="hidden" name="setup_fee"            id="f_setup" />
+        <input type="hidden" name="agreement_version"    id="f_agrver" value="1.1" />
         <input type="hidden" name="agreement_accepted"   id="f_agrok" value="no" />
         <input type="hidden" name="agreement_accepted_at" id="f_agrat" />
         <input type="hidden" name="payment_method"       value="Bank transfer (ACH) against emailed invoice" />
@@ -289,8 +317,16 @@
               <div class="pay__step"><span class="pay__step-n" aria-hidden="true">1</span>
                 <h2 id="s1">What are you paying for?</h2></div>
 
+              <fieldset class="cadence">
+                <legend>Billing</legend>
+                <label class="cadence__opt"><input type="radio" name="cadence" value="monthly" checked />
+                  <span><b>Monthly</b><i>Month-to-month, cancel any time</i></span></label>
+                <label class="cadence__opt"><input type="radio" name="cadence" value="yearly" />
+                  <span><b>Yearly &mdash; 2 months free</b><i>Pay for 10, get 12</i></span></label>
+              </fieldset>
+
               <div class="pay__group">
-                <b>AI Employees &mdash; monthly</b>
+                <b>AI Employees &mdash; recurring</b>
                 <label class="plan"><input type="radio" name="plan" value="employees-front-desk" />
                   <span class="plan__body"><span class="plan__top"><span class="plan__name">Front Desk</span>
                     <span class="plan__price">$497/mo</span></span>
@@ -309,7 +345,7 @@
               </div>
 
               <div class="pay__group">
-                <b>AI Ad Creation &mdash; monthly</b>
+                <b>AI Ad Creation &mdash; recurring</b>
                 <label class="plan"><input type="radio" name="plan" value="ads-starter" />
                   <span class="plan__body"><span class="plan__top"><span class="plan__name">Starter</span>
                     <span class="plan__price">$697/mo</span></span>
@@ -330,7 +366,7 @@
               </div>
 
               <div class="pay__group">
-                <b>AI Business Consulting &mdash; monthly</b>
+                <b>AI Business Consulting &mdash; recurring</b>
                 <label class="plan"><input type="radio" name="plan" value="consulting" />
                   <span class="plan__body"><span class="plan__top"><span class="plan__name">Consulting</span>
                     <span class="plan__price">$750/mo</span></span>
@@ -339,23 +375,48 @@
               </div>
 
               <div class="pay__group">
-                <b>Web Design &amp; Development &mdash; one-time</b>
+                <b>Websites &mdash; subscription (build + ongoing)</b>
+                <p class="pay__lead">A site that keeps getting worked on, instead of one handed over and left
+                  alone. The setup fee covers the build; the monthly covers the work after it. <b>Still no
+                  lock-in</b> &mdash; you own the files from launch and can stop the monthly whenever you like
+                  and keep the site.</p>
+                <label class="plan"><input type="radio" name="plan" value="web-sub-launch" />
+                  <span class="plan__body"><span class="plan__top"><span class="plan__name">Launch</span>
+                    <span class="plan__price">$397 setup + $197/mo</span></span>
+                    <p class="plan__detail">Up to 5 pages, built in about 7 business days. Then: hosting managed,
+                      unlimited small changes, and a monthly check that it is still doing its job.</p></span></label>
+                <label class="plan"><input type="radio" name="plan" value="web-sub-growth" />
+                  <span class="plan__body"><span class="plan__top"><span class="plan__name">Growth &#9733;</span>
+                    <span class="plan__price">$997 setup + $347/mo</span></span>
+                    <p class="plan__detail">Up to 10 pages. Everything in Launch, plus a new page each quarter, a
+                      quarterly conversion review, and priority turnaround on changes.</p></span></label>
+                <p class="pay__custom">Flagship &mdash; stores, bookings and logins &mdash; is
+                  <b>$597/mo with the setup quoted</b>, because custom scope deserves an honest number after a
+                  conversation. <a href="contact.html?want=web-sub-flagship">Ask for a quote</a>.</p>
+              </div>
+
+              <div class="pay__group">
+                <b>Websites &mdash; one-time build</b>
+                <p class="pay__lead">Prefer to pay once and owe nothing after? This is unchanged. You get the site
+                  and we hand it over.</p>
                 <label class="plan"><input type="radio" name="plan" value="web-starter" />
                   <span class="plan__body"><span class="plan__top"><span class="plan__name">Starter site</span>
-                    <span class="plan__price">$500</span></span>
+                    <span class="plan__price">$500 once</span></span>
                     <p class="plan__detail">Up to 5 pages, custom built, mobile-first, SEO foundation included.
                       Delivered in about 7 business days.</p></span></label>
                 <label class="plan"><input type="radio" name="plan" value="web-business" />
                   <span class="plan__body"><span class="plan__top"><span class="plan__name">Business site</span>
-                    <span class="plan__price">$1,500</span></span>
+                    <span class="plan__price">$1,500 once</span></span>
                     <p class="plan__detail">Up to 10 pages, custom built, never templated. You own the
                       site.</p></span></label>
-                <label class="plan"><input type="checkbox" id="addonCare" />
+                <label class="plan" id="carePlan"><input type="checkbox" id="addonCare" />
                   <span class="plan__body"><span class="plan__top">
                     <span class="plan__name">Add website care</span>
                     <span class="plan__price">+$150/mo</span></span>
                     <p class="plan__detail">Optional. Ongoing updates and changes, month-to-month. Never required —
                       the site is yours either way.</p></span></label>
+                <p class="pay__custom" id="careNote" hidden>Website care is already part of your subscription plan —
+                  ongoing changes are what the monthly covers, so there is nothing to add here.</p>
                 <p class="pay__custom">Premium and custom builds start at $2,500 and are <b>quoted, not fixed</b>, so
                   they are not paid for here. <a href="contact.html?want=web-premium">Ask for a quote</a> and we will
                   price the actual job.</p>
@@ -426,7 +487,7 @@
 
               <p style="font-size:.9rem;line-height:1.7;margin-bottom:1rem">Here are the terms that matter most, in
                 plain English. This is a summary —
-                <a href="agreement.html" target="_blank" rel="noopener"><b>read the full Service Agreement (v1.0)</b></a>,
+                <a href="agreement.html" target="_blank" rel="noopener"><b>read the full Service Agreement (v1.1)</b></a>,
                 which opens in a new tab and is what you are actually agreeing to.</p>
 
               <div class="agrbox" tabindex="0" role="region" aria-label="Summary of key terms">
@@ -447,6 +508,13 @@
                 <p>By bank transfer against the invoice we email you. Monthly plans bill monthly in advance. Work
                   starts once the first payment clears. We will never ask you for a card number, a banking password or
                   a one-time code — if a message claims to be us and does, call (480) 798-0753 first.</p>
+                <h3>Setup fees and paying yearly</h3>
+                <p>Website subscriptions carry a one-off setup fee that pays for the build — charged once, never
+                  again. Paying a year ahead costs ten months for twelve, and still creates no lock-in: cancel and
+                  we refund the whole months you have not used.</p>
+                <h3>If you stop a website subscription</h3>
+                <p>You keep the site. Files handed over, hosting and domain moved into your name. Nothing is
+                  switched off or reverted — what stops is the ongoing work you were paying for.</p>
                 <h3>Refunds</h3>
                 <p>You cancel forward, not backward: a month in progress is not refunded. On one-time projects you get
                   a full refund before we start, or a partial refund for work not yet done. Ad spend already placed
@@ -460,7 +528,7 @@
               <label class="consent" for="agree">
                 <input type="checkbox" id="agree" />
                 <span>I have read and agree to the
-                  <a href="agreement.html" target="_blank" rel="noopener">Service Agreement (v1.0)</a>,
+                  <a href="agreement.html" target="_blank" rel="noopener">Service Agreement (v1.1)</a>,
                   the <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a> and the
                   <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. I confirm I am authorised to
                   enter this agreement for the business named above. *</span>
@@ -604,18 +672,27 @@
   (function () {
     'use strict';
 
+    /* price   = the recurring rate per month, or the whole fee for a one-time item
+       setup   = a one-off charge due with the first invoice, on top
+       monthly = true if `price` recurs                                        */
     var PLANS = {
-      'employees-front-desk':   { name: 'AI Employees — Front Desk',            price: 497,  monthly: true },
-      'employees-front-follow': { name: 'AI Employees — Front & Follow-Up',     price: 897,  monthly: true },
-      'employees-full-desk':    { name: 'AI Employees — Full Desk',             price: 1497, monthly: true },
-      'ads-starter':            { name: 'AI Ad Creation — Starter (10 ads)',    price: 697,  monthly: true },
-      'ads-growth':             { name: 'AI Ad Creation — Growth (25 ads)',     price: 1297, monthly: true },
-      'ads-scale':              { name: 'AI Ad Creation — Scale (60 ads)',      price: 2497, monthly: true },
-      'consulting':             { name: 'AI Business Consulting',               price: 750,  monthly: true },
-      'web-starter':            { name: 'Web Design — Starter site (5 pages)',  price: 500,  monthly: false },
-      'web-business':           { name: 'Web Design — Business site (10 pages)',price: 1500, monthly: false }
+      'employees-front-desk':   { name: 'AI Employees — Front Desk',             price: 497,  monthly: true },
+      'employees-front-follow': { name: 'AI Employees — Front & Follow-Up',      price: 897,  monthly: true },
+      'employees-full-desk':    { name: 'AI Employees — Full Desk',              price: 1497, monthly: true },
+      'ads-starter':            { name: 'AI Ad Creation — Starter (10 ads)',     price: 697,  monthly: true },
+      'ads-growth':             { name: 'AI Ad Creation — Growth (25 ads)',      price: 1297, monthly: true },
+      'ads-scale':              { name: 'AI Ad Creation — Scale (60 ads)',       price: 2497, monthly: true },
+      'consulting':             { name: 'AI Business Consulting',                price: 750,  monthly: true },
+      'web-sub-launch':         { name: 'Website — Launch (5 pages)',            price: 197,  monthly: true,  setup: 397 },
+      'web-sub-growth':         { name: 'Website — Growth (10 pages)',           price: 347,  monthly: true,  setup: 997 },
+      'web-starter':            { name: 'Web Design — Starter site (5 pages)',   price: 500,  monthly: false },
+      'web-business':           { name: 'Web Design — Business site (10 pages)', price: 1500, monthly: false }
     };
     var CARE = { name: 'Website care plan', price: 150, monthly: true };
+
+    /* Yearly is ten months' rate for twelve months' service. Applied to every
+       recurring line, never to a setup fee or a one-time build. */
+    var YEAR_MONTHS = 10;
 
     var form   = document.getElementById('orderForm');
     var care   = document.getElementById('addonCare');
@@ -655,56 +732,88 @@
       return r ? { sku: r.value, plan: PLANS[r.value] } : null;
     }
 
-    /* ---- price the order ---- */
+    function cadence() {
+      var r = form.querySelector('input[name="cadence"]:checked');
+      return r ? r.value : 'monthly';
+    }
+
+    /* ---- price the order ----
+       Three kinds of money, kept apart on purpose so nobody is surprised by the
+       first invoice: a one-off setup, the recurring rate, and a one-time build. */
     function renderSummary() {
       var sel = selectedPlan();
       var lines = document.getElementById('sumLines');
       var totals = document.getElementById('sumTotals');
+      var yearly = cadence() === 'yearly';
 
       if (!sel) {
         lines.innerHTML = '<p class="summary__empty">Nothing selected yet. Pick a plan on the left and it will ' +
                           'price up here.</p>';
         totals.hidden = true;
-        document.getElementById('f_plan').value = '';
-        document.getElementById('f_sku').value = '';
-        document.getElementById('f_due').value = '';
-        document.getElementById('f_recur').value = '';
+        ['f_plan','f_sku','f_due','f_recur','f_setup','f_cadence'].forEach(function (id) {
+          document.getElementById(id).value = '';
+        });
         return;
       }
 
-      var html = '', due = 0, recur = 0;
-      html += '<div class="summary__line"><span>' + sel.plan.name + '</span><b>' + money(sel.plan.price) +
-              (sel.plan.monthly ? '/mo' : '') + '</b></div>';
-      due += sel.plan.price;
-      if (sel.plan.monthly) { recur += sel.plan.price; }
+      var html = '', due = 0, recurMonthly = 0, setup = 0;
+      /* Recurring items are billed for 12 months but charged for 10 when yearly. */
+      var mult = yearly ? YEAR_MONTHS : 1;
+      var per = yearly ? '/yr' : '/mo';
+
+      if (sel.plan.setup) {
+        setup += sel.plan.setup;
+        html += '<div class="summary__line"><span>' + sel.plan.name + ' — build (one-off)</span><b>' +
+                money(sel.plan.setup) + '</b></div>';
+        due += sel.plan.setup;
+      }
+
+      if (sel.plan.monthly) {
+        html += '<div class="summary__line"><span>' + sel.plan.name + '</span><b>' +
+                money(sel.plan.price * mult) + per + '</b></div>';
+        due += sel.plan.price * mult;
+        recurMonthly += sel.plan.price;
+      } else {
+        html += '<div class="summary__line"><span>' + sel.plan.name + '</span><b>' +
+                money(sel.plan.price) + '</b></div>';
+        due += sel.plan.price;
+      }
 
       if (care.checked) {
-        html += '<div class="summary__line"><span>' + CARE.name + '</span><b>' + money(CARE.price) +
-                '/mo</b></div>';
-        due += CARE.price;
-        recur += CARE.price;
+        html += '<div class="summary__line"><span>' + CARE.name + '</span><b>' +
+                money(CARE.price * mult) + per + '</b></div>';
+        due += CARE.price * mult;
+        recurMonthly += CARE.price;
       }
       lines.innerHTML = html;
 
       document.getElementById('sumDue').textContent = money(due);
-      var then = '';
-      if (recur > 0 && sel.plan.monthly) {
-        then = 'Then ' + money(recur) + ' a month, month-to-month. Cancel any time.';
-      } else if (recur > 0) {
-        then = money(sel.plan.price) + ' is one-time. The care plan is then ' + money(CARE.price) +
-               ' a month, month-to-month.';
-      } else {
+
+      /* Say plainly what recurs and when it next lands. */
+      var then;
+      if (recurMonthly === 0) {
         then = 'One-time. Nothing recurring.';
+      } else if (yearly) {
+        then = 'Covers 12 months for the price of ' + YEAR_MONTHS + '. Renews in a year at ' +
+               money(recurMonthly * YEAR_MONTHS) + ', and you can stop before it does.';
+        if (setup) { then = money(setup) + ' of that is the one-off build. ' + then; }
+      } else {
+        then = 'Then ' + money(recurMonthly) + ' a month, month-to-month. Cancel any time.';
+        if (setup) { then = money(setup) + ' of that is the one-off build, charged once. ' + then; }
       }
       document.getElementById('sumThen').textContent = then;
       totals.hidden = false;
 
-      document.getElementById('f_plan').value  = sel.plan.name +
-        (care.checked ? ' + ' + CARE.name : '');
-      document.getElementById('f_sku').value   = sel.sku + (care.checked ? ' + web-maintenance' : '');
-      document.getElementById('f_addon').value = care.checked ? 'Yes — $150/mo website care' : 'No';
-      document.getElementById('f_due').value   = money(due) + (sel.plan.monthly ? ' (first month)' : '');
-      document.getElementById('f_recur').value = recur > 0 ? money(recur) + '/mo' : 'None';
+      document.getElementById('f_plan').value    = sel.plan.name + (care.checked ? ' + ' + CARE.name : '');
+      document.getElementById('f_sku').value     = sel.sku + (care.checked ? ' + web-maintenance' : '');
+      document.getElementById('f_addon').value   = care.checked ? 'Yes — $150/mo website care' : 'No';
+      document.getElementById('f_cadence').value = recurMonthly ? (yearly ? 'Yearly (2 months free)' : 'Monthly')
+                                                                : 'One-time';
+      document.getElementById('f_setup').value   = setup ? money(setup) + ' one-off build fee' : 'None';
+      document.getElementById('f_due').value     = money(due) + ' on the first invoice';
+      document.getElementById('f_recur').value   = recurMonthly
+        ? (yearly ? money(recurMonthly * YEAR_MONTHS) + '/yr' : money(recurMonthly) + '/mo')
+        : 'None';
     }
 
     /* ---- gate the submit button ----
@@ -767,7 +876,50 @@
         : '';
     }
 
-    function refresh() { renderSummary(); validate(); }
+    /* The website subscriptions already include ongoing changes, so offering the
+       separate care plan alongside one would charge twice for the same work. */
+    /* Keep every price label honest about the cadence that is actually selected.
+       The toggle used to say "yearly" while each card still read "/mo", and only
+       the order rail told the truth. */
+    function syncPrices() {
+      var yearly = cadence() === 'yearly';
+      form.querySelectorAll('input[name="plan"]').forEach(function (r) {
+        var p = PLANS[r.value];
+        if (!p) { return; }
+        var el = r.closest('.plan').querySelector('.plan__price');
+        if (!el) { return; }
+        if (!p.monthly) {
+          el.textContent = money(p.price) + ' once';
+        } else if (p.setup) {
+          el.textContent = money(p.setup) + ' setup + ' +
+            (yearly ? money(p.price * YEAR_MONTHS) + '/yr' : money(p.price) + '/mo');
+        } else {
+          el.textContent = yearly ? money(p.price * YEAR_MONTHS) + '/yr'
+                                  : money(p.price) + '/mo';
+        }
+      });
+      var careEl = document.getElementById('carePlan');
+      if (careEl) {
+        var cp = careEl.querySelector('.plan__price');
+        if (cp) {
+          cp.textContent = '+' + (yearly ? money(CARE.price * YEAR_MONTHS) + '/yr'
+                                         : money(CARE.price) + '/mo');
+        }
+      }
+    }
+
+    function syncCare() {
+      var sel = selectedPlan();
+      var included = !!(sel && sel.plan.setup);   /* only the web-sub-* plans carry a setup */
+      var row = document.getElementById('carePlan');
+      var note = document.getElementById('careNote');
+      if (included && care.checked) { care.checked = false; }
+      care.disabled = included;
+      row.hidden = included;
+      note.hidden = !included;
+    }
+
+    function refresh() { syncPrices(); syncCare(); renderSummary(); validate(); }
 
     form.addEventListener('change', refresh);
     form.addEventListener('input', refresh);

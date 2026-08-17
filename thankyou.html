@@ -276,21 +276,7 @@
     document.title = "Order received — GreenAI Solutions Team";
   })();
 
-  /* Stripe sends a paying customer back here with ?session_id=… — the page's
-     default copy ("Message Sent") would be wrong and slightly alarming for
-     someone who has just been charged, so swap it for a payment confirmation. */
-  (function () {
-    if (!/[?&]session_id=/.test(window.location.search)) return;
-    var h = document.querySelector('h1');
-    if (h) h.textContent = "You're in. Payment received.";
-    var p = h && h.parentNode ? h.parentNode.querySelector('p') : null;
-    if (p) {
-      p.innerHTML = "Stripe has emailed your receipt. Jaden will be in touch " +
-        "personally within one business day to book your kickoff and start the build. " +
-        "Monthly items can be cancelled any time from the link in that receipt.";
-    }
-    document.title = "Payment received \u2014 GreenAI Solutions Team";
-  })();
+
   </script>
 </body>
 </html>
