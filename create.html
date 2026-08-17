@@ -473,14 +473,16 @@
         </div>
 
         <p class="cc-note">
-          Sending this build does not charge you anything. It reaches Jaden with everything you picked;
-          he confirms what's involved, sends the invoice, and nothing starts until you say so.
-          No long-term contract on any of it — monthly items can be cancelled any time.
+          <b>Start it now</b> takes you to Stripe with exactly the build above — one card entry for
+          the whole thing, monthly items billed monthly and any one-time items on the first invoice.
+          <b>Send my build</b> charges nothing at all: it reaches Jaden, he confirms what's involved
+          and invoices you, and nothing starts until you say so. No long-term contract either way —
+          monthly items can be cancelled any time.
         </p>
 
         <div style="margin-top:1.6rem;display:flex;gap:.85rem;flex-wrap:wrap">
-          <button type="submit" class="btn btn-glow btn-lg" id="sendBtn">Send My Build →</button>
-          <a href="services.html" class="btn btn-wire btn-lg" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.38)">See what each service does</a>
+          <button type="button" class="btn btn-glow btn-lg" id="payBtn">Start it now — checkout →</button>
+          <button type="submit" class="btn btn-wire btn-lg" id="sendBtn" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.38)">Send my build instead</button>
         </div>
         <p id="formMsg" style="margin-top:1rem;font-size:.9rem;color:var(--emer-hi)" role="status"></p>
       </section>
@@ -723,6 +725,87 @@
         })
         .finally(function () { btn.disabled = false; });
     });
+
+    /* ================= checkout =================================
+       The builder makes a different basket every time, so a fixed Stripe
+       Payment Link cannot cover it — a Checkout Session can, and creating one
+       needs a secret key, which can never live in a page. So the basket goes
+       to the small endpoint in the greenai-checkout project and comes back as
+       a Stripe URL. Prices are NOT sent: only SKUs, resolved server-side.
+
+       Set this to the deployed URL. Empty = not wired yet, and the button
+       quietly becomes "Send my build" so nobody meets a dead end. */
+    var CHECKOUT_API = '';
+
+    /* Builder selection -> the SKUs in lib/catalog.js */
+    var TEAM_SKU = {
+      1: 'employees-front-desk',
+      2: 'employees-front-follow',
+      3: 'employees-team-3',
+      4: 'employees-full-desk'
+    };
+    var ADS_SKU  = { '10': 'ads-starter', '25': 'ads-growth', '60': 'ads-scale' };
+    var SITE_SKU = { 'Starter': 'web-starter', 'Business': 'web-business', 'Premium': 'web-premium' };
+
+    function basket() {
+      var s = state(), items = [];
+      if (s.n && TEAM_SKU[s.n]) items.push({ sku: TEAM_SKU[s.n], quantity: 1 });
+      var ad = radio('adtier');
+      if (adsOn.checked && ad && ADS_SKU[ad.value]) items.push({ sku: ADS_SKU[ad.value], quantity: 1 });
+      if (consult.checked) items.push({ sku: 'consulting', quantity: 1 });
+      var site = radio('sitetier');
+      if (siteOn.checked && site && SITE_SKU[site.value]) items.push({ sku: SITE_SKU[site.value], quantity: 1 });
+      if (maint.checked) items.push({ sku: 'web-maintenance', quantity: 1 });
+      return { items: items, state: s };
+    }
+
+    var payBtn = document.getElementById('payBtn');
+
+    function warn(html) { msg.style.color = '#ffb43a'; msg.innerHTML = html; }
+
+    payBtn.addEventListener('click', function () {
+      var b = basket();
+      if (!b.items.length) { warn('Pick at least one thing to start.'); return; }
+
+      var emailEl = form.querySelector('input[type=email]');
+      var email = emailEl ? emailEl.value.trim() : '';
+
+      if (!CHECKOUT_API) {
+        warn('Card checkout is being switched on. Use <b>Send my build instead</b> — it reaches Jaden with exactly what you picked and charges nothing.');
+        return;
+      }
+
+      payBtn.disabled = true;
+      msg.style.color = '#7de3a4';
+      msg.textContent = 'Opening secure checkout…';
+
+      fetch(CHECKOUT_API.replace(/\/$/, '') + '/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: b.items,
+          email: email,
+          spec: b.state.lines.map(function (l) { return l.label + ' (' + l.amount + ')'; }).join('; ')
+        })
+      })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d && res.d.url) { window.location.href = res.d.url; return; }
+          warn('Checkout could not start' + (res.d && res.d.error ? ' — ' + res.d.error : '') +
+               '. Use <b>Send my build instead</b>, or call (480) 798-0753.');
+          payBtn.disabled = false;
+        })
+        .catch(function () {
+          warn('Could not reach checkout. Use <b>Send my build instead</b>, or call (480) 798-0753.');
+          payBtn.disabled = false;
+        });
+    });
+
+    /* Someone who backed out of Stripe lands back here — say so plainly. */
+    if (/[?&]checkout=cancelled/.test(window.location.search)) {
+      msg.style.color = '#ffb43a';
+      msg.textContent = 'Checkout cancelled — nothing was charged. Your build is still here.';
+    }
 
     /* ---- the depth field, same engine as the rest of the site ---- */
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
