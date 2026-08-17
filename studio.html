@@ -75,6 +75,12 @@ html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:anti
 
 /* ── TOP BAR ── */
 .topbar{height:64px;display:flex;align-items:center;padding:0 24px;gap:16px;flex-shrink:0;background:rgba(8,12,26,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);position:relative;z-index:50}
+.platform-hub{background:rgba(255,255,255,.03);border:1px solid rgba(45,140,255,.14);border-radius:24px;padding:22px 24px;margin-bottom:20px}
+.platform-summary{font-size:13px;color:var(--text2);margin-top:10px}
+.platform-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.platform-action-btn{background:rgba(45,140,255,.08);border:1px solid rgba(45,140,255,.12);color:var(--text);padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif}
+.platform-action-btn:hover{background:rgba(45,140,255,.14);border-color:rgba(45,140,255,.18)}
+.platform-chip.active{background:rgba(45,140,255,.15);border-color:var(--gx);color:var(--gx)}
 .tb-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .tb-icon{width:36px;height:36px;background:linear-gradient(135deg,#0a1430,#123a82);border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(45,140,255,.3)}
 .tb-icon svg{width:20px;height:20px}
@@ -782,6 +788,26 @@ textarea.fi{resize:vertical;line-height:1.65}
 
     <!-- MAIN CONTENT -->
     <div class="main">
+      <div class="platform-hub card">
+        <div class="card-label">Platform Command Center</div>
+        <div class="card-title" style="font-size:1.1rem;">Choose your current platform focus</div>
+        <div class="card-sub" style="margin-top:4px;color:var(--text2);">The studio will bias content, hashtags, campaigns, and prompts toward the selected platform.</div>
+        <div class="pill-row" style="margin-top:16px;gap:10px;flex-wrap:wrap;">
+          <button class="pill platform-chip active" data-platform="Instagram" onclick="setPlatformFocus('Instagram')">Instagram</button>
+          <button class="pill platform-chip" data-platform="TikTok" onclick="setPlatformFocus('TikTok')">TikTok</button>
+          <button class="pill platform-chip" data-platform="Facebook" onclick="setPlatformFocus('Facebook')">Facebook</button>
+          <button class="pill platform-chip" data-platform="LinkedIn" onclick="setPlatformFocus('LinkedIn')">LinkedIn</button>
+          <button class="pill platform-chip" data-platform="Email" onclick="setPlatformFocus('Email')">Email</button>
+        </div>
+        <div class="platform-summary">Current platform focus: <strong id="platform-focus-label">Instagram</strong> — <span id="platform-focus-summary">Writer for polished visual posts and stories.</span></div>
+        <div class="platform-actions">
+          <button class="platform-action-btn" onclick="switchPanel('studio')">Content Studio</button>
+          <button class="platform-action-btn" onclick="switchPanel('blast')">Multi-Platform Blast</button>
+          <button class="platform-action-btn" onclick="switchPanel('hashtag')">Hashtag Lab</button>
+          <button class="platform-action-btn" onclick="switchPanel('story')">Story Builder</button>
+          <button class="platform-action-btn" onclick="switchPanel('bio')">Bio Optimizer</button>
+        </div>
+      </div>
 
       <!-- ══ CONTENT STUDIO ══ -->
       <div class="panel active" id="panel-studio">
@@ -2153,6 +2179,14 @@ let apiKey='backend';
 let geminiKey='backend';
 let sPlat='ig',sTone='professional',lTone='warm',imgStyle='cinematic',imgW=1080,imgH=1080,imgQty=1,hStrat='balanced',reviewStar=5,reviewSrc='google';
 let cpPlats={ig:false,tt:false,fb:false};
+let currentPlatformFocus='Instagram';
+const PLATFORM_SUMMARIES={
+  Instagram:'Writer for polished visual posts and stories.',
+  TikTok:'Writer for short-form video hooks and viral trends.',
+  Facebook:'Writer for community posts, local reach, and paid social.',
+  LinkedIn:'Writer for professional B2B positioning and thought leadership.',
+  Email:'Writer for high-converting email campaigns and sequences.'
+};
 let clients=JSON.parse(localStorage.getItem('gai_clients2')||'[]');
 let lastS='',lastL='',lastR='';
 let allHashtags=[];
@@ -2210,6 +2244,17 @@ function switchPanel(p){
     if(panel)panel.classList.toggle('active',x===p);
     if(nav)nav.classList.toggle('active',x===p);
   });
+}
+function setPlatformFocus(platform){
+  currentPlatformFocus=platform;
+  document.querySelectorAll('.platform-chip').forEach(el=>el.classList.toggle('active',el.dataset.platform===platform));
+  document.getElementById('platform-focus-label').textContent=platform;
+  document.getElementById('platform-focus-summary').textContent=PLATFORM_SUMMARIES[platform]||'';
+  if(platform==='Instagram') selPlat('ig');
+  if(platform==='TikTok') selPlat('tt');
+  if(platform==='Facebook') selPlat('fb');
+  if(platform==='LinkedIn' && document.getElementById('bio-input')) document.getElementById('bio-input').placeholder='Paste your LinkedIn headline, summary, or current bio';
+  if(platform==='Email' && document.getElementById('em-biz')) document.getElementById('em-biz').placeholder='Describe your email campaign audience';
 }
 
 // ══ SELECTORS ══
@@ -2529,6 +2574,7 @@ async function genCampaign(){
 Business: ${biz} (${niche})
 Goal: ${goal}
 Platforms: ${plats}
+Platform focus: ${currentPlatformFocus}
 ${offers?`Special Offers/Promos: ${offers}`:''}
 
 Generate a complete ${durNum}-day content plan. Cover EVERY day from Day 1 through Day ${durNum}. For each day include:
@@ -3041,7 +3087,7 @@ async function genBlast(){
   if(!input){document.getElementById('blast-input').focus();return}
   btn.disabled=true;btn.classList.add('loading');
   try{
-    const res=await claude(`You are a multi-platform social media expert. Take this content and reformat it perfectly for 4 platforms. Business: ${biz||'local business'}. Tone: ${tone}.
+    const res=await claude(`You are a multi-platform social media expert. Take this content and reformat it perfectly for 4 platforms. Business: ${biz||'local business'}. Tone: ${tone}. Platform focus: ${currentPlatformFocus}.
 
 Original content: "${input}"
 
