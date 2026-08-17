@@ -154,11 +154,13 @@
 
     /* ---- 03 the ring of products ---- */
     .ring__scene {
-      perspective: 1400px; width: 100%; height: 380px;
+      perspective: 1400px; width: 100%; height: 470px;
       margin-top: 2.2rem;
     }
+    /* Slab width drives the 3D radius in layoutRing(), so it stays at 260 —
+       only the height grew, to make room for the site shot. */
     .ring {
-      position: relative; width: 260px; height: 320px; margin: 0 auto;
+      position: relative; width: 260px; height: 400px; margin: 0 auto;
       transform-style: preserve-3d; will-change: transform;
     }
     .slab {
@@ -170,7 +172,37 @@
       display: flex; flex-direction: column; text-align: left;
       backface-visibility: hidden;
     }
-    .slab__tag {
+    /* The live homepage of each product, captured at 1280x800 and served at
+       800px so it stays sharp on a 2x screen.
+
+       The frame is a plain div, not the <img> itself: aspect-ratio on a
+       replaced element inside a fixed-height flex column resolves against the
+       intrinsic size and came out 177px tall instead of 121px, which cropped
+       the hero headline in half. A wrapper with the ratio plus an absolutely
+       filled image is predictable in every one of this page's three layout
+       modes. flex:0 0 auto keeps the flex algorithm from resizing it. */
+    .slab__shot {
+      flex: 0 0 auto;
+      position: relative;
+      width: 100%; aspect-ratio: 16 / 9;
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: .95rem;
+      border: 1px solid rgba(255,255,255,.11);
+      background: #08150d;
+    }
+    .slab__shot img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: top center;
+    }
+    /* Selector is `.slab p.slab__tag`, not `.slab__tag`: the tag is a paragraph
+       element, so `.slab p { flex: 1 }` below matched it and the tag swallowed
+       the card's spare height, opening a dead gap between itself and the title.
+       A bare `.slab__tag` (0-1-0) loses to `.slab p` (0-1-1), so it has to be
+       qualified. The slack belongs to the description, which is what pins the
+       link to the bottom of every card. */
+    .slab p.slab__tag {
+      flex: 0 0 auto;
       font-family: ui-monospace, Menlo, monospace;
       font-size: .58rem; letter-spacing: .17em; text-transform: uppercase;
       color: var(--emer-hi); opacity: .9; margin-bottom: .7rem;
@@ -233,7 +265,23 @@
     @media (max-width: 900px) {
       .julia { grid-template-columns: 1fr; gap: 1.6rem; max-width: 520px; }
       .julia__shot { order: -1; }
-      .ring__scene { height: 340px; perspective: 900px; }
+      .ring__scene { height: 430px; perspective: 900px; }
+    }
+
+    /* Short viewports (a small laptop, or any window with a lot of browser
+       chrome). The pinned stage is 100vh, so a taller card would push the
+       heading and the counter past the edges. Trim the card and its furniture
+       instead: a 2:1 shot rather than 16:9 buys back most of it. */
+    @media (max-height: 780px) {
+      .stage__pin { padding: 72px 24px 30px; }
+      #fleet-h { font-size: clamp(1.6rem, 4vw, 2.3rem) !important; }
+      .ring__scene { height: 372px; margin-top: 1.3rem; }
+      .ring { height: 352px; }
+      .slab { padding: 1.15rem 1.15rem; }
+      .slab__shot { aspect-ratio: 2 / 1; margin-bottom: .7rem; }
+      .slab h3 { font-size: 1.3rem; }
+      .slab p { font-size: .8rem; }
+      .ring__legend { margin-top: 1rem; }
       .kiln__nums { grid-template-columns: 1fr; gap: 1.5rem; }
       .stage__pin { padding: 88px 20px 40px; }
     }
@@ -379,41 +427,65 @@
         <div class="ring__scene">
           <div class="ring" id="ring">
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/bidwell.webp" alt="The Bidwell homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Construction</p><h3>Bidwell</h3>
               <p>An estimating desk for contractors — takes a set of plans and turns it into a priced bid.</p>
               <a href="https://bidwell-ivory.vercel.app" target="_blank" rel="noopener">Open Bidwell ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/binder.webp" alt="The BINDER homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Construction</p><h3>BINDER</h3>
               <p>A watchdog for subcontractor insurance — warns before a certificate lapses.</p>
               <a href="https://binder-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open BINDER ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/relay.webp" alt="The RELAY homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Home Care</p><h3>RELAY</h3>
               <p>Hiring and shift-fill for home-care agencies — same-day cover for open shifts.</p>
               <a href="https://greenai-relay.vercel.app" target="_blank" rel="noopener">Open RELAY ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/asked.webp" alt="The ASKED homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">AI Visibility</p><h3>ASKED</h3>
               <p>Reads a business the way an AI assistant does, and scores how ready it is to be answered about.</p>
               <a href="https://asked-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open ASKED ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/mandate.webp" alt="The MANDATE homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Agent Commerce</p><h3>MANDATE</h3>
               <p>A know-your-agent trust layer — verifies which automated buyer is which before money moves.</p>
               <a href="https://greenai-mandate.vercel.app" target="_blank" rel="noopener">Open MANDATE ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/wick.webp" alt="The WICK homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Consumer</p><h3>WICK</h3>
               <p>A household almanac on subscription — what a home needs doing, and when.</p>
               <a href="https://greenai-wick.vercel.app" target="_blank" rel="noopener">Open WICK ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/phxstaff.webp" alt="The PHX Growth Staff homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Staffing</p><h3>PHX Growth Staff</h3>
               <p>The agentic staffing desk — posts, screening and scheduling handled by software.</p>
               <a href="https://staffbell.vercel.app" target="_blank" rel="noopener">Open Staff ↗</a>
             </article>
             <article class="slab">
+              <div class="slab__shot">
+                <img src="previews/phxsolo.webp" alt="The PHX Growth Solo homepage" width="800" height="500" loading="lazy" decoding="async"/>
+              </div>
               <p class="slab__tag">Small Business</p><h3>PHX Growth Solo</h3>
               <p>The one-person version of the growth stack, priced for an operator running it all alone.</p>
               <a href="https://phxgrowth-solo.vercel.app" target="_blank" rel="noopener">Open Solo ↗</a>
