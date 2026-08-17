@@ -1,14 +1,44 @@
 User-agent: *
 Allow: /
-Disallow: /dashboard.html
-Disallow: /studio.html
-Disallow: /portal-dashboard.html
-Disallow: /_internal/
 
-# Moved to _internal/ (not published). Kept here so anything already
-# crawled or cached stops being served from the index.
+# Private client form — reachable by direct link, never indexed.
+Disallow: /onboarding.html
+
+# Post-submission and error pages. Nothing to index.
+Disallow: /thankyou.html
+Disallow: /404.html
+
+# --- Tombstones -------------------------------------------------------------
+# The paths below were removed from the site on 2026-08-17 and now 404. They are
+# listed only so anything already crawled or cached stops being served from the
+# index. Local copies live in ~/greenai-archive-pages/ and in git history.
+# Once Search Console shows them dropped, these lines can go.
+Disallow: /portal.html
+Disallow: /portal-signin.html
+Disallow: /portal-signup.html
+Disallow: /portal-dashboard.html
+Disallow: /studio.html
+Disallow: /dashboard.html
+Disallow: /content-studio.html
+Disallow: /greenfit-ai-creator.html
+Disallow: /GreenAI-AI-Automation.html
+Disallow: /visuals.html
+Disallow: /visuals-automation.html
+Disallow: /visuals-webdesign.html
+Disallow: /visualsautomation.html
+Disallow: /visualswebdesign.html
+Disallow: /subscribe-automation.html
+Disallow: /subscribe-webdesign.html
+Disallow: /experience.html
+Disallow: /exp-about.html
+Disallow: /exp-services.html
+Disallow: /exp-contact.html
+Disallow: /exp-testimonials.html
+
+# Earlier removals, kept for the same reason.
 Disallow: /outreach.html
 Disallow: /email-drafts.html
 Disallow: /marketing-campaign.html
+Disallow: /_internal/
 
 Sitemap: https://greenaidigital.com/sitemap.xml
