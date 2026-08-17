@@ -5,29 +5,43 @@
 
        <a class="buy" data-sku="employees-front-desk">Start — $497/mo</a>
 
-   and nothing else. No Stripe URL is ever pasted into a page. This file maps
-   the SKU to its Stripe Payment Link, and on load rewrites every [data-sku]
-   element's href to match.
+   and nothing else. No payment URL is ever pasted into a page. This file turns
+   each [data-sku] element into a link to the payment portal, preselected on
+   that plan.
 
    WHY IT IS BUILT THIS WAY
-   greenaidigital.com is a static site on GitHub Pages — there is no server to
-   create a Stripe Checkout Session on. Stripe Payment Links are the supported
-   way to take money from a static page: they are hosted by Stripe, handle the
-   card form, tax, receipts and the customer portal, and they are just URLs.
+   greenaidigital.com is static hosting on GitHub Pages: there is no server, so
+   nothing here can process a payment, and collecting card numbers in
+   client-side JavaScript would require PCI DSS Level 1 compliance. So the site
+   does not take card details at all. pay.html builds the order and captures the
+   signed service agreement, then Jaden invoices and the customer pays by bank
+   transfer — which also means no processor takes a percentage. On a $2,497/mo
+   plan a card rail would cost roughly $75 a month.
 
-   TO GO LIVE: paste each Payment Link into LINKS below. Until a SKU has a
-   link, its button falls back to /contact.html and is labelled as such, so a
-   half-finished wiring never shows a customer a dead button.
+   HISTORY
+   This file used to hold a map of Stripe Payment Links, every one of them an
+   empty string, so every buy button on the site fell through to a contact form
+   labelled "card payment is being switched on". That had been true for months.
+   Buttons now land on a working portal instead.
 
-   Price IDs and Payment Links are not secrets — they are safe in this file and
-   in git. A secret key never belongs here, and none is needed.
+   IF A HOSTED CARD RAIL IS ADDED LATER
+   Put its hosted link in CARD_LINKS below, keyed by SKU. Any SKU with a link
+   there gets a "Pay by card" behaviour instead of the portal; anything left
+   empty keeps using the portal. Hosted payment links are not secrets and are
+   safe in this file and in git. A secret API key never belongs here, and none
+   is needed for a hosted link.
    ========================================================================= */
 
 (function () {
   'use strict';
 
-  /* -- Stripe Payment Links, one per purchasable thing --------------------- */
-  var LINKS = {
+  var PORTAL = 'pay.html';
+
+  /* Every purchasable SKU. The value is a hosted card-checkout URL, or '' to
+     send the buyer to the portal (bank transfer). Kept as an explicit list so a
+     typo in a data-sku attribute is caught rather than silently linking to a
+     portal that cannot preselect anything. */
+  var CARD_LINKS = {
     /* AI Employees — monthly */
     'employees-front-desk':      '', /* $497/mo   · 1 employee  */
     'employees-front-follow':    '', /* $897/mo   · 2 employees */
@@ -44,56 +58,60 @@
     /* Web Design — one-time, plus optional monthly care */
     'web-starter':               '', /* $500   · up to 5 pages  */
     'web-business':              '', /* $1,500 · up to 10 pages */
-    'web-premium':               '', /* $2,500 · custom, deposit */
-    'web-maintenance':           ''  /* $150/mo */
+    'web-maintenance':           ''  /* $150/mo · add-on        */
   };
 
-  /* -- Fallback when a SKU has no link yet ---------------------------------
-     A bare link to contact.html is a dead end: the customer clicked a price
-     and landed on an empty form with no idea why. So we pass the SKU along,
-     and contact.html turns it into a preselected service and a plain-English
-     line explaining what happened. The click becomes a qualified lead rather
-     than a bounce. */
-  var FALLBACK_HREF  = 'contact.html';
-  var FALLBACK_TITLE = 'Card payment is being switched on — this opens the contact form instead';
-
-  /* -- Prefill the buyer's email when we already know it ------------------- */
-  function withEmail(url, email) {
-    if (!email) return url;
-    return url + (url.indexOf('?') === -1 ? '?' : '&') +
-           'prefilled_email=' + encodeURIComponent(email);
-  }
+  /* web-premium is deliberately absent: it is "$2,500+, quoted not fixed", so
+     it is not a fixed-price purchase and must not get a pay button. Its buttons
+     go to the contact form for a real quote. */
+  var QUOTE_ONLY = { 'web-premium': true };
 
   function wire(root) {
     var nodes = (root || document).querySelectorAll('[data-sku]');
-    var email = null;
-    try { email = sessionStorage.getItem('greenai_email'); } catch (e) { /* private mode */ }
 
     Array.prototype.forEach.call(nodes, function (el) {
-      var sku  = el.getAttribute('data-sku');
-      var link = LINKS[sku];
+      var sku = el.getAttribute('data-sku');
 
-      if (link) {
-        el.setAttribute('href', withEmail(link, email));
-        el.removeAttribute('title');
-        el.removeAttribute('aria-describedby');
+      if (QUOTE_ONLY[sku]) {
+        el.setAttribute('href', 'contact.html?want=' + encodeURIComponent(sku));
+        el.setAttribute('title', 'This build is quoted, not fixed — opens the quote form');
+        return;
+      }
+
+      var card = Object.prototype.hasOwnProperty.call(CARD_LINKS, sku) ? CARD_LINKS[sku] : null;
+
+      if (card === null) {
+        /* Unknown SKU — the attribute is probably a typo. Send the click
+           somewhere useful rather than to a portal that will ignore it. */
+        el.setAttribute('href', 'contact.html?want=' + encodeURIComponent(sku));
+        el.setAttribute('data-sku-unknown', '1');
+        return;
+      }
+
+      if (card) {
+        el.setAttribute('href', card);
         el.setAttribute('rel', 'noopener');
+        el.removeAttribute('title');
       } else {
-        el.setAttribute('href', FALLBACK_HREF + '?want=' + encodeURIComponent(sku));
-        el.setAttribute('title', FALLBACK_TITLE);
-        el.setAttribute('data-sku-pending', '1');
+        el.setAttribute('href', PORTAL + '?sku=' + encodeURIComponent(sku));
+        el.removeAttribute('title');
       }
     });
   }
 
-  /* Expose for create.html, which builds its buttons after the user picks. */
   window.GreenAICheckout = {
-    links: LINKS,
+    portal: PORTAL,
+    cardLinks: CARD_LINKS,
     wire: wire,
-    linkFor: function (sku) { return LINKS[sku] || null; },
-    /* Remember the email typed into the team builder so Stripe prefills it. */
-    rememberEmail: function (email) {
-      try { sessionStorage.setItem('greenai_email', email || ''); } catch (e) {}
+    /* '' means "use the portal", null means "no such SKU". */
+    cardLinkFor: function (sku) {
+      return Object.prototype.hasOwnProperty.call(CARD_LINKS, sku) ? CARD_LINKS[sku] : null;
+    },
+    hrefFor: function (sku) {
+      if (QUOTE_ONLY[sku]) { return 'contact.html?want=' + encodeURIComponent(sku); }
+      var card = this.cardLinkFor(sku);
+      if (card === null) { return 'contact.html?want=' + encodeURIComponent(sku); }
+      return card || (PORTAL + '?sku=' + encodeURIComponent(sku));
     }
   };
 

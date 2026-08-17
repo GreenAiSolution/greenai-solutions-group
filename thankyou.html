@@ -187,6 +187,7 @@
             <li><a href="about.html">About Us</a></li>
             <li><a href="testimonials.html">Work</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
           </ul>
         </div>
 
@@ -233,6 +234,8 @@
         <a href="privacy.html">Privacy Policy</a>
         <span style="color:rgba(255,255,255,.25)">·</span>
         <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
       </div>
 
       <div class="footer__bottom">
@@ -246,6 +249,33 @@
   <script src="script.js?v=10"></script>
 
   <script>
+  /* The payment portal sends a submitted order back here with ?order=GA-… .
+     Nobody has paid anything yet at this point, so the copy has to say exactly
+     that: the order and the signed agreement are in, and an invoice is coming.
+     Claiming "payment received" here would be a lie the customer would catch. */
+  (function () {
+    var m = /[?&]order=([A-Za-z0-9-]{4,40})/.exec(window.location.search);
+    if (!m) return;
+    var ref = m[1];
+    var h = document.querySelector('h1');
+    if (h) h.textContent = "Order received.";
+    var p = h && h.parentNode ? h.parentNode.querySelector('p') : null;
+    if (p) {
+      p.innerHTML =
+        "Your order and signed agreement are in. Jaden will email your invoice " +
+        "within one business day, with the bank transfer details and this " +
+        "reference on it:<br/><br/>" +
+        '<span style="display:inline-block;font-family:ui-monospace,Menlo,monospace;' +
+        'font-size:1.05rem;font-weight:700;letter-spacing:.06em;color:#fff;' +
+        'background:rgba(76,175,110,.18);border:1px solid rgba(76,175,110,.45);' +
+        'border-radius:8px;padding:.55rem 1rem">' + ref + "</span><br/><br/>" +
+        "Nothing has been charged yet, and no card details were entered. Quote " +
+        "that reference on your transfer and we will match it to your account " +
+        "straight away. Work starts once the first payment clears.";
+    }
+    document.title = "Order received — GreenAI Solutions Team";
+  })();
+
   /* Stripe sends a paying customer back here with ?session_id=… — the page's
      default copy ("Message Sent") would be wrong and slightly alarming for
      someone who has just been charged, so swap it for a payment confirmation. */

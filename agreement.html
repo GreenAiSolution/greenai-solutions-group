@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — GreenAI Solutions Team</title>
-  <meta name="description" content="Privacy policy for GreenAI Solutions Team. Learn how we collect, use, and protect the information you share with us." />
+  <title>Service Agreement — GreenAI Solutions Team</title>
+  <meta name="description" content="The GreenAI Solutions Team service agreement — fees, billing, cancellation, ownership and liability terms for every engagement. Version 1.0." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -12,44 +12,56 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="canonical" href="https://greenaidigital.com/privacy.html" />
+  <link rel="canonical" href="https://greenaidigital.com/agreement.html" />
+
   <style>
-    .legal { padding: 8rem 0 5rem; background: #fafdfb; min-height: 100vh; }
-    .legal__inner { max-width: 780px; margin: 0 auto; padding: 0 1.5rem; }
-    .legal h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.75rem); color: #1a5c2a; margin-bottom: .5rem; }
-    .legal__updated { color: #5a7560; font-size: .9rem; margin-bottom: 2.5rem; }
-    .legal h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #1a5c2a; margin-top: 2.5rem; margin-bottom: .75rem; }
-    .legal p, .legal li { color: #2a3b2e; line-height: 1.75; margin-bottom: .85rem; }
-    .legal ul { padding-left: 1.4rem; }
-    .legal a { color: #1a5c2a; font-weight: 600; }
-    .legal__back { display: inline-block; margin-top: 3rem; color: #1a5c2a; font-weight: 600; text-decoration: none; }
-    .legal__back:hover { text-decoration: underline; }
-  </style>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://greenaidigital.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Privacy Policy",
-      "item": "https://greenaidigital.com/privacy.html"
+    /* The agreement is a document, so it gets document furniture: a readable
+       measure, numbered clauses, and print styles that drop the site chrome. */
+    .agr {
+      max-width: 46rem; margin: 0 auto;
+      padding: 8rem 1.5rem 5rem;
     }
-  ]
-}
-  </script>
+    .agr__meta {
+      display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+      padding: 1rem 1.25rem; margin: 0 0 2.5rem;
+      background: var(--green-pale); border-radius: var(--radius-md);
+      font-size: .85rem; color: var(--gray-600);
+    }
+    .agr__meta b { color: var(--gray-800); }
+    .agr h1 { margin-bottom: .5rem; }
+    .agr__lede { font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
+    .agr h2 {
+      font-size: 1.15rem; font-family: var(--font-body); font-weight: 700;
+      margin: 2.4rem 0 .6rem; padding-top: 1.4rem;
+      border-top: 1px solid var(--gray-200);
+      line-height: 1.4; letter-spacing: 0;
+    }
+    .agr h2:first-of-type { border-top: 0; padding-top: 0; }
+    .agr p, .agr li { font-size: .95rem; line-height: 1.75; }
+    .agr ul { margin: .6rem 0 .6rem 1.1rem; }
+    .agr li { list-style: disc; margin-bottom: .35rem; }
+    .agr__back {
+      display: inline-block; margin-top: 3rem;
+      font-weight: 600; color: var(--green-dark);
+    }
+    .agr__print {
+      background: none; border: 1.5px solid var(--gray-200);
+      border-radius: 100px; padding: .5rem 1.1rem;
+      font-family: var(--font-body); font-size: .82rem; font-weight: 600;
+      color: var(--gray-600); cursor: pointer;
+    }
+    .agr__print:hover { border-color: var(--green-dark); color: var(--green-dark); }
+
+    @media print {
+      .nav, .footer, .skip-link, .agr__back, .agr__print { display: none !important; }
+      .agr { padding: 0; max-width: none; }
+      .agr h2 { page-break-after: avoid; }
+      body { background: #fff; }
+    }
+  </style>
 </head>
 <body class="light-top">
   <a href="#main" class="skip-link">Skip to main content</a>
-
-  <!-- Minimal nav -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -88,57 +100,144 @@
     </div>
   </nav>
 
-  <main id="main" class="legal">
-    <div class="legal__inner">
-      <h1>Privacy Policy</h1>
-      <p class="legal__updated">Last updated: June 15, 2026</p>
+  <main id="main" class="agr">
+    <p class="section-label">Client Agreement</p>
+    <h1>Service Agreement</h1>
+    <p class="agr__lede">This agreement governs work performed by GreenAI Solutions Team for a client. It is the
+      &ldquo;individual client agreement&rdquo; referred to in our <a href="terms.html">Terms of Service</a>. When you
+      submit an order through the <a href="pay.html">payment portal</a> and tick the acceptance box, you are agreeing to
+      this document as it reads on that date.</p>
 
-      <p>GreenAI Solutions Team ("we," "us," or "our") respects your privacy. This policy explains what information we collect, how we use it, and the choices you have. By using greenaidigital.com or contacting us, you agree to this policy.</p>
-
-      <h2>1. Information we collect</h2>
-      <ul>
-        <li><strong>Contact info you give us:</strong> name, email, phone number, business name, and any message details you submit through our contact form, by email, or by phone.</li>
-        <li><strong>Automatic data:</strong> standard server and analytics data such as IP address, browser type, device type, pages viewed, and referrer.</li>
-        <li><strong>Cookies:</strong> our site uses minimal cookies for basic functionality and may use third-party services (such as Google Fonts) that set their own cookies.</li>
-      </ul>
-
-      <h2>2. How we use your information</h2>
-      <ul>
-        <li>To reply to inquiries and provide our consulting, social media, and web design services.</li>
-        <li>To send you scheduled communications you've requested (such as proposals or follow-ups).</li>
-        <li>To improve our website, services, and marketing.</li>
-        <li>To comply with legal obligations.</li>
-      </ul>
-
-      <h2>3. Sharing your information</h2>
-      <p>We do not sell your personal information. We may share it only with:</p>
-      <ul>
-        <li>Service providers who help us run our business (e.g., form processing via Web3Forms, email delivery, hosting on GitHub Pages).</li>
-        <li>Legal authorities when required by law.</li>
-      </ul>
-
-      <h2>4. Your rights</h2>
-      <p>You can request access to, correction of, or deletion of your personal information at any time by emailing <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>. We'll respond within 30 days.</p>
-
-      <h2>5. Data retention</h2>
-      <p>We keep contact information only as long as needed to provide our services and meet legal requirements. Inquiry data is typically kept for up to 3 years.</p>
-
-      <h2>6. Security</h2>
-      <p>We use reasonable technical and organizational safeguards to protect your information, but no system is 100% secure. Use of our site is at your own risk.</p>
-
-      <h2>7. Children</h2>
-      <p>Our services are not directed to children under 16. We don't knowingly collect their data.</p>
-
-      <h2>8. Changes</h2>
-      <p>We may update this policy from time to time. The "Last updated" date above will reflect the most recent revision.</p>
-
-      <h2>9. Contact us</h2>
-      <p>Questions? Contact Jaden Green at <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a> or (480) 798-0753, Gilbert, Arizona.</p>
-
-      <a href="index.html" class="legal__back">← Back to Home</a>
+    <div class="agr__meta">
+      <span><b>Version</b> 1.0</span>
+      <span><b>Effective</b> 17 August 2026</span>
+      <span><b>Provider</b> GreenAI Solutions Team, Gilbert, Arizona</span>
+      <button type="button" class="agr__print" onclick="window.print()">Print or save as PDF</button>
     </div>
+
+    <h2>1. The parties and what this covers</h2>
+    <p>This agreement is between <b>GreenAI Solutions Team</b>, owned and operated by Jaden Green of Gilbert, Arizona
+      (&ldquo;we&rdquo;, &ldquo;us&rdquo;), and the person or business named on the order (&ldquo;you&rdquo;, the
+      &ldquo;client&rdquo;). It covers the specific plan you selected on your order, at the price shown on that order.
+      Anything not named on your order is not included.</p>
+
+    <h2>2. What we will do</h2>
+    <p>We will provide the service described on the plan you chose, at the scope stated there — for example the number
+      of AI employees, the number of finished ads per month, or the number of website pages. Where a plan states a
+      delivery window, we will work to it and will tell you promptly if something puts it at risk.</p>
+    <p>Scope changes are fine, but they are not automatic. If you want something outside the plan you bought, we will
+      quote it and you can accept or decline it before we start.</p>
+
+    <h2>3. Fees, and what is not in them</h2>
+    <p>Your fee is the amount shown on your order. Monthly plans are billed monthly in advance. One-time projects are
+      billed as stated on the order. All amounts are in US dollars.</p>
+    <p>Some costs sit outside our fee and stay yours, because they are paid to someone else and we never mark them up:</p>
+    <ul>
+      <li><b>Advertising spend.</b> Our AI Ad Creation plans cover producing the ads. The money you put behind them on
+        Meta, Google, TikTok or anywhere else is paid by you, directly to that platform.</li>
+      <li><b>Third-party subscriptions and licences</b> your setup depends on — a CRM, a phone number, a scheduling
+        tool, domain registration, hosting beyond what your plan includes, premium fonts or stock media.</li>
+      <li><b>Taxes</b> that apply to the sale, if any.</li>
+    </ul>
+    <p>We will tell you about a required third-party cost before it is incurred, not after.</p>
+
+    <h2>4. How you pay</h2>
+    <p>Payment is by bank transfer (ACH) or by any other method we agree in writing. After you submit an order we send
+      you an invoice, normally within one business day, and the payment instructions are on that invoice.</p>
+    <p><b>We will never email you asking to change our bank details, and we will never ask for your card number, your
+      online banking password, or a one-time code.</b> If you receive a message that appears to come from us and does
+      any of those things, it is not from us — call (480)&nbsp;798-0753 and check before you act on it.</p>
+    <p>Invoices are due on receipt unless the invoice states otherwise. Work begins once the first payment clears.</p>
+
+    <h2>5. Late payment</h2>
+    <p>If an invoice is more than 10 days overdue we may pause the work until it is settled. We will tell you before we
+      pause anything. We do not charge compounding penalties; if being late is going to happen, tell us and we will
+      almost always work something out.</p>
+
+    <h2>6. Length, renewal and cancelling</h2>
+    <p>Monthly plans are <b>month-to-month with no minimum term and no lock-in</b>. They renew automatically each month
+      until you cancel. <b>You can cancel any time</b> by emailing
+      <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a> or calling
+      (480)&nbsp;798-0753. Cancellation takes effect at the end of the month you have already paid for — we do not bill
+      you again after that, and we do not charge a cancellation fee.</p>
+    <p>One-time projects end when the agreed deliverables are handed over.</p>
+    <p>We may end this agreement on 30 days&rsquo; written notice, or immediately if you ask us to do something
+      unlawful. If we end it early for our own reasons, we refund the unused portion of anything you have prepaid.</p>
+
+    <h2>7. Refunds</h2>
+    <p>Monthly fees pay for work already scheduled and are not refunded for a month in progress; you cancel forward,
+      not backward. For one-time projects, if you cancel before we have started you get a full refund; if you cancel
+      part-way through, we refund the portion of the fee covering work not yet done. Third-party costs already spent on
+      your behalf — advertising spend especially — cannot be refunded, because the money has left.</p>
+
+    <h2>8. What we need from you</h2>
+    <p>The work depends on things only you can give us: access to the accounts involved, brand materials, the
+      information we ask for, and decisions when we need them. If we are held up waiting on you, delivery dates move by
+      the length of the delay. If a project is stalled on our side for more than 60 days waiting on you, we may close
+      it out and invoice for the work completed.</p>
+
+    <h2>9. Who owns the work</h2>
+    <p><b>You own everything we build for you</b> — your website, your ad creative, your copy, your configurations,
+      your data — once it is paid for. It is yours to keep, change or take elsewhere, and we will hand over what you
+      need to do that.</p>
+    <p>We keep ownership of our own tools, templates, internal code and methods, which are not part of your
+      deliverables. We may describe the work publicly and show it as a portfolio example unless you tell us in writing
+      not to, which you are free to do at any time.</p>
+
+    <h2>10. Confidentiality</h2>
+    <p>Each of us will keep the other&rsquo;s non-public business information confidential and use it only to perform
+      this agreement. This continues after the agreement ends. It does not cover information that is already public, or
+      that we are legally required to disclose.</p>
+
+    <h2>11. AI disclosure</h2>
+    <p>Our services use artificial intelligence, including systems that speak to your callers and generate creative
+      work. AI output can be wrong. We build in review steps, and you have final approval on what goes live, but you
+      should treat AI-generated material as a draft to check rather than a finished fact. Where an AI system talks to
+      your customers on your behalf, you are responsible for the conduct of your business, and we are responsible for
+      the system doing what we said it would do.</p>
+
+    <h2>12. No guarantee of results</h2>
+    <p>We work hard and we measure what we do, but <b>we do not guarantee specific outcomes</b> — not a number of
+      leads, sales, calls, followers or bookings, and not a search ranking. Those depend on your market, your pricing,
+      your offer, your follow-through and platform behaviour we do not control. Any figure we discuss in advance is an
+      estimate, not a promise.</p>
+
+    <h2>13. Limitation of liability</h2>
+    <p>To the fullest extent allowed by law, neither party is liable to the other for indirect, incidental,
+      consequential or lost-profit damages. Our total liability for any claim connected to this agreement is limited to
+      the fees you paid us in the three months before the claim arose. Nothing here limits liability that cannot be
+      limited by law.</p>
+
+    <h2>14. Independent contractor</h2>
+    <p>We are an independent contractor, not your employee, partner or agent. We decide how the work gets done, we use
+      our own equipment, and we are responsible for our own taxes and insurance.</p>
+
+    <h2>15. Governing law</h2>
+    <p>This agreement is governed by the laws of the State of Arizona. Any dispute will be handled in the state or
+      federal courts of Maricopa County, Arizona. Before either of us files anything, we agree to spend 30 days
+      genuinely trying to sort it out directly.</p>
+
+    <h2>16. Signing electronically</h2>
+    <p>Ticking the acceptance box in the payment portal and typing your name is a legally binding signature under the
+      federal ESIGN Act and Arizona&rsquo;s Electronic Transactions Act, and has the same effect as signing on paper.
+      When you submit an order we record which version of this agreement you accepted, the name you typed and the date
+      and time. Ask us any time and we will send you that record.</p>
+
+    <h2>17. Changes, and the whole agreement</h2>
+    <p>We may publish a new version of this agreement. A new version never changes a deal you have already agreed —
+      the version you accepted governs your engagement until you accept a newer one, and we will tell you if we need
+      you to. Together with your order and our <a href="terms.html">Terms of Service</a> and
+      <a href="privacy.html">Privacy Policy</a>, this is the entire agreement between us and it replaces anything said
+      beforehand. If a court sets aside one clause, the rest still stands.</p>
+
+    <h2>18. Reaching us</h2>
+    <p>Jaden Green, GreenAI Solutions Team, Gilbert, Arizona 85296 &middot;
+      <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a> &middot;
+      <a href="tel:4807980753">(480) 798-0753</a></p>
+
+    <a href="pay.html" class="agr__back">&larr; Back to the payment portal</a>
   </main>
-  <!-- Footer -->
+
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
@@ -216,8 +315,6 @@
       </div>
     </div>
   </footer>
-
-
   <script src="script.js?v=10"></script>
 </body>
 </html>

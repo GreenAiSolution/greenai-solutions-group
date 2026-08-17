@@ -82,6 +82,30 @@ img { max-width: 100%; display: block; }
 a  { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
+/* --- Links inside body copy ---
+   The rule above is right for nav items, cards and buttons, which carry their
+   own styling — but it also left every inline link inside a document invisible.
+   The email address on the legal pages rendered as plain text, and so did the
+   agreement links in the payment portal, where an unnoticed link is a real
+   problem: a tick-box agreement only holds up if the terms were conspicuously
+   available. These containers opt back in to looking like links. Scoped with
+   :not([class]) so the "Back to Home" and print buttons keep their own look. */
+.legal a:not([class]),
+.agr a:not([class]),
+.pay__panel a,
+.pay__custom a,
+.pay__safety a {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.legal a:not([class]):hover,
+.agr a:not([class]):hover,
+.pay__panel a:hover,
+.pay__custom a:hover,
+.pay__safety a:hover { color: var(--green-light); }
+
 /* --- Typography ---
    One line-height for every heading read as a default. Large display type wants
    tighter leading and slightly negative tracking; small headings want the
@@ -367,6 +391,30 @@ p {
 }
 
 .nav.transparent .nav__hamburger span { background: var(--white); }
+
+/* --- Pages that open on a light background ---------------------------------
+   The `transparent` modifier paints the bar's text white, which is right over a
+   dark hero. On a page whose top is light — the legal documents, the payment
+   portal — that rendered white on near-white and the links were genuinely
+   invisible until you scrolled far enough for script.js to swap in .scrolled.
+   Adding `light-top` to <body> keeps the shared nav markup byte-identical on
+   every page and simply cancels the white. Once scrolled, .transparent is
+   removed and .nav.scrolled takes over, so the two states match. */
+body.light-top .nav.transparent {
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 1px 0 rgba(26,92,42,.06), 0 4px 24px rgba(0,0,0,.06);
+}
+body.light-top .nav.transparent .nav__logo-name { color: var(--gray-800); }
+body.light-top .nav.transparent .nav__logo-sub  { color: var(--gray-400); }
+body.light-top .nav.transparent .nav__link      { color: var(--gray-600); }
+body.light-top .nav.transparent .nav__link:hover {
+  color: var(--green-dark); background: var(--green-pale);
+}
+body.light-top .nav.transparent .nav__link--current { color: var(--green-dark); }
+body.light-top .nav.transparent .nav__link--current::after { background: var(--green-light); }
+body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-800); }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav__hamburger.open span:nth-child(2) { opacity: 0; }
