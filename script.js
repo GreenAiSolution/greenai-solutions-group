@@ -150,6 +150,14 @@
     var hero = document.querySelector('body.cc .cc-hero');
     if (!hero || hero.querySelector('.studio-art')) return;
 
+    if (!document.querySelector('link[data-team-studio-art]')) {
+      var artStyles = document.createElement('link');
+      artStyles.rel = 'stylesheet';
+      artStyles.href = 'team-studio-art.css?v=1';
+      artStyles.setAttribute('data-team-studio-art', '');
+      document.head.appendChild(artStyles);
+    }
+
     var grid = document.createElement('div');
     grid.className = 'cc-hero-grid';
     var copy = document.createElement('div');

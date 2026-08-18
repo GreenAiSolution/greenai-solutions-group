@@ -1,0 +1,14 @@
+/* Create Your Team Studio — independently cached agentic artwork layout */
+body.cc .cc-hero.cc-hero--agentic{padding:145px 0 58px;text-align:left;overflow:hidden}
+body.cc .cc-hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(460px,1.18fr);align-items:center;gap:clamp(2rem,5vw,5rem)}
+body.cc .cc-hero-copy{position:relative;z-index:2}
+body.cc .cc-hero--agentic .hero-proof{justify-content:flex-start}
+body.cc .studio-art{position:relative;min-height:520px;margin:0;border:1px solid rgba(127,224,151,.2);border-radius:30px;overflow:hidden;background:#07110c;box-shadow:0 42px 100px rgba(0,0,0,.48),0 0 80px rgba(72,214,115,.09);isolation:isolate}
+body.cc .studio-art::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(135deg,rgba(4,12,8,.18),transparent 48%,rgba(212,175,55,.12));box-shadow:inset 0 0 0 1px rgba(255,255,255,.035)}
+body.cc .studio-art img{width:100%;height:100%;min-height:520px;display:block;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+body.cc .studio-art:hover img{transform:scale(1.025)}
+body.cc .studio-art__hud{position:absolute;z-index:3;right:18px;bottom:18px;left:18px;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:12px 15px;border:1px solid rgba(255,255,255,.12);border-radius:15px;color:rgba(235,255,241,.76);background:rgba(3,11,7,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+body.cc .studio-art__status{display:inline-flex;align-items:center;gap:.55rem;color:#a8f5ba}
+body.cc .studio-art__status::before{content:"";width:7px;height:7px;border-radius:50%;background:#63e783;box-shadow:0 0 14px #63e783}
+@media(max-width:980px){body.cc .cc-hero-grid{grid-template-columns:1fr}body.cc .studio-art,body.cc .studio-art img{min-height:440px}}
+@media(max-width:560px){body.cc .cc-hero.cc-hero--agentic{padding-top:118px}body.cc .studio-art,body.cc .studio-art img{min-height:390px}body.cc .studio-art{border-radius:22px}body.cc .studio-art__hud{font-size:.58rem;letter-spacing:.08em}}
