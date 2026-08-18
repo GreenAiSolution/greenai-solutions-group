@@ -563,40 +563,6 @@
     </div>
   </section>
 
-  <!-- Circuit divider -->
-  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-      <circle class="cd-node" cx="290" cy="12" r="3"/>
-      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-      <circle class="cd-node" cx="850" cy="22" r="3"/>
-      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-    </svg>
-  </div>
-  <!-- ===== CTA BAND ===== -->
-  <section class="cta-band" aria-labelledby="cta-heading">
-      <svg class="cta-net" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M144 108 L336 252 L576 79 L744 216 L960 100 L1080 270"/>
-        <path d="M120 250 L290 130 L460 290 L640 150 L820 280 L1020 130"/>
-        <path d="M50 50 L260 230 L500 60 L720 240 L900 80 L1140 240"/>
-        <path d="M80 320 L300 200 L520 340 L780 180 L1020 320 L1180 200"/>
-      </svg>
-    <div class="container">
-      <div class="cta-band__scarcity" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:1.5rem">
-        <span style="width:8px;height:8px;background:#ff4444;border-radius:50%;animation:pulse 2s infinite"></span>
-        <span>Only <span class="js-spots">3</span> new client spots open <span class="js-current-month">this month</span></span>
-      </div>
-      <h2 id="cta-heading">Ready to Stop Blending In?</h2>
-      <p>Arizona businesses that act now will be miles ahead of competitors still posting manually and losing leads to slow follow-up. Claim your strategy call before the month fills up.</p>
-      <div class="cta-band__actions">
-        <a href="contact.html" class="btn btn-white btn-lg">Book Your Strategy Call</a>
-        <a href="services.html" class="btn btn-lg" style="background:#fff;color:var(--green-dark);border:2px solid #fff">View Pricing</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
     <div class="container">
@@ -704,14 +670,6 @@
       counters.forEach(c => obs.observe(c));
     }
 
-    // Dynamic 'this month' label so the scarcity badge never goes stale
-    (function(){
-      const monthEl = document.querySelector('.js-current-month');
-      if (!monthEl) return;
-      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      const now = new Date();
-      monthEl.textContent = 'in ' + months[now.getMonth()];
-    })();
 
     // Auto-update copyright year
     (function(){
