@@ -144,6 +144,36 @@
 
 })();
 
+/* Create Your Team Studio — mount the visual without touching form markup. */
+(function initTeamStudioArt() {
+  function buildStudioArt() {
+    var hero = document.querySelector('body.cc .cc-hero');
+    if (!hero || hero.querySelector('.studio-art')) return;
+
+    var grid = document.createElement('div');
+    grid.className = 'cc-hero-grid';
+    var copy = document.createElement('div');
+    copy.className = 'cc-hero-copy';
+    while (hero.firstChild) copy.appendChild(hero.firstChild);
+
+    var art = document.createElement('figure');
+    art.className = 'studio-art';
+    art.innerHTML = '<img src="art/agentic-team-studio.webp" width="1536" height="1024" alt="A custom AI team assembling around a luminous orchestration core" loading="eager" fetchpriority="high">' +
+      '<figcaption class="studio-art__hud"><span class="studio-art__status">Team architecture online</span><span>Built around your workflow</span></figcaption>';
+
+    grid.appendChild(copy);
+    grid.appendChild(art);
+    hero.appendChild(grid);
+    hero.classList.add('cc-hero--agentic');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildStudioArt);
+  } else {
+    buildStudioArt();
+  }
+})();
+
 /* ---- Restore scroll-reveal for legacy .reveal elements (homepage & inner pages) ---- */
 (function () {
   function initLegacyReveal() {
