@@ -18,11 +18,11 @@
   <meta property="og:url" content="https://greenaidigital.com/service-ai-ads.html" />
   <meta property="og:title" content="AI Ad Creation — GreenAI Solutions Team" />
   <meta property="og:description" content="Ten, twenty-five or sixty finished ads a month, delivered ready to run, captions burned in, and you own every file. From $697/mo." />
-  <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
+  <meta property="og:image" content="https://greenaidigital.com/art/agentic-ads.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AI Ad Creation — GreenAI Solutions Team" />
   <meta name="twitter:description" content="Ten, twenty-five or sixty finished ads a month, delivered ready to run, captions burned in, and you own every file. From $697/mo." />
-  <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
+  <meta name="twitter:image" content="https://greenaidigital.com/art/agentic-ads.webp" />
 
   <style>
     /* ---- service detail page ---------------------------------------- */
@@ -34,6 +34,19 @@
       font-size: .92rem; font-weight: 600;
     }
     .svc-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; justify-content: center; }
+    .agentic-hero { min-height:720px; display:flex; align-items:center; padding:145px 0 82px; background:radial-gradient(circle at 72% 45%,#174c2c 0,#092014 38%,#040b07 72%); }
+    .agentic-hero .svc-hero-grid { display:grid; grid-template-columns:minmax(0,.88fr) minmax(460px,1.12fr); align-items:center; gap:3.25rem; }
+    .agentic-hero .svc-hero-copy { text-align:left; position:relative; z-index:2; }
+    .agentic-hero .svc-lede { margin-left:0; margin-right:0; font-size:1.08rem; }
+    .agentic-hero .svc-cta-row { justify-content:flex-start; }
+    .agentic-art { position:relative; margin:0; border-radius:30px; padding:10px; background:linear-gradient(145deg,rgba(212,175,55,.7),rgba(76,175,110,.08) 45%,rgba(125,227,164,.5)); box-shadow:0 40px 100px rgba(0,0,0,.5); transform:perspective(1200px) rotateY(-3deg); }
+    .agentic-art::before { content:''; position:absolute; inset:-34px; z-index:-1; background:radial-gradient(circle,rgba(76,175,110,.28),transparent 66%); filter:blur(18px); }
+    .agentic-art img { width:100%; height:500px; object-fit:cover; border-radius:22px; border:1px solid rgba(255,255,255,.12); }
+    .agentic-art__hud { position:absolute; left:28px; right:28px; bottom:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; padding:1rem 1.1rem; border:1px solid rgba(255,255,255,.15); border-radius:16px; background:rgba(3,11,7,.78); backdrop-filter:blur(16px); }
+    .agentic-art__hud small { display:block; color:#7de3a4; font-size:.58rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    .agentic-art__hud strong { display:block; color:#fff; margin-top:.25rem; font-size:.9rem; }
+    .agentic-art__pulse { width:9px; height:9px; border-radius:50%; background:#7de3a4; box-shadow:0 0 0 6px rgba(125,227,164,.12),0 0 22px #7de3a4; animation:agentPulse 2s ease-in-out infinite; }
+    @keyframes agentPulse { 50% { box-shadow:0 0 0 11px rgba(125,227,164,0),0 0 30px #7de3a4; } }
 
     .svc-two { display: grid; grid-template-columns: 1.35fr .9fr; gap: 3.5rem; align-items: start; }
     .svc-two { text-align: left; }
@@ -108,6 +121,10 @@
     .svc-end p { color: rgba(255,255,255,.72); }
 
     @media (max-width: 900px) {
+      .agentic-hero { min-height:0; }
+      .agentic-hero .svc-hero-grid { grid-template-columns:1fr; }
+      .agentic-art { transform:none; }
+      .agentic-art img { height:auto; aspect-ratio:16/10; }
       .svc-two { grid-template-columns: 1fr; gap: 2rem; }
       .svc-inc { grid-template-columns: 1fr; }
       .buyrow { grid-template-columns: 1fr; gap: .85rem; }
@@ -211,16 +228,16 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <div class="page-hero" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative;z-index:1">
-      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> Service 02 · AI Ad Creation</div>
-      <h1>One product.<br/>A month of angles.</h1>
-      <p class="svc-lede" style="color:rgba(255,255,255,.75)">Targeting is automated. Bidding is automated. Placement is automated. Creative is the last thing the platforms have not taken over — and it is the one thing most businesses make exactly one of.</p>
-      <span class="svc-flag">★ About $52 an ad at the Growth tier · you own every file</span>
-      <div class="svc-cta-row">
-        <a class="btn btn-primary btn-lg buy" data-sku="ads-growth" href="contact.html">Start Growth — 25 ads, $1,297/mo</a>
-        <a class="btn btn-secondary btn-lg" href="#how" style="color:#fff;border-color:rgba(255,255,255,.45)">How it works ↓</a>
+  <div class="page-hero agentic-hero" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative;z-index:1"><div class="svc-hero-grid">
+      <div class="svc-hero-copy"><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> Service 02 · AI Ad Creation</div>
+        <h1>One product.<br/>A month of angles.</h1>
+        <p class="svc-lede" style="color:rgba(255,255,255,.75)">Targeting is automated. Bidding is automated. Placement is automated. Creative is the last thing the platforms have not taken over — and it is the one thing most businesses make exactly one of.</p>
+        <span class="svc-flag">★ About $52 an ad at the Growth tier · you own every file</span>
+        <div class="svc-cta-row"><a class="btn btn-primary btn-lg buy" data-sku="ads-growth" href="contact.html">Start Growth — 25 ads, $1,297/mo</a><a class="btn btn-secondary btn-lg" href="#how" style="color:#fff;border-color:rgba(255,255,255,.45)">How it works ↓</a></div>
       </div>
+      <figure class="agentic-art"><img src="art/agentic-ads.webp" alt="An AI creative director orchestrating a field of campaign concepts and cinematic ad variations" width="1600" height="840" loading="eager" fetchpriority="high"/><figcaption class="agentic-art__hud"><span><small>Creative engine · generating</small><strong>Hooks → scenes → variants → winners</strong></span><i class="agentic-art__pulse" aria-hidden="true"></i></figcaption></figure>
+    </div>
     </div>
   </div>
 
