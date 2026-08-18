@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Jaden Green &amp; GreenAI Solutions Team — Gilbert, AZ</title>
-  <meta name="description" content="Jaden Green and GreenAI Solutions — an AI company in Gilbert, AZ helping Phoenix-area local businesses answer every call, follow up automatically, and win the jobs they were already paying to get." />
+  <meta name="description" content="Jaden Green — B.S. in Real Estate and Business, seven years building AI systems for small companies. GreenAI Solutions, Gilbert AZ: answer every call, follow up automatically, and win the jobs you are already paying to get." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -25,6 +25,11 @@
     .principle strong { display:block; color:#fff; font-size:.84rem; }
     .principle span { display:block; margin-top:.25rem; color:rgba(255,255,255,.36); font-size:.7rem; line-height:1.45; }
     .about-founder { background:#fff; }
+    /* the founder bio runs several paragraphs -- without this they close up
+       into one block of text and nobody reads past the first line */
+    .about-founder .about-intro p { margin:0 0 1.15rem; line-height:1.75; }
+    .about-founder .about-intro p:last-of-type { margin-bottom:0; }
+    .about-founder .about-intro p strong { color:var(--green-dark, #1a5c2a); font-weight:700; }
     .about-founder .about-visual > div[role="img"] { border-radius:16px !important; box-shadow:none !important; border:1px solid rgba(26,92,42,.14); }
     .about-founder .about-stat-badge { box-shadow:none; border:1px solid rgba(26,92,42,.14); }
     .mission-card,.feature-card { border-radius:14px; box-shadow:none; border:1px solid rgba(26,92,42,.12); }
@@ -43,11 +48,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/about.html" />
   <meta property="og:title" content="About Jaden Green & GreenAI Solutions Team" />
-  <meta property="og:description" content="Meet Jaden Green, founder of GreenAI Solutions Team. AI consulting and growth services for Arizona businesses, based in Gilbert, AZ." />
+  <meta property="og:description" content="Meet Jaden Green — a business graduate with seven years building the AI systems he sells. Founder-led AI for Arizona businesses, based in Gilbert, AZ." />
   <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About Jaden Green & GreenAI Solutions Team" />
-  <meta name="twitter:description" content="Meet Jaden Green, founder of GreenAI Solutions Team. AI consulting and growth services for Arizona businesses, based in Gilbert, AZ." />
+  <meta name="twitter:description" content="Meet Jaden Green — a business graduate with seven years building the AI systems he sells. Founder-led AI for Arizona businesses, based in Gilbert, AZ." />
   <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
   <script type="application/ld+json">
 {
@@ -67,6 +72,40 @@
       "item": "https://greenaidigital.com/about.html"
     }
   ]
+}
+  </script>
+
+  <!-- Person schema: when a business owner asks an AI assistant "who is Jaden
+       Green", this is what it reads. Same facts as the bio, machine-readable. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jaden Green",
+  "jobTitle": "Founder & AI Strategist",
+  "description": "Founder of GreenAI Solutions. Holds a B.S. in Real Estate and Business from the University of Washington and has spent seven years building AI and automation systems for small companies.",
+  "url": "https://greenaidigital.com/about.html",
+  "image": "https://greenaidigital.com/jaden.jpg",
+  "email": "jaden@greenaidigital.com",
+  "telephone": "+1-480-798-0753",
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Washington" },
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Bachelor's Degree",
+    "educationalLevel": "Bachelor of Science",
+    "about": "Real Estate and Business"
+  },
+  "knowsAbout": [
+    "AI automation for small business",
+    "Lead response and follow-up systems",
+    "AI advertising",
+    "AI employees and workflow design"
+  ],
+  "worksFor": { "@type": "Organization", "name": "GreenAI Solutions", "url": "https://greenaidigital.com/" },
+  "homeLocation": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "addressCountry": "US" }
+  }
 }
   </script>
 </head>
@@ -115,7 +154,7 @@
   <!-- ===== PAGE HERO ===== -->
   <div class="page-hero about-agentic" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative;z-index:1"><div class="about-hero-grid">
-      <div><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Founder-led systems</div><span class="section-label" style="color:var(--green-accent)">Our Story</span><h1>Small team.<br/><em>Serious systems.</em></h1><p>GreenAI was built on one conviction: local businesses deserve the same intelligent operating leverage as companies with entire technology departments.</p><div class="about-signal"><span>Gilbert, Arizona</span><span>Founder-led</span><span>Month to month</span><span>Human-governed AI</span></div></div>
+      <div><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Founder-led systems</div><span class="section-label" style="color:var(--green-accent)">Our Story</span><h1>Small team.<br/><em>Serious systems.</em></h1><p>GreenAI was built on one conviction: local businesses deserve the same intelligent operating leverage as companies with entire technology departments.</p><div class="about-signal"><span>Gilbert, Arizona</span><span>B.S. Real Estate &amp; Business</span><span>7 years building</span><span>Founder-led</span><span>Month to month</span><span>Human-governed AI</span></div></div>
       <aside class="principle-stack" aria-label="GreenAI operating principles"><div class="principle-stack__top"><span>Operating principles</span><i aria-hidden="true"></i></div><div class="principle"><b>01</b><div><strong>Rules before autonomy</strong><span>Every agent gets boundaries, escalation logic and a human owner.</span></div></div><div class="principle"><b>02</b><div><strong>Outcomes before tools</strong><span>We start with the business problem, not the newest software.</span></div></div><div class="principle"><b>03</b><div><strong>Proof before expansion</strong><span>Measure the first system, then compound what works.</span></div></div></aside>
     </div></div>
   </div>
@@ -133,10 +172,10 @@
             </div>
           </div>
 
-          <div class="about-stat-badge about-stat-badge--2" aria-label="5 years in real estate and technology">
+          <div class="about-stat-badge about-stat-badge--2" aria-label="Seven years building AI and business systems">
             <div>
-              <div class="num">5+</div>
-              <div class="label">Years in Real Estate<br/>&amp; AI Technology</div>
+              <div class="num">7</div>
+              <div class="label">Years Building AI<br/>&amp; Business Systems</div>
             </div>
           </div>
 
@@ -153,9 +192,10 @@
           <span class="section-label">Meet the Founder</span>
           <h2 id="jaden-heading">Hi, I'm Jaden Green.</h2>
           <div class="section-divider section-divider--left"></div>
-          <p>I'm Jaden Green — a University of Washington graduate, Gilbert native, and someone who's been obsessed with one question: how do local businesses compete and win in a world that keeps changing faster? The answer is strategy, technology, and relentless execution. That's exactly what GreenAI delivers.</p>
-          <p>I built this company because I kept seeing great businesses — salons, restaurants, real estate agents, service providers — leaving money on the table. Not because they lacked talent or work ethic, but because they didn't have the right systems, the right online presence, or the right tools. AI changes that equation completely — a one-van operation can now answer like a company with a front desk.</p>
-          <p>Every GreenAI client works directly with me — not an account manager, not a contractor overseas. I bring my full competitive drive to every client's business, the same way I approached every challenge on the field. Your success is personal to me.</p>
+          <p>I'm Jaden Green. I hold a <strong>B.S. in Real Estate and Business from the University of Washington</strong>, and I've spent <strong>seven years building systems that let a small company run like a much bigger one</strong>. GreenAI is where all of that work now lives.</p>
+          <p>The degree matters more than it sounds like it should. I learned to read a P&amp;L, a market and a margin before I ever automated anything — so what I sell you isn't technology, it's a job that gets done faster, cheaper, or at an hour when nobody is awake. Every build starts with the question an owner actually asks: what does this return, and when?</p>
+          <p>I build the systems myself — not licensed off someone else's platform, not handed to a contractor overseas. Seven years of doing it that way produced one rule I don't break: <strong>whoever does the work doesn't grade it.</strong> A second system checks the first, a person approves anything that acts on your behalf, and the machine is built to say &ldquo;I'm not sure&rdquo; instead of inventing an answer. That is the difference between AI you can put in front of your customers and AI you have to apologise for.</p>
+          <p>What that looks like on your side of the desk: every call, form and text answered in seconds and held until somebody owns it. Follow-up that actually follows up. Ads rewritten the moment they tire. Books, dispatch and records that close themselves. You stay the owner — you just stop being the bottleneck. And you work with me directly, every time.</p>
 
           <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
             <a href="contact.html" class="btn btn-primary">
