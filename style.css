@@ -829,36 +829,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   margin-bottom: .75rem;
 }
 
-/* --- CTA Band --- */
-.cta-band {
-  background: linear-gradient(145deg, #081a0c 0%, var(--green-dark) 40%, var(--green-mid) 100%);
-  padding: 5.5rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-band::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 30% 50%, rgba(255,255,255,.05) 0%, transparent 55%),
-    radial-gradient(circle at 70% 50%, rgba(76,175,110,.1) 0%, transparent 55%);
-}
-
-.cta-band > * { position: relative; z-index: 1; }
-
-.cta-band h2 { color: var(--white); margin-bottom: 1rem; }
-.cta-band p  { color: rgba(255,255,255,.75); max-width: 520px; margin: 0 auto 2.25rem; font-size: 1.05rem; }
-
-.cta-band__actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
 /* --- Footer --- */
 .footer {
   background: var(--black);
@@ -1705,7 +1675,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   .section { padding: 3.5rem 0; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; justify-content: center; }
-  .cta-band__actions { flex-direction: column; align-items: center; }
   .contact-form-card { padding: 1.75rem; }
 }
 
@@ -2367,49 +2336,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 }
 .feature-card:hover .feature-icon::after { opacity: 1; }
 
-/* ---------- Network node constellation behind CTA band ---------- */
-.cta-band { isolation: isolate; }
-.cta-band::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 12% 30%, rgba(77,208,225,.7) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 28% 70%, rgba(77,208,225,.55) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 48% 22%, rgba(212,175,55,.55) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 62% 60%, rgba(77,208,225,.65) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 80% 28%, rgba(77,208,225,.4)  0 1.5px, transparent 2px),
-    radial-gradient(circle at 90% 75%, rgba(212,175,55,.4)  0 1.5px, transparent 2px);
-  opacity: .85;
-  mask-image: linear-gradient(180deg, black 0%, black 75%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, black 0%, black 75%, transparent 100%);
-}
-.cta-band .cta-net {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: .55;
-}
-.cta-band .cta-net path {
-  stroke: rgba(77,208,225,.45);
-  stroke-width: 1;
-  fill: none;
-  stroke-dasharray: 4 8;
-}
-.cta-band .cta-net path:nth-child(even) {
-  stroke: rgba(212,175,55,.32);
-  animation-duration: 11s;
-  animation-direction: reverse;
-}
-
-/* Bigger emphasis on cta-band content above the net */
-.cta-band > .container { position: relative; z-index: 2; }
-
 /* ---------- Hero dashboard mockup cyan + circuit upgrade ---------- */
 .hero__visual { position: relative; }
 
@@ -2488,7 +2414,6 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
 @media (prefers-reduced-motion: reduce) {
   .circuit-divider .cd-line,
   .circuit-divider .cd-node,
-  .cta-band .cta-net path,
   .page-hero__chip-dot,
   .brand-showcase__crest {
     animation: none !important;
@@ -3122,14 +3047,6 @@ main { overflow: clip; }
 }
 .btn:hover::before { transform: translateX(120%); }
 .btn:active { transform: translateY(0) scale(.985); }
-
-/* A more intentional handoff into the closing conversion moment. */
-.cta-band {
-  border-top: 1px solid rgba(212,175,55,.24);
-  border-bottom: 1px solid rgba(76,175,110,.2);
-  box-shadow: inset 0 28px 80px rgba(4,24,11,.22);
-}
-.cta-band h2 { text-shadow: 0 2px 28px rgba(0,0,0,.2); }
 
 .footer {
   position: relative;
