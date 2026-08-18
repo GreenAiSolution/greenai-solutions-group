@@ -870,11 +870,15 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   color: var(--white);
 }
 
+/* Same inherited-dark-ink problem as the case studies: the footer is
+   #0d1117 and this had no colour of its own, so it rendered gray-800 on
+   near-black at 2.5:1. */
 .footer__tagline {
   font-size: .88rem;
   line-height: 1.7;
   max-width: 280px;
   margin-bottom: 1.5rem;
+  color: rgba(255,255,255,.66);
 }
 
 .footer h5 {
@@ -931,7 +935,7 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   gap: .5rem;
 }
 
-.footer__bottom-right { color: rgba(255,255,255,.35); }
+.footer__bottom-right { color: rgba(255,255,255,.62); }   /* .35 measured 3.2:1 */
 
 /* --- Page Hero (inner pages) --- */
 .page-hero {
@@ -2561,7 +2565,22 @@ body.cc .studio-art__status::before {
 }
 
 /* ---- JULIA CASE STUDY ---- */
-.case-study-section { background: #0a0f0b; }
+/* These sections paint a near-black background, but the site's base text
+   colour is var(--gray-800) — chosen for white pages. Everything in here
+   without an explicit colour therefore inherited near-black ON near-black:
+   measured 1.32:1 for the plain half of both headlines, 1.05:1 for the bullet
+   lists and 2.05:1 for the body copy, against a 4.5:1 requirement. The colour
+   is now stated once for the whole section instead of patched per element. */
+.case-study-section {
+  background:
+    radial-gradient(1000px 480px at 84% 10%, rgba(26,92,42,0.18), transparent 62%),
+    #0a0f0b;
+  color: rgba(255,255,255,0.78);
+}
+
+.case-study-section .section-label { color: var(--green-accent); }
+
+.cs-content h2 { color: #f4f8f5; }
 
 .cs-inner {
   display: grid;
@@ -2607,7 +2626,7 @@ body.cc .studio-art__status::before {
 .cs-content p {
   line-height: 1.75;
   margin-bottom: 28px;
-  opacity: 0.8;
+  color: rgba(255,255,255,0.78);
 }
 
 .cs-stats {
@@ -2618,25 +2637,31 @@ body.cc .studio-art__status::before {
 }
 
 .cs-stat {
-  background: rgba(212,175,55,0.07);
-  border: 1px solid rgba(212,175,55,0.22);
+  background: linear-gradient(158deg, rgba(212,175,55,0.16), rgba(212,175,55,0.04));
+  border: 1px solid rgba(212,175,55,0.34);
   border-radius: 10px;
-  padding: 18px 10px;
+  padding: 18px 10px 16px;
   text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
 }
 
 .cs-stat-num {
   font-size: 1.7rem;
   font-weight: 800;
-  color: #D4AF37;
+  color: #f0cf6b;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
+/* Was 0.7rem at opacity .65 over dark ink — the caption under every number
+   was effectively invisible. Reads as a small-caps caption now. */
 .cs-stat-label {
-  font-size: 0.7rem;
-  opacity: 0.65;
-  letter-spacing: 0.03em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.74);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .cs-deliverables {
@@ -2654,7 +2679,7 @@ body.cc .studio-art__status::before {
    inline text with an absolutely positioned bullet, the line just flows. */
 .cs-deliverables li {
   font-size: 0.92rem;
-  opacity: 0.8;
+  color: rgba(255,255,255,0.75);
   position: relative;
   padding-left: 18px;
   line-height: 1.55;
@@ -2671,7 +2696,7 @@ body.cc .studio-art__status::before {
   border-radius: 50%;
 }
 
-.cs-deliverables li strong { opacity: 1; }
+.cs-deliverables li strong { color: #ffffff; font-weight: 700; }
 
 @media (max-width: 860px) {
   .cs-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -2684,7 +2709,9 @@ body.cc .studio-art__status::before {
    the bare `.cs-image-wrap` in the 860px block above, so the stacked order has
    to be restated below or the shot lands under the copy on a phone. */
 .case-study-section--alt {
-  background: #080d09;
+  background:
+    radial-gradient(1000px 480px at 16% 12%, rgba(26,92,42,0.15), transparent 62%),
+    #080d09;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
