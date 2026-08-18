@@ -72,6 +72,13 @@
     }
     .cc-hero h1 em { font-style: normal; color: var(--gold); }
     .cc-hero p { margin: 1.2rem auto 0; max-width: 40rem; font-size: 1.04rem; line-height: 1.7; color: rgba(255,255,255,.76); }
+    .hero-proof { display:flex; justify-content:center; flex-wrap:wrap; gap:.65rem; margin-top:1.45rem; }
+    .hero-proof span { display:inline-flex; align-items:center; gap:.45rem; padding:.52rem .78rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; background:rgba(255,255,255,.045); color:rgba(255,255,255,.72); font-size:.72rem; font-weight:700; letter-spacing:.03em; }
+    .hero-proof i { width:6px; height:6px; border-radius:50%; background:var(--emer-hi); box-shadow:0 0 12px var(--emer-hi); }
+    .builder-nav { position:sticky; top:86px; z-index:20; display:flex; gap:.45rem; overflow-x:auto; padding:.55rem; margin:0 auto 2rem; border:1px solid rgba(255,255,255,.12); border-radius:15px; background:rgba(5,14,8,.82); backdrop-filter:blur(18px); scrollbar-width:none; }
+    .builder-nav::-webkit-scrollbar { display:none; }
+    .builder-nav a { flex:1 0 auto; min-width:112px; padding:.62rem .72rem; border-radius:10px; color:rgba(255,255,255,.55); font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-align:center; transition:.2s ease; }
+    .builder-nav a:hover { color:#fff; background:rgba(76,175,110,.12); }
 
     /* ---- step furniture ---- */
     .step { margin-top: 3.4rem; }
@@ -112,6 +119,8 @@
     .pick__name { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; line-height: 1; }
     .pick__role { font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-top: .35rem; }
     .pick__job { font-size: .8rem; line-height: 1.5; color: rgba(255,255,255,.62); margin: .55rem 0 0; }
+    .pick__meta { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.65rem; }
+    .pick__meta b { padding:.22rem .4rem; border:1px solid rgba(255,255,255,.14); border-radius:6px; color:rgba(255,255,255,.62); font-size:.53rem; letter-spacing:.04em; font-family:Inter,sans-serif; }
     .pick input:checked ~ .pick__tick { border-color: var(--gold); background: var(--gold); color: #0a0a0a; }
     .pick:has(input:checked) { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(212,175,55,.5), 0 22px 50px rgba(0,0,0,.5); }
     .pick:has(input:checked) .pick__art img { filter: saturate(1.15) brightness(1.08); }
@@ -185,6 +194,21 @@
     }
     .field select option { background: #0a170e; color: #fff; }
     .field--wide { grid-column: 1 / -1; }
+    .briefcard { padding:1.35rem; border-radius:18px; background:linear-gradient(145deg,rgba(13,31,19,.88),rgba(5,14,8,.78)); border:1px solid rgba(76,175,110,.2); }
+    .briefcard + .briefcard { margin-top:1rem; }
+    .briefcard__head { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+    .briefcard__head h3 { font-family:'Playfair Display',serif; font-size:1.15rem; margin:0 0 .25rem; }
+    .briefcard__head p { margin:0; color:rgba(255,255,255,.5); font-size:.78rem; line-height:1.5; }
+    .briefcard__icon { width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; border-radius:10px; background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.25); color:var(--gold); }
+    .choicegrid { display:grid; grid-template-columns:repeat(3,1fr); gap:.65rem; }
+    .choice { position:relative; cursor:pointer; }
+    .choice input { position:absolute; opacity:0; pointer-events:none; }
+    .choice span { min-height:58px; display:flex; align-items:center; gap:.5rem; padding:.75rem .8rem; border:1px solid rgba(255,255,255,.13); border-radius:10px; background:rgba(4,10,6,.48); color:rgba(255,255,255,.68); font-size:.75rem; font-weight:650; line-height:1.3; transition:.2s ease; }
+    .choice span::before { content:'+'; width:20px; height:20px; flex:0 0 auto; display:grid; place-items:center; border:1px solid rgba(255,255,255,.2); border-radius:6px; color:rgba(255,255,255,.5); }
+    .choice input:checked + span { color:#fff; border-color:var(--gold); background:rgba(212,175,55,.1); box-shadow:inset 0 0 0 1px rgba(212,175,55,.18); }
+    .choice input:checked + span::before { content:'✓'; color:#07130c; background:var(--gold); border-color:var(--gold); }
+    .microcopy { margin:.45rem 0 0; font-size:.67rem; color:rgba(255,255,255,.38); line-height:1.45; }
+    .section-rule { height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.28),transparent); margin:1.3rem 0; }
 
     /* ---- the live total ---- */
     .totalbar {
@@ -233,10 +257,14 @@
       .tb__nums { gap: 1.1rem; }
       .tb__sum { display: none; }
       .wrapc { padding-bottom: 200px; }
+      .choicegrid { grid-template-columns:repeat(2,1fr); }
+      .builder-nav { top:74px; }
     }
     @media (max-width: 520px) {
       .crewgrid { grid-template-columns: 1fr; }
       .tiers { grid-template-columns: 1fr; }
+      .choicegrid { grid-template-columns:1fr; }
+      .builder-nav a { min-width:105px; }
     }
     @media (prefers-reduced-motion: reduce) {
       #deep { display: none; }
@@ -312,10 +340,15 @@
   <main id="main" class="wrapc">
 
     <header class="cc-hero">
-      <p class="kicker">GreenAI · Creation Center</p>
-      <h1>Build Your <em>Custom Team</em>.</h1>
-      <p>Pick the staff your business actually needs, add anything else you want built, and watch the price move as you go. No call required to find out what it costs.</p>
+      <p class="kicker">GreenAI · AI Team Studio</p>
+      <h1>Design the team your<br/><em>business actually needs.</em></h1>
+      <p>Choose your AI employees, teach us how your business works, and define exactly how every conversation should be handled. You’ll leave with a complete implementation brief and transparent price.</p>
+      <div class="hero-proof" aria-label="Studio benefits"><span><i></i> Takes about 6 minutes</span><span><i></i> Live transparent pricing</span><span><i></i> Reviewed personally by Jaden</span></div>
     </header>
+
+    <nav class="builder-nav" aria-label="Builder steps">
+      <a href="#team">01 Team</a><a href="#business">02 Business</a><a href="#growth">03 Growth</a><a href="#systems">04 Systems</a><a href="#playbook">05 Playbook</a><a href="#contact-details">06 Review</a>
+    </nav>
 
     <form id="build" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac"/>
@@ -327,7 +360,7 @@
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true"/>
 
       <!-- ============ STEP 1 — the crew ============ -->
-      <section class="step">
+      <section class="step" id="team">
         <div class="step__head">
           <span class="step__n">Step 01</span>
           <h2 class="step__t">Choose your employees</h2>
@@ -343,6 +376,7 @@
               <span class="pick__name">STERLING</span>
               <span class="pick__role">Inbound Sales</span>
               <span class="pick__job">Picks up on the first ring, works out what they need, books the appointment.</span>
+              <span class="pick__meta"><b>24/7 ANSWERING</b><b>LEAD QUALIFYING</b><b>BOOKING</b></span>
             </span>
           </label>
 
@@ -354,6 +388,7 @@
               <span class="pick__name">HUNTER</span>
               <span class="pick__role">Outbound Calls</span>
               <span class="pick__job">Rings back every missed call and every lead that went cold months ago.</span>
+              <span class="pick__meta"><b>LEAD REACTIVATION</b><b>FOLLOW-UP</b><b>OUTBOUND</b></span>
             </span>
           </label>
 
@@ -365,6 +400,7 @@
               <span class="pick__name">MAVEN</span>
               <span class="pick__role">Front Desk</span>
               <span class="pick__job">Hours, pricing, directions, "do you service my area" — answered in your words.</span>
+              <span class="pick__meta"><b>FAQS</b><b>ROUTING</b><b>CUSTOMER CARE</b></span>
             </span>
           </label>
 
@@ -376,6 +412,7 @@
               <span class="pick__name">LEDGER</span>
               <span class="pick__role">Scheduling &amp; Ops</span>
               <span class="pick__job">Confirms tomorrow's jobs, chases no-shows, refills the slot before it's wasted.</span>
+              <span class="pick__meta"><b>CONFIRMATIONS</b><b>RESCHEDULING</b><b>NO-SHOWS</b></span>
             </span>
           </label>
         </div>
@@ -383,10 +420,42 @@
         <p class="teamnote" id="teamNote">One employee — $497/mo. Add a second and the team rate kicks in.</p>
       </section>
 
-      <!-- ============ STEP 2 — ads ============ -->
-      <section class="step">
+      <section class="step" id="business">
         <div class="step__head">
           <span class="step__n">Step 02</span>
+          <h2 class="step__t">Give your team the business blueprint</h2>
+          <p class="step__s">The better the context, the more your AI team sounds like a trained member of your company—not a generic answering service.</p>
+        </div>
+        <div class="briefcard">
+          <div class="briefcard__head"><div><h3>Company &amp; customer context</h3><p>Tell us what you sell, where you serve, and who the team will speak with.</p></div><span class="briefcard__icon" aria-hidden="true">01</span></div>
+          <div class="fields">
+            <label class="field"><span>Industry / business type</span><input type="text" name="industry_detail" placeholder="Residential HVAC company"/></label>
+            <label class="field"><span>Primary service area</span><input type="text" name="service_area" placeholder="Phoenix metro · 35-mile radius"/></label>
+            <label class="field"><span>Ideal customer</span><input type="text" name="ideal_customer" placeholder="Homeowners needing same-week service"/></label>
+            <label class="field"><span>Average sale or job value</span><input type="text" name="average_value" placeholder="$800 repair · $9,000 install"/></label>
+            <label class="field field--wide"><span>Top services, offers, or appointments to prioritize</span><textarea name="priority_services" rows="3" placeholder="AC repair, maintenance memberships, free replacement estimates…"></textarea></label>
+          </div>
+        </div>
+        <div class="briefcard">
+          <div class="briefcard__head"><div><h3>What should the team handle?</h3><p>Select every workflow you want included in your initial build.</p></div><span class="briefcard__icon" aria-hidden="true">02</span></div>
+          <div class="choicegrid">
+            <label class="choice"><input type="checkbox" name="workflows" value="new-lead-qualification"/><span>Qualify new leads</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="appointment-booking"/><span>Book appointments</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="missed-call-textback"/><span>Recover missed calls</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="estimate-followup"/><span>Follow up estimates</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="lead-reactivation"/><span>Reactivate old leads</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="customer-support"/><span>Answer customer FAQs</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="confirmations"/><span>Confirm appointments</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="rescheduling"/><span>Reschedule customers</span></label>
+            <label class="choice"><input type="checkbox" name="workflows" value="reviews"/><span>Request reviews</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STEP 2 — ads ============ -->
+      <section class="step" id="growth">
+        <div class="step__head">
+          <span class="step__n">Step 03</span>
           <h2 class="step__t">Want the ads too?</h2>
           <p class="step__s">Your team answers the phone. This is what makes it ring. A fresh batch of ads every month so the one that's working can be replaced before it wears out.</p>
         </div>
@@ -410,9 +479,9 @@
       </section>
 
       <!-- ============ STEP 3 — the rest ============ -->
-      <section class="step">
+      <section class="step" id="systems">
         <div class="step__head">
-          <span class="step__n">Step 03</span>
+          <span class="step__n">Step 04</span>
           <h2 class="step__t">Anything else you need built?</h2>
           <p class="step__s">Optional. Skip the lot and your team still works from day one.</p>
         </div>
@@ -459,12 +528,48 @@
         </label>
       </section>
 
-      <!-- ============ STEP 4 — details ============ -->
-      <section class="step">
+      <section class="step" id="playbook">
         <div class="step__head">
-          <span class="step__n">Step 04</span>
-          <h2 class="step__t">Where do we send it?</h2>
-          <p class="step__s">Jaden reads every one of these himself and comes back with your invoice and a start date.</p>
+          <span class="step__n">Step 05</span>
+          <h2 class="step__t">Set the operating playbook</h2>
+          <p class="step__s">Define the voice, rules, handoffs, and tools your team should use. We turn this into the first version of your live call logic.</p>
+        </div>
+        <div class="briefcard">
+          <div class="briefcard__head"><div><h3>Voice &amp; brand behavior</h3><p>How should customers experience your team?</p></div><span class="briefcard__icon" aria-hidden="true">03</span></div>
+          <div class="fields">
+            <label class="field"><span>Preferred voice</span><select name="voice_preference"><option value="">Choose later with us</option><option>Warm female</option><option>Confident female</option><option>Warm male</option><option>Confident male</option><option>Match an existing team member</option></select></label>
+            <label class="field"><span>Conversation style</span><select name="conversation_style"><option>Friendly and conversational</option><option>Professional and concise</option><option>High-energy and sales-focused</option><option>Calm and reassuring</option><option>Luxury and polished</option></select></label>
+            <label class="field field--wide"><span>Words, promises, or topics the AI must never use</span><textarea name="guardrails" rows="3" placeholder="Never quote final repair prices; never promise same-day service unless the calendar confirms it…"></textarea></label>
+          </div>
+        </div>
+        <div class="briefcard">
+          <div class="briefcard__head"><div><h3>Handoffs, systems &amp; success</h3><p>Tell us where information should go and what a winning first 90 days looks like.</p></div><span class="briefcard__icon" aria-hidden="true">04</span></div>
+          <div class="fields">
+            <label class="field"><span>Calendar / booking system</span><input type="text" name="calendar_system" placeholder="Google Calendar, Calendly, ServiceTitan…"/></label>
+            <label class="field"><span>CRM or customer system</span><input type="text" name="crm_system" placeholder="GoHighLevel, HubSpot, Jobber, none yet…"/></label>
+            <label class="field"><span>Urgent-call handoff</span><input type="text" name="handoff_rule" placeholder="Transfer to owner, then service manager"/></label>
+            <label class="field"><span>Business hours &amp; after-hours rule</span><input type="text" name="hours_rule" placeholder="Mon–Fri 7–6; book emergencies after hours"/></label>
+            <label class="field field--wide"><span>The single result that would make this team a clear win</span><textarea name="success_metric" rows="3" placeholder="Book 25 more qualified appointments per month and stop losing weekend calls…"></textarea></label>
+          </div>
+          <div class="section-rule"></div>
+          <div class="choicegrid">
+            <label class="choice"><input type="checkbox" name="integrations" value="calendar"/><span>Calendar booking</span></label>
+            <label class="choice"><input type="checkbox" name="integrations" value="crm"/><span>CRM updates</span></label>
+            <label class="choice"><input type="checkbox" name="integrations" value="sms"/><span>SMS follow-up</span></label>
+            <label class="choice"><input type="checkbox" name="integrations" value="email"/><span>Email notifications</span></label>
+            <label class="choice"><input type="checkbox" name="integrations" value="call-transfer"/><span>Live call transfer</span></label>
+            <label class="choice"><input type="checkbox" name="integrations" value="custom"/><span>Custom integration</span></label>
+          </div>
+          <p class="microcopy">Don’t see your software? Select Custom integration and name it above. We’ll confirm compatibility before anything is invoiced.</p>
+        </div>
+      </section>
+
+      <!-- ============ STEP 4 — details ============ -->
+      <section class="step" id="contact-details">
+        <div class="step__head">
+          <span class="step__n">Step 06</span>
+          <h2 class="step__t">Review your team brief</h2>
+          <p class="step__s">Add your contact details and send the complete blueprint. Jaden reviews every build personally and replies with implementation notes, exact scope, and a start date.</p>
         </div>
 
         <div class="fields">
@@ -472,8 +577,6 @@
           <label class="field"><span>Business name</span><input type="text" name="business" required placeholder="Smith Plumbing"/></label>
           <label class="field"><span>Email</span><input type="email" name="email" required placeholder="jane@smithplumbing.com"/></label>
           <label class="field"><span>Phone</span><input type="tel" name="phone" required placeholder="(480) 000-0000"/></label>
-          <label class="field field--wide"><span>What does your business do?</span>
-            <input type="text" name="industry" placeholder="Plumbing · Gilbert, AZ"/></label>
           <label class="field field--wide"><span>Roughly how many calls do you get a month?</span>
             <select name="volume">
               <option value="">Not sure</option>
@@ -483,8 +586,8 @@
               <option value="300-plus">300 or more</option>
             </select>
           </label>
-          <label class="field field--wide"><span>Anything we should know? (optional)</span>
-            <textarea name="notes" rows="3" placeholder="We miss most calls when we're on a job…"></textarea></label>
+          <label class="field field--wide"><span>Anything else we should design around? (optional)</span>
+            <textarea name="notes" rows="3" placeholder="Seasonality, current bottlenecks, launch deadline, team concerns, special requests…"></textarea></label>
         </div>
 
         <div class="receipt" aria-live="polite">
@@ -625,6 +728,7 @@
     var consult = document.getElementById('consultOn');
     var siteOn  = document.getElementById('siteOn');
     var maint   = document.getElementById('maintOn');
+    var form    = document.getElementById('build');
 
     var money = function (n) { return '$' + n.toLocaleString('en-US'); };
 
@@ -709,10 +813,28 @@
 
       document.getElementById('sendBtn').disabled = s.n === 0;
 
+      /* Build a readable implementation brief for the inbox in addition to
+         Web3Forms' normal field-by-field payload. */
+      var detailLabels = {
+        industry_detail:'Business type', service_area:'Service area', ideal_customer:'Ideal customer',
+        average_value:'Average value', priority_services:'Priority services', workflows:'Requested workflows',
+        voice_preference:'Voice preference', conversation_style:'Conversation style', guardrails:'Guardrails',
+        calendar_system:'Calendar system', crm_system:'CRM', handoff_rule:'Urgent handoff', hours_rule:'Hours / after-hours',
+        success_metric:'90-day success target', integrations:'Requested integrations'
+      };
+      var brief = [];
+      Object.keys(detailLabels).forEach(function (name) {
+        var controls = Array.prototype.slice.call(form.querySelectorAll('[name="' + name + '"]'));
+        var values = controls.filter(function (el) {
+          return (el.type !== 'checkbox' && el.type !== 'radio') || el.checked;
+        }).map(function (el) { return (el.value || '').trim(); }).filter(Boolean);
+        if (values.length) brief.push(detailLabels[name] + ': ' + values.join(', '));
+      });
+
       /* what actually reaches the inbox */
       document.getElementById('specField').value =
-        s.lines.map(function (l) { return '• ' + l.label + '  —  ' + l.amount; }).join('\n')
-        || '(nothing selected)';
+        'SELECTED BUILD\n' + (s.lines.map(function (l) { return '• ' + l.label + '  —  ' + l.amount; }).join('\n') || '(nothing selected)') +
+        (brief.length ? '\n\nCUSTOM TEAM BLUEPRINT\n' + brief.join('\n') : '');
       document.getElementById('monthlyField').value = money(s.monthly) + '/mo';
       document.getElementById('onetimeField').value = s.onetime ? money(s.onetime) : 'none';
     }
@@ -736,7 +858,7 @@
     render();
 
     /* ---- submit ---- */
-    var form = document.getElementById('build'), msg = document.getElementById('formMsg');
+    var msg = document.getElementById('formMsg');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var s = state();
