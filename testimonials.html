@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work — Built, Shipped &amp; Live | GreenAI Solutions Team</title>
-  <meta name="description" content="The work GreenAI Solutions has built and shipped — a client website, eight live products you can open right now, and an open-source compiler anyone can verify. Every link on this page is live." />
+  <meta name="description" content="The work GreenAI Solutions has built and shipped — two client websites, eight live products you can open right now, and an open-source compiler anyone can verify. Every link on this page is live." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/testimonials.html" />
   <meta property="og:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
-  <meta property="og:description" content="A client website, eight live products, and an open-source compiler anyone can verify. Every link is live." />
+  <meta property="og:description" content="Two client websites, eight live products, and an open-source compiler anyone can verify. Every link is live." />
   <meta property="og:image" content="https://greenaidigital.com/julia-case-study.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
@@ -152,6 +152,22 @@
     .byline b { display: block; font-size: .95rem; }
     .byline span { font-size: .82rem; color: rgba(255,255,255,.5); }
 
+    /* The second client build sits mirror-image to the first so the two do
+       not read as one long column. `.julia--flip .julia__shot` (0-2-0)
+       outranks the plain `.julia__shot { order:-1 }` in the 900px block, so
+       the stacked order has to be restated there or the shot lands last. */
+    .julia--flip { grid-template-columns: 1fr 1.02fr; }
+    .julia--flip .julia__shot { order: 2; border-color: rgba(212,175,55,.3); }
+    .facts { list-style: none; margin: 1.15rem 0 1.6rem; padding: 0; display: grid; gap: .55rem; }
+    .facts li {
+      position: relative; padding-left: 1.45rem;
+      font-size: .93rem; line-height: 1.55; color: rgba(255,255,255,.72);
+    }
+    .facts li::before {
+      content: ''; position: absolute; left: 0; top: .45em;
+      width: 7px; height: 7px; border-radius: 2px; background: var(--emer);
+    }
+
     /* ---- 03 the ring of products ---- */
     .ring__scene {
       perspective: 1400px; width: 100%; height: 470px;
@@ -265,6 +281,8 @@
     @media (max-width: 900px) {
       .julia { grid-template-columns: 1fr; gap: 1.6rem; max-width: 520px; }
       .julia__shot { order: -1; }
+      .julia--flip { grid-template-columns: 1fr; }
+      .julia--flip .julia__shot { order: -1; }
       .ring__scene { height: 430px; perspective: 900px; }
     }
 
@@ -388,7 +406,7 @@
       <div class="stage__pin">
         <p class="kicker rv">GreenAI · Built &amp; Shipped</p>
         <h1 class="huge rv d1" id="entry-h">Everything Here<br/>Is <em>Live</em>. Click It.</h1>
-        <p class="sub rv d2">No mock-ups and no borrowed screenshots. A client site, eight products you can open in a new tab right now, and a compiler whose every number a stranger can check for themselves.</p>
+        <p class="sub rv d2">No mock-ups and no borrowed screenshots. Two client sites, eight products you can open in a new tab right now, and a compiler whose every number a stranger can check for themselves.</p>
         <div class="entry__cue" aria-hidden="true"><i></i>Scroll</div>
       </div>
     </section>
@@ -411,6 +429,32 @@
             </div>
             <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:.8rem">
               <a href="https://performancelab.fitness" class="btn btn-glow" target="_blank" rel="noopener">Visit performancelab.fitness ↗</a>
+              <a href="contact.html" class="btn btn-wire">Start Your Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02b · CLIENT WORK · HANDMADE BY HALLE ============ -->
+    <section class="stage" id="handmade" style="height:230vh" aria-labelledby="halle-h">
+      <div class="stage__pin">
+        <div class="julia julia--flip">
+          <div class="julia__shot rv" data-tilt>
+            <img src="handmade-case-study.webp" alt="The Handmade by Halle storefront GreenAI Solutions built — handmade home decor from a studio in the Valley, Arizona" width="1200" height="750" loading="lazy" decoding="async"/>
+          </div>
+          <div>
+            <p class="kicker rv" style="margin-bottom:.7rem">Client Work · Handmade Retail</p>
+            <h2 class="rv d1" id="halle-h">Handmade by Halle</h2>
+            <p class="sub rv d1" style="margin:0;max-width:none;font-size:1rem">A storefront for a one-woman home-decor studio in the Valley. Every piece is sewn, painted or formed by hand, so the site was built by hand too — no theme, no template, nothing borrowed.</p>
+            <ul class="facts rv d2">
+              <li>Fourteen pieces listed, each with its own photography and description</li>
+              <li>Seasonal collections that change with the calendar, not with a rebuild</li>
+              <li>Her own domain, her own brand, secured and running on her own terms</li>
+              <li>Buying hands off to her established Etsy shop — no new account to trust</li>
+            </ul>
+            <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:.8rem">
+              <a href="https://handmadebyhalle.com" class="btn btn-glow" target="_blank" rel="noopener">Visit handmadebyhalle.com ↗</a>
               <a href="contact.html" class="btn btn-wire">Start Your Project</a>
             </div>
           </div>
@@ -697,12 +741,16 @@
     }
 
     /* ---------- parallax on the case-study shot ---------- */
-    var tilt = document.querySelector('[data-tilt]');
+    var tilts = Array.prototype.slice.call(document.querySelectorAll('[data-tilt]'));
     function driveTilt() {
-      if (!tilt || reduce) return;
-      var r = tilt.getBoundingClientRect();
-      var c = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      tilt.style.transform = 'perspective(1200px) rotateY(' + (c * -7) + 'deg) rotateX(' + (c * 4) + 'deg) translateZ(0)';
+      if (reduce) return;
+      tilts.forEach(function (tilt, i) {
+        var r = tilt.getBoundingClientRect();
+        var c = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        // the second card is mirrored, so its yaw is mirrored too
+        var yaw = (i % 2 ? 7 : -7);
+        tilt.style.transform = 'perspective(1200px) rotateY(' + (c * yaw) + 'deg) rotateX(' + (c * 4) + 'deg) translateZ(0)';
+      });
     }
 
     /* ---------- the depth field ----------
