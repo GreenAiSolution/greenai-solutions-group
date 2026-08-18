@@ -3003,3 +3003,193 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   .feature-card:hover { transform: none; }
   .feature-card:hover .feature-icon { transform: none; }
 }
+
+/* ============================================================================
+   SITE-WIDE FLOW & ART PASS
+   A shared finishing layer for the marketing pages. It gives the green hero,
+   light content sections and final CTA one continuous visual rhythm without
+   flattening the page-specific art direction.
+   ========================================================================== */
+
+/* The page should feel layered, not like hard rectangles stacked together. */
+main { overflow: clip; }
+
+.page-hero {
+  border-bottom: 1px solid rgba(76,175,110,.22);
+  box-shadow: 0 24px 70px rgba(8,45,22,.09);
+}
+.page-hero::after {
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(7,37,18,.16) 100%),
+    radial-gradient(circle at 24% 84%, rgba(77,208,225,.13), transparent 24%),
+    radial-gradient(circle at 76% 10%, rgba(212,175,55,.11), transparent 22%);
+}
+
+/* Carry a faint green horizon into ordinary white sections. */
+.page-hero + .section,
+.page-hero + main > .section:first-child {
+  position: relative;
+  background:
+    radial-gradient(70% 180px at 50% 0, rgba(76,175,110,.075), transparent 72%),
+    #fff;
+}
+
+.section + .section:not(.bg-gray):not(.bg-pale) {
+  border-top: 1px solid rgba(26,92,42,.07);
+}
+
+/* Labels become a repeated navigational motif across every page. */
+.section-label {
+  position: relative;
+  padding-left: 1.15rem;
+}
+.section-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: .62rem;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--green-accent), #D4AF37);
+  border-radius: 99px;
+}
+.text-center .section-label { padding-right: 1.15rem; }
+.text-center .section-label::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: .62rem;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #D4AF37, var(--green-accent));
+  border-radius: 99px;
+}
+.page-hero .section-label::before,
+.page-hero .section-label::after { background: linear-gradient(90deg, #4dd0e1, #D4AF37); }
+
+/* Shared surfaces get the same lift, edge light and motion language. */
+.mission-card,
+.pricing-card,
+.contact-form-card,
+.service-card,
+.feature-card {
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform .38s cubic-bezier(.2,.7,.2,1),
+    box-shadow .38s ease,
+    border-color .38s ease;
+}
+.mission-card::after,
+.pricing-card::after,
+.contact-form-card::after,
+.service-card::after {
+  content: '';
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  top: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(76,175,110,.7), #D4AF37, transparent);
+  opacity: .56;
+  pointer-events: none;
+}
+.mission-card:hover,
+.contact-form-card:hover,
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(46,139,71,.26);
+  box-shadow: 0 18px 46px rgba(16,60,30,.12);
+}
+
+/* Buttons feel tactile while staying quiet enough for a business site. */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15,54,27,.08);
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,.2) 45%, transparent 72%);
+  transform: translateX(-120%);
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+}
+.btn:hover::before { transform: translateX(120%); }
+.btn:active { transform: translateY(0) scale(.985); }
+
+/* A more intentional handoff into the closing conversion moment. */
+.cta-band {
+  border-top: 1px solid rgba(212,175,55,.24);
+  border-bottom: 1px solid rgba(76,175,110,.2);
+  box-shadow: inset 0 28px 80px rgba(4,24,11,.22);
+}
+.cta-band h2 { text-shadow: 0 2px 28px rgba(0,0,0,.2); }
+
+.footer {
+  position: relative;
+  border-top: 1px solid rgba(76,175,110,.18);
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(560px, 70vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #4caf6e, #D4AF37, transparent);
+}
+
+/* Keep dense copy easy to read and reduce abrupt spacing on smaller screens. */
+.service-detail__content p,
+.about-intro p,
+.contact-form-card > p { max-width: 62ch; }
+
+/* Tighten the two immersive journeys without removing their scroll-linked art.
+   These override the legacy inline runway sizes, keeping credentials embedded
+   in the page files completely outside this visual-only change. */
+body.work #entry { height: 150vh !important; }
+body.work #ai-employees { height: 330vh !important; }
+body.work #compare { height: 170vh !important; }
+body.work #ai-ads { height: 285vh !important; }
+body.work #ai-consulting,
+body.work #web-design { height: 205vh !important; }
+body.work #client-work { height: 190vh !important; }
+body.work #products { height: 380vh !important; }
+body.work #engineering { height: 195vh !important; }
+body.work #next { height: 120vh !important; }
+
+@media (max-width: 900px) {
+  .section { padding: 4.25rem 0; }
+  .section--lg { padding: 5.25rem 0; }
+  .page-hero { padding-bottom: 4rem; }
+  .grid-3, .grid-4 { gap: 1rem; }
+  .btn { min-height: 48px; }
+  .mission-card:hover,
+  .contact-form-card:hover,
+  .service-card:hover { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .container { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .section { padding: 3.75rem 0; }
+  .page-hero h1 { font-size: clamp(2.1rem, 11vw, 3rem); }
+  .page-hero p { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-card,
+  .pricing-card,
+  .contact-form-card,
+  .service-card,
+  .feature-card,
+  .btn,
+  .btn::before { transition: none !important; }
+  .btn:hover::before { transform: none; }
+}
