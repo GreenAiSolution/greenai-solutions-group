@@ -9,6 +9,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=13" />
+  <style>
+    .contact-agentic { min-height:620px; display:flex; align-items:center; padding:145px 0 78px; background:#050b07; }
+    .contact-agentic::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 74% 48%,rgba(76,175,110,.16),transparent 35%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:auto,56px 56px,56px 56px; }
+    .contact-hero-grid { display:grid; grid-template-columns:1fr .9fr; gap:clamp(3rem,8vw,7rem); align-items:center; text-align:left; }
+    .contact-agentic h1 { font-size:clamp(3rem,6vw,5rem); line-height:.98; letter-spacing:-.045em; }
+    .contact-agentic h1 em { color:#d8b94f; font-style:normal; }
+    .contact-agentic p { margin:1.25rem 0 0; max-width:620px; color:rgba(255,255,255,.58); font-size:1.05rem; }
+    .route-console { padding:1rem; border:1px solid rgba(255,255,255,.11); border-radius:20px; background:rgba(7,18,11,.72); backdrop-filter:blur(16px); }
+    .route-console__top { display:flex; justify-content:space-between; align-items:center; padding:.3rem .25rem 1rem; border-bottom:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.6); font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .route-console__top i { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 15px #7de3a4; }
+    .contact-route { display:grid; grid-template-columns:34px 1fr auto; gap:.8rem; align-items:center; padding:1.05rem .25rem; border-bottom:1px solid rgba(255,255,255,.075); transition:.2s ease; }
+    .contact-route:last-child { border-bottom:0; }
+    .contact-route:hover { background:rgba(125,227,164,.045); }
+    .contact-route b { width:30px; height:30px; display:grid; place-items:center; border:1px solid rgba(212,175,55,.3); border-radius:9px; color:#d8b94f; font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .contact-route strong { display:block; color:#fff; font-size:.84rem; }
+    .contact-route small { display:block; margin-top:.22rem; color:rgba(255,255,255,.35); font-size:.68rem; }
+    .contact-route span { color:#7de3a4; font:700 .55rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; text-transform:uppercase; }
+    .contact-main { background:#f7faf8; }
+    .contact-main .contact-layout { gap:clamp(2.5rem,6vw,5rem); align-items:start; }
+    .contact-main .contact-detail { border-bottom:1px solid rgba(26,92,42,.11); padding-bottom:1.2rem; }
+    .contact-main .contact-detail__icon { border-radius:10px; box-shadow:none; }
+    .contact-form-card { border-radius:18px; box-shadow:0 28px 70px rgba(6,31,16,.1); border:1px solid rgba(26,92,42,.13); }
+    .contact-form-card input,.contact-form-card select,.contact-form-card textarea { border-radius:10px; background:#fbfdfc; }
+    .contact-form-card input:focus,.contact-form-card select:focus,.contact-form-card textarea:focus { box-shadow:0 0 0 3px rgba(76,175,110,.12); }
+    .contact-form-card .form-submit { width:100%; justify-content:center; background:#123f22; border-color:#123f22; }
+    @media (max-width:900px) { .contact-agentic{min-height:0}.contact-hero-grid{grid-template-columns:1fr}.route-console{max-width:620px} }
+  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -89,19 +116,15 @@
   </nav>
 
   <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative;z-index:1">
-      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · AI Systems Online</div>
-
-      <div class="hero__terminal" aria-hidden="true" style="margin-bottom:.75rem"><span>&gt; GREENAI SOLUTIONS · AI ACTIVE</span><span class="hero__terminal-cursor"></span></div>
-      <span class="section-label" style="color:var(--green-accent)">Get in Touch</span>
-      <h1>Let's Grow Your<br/>Business Together</h1>
-      <p>Book a 30-minute strategy session and walk away with a clear picture of exactly how GreenAI can transform your business — no obligation, no sales pressure.</p>
-    </div>
+  <div class="page-hero contact-agentic" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative;z-index:1"><div class="contact-hero-grid">
+      <div><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Direct access</div><span class="section-label" style="color:var(--green-accent)">Start a Conversation</span><h1>Bring the bottleneck.<br/><em>Leave with a plan.</em></h1><p>Tell us where calls, leads, time, or growth are getting stuck. Jaden will map the clearest next move—without a scripted sales pitch.</p></div>
+      <aside class="route-console" aria-label="Ways to contact GreenAI"><div class="route-console__top"><span>Choose your route</span><i aria-hidden="true"></i></div><a class="contact-route" href="tel:4807980753"><b>01</b><div><strong>Call or text Jaden</strong><small>Best for a fast, direct answer</small></div><span>Direct line</span></a><a class="contact-route" href="mailto:jaden@greenaidigital.com"><b>02</b><div><strong>Send an email</strong><small>Usually answered within four business hours</small></div><span>Direct</span></a><a class="contact-route" href="create.html"><b>03</b><div><strong>Design your AI team</strong><small>Build the scope and see pricing first</small></div><span>6 min</span></a></aside>
+    </div></div>
   </div>
 
   <!-- ===== CONTACT SECTION ===== -->
-  <section id="main" class="section" aria-labelledby="contact-heading">
+  <section id="main" class="section contact-main" aria-labelledby="contact-heading">
     <div class="container">
       <div class="contact-layout">
 

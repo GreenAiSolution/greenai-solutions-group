@@ -9,6 +9,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=13" />
+  <style>
+    .about-agentic { min-height:650px; display:flex; align-items:center; padding:145px 0 78px; background:#050b07; }
+    .about-agentic::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 75% 48%,rgba(76,175,110,.15),transparent 36%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:auto,56px 56px,56px 56px; }
+    .about-hero-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(3rem,8vw,7rem); align-items:center; text-align:left; }
+    .about-agentic h1 { font-size:clamp(3rem,6vw,5rem); line-height:.98; letter-spacing:-.045em; max-width:760px; }
+    .about-agentic h1 em { color:#d8b94f; font-style:normal; }
+    .about-agentic p { max-width:650px; margin:1.3rem 0 0; color:rgba(255,255,255,.58); font-size:1.05rem; }
+    .principle-stack { padding:1rem; border:1px solid rgba(255,255,255,.11); border-radius:20px; background:rgba(7,18,11,.72); backdrop-filter:blur(16px); }
+    .principle-stack__top { display:flex; align-items:center; justify-content:space-between; padding:.3rem .25rem 1rem; border-bottom:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.65); font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .principle-stack__top i { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 15px #7de3a4; }
+    .principle { display:grid; grid-template-columns:34px 1fr; gap:.85rem; padding:1rem .25rem; border-bottom:1px solid rgba(255,255,255,.075); }
+    .principle:last-child { border-bottom:0; }
+    .principle b { width:30px; height:30px; display:grid; place-items:center; border:1px solid rgba(212,175,55,.3); border-radius:9px; color:#d8b94f; font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .principle strong { display:block; color:#fff; font-size:.84rem; }
+    .principle span { display:block; margin-top:.25rem; color:rgba(255,255,255,.36); font-size:.7rem; line-height:1.45; }
+    .about-founder { background:#fff; }
+    .about-founder .about-visual > div[role="img"] { border-radius:16px !important; box-shadow:none !important; border:1px solid rgba(26,92,42,.14); }
+    .about-founder .about-stat-badge { box-shadow:none; border:1px solid rgba(26,92,42,.14); }
+    .about-founder .section-label::before { content:'FOUNDER / '; color:#9e7d15; }
+    .mission-card,.feature-card { border-radius:14px; box-shadow:none; border:1px solid rgba(26,92,42,.12); }
+    .mission-card:hover,.feature-card:hover { transform:translateY(-3px); box-shadow:0 18px 45px rgba(6,31,16,.08); }
+    .about-signal { display:flex; gap:.55rem; flex-wrap:wrap; margin-top:1.5rem; }
+    .about-signal span { padding:.45rem .7rem; border:1px solid rgba(255,255,255,.11); border-radius:999px; color:rgba(255,255,255,.48); font-size:.66rem; font-weight:700; letter-spacing:.05em; }
+    @media (max-width:900px) { .about-agentic{min-height:0}.about-hero-grid{grid-template-columns:1fr}.principle-stack{max-width:620px} }
+  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -89,19 +114,15 @@
   </nav>
 
   <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative;z-index:1">
-      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · AI Systems Online</div>
-
-      <div class="hero__terminal" aria-hidden="true" style="margin-bottom:.75rem"><span>&gt; GREENAI SOLUTIONS · AI ACTIVE</span><span class="hero__terminal-cursor"></span></div>
-      <span class="section-label" style="color:var(--green-accent)">Our Story</span>
-      <h1>Built by Someone Who's<br/>Hungry to Win — For You</h1>
-      <p>GreenAI Solutions Team was founded on one conviction: local Arizona businesses deserve enterprise-level strategy. We're here to make that a reality.</p>
-    </div>
+  <div class="page-hero about-agentic" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative;z-index:1"><div class="about-hero-grid">
+      <div><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Founder-led systems</div><span class="section-label" style="color:var(--green-accent)">Our Story</span><h1>Small team.<br/><em>Serious systems.</em></h1><p>GreenAI was built on one conviction: local businesses deserve the same intelligent operating leverage as companies with entire technology departments.</p><div class="about-signal"><span>Gilbert, Arizona</span><span>Founder-led</span><span>Month to month</span><span>Human-governed AI</span></div></div>
+      <aside class="principle-stack" aria-label="GreenAI operating principles"><div class="principle-stack__top"><span>Operating principles</span><i aria-hidden="true"></i></div><div class="principle"><b>01</b><div><strong>Rules before autonomy</strong><span>Every agent gets boundaries, escalation logic and a human owner.</span></div></div><div class="principle"><b>02</b><div><strong>Outcomes before tools</strong><span>We start with the business problem, not the newest software.</span></div></div><div class="principle"><b>03</b><div><strong>Proof before expansion</strong><span>Measure the first system, then compound what works.</span></div></div></aside>
+    </div></div>
   </div>
 
   <!-- ===== ABOUT JADEN ===== -->
-  <section id="main" class="section" aria-labelledby="jaden-heading">
+  <section id="main" class="section about-founder" aria-labelledby="jaden-heading">
     <div class="container">
       <div class="about-intro">
         <div class="about-visual reveal">
