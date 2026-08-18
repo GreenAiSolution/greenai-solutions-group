@@ -184,42 +184,43 @@
     </div>
   </section>
 
-  <!-- ===== BRAND SHOWCASE SECTION ===== -->
-  <section class="brand-showcase" aria-label="GreenAI brand">
-    <div class="brand-showcase__bg" aria-hidden="true"></div>
-    <div class="brand-showcase__grid" aria-hidden="true"></div>
-    <div class="brand-showcase__glow" aria-hidden="true"></div>
-
-    <div class="container brand-showcase__inner">
-      <p class="brand-showcase__eyebrow">Gilbert, Arizona · Serving Businesses Nationwide</p>
-
-      <div class="brand-showcase__card">
-        <div class="brand-showcase__corner brand-showcase__corner--tl" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--tr" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--bl" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--br" aria-hidden="true"></div>
-        <img src="logo-icon.png" alt="GreenAI Solutions Team — hexagonal AI chip logo" class="brand-showcase__crest" width="280" height="280" loading="lazy"/>
-        <div class="brand-showcase__wordmark">
-          <h2 class="brand-showcase__name">Green<span>AI</span> Solutions</h2>
-          <p class="brand-showcase__tagline">Your business. Amplified by AI.</p>
+  <!-- ===== INTERACTIVE GROWTH DIAGNOSTIC ===== -->
+  <section class="growth-lab" aria-labelledby="growth-lab-heading">
+    <div class="growth-lab__grid" aria-hidden="true"></div>
+    <div class="container growth-lab__inner">
+      <div class="growth-lab__intro">
+        <span class="growth-lab__eyebrow"><i></i> 60-second business diagnostic</span>
+        <h2 id="growth-lab-heading">Where is your business<br/><em>leaking opportunity?</em></h2>
+        <p>Choose the problem costing you the most right now. We’ll show you the most direct fix, the starting investment, and exactly what happens next.</p>
+        <div class="growth-lab__proof" aria-label="GreenAI commitments">
+          <span>Gilbert, Arizona</span><span>Founder-led</span><span>No lock-in</span>
         </div>
       </div>
 
-      <div class="brand-pillars">
-        <div class="brand-pillars__item">
-          <div class="brand-pillars__value">AI-Powered</div>
-          <div class="brand-pillars__label">Strategy</div>
+      <div class="diagnostic" data-diagnostic>
+        <div class="diagnostic__topline">
+          <span>GreenAI Opportunity Scanner</span>
+          <span class="diagnostic__status"><i></i> Ready</span>
         </div>
-        <div class="brand-pillars__divider" aria-hidden="true"></div>
-        <div class="brand-pillars__item">
-          <div class="brand-pillars__value">Gilbert, AZ</div>
-          <div class="brand-pillars__label">Based &amp; Built Here</div>
+        <p class="diagnostic__question">What is slowing growth the most?</p>
+        <div class="diagnostic__choices" role="group" aria-label="Choose your biggest growth problem">
+          <button type="button" class="diagnostic__choice is-active" data-solution="calls" aria-pressed="true"><b>01</b> Missed calls</button>
+          <button type="button" class="diagnostic__choice" data-solution="creative" aria-pressed="false"><b>02</b> Stale ads</button>
+          <button type="button" class="diagnostic__choice" data-solution="followup" aria-pressed="false"><b>03</b> Slow follow-up</button>
+          <button type="button" class="diagnostic__choice" data-solution="website" aria-pressed="false"><b>04</b> Weak website</button>
         </div>
-        <div class="brand-pillars__divider" aria-hidden="true"></div>
-        <div class="brand-pillars__item brand-pillars__item--gold">
-          <div class="brand-pillars__value">Results First</div>
-          <div class="brand-pillars__label">No Long Contracts</div>
+        <div class="diagnostic__result" aria-live="polite">
+          <div>
+            <span class="diagnostic__match">Best match</span>
+            <h3 data-solution-title>AI Employees</h3>
+            <p data-solution-copy>Answer every call, qualify the lead, and book the appointment—even after hours.</p>
+          </div>
+          <div class="diagnostic__action">
+            <span data-solution-price>From $497/month</span>
+            <a href="service-ai-employees.html" data-solution-link>See your solution <b aria-hidden="true">↗</b></a>
+          </div>
         </div>
+        <p class="diagnostic__note">Not sure? A free strategy call maps the right starting point—without a sales script.</p>
       </div>
     </div>
   </section>
