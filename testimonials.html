@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work — Built, Shipped &amp; Live | GreenAI Solutions Team</title>
-  <meta name="description" content="The work GreenAI Solutions has built and shipped — two client websites, eight live products you can open right now, and an open-source compiler anyone can verify. Every link on this page is live." />
+  <meta name="description" content="The work GreenAI Solutions has built and shipped — two client websites, eight live products you can open right now, and three open-source engineering projects anyone can verify. Every link on this page is live." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/testimonials.html" />
   <meta property="og:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
-  <meta property="og:description" content="Two client websites, eight live products, and an open-source compiler anyone can verify. Every link is live." />
+  <meta property="og:description" content="Two client websites, eight live products, and three open-source engineering projects anyone can verify. Every link is live." />
   <meta property="og:image" content="https://greenaidigital.com/julia-case-study.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
@@ -253,6 +253,38 @@
     .kiln__c { margin-top: .7rem; font-size: .86rem; line-height: 1.5; color: rgba(255,255,255,.6); }
     .kiln__acts { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center; }
 
+    /* ---- 04b the other two published projects ----
+       No `flex: 1` on a bare `p` here: `.proof__c` is a paragraph too, and on
+       this page that pattern has already cost an afternoon (see .slab__tag).
+       The link is pushed down with `margin-top: auto` instead, which cannot
+       match anything it was not meant to. */
+    .proofs {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem;
+      width: 100%; max-width: 980px; margin: 2rem 0 1.5rem; text-align: left;
+    }
+    .proof {
+      background: linear-gradient(160deg, rgba(15,36,23,.78), rgba(9,22,14,.78));
+      border: 1px solid rgba(76,175,110,.24); border-radius: 20px;
+      padding: 1.9rem 1.7rem 1.6rem; display: flex; flex-direction: column;
+    }
+    .proof__tag {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      font-weight: 700; color: var(--emer); margin: 0 0 .5rem;
+    }
+    .proof h3 { font-family: 'Playfair Display', serif; font-size: 1.85rem; margin: 0 0 1.1rem; line-height: 1; }
+    .proof__n {
+      font-family: 'Playfair Display', serif; font-weight: 800; color: var(--gold);
+      font-size: clamp(2rem, 4.4vw, 2.9rem); line-height: 1;
+    }
+    .proof__c { margin: .6rem 0 1.1rem; font-size: .82rem; line-height: 1.5; color: rgba(255,255,255,.6); }
+    .proof__body { font-size: .89rem; line-height: 1.6; color: rgba(255,255,255,.68); margin: 0 0 1.3rem; }
+    .proof__link {
+      margin-top: auto; align-self: flex-start;
+      font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+      color: var(--gold); border-bottom: 1px solid rgba(212,175,55,.4); padding-bottom: 2px;
+    }
+    .proof__link:hover { color: #f2dc8a; border-bottom-color: #f2dc8a; }
+
     /* ---- 05 landing ---- */
     .land__card {
       max-width: 760px; width: 100%;
@@ -284,6 +316,18 @@
       .julia--flip { grid-template-columns: 1fr; }
       .julia--flip .julia__shot { order: -1; }
       .ring__scene { height: 430px; perspective: 900px; }
+      .proofs { grid-template-columns: 1fr; gap: 1.1rem; }
+      /* Stacked, these two cards are far taller than a phone screen, and a
+         100vh pin can only clip them — the visitor would never reach the
+         bottom of either. Below 900px this section stops pinning and scrolls
+         like ordinary content. The inline height:240vh needs !important. */
+      #engineering-more { height: auto !important; }
+      #engineering-more .stage__pin {
+        position: relative; height: auto; min-height: 0; padding: 64px 20px;
+      }
+      .proof { padding: 1.5rem 1.35rem 1.3rem; }
+      .proof h3 { font-size: 1.55rem; margin-bottom: .8rem; }
+      .proof__n { font-size: 2.1rem; }
     }
 
     /* Short viewports (a small laptop, or any window with a lot of browser
@@ -301,6 +345,16 @@
       .slab p { font-size: .8rem; }
       .ring__legend { margin-top: 1rem; }
       .kiln__nums { grid-template-columns: 1fr; gap: 1.5rem; }
+      /* Same call as the 900px rule: a short window cannot hold two cards at
+         100vh, and a pin that clips is worse than a section that scrolls. */
+      #engineering-more { height: auto !important; }
+      #engineering-more .stage__pin {
+        position: relative; height: auto; min-height: 0; padding: 60px 24px;
+      }
+      .proofs { margin-top: 1.6rem; gap: 1rem; }
+      .proof { padding: 1.4rem 1.3rem 1.2rem; }
+      .proof h3 { font-size: 1.5rem; margin-bottom: .8rem; }
+      .proof__body { font-size: .84rem; }
       .stage__pin { padding: 88px 20px 40px; }
     }
 
@@ -406,7 +460,7 @@
       <div class="stage__pin">
         <p class="kicker rv">GreenAI · Built &amp; Shipped</p>
         <h1 class="huge rv d1" id="entry-h">Everything Here<br/>Is <em>Live</em>. Click It.</h1>
-        <p class="sub rv d2">No mock-ups and no borrowed screenshots. Two client sites, eight products you can open in a new tab right now, and a compiler whose every number a stranger can check for themselves.</p>
+        <p class="sub rv d2">No mock-ups and no borrowed screenshots. Two client sites, eight products you can open in a new tab right now, and three open-source engineering projects whose every number a stranger can check for themselves.</p>
         <div class="entry__cue" aria-hidden="true"><i></i>Scroll</div>
       </div>
     </section>
@@ -570,6 +624,36 @@
           </div>
           <p class="sub rv d3" style="font-size:.86rem;margin-top:1.8rem;color:rgba(255,255,255,.42)">Apple's own Accelerate library still beats it at large matrix multiply, using an on-die coprocessor no public instruction reaches. The write-up says so plainly, which is rather the point.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ 04b · THE OTHER TWO PUBLISHED PROJECTS ============ -->
+    <section class="stage" id="engineering-more" style="height:240vh" aria-labelledby="proof-h">
+      <div class="stage__pin">
+        <p class="kicker rv">Also Published · Also Checkable</p>
+        <h2 class="huge rv d1" id="proof-h" style="font-size:clamp(1.9rem,4.4vw,3rem)">Two More, Same <em>Standard</em>.</h2>
+
+        <div class="proofs">
+          <article class="proof rv d2">
+            <p class="proof__tag">Search &amp; Retrieval</p>
+            <h3>STRATA</h3>
+            <div class="proof__n">0.0066</div>
+            <p class="proof__c">average gap between its hand-written keyword search and the baselines published by other researchers, across five public datasets</p>
+            <p class="proof__body">A hybrid search engine — keyword, vector, fusion and re-ranking — written from scratch in numpy. The engine is not really the point; the measuring stick is. Landing that close to numbers other people published is how a stranger can tell the harness is not flattering itself. With a proper encoder in the vector leg, combining the two beats keyword search on all five datasets, every one at p ≤ 0.001.</p>
+            <a class="proof__link" href="https://github.com/GreenAiSolution/greenai-strata" target="_blank" rel="noopener">View the source ↗</a>
+          </article>
+
+          <article class="proof rv d3">
+            <p class="proof__tag">Agent Evaluation</p>
+            <h3>CRUCIBLE</h3>
+            <div class="proof__n">27<span style="opacity:.45">/30</span></div>
+            <p class="proof__c">tasks where friendly, obvious automation breaks a rule that actually matters</p>
+            <p class="proof__body">A simulated front desk for a small service company. An agent works one shift — quotes, bookings, refunds, and a few requests it ought to refuse — and ordinary Python checks what it actually did. No model grading another model. Every task ships its own answer key, and if the key cannot score 100% the task is treated as broken, not the agent.</p>
+            <a class="proof__link" href="https://github.com/GreenAiSolution/crucible" target="_blank" rel="noopener">View the source ↗</a>
+          </article>
+        </div>
+
+        <p class="sub rv d3" style="font-size:.86rem;margin-top:0;color:rgba(255,255,255,.42)">Neither needs an API key or a GPU to reproduce. That is deliberate: the reason to publish them is so you do not have to take our word for any of it.</p>
       </div>
     </section>
 
