@@ -2648,23 +2648,27 @@ body.cc .studio-art__status::before {
   gap: 10px;
 }
 
+/* Not display:flex. The bold label and the text after it are separate flex
+   items when it is, so a two-word label wraps into its own narrow column and
+   the sentence restarts beside it — visible on both case studies. As normal
+   inline text with an absolutely positioned bullet, the line just flows. */
 .cs-deliverables li {
   font-size: 0.92rem;
   opacity: 0.8;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  position: relative;
+  padding-left: 18px;
   line-height: 1.55;
 }
 
 .cs-deliverables li::before {
   content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
   width: 6px;
   height: 6px;
   background: #00e676;
   border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 7px;
 }
 
 .cs-deliverables li strong { opacity: 1; }
@@ -2672,6 +2676,54 @@ body.cc .studio-art__status::before {
 @media (max-width: 860px) {
   .cs-inner { grid-template-columns: 1fr; gap: 48px; }
   .cs-image-wrap { max-width: 420px; margin: 0 auto; }
+}
+
+/* ---- HANDMADE BY HALLE CASE STUDY ----
+   Same grid as the Julia block, mirrored, so two case studies in a row do not
+   read as one long column. `.cs-inner--flip .cs-image-wrap` (0-2-0) outranks
+   the bare `.cs-image-wrap` in the 860px block above, so the stacked order has
+   to be restated below or the shot lands under the copy on a phone. */
+.case-study-section--alt {
+  background: #080d09;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.cs-inner--flip .cs-image-wrap { order: 2; }
+
+.cs-badge--emerald {
+  background: linear-gradient(135deg, #1a5c2a, #4caf6e);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(76,175,110,0.35);
+}
+
+/* `a { color: inherit; text-decoration: none }` is site-wide, so any inline
+   link has to opt back into looking like one. */
+.cs-visit {
+  display: inline-block;
+  margin-left: 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #D4AF37;
+  border-bottom: 1px solid rgba(212,175,55,0.4);
+  padding-bottom: 2px;
+}
+
+.cs-visit:hover { color: #f0d060; border-bottom-color: #f0d060; }
+
+@media (max-width: 860px) {
+  .cs-inner--flip .cs-image-wrap { order: -1; }
+  .cs-visit { display: block; width: fit-content; margin: 18px 0 0; }
+}
+
+/* "$8-28" is a wider stat than anything in the Julia row, and at 1.7rem it
+   stops fitting a third of a phone screen — it would either break after the
+   dash or push the row wide. Shrink the trio and pin it to one line. */
+@media (max-width: 560px) {
+  .cs-inner--flip .cs-stats { gap: 10px; }
+  .cs-inner--flip .cs-stat { padding: 14px 6px; }
+  .cs-inner--flip .cs-stat-num { font-size: 1.25rem; white-space: nowrap; }
+  .cs-inner--flip .cs-stat-label { font-size: 0.64rem; }
 }
 
 /* ============================================================
