@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=15" />
+  <link rel="stylesheet" href="style.css?v=16" />
   <style>
     /* Homepage: restrained agentic system language. */
     .home-agentic.hero { min-height:760px; background:#050b07; }
@@ -613,53 +613,63 @@
         <p style="max-width:520px;margin:0 auto 2.5rem">Big agencies charge enterprise prices and hand you off to a junior rep. We give you direct access to a dedicated partner who treats your business like their own.</p>
       </div>
 
-      <div class="reveal" style="overflow-x:auto">
-        <table style="width:100%;border-collapse:separate;border-spacing:0;background:white;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md)">
-          <thead>
+      <div class="reveal cmp">
+        <div class="cmp__panel">
+          <div class="cmp__top">
+            <span class="cmp__title"><i class="cmp__dot" aria-hidden="true"></i>Decision layer</span>
+            <span class="cmp__mode">7 LINES &#183; SIDE BY SIDE</span>
+          </div>
+
+          <table class="cmp__table">
+            <caption class="cmp__cap">How working with GreenAI Solutions compares with a typical agency retainer</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="cmp__h">What you're comparing</th>
+                <th scope="col" class="cmp__h cmp__h--us">GreenAI Solutions Team<span class="cmp__flag cmp__flag--on">Our terms</span></th>
+                <th scope="col" class="cmp__h cmp__h--them">Big Agencies<span class="cmp__flag">Typical terms</span></th>
+              </tr>
+            </thead>
+            <tbody>
             <tr>
-              <th style="padding:1.25rem 1.5rem;text-align:left;background:var(--gray-800);color:white;font-size:.85rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1)">What you're comparing</th>
-              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--green-dark);color:white;font-size:.95rem;font-weight:700">GreenAI Solutions Team</th>
-              <th style="padding:1.25rem 1.5rem;text-align:center;background:var(--gray-600);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600">Big Agencies</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Who you work with</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Jaden directly — every time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Whoever got assigned to you this month</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Minimum contract</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Month-to-month — no lock-in</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ 6–12 month contracts typical</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Starting price</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ $500/month</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ $1,500–$10,000/month minimum</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Content strategy</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Custom-built for YOUR business</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Template repurposed from last client</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Response time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Same day — you have Jaden's number</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Ticket system, 48–72hr wait</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--gray-200);background:var(--gray-100)">
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">AI + social + web design bundle</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Only provider offering all three</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Need 3 different vendors</td>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">01</span>Who you work with</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Jaden directly — every time</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Whoever got assigned to you this month</span></td>
             </tr>
             <tr>
-              <td style="padding:1rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--gray-800)">Direct founder access</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--green-dark);font-weight:600">✅ Jaden on every call, every time</td>
-              <td style="padding:1rem 1.5rem;text-align:center;color:var(--gray-400)">❌ Account managers & junior staff</td>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">02</span>Minimum contract</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Month-to-month — no lock-in</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">6–12 month contracts typical</span></td>
             </tr>
-          </tbody>
-        </table>
+            <tr>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>Starting price</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">$500/month</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$1,500–$10,000/month minimum</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">04</span>Content strategy</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Custom-built for YOUR business</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Template repurposed from last client</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">05</span>Response time</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Same day — you have Jaden's number</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Ticket system, 48–72hr wait</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">06</span>AI + social + web design bundle</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Only provider offering all three</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Need 3 different vendors</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="cmp__crit"><span class="cmp__num">07</span>Direct founder access</th>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Jaden on every call, every time</span></td>
+              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Account managers &amp; junior staff</span></td>
+            </tr>
+            </tbody>
+          </table>
+
+          <p class="cmp__foot">The right-hand column describes common agency practice, not any one firm &#8212; ask whoever you are comparing us with to put their own answers in it.</p>
+        </div>
       </div>
 
       <div class="text-center" style="margin-top:2.5rem">

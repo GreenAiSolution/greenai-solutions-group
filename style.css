@@ -3292,3 +3292,290 @@ body.work #next { height: 120vh !important; }
   .btn::before { transition: none !important; }
   .btn:hover::before { transform: none; }
 }
+
+/* ============================================================
+   COMPARISON — "DECISION LAYER" CONSOLE
+   Was a white table with emoji ticks: ✅/❌ render differently on every
+   platform and read as a spreadsheet, not as design. This is the same
+   instrument-panel language as the hero's operating-layer console —
+   dark glass, hairline rules, numbered gold cells, mono micro-labels —
+   dropped onto the light section so it reads as the page's one exhibit.
+   No ambient motion: state is shown by weight and colour, and the only
+   movement is on hover.
+   ============================================================ */
+.cmp { position: relative; z-index: 1; }
+
+.cmp__panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 24px;
+  /* Cooler, darker ground than the first pass: the green wash was so wide
+     that the highlighted column had nothing to stand out against. */
+  background:
+    radial-gradient(760px 360px at 82% -22%, rgba(26,92,42,0.20), transparent 62%),
+    linear-gradient(180deg, #0b1410 0%, #060c09 100%);
+  box-shadow: 0 40px 90px rgba(6,20,11,0.34), 0 2px 0 rgba(255,255,255,0.05) inset;
+}
+
+/* the diagonal sheen the hero console uses, so the two read as siblings */
+.cmp__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 22%, rgba(125,227,164,0.05), transparent 70%);
+}
+
+/* Four corner ticks, the way an instrument frames its readout. */
+.cmp__panel::after {
+  content: '';
+  position: absolute;
+  inset: 13px;
+  pointer-events: none;
+  opacity: .3;
+  background:
+    linear-gradient(#7de3a4, #7de3a4) left    top/16px 1px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) left    top/1px 16px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) right   top/16px 1px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) right   top/1px 16px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) left  bottom/16px 1px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) left  bottom/1px 16px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) right bottom/16px 1px no-repeat,
+    linear-gradient(#7de3a4, #7de3a4) right bottom/1px 16px no-repeat;
+}
+
+.cmp__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+
+.cmp__title {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: rgba(255,255,255,0.78);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* static, deliberately: the site's design direction is that trust reads still */
+.cmp__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7de3a4;
+  box-shadow: 0 0 14px rgba(125,227,164,0.75);
+}
+
+.cmp__mode {
+  color: rgba(255,255,255,0.55);   /* .4 measured 3.8:1 */
+  font: 600 .58rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .12em;
+}
+
+.cmp__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Read by screen readers, not drawn — the top bar already says what this is,
+   and a second dim line above the header row just looked orphaned. */
+.cmp__cap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cmp__h {
+  padding: .9rem 1.2rem 1rem;
+  text-align: left;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.cmp__h--us   { color: #eafaef; }
+.cmp__h--them { color: rgba(255,255,255,0.5); }
+
+.cmp__flag {
+  display: block;
+  margin-top: .4rem;
+  font: 700 .54rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,0.52);   /* .32 measured 2.9:1 */
+}
+
+.cmp__flag--on { color: #7de3a4; }
+
+/* The "us" lane. A per-cell inset shadow rather than a border, so the rail
+   runs unbroken down the column with border-spacing at 0. */
+.cmp__h--us,
+.cmp__us {
+  background: rgba(125,227,164,0.08);
+  box-shadow: inset 1px 0 0 rgba(125,227,164,0.28), inset -1px 0 0 rgba(125,227,164,0.28);
+}
+
+.cmp__crit,
+.cmp__us,
+.cmp__them {
+  padding: 1.05rem 1.2rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  vertical-align: middle;
+}
+
+.cmp__table tbody tr:first-child .cmp__crit,
+.cmp__table tbody tr:first-child .cmp__us,
+.cmp__table tbody tr:first-child .cmp__them { border-top: 0; }
+
+.cmp__crit {
+  display: table-cell;
+  text-align: left;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  white-space: nowrap;
+}
+
+/* the numbered cell, same idiom as the hero console's 01–04 */
+.cmp__num {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-right: .8rem;
+  vertical-align: middle;
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 9px;
+  color: #d5b64c;
+  font: 700 .6rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  transition: border-color .25s ease, color .25s ease;
+}
+
+.cmp__us,
+.cmp__them { font-size: .95rem; line-height: 1.45; }
+
+.cmp__us   { color: #f2fbf4; font-weight: 600; }
+.cmp__them { color: rgba(255,255,255,0.56); }
+
+/* Drawn, not typed. An emoji tick is a different glyph on every OS, and the
+   red ❌ shouted louder than the answer it belonged to. */
+.cmp__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-right: .65rem;
+  vertical-align: -5px;
+  border-radius: 7px;
+  flex: 0 0 auto;
+}
+
+.cmp__mark svg { width: 15px; height: 15px; display: block; }
+
+.cmp__mark--yes {
+  color: #7de3a4;
+  background: rgba(125,227,164,0.14);
+  border: 1px solid rgba(125,227,164,0.34);
+}
+
+.cmp__mark--no {
+  color: rgba(255,255,255,0.34);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.13);
+}
+
+.cmp__who { display: none; }
+
+.cmp__table tbody tr { transition: background-color .25s ease; }
+.cmp__table tbody tr:hover .cmp__crit,
+.cmp__table tbody tr:hover .cmp__them { background: rgba(255,255,255,0.03); }
+.cmp__table tbody tr:hover .cmp__us { background: rgba(125,227,164,0.13); }
+.cmp__table tbody tr:hover .cmp__num { border-color: rgba(212,175,55,0.65); color: #eccf6a; }
+
+.cmp__foot {
+  margin: 0;
+  padding: 1.05rem 1.6rem 1.25rem;
+  border-top: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.52);   /* .42 measured 4.1:1 */
+  font-size: .78rem;
+  line-height: 1.6;
+}
+
+/* Below 860px the three columns stop fitting, so each comparison becomes its
+   own small card: the criterion, then our answer and theirs stacked with the
+   labels that the column heads were carrying. */
+@media (max-width: 860px) {
+  .cmp__table,
+  .cmp__table tbody,
+  .cmp__table tr,
+  .cmp__table td,
+  .cmp__table th { display: block; width: auto; }
+
+  .cmp__table thead { display: none; }
+
+  .cmp__table tbody tr {
+    padding: 1.1rem 1.2rem 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .cmp__table tbody tr:first-child { border-top: 0; }
+
+  .cmp__crit,
+  .cmp__us,
+  .cmp__them {
+    padding: 0;
+    border-top: 0;
+    white-space: normal;
+  }
+
+  .cmp__crit { margin-bottom: .85rem; }
+
+  .cmp__us,
+  .cmp__them {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    column-gap: .75rem;
+    align-items: start;
+    box-shadow: none;
+    background: none;
+    font-size: .92rem;
+  }
+
+  .cmp__us { margin-bottom: .6rem; }
+
+  .cmp__who {
+    display: block;
+    grid-column: 1 / -1;
+    margin-bottom: .3rem;
+    font: 700 .54rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.34);
+  }
+
+  .cmp__us .cmp__who { color: #7de3a4; }
+  .cmp__mark { margin-right: 0; vertical-align: 0; }
+  .cmp__table tbody tr:hover .cmp__us,
+  .cmp__table tbody tr:hover .cmp__crit,
+  .cmp__table tbody tr:hover .cmp__them { background: none; }
+}
