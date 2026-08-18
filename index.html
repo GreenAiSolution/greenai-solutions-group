@@ -9,6 +9,69 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=13" />
+  <style>
+    /* Homepage: restrained agentic system language. */
+    .home-agentic.hero { min-height:760px; background:#050b07; }
+    .home-agentic .hero__orb { display:none; }
+    .home-agentic .hero__bg-pattern { opacity:.16; background-size:52px 52px; }
+    .home-agentic .hero__grid-overlay { opacity:.32; background:radial-gradient(circle at 76% 48%,rgba(76,175,110,.16),transparent 38%),linear-gradient(90deg,transparent 49.9%,rgba(255,255,255,.045) 50%,transparent 50.1%); }
+    .home-agentic .hero__split { gap:clamp(3rem,7vw,7rem); }
+    .home-agentic .hero__badge { border-color:rgba(125,227,164,.22); background:rgba(125,227,164,.055); box-shadow:none; }
+    .home-agentic h1 { max-width:650px; font-size:clamp(3rem,6.2vw,5.45rem); letter-spacing:-.045em; }
+    .home-agentic h1 span { color:#d5b64c; background:none; -webkit-text-fill-color:currentColor; text-shadow:none; }
+    .home-agentic .hero__sub { max-width:610px; color:rgba(255,255,255,.63); font-size:1.05rem; }
+    .home-agentic .btn-white { background:#e7c85f; border-color:#e7c85f; color:#061008; }
+    .home-agentic .hero__trust { margin-top:2.15rem; padding-top:1.35rem; border-top:1px solid rgba(255,255,255,.09); }
+    .home-agentic .hero__trust-item { color:rgba(255,255,255,.48); }
+
+    .agent-console { position:relative; padding:1.15rem; border:1px solid rgba(255,255,255,.11); border-radius:20px; background:rgba(8,19,12,.64); backdrop-filter:blur(18px); box-shadow:0 30px 100px rgba(0,0,0,.36); overflow:hidden; }
+    .agent-console::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg,transparent 20%,rgba(125,227,164,.055),transparent 68%); }
+    .agent-console__top { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.2rem .2rem 1rem; border-bottom:1px solid rgba(255,255,255,.09); }
+    .agent-console__title { display:flex; align-items:center; gap:.55rem; color:rgba(255,255,255,.72); font-size:.64rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .agent-console__dot { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 16px #7de3a4; animation:homePulse 2.2s ease-in-out infinite; }
+    .agent-console__mode { color:rgba(255,255,255,.3); font:600 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; }
+    .agent-console .svcmenu { padding:0; }
+    .agent-console .svcmenu__eyebrow { display:none; }
+    .agent-console .svcrow { grid-template-columns:34px 1fr auto; grid-template-areas:'num benefit price' 'num tag state'; column-gap:.8rem; padding:1.06rem .35rem; border-color:rgba(255,255,255,.08); }
+    .agent-console .svcrow:hover { transform:none; background:rgba(125,227,164,.055); }
+    .agent-console .svcrow__num { grid-area:num; width:30px; height:30px; display:grid; place-items:center; align-self:center; border:1px solid rgba(212,175,55,.28); border-radius:9px; color:#d5b64c; font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .agent-console .svcrow__benefit { grid-area:benefit; font-size:1rem; }
+    .agent-console .svcrow__price { grid-area:price; font-size:.84rem; }
+    .agent-console .svcrow__tag { grid-area:tag; margin-top:.3rem; font-size:.57rem; color:rgba(255,255,255,.34); }
+    .agent-console .svcrow__state { grid-area:state; margin-top:.3rem; color:#7de3a4; font:700 .54rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .agent-console .svcmenu__foot { margin:.9rem .2rem .15rem; color:rgba(255,255,255,.28); }
+    @keyframes homePulse { 50% { opacity:.45; box-shadow:0 0 7px #7de3a4; } }
+
+    .agentic-strip { position:relative; padding:1px 0; background:#07110b; border-top:1px solid rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07); overflow:hidden; }
+    .agentic-strip__inner { min-height:210px; display:grid; grid-template-columns:.8fr 1.7fr; align-items:center; gap:5rem; }
+    .agentic-strip__intro small { color:#7de3a4; font-size:.62rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    .agentic-strip__intro h2 { margin:.65rem 0 .55rem; color:#fff; font-family:Inter,sans-serif; font-size:clamp(1.45rem,2.5vw,2.15rem); letter-spacing:-.035em; }
+    .agentic-strip__intro p { color:rgba(255,255,255,.45); font-size:.86rem; max-width:36ch; }
+    .agentic-loop { position:relative; display:grid; grid-template-columns:repeat(4,1fr); }
+    .agentic-loop::before { content:''; position:absolute; left:10%; right:10%; top:24px; height:1px; background:linear-gradient(90deg,rgba(125,227,164,.12),#7de3a4,rgba(212,175,55,.55)); }
+    .agentic-loop::after { content:''; position:absolute; top:20px; left:10%; width:9px; height:9px; border-radius:50%; background:#e6c552; box-shadow:0 0 18px #e6c552; animation:travel 7s ease-in-out infinite; }
+    .agentic-loop__step { position:relative; z-index:1; text-align:center; }
+    .agentic-loop__step i { width:48px; height:48px; display:grid; place-items:center; margin:0 auto .8rem; border:1px solid rgba(125,227,164,.24); border-radius:50%; background:#07110b; color:#7de3a4; font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .agentic-loop__step b { display:block; color:#fff; font-size:.78rem; letter-spacing:.03em; }
+    .agentic-loop__step span { display:block; margin-top:.28rem; color:rgba(255,255,255,.34); font-size:.65rem; }
+    @keyframes travel { 0%,12%{left:10%} 30%{left:36%} 55%{left:62%} 80%,100%{left:89%} }
+
+    .home-agentic ~ .agentic-strip + .circuit-divider { display:none; }
+    .service-card { border-radius:16px; box-shadow:none; border-color:rgba(26,92,42,.12); }
+    .service-card:hover { transform:translateY(-4px); box-shadow:0 18px 50px rgba(6,31,16,.1); }
+    @media (max-width:900px) {
+      .home-agentic.hero { min-height:0; }
+      .home-agentic .hero__split { gap:2.5rem; }
+      .agentic-strip__inner { grid-template-columns:1fr; gap:2.25rem; padding:3.5rem 1.5rem; }
+    }
+    @media (max-width:600px) {
+      .agent-console .svcrow { grid-template-columns:32px 1fr; grid-template-areas:'num benefit' 'num tag' 'price state'; }
+      .agent-console .svcrow__price { margin-top:.65rem; }
+      .agentic-loop { grid-template-columns:repeat(2,1fr); gap:1.5rem .5rem; }
+      .agentic-loop::before,.agentic-loop::after { display:none; }
+    }
+    @media (prefers-reduced-motion:reduce) { .agent-console__dot,.agentic-loop::after { animation:none; } }
+  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -93,7 +156,7 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section id="main" class="hero hero--split" aria-labelledby="hero-heading">
+  <section id="main" class="hero hero--split home-agentic" aria-labelledby="hero-heading">
     <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
@@ -150,76 +213,59 @@
              does it do for me" and "what does it cost", so those are the two
              things set in type here. Whole row is one link. -->
         <div class="hero__visual">
+          <div class="agent-console">
+            <div class="agent-console__top"><span class="agent-console__title"><i class="agent-console__dot" aria-hidden="true"></i> GreenAI operating layer</span><span class="agent-console__mode">AUTONOMOUS / HUMAN-GUIDED</span></div>
           <div class="svcmenu">
-            <p class="svcmenu__eyebrow">What we run for you</p>
 
             <a class="svcrow" href="service-ai-employees.html">
+              <span class="svcrow__num">01</span>
               <span class="svcrow__benefit">Every call, answered.</span>
               <span class="svcrow__price">from $497<i>/mo</i></span>
               <span class="svcrow__tag">AI Employees</span>
+              <span class="svcrow__state">Always on</span>
             </a>
 
             <a class="svcrow" href="service-ai-ads.html">
+              <span class="svcrow__num">02</span>
               <span class="svcrow__benefit">A month of ads, delivered.</span>
               <span class="svcrow__price">from $697<i>/mo</i></span>
               <span class="svcrow__tag">AI Ad Creation <em>&#10022;</em></span>
+              <span class="svcrow__state">Generating</span>
             </a>
 
             <a class="svcrow" href="service-ai-consulting.html">
+              <span class="svcrow__num">03</span>
               <span class="svcrow__benefit">Leads chased in minutes.</span>
               <span class="svcrow__price">$750<i>/mo</i></span>
               <span class="svcrow__tag">AI Business Consulting</span>
+              <span class="svcrow__state">Optimizing</span>
             </a>
 
             <a class="svcrow" href="service-web-design.html">
+              <span class="svcrow__num">04</span>
               <span class="svcrow__benefit">A site built to get called.</span>
               <span class="svcrow__price">from $500 <i>one-time</i></span>
               <span class="svcrow__tag">Web Design &amp; Development</span>
+              <span class="svcrow__state">Building</span>
             </a>
 
             <p class="svcmenu__foot">Month to month &middot; no lock-in &middot; you own everything we build</p>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== BRAND SHOWCASE SECTION ===== -->
-  <section class="brand-showcase" aria-label="GreenAI brand">
-    <div class="brand-showcase__bg" aria-hidden="true"></div>
-    <div class="brand-showcase__grid" aria-hidden="true"></div>
-    <div class="brand-showcase__glow" aria-hidden="true"></div>
-
-    <div class="container brand-showcase__inner">
-      <p class="brand-showcase__eyebrow">Gilbert, Arizona · Serving Businesses Nationwide</p>
-
-      <div class="brand-showcase__card">
-        <div class="brand-showcase__corner brand-showcase__corner--tl" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--tr" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--bl" aria-hidden="true"></div>
-        <div class="brand-showcase__corner brand-showcase__corner--br" aria-hidden="true"></div>
-        <img src="logo-icon.png" alt="GreenAI Solutions Team — hexagonal AI chip logo" class="brand-showcase__crest" width="280" height="280" loading="lazy"/>
-        <div class="brand-showcase__wordmark">
-          <h2 class="brand-showcase__name">Green<span>AI</span> Solutions</h2>
-          <p class="brand-showcase__tagline">Your business. Amplified by AI.</p>
-        </div>
-      </div>
-
-      <div class="brand-pillars">
-        <div class="brand-pillars__item">
-          <div class="brand-pillars__value">AI-Powered</div>
-          <div class="brand-pillars__label">Strategy</div>
-        </div>
-        <div class="brand-pillars__divider" aria-hidden="true"></div>
-        <div class="brand-pillars__item">
-          <div class="brand-pillars__value">Gilbert, AZ</div>
-          <div class="brand-pillars__label">Based &amp; Built Here</div>
-        </div>
-        <div class="brand-pillars__divider" aria-hidden="true"></div>
-        <div class="brand-pillars__item brand-pillars__item--gold">
-          <div class="brand-pillars__value">Results First</div>
-          <div class="brand-pillars__label">No Long Contracts</div>
-        </div>
+  <!-- ===== AGENTIC OPERATING LOOP ===== -->
+  <section class="agentic-strip" aria-labelledby="agentic-loop-heading">
+    <div class="container agentic-strip__inner">
+      <div class="agentic-strip__intro"><small>Agentic by design</small><h2 id="agentic-loop-heading">Systems that move work forward.</h2><p>Every build follows the same controlled loop—with human rules around every autonomous action.</p></div>
+      <div class="agentic-loop" aria-label="Observe, decide, act and learn operating loop">
+        <div class="agentic-loop__step"><i>01</i><b>Observe</b><span>Calls, leads, signals</span></div>
+        <div class="agentic-loop__step"><i>02</i><b>Decide</b><span>Rules before action</span></div>
+        <div class="agentic-loop__step"><i>03</i><b>Act</b><span>Book, follow up, build</span></div>
+        <div class="agentic-loop__step"><i>04</i><b>Improve</b><span>Measure and refine</span></div>
       </div>
     </div>
   </section>
