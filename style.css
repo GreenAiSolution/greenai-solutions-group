@@ -2743,6 +2743,42 @@ body.cc .studio-art__status::before {
   .cs-visit { display: block; width: fit-content; margin: 18px 0 0; }
 }
 
+/* ---- ATRIUM (in-house build) ----
+   Third case study in the row, so it goes back to image-left. The two client
+   blocks are green-tinted; this one is warm bronze because that is ATRIUM's
+   own palette and a third identical dark-green band would read as a repeat.
+   `.case-study-section` above already states `color` for the whole section —
+   do not add a dark background here without restating ink. */
+.case-study-section--studio {
+  background:
+    radial-gradient(1100px 520px at 78% 8%, rgba(212,175,55,0.14), transparent 64%),
+    #0c0a07;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.case-study-section--studio .section-label { color: #e8c15f; }
+
+.case-study-section--studio .cs-deliverables li::before { background: #D4AF37; }
+
+.cs-badge--sand {
+  background: linear-gradient(135deg, #8a6a24, #d9b558);
+  color: #14100a;
+  box-shadow: 0 8px 24px rgba(212,175,55,0.32);
+}
+
+/* The honesty line under the stats. Small, but it still has to clear 4.5:1 on
+   #0c0a07 — .68 white measures ~9:1, .5 would not. Written as
+   `.cs-content p.cs-note` because `.cs-content p` (0-1-1) already sets colour
+   and margin and would otherwise outrank a bare `.cs-note` (0-1-0). */
+.cs-content p.cs-note {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.68);
+  border-left: 2px solid rgba(212,175,55,0.4);
+  padding-left: 12px;
+  margin: 0 0 26px;
+}
+
 /* "$8-28" is a wider stat than anything in the Julia row, and at 1.7rem it
    stops fitting a third of a phone screen — it would either break after the
    dash or push the row wide. Shrink the trio and pin it to one line. */
