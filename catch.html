@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catch Demo — What Happens to a Lead Today vs. With an AI Employee</title>
+  <meta name="description" content="See what happens to a lead today versus what happens with an AI employee answering. Side-by-side timeline illustration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=18" />
+  <style>
+    .catch-cta { margin:3.25rem auto 0; max-width:900px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.75rem; padding:1.85rem 2.1rem; border:1px solid rgba(212,175,55,.24); border-radius:20px; background:linear-gradient(105deg,rgba(212,175,55,.09),rgba(125,227,164,.04)); }
+    .catch-cta__fig { display:block; font-family:'Playfair Display',serif; font-size:2.9rem; font-weight:800; color:#e7c85f; line-height:.95; }
+    .catch-cta__cad { display:block; margin-top:.4rem; color:rgba(255,255,255,.5); font-size:.8rem; }
+    .catch-cta__actions { display:flex; flex-direction:column; align-items:flex-start; gap:.7rem; }
+    .catch-cta__alt { color:rgba(255,255,255,.5); font-size:.79rem; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18); }
+    .catch-cta__alt:hover { color:#7de3a4; }
+    @media (max-width:600px) { .catch-cta { flex-direction:column; align-items:flex-start; padding:1.5rem; } }
+    .catch-page { min-height:100vh; display:flex; align-items:center; padding:100px 0 60px; background:#050b07; }
+    .catch-page::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 74% 48%,rgba(76,175,110,.14),transparent 35%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:auto,56px 56px,56px 56px; }
+    .catch-grid { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:stretch; position:relative; z-index:1; }
+    .catch-column { padding:1.5rem; border-radius:20px; background:rgba(7,18,11,.72); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.11); }
+    .catch-column--today { border-color:rgba(255,100,100,.2); }
+    .catch-column--ai { border-color:rgba(125,227,164,.25); }
+    .catch-header { display:flex; align-items:center; gap:.75rem; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:1.25rem; }
+    .catch-header__label { font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .catch-header--today .catch-header__label { color:rgba(255,150,150,.85); }
+    .catch-header--ai .catch-header__label { color:#7de3a4; }
+    .catch-header__dot { width:8px; height:8px; border-radius:50%; }
+    .catch-header--today .catch-header__dot { background:rgba(255,100,100,.7); }
+    .catch-header--ai .catch-header__dot { background:#7de3a4; box-shadow:0 0 12px #7de3a4; }
+    .catch-timeline { display:flex; flex-direction:column; gap:1rem; }
+    .catch-event { display:flex; gap:.85rem; align-items:flex-start; padding:.85rem; border-radius:12px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); }
+    .catch-event--ai { background:rgba(125,227,164,.06); border-color:rgba(125,227,164,.15); }
+    .catch-event__time { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.7rem; font-weight:700; color:rgba(255,255,255,.5); flex-shrink:0; min-width:85px; }
+    .catch-event__text { font-size:.9rem; color:rgba(255,255,255,.75); line-height:1.4; }
+    .catch-event--ai .catch-event__text { color:rgba(255,255,255,.85); }
+    .catch-disclaimer { text-align:center; margin-top:2rem; color:rgba(255,255,255,.35); font-size:.75rem; font-style:italic; }
+    .catch-hero { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
+    .catch-hero h1 { font-size:clamp(2rem,4vw,3rem); line-height:1.1; letter-spacing:-.03em; color:#fff; margin-bottom:.75rem; }
+    .catch-hero p { color:rgba(255,255,255,.55); font-size:1rem; max-width:580px; margin:0 auto; }
+    @media (max-width:900px) { .catch-page{min-height:0;padding:80px 0 50px}.catch-grid{grid-template-columns:1fr;gap:1.5rem} }
+  </style>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/catch.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/catch.html" />
+  <meta property="og:title" content="Catch Demo — What Happens to a Lead Today vs. With an AI Employee" />
+  <meta property="og:description" content="See what happens to a lead today versus what happens with an AI employee answering. Side-by-side timeline illustration." />
+  <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Catch Demo — What Happens to a Lead Today vs. With an AI Employee" />
+  <meta name="twitter:description" content="See what happens to a lead today versus what happens with an AI employee answering. Side-by-side timeline illustration." />
+  <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div id="main" class="catch-page" style="position:relative;overflow:hidden">
+    <div class="container">
+      <div class="catch-hero">
+        <h1>What Happens to a Lead</h1>
+        <p>A side-by-side illustration of the same lead arriving at 7:42pm</p>
+      </div>
+
+      <div class="catch-grid">
+        <!-- Left: Today -->
+        <div class="catch-column catch-column--today">
+          <div class="catch-header catch-header--today">
+            <div class="catch-header__dot"></div>
+            <span class="catch-header__label">Without an AI employee</span>
+          </div>
+          <div class="catch-timeline">
+            <div class="catch-event">
+              <div class="catch-event__time">7:42pm</div>
+              <div class="catch-event__text">Lead calls — goes to voicemail</div>
+            </div>
+            <div class="catch-event">
+              <div class="catch-event__time">7:42pm</div>
+              <div class="catch-event__text">No reply — business is closed</div>
+            </div>
+            <div class="catch-event">
+              <div class="catch-event__time">Overnight</div>
+              <div class="catch-event__text">Lead waits with no response</div>
+            </div>
+            <div class="catch-event">
+              <div class="catch-event__time">8:15am</div>
+              <div class="catch-event__text">Customer calls the next company</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: With AI -->
+        <div class="catch-column catch-column--ai">
+          <div class="catch-header catch-header--ai">
+            <div class="catch-header__dot"></div>
+            <span class="catch-header__label">With an AI employee</span>
+          </div>
+          <div class="catch-timeline">
+            <div class="catch-event catch-event--ai">
+              <div class="catch-event__time">7:42pm</div>
+              <div class="catch-event__text">Lead calls — answered in 8 seconds</div>
+            </div>
+            <div class="catch-event catch-event--ai">
+              <div class="catch-event__time">7:42pm</div>
+              <div class="catch-event__text">Qualifying questions asked</div>
+            </div>
+            <div class="catch-event catch-event--ai">
+              <div class="catch-event__time">7:43pm</div>
+              <div class="catch-event__text">Details sent to owner's phone</div>
+            </div>
+            <div class="catch-event catch-event--ai">
+              <div class="catch-event__time">7:45pm</div>
+              <div class="catch-event__text">Appointment booked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catch-disclaimer">
+        This is an illustration of the mechanism, not a claim about results
+      </div>
+
+      <div class="catch-cta">
+        <div class="catch-cta__price">
+          <span class="catch-cta__fig">$497</span>
+          <span class="catch-cta__cad">per month &middot; unlimited leads &middot; cancel any time</span>
+        </div>
+        <div class="catch-cta__actions">
+          <a href="contact.html" class="btn btn-primary btn-lg">Get it running &rarr;</a>
+          <a href="services.html#pricing" class="catch-cta__alt">See exactly what is included &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
+            <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg></div>
+            <div>
+              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296</div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span class="js-year">2026</span> GreenAI Solutions Team. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=10" defer></script>
+  <script>
+    (function(){
+      const yearEl = document.querySelector('.js-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

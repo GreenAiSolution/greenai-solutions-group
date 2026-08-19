@@ -4,6 +4,12 @@ Allow: /
 # Private client form — reachable by direct link, never indexed.
 Disallow: /onboarding.html
 
+# Unlinked 2026-08-18 when the site was cut to one offer at one price. The
+# configurator quotes a custom team across many prices, which is the opposite
+# of the offer the site now leads with. Kept on disk, kept out of the index.
+Disallow: /create.html
+Disallow: /elite.html
+
 # Post-submission and error pages. Nothing to index.
 Disallow: /thankyou.html
 Disallow: /404.html

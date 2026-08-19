@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenAI Solutions — The Intelligent Operating Layer for Modern Business</title>
-  <meta name="description" content="GreenAI transforms traditional businesses with AI workforces, connected automation, growth systems and intelligent digital experiences. Built in Gilbert, Arizona." />
+  <title>GreenAI Solutions — An AI Employee That Answers Every Lead in 8 Seconds</title>
+  <meta name="description" content="Phoenix service businesses: an AI employee that answers every call, text and form in 8 seconds, books the job and follows up. $497 a month, flat. Built in Gilbert, Arizona." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
   <style>
     /* Homepage: restrained agentic system language. */
     .home-agentic.hero { min-height:760px; background:#050b07; }
@@ -41,6 +41,18 @@
     .agent-console .svcrow__state { grid-area:state; margin-top:.3rem; color:#7de3a4; font:700 .54rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
     .agent-console .svcmenu__foot { margin:.9rem .2rem .15rem; color:rgba(255,255,255,.28); }
     @keyframes homePulse { 50% { opacity:.45; box-shadow:0 0 7px #7de3a4; } }
+
+    /* One offer, one price — the hero's right column. */
+    .offercard { padding:.35rem .2rem .1rem; }
+    .offercard__pricerow { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.6rem; padding:1.15rem 0 1.05rem; border-bottom:1px solid rgba(255,255,255,.09); }
+    .offercard__fig { font-family:'Playfair Display',serif; font-size:clamp(3rem,5vw,3.85rem); font-weight:800; color:#e7c85f; line-height:.9; letter-spacing:-.02em; }
+    .offercard__cad { margin-left:.5rem; color:rgba(255,255,255,.42); font-size:.9rem; font-weight:600; }
+    .offercard__flag { color:#7de3a4; font:800 .58rem/1.3 Inter,sans-serif; letter-spacing:.11em; text-transform:uppercase; text-align:right; }
+    .offercard__list { list-style:none; margin:1.15rem 0 0; padding:0; display:grid; gap:.72rem; }
+    .offercard__list li { position:relative; padding-left:1.65rem; color:rgba(255,255,255,.8); font-size:.9rem; line-height:1.45; }
+    .offercard__list li::before { content:''; position:absolute; left:.1rem; top:.42em; width:9px; height:5px; border-left:2px solid #7de3a4; border-bottom:2px solid #7de3a4; transform:rotate(-45deg); }
+    .offercard__foot { margin:1.35rem .1rem .35rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,.07); color:rgba(255,255,255,.34); font-size:.72rem; }
+    @media (max-width:600px) { .offercard__pricerow { flex-direction:column; align-items:flex-start; } .offercard__flag { text-align:left; } }
 
     .agentic-strip { position:relative; padding:1px 0; background:#07110b; border-top:1px solid rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07); overflow:hidden; }
     .agentic-strip__inner { min-height:210px; display:grid; grid-template-columns:.8fr 1.7fr; align-items:center; gap:5rem; }
@@ -82,12 +94,12 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/" />
-  <meta property="og:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
-  <meta property="og:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses. Based in Gilbert, AZ." />
+  <meta property="og:title" content="Every lead answered in 8 seconds — $497/month" />
+  <meta property="og:description" content="An AI employee for Phoenix service businesses. Answers every call, text and form in 8 seconds. Books the job. Follows up. $497 a month, flat." />
   <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GreenAI Solutions Team — Arizona's AI Growth Partner" />
-  <meta name="twitter:description" content="AI-powered consulting, social media management, and custom web design for Arizona businesses." />
+  <meta name="twitter:title" content="Every lead answered in 8 seconds — $497/month" />
+  <meta name="twitter:description" content="An AI employee for Phoenix service businesses. $497 a month, flat." />
   <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
 
   <!-- LocalBusiness structured data -->
@@ -131,13 +143,13 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employees ✦</a></li><li><a href="service-ai-ads.html">AI Ad Creation ✦</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
           <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
         </ul>
 
-        <a href="create.html" class="btn btn-primary nav__cta">Create Your Custom Team</a>
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
 
         <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -147,11 +159,11 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employees ✦</a></li><li><a href="service-ai-ads.html">AI Ad Creation ✦</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="services.html#pricing">Pricing Plans</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
         <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
         <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
         <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
-        <li style="padding:.5rem 1rem"><a href="create.html" class="btn btn-primary" style="width:100%;justify-content:center">Create Your Custom Team</a></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
       </ul>
     </div>
   </nav>
@@ -168,25 +180,25 @@
         <div class="hero__content">
           <div class="hero__badge">
             <span class="hero__badge-dot" aria-hidden="true"></span>
-            The Future Business Company · Gilbert, AZ
+            For Phoenix service businesses &middot; Gilbert, AZ
           </div>
 
           <h1 id="hero-heading">
-            Build the Company<br/>
-            <span>of the Future.</span>
+            Every lead answered<br/>
+            in <span>8 seconds.</span>
           </h1>
 
           <p class="hero__sub">
-            We transform traditional businesses into intelligent, automated companies—with an AI workforce, connected systems and measurable growth infrastructure built around the way you operate.
+            The call you miss at 7pm is a job somebody else books by 7:05. We build you one AI employee that picks up every call, text and web form the moment it lands &mdash; day, night, weekend &mdash; books it into your calendar, and keeps following up until they answer.
           </p>
 
           <div class="hero__actions">
-            <a href="contact.html" class="btn btn-white btn-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Book a Free Strategy Call
+            <a href="catch.html" class="btn btn-white btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Watch it catch a lead
             </a>
-            <a href="services.html" class="btn btn-lg hero__btn-ghost">
-              Explore Your Future System
+            <a href="contact.html" class="btn btn-lg hero__btn-ghost">
+              Get it running
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
@@ -194,64 +206,48 @@
           <div class="hero__trust" aria-label="Trust signals">
             <div class="hero__trust-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              You own everything we build
+              $497 a month, flat
             </div>
             <div class="hero__trust-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              No long-term contracts
+              Month to month &mdash; cancel anytime
             </div>
             <div class="hero__trust-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Free 30-min consult
+              Setup included, no per-call fees
             </div>
           </div>
         </div>
 
-        <!-- Right column: the four services as a menu that leads with the
-             outcome and states the price. No card, no fake window chrome, no
-             decorative glow — the previous version stacked all three and read
-             like a template. A business owner's first two questions are "what
-             does it do for me" and "what does it cost", so those are the two
-             things set in type here. Whole row is one link. -->
+        <!-- Right column: one offer, one price. A business owner's first two
+             questions are "what does it do for me" and "what does it cost", so
+             those are the only two things set in type here. Cut from a
+             four-service price menu 2026-08-18 — a stranger could not tell what
+             to buy. -->
         <div class="hero__visual">
           <div class="agent-console">
-            <div class="agent-console__top"><span class="agent-console__title"><i class="agent-console__dot" aria-hidden="true"></i> GreenAI operating layer</span><span class="agent-console__mode">AUTONOMOUS / HUMAN-GUIDED</span></div>
-          <div class="svcmenu">
+            <div class="agent-console__top"><span class="agent-console__title"><i class="agent-console__dot" aria-hidden="true"></i> Your AI employee</span><span class="agent-console__mode">ON DUTY 24/7</span></div>
 
-            <a class="svcrow" href="service-ai-employees.html">
-              <span class="svcrow__num">01</span>
-              <span class="svcrow__benefit">Every call, answered.</span>
-              <span class="svcrow__price">from $497<i>/mo</i></span>
-              <span class="svcrow__tag">AI Employees</span>
-              <span class="svcrow__state">Always on</span>
-            </a>
+            <div class="offercard">
+              <div class="offercard__pricerow">
+                <div>
+                  <span class="offercard__fig">$497</span>
+                  <span class="offercard__cad">per month</span>
+                </div>
+                <span class="offercard__flag">One price &middot; everything below</span>
+              </div>
 
-            <a class="svcrow" href="service-ai-ads.html">
-              <span class="svcrow__num">02</span>
-              <span class="svcrow__benefit">A month of ads, delivered.</span>
-              <span class="svcrow__price">from $697<i>/mo</i></span>
-              <span class="svcrow__tag">AI Ad Creation <em>&#10022;</em></span>
-              <span class="svcrow__state">Generating</span>
-            </a>
+              <ul class="offercard__list" role="list">
+                <li>Answers every call, text and web form</li>
+                <li>Replies in 8 seconds &mdash; 2am, Sunday, holidays</li>
+                <li>Books the job straight into your calendar</li>
+                <li>Chases the follow-up until they answer</li>
+                <li>Sends you a transcript of every conversation</li>
+                <li>Unlimited leads &mdash; no per-call charge</li>
+              </ul>
 
-            <a class="svcrow" href="service-ai-consulting.html">
-              <span class="svcrow__num">03</span>
-              <span class="svcrow__benefit">Leads chased in minutes.</span>
-              <span class="svcrow__price">$750<i>/mo</i></span>
-              <span class="svcrow__tag">AI Business Consulting</span>
-              <span class="svcrow__state">Optimizing</span>
-            </a>
-
-            <a class="svcrow" href="service-web-design.html">
-              <span class="svcrow__num">04</span>
-              <span class="svcrow__benefit">A site built to get called.</span>
-              <span class="svcrow__price">from $500 <i>one-time</i></span>
-              <span class="svcrow__tag">Web Design &amp; Development</span>
-              <span class="svcrow__state">Building</span>
-            </a>
-
-            <p class="svcmenu__foot">Month to month &middot; no lock-in &middot; you own everything we build</p>
-          </div>
+              <p class="offercard__foot">Month to month &middot; setup included &middot; you own everything we build</p>
+            </div>
           </div>
         </div>
       </div>
@@ -272,21 +268,21 @@
   </section>
 
 
-  <!-- ===== THE GREENAI FUTURE STACK ===== -->
+  <!-- ===== WHAT IT DOES ALL DAY ===== -->
   <section class="future-stack" aria-labelledby="future-stack-heading">
     <div class="container">
       <div class="future-stack__head reveal">
-        <div><span class="future-stack__label">The GreenAI Future Stack</span><h2 id="future-stack-heading">Everything a modern business needs to operate intelligently.</h2></div>
-        <p>Not disconnected AI tools. One coordinated operating layer that helps your company communicate, execute, grow and improve—with human control built into every system.</p>
+        <div><span class="future-stack__label">One employee &middot; five jobs</span><h2 id="future-stack-heading">What it does while you are under a truck.</h2></div>
+        <p>Not a chatbot on your website. One AI employee that works the whole lead &mdash; from the second it comes in to the day it turns into a paid job &mdash; with your rules on every message it sends.</p>
       </div>
       <div class="future-stack__grid reveal">
-        <a class="future-pillar" href="service-ai-employees.html"><span class="future-pillar__num">01 / WORKFORCE</span><h3>AI Workforce</h3><p>Purpose-built digital employees for calls, sales, support, follow-up, research and daily operations.</p><span class="future-pillar__arrow" aria-hidden="true">↗</span></a>
-        <a class="future-pillar" href="service-ai-consulting.html"><span class="future-pillar__num">02 / CORE</span><h3>Business Infrastructure</h3><p>Connected CRM, knowledge, automation and data systems engineered around your real workflow.</p><span class="future-pillar__arrow" aria-hidden="true">↗</span></a>
-        <a class="future-pillar" href="service-ai-ads.html"><span class="future-pillar__num">03 / GROWTH</span><h3>Autonomous Growth</h3><p>Campaign production, lead qualification and follow-up systems that keep revenue moving.</p><span class="future-pillar__arrow" aria-hidden="true">↗</span></a>
-        <a class="future-pillar" href="service-web-design.html"><span class="future-pillar__num">04 / EXPERIENCE</span><h3>Intelligent Experiences</h3><p>AI-native websites and interfaces that guide each visitor toward the right next action.</p><span class="future-pillar__arrow" aria-hidden="true">↗</span></a>
-        <a class="future-pillar" href="contact.html"><span class="future-pillar__num">05 / CONTROL</span><h3>Governance &amp; Care</h3><p>Human approvals, monitoring, optimization and ongoing support so every system stays useful.</p><span class="future-pillar__arrow" aria-hidden="true">↗</span></a>
+        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">01 / ANSWER</span><h3>Picks Up Every Time</h3><p>Calls, texts and web forms, 24 hours a day. Nothing rings out, nothing sits in an inbox overnight.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
+        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">02 / QUALIFY</span><h3>Asks The Right Questions</h3><p>Where they are, what they need, when they need it &mdash; the same questions you would ask, in your words.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
+        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">03 / BOOK</span><h3>Puts It On Your Calendar</h3><p>Offers the slots you actually have open and books the job while the customer is still interested.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
+        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">04 / FOLLOW UP</span><h3>Chases The Quiet Ones</h3><p>The lead who never replied gets a nudge tomorrow, and again after that. Most jobs are won on the third message.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
+        <a class="future-pillar" href="contact.html"><span class="future-pillar__num">05 / REPORT</span><h3>Shows You Everything</h3><p>Every conversation, word for word, in your inbox. You approve the rules; it never freelances.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
       </div>
-      <div class="future-studio-cta reveal"><div><strong>See your future company before we build it.</strong><span>Configure the roles, workflows, systems and goals your custom AI team needs.</span></div><a href="create.html" class="btn btn-white">Enter the Future Business Studio →</a></div>
+      <div class="future-studio-cta reveal"><div><strong>See it happen before you pay for it.</strong><span>The same lead, twice: what happens today, and what happens with an AI employee on it.</span></div><a href="catch.html" class="btn btn-white">Watch it catch a lead &rarr;</a></div>
     </div>
   </section>
 
@@ -351,117 +347,49 @@
       <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
     </svg>
   </div>
-  <!-- ===== SERVICES OVERVIEW ===== -->
-  <section class="section" aria-labelledby="services-heading">
+  <!-- ===== THE OFFER — one thing, one price ===== -->
+  <section class="section" id="offer" aria-labelledby="offer-heading">
     <div class="container">
       <div class="text-center reveal">
-        <span class="section-label">Our Services</span>
-        <h2 id="services-heading">Four Services. One Goal:<br/>Grow Your Business.</h2>
+        <span class="section-label">The Offer</span>
+        <h2 id="offer-heading">One thing.<br/>One price.</h2>
         <div class="section-divider"></div>
-        <p style="max-width:500px;margin:0 auto 3rem">Every service is built to put more money in your pocket and more time back in your day.</p>
+        <p style="max-width:540px;margin:0 auto 3rem">No tiers, no packages, no &ldquo;starting at&rdquo;. An AI employee that answers every lead in 8 seconds, for $497 a month. That is the entire price list.</p>
       </div>
 
-      <div class="grid-3" style="gap:2rem">
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-            <h3>AI Employees</h3>
-            <p>Staff who answer every call around the clock, book the appointment, and chase the follow-ups — for a flat monthly fee with no per-call charge.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>Answers every call, 24/7</li>
-              <li>Books straight into your calendar</li>
-              <li>Texts back the leads you missed</li>
-              <li>Unlimited calls — no per-call charge</li>
-              <li>Full transcript of everything it said</li>
-            </ul>
-            <div class="price">
-              <span class="price__from">Starting at</span>
-              <span class="price__fig">$497</span>
-              <span class="price__cad">per month</span>
-            </div>
-            <a href="service-ai-employees.html" class="btn btn-primary svc-cta">See how it works <span aria-hidden="true">&rarr;</span></a>
-          </div>
+      <div class="reveal offer-panel">
+        <div class="offer-panel__main">
+          <span class="offer-panel__eyebrow">AI Employee &middot; Phoenix service businesses</span>
+          <h3 class="offer-panel__title">Answers every lead in 8 seconds. Books the job. Chases the ones who go quiet.</h3>
+          <ul class="offer-panel__list" role="list">
+            <li><strong>Every call, text and form</strong> &mdash; 24 hours a day, including the 7pm one you are currently missing</li>
+            <li><strong>Answered in 8 seconds</strong> &mdash; before your customer has finished typing the next guy's number into their phone</li>
+            <li><strong>Booked into your calendar</strong> &mdash; it only offers the slots you actually have open</li>
+            <li><strong>Followed up automatically</strong> &mdash; the quiet lead gets nudged tomorrow, and again after that</li>
+            <li><strong>Every word in your inbox</strong> &mdash; full transcripts, your rules, no freelancing</li>
+            <li><strong>Set up for you</strong> &mdash; we build it around your trade, your hours and your service area</li>
+          </ul>
         </div>
-
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div>
-            <h3>AI Business Consulting</h3>
-            <p>We bring enterprise-level AI tools to your local business — automating follow-up, generating leads, and outpacing every competitor still doing it the old way.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>AI workflow automation</li>
-              <li>Lead follow-up systems (5-min response)</li>
-              <li>CRM setup & optimization</li>
-              <li>Built around your trade, not a template</li>
-              <li>Custom AI strategy roadmap</li>
-            </ul>
-            <div class="price">
-              <span class="price__from">Starting at</span>
-              <span class="price__fig">$750</span>
-              <span class="price__cad">per month</span>
-            </div>
-            <a href="service-ai-consulting.html" class="btn btn-primary svc-cta">See how it works <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </div>
-
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-card__header">
-            <div class="service-card__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <h3>Web Design &amp; Development</h3>
-            <p>Custom-built, conversion-focused websites from scratch. Clean, fast, and designed to turn visitors into paying customers — no templates, ever.</p>
-          </div>
-          <div class="service-card__body">
-            <ul class="service-card__list" role="list">
-              <li>100% custom design — no templates</li>
-              <li>Mobile-first &amp; lightning fast</li>
-              <li>SEO foundation built in</li>
-              <li>Lead capture &amp; contact forms</li>
-              <li>Delivered in ~7 business days</li>
-            </ul>
-            <div class="price">
-              <span class="price__from">Starting at</span>
-              <span class="price__fig">$500</span>
-              <span class="price__cad">one-time · yours to keep</span>
-            </div>
-            <a href="service-web-design.html" class="btn btn-primary svc-cta">See how it works <span aria-hidden="true">&rarr;</span></a>
-          </div>
+        <div class="offer-panel__side">
+          <span class="offer-panel__fig">$497</span>
+          <span class="offer-panel__cad">per month</span>
+          <ul class="offer-panel__terms" role="list">
+            <li>Setup included</li>
+            <li>Unlimited leads &mdash; no per-call fee</li>
+            <li>Month to month, cancel anytime</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary btn-lg offer-panel__cta">Get it running &rarr;</a>
+          <a href="catch.html" class="offer-panel__demo">or watch it catch a lead first &#8599;</a>
         </div>
       </div>
 
-      <!-- AI Ad Creation — Featured Premium Service -->
-      <div class="reveal" style="margin-top:2rem;position:relative;">
-        <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#c9a12e,#e8c84a);color:#0a0a0a;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.32rem 1.3rem;border-radius:100px;white-space:nowrap;z-index:2;box-shadow:0 2px 10px rgba(212,175,55,.28);">Our Most Powerful Service</div>
-        <div style="background:#0c1a0e;border:1px solid rgba(212,175,55,.2);border-radius:20px;overflow:hidden;">
-          <div style="height:2px;background:linear-gradient(90deg,#b8941f,#e8c84a,#b8941f);"></div>
-          <div style="padding:2.25rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;">
-            <div>
-              <div style="font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9a12e;margin-bottom:.5rem;">AI Ad Creation · Growth</div>
-              <h3 style="color:#fff;font-size:1.35rem;font-weight:700;margin-bottom:.65rem;line-height:1.25;">AI Ad Creation</h3>
-              <p style="color:rgba(255,255,255,.5);font-size:.86rem;line-height:1.75;margin-bottom:1.25rem;max-width:600px;">Twenty-five finished ads a month — different hooks, formats and lengths — so there is always a fresh one ready before the current one wears out. Bought one at a time from an agency, the same batch runs to roughly $5,000.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-                <span style="background:rgba(76,175,110,.1);border:1px solid rgba(76,175,110,.2);color:#4caf6e;font-size:.72rem;font-weight:600;padding:.25rem .8rem;border-radius:100px;">Hook Variants</span>
-                <span style="background:rgba(76,175,110,.1);border:1px solid rgba(76,175,110,.2);color:#4caf6e;font-size:.72rem;font-weight:600;padding:.25rem .8rem;border-radius:100px;">Vertical &amp; Square</span>
-                <span style="background:rgba(76,175,110,.1);border:1px solid rgba(76,175,110,.2);color:#4caf6e;font-size:.72rem;font-weight:600;padding:.25rem .8rem;border-radius:100px;">15s &amp; 30s Cuts</span>
-                <span style="background:rgba(76,175,110,.1);border:1px solid rgba(76,175,110,.2);color:#4caf6e;font-size:.72rem;font-weight:600;padding:.25rem .8rem;border-radius:100px;">Captions Burned In</span>
-                <span style="background:rgba(76,175,110,.1);border:1px solid rgba(76,175,110,.2);color:#4caf6e;font-size:.72rem;font-weight:600;padding:.25rem .8rem;border-radius:100px;">You Own The Files</span>
-              </div>
-            </div>
-            <div style="text-align:center;flex-shrink:0;padding-left:2rem;border-left:1px solid rgba(255,255,255,.07);">
-              <div style="font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:#D4AF37;line-height:1;">$1,297</div>
-              <div style="color:rgba(255,255,255,.3);font-size:.8rem;margin-bottom:1.25rem;">/month</div>
-              <a href="service-ai-ads.html" style="display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#c9a12e,#e8c84a);color:#0a0a0a;font-weight:700;font-size:.85rem;padding:.75rem 1.5rem;border-radius:100px;text-decoration:none;white-space:nowrap;">Learn More →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center" style="margin-top:3rem">
-        <a href="services.html" class="btn btn-primary btn-lg">View Full Service Details &amp; Pricing</a>
-      </div>
+      <p class="offer-also">
+        Already have the phones covered? We also build
+        <a href="service-web-design.html">websites</a>,
+        <a href="service-ai-ads.html">ad creative</a> and
+        <a href="service-ai-consulting.html">AI systems</a>
+        for the businesses we work with &mdash; each priced on its own page.
+      </p>
     </div>
   </section>
 
@@ -484,29 +412,29 @@
         <span class="section-label">The Process</span>
         <h2 id="how-heading">Up and Running in 2 Weeks</h2>
         <div class="section-divider"></div>
-        <p style="max-width:500px;margin:0 auto 3rem">We handle the entire setup so you don't have to. Our onboarding is streamlined, painless, and designed to show results fast.</p>
+        <p style="max-width:520px;margin:0 auto 3rem">You answer one round of questions about how your business runs. We do the rest, and nothing goes live until you have tested it yourself.</p>
       </div>
 
       <div class="grid-4">
         <div class="text-center reveal reveal-delay-1" style="padding:1.5rem">
           <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">1</div>
-          <h4 style="margin-bottom:.5rem">Discovery Call</h4>
-          <p style="font-size:.88rem">We learn your business goals, current tech stack, and biggest pain points in a 45-minute strategy session.</p>
+          <h4 style="margin-bottom:.5rem">You Tell Us How You Answer</h4>
+          <p style="font-size:.88rem">Your trade, your hours, your service area, your prices, and the questions you always ask a new customer. Email or a call &mdash; your choice.</p>
         </div>
         <div class="text-center reveal reveal-delay-2" style="padding:1.5rem">
           <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">2</div>
-          <h4 style="margin-bottom:.5rem">Custom AI Blueprint</h4>
-          <p style="font-size:.88rem">We design a tailored AI implementation plan specific to your market, niche, and production goals.</p>
+          <h4 style="margin-bottom:.5rem">We Build Your Employee</h4>
+          <p style="font-size:.88rem">Trained on how your shop actually talks &mdash; not a generic script with your business name dropped into it.</p>
         </div>
         <div class="text-center reveal reveal-delay-3" style="padding:1.5rem">
           <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">3</div>
-          <h4 style="margin-bottom:.5rem">Done-For-You Setup</h4>
-          <p style="font-size:.88rem">Our team builds, integrates, and configures everything — from CRM automation to lead gen funnels — in under 14 days.</p>
+          <h4 style="margin-bottom:.5rem">You Test It Yourself</h4>
+          <p style="font-size:.88rem">Call your own number and try to trip it up. Nothing goes live until you have heard it handle your own questions.</p>
         </div>
         <div class="text-center reveal reveal-delay-4" style="padding:1.5rem">
           <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">4</div>
-          <h4 style="margin-bottom:.5rem">Ongoing Optimization</h4>
-          <p style="font-size:.88rem">Monthly check-ins, performance reviews, and continuous improvements keep your AI working at peak efficiency.</p>
+          <h4 style="margin-bottom:.5rem">It Goes On Duty</h4>
+          <p style="font-size:.88rem">Every conversation lands in your inbox. Anything you want said differently, you say so and we change it.</p>
         </div>
       </div>
     </div>
@@ -680,7 +608,7 @@
             </tr>
             <tr>
               <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>Starting price</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">$500/month</span></td>
+              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">$497/month, flat &mdash; that is the whole price list</span></td>
               <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$1,500–$10,000/month minimum</span></td>
             </tr>
             <tr>
@@ -725,7 +653,7 @@
             <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
             <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
           </a>
-          <p class="footer__tagline">Growing Arizona businesses with AI employees that answer every call, ad creative that earns attention, and professionally built websites — all from one dedicated partner.</p>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
           <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
         </div>
 
@@ -744,11 +672,12 @@
         <div>
           <h5>Services</h5>
           <ul class="footer__links" role="list">
-            <li><a href="service-ai-employees.html">AI Employees</a></li>
-            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
-            <li><a href="service-ai-ads.html" style="color:#D4AF37;font-weight:600">AI Ad Creation ✦</a></li>
+            <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
             <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
-            <li><a href="services.html#pricing">Pricing Plans</a></li>
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
           </ul>
         </div>
 
