@@ -37,6 +37,33 @@
     .catch-event__text { font-size:.9rem; color:rgba(255,255,255,.75); line-height:1.4; }
     .catch-event--ai .catch-event__text { color:rgba(255,255,255,.85); }
     .catch-disclaimer { text-align:center; margin-top:2rem; color:rgba(255,255,255,.35); font-size:.75rem; font-style:italic; }
+
+    /* --- The demo actually plays -------------------------------------------
+       Every page on this site carries a button saying "Watch it catch a lead".
+       Until now nothing moved. The first 8 story-seconds run in REAL time on
+       purpose — the visitor has to sit through the wait they are selling
+       against — and everything after that is compressed. */
+    .is-playable .catch-event { opacity:.2; filter:saturate(.35); transform:translateY(6px); transition:opacity .45s ease, transform .45s ease, filter .45s ease, border-color .45s ease, background .45s ease; }
+    .is-playable .catch-event.is-on { opacity:1; filter:none; transform:none; }
+    .catch-event.is-hit { border-color:rgba(125,227,164,.55); background:rgba(125,227,164,.13); box-shadow:0 0 0 1px rgba(125,227,164,.18), 0 14px 40px rgba(0,0,0,.35); }
+    .catch-event__text strong { color:#7de3a4; font-weight:700; }
+    .catch-clock { position:relative; z-index:1; display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap; max-width:560px; margin:0 auto 2.25rem; padding:1rem 1.25rem; border:1px solid rgba(255,255,255,.12); border-radius:16px; background:rgba(7,18,11,.72); }
+    .catch-clock__btn { display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.15rem; border:0; border-radius:10px; background:#e7c85f; color:#061008; font:700 .88rem/1 'Inter',system-ui,sans-serif; cursor:pointer; transition:background .2s ease, transform .2s ease; }
+    .catch-clock__btn:hover { background:#f2d879; transform:translateY(-1px); }
+    .catch-clock__btn:focus-visible { outline:2px solid #7de3a4; outline-offset:3px; }
+    .catch-clock__read { display:flex; align-items:baseline; gap:.3rem; }
+    .catch-clock__secs { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:1.85rem; font-weight:700; color:#fff; font-variant-numeric:tabular-nums; }
+    .catch-clock__unit { color:rgba(255,255,255,.62); font-size:.95rem; font-weight:600; }
+    .catch-clock__cap { margin-left:.55rem; color:rgba(255,255,255,.62); font-size:.76rem; }
+    .catch-clock.is-answered .catch-clock__secs { color:#7de3a4; }
+    .catch-clock__bar { position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(255,255,255,.07); border-radius:0 0 16px 16px; overflow:hidden; }
+    .catch-clock__bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,#e7c85f,#7de3a4); }
+    @media (max-width:600px) { .catch-clock { gap:.9rem; } .catch-clock__cap { margin-left:0; width:100%; } }
+    @media (prefers-reduced-motion:reduce) {
+      /* No motion, no hidden content — everything is simply present. */
+      .is-playable .catch-event { opacity:1; filter:none; transform:none; transition:none; }
+      .catch-clock { display:none; }
+    }
     .catch-hero { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
     .catch-hero h1 { font-size:clamp(2rem,4vw,3rem); line-height:1.1; letter-spacing:-.03em; color:#fff; margin-bottom:.75rem; }
     .catch-hero p { color:rgba(255,255,255,.55); font-size:1rem; max-width:580px; margin:0 auto; }
@@ -58,6 +85,7 @@
   <meta name="twitter:title" content="Catch Demo — What Happens to a Lead Today vs. With an AI Employee" />
   <meta name="twitter:description" content="See what happens to a lead today versus what happens with an AI employee answering. Side-by-side timeline illustration." />
   <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
+  <script src="analytics.js?v=1"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -111,6 +139,18 @@
         <p>A side-by-side illustration of the same lead arriving at 7:42pm</p>
       </div>
 
+      <div class="catch-clock" data-clock>
+        <button type="button" class="catch-clock__btn" data-play>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <span data-play-label>Play it</span>
+        </button>
+        <div class="catch-clock__read">
+          <span class="catch-clock__secs" data-secs>0.0</span><span class="catch-clock__unit">s</span>
+          <span class="catch-clock__cap" data-cap>since the phone rang</span>
+        </div>
+        <div class="catch-clock__bar" aria-hidden="true"><i data-bar></i></div>
+      </div>
+
       <div class="catch-grid">
         <!-- Left: Today -->
         <div class="catch-column catch-column--today">
@@ -119,19 +159,19 @@
             <span class="catch-header__label">Without an AI employee</span>
           </div>
           <div class="catch-timeline">
-            <div class="catch-event">
+            <div class="catch-event" data-at="0">
               <div class="catch-event__time">7:42pm</div>
-              <div class="catch-event__text">Lead calls — goes to voicemail</div>
+              <div class="catch-event__text">Lead calls &mdash; goes to voicemail</div>
             </div>
-            <div class="catch-event">
+            <div class="catch-event" data-at="22">
               <div class="catch-event__time">7:42pm</div>
-              <div class="catch-event__text">No reply — business is closed</div>
+              <div class="catch-event__text">No reply &mdash; business is closed</div>
             </div>
-            <div class="catch-event">
+            <div class="catch-event" data-at="120">
               <div class="catch-event__time">Overnight</div>
               <div class="catch-event__text">Lead waits with no response</div>
             </div>
-            <div class="catch-event">
+            <div class="catch-event" data-at="180">
               <div class="catch-event__time">8:15am</div>
               <div class="catch-event__text">Customer calls the next company</div>
             </div>
@@ -145,19 +185,19 @@
             <span class="catch-header__label">With an AI employee</span>
           </div>
           <div class="catch-timeline">
-            <div class="catch-event catch-event--ai">
+            <div class="catch-event catch-event--ai" data-at="8" data-flash="1">
               <div class="catch-event__time">7:42pm</div>
-              <div class="catch-event__text">Lead calls — answered in 8 seconds</div>
+              <div class="catch-event__text">Lead calls &mdash; <strong>answered in 8 seconds</strong></div>
             </div>
-            <div class="catch-event catch-event--ai">
+            <div class="catch-event catch-event--ai" data-at="40">
               <div class="catch-event__time">7:42pm</div>
               <div class="catch-event__text">Qualifying questions asked</div>
             </div>
-            <div class="catch-event catch-event--ai">
+            <div class="catch-event catch-event--ai" data-at="75">
               <div class="catch-event__time">7:43pm</div>
               <div class="catch-event__text">Details sent to owner's phone</div>
             </div>
-            <div class="catch-event catch-event--ai">
+            <div class="catch-event catch-event--ai" data-at="195">
               <div class="catch-event__time">7:45pm</div>
               <div class="catch-event__text">Appointment booked</div>
             </div>
@@ -175,8 +215,8 @@
           <span class="catch-cta__cad">per month &middot; unlimited leads &middot; cancel any time</span>
         </div>
         <div class="catch-cta__actions">
-          <a href="contact.html" class="btn btn-primary btn-lg">Get it running &rarr;</a>
-          <a href="services.html#pricing" class="catch-cta__alt">See exactly what is included &#8599;</a>
+          <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
+          <a href="contact.html" class="catch-cta__alt">or ask a question first &#8599;</a>
         </div>
       </div>
     </div>
@@ -255,11 +295,111 @@
   </footer>
 
   <script src="script.js?v=10" defer></script>
+  <script src="checkout.js?v=1" defer></script>
   <script>
     (function(){
       const yearEl = document.querySelector('.js-year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
     })();
   </script>
+
+<script>
+(function () {
+  var root  = document.querySelector('[data-clock]');
+  if (!root) return;
+  var events = Array.prototype.slice.call(document.querySelectorAll('.catch-event[data-at]'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reduced motion, or no JS at all: the whole story is just there.
+  if (reduce) { events.forEach(function (e) { e.classList.add('is-on'); }); return; }
+
+  // Only now do we hide anything — see the CSS note on .is-playable.
+  var grid = document.querySelector('.catch-grid');
+  grid.classList.add('is-playable');
+
+  var btn    = root.querySelector('[data-play]');
+  var label  = root.querySelector('[data-play-label]');
+  var secsEl = root.querySelector('[data-secs]');
+  var capEl  = root.querySelector('[data-cap]');
+  var barEl  = root.querySelector('[data-bar]');
+
+  var REAL_WINDOW = 8;    // story seconds that play at true 1:1 speed
+  var COMPRESS    = 24;   // everything after that runs this many times faster
+  var END         = 200;  // story seconds in the whole run
+  var raf = null, t0 = 0, playing = false;
+
+  function storyToReal(s) {
+    return s <= REAL_WINDOW ? s * 1000
+                            : (REAL_WINDOW + (s - REAL_WINDOW) / COMPRESS) * 1000;
+  }
+  var TOTAL = storyToReal(END);
+
+  function reset() {
+    if (raf) cancelAnimationFrame(raf);
+    playing = false;
+    events.forEach(function (e) { e.classList.remove('is-on', 'is-hit'); });
+    root.classList.remove('is-answered');
+    secsEl.textContent = '0.0';
+    capEl.textContent  = 'since the phone rang';
+    barEl.style.width  = '0%';
+  }
+
+  function frame(now) {
+    var real = now - t0;
+    // Invert storyToReal so the readout counts real seconds up to 8, then jumps.
+    var story = real <= REAL_WINDOW * 1000
+      ? real / 1000
+      : REAL_WINDOW + (real / 1000 - REAL_WINDOW) * COMPRESS;
+
+    // Tenths only inside the real-time window — past it the clock is racing and
+    // a flickering decimal reads as a glitch rather than as time passing.
+    secsEl.textContent = story < 10  ? story.toFixed(1)
+                       : story < 60  ? String(Math.round(story))
+                       : Math.round(story / 60) + 'm';
+    barEl.style.width  = Math.min(100, (real / TOTAL) * 100) + '%';
+
+    events.forEach(function (e) {
+      var at = parseFloat(e.getAttribute('data-at'));
+      if (story >= at && !e.classList.contains('is-on')) {
+        e.classList.add('is-on');
+        if (e.getAttribute('data-flash')) {
+          e.classList.add('is-hit');
+          root.classList.add('is-answered');
+          capEl.textContent = 'answered — while the other phone is still ringing';
+        }
+      }
+    });
+
+    if (real < TOTAL) { raf = requestAnimationFrame(frame); }
+    else {
+      playing = false;
+      label.textContent = 'Play it again';
+      capEl.textContent = 'one lead, two businesses, same 7:42pm';
+    }
+  }
+
+  function play() {
+    reset();
+    playing = true;
+    label.textContent = 'Playing…';
+    t0 = performance.now();
+    raf = requestAnimationFrame(frame);
+  }
+
+  btn.addEventListener('click', function () { if (!playing) play(); });
+
+  // Autoplay once it is actually on screen — the visitor clicked a button that
+  // said "watch", so they should not have to click a second one.
+  if ('IntersectionObserver' in window) {
+    var seen = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && !seen) { seen = true; play(); io.disconnect(); }
+      });
+    }, { threshold: .35 });
+    io.observe(grid);
+  } else { play(); }
+})();
+</script>
 </body>
 </html>
