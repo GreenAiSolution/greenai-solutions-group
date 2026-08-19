@@ -3643,3 +3643,60 @@ body.work #next { height: 120vh !important; }
 
 /* 'Also available' divider inside the Services dropdown. */
 .nav__submenu-label { padding:.7rem 1rem .35rem; margin-top:.3rem; border-top:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.38); font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; pointer-events:none; }
+
+/* ============================================================
+   THE QUORUM — flagship nav item
+   Its own top-level menu, marked so it does not read as one more
+   link. Uses the gold dropdown shell, plus a hairline rule and a
+   diamond so the eye lands on it before "About".
+   ============================================================ */
+.nav__dropdown--quorum > .nav__link {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: .005em;
+}
+.nav__dropdown--quorum > .nav__link::before {
+  content: '\2726';
+  margin-right: .42rem;
+  font-size: .72em;
+  color: #D4AF37;
+  vertical-align: .08em;
+}
+.nav__dropdown--quorum > .nav__link .nav__caret { color: #D4AF37; opacity: .9; }
+.nav.transparent .nav__dropdown--quorum > .nav__link { color: #f0dfa0; }
+.nav.transparent .nav__dropdown--quorum > .nav__link:hover { color: #fff; background: rgba(212,175,55,.18); }
+.nav:not(.transparent) .nav__dropdown--quorum > .nav__link { color: #8a6d0f; }
+.nav:not(.transparent) .nav__dropdown--quorum > .nav__link:hover { color: #6f570b; background: rgba(212,175,55,.14); }
+
+.nav__dropdown--quorum .nav__submenu {
+  min-width: 250px;
+  background: linear-gradient(160deg, #16120a, #0c0a05);
+  border: 1px solid rgba(212,175,55,.42);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(212,175,55,.08), inset 0 1px 0 rgba(212,175,55,.14);
+}
+.nav__dropdown--quorum .nav__submenu a { color: rgba(255,255,255,.86); }
+.nav__dropdown--quorum .nav__submenu a:hover { background: rgba(212,175,55,.16); color: #e8c96a; }
+.nav__dropdown--quorum .nav__submenu a[href="quorum.html"] { color: #D4AF37; font-weight: 600; }
+.nav__dropdown--quorum .nav__submenu a[href="quorum.html"]:hover { color: #e8c96a; }
+
+/* Mobile sheet is a light ground — the dark submenu shell would be unreadable. */
+.nav__mobile .nav__dropdown--quorum > .nav__link { color: #8a6d0f; }
+.nav__mobile .nav__dropdown--quorum .nav__submenu a { color: var(--gray-600); }
+.nav__mobile .nav__dropdown--quorum .nav__submenu a[href="quorum.html"] { color: #9a7b1f; font-weight: 600; }
+
+/* My .nav__dropdown--quorum .nav__submenu rule is appended AFTER the shared
+   `.nav__mobile .nav__submenu { background: transparent }` and has equal
+   specificity (0-2-0), so it would win and paint a dark floating panel inside
+   the light hamburger sheet. Restate it. */
+.nav__mobile .nav__dropdown--quorum .nav__submenu {
+  background: transparent; border: none; box-shadow: none; min-width: 0;
+}
+
+/* Light-top pages (privacy, terms, pay, agreement) keep `.nav.transparent` but
+   repaint its ink dark. `body.light-top .nav.transparent .nav__link` is (0,4,1)
+   and outranks the quorum rule at (0,4,0), so the flagship item would drop back
+   to plain grey there. Restate it at higher specificity. */
+body.light-top .nav.transparent .nav__dropdown--quorum > .nav__link { color: #8a6d0f; }
+body.light-top .nav.transparent .nav__dropdown--quorum > .nav__link:hover {
+  color: #6f570b; background: rgba(212,175,55,.14);
+}

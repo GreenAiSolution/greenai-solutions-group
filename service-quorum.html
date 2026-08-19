@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="stylesheet" href="style.css?v=19" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -193,6 +193,30 @@
     .qm-close p { max-width: 58ch; margin: 1.1rem auto 0; color: rgba(255,255,255,.76); line-height: 1.8; }
     .qm-disclaimer { margin-top: 3rem; font-size: .78rem; line-height: 1.7; color: rgba(255,255,255,.45); max-width: 66ch; margin-left: auto; margin-right: auto; }
 
+    /* --- proof band ---------------------------------------------------- */
+    .qm-proof {
+      padding: 5.5rem 0; color: #fff;
+      background:
+        radial-gradient(ellipse 55% 60% at 78% 40%, rgba(240,207,107,.13) 0, transparent 62%),
+        linear-gradient(165deg,#0a2416,#040f09);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .qm-proof__inner { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); gap: 3.5rem; align-items: center; }
+    .qm-proof__tag {
+      display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .19em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .qm-proof h2 { color: #fff; font-size: clamp(1.75rem,3.2vw,2.5rem); line-height: 1.15; letter-spacing: -.015em; }
+    .qm-proof p { margin: 1.2rem 0 2rem; font-size: 1.03rem; line-height: 1.82; color: rgba(255,255,255,.78); max-width: 58ch; }
+    .qm-proof p strong { color: #fff; }
+    .qm-proof__stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2,1fr); gap: 1.1rem; }
+    .qm-proof__stats li {
+      padding: 1.4rem 1.3rem; border-radius: 16px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.13);
+    }
+    .qm-proof__stats b { display: block; font-family: var(--font-display); font-size: 2.15rem; line-height: 1; color: var(--gold); }
+    .qm-proof__stats span { display: block; margin-top: .55rem; font-size: .82rem; line-height: 1.5; color: rgba(255,255,255,.72); }
+
     /* dark-section button fix: .btn-secondary is green-dark ink, unreadable on a dark ground */
     .qm-hero .btn-secondary, .qm-close .btn-secondary {
       color: #fff; border-color: rgba(255,255,255,.42); background: transparent;
@@ -206,6 +230,7 @@
       .qm-hero__grid { grid-template-columns: 1fr; gap: 2.6rem; }
       .qm-roles { grid-template-columns: 1fr; }
       .qm-band__grid { grid-template-columns: repeat(2,1fr); gap: 2.2rem; }
+      .qm-proof__inner { grid-template-columns: 1fr; gap: 2.4rem; }
       .qm-deliver, .qm-prices { grid-template-columns: 1fr; }
     }
     @media (max-width: 620px) {
@@ -235,6 +260,7 @@
         <ul class="nav__links" role="list">
           <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
           <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--quorum"><a href="quorum.html" class="nav__link" data-page="quorum.html">The Quorum <span class="nav__caret" aria-hidden="true">&#9662;</span></a><ul class="nav__submenu" role="list"><li><a href="quorum.html">Watch the three disagree &#10022;</a></li><li><a href="service-quorum.html">What it is &amp; what it costs</a></li></ul></li>
           <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -251,6 +277,7 @@
       <ul class="nav__mobile" role="list">
         <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
         <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--quorum"><a href="quorum.html" class="nav__link" data-page="quorum.html">The Quorum</a><ul class="nav__submenu" role="list"><li><a href="quorum.html">Watch the three disagree &#10022;</a></li><li><a href="service-quorum.html">What it is &amp; what it costs</a></li></ul></li>
         <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
         <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
         <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -279,7 +306,7 @@
           </div>
           <div class="qm-cta-row">
             <a href="contact.html?want=quorum-build" class="btn btn-primary btn-lg">Apply for a Quorum build</a>
-            <a href="#relay" class="btn btn-secondary btn-lg">See how they work together</a>
+            <a href="quorum.html" class="btn btn-secondary btn-lg">Watch a real run &#10022;</a>
           </div>
         </div>
 
@@ -321,6 +348,32 @@
         <div><b>6</b><span>blind cross-reviews on every deliverable</span></div>
         <div><b>1</b><span>human sign-off before anything reaches you</span></div>
         <div><b>0</b><span>numbers, names or promises that ship unchecked</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROOF ============ -->
+  <section class="qm-proof">
+    <div class="container">
+      <div class="qm-proof__inner">
+        <div>
+          <span class="qm-proof__tag">Not a claim &mdash; a transcript</span>
+          <h2>We ran it. All three disagreed.<br />You can read every word.</h2>
+          <p>
+            We put one Gilbert pool company&rsquo;s problem to Gemini, GPT and Claude at the same moment,
+            sealed off from each other, then had them mark each other blind.
+            <strong>Every one of the three drafts was rejected by one of the other two.</strong>
+            Two of three independently killed the most obvious idea in the run. And all three,
+            with no prompting, pointed at the same root fix.
+          </p>
+          <a href="quorum.html" class="btn btn-primary">Read the whole run &#10022;</a>
+        </div>
+        <ul class="qm-proof__stats" role="list">
+          <li><b>6</b><span>real model calls, unedited</span></li>
+          <li><b>3&ndash;3</b><span>keeps to kills &mdash; a dead-even split</span></li>
+          <li><b>14.8s</b><span>fastest seat &middot; 38.0s slowest</span></li>
+          <li><b>1</b><span>idea all three landed on independently</span></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -639,6 +692,7 @@
           <h5>Services</h5>
           <ul class="footer__links" role="list">
             <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="quorum.html" style="color:#D4AF37;font-weight:600">The Quorum &mdash; watch the run &#10022;</a></li>
             <li><a href="catch.html">Watch it catch a lead</a></li>
             <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
             <li><a href="service-web-design.html">Web Design &amp; Development</a></li>

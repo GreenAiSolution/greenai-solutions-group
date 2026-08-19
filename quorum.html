@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Three AI Companies Disagree — The Quorum | GreenAI Solutions Team</title>
+  <meta name="description" content="A real, unedited run. One pool company brief, three AI companies answering sealed off from each other, then marking each other blind. Every draft was rejected by somebody. Here is what survived." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/quorum.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/quorum.html" />
+  <meta property="og:title" content="Watch Three AI Companies Disagree" />
+  <meta property="og:description" content="One brief. Three AI companies, sealed off from each other. Every draft was rejected by somebody. A real, unedited run." />
+  <meta property="og:image" content="https://greenaidigital.com/art/agentic-team-studio.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Watch Three AI Companies Disagree" />
+  <meta name="twitter:description" content="One brief. Three AI companies, sealed off from each other. Every draft was rejected by somebody." />
+  <meta name="twitter:image" content="https://greenaidigital.com/art/agentic-team-studio.webp" />
+
+  <style>
+    /* ===== THE QUORUM — the live run ================================= */
+    .qv { --g:#7ab6ff; --o:#4dd0e1; --a:#f0a37e; --gold:#f0cf6b; --ink:rgba(255,255,255,.78); }
+    .qv .mono { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; }
+
+    /* ---- hero ---- */
+    .qv-hero {
+      position:relative; overflow:hidden; padding:150px 0 90px; color:#fff;
+      background:
+        radial-gradient(ellipse 60% 50% at 12% 18%, rgba(122,182,255,.20) 0, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 88% 26%, rgba(77,208,225,.18) 0, transparent 60%),
+        radial-gradient(ellipse 60% 45% at 50% 96%, rgba(240,163,126,.16) 0, transparent 62%),
+        linear-gradient(165deg,#0a2717 0%,#05160d 48%,#020804 100%);
+    }
+    .qv-hero::after {
+      content:''; position:absolute; inset:0; pointer-events:none; opacity:.5;
+      background:repeating-linear-gradient(180deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px);
+    }
+    .qv-hero .container { position:relative; z-index:2; }
+    .qv-live {
+      display:inline-flex; align-items:center; gap:.6rem; padding:.5rem 1.1rem; border-radius:100px;
+      border:1px solid rgba(240,207,107,.42); background:rgba(240,207,107,.09); color:var(--gold);
+      font-size:.7rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+    }
+    .qv-live i { width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(240,207,107,.16); }
+    .qv-hero h1 {
+      font-family:var(--font-display); font-size:clamp(2.6rem,6.4vw,5.1rem); line-height:1.02;
+      letter-spacing:-.025em; color:#fff; margin:1.6rem 0 0; max-width:16ch;
+    }
+    .qv-hero h1 em { font-style:normal; background:linear-gradient(100deg,var(--g),var(--o) 48%,var(--a)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .qv-hero__lede { font-size:1.12rem; line-height:1.8; color:rgba(255,255,255,.8); margin-top:1.5rem; max-width:62ch; }
+    .qv-hero__meta { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:2.1rem; }
+    .qv-meta {
+      font-size:.74rem; padding:.45rem .9rem; border-radius:8px; color:rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.04);
+    }
+    .qv-hero__cta { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:2.2rem; }
+    .qv-hero .btn-secondary { color:#fff; border-color:rgba(255,255,255,.42); }
+    .qv-hero .btn-secondary:hover { background:rgba(255,255,255,.09); border-color:#fff; }
+
+    /* ---- generic dark stage ---- */
+    .qv-stage { padding:6rem 0; color:var(--ink); }
+    .qv-stage h2 { color:#fff; }
+    .qv-stage--a { background:linear-gradient(180deg,#020804,#061a10); }
+    .qv-stage--b { background:linear-gradient(180deg,#061a10,#03110a); }
+    .qv-stage--c { background:linear-gradient(180deg,#03110a,#071c11); }
+    .qv-step-label {
+      display:inline-flex; align-items:center; gap:.7rem; font-size:.7rem; font-weight:800;
+      letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;
+    }
+    .qv-step-label b {
+      display:grid; place-items:center; width:26px; height:26px; border-radius:8px;
+      background:rgba(240,207,107,.14); border:1px solid rgba(240,207,107,.4); font-size:.8rem;
+    }
+    .qv-head { max-width:66ch; margin:0 auto 3.4rem; text-align:center; }
+    .qv-head h2 { font-size:clamp(1.9rem,3.6vw,2.9rem); letter-spacing:-.015em; }
+    .qv-head p { font-size:1.04rem; line-height:1.8; margin-top:1.05rem; color:rgba(255,255,255,.74); }
+    .qv-head--left { margin-left:0; text-align:left; }
+
+    /* ---- the brief ---- */
+    .qv-brief {
+      max-width:780px; margin:0 auto; border-radius:20px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.035);
+      box-shadow:0 30px 80px rgba(0,0,0,.45);
+    }
+    .qv-brief__bar {
+      display:flex; align-items:center; gap:.55rem; padding:.85rem 1.2rem;
+      background:rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.1);
+      font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55);
+    }
+    .qv-brief__bar span:first-child { display:flex; gap:.4rem; }
+    .qv-brief__bar i { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.18); }
+    .qv-brief__body { padding:1.9rem 2rem; font-size:1rem; line-height:1.9; color:rgba(255,255,255,.84); }
+    .qv-brief__foot { padding:1rem 2rem 1.4rem; border-top:1px solid rgba(255,255,255,.08); font-size:.83rem; color:rgba(255,255,255,.5); }
+
+    /* ---- the three sealed passes ---- */
+    .qv-passes { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; align-items:stretch; }
+    .qv-pass {
+      display:flex; flex-direction:column; border-radius:20px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.12); border-top:3px solid var(--c);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
+    }
+    .qv-pass--g { --c:var(--g); } .qv-pass--o { --c:var(--o); } .qv-pass--a { --c:var(--a); }
+    .qv-pass__head { padding:1.5rem 1.5rem 1.2rem; border-bottom:1px solid rgba(255,255,255,.09); }
+    .qv-pass__co { font-size:.64rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+    .qv-pass__head h3 { font-family:var(--font-display); font-size:1.42rem; color:var(--c); margin:.35rem 0 .3rem; }
+    .qv-pass__role { display:block; font-size:.83rem; font-weight:700; color:#fff; }
+    .qv-pass__ms {
+      display:inline-block; margin-top:.9rem; font-size:.68rem; font-weight:600; letter-spacing:.05em;
+      color:rgba(255,255,255,.56); border:1px solid rgba(255,255,255,.15); border-radius:100px; padding:.28rem .7rem;
+      font-family:'JetBrains Mono',ui-monospace,monospace;
+    }
+    .qv-pass__body { padding:1.5rem; flex:1; }
+    .qv-pass dl { margin:0; }
+    .qv-pass dt { font-size:.62rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--c); margin-top:1.35rem; }
+    .qv-pass dt:first-child { margin-top:0; }
+    .qv-pass dd { margin:.45rem 0 0; font-size:.93rem; line-height:1.68; color:rgba(255,255,255,.78); }
+    .qv-pass dd.qv-offer {
+      font-family:var(--font-display); font-size:1.16rem; line-height:1.45; color:#fff;
+      padding:.9rem 1rem; border-radius:12px; background:rgba(255,255,255,.05);
+      border-left:3px solid var(--c);
+    }
+    .qv-pass .qv-risk-dt { color:rgba(255,255,255,.45); }
+    .qv-pass dd.qv-risk { font-size:.88rem; color:rgba(255,255,255,.6); font-style:italic; }
+
+    /* ---- the verdict board ---- */
+    .qv-tally {
+      max-width:720px; margin:0 auto 3.2rem; text-align:center; padding:2rem 1.5rem;
+      border-radius:20px; border:1px solid rgba(240,207,107,.34); background:rgba(240,207,107,.07);
+    }
+    .qv-tally b { display:block; font-family:var(--font-display); font-size:clamp(1.6rem,3.4vw,2.3rem); color:var(--gold); line-height:1.25; }
+    .qv-tally p { margin:.9rem 0 0; font-size:.98rem; line-height:1.75; color:rgba(255,255,255,.78); }
+
+    .qv-board { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
+    .qv-card {
+      border-radius:20px; padding:1.7rem 1.5rem; border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.035); border-top:3px solid var(--c);
+    }
+    .qv-card--g { --c:var(--g); } .qv-card--o { --c:var(--o); } .qv-card--a { --c:var(--a); }
+    .qv-card h3 { font-size:.98rem; color:rgba(255,255,255,.6); font-weight:600; margin:0 0 .8rem; }
+    .qv-card h3 span { color:var(--c); font-weight:800; }
+    .qv-card__offer {
+      font-family:var(--font-display); font-size:1.05rem; line-height:1.5; color:#fff; margin:0 0 1.4rem;
+      padding-bottom:1.3rem; border-bottom:1px dashed rgba(255,255,255,.16);
+    }
+    .qv-verdicts { list-style:none; margin:0; padding:0; display:grid; gap:1rem; }
+    .qv-v { padding-left:1.5rem; position:relative; }
+    .qv-v::before {
+      position:absolute; left:0; top:.05em; font-size:.95rem; font-weight:800; line-height:1.4;
+    }
+    .qv-v--keep::before { content:'✓'; color:#7de3a4; }
+    .qv-v--kill::before { content:'✕'; color:#ff8f7a; }
+    .qv-v__by { display:block; font-size:.74rem; letter-spacing:.04em; color:rgba(255,255,255,.55); margin-bottom:.35rem; }
+    .qv-v--keep .qv-v__by b { color:#7de3a4; }
+    .qv-v--kill .qv-v__by b { color:#ff8f7a; }
+    .qv-v p { margin:0; font-size:.885rem; line-height:1.62; color:rgba(255,255,255,.74); }
+
+    /* ---- steals ---- */
+    .qv-steals { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; max-width:1100px; margin:3.2rem auto 0; }
+    .qv-steal { padding:1.35rem 1.4rem; border-radius:16px; background:rgba(255,255,255,.04); border-left:3px solid var(--c); }
+    .qv-steal--g { --c:var(--g); } .qv-steal--o { --c:var(--o); } .qv-steal--a { --c:var(--a); }
+    .qv-steal span { display:block; font-size:.64rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--c); margin-bottom:.55rem; }
+    .qv-steal p { margin:0; font-size:.9rem; line-height:1.66; color:rgba(255,255,255,.76); }
+
+    /* ---- the merge ---- */
+    .qv-merge { max-width:900px; margin:0 auto; display:grid; gap:1.1rem; }
+    .qv-row {
+      display:grid; grid-template-columns:148px 1fr; gap:1.7rem; align-items:start;
+      padding:1.6rem 1.7rem; border-radius:18px; border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .qv-row--in { border-color:rgba(125,227,164,.34); background:rgba(125,227,164,.07); }
+    .qv-row--out { border-color:rgba(255,143,122,.3); background:rgba(255,143,122,.06); }
+    .qv-row__tag { font-size:.66rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding-top:.3rem; line-height:1.5; }
+    .qv-row--in .qv-row__tag { color:#7de3a4; }
+    .qv-row--out .qv-row__tag { color:#ff8f7a; }
+    .qv-row h3 { font-size:1.13rem; color:#fff; margin:0 0 .5rem; }
+    .qv-row p { margin:0; font-size:.95rem; line-height:1.72; color:rgba(255,255,255,.76); }
+    .qv-row p + p { margin-top:.6rem; }
+    .qv-row em { font-style:normal; color:rgba(255,255,255,.5); font-size:.86rem; }
+
+    /* ---- punchline ---- */
+    .qv-punch {
+      padding:7rem 0; text-align:center; color:#fff;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(240,207,107,.16) 0, transparent 60%),
+        linear-gradient(170deg,#0b2a19,#020804);
+    }
+    .qv-punch h2 { font-size:clamp(2rem,4.4vw,3.3rem); color:#fff; max-width:20ch; margin:0 auto; line-height:1.1; letter-spacing:-.02em; }
+    .qv-punch__lede { max-width:60ch; margin:1.5rem auto 0; font-size:1.06rem; line-height:1.82; color:rgba(255,255,255,.78); }
+    .qv-punch__box {
+      max-width:640px; margin:2.6rem auto 0; padding:1.8rem 1.8rem; border-radius:20px;
+      border:1px solid rgba(240,207,107,.38); background:rgba(240,207,107,.08);
+    }
+    .qv-punch__box b { display:block; font-family:var(--font-display); font-size:1.5rem; color:var(--gold); line-height:1.3; }
+    .qv-punch__box p { margin:.8rem 0 0; font-size:.95rem; line-height:1.7; color:rgba(255,255,255,.78); }
+    .qv-punch .btn-secondary { color:#fff; border-color:rgba(255,255,255,.42); }
+    .qv-punch .btn-secondary:hover { background:rgba(255,255,255,.09); border-color:#fff; }
+    .qv-fine { margin-top:3rem; font-size:.78rem; line-height:1.75; color:rgba(255,255,255,.45); max-width:70ch; margin-left:auto; margin-right:auto; }
+
+    @media (max-width:1000px) {
+      .qv-passes, .qv-board, .qv-steals { grid-template-columns:1fr; }
+      .qv-row { grid-template-columns:1fr; gap:.7rem; }
+    }
+    @media (max-width:620px) {
+      .qv-hero { padding:126px 0 64px; }
+      .qv-stage { padding:4.2rem 0; }
+      .qv-brief__body { padding:1.4rem 1.2rem; font-size:.95rem; }
+      .qv-punch { padding:5rem 0; }
+    }
+  </style>
+</head>
+<body class="qv">
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--quorum"><a href="quorum.html" class="nav__link" data-page="quorum.html">The Quorum <span class="nav__caret" aria-hidden="true">&#9662;</span></a><ul class="nav__submenu" role="list"><li><a href="quorum.html">Watch the three disagree &#10022;</a></li><li><a href="service-quorum.html">What it is &amp; what it costs</a></li></ul></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--quorum"><a href="quorum.html" class="nav__link" data-page="quorum.html">The Quorum</a><ul class="nav__submenu" role="list"><li><a href="quorum.html">Watch the three disagree &#10022;</a></li><li><a href="service-quorum.html">What it is &amp; what it costs</a></li></ul></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="qv-hero">
+    <div class="container">
+      <span class="qv-live"><i></i>A real run &middot; nothing rewritten</span>
+      <h1>Three AI companies. <em>Three different answers.</em></h1>
+      <p class="qv-hero__lede">
+        We gave one small pool company&rsquo;s problem to Google&rsquo;s Gemini, OpenAI&rsquo;s GPT and
+        Anthropic&rsquo;s Claude at the same moment, each sealed off from the other two. Then we showed
+        them each other&rsquo;s work with the names stripped off and asked them to mark it.
+        <strong style="color:#fff">Every one of the three drafts was rejected by somebody.</strong>
+        Below is exactly what came back &mdash; word for word, nothing tidied up.
+      </p>
+      <div class="qv-hero__meta">
+        <span class="qv-meta mono">6 model calls</span>
+        <span class="qv-meta mono">3 sealed &middot; 3 blind reviews</span>
+        <span class="qv-meta mono">fastest 14.8s &middot; slowest 38.0s</span>
+        <span class="qv-meta mono" id="qv-when">captured 19 August 2026</span>
+      </div>
+      <div class="qv-hero__cta">
+        <a href="#passes" class="btn btn-primary btn-lg">Read what each one said</a>
+        <a href="service-quorum.html" class="btn btn-secondary btn-lg">What this costs</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= STEP 1 — THE BRIEF ================= -->
+  <section class="qv-stage qv-stage--a">
+    <div class="container">
+      <div class="qv-head">
+        <span class="qv-step-label"><b>1</b> The brief</span>
+        <h2>One page. All three got the same one.</h2>
+        <p>No hints, no house style, no nudge toward an answer we already liked. Whatever separates the three below came from the models, not from us.</p>
+      </div>
+
+      <div class="qv-brief">
+        <div class="qv-brief__bar"><span><i></i><i></i><i></i></span><span>brief.txt &mdash; sent to all three, unchanged</span></div>
+        <div class="qv-brief__body">A pool service company in Gilbert, Arizona. Two trucks, two techs plus the owner.<br />140 recurring accounts at $135/month. The owner answers the phone himself.<br />Most new leads call between 8am and 4pm while he is in a backyard with his arms in a pool,<br />so they go to voicemail, and by the time he calls back that evening they have already<br />booked whoever answered. He has tried Angi and hated the shared leads.<br />He wants more recurring accounts, not one-off cleanings.<br />&quot;This worked&quot; in 90 days = 20 new recurring accounts.</div>
+        <div class="qv-brief__foot">
+          This is a composite Gilbert pool company, not a real client &mdash; the brief is ours.
+          The three answers below are entirely theirs.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 2 — SEALED PASSES ================= -->
+  <section class="qv-stage qv-stage--b" id="passes">
+    <div class="container">
+      <div class="qv-head">
+        <span class="qv-step-label"><b>2</b> Three sealed passes</span>
+        <h2>Same brief. Same minute. No contact.</h2>
+        <p>They ran in parallel and none could see the others. Read the third column against the first two &mdash; that gap is the entire argument for paying three companies instead of one.</p>
+      </div>
+      <div class="qv-passes">
+        <article class="qv-pass qv-pass--g">
+          <header class="qv-pass__head">
+            <span class="qv-pass__co">Google</span>
+            <h3>Gemini 3.6 Flash</h3>
+            <span class="qv-pass__role">The Reader</span>
+            <span class="qv-pass__ms">answered in 38.0s</span>
+          </header>
+          <div class="qv-pass__body">
+            <dl>
+              <dt>The position it took</dt><dd>Present as Gilbert’s most reliable, neighborhood-dedicated pool care provider that guarantees instant communication and flawless weekly service.</dd>
+              <dt>The line it would put on the page</dt><dd class="qv-offer">&ldquo;Get your first month of reliable weekly pool service for 50% off.&rdquo;</dd>
+              <dt>Why this and not the obvious answer</dt><dd>The root problem isn&#x27;t generating interest, but losing high-intent callers to faster competitors while the owner is in the field. Pairing an automated missed-call text-back system with targeted local search ads captures exclusive recurring clients at the exact moment they are ready to buy.</dd>
+              <dt class="qv-risk-dt">How it says it could be wrong</dt><dd class="qv-risk">If the owner resists adopting an automated instant-text response system, leads will continue booking whoever answers first regardless of the marketing offer.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="qv-pass qv-pass--o">
+          <header class="qv-pass__head">
+            <span class="qv-pass__co">OpenAI</span>
+            <h3>Codex CLI · ChatGPT</h3>
+            <span class="qv-pass__role">The Maker</span>
+            <span class="qv-pass__ms">answered in 14.8s</span>
+          </header>
+          <div class="qv-pass__body">
+            <dl>
+              <dt>The position it took</dt><dd>Present as Gilbert’s responsive, route-based weekly pool-care specialist that makes switching effortless.</dd>
+              <dt>The line it would put on the page</dt><dd class="qv-offer">&ldquo;Switch to reliable weekly pool care—get a quote by text in 60 seconds.&rdquo;</dd>
+              <dt>Why this and not the obvious answer</dt><dd>The immediate text response fixes the real conversion problem: missed calls, not insufficient demand. Emphasizing weekly care and switching filters out one-off shoppers without returning to shared-lead marketplaces.</dd>
+              <dt class="qv-risk-dt">How it says it could be wrong</dt><dd class="qv-risk">This fails if lead volume is too low to produce 20 accounts even with faster conversion.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="qv-pass qv-pass--a">
+          <header class="qv-pass__head">
+            <span class="qv-pass__co">Anthropic</span>
+            <h3>Claude Code CLI</h3>
+            <span class="qv-pass__role">The Builder &amp; The Check</span>
+            <span class="qv-pass__ms">answered in 31.1s</span>
+          </header>
+          <div class="qv-pass__body">
+            <dl>
+              <dt>The position it took</dt><dd>A closed neighborhood route, not a service company that answers phones: a small, nearly-full outfit that takes a handful of homes per street, same named tech, same day every week — and the calendar, not the owner, closes the sale.</dd>
+              <dt>The line it would put on the page</dt><dd class="qv-offer">&ldquo;Same tech, same day every week. Pick your slot online. $135/month.&rdquo;</dd>
+              <dt>Why this and not the obvious answer</dt><dd>The obvious angle is speed-to-lead — answer faster than whoever answered first — but that is plumbing, not a position, and it wins the same one-off price shopper Angi already burned him on. A bookable route slot makes the 8am voicemail irrelevant instead of merely faster, and scarcity framed as route capacity self-selects for people buying a standing weekly relationship rather than a cheap one-time cleaning.</dd>
+              <dt class="qv-risk-dt">How it says it could be wrong</dt><dd class="qv-risk">If Gilbert callers at 8am are actually buying urgency rather than reliability, the scarcity frame reads as a gimmick and a plain missed-call text-back would out-convert online booking on the same leads.</dd>
+            </dl>
+          </div>
+        </article></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 3 — BLIND CROSS-REVIEW ================= -->
+  <section class="qv-stage qv-stage--c">
+    <div class="container">
+      <div class="qv-head">
+        <span class="qv-step-label"><b>3</b> Blind cross-review</span>
+        <h2>Then they marked each other, names off.</h2>
+        <p>Each model saw the other two drafts labelled only &ldquo;Draft A&rdquo; and &ldquo;Draft B&rdquo;, with no way to know who wrote what, and was told to judge only on whether it would actually win recurring accounts.</p>
+      </div>
+
+      <div class="qv-tally">
+        <b>Three drafts. Three keeps. Three kills.<br />Not one of them survived untouched.</b>
+        <p>If all three had agreed, you would have learned nothing you could not get from one subscription. The disagreement is the product &mdash; and so is what they agreed on anyway.</p>
+      </div>
+
+      <div class="qv-board">
+        <article class="qv-card qv-card--g">
+          <h3><span>Gemini</span>&rsquo;s draft</h3>
+          <p class="qv-card__offer">&ldquo;Get your first month of reliable weekly pool service for 50% off.&rdquo;</p>
+          <ul class="qv-verdicts" role="list"><li class="qv-v qv-v--keep"><span class="qv-v__by">Claude <b>kept it</b></span><p>&ldquo;A 50% off first month invites price-shoppers who churn at month two, which is the opposite of the 20 recurring accounts he needs, and it drops ~$67 per account without any commitment or switch-friendly framing to hold them.&rdquo;</p></li><li class="qv-v qv-v--kill"><span class="qv-v__by">Codex <b>killed it</b></span><p>&ldquo;A generic 50%-off first month attracts price shoppers, weakens trust, and does nothing to ensure the 20 wins are route-dense recurring accounts.&rdquo;</p></li></ul>
+        </article>
+
+        <article class="qv-card qv-card--o">
+          <h3><span>Codex</span>&rsquo;s draft</h3>
+          <p class="qv-card__offer">&ldquo;Switch to reliable weekly pool care—get a quote by text in 60 seconds.&rdquo;</p>
+          <ul class="qv-verdicts" role="list"><li class="qv-v qv-v--keep"><span class="qv-v__by">Gemini <b>kept it</b></span><p>&ldquo;An instant text response mechanism must immediately qualify pool size and setup before confirming pricing, or the owner risks locking in underpriced accounts.&rdquo;</p></li><li class="qv-v qv-v--kill"><span class="qv-v__by">Claude <b>killed it</b></span><p>&ldquo;&quot;Get a quote by text in 60 seconds&quot; is a mechanic, not an offer — a pool owner already has a price in mind at $135, so nothing here gives them a reason to switch today, and it never says what happens after the text, which is where the recurring account is actually won.&rdquo;</p></li></ul>
+        </article>
+
+        <article class="qv-card qv-card--a">
+          <h3><span>Claude</span>&rsquo;s draft</h3>
+          <p class="qv-card__offer">&ldquo;Same tech, same day every week. Pick your slot online. $135/month.&rdquo;</p>
+          <ul class="qv-verdicts" role="list"><li class="qv-v qv-v--keep"><span class="qv-v__by">Codex <b>kept it</b></span><p>&ldquo;Online booking must restrict availability by neighborhood and route capacity or scattered new accounts will destroy the operational advantage.&rdquo;</p></li><li class="qv-v qv-v--kill"><span class="qv-v__by">Gemini <b>killed it</b></span><p>&ldquo;Forcing self-service online calendar booking for weekly pool care fails because route density, pool volume, and equipment condition require owner pre-assessment before a spot can be assigned.&rdquo;</p></li></ul>
+        </article></div>
+      <div class="qv-steals"><div class="qv-steal qv-steal--g">
+          <span>Gemini would keep at all costs</span>
+          <p>&ldquo;Automating an instant text-back response to capture leads before competitors can answer while strictly framing the offer around ongoing weekly service rather than one-time cleanings.&rdquo;</p>
+        </div><div class="qv-steal qv-steal--o">
+          <span>Codex would keep at all costs</span>
+          <p>&ldquo;Keep the real-time, route-qualified online slot booking that lets homeowners commit to $135 monthly service without waiting for the owner to call back.&rdquo;</p>
+        </div><div class="qv-steal qv-steal--a">
+          <span>Claude would keep at all costs</span>
+          <p>&ldquo;Draft A&#x27;s missed-call text-back paired with local search ads — it fixes the exact loss point (high-intent callers hitting voicemail while he&#x27;s in a backyard) within seconds rather than that evening, and it&#x27;s the only piece in either draft that directly converts the demand he already has.&rdquo;</p>
+        </div></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 4 — THE MERGE ================= -->
+  <section class="qv-stage qv-stage--b">
+    <div class="container">
+      <div class="qv-head">
+        <span class="qv-step-label"><b>4</b> The merge</span>
+        <h2>What two out of three agreed on, survives.</h2>
+        <p>This is the rule, applied to the run above &mdash; not a summary written afterwards to make it look tidy.</p>
+      </div>
+
+      <div class="qv-merge">
+        <div class="qv-row qv-row--in">
+          <span class="qv-row__tag">Survives &middot; 3 of 3</span>
+          <div>
+            <h3>Answer the caller in seconds, not that evening</h3>
+            <p>Every seat, unprompted, put the missed 8am call at the centre. Two of the three named an instant text-back as the single idea they would keep at all costs. The third built its whole position around making the missed call irrelevant instead of merely faster.</p>
+            <p><em>This is the one thing nobody argued with.</em></p>
+          </div>
+        </div>
+
+        <div class="qv-row qv-row--in">
+          <span class="qv-row__tag">Survives &middot; 2 of 3</span>
+          <div>
+            <h3>Qualify by route and pool before you quote</h3>
+            <p>Two seats independently attacked the same blind spot from opposite directions: one warned that instant quoting locks in underpriced accounts before anyone knows the pool, the other that unrestricted online booking scatters accounts across town and destroys the route.</p>
+            <p><em>Neither draft contained this. It only exists because they read each other.</em></p>
+          </div>
+        </div>
+
+        <div class="qv-row qv-row--out">
+          <span class="qv-row__tag">Cut &middot; 2 of 3</span>
+          <div>
+            <h3>The 50%-off first month</h3>
+            <p>The most conventional idea in the run, and the one that got hit hardest. Two of the three said the same thing in different words &mdash; a half-price first month buys price shoppers who churn in month two, which is the exact opposite of twenty recurring accounts.</p>
+            <p><em>One model proposing it and two rejecting it is precisely the catch a single subscription cannot make.</em></p>
+          </div>
+        </div>
+
+        <div class="qv-row qv-row--out">
+          <span class="qv-row__tag">Cut &middot; 2 of 3</span>
+          <div>
+            <h3>&ldquo;Get a quote by text in 60 seconds&rdquo;</h3>
+            <p>Rejected as a mechanic dressed up as an offer: the homeowner already has a price in mind at $135, and the line never says what happens after the text &mdash; which is where the recurring account is actually won or lost.</p>
+            <p><em>It reads well. That is what makes it dangerous.</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PUNCHLINE ================= -->
+  <section class="qv-punch">
+    <div class="container">
+      <span class="qv-step-label" style="justify-content:center"><b>5</b> The part we did not plan</span>
+      <h2>All three pointed at the same thing.</h2>
+      <p class="qv-punch__lede">
+        Nobody told them what we sell. They were given a pool company that loses callers to voicemail and
+        asked what to do about it. Three competing AI companies, sealed off from each other, each arrived at
+        the same root fix &mdash; answer the person the moment they call, before anyone else can.
+      </p>
+      <div class="qv-punch__box">
+        <b>That is the $497 product on this site.</b>
+        <p>An AI employee that answers every call, text and web form in about eight seconds, books the job, and
+        follows up until they reply. We did not build it because three models agreed. They agreed with something
+        already built &mdash; and this run is the first time we could show you that instead of just claiming it.</p>
+      </div>
+      <div class="qv-hero__cta" style="justify-content:center;margin-top:2.4rem">
+        <a href="service-quorum.html" class="btn btn-primary btn-lg">Put three companies on your business</a>
+        <a href="service-ai-employees.html" class="btn btn-secondary btn-lg">Or just the $497 employee</a>
+      </div>
+      <p class="qv-fine">
+        A real run captured 19 August 2026. The brief describes a composite Gilbert pool company, not a client. The three
+        answers, the six review verdicts and the response times are unedited model output; the merge section is our
+        reading of it, and the rule it applies &mdash; two of three &mdash; was fixed before the run, not after.
+        Gemini is a product of Google LLC. GPT and ChatGPT are products of OpenAI,&nbsp;L.L.C. Claude is a product of
+        Anthropic PBC. GreenAI Solutions Team is independent and is not affiliated with, sponsored by, endorsed by or
+        certified by any of them.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="quorum.html" style="color:#D4AF37;font-weight:600">The Quorum &mdash; watch the run &#10022;</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
+            <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296</div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js?v=10"></script>
+</body>
+</html>
