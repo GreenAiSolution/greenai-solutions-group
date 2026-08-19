@@ -322,6 +322,7 @@
   var secsEl = root.querySelector('[data-secs]');
   var capEl  = root.querySelector('[data-cap]');
   var barEl  = root.querySelector('[data-bar]');
+  var unitEl = root.querySelector('.catch-clock__unit');
 
   var REAL_WINDOW = 8;    // story seconds that play at true 1:1 speed
   var COMPRESS    = 24;   // everything after that runs this many times faster
@@ -341,6 +342,7 @@
     events.forEach(function (e) { e.classList.remove('is-on', 'is-hit'); });
     root.classList.remove('is-answered');
     secsEl.textContent = '0.0';
+    unitEl.style.display = '';
     capEl.textContent  = 'since the phone rang';
     barEl.style.width  = '0%';
   }
@@ -362,9 +364,13 @@
 
     // Tenths only inside the real-time window — past it the clock is racing and
     // a flickering decimal reads as a glitch rather than as time passing.
-    secsEl.textContent = story < 10  ? story.toFixed(1)
-                       : story < 60  ? String(Math.round(story))
-                       : Math.round(story / 60) + 'm';
+    if (story < 60) {
+      secsEl.textContent = story < 10 ? story.toFixed(1) : String(Math.round(story));
+      unitEl.style.display = '';
+    } else {
+      secsEl.textContent = Math.round(story / 60) + 'm';
+      unitEl.style.display = 'none';   /* otherwise the readout says "2m s" */
+    }
     barEl.style.width  = Math.min(100, (real / TOTAL) * 100) + '%';
 
     events.forEach(function (e) {
