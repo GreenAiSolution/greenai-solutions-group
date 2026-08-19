@@ -326,7 +326,7 @@
   var REAL_WINDOW = 8;    // story seconds that play at true 1:1 speed
   var COMPRESS    = 24;   // everything after that runs this many times faster
   var END         = 200;  // story seconds in the whole run
-  var raf = null, t0 = 0, playing = false;
+  var raf = null, last = 0, elapsed = 0, playing = false;
 
   function storyToReal(s) {
     return s <= REAL_WINDOW ? s * 1000
@@ -337,6 +337,7 @@
   function reset() {
     if (raf) cancelAnimationFrame(raf);
     playing = false;
+    elapsed = 0;
     events.forEach(function (e) { e.classList.remove('is-on', 'is-hit'); });
     root.classList.remove('is-answered');
     secsEl.textContent = '0.0';
@@ -345,7 +346,15 @@
   }
 
   function frame(now) {
-    var real = now - t0;
+    /* Accumulate clamped deltas rather than reading a wall clock. A background
+       tab throttles or stops requestAnimationFrame; timing from a start stamp
+       would make the whole run jump to the end the moment the tab is focused,
+       and the visitor would never see the 8 seconds that are the entire point.
+       Clamping each step means a hidden tab pauses and resumes where it was. */
+    var step = last ? Math.min(now - last, 100) : 0;
+    last = now;
+    elapsed += step;
+    var real = elapsed;
     // Invert storyToReal so the readout counts real seconds up to 8, then jumps.
     var story = real <= REAL_WINDOW * 1000
       ? real / 1000
@@ -382,8 +391,19 @@
     reset();
     playing = true;
     label.textContent = 'Playing…';
-    t0 = performance.now();
+    last = 0;
     raf = requestAnimationFrame(frame);
+  }
+
+  /* Never start against a tab nobody is looking at — wait until it is on screen. */
+  function playWhenVisible() {
+    if (document.visibilityState === 'visible') { play(); return; }
+    document.addEventListener('visibilitychange', function once() {
+      if (document.visibilityState === 'visible') {
+        document.removeEventListener('visibilitychange', once);
+        play();
+      }
+    });
   }
 
   btn.addEventListener('click', function () { if (!playing) play(); });
@@ -394,11 +414,11 @@
     var seen = false;
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting && !seen) { seen = true; play(); io.disconnect(); }
+        if (en.isIntersecting && !seen) { seen = true; playWhenVisible(); io.disconnect(); }
       });
     }, { threshold: .35 });
     io.observe(grid);
-  } else { play(); }
+  } else { playWhenVisible(); }
 })();
 </script>
 </body>
