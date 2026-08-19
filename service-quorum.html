@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Quorum — Three AI Companies On One Business | GreenAI Solutions Team</title>
+  <meta name="description" content="Our specialty build. Google's Gemini, OpenAI's GPT and Anthropic's Claude each work the part they are best at, review each other blind, and nothing ships until a human signs it off. $7,500, ten business days." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/service-quorum.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/service-quorum.html" />
+  <meta property="og:title" content="The Quorum — Three AI Companies On One Business" />
+  <meta property="og:description" content="Three AI companies, one team, your business. Three independent drafts, six blind cross-reviews, one human sign-off. $7,500, ten business days." />
+  <meta property="og:image" content="https://greenaidigital.com/art/agentic-team-studio.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Quorum — Three AI Companies On One Business" />
+  <meta name="twitter:description" content="Three independent drafts, six blind cross-reviews, one human sign-off. $7,500, ten business days." />
+  <meta name="twitter:image" content="https://greenaidigital.com/art/agentic-team-studio.webp" />
+
+  <style>
+    /* ===== THE QUORUM — specialty service page ====================== */
+    .qm { --g: #7ab6ff; --o: #4dd0e1; --a: #f0a37e; --gold: #f0cf6b; }
+
+    /* --- hero ------------------------------------------------------- */
+    .qm-hero {
+      min-height: 760px; display: flex; align-items: center; padding: 152px 0 88px;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(122,182,255,.16) 0, transparent 42%),
+        radial-gradient(circle at 82% 30%, rgba(77,208,225,.14) 0, transparent 40%),
+        radial-gradient(circle at 50% 92%, rgba(240,163,126,.13) 0, transparent 46%),
+        linear-gradient(160deg, #0b2a19 0%, #061a10 46%, #030a06 100%);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .qm-hero__grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(420px,.95fr); gap: 3.5rem; align-items: center; }
+    .qm-kicker {
+      display: inline-flex; align-items: center; gap: .55rem; font-size: .72rem; font-weight: 800;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(240,207,107,.4); background: rgba(240,207,107,.09);
+      border-radius: 100px; padding: .5rem 1.05rem;
+    }
+    .qm-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5.2vw, 4rem); line-height: 1.05;
+      color: #fff; margin: 1.5rem 0 0; letter-spacing: -.02em;
+    }
+    .qm-hero h1 em { font-style: normal; color: var(--gold); }
+    .qm-hero__lede { font-size: 1.09rem; line-height: 1.8; color: rgba(255,255,255,.8); margin-top: 1.4rem; max-width: 56ch; }
+    .qm-hero__price { display: flex; align-items: baseline; gap: .85rem; flex-wrap: wrap; margin-top: 2.1rem; }
+    .qm-hero__price b { font-family: var(--font-display); font-size: 3.1rem; color: #fff; line-height: 1; }
+    .qm-hero__price span { color: rgba(255,255,255,.68); font-size: .96rem; }
+    .qm-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+
+    /* --- hero card: the three seats --------------------------------- */
+    .qm-seats { display: grid; gap: .9rem; }
+    .qm-seat {
+      display: grid; grid-template-columns: 54px 1fr; gap: 1.1rem; align-items: center;
+      padding: 1.15rem 1.3rem; border-radius: 18px;
+      background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(14px); color: #fff;
+    }
+    .qm-seat__dot {
+      width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center;
+      font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: #06150d;
+    }
+    .qm-seat--g .qm-seat__dot { background: linear-gradient(145deg,#a9d0ff,#5b95e8); }
+    .qm-seat--o .qm-seat__dot { background: linear-gradient(145deg,#9df0f8,#2fb6c9); }
+    .qm-seat--a .qm-seat__dot { background: linear-gradient(145deg,#ffc9ab,#e0825c); }
+    .qm-seat small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+    .qm-seat strong { display: block; font-size: 1.02rem; color: #fff; margin: .2rem 0 .18rem; }
+    .qm-seat p { margin: 0; font-size: .87rem; line-height: 1.5; color: rgba(255,255,255,.7); }
+    .qm-seat--g strong { color: var(--g); } .qm-seat--o strong { color: var(--o); } .qm-seat--a strong { color: var(--a); }
+
+    /* --- numbers band ----------------------------------------------- */
+    .qm-band { background: #061a10; color: #fff; padding: 3.4rem 0; border-top: 1px solid rgba(255,255,255,.07); }
+    .qm-band__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; text-align: center; }
+    .qm-band b { display: block; font-family: var(--font-display); font-size: 3.2rem; line-height: 1; color: var(--gold); }
+    .qm-band span { display: block; margin-top: .7rem; font-size: .84rem; line-height: 1.5; color: rgba(255,255,255,.72); }
+
+    /* --- section shells --------------------------------------------- */
+    .qm-dark { background: linear-gradient(180deg,#03100a 0%, #071c11 100%); color: rgba(255,255,255,.78); padding: 6rem 0; }
+    .qm-dark h2 { color: #fff; }
+    .qm-dark .qm-eyebrow { color: var(--gold); }
+    .qm-eyebrow { font-size: .72rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--green-light); margin-bottom: .9rem; }
+    .qm-head { max-width: 62ch; margin: 0 auto 3.4rem; text-align: center; }
+    .qm-head p { font-size: 1.05rem; line-height: 1.8; margin-top: 1rem; }
+    .qm-dark .qm-head p { color: rgba(255,255,255,.74); }
+
+    /* --- the three specialty cards ---------------------------------- */
+    .qm-roles { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: stretch; }
+    .qm-role {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.11);
+      border-top: 3px solid var(--c); border-radius: 20px; padding: 2rem 1.75rem;
+      color: rgba(255,255,255,.76); display: flex; flex-direction: column;
+    }
+    .qm-role--g { --c: #7ab6ff; } .qm-role--o { --c: #4dd0e1; } .qm-role--a { --c: #f0a37e; }
+    .qm-role__co { font-size: .68rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+    .qm-role__name { font-family: var(--font-display); font-size: 1.7rem; color: var(--c); margin: .45rem 0 .1rem; }
+    .qm-role__tag { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
+    .qm-role dl { margin: 0; }
+    .qm-role dt { font-size: .64rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--c); margin-top: 1.1rem; }
+    .qm-role dd { margin: .4rem 0 0; font-size: .93rem; line-height: 1.65; color: rgba(255,255,255,.76); }
+    .qm-role__foot { margin-top: auto; padding-top: 1.4rem; }
+    .qm-role__foot span { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.16); border-radius: 100px; padding: .35rem .8rem; }
+
+    /* --- the relay --------------------------------------------------- */
+    .qm-relay { display: grid; gap: 0; max-width: 940px; margin: 0 auto; }
+    .qm-step { position: relative; padding: 0 0 2.1rem 4.6rem; }
+    .qm-step:last-child { padding-bottom: 0; }
+    .qm-step::before {
+      content: ''; position: absolute; left: 21px; top: 46px; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, rgba(240,207,107,.45), rgba(240,207,107,.08));
+    }
+    .qm-step:last-child::before { display: none; }
+    .qm-step__n {
+      position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 13px;
+      display: grid; place-items: center; font-family: var(--font-display); font-size: 1.15rem; font-weight: 800;
+      background: rgba(240,207,107,.13); border: 1px solid rgba(240,207,107,.42); color: var(--gold);
+    }
+    .qm-step h3 { font-size: 1.22rem; color: #fff; margin: .35rem 0 .55rem; letter-spacing: -.01em; }
+    .qm-step p { margin: 0; font-size: .98rem; line-height: 1.75; color: rgba(255,255,255,.74); max-width: 68ch; }
+    .qm-step--human .qm-step__n { background: var(--gold); border-color: var(--gold); color: #06150d; }
+    .qm-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .95rem; }
+    .qm-chip {
+      font-size: .74rem; font-weight: 700; letter-spacing: .04em; padding: .35rem .8rem; border-radius: 100px;
+      border: 1px solid var(--cc); color: var(--cc); background: rgba(255,255,255,.03);
+    }
+    .qm-chip--g { --cc: #7ab6ff; } .qm-chip--o { --cc: #4dd0e1; } .qm-chip--a { --cc: #f0a37e; }
+    .qm-chip--h { --cc: #f0cf6b; }
+
+    /* --- deliverables ------------------------------------------------ */
+    .qm-deliver { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.1rem; max-width: 940px; margin: 0 auto; }
+    .qm-item {
+      display: grid; grid-template-columns: 26px 1fr; gap: .95rem; align-items: start;
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .qm-item i {
+      width: 26px; height: 26px; border-radius: 50%; background: var(--green-pale);
+      border: 1px solid rgba(46,139,71,.35); position: relative; margin-top: .12rem;
+    }
+    .qm-item i::after {
+      content: ''; position: absolute; left: 9px; top: 5px; width: 6px; height: 11px;
+      border-right: 2px solid var(--green-light); border-bottom: 2px solid var(--green-light);
+      transform: rotate(42deg);
+    }
+    .qm-item strong { display: block; font-size: .98rem; color: var(--gray-800); }
+    .qm-item span { display: block; margin-top: .3rem; font-size: .89rem; line-height: 1.6; color: var(--gray-600); }
+
+    /* --- limits ------------------------------------------------------ */
+    .qm-limits { max-width: 820px; margin: 0 auto; display: grid; gap: .9rem; }
+    .qm-limit {
+      background: rgba(255,255,255,.04); border-left: 3px solid rgba(240,207,107,.55);
+      border-radius: 0 14px 14px 0; padding: 1.15rem 1.4rem;
+    }
+    .qm-limit strong { display: block; color: #fff; font-size: .99rem; margin-bottom: .3rem; }
+    .qm-limit p { margin: 0; font-size: .92rem; line-height: 1.7; color: rgba(255,255,255,.72); }
+
+    /* --- pricing ----------------------------------------------------- */
+    .qm-prices { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1.5rem; max-width: 940px; margin: 0 auto; align-items: stretch; }
+    .qm-price {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: 22px; padding: 2.3rem 2rem;
+      box-shadow: var(--shadow-md); display: flex; flex-direction: column;
+    }
+    .qm-price--lead { border: 2px solid var(--gold-accent); box-shadow: 0 18px 50px rgba(212,175,55,.18); }
+    .qm-price__tag { font-size: .68rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; color: var(--green-dark); }
+    .qm-price--lead .qm-price__tag { color: #9a7b12; }
+    .qm-price h3 { font-family: var(--font-display); font-size: 1.55rem; color: var(--gray-800); margin: .5rem 0 .1rem; }
+    .qm-price__amt { font-family: var(--font-display); font-size: 3.05rem; line-height: 1.1; color: var(--green-dark); margin: 1rem 0 .1rem; }
+    .qm-price--lead .qm-price__amt { color: #8a6d0f; }
+    .qm-price__sub { font-size: .9rem; color: var(--gray-600); }
+    .qm-price ul { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: .6rem; }
+    .qm-price li { position: relative; padding-left: 1.5rem; font-size: .93rem; line-height: 1.6; color: var(--gray-600); }
+    .qm-price li::before { content: ''; position: absolute; left: 0; top: .42em; width: 8px; height: 8px; border-radius: 50%; background: var(--green-light); }
+    .qm-price .btn { margin-top: auto; }
+    .qm-price__btnwrap { margin-top: 1.9rem; }
+    .qm-pay-note { max-width: 940px; margin: 1.6rem auto 0; text-align: center; font-size: .87rem; color: var(--gray-600); }
+
+    /* --- faq ---------------------------------------------------------- */
+    .qm-faq { max-width: 820px; margin: 0 auto; display: grid; gap: 1rem; }
+    .qm-q { background: var(--white); border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.4rem 1.6rem; }
+    .qm-q h4 { font-size: 1rem; color: var(--gray-800); margin: 0 0 .55rem; }
+    .qm-q p { margin: 0; font-size: .93rem; line-height: 1.75; color: var(--gray-600); }
+
+    /* --- closing ------------------------------------------------------ */
+    .qm-close { background: linear-gradient(150deg,#0b2a19,#030a06); color: #fff; padding: 6rem 0; text-align: center; }
+    .qm-close h2 { color: #fff; }
+    .qm-close p { max-width: 58ch; margin: 1.1rem auto 0; color: rgba(255,255,255,.76); line-height: 1.8; }
+    .qm-disclaimer { margin-top: 3rem; font-size: .78rem; line-height: 1.7; color: rgba(255,255,255,.45); max-width: 66ch; margin-left: auto; margin-right: auto; }
+
+    /* dark-section button fix: .btn-secondary is green-dark ink, unreadable on a dark ground */
+    .qm-hero .btn-secondary, .qm-close .btn-secondary {
+      color: #fff; border-color: rgba(255,255,255,.42); background: transparent;
+    }
+    .qm-hero .btn-secondary:hover, .qm-close .btn-secondary:hover {
+      background: rgba(255,255,255,.09); border-color: #fff;
+    }
+    .qm-hero .btn-lg, .qm-close .btn-lg { padding: 1rem 1.85rem; font-size: 1rem; }
+
+    @media (max-width: 1000px) {
+      .qm-hero__grid { grid-template-columns: 1fr; gap: 2.6rem; }
+      .qm-roles { grid-template-columns: 1fr; }
+      .qm-band__grid { grid-template-columns: repeat(2,1fr); gap: 2.2rem; }
+      .qm-deliver, .qm-prices { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .qm-hero { min-height: 0; padding: 128px 0 64px; }
+      .qm-hero__price b { font-size: 2.5rem; }
+      .qm-band b { font-size: 2.5rem; }
+      .qm-step { padding-left: 3.6rem; }
+      .qm-step__n { width: 36px; height: 36px; border-radius: 11px; font-size: 1rem; }
+      .qm-step::before { left: 17px; top: 40px; }
+      .qm-seat { grid-template-columns: 44px 1fr; gap: .85rem; padding: 1rem; }
+      .qm-seat__dot { width: 44px; height: 44px; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="qm">
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="qm-hero">
+    <div class="container">
+      <div class="qm-hero__grid">
+        <div>
+          <span class="qm-kicker">Specialty build &middot; by application</span>
+          <h1>Three AI companies.<br />One team.<br /><em>Your business.</em></h1>
+          <p class="qm-hero__lede">
+            Nearly all AI work you can buy today is one model, one draft, one opinion.
+            The Quorum runs your project through three of them &mdash; Google&rsquo;s Gemini,
+            OpenAI&rsquo;s GPT and Anthropic&rsquo;s Claude &mdash; each on the part it is
+            genuinely best at. They mark each other&rsquo;s work without knowing who wrote it.
+            Then a human reads every line before you ever see it.
+          </p>
+          <div class="qm-hero__price">
+            <b>$7,500</b>
+            <span>one build &middot; ten business days &middot; you own every file</span>
+          </div>
+          <div class="qm-cta-row">
+            <a href="contact.html?want=quorum-build" class="btn btn-primary btn-lg">Apply for a Quorum build</a>
+            <a href="#relay" class="btn btn-secondary btn-lg">See how they work together</a>
+          </div>
+        </div>
+
+        <div class="qm-seats">
+          <div class="qm-seat qm-seat--g">
+            <div class="qm-seat__dot">G</div>
+            <div>
+              <small>Google &middot; Gemini</small>
+              <strong>The Reader</strong>
+              <p>Reads your whole market before anyone writes a word.</p>
+            </div>
+          </div>
+          <div class="qm-seat qm-seat--o">
+            <div class="qm-seat__dot">O</div>
+            <div>
+              <small>OpenAI &middot; GPT</small>
+              <strong>The Maker</strong>
+              <p>Finds the angle and makes the thing &mdash; words and pictures.</p>
+            </div>
+          </div>
+          <div class="qm-seat qm-seat--a">
+            <div class="qm-seat__dot">A</div>
+            <div>
+              <small>Anthropic &middot; Claude</small>
+              <strong>The Builder &amp; The Check</strong>
+              <p>Builds it for real, then tries to tear it down.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ NUMBERS ============ -->
+  <section class="qm-band">
+    <div class="container">
+      <div class="qm-band__grid">
+        <div><b>3</b><span>independent first drafts &mdash; not one draft, three times</span></div>
+        <div><b>6</b><span>blind cross-reviews on every deliverable</span></div>
+        <div><b>1</b><span>human sign-off before anything reaches you</span></div>
+        <div><b>0</b><span>numbers, names or promises that ship unchecked</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE THREE SEATS ============ -->
+  <section class="qm-dark" id="seats">
+    <div class="container">
+      <div class="qm-head">
+        <p class="qm-eyebrow">Who is in the room</p>
+        <h2>Three companies. Three different brains.</h2>
+        <p>
+          These models were built by different labs, on different data, with different habits.
+          That is the whole point. Where one is confidently wrong, another usually finds it obvious.
+          You do not get that from asking the same model twice.
+        </p>
+      </div>
+
+      <div class="qm-roles">
+        <article class="qm-role qm-role--g">
+          <span class="qm-role__co">Google</span>
+          <h3 class="qm-role__name">Gemini</h3>
+          <p class="qm-role__tag">The Reader</p>
+          <dl>
+            <dt>What it is best at</dt>
+            <dd>Holding an enormous amount of material in its head at once, and searching the live web while it works.</dd>
+            <dt>Its job on your build</dt>
+            <dd>Before a single word is written, it reads your site, your reviews, your competitors&rsquo; sites and pricing, and the questions people in your trade actually type into a search bar. It comes back with the dossier the other two build from.</dd>
+          </dl>
+          <div class="qm-role__foot"><span>Runs first &middot; every build</span></div>
+        </article>
+
+        <article class="qm-role qm-role--o">
+          <span class="qm-role__co">OpenAI</span>
+          <h3 class="qm-role__name">GPT</h3>
+          <p class="qm-role__tag">The Maker</p>
+          <dl>
+            <dt>What it is best at</dt>
+            <dd>Voice, angle and image &mdash; the creative swing. It is the one most likely to say the thing nobody else in the room thought of.</dd>
+            <dt>Its job on your build</dt>
+            <dd>Writes your offer three genuinely different ways and argues for each. Names things. Makes the ad images and the headlines. If your competitors all sound the same, this is the seat whose job is to make sure you do not.</dd>
+          </dl>
+          <div class="qm-role__foot"><span>Driven by a ChatGPT sign-in</span></div>
+        </article>
+
+        <article class="qm-role qm-role--a">
+          <span class="qm-role__co">Anthropic</span>
+          <h3 class="qm-role__name">Claude</h3>
+          <p class="qm-role__tag">The Builder &amp; The Check</p>
+          <dl>
+            <dt>What it is best at</dt>
+            <dd>Long, careful work on real files &mdash; and saying no. It will hold a whole project in view for hours and it does not mind deleting its own work.</dd>
+            <dt>Its job on your build</dt>
+            <dd>Builds the actual pages, code and automations. Then audits every line the other two wrote against a fixed list: invented statistics, claimed certifications, claimed customers, promises we cannot keep. Anything that fails gets cut, not softened.</dd>
+          </dl>
+          <div class="qm-role__foot"><span>Never reviews its own work</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE RELAY ============ -->
+  <section class="section" id="relay" style="background:linear-gradient(180deg,#071c11,#03100a); padding:6rem 0;">
+    <div class="container">
+      <div class="qm-head">
+        <p class="qm-eyebrow" style="color:#f0cf6b">How the work moves</p>
+        <h2 style="color:#fff">Six steps. Nobody marks their own homework.</h2>
+        <p style="color:rgba(255,255,255,.74)">
+          This is the part you are actually paying for. Anyone can put a prompt into three chatbots.
+          The value is in the order they go in, what each one is shown, and what is deliberately hidden from them.
+        </p>
+      </div>
+
+      <div class="qm-relay">
+        <div class="qm-step">
+          <div class="qm-step__n">1</div>
+          <h3>The brief</h3>
+          <p>One call, about forty-five minutes. We write down what you sell, who buys it, what you charge, what you have already tried, and what &ldquo;this worked&rdquo; would look like ninety days from now. Every model gets this same document and nothing else.</p>
+          <div class="qm-chips"><span class="qm-chip qm-chip--h">You + Jaden</span></div>
+        </div>
+
+        <div class="qm-step">
+          <div class="qm-step__n">2</div>
+          <h3>Three passes, in parallel, sealed off from each other</h3>
+          <p>Gemini reads the market. GPT swings at the offer and the creative. Claude builds the working version. None of the three sees what the others produced. You end up with three genuinely different attempts at your business &mdash; not one attempt with two rubber stamps on it.</p>
+          <div class="qm-chips">
+            <span class="qm-chip qm-chip--g">Gemini &middot; research</span>
+            <span class="qm-chip qm-chip--o">GPT &middot; creative</span>
+            <span class="qm-chip qm-chip--a">Claude &middot; build</span>
+          </div>
+        </div>
+
+        <div class="qm-step">
+          <div class="qm-step__n">3</div>
+          <h3>Blind cross-review</h3>
+          <p>Now they read each other &mdash; with the names stripped off, so no model knows whose work it is marking. Three models, two reviews each: six reviews on every deliverable. Anything two of the three independently flag comes out. Anything only one flags gets argued.</p>
+          <div class="qm-chips">
+            <span class="qm-chip qm-chip--g">reviews O + A</span>
+            <span class="qm-chip qm-chip--o">reviews G + A</span>
+            <span class="qm-chip qm-chip--a">reviews G + O</span>
+          </div>
+        </div>
+
+        <div class="qm-step">
+          <div class="qm-step__n">4</div>
+          <h3>The merge</h3>
+          <p>The strongest version becomes the spine, and the best single ideas from the other two get grafted onto it. You get a one-page note showing which line came from which seat and why it survived. No black box, no &ldquo;the AI said so&rdquo;.</p>
+          <div class="qm-chips"><span class="qm-chip qm-chip--a">Claude assembles</span></div>
+        </div>
+
+        <div class="qm-step qm-step--human">
+          <div class="qm-step__n">5</div>
+          <h3>The fact gate &mdash; a person, every time</h3>
+          <p>Jaden reads the whole thing before you do. Every number, name, credential and promise has to trace back to something real or it does not ship. Nothing about price, contracts or commitments is ever written by an AI and sent without a human reading it first. This gate has no automatic override.</p>
+          <div class="qm-chips"><span class="qm-chip qm-chip--h">Human &middot; blocking</span></div>
+        </div>
+
+        <div class="qm-step">
+          <div class="qm-step__n">6</div>
+          <h3>Delivered, and it is yours</h3>
+          <p>Files, source code, ad assets, accounts and logins &mdash; handed over. No platform you have to stay on, no licence that expires, nothing that stops working if you walk away. Same ownership promise as everything else we sell.</p>
+          <div class="qm-chips"><span class="qm-chip qm-chip--h">You own all of it</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERABLES ============ -->
+  <section class="section" style="background:var(--off-white); padding:6rem 0;">
+    <div class="container">
+      <div class="qm-head">
+        <p class="qm-eyebrow">What lands on your desk</p>
+        <h2>Ten business days. Six things.</h2>
+        <p style="color:var(--gray-600)">Every one of these is a file or a live thing you can point at &mdash; not a report about work that might happen later.</p>
+      </div>
+
+      <div class="qm-deliver">
+        <div class="qm-item"><i></i><div><strong>A market dossier on your trade</strong><span>Your competitors&rsquo; offers and prices, what your reviews say about you, and the exact phrases customers search. Sourced, with links.</span></div></div>
+        <div class="qm-item"><i></i><div><strong>Your offer, written three ways</strong><span>Three different positions on the same business, with the argument for each and the one we recommend. You pick.</span></div></div>
+        <div class="qm-item"><i></i><div><strong>A new website, built and live</strong><span>Up to ten pages, written and designed around the offer you picked, on your domain, loading fast on a phone.</span></div></div>
+        <div class="qm-item"><i></i><div><strong>Thirty finished ads and posts</strong><span>Ready to run. Images made, captions written, sized for each place they go.</span></div></div>
+        <div class="qm-item"><i></i><div><strong>Your AI employee, installed</strong><span>Answers every call, text and web form in about eight seconds, books the job and follows up until they reply.</span></div></div>
+        <div class="qm-item"><i></i><div><strong>The handover</strong><span>Every file, account, login and password. A short recording walking you through it. Nothing is held hostage.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIMITS ============ -->
+  <section class="qm-dark">
+    <div class="container">
+      <div class="qm-head">
+        <p class="qm-eyebrow">Read this part twice</p>
+        <h2>Where this stops, and where we lose</h2>
+        <p>If any of the following is a dealbreaker, we would rather you found out now than in week two.</p>
+      </div>
+
+      <div class="qm-limits">
+        <div class="qm-limit">
+          <strong>Three models will not save a bad offer.</strong>
+          <p>If what you sell does not sell, this makes that obvious faster &mdash; it does not fix it. Sometimes the honest answer at step 4 is &ldquo;change the thing you are selling&rdquo;. We will say it.</p>
+        </div>
+        <div class="qm-limit">
+          <strong>No AI cold-calling. Not now, not for extra.</strong>
+          <p>The FCC treats an AI-generated voice as &ldquo;artificial&rdquo; under the TCPA, so cold calls made with one need written consent first &mdash; and most small-business numbers are cell phones. Your AI employee answers calls that come in and handles replies. It does not dial strangers.</p>
+        </div>
+        <div class="qm-limit">
+          <strong>Ten business days is the floor, not a rush option.</strong>
+          <p>Three sealed passes and six reviews take the time they take. If you need something live this week, buy the AI employee on its own at $497/month and we will start there.</p>
+        </div>
+        <div class="qm-limit">
+          <strong>Ad spend is yours, and it is not included.</strong>
+          <p>We make the ads and hand them over. What you put behind them goes on your own card, to the platform, at whatever number you choose.</p>
+        </div>
+        <div class="qm-limit">
+          <strong>We are not partnered with any of these three companies.</strong>
+          <p>GreenAI Solutions Team is independent. We pay for the same Google, OpenAI and Anthropic products anyone can buy, and we are not affiliated with, endorsed by, or certified by any of them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section" style="background:var(--white); padding:6rem 0;">
+    <div class="container">
+      <div class="qm-head">
+        <p class="qm-eyebrow">The price</p>
+        <h2>Our most expensive service, and here is why.</h2>
+        <p style="color:var(--gray-600)">
+          The same work goes through three paid AI services instead of one, then gets reviewed six more times,
+          then gets read by a person line by line. It is roughly three to four times the machine work of a normal
+          build and about twice the human hours. That is the whole of the difference.
+        </p>
+      </div>
+
+      <div class="qm-prices">
+        <div class="qm-price qm-price--lead">
+          <span class="qm-price__tag">The build &middot; one time</span>
+          <h3>The Quorum Build</h3>
+          <div class="qm-price__amt">$7,500</div>
+          <div class="qm-price__sub">Paid once. Ten business days. No contract after it.</div>
+          <ul>
+            <li>All six deliverables above</li>
+            <li>Three sealed passes, six blind cross-reviews</li>
+            <li>The merge note &mdash; which idea came from where</li>
+            <li>Human fact-gate on every line</li>
+            <li>Full handover: files, source, accounts, logins</li>
+            <li>First month of your AI employee included</li>
+          </ul>
+          <div class="qm-price__btnwrap">
+            <a href="contact.html?want=quorum-build" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Apply for a build</a>
+          </div>
+        </div>
+
+        <div class="qm-price">
+          <span class="qm-price__tag">Optional &middot; after the build</span>
+          <h3>Keep the room open</h3>
+          <div class="qm-price__amt">$2,970<span style="font-size:1.1rem;color:var(--gray-600)">/mo</span></div>
+          <div class="qm-price__sub">Month to month. Cancel any month, keep everything.</div>
+          <ul>
+            <li>The same three seats, every week</li>
+            <li>Your AI employee running and tuned</li>
+            <li>Twenty new ads or posts a month</li>
+            <li>Site changes and new pages as you need them</li>
+            <li>A monthly read on what actually moved</li>
+            <li>Direct line to Jaden, not a ticket queue</li>
+          </ul>
+          <div class="qm-price__btnwrap">
+            <a href="contact.html?want=quorum-retainer" class="btn btn-secondary btn-lg" style="width:100%;justify-content:center;border-color:var(--green-light);color:var(--green-dark)">Ask about the retainer</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="qm-pay-note">
+        Paid by bank transfer against an emailed invoice &mdash; no card fees, nothing stored.
+        Terms are the same <a href="agreement.html" style="color:var(--green-dark);font-weight:600;text-decoration:underline">Service Agreement</a> as everything else we sell:
+        month-to-month, forward-only refunds, and you own every asset.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" style="background:var(--off-white); padding:6rem 0;">
+    <div class="container">
+      <div class="qm-head"><p class="qm-eyebrow">Fair questions</p><h2>Before you apply</h2></div>
+      <div class="qm-faq">
+        <div class="qm-q">
+          <h4>Could I not just ask ChatGPT this myself?</h4>
+          <p>You could, and for some of it you should. What you cannot easily do alone is run the same brief through three competing labs, keep them from seeing each other, get them to mark each other&rsquo;s work blind, and then actually build and ship the result. That process &mdash; and the person who refuses to publish anything that does not check out &mdash; is the product.</p>
+        </div>
+        <div class="qm-q">
+          <h4>Why does having three matter? Aren&rsquo;t they all much the same?</h4>
+          <p>They are not. They were trained by different companies on different material and they fail in different ways. A number one model invents confidently is often the first thing another one questions. Using three is the cheapest reliable way to catch that before it reaches your customers.</p>
+        </div>
+        <div class="qm-q">
+          <h4>Who owns what comes out of it?</h4>
+          <p>You do &mdash; the site, the code, the images, the copy, the accounts. In writing, in the Service Agreement, same as every other thing we sell. Stopping payment does not switch anything off or take anything back.</p>
+        </div>
+        <div class="qm-q">
+          <h4>Do you use my business information to train these models?</h4>
+          <p>No. Your material is used to do your work. We do not sell it, publish it, or hand it to anyone as training data, and we will name every tool your material passes through if you ask.</p>
+        </div>
+        <div class="qm-q">
+          <h4>What if I do not like the direction?</h4>
+          <p>Step 2 gives you three different directions on purpose, and you choose at step 4 &mdash; before anything gets built. That is the point of the sealed passes: the choice is genuinely yours, and it happens early enough to be cheap.</p>
+        </div>
+        <div class="qm-q">
+          <h4>Why &ldquo;by application&rdquo;?</h4>
+          <p>Because one of these runs at a time and it takes ten days. If your business is not a fit &mdash; wrong stage, wrong problem, or you simply do not need this much &mdash; we will say so on the call and point you at the $497 option instead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSE ============ -->
+  <section class="qm-close">
+    <div class="container">
+      <p class="qm-eyebrow" style="color:#f0cf6b">One build at a time</p>
+      <h2>Put three AI companies on your business for ten days.</h2>
+      <p>Tell us what you sell and what is not working. If it is a fit, we will book the brief. If it is not, we will tell you that instead &mdash; there is no version of this where you get sold something you do not need.</p>
+      <div class="qm-cta-row" style="justify-content:center">
+        <a href="contact.html?want=quorum-build" class="btn btn-primary btn-lg">Apply for a Quorum build</a>
+        <a href="service-ai-employees.html" class="btn btn-secondary btn-lg">Or start at $497/month</a>
+      </div>
+      <p class="qm-disclaimer">
+        Gemini is a product of Google LLC. GPT and ChatGPT are products of OpenAI, L.L.C. Claude is a product of Anthropic PBC.
+        GreenAI Solutions Team is an independent business and is not affiliated with, sponsored by, endorsed by or certified by
+        any of them. Product names are used only to identify the tools used to do the work.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
+            <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296</div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js?v=10"></script>
+</body>
+</html>

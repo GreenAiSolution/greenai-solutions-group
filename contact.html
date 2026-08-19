@@ -202,7 +202,7 @@
 
           <div id="wantNote" hidden style="background:var(--green-pale);border:1px solid rgba(45,106,62,.25);border-left:4px solid var(--green-dark);border-radius:var(--radius-lg);padding:1rem 1.15rem;margin-bottom:1.5rem">
             <div style="font-weight:700;color:var(--green-dark);margin-bottom:.25rem" id="wantTitle"></div>
-            <p style="font-size:.88rem;margin:0;color:var(--gray-800)">Card checkout for this plan is being switched on. Send this over and Jaden will get you set up personally — usually the same day.</p>
+            <p id="wantBody" style="font-size:.88rem;margin:0;color:var(--gray-800)">Card checkout for this plan is being switched on. Send this over and Jaden will get you set up personally — usually the same day.</p>
           </div>
 
           <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Contact form">
@@ -247,6 +247,7 @@
                 <option value="web">Web Design &amp; Development</option>
                 <option value="ads">AI Ad Creation</option>
                 <option value="ai">AI Business Consulting</option>
+                <option value="quorum">The Quorum &mdash; three-AI specialty build</option>
                 <option value="unsure">Not sure yet &mdash; need guidance</option>
               </select>
             </div>
@@ -400,6 +401,10 @@
   (function () {
     var WANT = {
       'employees-front-desk': { pick: 'employees', name: 'AI Employee', price: '$497/mo' },
+      'quorum-build':         { pick: 'quorum',    name: 'The Quorum Build',      price: '$7,500',
+                                note: 'The Quorum runs one build at a time and starts with a call, so there is no buy button. Send this over and Jaden will come back on whether it is a fit \u2014 usually the same day.' },
+      'quorum-retainer':      { pick: 'quorum',    name: 'The Quorum retainer',   price: '$2,970/mo',
+                                note: 'The retainer follows a Quorum build. Send this over and Jaden will walk you through what it covers \u2014 usually the same day.' },
       'quote':                { pick: 'unsure',    name: 'A quote for something else', price: 'quoted per job' },
       'web-starter':          { pick: 'web',       name: 'Web Design — Starter',   price: '$500'   },
       'web-business':         { pick: 'web',       name: 'Web Design — Business',  price: '$1,500' },
@@ -417,6 +422,11 @@
     var note = document.getElementById('wantNote');
     var title = document.getElementById('wantTitle');
     if (note && title) { title.textContent = 'You picked: ' + label; note.hidden = false; }
+
+    /* The Quorum is by application — it never had a checkout, so the default
+       "card checkout is being switched on" line would be untrue here. */
+    var body = document.getElementById('wantBody');
+    if (body && want.note) body.textContent = want.note;
 
     /* Tell Jaden which plan it was, even if they rewrite the message. */
     var hidden = document.getElementById('wantedPlan');
