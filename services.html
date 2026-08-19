@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="stylesheet" href="style.css?v=17" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -218,6 +218,27 @@
     body.work .ground h3, body.work .ground h4 { color: var(--gray-800); }
     body.work .ground .section-label { color: var(--green-light); }
     body.work .ground p, body.work .ground li { color: inherit; }
+
+    /* The Elite Partnership card is a dark panel sitting inside the light
+       .ground, so the rules above (which are more specific than the card's
+       own .elite-* colors) were painting its text near-black on near-black.
+       Restate every colour at .ground weight so the card reads again. */
+    body.work .ground .elite-section { color: rgba(255,255,255,.72); }
+    body.work .ground .elite-title,
+    body.work .ground .elite-form-title { color: #fff; }
+    body.work .ground .elite-eyebrow,
+    body.work .ground .elite-section-title,
+    body.work .ground .elite-stat-num,
+    body.work .ground .elite-check { color: #d4af37; }
+    body.work .ground .elite-desc { color: rgba(255,255,255,.62); }
+    body.work .ground .elite-list li { color: rgba(255,255,255,.75); }
+    body.work .ground .elite-stat-label { color: rgba(255,255,255,.45); }
+    body.work .ground .elite-form-sub { color: rgba(255,255,255,.5); }
+    body.work .ground .elite-form-group label { color: rgba(255,255,255,.65); }
+    body.work .ground .elite-form-group input,
+    body.work .ground .elite-form-group select,
+    body.work .ground .elite-form-group textarea { color: rgba(255,255,255,.92); }
+    body.work .ground .elite-submit { color: #0a0a0a; }
 
     @media (max-width: 900px) {
       .crew__scene { height: 400px; perspective: 1000px; }
