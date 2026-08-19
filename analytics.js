@@ -31,7 +31,7 @@
 (function () {
   'use strict';
 
-  var TOKEN = ''; /* <-- paste the Cloudflare Web Analytics token between these quotes */
+  var TOKEN = 'cbc0cdc361e2457e85eb95976f7d5a97'; /* greenaidigital.com, added 2026-08-19 */
 
   if (!TOKEN) return;
 
