@@ -3,7 +3,7 @@
 
    Every purchase button in the HTML is written as:
 
-       <a class="buy" data-sku="employees-front-desk">Start — $497/mo</a>
+       <a class="buy" data-sku="employees-front-desk">Start</a>
 
    and nothing else. No payment URL is ever pasted into a page. This file turns
    each [data-sku] element into a link to the payment portal, preselected on
@@ -15,14 +15,10 @@
    client-side JavaScript would require PCI DSS Level 1 compliance. So the site
    does not take card details at all. pay.html builds the order and captures the
    signed service agreement, then Jaden invoices and the customer pays by bank
-   transfer — which also means no processor takes a percentage. On a $2,497/mo
-   plan a card rail would cost roughly $75 a month.
+   transfer — which also means no processor takes a percentage. A card rail can add processing fees that are better handled through a hosted checkout link when needed.
 
    HISTORY
-   This file used to hold a map of Stripe Payment Links, every one of them an
-   empty string, so every buy button on the site fell through to a contact form
-   labelled "card payment is being switched on". That had been true for months.
-   Buttons now land on a working portal instead.
+   Buttons now land on a working portal instead of collecting payment details on the static site.
 
    IF A HOSTED CARD RAIL IS ADDED LATER
    Put its hosted link in CARD_LINKS below, keyed by SKU. Any SKU with a link
@@ -37,41 +33,25 @@
 
   var PORTAL = 'pay.html';
 
-  /* Every purchasable SKU. The value is a hosted card-checkout URL, or '' to
-     send the buyer to the portal (bank transfer). Kept as an explicit list so a
-     typo in a data-sku attribute is caught rather than silently linking to a
-     portal that cannot preselect anything. */
+  /* The core funnel has one purchasable SKU. The value is a hosted
+     card-checkout URL, or '' to send the buyer to the invoice portal. */
   var CARD_LINKS = {
-    /* AI Employees — monthly */
-    'employees-front-desk':      '', /* $497/mo   · 1 employee  */
-    'employees-front-follow':    '', /* $897/mo   · 2 employees */
-    'employees-full-desk':       '', /* $1,497/mo · 4 employees */
-
-    /* AI Ad Creation — monthly */
-    'ads-starter':               '', /* $697/mo   · 10 ads */
-    'ads-growth':                '', /* $1,297/mo · 25 ads */
-    'ads-scale':                 '', /* $2,497/mo · 60 ads */
-
-    /* AI Business Consulting — monthly */
-    'consulting':                '', /* $750/mo */
-
-    /* Websites — subscription: a one-off build fee, then a monthly */
-    'web-sub-launch':            '', /* $397 setup + $197/mo · 5 pages  */
-    'web-sub-growth':            '', /* $997 setup + $347/mo · 10 pages */
-
-    /* Websites — one-time build, plus optional monthly care */
-    'web-starter':               '', /* $500   · up to 5 pages  */
-    'web-business':              '', /* $1,500 · up to 10 pages */
-    'web-maintenance':           ''  /* $150/mo · add-on        */
+    'employees-front-desk': ''
   };
 
-  /* Deliberately absent from CARD_LINKS: anything whose price is quoted rather
-     than fixed must not get a pay button. web-premium is "$2,500+, quoted not
-     fixed"; web-sub-flagship is $597/mo with the setup quoted. Both go to the
-     contact form for a real conversation. */
+  /* All other service pages are quoted separately and route to the contact form. */
   var QUOTE_ONLY = {
-    'web-premium':      true,  /* $2,500+ one-time, quoted not fixed */
-    'web-sub-flagship': true   /* $597/mo with the setup quoted      */
+    'ads-starter': true,
+    'ads-growth': true,
+    'ads-scale': true,
+    'consulting': true,
+    'web-sub-launch': true,
+    'web-sub-growth': true,
+    'web-premium': true,
+    'web-sub-flagship': true,
+    'web-starter': true,
+    'web-business': true,
+    'web-maintenance': true
   };
 
   /* pay.html sells exactly one plan right now (the one-price rule — see

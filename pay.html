@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment Portal — Start a Plan | GreenAI Solutions Team</title>
-  <meta name="description" content="Choose your GreenAI plan, agree the service terms, and we send an invoice payable by bank transfer. No card fees, and no payment details are entered on this site." />
+  <title>Start the AI Employee | GreenAI Solutions Team</title>
+  <meta name="description" content="Start the GreenAI AI Employee for $497/mo. No payment details are collected on this static site." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -13,215 +13,31 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="canonical" href="https://greenaidigital.com/pay.html" />
-
   <style>
-    /* ============================================================
-       PAYMENT PORTAL
-
-       This page never touches a card number. It builds an order,
-       captures agreement acceptance, and emails both to Jaden so an
-       invoice can go out. Payment happens by bank transfer against
-       that invoice.
-
-       That is a deliberate design, not a limitation to work around:
-       greenaidigital.com is static hosting with no server, and taking
-       card details in client-side JavaScript would require PCI DSS
-       Level 1 compliance. Bank transfer moves the money with no
-       processor in the middle and no card fee on a $497 plan.
-       ============================================================ */
-
-    .pay { padding: 7rem 0 5rem; background: var(--off-white); }
-    .pay__head { max-width: 44rem; margin: 0 auto 3rem; text-align: center; }
-    .pay__head h1 { margin-bottom: 1rem; }
-    .pay__head p { font-size: 1.05rem; line-height: 1.7; }
-
-    /* --- how it works strip --- */
-    .pay__how {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-      max-width: 56rem; margin: 0 auto 3.5rem;
-    }
-    .pay__how div {
-      background: var(--white); border: 1px solid var(--gray-200);
-      border-radius: var(--radius-md); padding: 1.25rem;
-    }
-    .pay__how b {
-      display: block; font-size: .72rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--green-light); margin-bottom: .4rem;
-    }
-    .pay__how p { font-size: .88rem; line-height: 1.6; margin: 0; }
-
-    /* --- the two-column shell: form on the left, summary on the right --- */
-    .pay__grid {
-      display: grid; grid-template-columns: 1fr 22rem; gap: 2.5rem;
-      max-width: 68rem; margin: 0 auto; align-items: start;
-    }
-    .pay__panel {
-      background: var(--white); border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg); padding: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .pay__step {
-      display: flex; align-items: center; gap: .7rem;
-      margin: 0 0 1.25rem;
-    }
-    .pay__step-n {
-      width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%;
-      background: var(--green-dark); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .8rem; font-weight: 700;
-    }
-    .pay__step h2 {
-      font-size: 1.1rem; font-family: var(--font-body); font-weight: 700;
-      margin: 0; letter-spacing: 0; line-height: 1.3;
-    }
-    .pay__panel + .pay__panel { margin-top: 1.5rem; }
-
-    /* --- plan picker --- */
-    .pay__group { margin-bottom: 1.6rem; }
-    .pay__group > b {
-      display: block; font-size: .72rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--gray-400);
-      margin-bottom: .6rem; font-weight: 700;
-    }
-    .plan {
-      display: flex; align-items: flex-start; gap: .8rem;
-      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: .9rem 1rem; margin-bottom: .5rem; cursor: pointer;
-      transition: border-color .18s ease, background .18s ease;
-    }
-    .plan:hover { border-color: var(--green-light); background: var(--green-pale); }
-    .plan input { margin-top: .25rem; flex-shrink: 0; accent-color: var(--green-dark); }
-    /* :has is the clean way to light up the whole row from its radio. Browsers
-       without it still show the native radio, so nothing is lost. */
-    .plan:has(input:checked) { border-color: var(--green-dark); background: var(--green-pale); }
-    .plan input:focus-visible { outline: 2px solid var(--green-dark); outline-offset: 2px; }
-    .plan__body { flex: 1; min-width: 0; }
-    .plan__top {
-      display: flex; justify-content: space-between; gap: 1rem;
-      align-items: baseline;
-    }
-    .plan__name { font-weight: 700; font-size: .95rem; color: var(--gray-800); }
-    .plan__price { font-weight: 700; font-size: .95rem; color: var(--green-dark); white-space: nowrap; }
-    .plan__detail { font-size: .84rem; line-height: 1.55; color: var(--gray-600); margin: .2rem 0 0; }
-
-    /* Billing cadence. Yearly is the single highest-leverage thing here for a
-       business without capital: ten months of cash up front instead of one. */
-    .cadence {
-      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: .9rem 1rem 1rem; margin: 0 0 1.6rem;
-    }
-    .cadence legend {
-      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--gray-400); font-weight: 700; padding: 0 .35rem;
-    }
-    .cadence__opt {
-      display: flex; align-items: flex-start; gap: .6rem;
-      padding: .5rem .2rem; cursor: pointer;
-    }
-    .cadence__opt input { margin-top: .3rem; accent-color: var(--green-dark); flex-shrink: 0; }
-    .cadence__opt b { display: block; font-size: .9rem; color: var(--gray-800); }
-    .cadence__opt i {
-      display: block; font-style: normal; font-size: .8rem; color: var(--gray-600);
-    }
-    .cadence:has(input[value="yearly"]:checked) { border-color: var(--green-dark); background: var(--green-pale); }
-
-    .pay__lead {
-      font-size: .86rem; line-height: 1.6; color: var(--gray-600);
-      margin: 0 0 .8rem;
-    }
-
-    .pay__custom {
-      font-size: .88rem; line-height: 1.6; color: var(--gray-600);
-      background: var(--gray-100); border-radius: var(--radius-md);
-      padding: .9rem 1rem; margin-top: .5rem;
-    }
-
-    /* --- agreement --- */
-    .agrbox {
-      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: 1.1rem 1.25rem; max-height: 15rem; overflow-y: auto;
-      background: var(--off-white); margin-bottom: 1.25rem;
-    }
-    .agrbox h3 {
-      font-size: .82rem; font-family: var(--font-body); font-weight: 700;
-      letter-spacing: .04em; text-transform: uppercase; color: var(--gray-400);
-      margin: 1.1rem 0 .3rem; line-height: 1.4;
-    }
-    .agrbox h3:first-child { margin-top: 0; }
-    .agrbox p { font-size: .86rem; line-height: 1.65; margin: 0 0 .5rem; }
-
-    .consent {
-      display: flex; align-items: flex-start; gap: .8rem;
-      border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: 1rem 1.1rem; margin-bottom: 1.25rem;
-      background: var(--white); cursor: pointer;
-      transition: border-color .18s ease, background .18s ease;
-    }
-    .consent:has(input:checked) { border-color: var(--green-dark); background: var(--green-pale); }
-    .consent input {
-      width: 20px; height: 20px; margin-top: .1rem; flex-shrink: 0;
-      accent-color: var(--green-dark); cursor: pointer;
-    }
-    .consent span { font-size: .9rem; line-height: 1.6; color: var(--gray-800); }
-
-    /* --- order summary rail --- */
-    .summary { position: sticky; top: 100px; }
-    .summary__line {
-      display: flex; justify-content: space-between; gap: 1rem;
-      font-size: .88rem; padding: .55rem 0; color: var(--gray-600);
-      border-bottom: 1px dashed var(--gray-200);
-    }
-    .summary__line b { color: var(--gray-800); font-weight: 600; text-align: right; }
-    .summary__total {
-      display: flex; justify-content: space-between; align-items: baseline;
-      gap: 1rem; margin-top: 1rem; padding-top: 1rem;
-      border-top: 2px solid var(--gray-800);
-    }
-    .summary__total span { font-weight: 700; font-size: .95rem; }
-    .summary__total b { font-size: 1.5rem; font-family: var(--font-display); color: var(--green-dark); }
-    .summary__then {
-      font-size: .82rem; color: var(--gray-600);
-      margin: .5rem 0 0; line-height: 1.55;
-    }
-    .summary__empty { font-size: .88rem; color: var(--gray-400); line-height: 1.6; }
-    .summary__note {
-      font-size: .78rem; line-height: 1.6; color: var(--gray-600);
-      background: var(--green-pale); border-radius: var(--radius-sm);
-      padding: .7rem .85rem; margin-top: 1rem;
-    }
-
-    #submitBtn { width: 100%; justify-content: center; margin-top: 1.25rem; }
-    #submitBtn[disabled] { opacity: .45; cursor: not-allowed; pointer-events: none; }
-    .pay__blockers {
-      font-size: .8rem; line-height: 1.6; color: #8a5a00;
-      background: #fff8e6; border: 1px solid #f0dca8;
-      border-radius: var(--radius-sm); padding: .7rem .85rem; margin-top: .9rem;
-    }
-    .pay__blockers ul { margin: .35rem 0 0 1rem; }
-    .pay__blockers li { list-style: disc; }
-
-    .pay__safety {
-      max-width: 68rem; margin: 2.5rem auto 0;
-      font-size: .82rem; line-height: 1.7; color: var(--gray-600);
-      border-top: 1px solid var(--gray-200); padding-top: 1.5rem;
-    }
-    .pay__safety b { color: var(--gray-800); }
-
-    /* City / State / ZIP belong on one line. The shared .form-row is a two-column
-       grid, which pushed ZIP onto its own half-width row. State and ZIP are both
-       short, so they get narrower tracks than the city. */
-    .pay__row3 { grid-template-columns: 2fr 1fr 1fr; }
-
-    @media (max-width: 900px) {
-      .pay__grid { grid-template-columns: 1fr; }
-      .pay__how { grid-template-columns: 1fr; gap: .75rem; margin-bottom: 2.5rem; }
-      .summary { position: static; }
-      .pay__panel { padding: 1.4rem; }
-    }
+    .start-page { min-height: 100vh; padding: 8rem 0 5rem; background: #050b07; color: #fff; }
+    .start-shell { max-width: 68rem; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+    .start-kicker { color: #7de3a4; font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .start-page h1 { margin: .75rem 0 1rem; color: #fff; font-size: clamp(2.7rem, 6vw, 5rem); line-height: .98; letter-spacing: -.045em; }
+    .start-page h1 span { color: #e7c85f; }
+    .start-copy { max-width: 40rem; color: rgba(255,255,255,.66); font-size: 1.05rem; line-height: 1.75; }
+    .start-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+    .start-card { border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(8,19,12,.72); padding: 1.4rem; box-shadow: 0 28px 80px rgba(0,0,0,.35); }
+    .start-price { display: flex; align-items: baseline; gap: .5rem; padding-bottom: 1.1rem; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .start-price b { color: #e7c85f; font-family: 'Playfair Display', serif; font-size: 4rem; line-height: .9; }
+    .start-price span { color: rgba(255,255,255,.5); font-weight: 700; }
+    .start-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .8rem; }
+    .start-list li { position: relative; padding-left: 1.5rem; color: rgba(255,255,255,.78); line-height: 1.55; }
+    .start-list li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 4px; border-left: 2px solid #7de3a4; border-bottom: 2px solid #7de3a4; transform: rotate(-45deg); }
+    .start-note { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.42); font-size: .82rem; line-height: 1.6; }
+    .start-steps { margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .start-step { border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 1rem; background: rgba(255,255,255,.035); }
+    .start-step b { display: block; color: #7de3a4; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .45rem; }
+    .start-step p { margin: 0; color: rgba(255,255,255,.66); font-size: .88rem; line-height: 1.55; }
+    @media (max-width: 900px) { .start-shell { grid-template-columns: 1fr; } .start-steps { grid-template-columns: 1fr; } }
   </style>
   <script src="analytics.js?v=2"></script>
 </head>
-<body class="light-top">
+<body>
   <a href="#main" class="skip-link">Skip to main content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
@@ -233,348 +49,62 @@
             <span class="nav__logo-sub">Solutions Team</span>
           </div>
         </a>
-
         <ul class="nav__links" role="list">
-          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="automation-command.html">Automation Command Center</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
-          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
-          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+          <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
         </ul>
-
-        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
-
-        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <a href="contact.html?want=employees-front-desk" class="btn btn-primary nav__cta" data-sku="employees-front-desk">Start AI Employee</a>
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
-
-      <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
-        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-employees.html">AI Employee &mdash; $497/mo ✦</a></li><li><a href="automation-command.html">Automation Command Center</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
-        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
-        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
-        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+        <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+        <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+        <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        <li style="padding:.5rem 1rem"><a href="contact.html?want=employees-front-desk" class="btn btn-primary" style="width:100%;justify-content:center" data-sku="employees-front-desk">Start AI Employee</a></li>
       </ul>
     </div>
   </nav>
 
-  <main id="main" class="pay">
+  <main id="main" class="start-page">
     <div class="container">
-      <div class="pay__head">
-        <p class="section-label">Payment Portal</p>
-        <h1>Start your plan.</h1>
-        <p>Confirm the plan, agree the terms, and we send you an invoice &mdash; normally within one business day.
-          Payment is by bank transfer, so there is no card fee taken out of your budget and
-          <b>no payment details are ever entered on this website</b>.</p>
-      </div>
-
-      <div class="pay__how">
-        <div>
-          <b>Step 1 &middot; Now</b>
-          <p>Confirm the plan and accept the service agreement. Takes about two minutes.</p>
-        </div>
-        <div>
-          <b>Step 2 &middot; Within 1 business day</b>
-          <p>Jaden emails your invoice with the bank transfer details and your order reference on it.</p>
-        </div>
-        <div>
-          <b>Step 3 &middot; Once it clears</b>
-          <p>We book your kickoff call and the build starts. Monthly plans stay month-to-month.</p>
-        </div>
-      </div>
-
-      <form id="orderForm" action="https://api.web3forms.com/submit" method="POST" novalidate
-            aria-label="Order and service agreement">
-        <!-- web3forms delivery. Same access key as the contact form, which is verified working. -->
-        <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
-        <input type="hidden" name="to" value="jaden@greenaidigital.com" />
-        <input type="hidden" name="from_name" value="GreenAI Website — Payment Portal" />
-        <input type="hidden" name="subject" value="💵 New Order — GreenAI Solutions Team" />
-        <input type="hidden" name="redirect" id="redirectField" value="https://greenaidigital.com/thankyou.html" />
-        <!-- Honeypot. Real people never see it, bots fill it in. -->
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <!-- Machine-readable order record, filled in by JS on every change. -->
-        <input type="hidden" name="order_reference"      id="f_ref" />
-        <input type="hidden" name="plan_selected"        id="f_plan" />
-        <input type="hidden" name="plan_sku"             id="f_sku" />
-        <input type="hidden" name="website_care_addon"   id="f_addon" />
-        <input type="hidden" name="due_now"              id="f_due" />
-        <input type="hidden" name="recurring"            id="f_recur" />
-        <input type="hidden" name="billing_cadence"      id="f_cadence" />
-        <input type="hidden" name="setup_fee"            id="f_setup" />
-        <input type="hidden" name="agreement_version"    id="f_agrver" value="1.1" />
-        <input type="hidden" name="agreement_accepted"   id="f_agrok" value="no" />
-        <input type="hidden" name="agreement_accepted_at" id="f_agrat" />
-        <input type="hidden" name="payment_method"       value="Bank transfer (ACH) against emailed invoice" />
-
-        <div class="pay__grid">
-          <div>
-            <!-- ============ 1 · PLAN ============ -->
-            <section class="pay__panel" aria-labelledby="s1">
-              <div class="pay__step"><span class="pay__step-n" aria-hidden="true">1</span>
-                <h2 id="s1">What you are paying for</h2></div>
-
-              <fieldset class="cadence">
-                <legend>Billing</legend>
-                <label class="cadence__opt"><input type="radio" name="cadence" value="monthly" checked />
-                  <span><b>Monthly</b><i>Month-to-month, cancel any time</i></span></label>
-                <label class="cadence__opt"><input type="radio" name="cadence" value="yearly" />
-                  <span><b>Yearly &mdash; 2 months free</b><i>Pay for 10, get 12</i></span></label>
-              </fieldset>
-
-              <div class="pay__group">
-                <b>The plan</b>
-                <label class="plan"><input type="radio" name="plan" value="employees-front-desk" checked />
-                  <span class="plan__body"><span class="plan__top"><span class="plan__name">AI Employee</span>
-                    <span class="plan__price">$497/mo</span></span>
-                    <p class="plan__detail">One AI employee that answers every call, text and web form in 8 seconds,
-                      day and night. Books straight into your calendar, texts back every missed call, and keeps
-                      following up until they reply. Unlimited leads, no per-call charge, setup included.</p></span></label>
-                <p class="pay__custom">That is the whole price list for the AI employee. Websites, ad creative and
-                  AI systems are priced on <a href="services.html">their own pages</a> and invoiced separately &mdash;
-                  <a href="contact.html?want=quote">ask</a> and we will sort it out with you.</p>
-              </div>
-
-            </section>
-
-            <!-- ============ 2 · DETAILS ============ -->
-            <section class="pay__panel" aria-labelledby="s2">
-              <div class="pay__step"><span class="pay__step-n" aria-hidden="true">2</span>
-                <h2 id="s2">Who is this for?</h2></div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fname">First name *</label>
-                  <input type="text" id="fname" name="first_name" required autocomplete="given-name" placeholder="Jane" />
-                </div>
-                <div class="form-group">
-                  <label for="lname">Last name *</label>
-                  <input type="text" id="lname" name="last_name" required autocomplete="family-name" placeholder="Smith" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="business">Business name *</label>
-                <input type="text" id="business" name="business" required autocomplete="organization"
-                       placeholder="e.g. Smith's Salon" />
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="email">Email * <span style="font-weight:400;color:var(--gray-400)">— the invoice goes here</span></label>
-                  <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" />
-                </div>
-                <div class="form-group">
-                  <label for="phone">Phone *</label>
-                  <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(480) 555-0100" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="addr">Billing address *</label>
-                <input type="text" id="addr" name="billing_street" required autocomplete="street-address"
-                       placeholder="123 E Main St" />
-              </div>
-              <div class="form-row pay__row3">
-                <div class="form-group">
-                  <label for="city">City *</label>
-                  <input type="text" id="city" name="billing_city" required autocomplete="address-level2" placeholder="Gilbert" />
-                </div>
-                <div class="form-group">
-                  <label for="state">State *</label>
-                  <input type="text" id="state" name="billing_state" required autocomplete="address-level1"
-                         placeholder="AZ" maxlength="24" />
-                </div>
-                <div class="form-group">
-                  <label for="zip">ZIP *</label>
-                  <input type="text" id="zip" name="billing_zip" required autocomplete="postal-code"
-                         placeholder="85296" inputmode="numeric" maxlength="10" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="notes">Anything we should know?</label>
-                <textarea id="notes" name="notes" placeholder="Your deadline, your trade, the thing that's actually broken…"></textarea>
-              </div>
-            </section>
-
-            <!-- ============ 3 · AGREEMENT ============ -->
-            <section class="pay__panel" aria-labelledby="s3">
-              <div class="pay__step"><span class="pay__step-n" aria-hidden="true">3</span>
-                <h2 id="s3">The agreement</h2></div>
-
-              <p style="font-size:.9rem;line-height:1.7;margin-bottom:1rem">Here are the terms that matter most, in
-                plain English. This is a summary —
-                <a href="agreement.html" target="_blank" rel="noopener"><b>read the full Service Agreement (v1.1)</b></a>,
-                which opens in a new tab and is what you are actually agreeing to.</p>
-
-              <div class="agrbox" tabindex="0" role="region" aria-label="Summary of key terms">
-                <h3>You can leave whenever you want</h3>
-                <p>Monthly plans are month-to-month. No minimum term, no lock-in, no cancellation fee. Cancel by email
-                  or phone and it stops at the end of the month you already paid for.</p>
-                <h3>You own what we build</h3>
-                <p>Your site, your ad creative, your copy, your configurations, your data — yours once it is paid for,
-                  to keep or take elsewhere. We keep only our own internal tools and templates.</p>
-                <h3>We do not promise results</h3>
-                <p>We do not guarantee a number of leads, calls, sales or a search ranking. Those depend on your
-                  market, your pricing and your follow-through. Any figure we discuss beforehand is an estimate.</p>
-                <h3>Advertising spend is separate</h3>
-                <p>Ad plans cover making the ads. What you spend to run them goes straight to the platform, at cost,
-                  never marked up by us. Same for any CRM, phone number or licence your setup needs — we tell you
-                  before a cost is incurred.</p>
-                <h3>How you pay</h3>
-                <p>By bank transfer against the invoice we email you. Monthly plans bill monthly in advance. Work
-                  starts once the first payment clears. We will never ask you for a card number, a banking password or
-                  a one-time code — if a message claims to be us and does, call (480) 798-0753 first.</p>
-                <h3>Setup fees and paying yearly</h3>
-                <p>Website subscriptions carry a one-off setup fee that pays for the build — charged once, never
-                  again. Paying a year ahead costs ten months for twelve, and still creates no lock-in: cancel and
-                  we refund the whole months you have not used.</p>
-                <h3>If you stop a website subscription</h3>
-                <p>You keep the site. Files handed over, hosting and domain moved into your name. Nothing is
-                  switched off or reverted — what stops is the ongoing work you were paying for.</p>
-                <h3>Refunds</h3>
-                <p>You cancel forward, not backward: a month in progress is not refunded. On one-time projects you get
-                  a full refund before we start, or a partial refund for work not yet done. Ad spend already placed
-                  cannot come back.</p>
-                <h3>If something goes wrong</h3>
-                <p>Our total liability is capped at the fees you paid us in the previous three months. Arizona law
-                  governs, Maricopa County courts, and we both agree to spend 30 days trying to sort it out directly
-                  before anyone files anything.</p>
-              </div>
-
-              <label class="consent" for="agree">
-                <input type="checkbox" id="agree" />
-                <span>I have read and agree to the
-                  <a href="agreement.html" target="_blank" rel="noopener">Service Agreement (v1.1)</a>,
-                  the <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a> and the
-                  <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. I confirm I am authorised to
-                  enter this agreement for the business named above. *</span>
-              </label>
-
-              <div class="form-group">
-                <label for="sig">Type your full name to sign *</label>
-                <input type="text" id="sig" name="signature_name" required autocomplete="off"
-                       placeholder="Jane Smith" />
-                <p style="font-size:.78rem;color:var(--gray-600);margin:.45rem 0 0;line-height:1.55">
-                  Typing your name here is a legally binding signature under the federal ESIGN Act and Arizona&rsquo;s
-                  Electronic Transactions Act. We record the version you accepted and the date and time, and will send
-                  you that record on request.</p>
-              </div>
-            </section>
+      <div class="start-shell">
+        <section>
+          <p class="start-kicker">Ready to start</p>
+          <h1>The AI Employee is <span>$497/mo.</span></h1>
+          <p class="start-copy">It answers every call, text, and form lead in about 8 seconds, books the job, and follows up when the lead goes quiet. This static site does not collect payment details.</p>
+          <div class="start-actions">
+            <a href="contact.html?want=employees-front-desk" class="btn btn-primary btn-lg" data-sku="employees-front-desk">Send start request &rarr;</a>
+            <a href="catch.html" class="btn btn-white btn-lg">Watch it catch a lead</a>
           </div>
+          <div class="start-steps" aria-label="What happens next">
+            <div class="start-step"><b>Step 1</b><p>Send the start request with your business details.</p></div>
+            <div class="start-step"><b>Step 2</b><p>Jaden confirms fit and sends the next steps directly.</p></div>
+            <div class="start-step"><b>Step 3</b><p>You complete onboarding so the AI can learn your business.</p></div>
+          </div>
+        </section>
 
-          <!-- ============ SUMMARY RAIL ============ -->
-          <aside class="pay__panel summary" aria-labelledby="sumh">
-            <div class="pay__step"><span class="pay__step-n" aria-hidden="true">&#8721;</span>
-              <h2 id="sumh">Your order</h2></div>
-
-            <div id="sumLines" aria-live="polite">
-              <p class="summary__empty">Pricing up your order&hellip;</p>
-            </div>
-
-            <div id="sumTotals" hidden>
-              <div class="summary__total"><span>Due on the invoice</span><b id="sumDue">$0</b></div>
-              <p class="summary__then" id="sumThen"></p>
-            </div>
-
-            <p class="summary__note">Order reference <b id="refOut">—</b><br />
-              Quote this on your transfer and we will match it to your account straight away.</p>
-
-            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
-              Submit order &amp; request invoice
-            </button>
-
-            <div class="pay__blockers" id="blockers" hidden>
-              <b>Before you can submit:</b>
-              <ul id="blockerList"></ul>
-            </div>
-          </aside>
-        </div>
-      </form>
-
-      <p class="pay__safety">
-        <b>Why there is no card form on this page.</b> greenaidigital.com is a static website, so it has no server that
-        could process a payment, and handling card numbers in a web page would require PCI DSS Level&nbsp;1 compliance
-        that a small business has no business carrying. Bank transfer moves your money directly to us with no processor
-        in the middle and no percentage taken off the top &mdash; on a $497 plan a card rail would quietly cost about $15 a
-        month. If you would rather pay by card, say so on your order and we will send a hosted card link instead.
-      </p>
+        <aside class="start-card" aria-label="AI Employee offer summary">
+          <div class="start-price"><b>$497</b><span>per month</span></div>
+          <ul class="start-list" role="list">
+            <li>Answers calls, texts, and web forms</li>
+            <li>Books into your calendar</li>
+            <li>Follows up with missed and quiet leads</li>
+            <li>Trained on your services, hours, tone, and service area</li>
+            <li>Month to month with direct access to Jaden</li>
+          </ul>
+          <p class="start-note">No card number or bank information is collected on this page. Payment setup happens only through a separate hosted or direct process confirmed by Jaden.</p>
+        </aside>
+      </div>
     </div>
   </main>
 
   <footer class="footer" aria-label="Site footer">
     <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
-            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
-            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
-          </a>
-          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
-          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
-        </div>
-
-        <div>
-          <h5>Navigation</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="testimonials.html">Work</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="pay.html">Start a plan</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Services</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="service-ai-employees.html" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li><li><a href="automation-command.html" style="color:#D4AF37;font-weight:600">Automation Command Center</a></li>
-            <li><a href="catch.html">Watch it catch a lead</a></li>
-            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
-            <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
-            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
-            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Contact Us</h5>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div>
-              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div>
-              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div>Gilbert, Arizona 85296</div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-            <div>
-              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
-              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer__legal">
-        <a href="privacy.html">Privacy Policy</a>
-        <span style="color:rgba(255,255,255,.25)">·</span>
-        <a href="terms.html">Terms of Service</a>
-        <span style="color:rgba(255,255,255,.25)">·</span>
-        <a href="agreement.html">Service Agreement</a>
-      </div>
-
       <div class="footer__bottom">
         <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
         <span class="footer__bottom-right">Built with AI. Powered by results.</span>
@@ -582,289 +112,6 @@
     </div>
   </footer>
   <script src="script.js?v=10"></script>
-  <script>
-  /* ==========================================================================
-     Portal logic. Three jobs: price the order, gate the submit button on a
-     complete and signed form, and write everything into hidden fields so the
-     email Jaden receives is a full record of what was agreed.
-     ========================================================================== */
-  (function () {
-    'use strict';
-
-    /* price   = the recurring rate per month, or the whole fee for a one-time item
-       setup   = a one-off charge due with the first invoice, on top
-       monthly = true if `price` recurs                                        */
-    var PLANS = {
-      'employees-front-desk':   { name: 'AI Employee',                          price: 497,  monthly: true },
-      'employees-front-follow': { name: 'AI Employees — Front & Follow-Up',      price: 897,  monthly: true },
-      'employees-full-desk':    { name: 'AI Employees — Full Desk',              price: 1497, monthly: true },
-      'ads-starter':            { name: 'AI Ad Creation — Starter (10 ads)',     price: 697,  monthly: true },
-      'ads-growth':             { name: 'AI Ad Creation — Growth (25 ads)',      price: 1297, monthly: true },
-      'ads-scale':              { name: 'AI Ad Creation — Scale (60 ads)',       price: 2497, monthly: true },
-      'consulting':             { name: 'AI Business Consulting',                price: 750,  monthly: true },
-      'web-sub-launch':         { name: 'Website — Launch (5 pages)',            price: 197,  monthly: true,  setup: 397 },
-      'web-sub-growth':         { name: 'Website — Growth (10 pages)',           price: 347,  monthly: true,  setup: 997 },
-      'web-starter':            { name: 'Web Design — Starter site (5 pages)',   price: 500,  monthly: false },
-      'web-business':           { name: 'Web Design — Business site (10 pages)', price: 1500, monthly: false }
-    };
-    var CARE = { name: 'Website care plan', price: 150, monthly: true };
-
-    /* Yearly is ten months' rate for twelve months' service. Applied to every
-       recurring line, never to a setup fee or a one-time build. */
-    var YEAR_MONTHS = 10;
-
-    var form   = document.getElementById('orderForm');
-    var care   = document.getElementById('addonCare');
-    var agree  = document.getElementById('agree');
-    var sig    = document.getElementById('sig');
-    var btn    = document.getElementById('submitBtn');
-
-    var money = function (n) { return '$' + n.toLocaleString('en-US'); };
-
-    /* ---- order reference ----
-       Human-quotable and unique enough to match a bank transfer to an order.
-       Generated in the browser, so it exists before the form is sent and the
-       customer sees the same string we do. */
-    function makeRef() {
-      var d = new Date();
-      var p = function (n) { return String(n).padStart(2, '0'); };
-      var stamp = '' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate());
-      var chars = 'ACDEFHJKLMNPRTUVWXY349', tail = '';
-      var rand = new Uint8Array(4);
-      if (window.crypto && window.crypto.getRandomValues) {
-        window.crypto.getRandomValues(rand);
-      } else {
-        for (var k = 0; k < 4; k++) { rand[k] = Math.floor(Math.random() * 256); }
-      }
-      for (var i = 0; i < 4; i++) { tail += chars.charAt(rand[i] % chars.length); }
-      return 'GA-' + stamp + '-' + tail;
-    }
-    var REF = makeRef();
-    document.getElementById('refOut').textContent = REF;
-    document.getElementById('f_ref').value = REF;
-    /* Carry the reference to the confirmation page so it is shown after submit. */
-    document.getElementById('redirectField').value =
-      'https://greenaidigital.com/thankyou.html?order=' + encodeURIComponent(REF);
-
-    function selectedPlan() {
-      var r = form.querySelector('input[name="plan"]:checked');
-      return r ? { sku: r.value, plan: PLANS[r.value] } : null;
-    }
-
-    function cadence() {
-      var r = form.querySelector('input[name="cadence"]:checked');
-      return r ? r.value : 'monthly';
-    }
-
-    /* ---- price the order ----
-       Three kinds of money, kept apart on purpose so nobody is surprised by the
-       first invoice: a one-off setup, the recurring rate, and a one-time build. */
-    function renderSummary() {
-      var sel = selectedPlan();
-      var lines = document.getElementById('sumLines');
-      var totals = document.getElementById('sumTotals');
-      var yearly = cadence() === 'yearly';
-
-      if (!sel) {
-        lines.innerHTML = '<p class="summary__empty">Nothing selected yet. Pick a plan on the left and it will ' +
-                          'price up here.</p>';
-        totals.hidden = true;
-        ['f_plan','f_sku','f_due','f_recur','f_setup','f_cadence'].forEach(function (id) {
-          document.getElementById(id).value = '';
-        });
-        return;
-      }
-
-      var html = '', due = 0, recurMonthly = 0, setup = 0;
-      /* Recurring items are billed for 12 months but charged for 10 when yearly. */
-      var mult = yearly ? YEAR_MONTHS : 1;
-      var per = yearly ? '/yr' : '/mo';
-
-      if (sel.plan.setup) {
-        setup += sel.plan.setup;
-        html += '<div class="summary__line"><span>' + sel.plan.name + ' — build (one-off)</span><b>' +
-                money(sel.plan.setup) + '</b></div>';
-        due += sel.plan.setup;
-      }
-
-      if (sel.plan.monthly) {
-        html += '<div class="summary__line"><span>' + sel.plan.name + '</span><b>' +
-                money(sel.plan.price * mult) + per + '</b></div>';
-        due += sel.plan.price * mult;
-        recurMonthly += sel.plan.price;
-      } else {
-        html += '<div class="summary__line"><span>' + sel.plan.name + '</span><b>' +
-                money(sel.plan.price) + '</b></div>';
-        due += sel.plan.price;
-      }
-
-      if (care && care.checked) {
-        html += '<div class="summary__line"><span>' + CARE.name + '</span><b>' +
-                money(CARE.price * mult) + per + '</b></div>';
-        due += CARE.price * mult;
-        recurMonthly += CARE.price;
-      }
-      lines.innerHTML = html;
-
-      document.getElementById('sumDue').textContent = money(due);
-
-      /* Say plainly what recurs and when it next lands. */
-      var then;
-      if (recurMonthly === 0) {
-        then = 'One-time. Nothing recurring.';
-      } else if (yearly) {
-        then = 'Covers 12 months for the price of ' + YEAR_MONTHS + '. Renews in a year at ' +
-               money(recurMonthly * YEAR_MONTHS) + ', and you can stop before it does.';
-        if (setup) { then = money(setup) + ' of that is the one-off build. ' + then; }
-      } else {
-        then = 'Then ' + money(recurMonthly) + ' a month, month-to-month. Cancel any time.';
-        if (setup) { then = money(setup) + ' of that is the one-off build, charged once. ' + then; }
-      }
-      document.getElementById('sumThen').textContent = then;
-      totals.hidden = false;
-
-      document.getElementById('f_plan').value    = sel.plan.name + (care && care.checked ? ' + ' + CARE.name : '');
-      document.getElementById('f_sku').value     = sel.sku + (care && care.checked ? ' + web-maintenance' : '');
-      document.getElementById('f_addon').value   = (care && care.checked) ? 'Yes — $150/mo website care' : 'No';
-      document.getElementById('f_cadence').value = recurMonthly ? (yearly ? 'Yearly (2 months free)' : 'Monthly')
-                                                                : 'One-time';
-      document.getElementById('f_setup').value   = setup ? money(setup) + ' one-off build fee' : 'None';
-      document.getElementById('f_due').value     = money(due) + ' on the first invoice';
-      document.getElementById('f_recur').value   = recurMonthly
-        ? (yearly ? money(recurMonthly * YEAR_MONTHS) + '/yr' : money(recurMonthly) + '/mo')
-        : 'None';
-    }
-
-    /* ---- gate the submit button ----
-       The button is disabled until the order is actually complete, and the page
-       says plainly what is missing rather than failing silently on click. */
-    var REQUIRED = [
-      ['fname',    'your first name'],
-      ['lname',    'your last name'],
-      ['business', 'your business name'],
-      ['email',    'your email address'],
-      ['phone',    'your phone number'],
-      ['addr',     'your billing address'],
-      ['city',     'your city'],
-      ['state',    'your state'],
-      ['zip',      'your ZIP code']
-    ];
-
-    function validate() {
-      var missing = [];
-
-      if (!selectedPlan()) { missing.push('choose a plan'); }
-
-      REQUIRED.forEach(function (pair) {
-        var el = document.getElementById(pair[0]);
-        if (!el.value.trim()) { missing.push('enter ' + pair[1]); }
-      });
-
-      var email = document.getElementById('email');
-      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
-        missing.push('check your email address — it does not look complete');
-      }
-
-      /* A phone number is only useful if it has enough digits to dial. */
-      var phone = document.getElementById('phone');
-      if (phone.value.trim() && (phone.value.replace(/\D/g, '').length < 10)) {
-        missing.push('enter a full 10-digit phone number');
-      }
-
-      if (!agree.checked) { missing.push('tick the box to accept the agreement'); }
-      if (!sig.value.trim()) { missing.push('type your full name to sign'); }
-      else if (sig.value.trim().length < 3) { missing.push('type your full name to sign'); }
-
-      var box = document.getElementById('blockers');
-      var list = document.getElementById('blockerList');
-      if (missing.length) {
-        list.innerHTML = missing.map(function (m) {
-          return '<li>' + m.replace(/[<>&]/g, '') + '</li>';
-        }).join('');
-        box.hidden = false;
-        btn.disabled = true;
-      } else {
-        box.hidden = true;
-        btn.disabled = false;
-      }
-
-      /* Record acceptance only while the box is genuinely ticked. */
-      document.getElementById('f_agrok').value = agree.checked ? 'yes' : 'no';
-      document.getElementById('f_agrat').value = agree.checked
-        ? new Date().toISOString() + '  (' + new Date().toString() + ')'
-        : '';
-    }
-
-    /* The website subscriptions already include ongoing changes, so offering the
-       separate care plan alongside one would charge twice for the same work. */
-    /* Keep every price label honest about the cadence that is actually selected.
-       The toggle used to say "yearly" while each card still read "/mo", and only
-       the order rail told the truth. */
-    function syncPrices() {
-      var yearly = cadence() === 'yearly';
-      form.querySelectorAll('input[name="plan"]').forEach(function (r) {
-        var p = PLANS[r.value];
-        if (!p) { return; }
-        var el = r.closest('.plan').querySelector('.plan__price');
-        if (!el) { return; }
-        if (!p.monthly) {
-          el.textContent = money(p.price) + ' once';
-        } else if (p.setup) {
-          el.textContent = money(p.setup) + ' setup + ' +
-            (yearly ? money(p.price * YEAR_MONTHS) + '/yr' : money(p.price) + '/mo');
-        } else {
-          el.textContent = yearly ? money(p.price * YEAR_MONTHS) + '/yr'
-                                  : money(p.price) + '/mo';
-        }
-      });
-      var careEl = document.getElementById('carePlan');
-      if (careEl) {
-        var cp = careEl.querySelector('.plan__price');
-        if (cp) {
-          cp.textContent = '+' + (yearly ? money(CARE.price * YEAR_MONTHS) + '/yr'
-                                         : money(CARE.price) + '/mo');
-        }
-      }
-    }
-
-    function syncCare() {
-      var sel = selectedPlan();
-      var included = !!(sel && sel.plan.setup);   /* only the web-sub-* plans carry a setup */
-      var row = document.getElementById('carePlan');
-      var note = document.getElementById('careNote');
-      if (!care) { return; }                       /* the add-on is not offered on this page */
-      if (included && care.checked) { care.checked = false; }
-      care.disabled = included;
-      if (row)  { row.hidden = included; }
-      if (note) { note.hidden = !included; }
-    }
-
-    function refresh() { syncPrices(); syncCare(); renderSummary(); validate(); }
-
-    form.addEventListener('change', refresh);
-    form.addEventListener('input', refresh);
-
-    /* Preselect from a buy button elsewhere on the site: pay.html?sku=ads-growth */
-    (function preselect() {
-      var m = /[?&]sku=([^&]+)/.exec(window.location.search);
-      if (!m) { return; }
-      var sku = decodeURIComponent(m[1]);
-      if (sku === 'web-maintenance') { if (care) { care.checked = true; } return; }
-      var r = form.querySelector('input[name="plan"][value="' + sku.replace(/"/g, '') + '"]');
-      if (r) {
-        r.checked = true;
-        r.closest('.plan').scrollIntoView({ block: 'center' });
-      }
-    })();
-
-    /* Stop a double submit from creating two orders with the same reference. */
-    form.addEventListener('submit', function () {
-      btn.disabled = true;
-      btn.textContent = 'Sending your order…';
-    });
-
-    refresh();
-  })();
-  </script>
+  <script src="checkout.js?v=1"></script>
 </body>
 </html>
