@@ -74,6 +74,16 @@
     'web-sub-flagship': true   /* $597/mo with the setup quoted      */
   };
 
+  /* pay.html sells exactly one plan right now (the one-price rule — see
+     project memory). Any other SKU has no matching radio there, so
+     pay.html?sku=X would silently land the buyer on the $497 AI Employee
+     plan instead of what they clicked. Only send SKUs here that pay.html
+     can actually preselect; everything else goes to the contact form,
+     same as a quote. */
+  var PORTAL_READY = {
+    'employees-front-desk': true
+  };
+
   function wire(root) {
     var nodes = (root || document).querySelectorAll('[data-sku]');
 
@@ -100,8 +110,14 @@
         el.setAttribute('href', card);
         el.setAttribute('rel', 'noopener');
         el.removeAttribute('title');
-      } else {
+        return;
+      }
+
+      if (PORTAL_READY[sku]) {
         el.setAttribute('href', PORTAL + '?sku=' + encodeURIComponent(sku));
+        el.removeAttribute('title');
+      } else {
+        el.setAttribute('href', 'contact.html?want=' + encodeURIComponent(sku));
         el.removeAttribute('title');
       }
     });
@@ -119,7 +135,8 @@
       if (QUOTE_ONLY[sku]) { return 'contact.html?want=' + encodeURIComponent(sku); }
       var card = this.cardLinkFor(sku);
       if (card === null) { return 'contact.html?want=' + encodeURIComponent(sku); }
-      return card || (PORTAL + '?sku=' + encodeURIComponent(sku));
+      if (card) { return card; }
+      return PORTAL_READY[sku] ? (PORTAL + '?sku=' + encodeURIComponent(sku)) : ('contact.html?want=' + encodeURIComponent(sku));
     }
   };
 
