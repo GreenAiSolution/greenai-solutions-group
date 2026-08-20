@@ -7,7 +7,7 @@
   <meta name="description" content="Ten, twenty-five or sixty finished ads a month, delivered ready to run, captions burned in, and you own every file. From $697/mo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Archivo+Black&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=20" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -35,18 +35,133 @@
     }
     .svc-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; justify-content: center; }
     .agentic-hero { min-height:720px; display:flex; align-items:center; padding:145px 0 82px; background:radial-gradient(circle at 72% 45%,#174c2c 0,#092014 38%,#040b07 72%); }
-    .agentic-hero .svc-hero-grid { display:grid; grid-template-columns:minmax(0,.88fr) minmax(460px,1.12fr); align-items:center; gap:3.25rem; }
+    .agentic-hero .svc-hero-grid { display:grid; grid-template-columns:minmax(0,.95fr) minmax(440px,1.05fr); align-items:center; gap:3.25rem; }
     .agentic-hero .svc-hero-copy { text-align:left; position:relative; z-index:2; }
     .agentic-hero .svc-lede { margin-left:0; margin-right:0; font-size:1.08rem; }
     .agentic-hero .svc-cta-row { justify-content:flex-start; }
-    .agentic-art { position:relative; margin:0; border-radius:30px; padding:10px; background:linear-gradient(145deg,rgba(212,175,55,.7),rgba(76,175,110,.08) 45%,rgba(125,227,164,.5)); box-shadow:0 40px 100px rgba(0,0,0,.5); transform:perspective(1200px) rotateY(-3deg); }
-    .agentic-art::before { content:''; position:absolute; inset:-34px; z-index:-1; background:radial-gradient(circle,rgba(76,175,110,.28),transparent 66%); filter:blur(18px); }
-    .agentic-art img { width:100%; height:500px; object-fit:cover; border-radius:22px; border:1px solid rgba(255,255,255,.12); }
-    .agentic-art__hud { position:absolute; left:28px; right:28px; bottom:26px; display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; padding:1rem 1.1rem; border:1px solid rgba(255,255,255,.15); border-radius:16px; background:rgba(3,11,7,.78); backdrop-filter:blur(16px); }
-    .agentic-art__hud small { display:block; color:#7de3a4; font-size:.58rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
-    .agentic-art__hud strong { display:block; color:#fff; margin-top:.25rem; font-size:.9rem; }
-    .agentic-art__pulse { width:9px; height:9px; border-radius:50%; background:#7de3a4; box-shadow:0 0 0 6px rgba(125,227,164,.12),0 0 22px #7de3a4; animation:agentPulse 2s ease-in-out infinite; }
+    .agentic-art__pulse { width:9px; height:9px; border-radius:50%; background:#7de3a4; box-shadow:0 0 0 6px rgba(125,227,164,.12),0 0 22px #7de3a4; animation:agentPulse 2s ease-in-out infinite; flex-shrink:0; }
     @keyframes agentPulse { 50% { box-shadow:0 0 0 11px rgba(125,227,164,0),0 0 30px #7de3a4; } }
+
+    /* ---- hero: one idea, three formats — a fan of finished ad frames ---- */
+    .adfan { position:relative; display:grid; place-items:center; min-height:560px; }
+    .adfan > * { grid-area:1/1; }
+    .adframe {
+      margin:0; border-radius:18px; overflow:hidden; position:relative;
+      background:#0b2114; border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 30px 70px rgba(0,0,0,.55);
+      display:flex; flex-direction:column; color:#fff;
+      transition:transform .9s cubic-bezier(.22,1,.36,1);
+    }
+    .adframe__bar { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .8rem; font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#7de3a4; border-bottom:1px solid rgba(255,255,255,.09); }
+    .adframe__bar .mute { color:rgba(255,255,255,.55); letter-spacing:0; font-size:.62rem; }
+    .adframe__stage { flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.1rem; position:relative; }
+    .adframe__hook { font-family:'Playfair Display',serif; font-weight:800; line-height:1.12; color:#fff; }
+    .adframe__cap { align-self:flex-start; margin-top:.7rem; background:rgba(0,0,0,.82); color:#fff; font-size:.62rem; font-weight:700; padding:.32rem .55rem; border-radius:6px; letter-spacing:.02em; }
+    .adframe__prog { height:3px; background:rgba(255,255,255,.16); }
+    .adframe__prog i { display:block; height:100%; background:#7de3a4; }
+    .adframe--reel { width:250px; aspect-ratio:9/16; z-index:3; transform:rotate(4deg) translateX(56px); background:linear-gradient(178deg,#0d2a17 0%,#08170e 55%,#241207 130%); }
+    .adframe--reel .adframe__hook { font-size:1.45rem; }
+    .adframe--reel .adframe__prog i { width:34%; }
+    .adframe--feed { width:270px; aspect-ratio:1/1; z-index:2; transform:rotate(-6deg) translate(-118px,-118px); background:linear-gradient(160deg,#0a1f12,#051009 70%); }
+    .adframe--feed .adframe__hook { font-size:1.3rem; }
+    .adframe--feed .adframe__prog i { width:62%; }
+    .adframe--wide { width:330px; aspect-ratio:16/9; z-index:1; transform:rotate(2deg) translate(44px,206px); background:linear-gradient(115deg,#0a1f12,#0e2416 60%,#123018); }
+    .adframe--wide .adframe__hook { font-size:1.05rem; }
+    .adframe--wide .adframe__prog i { width:81%; }
+    .adfan:hover .adframe--reel { transform:rotate(2deg) translateX(56px) translateY(-8px); }
+    .adfan:hover .adframe--feed { transform:rotate(-8deg) translate(-124px,-124px); }
+    .adfan:hover .adframe--wide { transform:rotate(3deg) translate(48px,212px); }
+    .adfan__hud { position:absolute; left:50%; bottom:-8px; transform:translateX(-50%); display:flex; align-items:center; gap:.65rem; white-space:nowrap; padding:.6rem 1rem; border:1px solid rgba(255,255,255,.15); border-radius:100px; background:rgba(3,11,7,.82); backdrop-filter:blur(12px); font-size:.62rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#7de3a4; z-index:4; }
+
+    /* ---- the angle wall: seven specimen ads, one per hook type ---------- */
+    #angles { background:#07110b; color:#dff3e6; overflow:hidden; }
+    #angles .section-label { color:#7de3a4; }
+    #angles h2 { color:#fff; }
+    #angles .wall-lede { color:rgba(223,243,230,.75); max-width:640px; margin:0 auto 3rem; line-height:1.75; }
+    .wall { columns:3; column-gap:1.4rem; max-width:1080px; margin:0 auto; }
+    .adtile {
+      margin:0 0 1.4rem; break-inside:avoid; border-radius:16px; overflow:hidden;
+      position:relative; display:flex; flex-direction:column;
+      border:1px solid rgba(255,255,255,.1); box-shadow:0 18px 44px rgba(0,0,0,.45);
+      transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s;
+    }
+    .wall .adtile:nth-child(3n+1) { transform:rotate(-1.4deg); }
+    .wall .adtile:nth-child(3n+2) { transform:rotate(1.1deg); }
+    .wall .adtile:nth-child(3n)   { transform:rotate(-.6deg); }
+    .wall .adtile:hover { transform:rotate(0) translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,.6); z-index:2; }
+    .adtile__meta { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .85rem; font-size:.55rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .adtile__meta .fmt { opacity:.7; letter-spacing:.08em; }
+    .adtile__body { flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.15rem; }
+    .adtile__hook { font-family:'Playfair Display',serif; font-weight:800; line-height:1.14; }
+    .adtile__sub { margin-top:.55rem; font-size:.72rem; font-weight:600; opacity:.85; line-height:1.5; }
+    .adtile__cap { align-self:flex-start; margin-top:.75rem; background:rgba(0,0,0,.82); color:#fff; font-size:.6rem; font-weight:700; padding:.3rem .55rem; border-radius:6px; }
+    .adtile__prog { height:3px; background:rgba(255,255,255,.15); }
+    .adtile__prog i { display:block; height:100%; background:currentColor; }
+
+    .adtile--problem { aspect-ratio:9/14; color:#ffb27d; background:linear-gradient(184deg,#0d2a17 0%,#0a1c10 46%,#3a1c09 125%); }
+    .adtile--problem .adtile__body::before { content:''; position:absolute; top:14%; right:-18%; width:190px; height:190px; border-radius:50%; background:radial-gradient(circle,rgba(232,111,58,.55),rgba(232,111,58,.14) 55%,transparent 70%); pointer-events:none; }
+    .adtile--problem .adtile__hook { font-size:1.5rem; color:#fff; }
+    .adtile--problem .adtile__prog i { width:28%; }
+
+    .adtile--question { aspect-ratio:1/1; color:#7de3a4; background:radial-gradient(circle at 30% 20%,#0f2818,#050d08 75%); }
+    .adtile--question .adtile__body::before { content:'?'; position:absolute; top:-6%; right:4%; font-family:'Playfair Display',serif; font-weight:800; font-size:9rem; line-height:1; color:rgba(125,227,164,.14); pointer-events:none; }
+    .adtile--question .adtile__hook { font-size:1.35rem; color:#fff; font-family:Inter,sans-serif; font-weight:800; letter-spacing:-.01em; }
+    .adtile--question .adtile__prog i { width:52%; }
+
+    .adtile--split { aspect-ratio:4/5; color:#2a241a; background:linear-gradient(155deg,#b7a98f 0 49.6%,#1a5c2a 50.4% 100%); }
+    .adtile--split .adtile__body { justify-content:space-between; }
+    .adtile--split .word { font-family:'Archivo Black',Inter,sans-serif; font-size:1.5rem; letter-spacing:.02em; text-transform:uppercase; }
+    .adtile--split .word--after { color:#fff; align-self:flex-end; text-align:right; }
+    .adtile--split .daychip { align-self:center; background:rgba(0,0,0,.78); color:#fff; font-size:.6rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:.35rem .7rem; border-radius:100px; }
+    .adtile--split .adtile__meta { color:#2a241a; }
+    .adtile--split .adtile__prog { background:rgba(0,0,0,.25); } .adtile--split .adtile__prog i { width:70%; color:#0d2a17; }
+
+    .adtile--founder { aspect-ratio:9/14; color:#ff6b6b; background:linear-gradient(200deg,#122417,#080f0a 70%); }
+    .adtile--founder .adtile__hook { font-size:1.22rem; color:#fff; font-family:Inter,sans-serif; font-weight:700; }
+    .adtile--founder .rec { display:inline-flex; align-items:center; gap:.4rem; color:#ff6b6b; }
+    .adtile--founder .rec::before { content:''; width:7px; height:7px; border-radius:50%; background:#ff6b6b; animation:agentPulse 1.6s ease-in-out infinite; }
+    .adtile--founder .corners { position:absolute; inset:12px; pointer-events:none; }
+    .adtile--founder .corners::before, .adtile--founder .corners::after { content:''; position:absolute; width:20px; height:20px; border:2px solid rgba(255,255,255,.4); }
+    .adtile--founder .corners::before { top:0; left:0; border-right:0; border-bottom:0; }
+    .adtile--founder .corners::after { bottom:0; right:0; border-left:0; border-top:0; }
+    .adtile--founder .adtile__prog i { width:44%; }
+
+    .adtile--quote { aspect-ratio:1/1.05; color:#6d5716; background:#f4efe3; border-color:rgba(0,0,0,.08); }
+    .adtile--quote .adtile__hook { font-size:1.3rem; color:#21281f; font-style:italic; }
+    .adtile--quote .stars { margin-top:.7rem; color:#b8860b; font-size:.85rem; letter-spacing:.2em; }
+    .adtile--quote .adtile__sub { color:#5a5648; opacity:1; }
+    .adtile--quote .adtile__prog { background:rgba(0,0,0,.12); } .adtile--quote .adtile__prog i { width:58%; color:#b8860b; }
+
+    .adtile--offer { aspect-ratio:4/5; color:#1c1608; background:linear-gradient(170deg,#e6c34c,#c99f2b); }
+    .adtile--offer .adtile__body { justify-content:center; text-align:center; }
+    .adtile--offer .adtile__body::before { content:''; position:absolute; inset:12px; border:2px dashed rgba(28,22,8,.4); border-radius:12px; pointer-events:none; }
+    .adtile--offer .adtile__hook { font-family:'Archivo Black',Inter,sans-serif; font-size:2.5rem; color:#1c1608; line-height:1.02; letter-spacing:-.01em; }
+    .adtile--offer .adtile__sub { color:#3a2f10; opacity:1; font-weight:700; }
+    .adtile--offer .adtile__prog { background:rgba(0,0,0,.22); } .adtile--offer .adtile__prog i { width:88%; color:#1c1608; }
+
+    .adtile--urgency { aspect-ratio:9/13; color:#7de3a4; background:linear-gradient(190deg,#0a1f12,#04150b 60%,#001007); }
+    .adtile--urgency .adtile__body::before { content:'3'; position:absolute; top:-3%; right:5%; font-family:'Archivo Black',Inter,sans-serif; font-size:8.5rem; line-height:1; color:rgba(125,227,164,.13); pointer-events:none; }
+    .adtile--urgency .slots { align-self:flex-start; margin-bottom:.7rem; background:#7de3a4; color:#04150b; font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; padding:.35rem .65rem; border-radius:6px; }
+    .adtile--urgency .adtile__hook { font-size:1.32rem; color:#fff; }
+    .adtile--urgency .adtile__prog i { width:91%; }
+
+    .wall-note { max-width:760px; margin:2.6rem auto 0; text-align:center; font-size:.85rem; line-height:1.7; color:rgba(223,243,230,.6); }
+    .wall-note a { color:#7de3a4; text-decoration:underline; }
+
+    /* reveal: JS adds .wall-live, tiles rise in; without JS everything shows */
+    .wall-live .adtile { opacity:0; transform:translateY(26px); animation:tileUp .7s cubic-bezier(.22,1,.36,1) forwards; }
+    .wall-live .adtile:nth-child(1){animation-delay:.05s}.wall-live .adtile:nth-child(2){animation-delay:.14s}.wall-live .adtile:nth-child(3){animation-delay:.23s}.wall-live .adtile:nth-child(4){animation-delay:.32s}.wall-live .adtile:nth-child(5){animation-delay:.41s}.wall-live .adtile:nth-child(6){animation-delay:.5s}.wall-live .adtile:nth-child(7){animation-delay:.59s}
+    @keyframes tileUp { to { opacity:1; transform:translateY(0); } }
+    .wall-live .adtile:nth-child(3n+1){animation-name:tileUpA} @keyframes tileUpA { to { opacity:1; transform:rotate(-1.4deg) translateY(0); } }
+    .wall-live .adtile:nth-child(3n+2){animation-name:tileUpB} @keyframes tileUpB { to { opacity:1; transform:rotate(1.1deg) translateY(0); } }
+    .wall-live .adtile:nth-child(3n){animation-name:tileUpC} @keyframes tileUpC { to { opacity:1; transform:rotate(-.6deg) translateY(0); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .adframe, .adfan:hover .adframe--reel, .adfan:hover .adframe--feed, .adfan:hover .adframe--wide { transition:none; }
+      .wall-live .adtile { animation:none; opacity:1; transform:none; }
+      .wall .adtile:nth-child(n) { transform:none; }
+      .agentic-art__pulse, .adtile--founder .rec::before { animation:none; }
+    }
 
     .svc-two { display: grid; grid-template-columns: 1.35fr .9fr; gap: 3.5rem; align-items: start; }
     .svc-two { text-align: left; }
@@ -120,16 +235,32 @@
     .svc-end h2, .svc-end p { color: #fff; }
     .svc-end p { color: rgba(255,255,255,.72); }
 
+    @media (max-width: 1120px) {
+      .adframe--reel { transform:rotate(4deg) translateX(30px); }
+      .adframe--feed { transform:rotate(-6deg) translate(-96px,-110px); }
+      .adframe--wide { transform:rotate(2deg) translate(30px,200px); }
+    }
     @media (max-width: 900px) {
       .agentic-hero { min-height:0; }
       .agentic-hero .svc-hero-grid { grid-template-columns:1fr; }
-      .agentic-art { transform:none; }
-      .agentic-art img { height:auto; aspect-ratio:16/10; }
+      .adfan { min-height:0; margin-top:1.5rem; padding-bottom:2.2rem; }
+      .adfan > * { grid-area:auto; }
+      .adfan { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:1.1rem; }
+      .adframe--reel, .adframe--feed, .adframe--wide { transform:rotate(0); }
+      .adframe--reel { transform:rotate(2deg); }
+      .adframe--feed { transform:rotate(-2deg); }
+      .adframe--wide { display:none; }
+      .adfan__hud { bottom:-6px; }
+      .wall { columns:2; }
       .svc-two { grid-template-columns: 1fr; gap: 2rem; }
       .svc-inc { grid-template-columns: 1fr; }
       .buyrow { grid-template-columns: 1fr; gap: .85rem; }
       .buyrow__price, .buyrow__price small { text-align: left; }
       .buyrow .btn { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      .wall { columns:1; max-width:340px; }
+      .adframe--feed { display:none; }
     }
   </style>
   <script type="application/ld+json">
@@ -203,7 +334,7 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
           <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -219,7 +350,7 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-web-design.html">Web Design &amp; Development</a></li><li><a href="service-ai-ads.html">AI Ad Creation</a></li><li><a href="service-ai-consulting.html">AI Business Consulting</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
         <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
         <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
         <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -231,16 +362,41 @@
   <!-- ===== HERO ===== -->
   <div class="page-hero agentic-hero" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative;z-index:1"><div class="svc-hero-grid">
-      <div class="svc-hero-copy"><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> Service 02 · AI Ad Creation</div>
+      <div class="svc-hero-copy"><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> The Ad Desk · finished creative, monthly</div>
         <h1>One product.<br/>A month of angles.</h1>
         <p class="svc-lede" style="color:rgba(255,255,255,.75)">Targeting is automated. Bidding is automated. Placement is automated. Creative is the last thing the platforms have not taken over — and it is the one thing most businesses make exactly one of.</p>
         <span class="svc-flag">★ About $52 an ad at the Growth tier · you own every file</span>
         <div class="svc-cta-row"><a class="btn btn-primary btn-lg buy" data-sku="ads-growth" href="contact.html">Start Growth — 25 ads, $1,297/mo</a><a class="btn btn-secondary btn-lg" href="#how" style="color:#fff;border-color:rgba(255,255,255,.45)">How it works ↓</a></div>
       </div>
-      <figure class="agentic-art"><img src="art/agentic-ads.webp" alt="An AI creative director orchestrating a field of campaign concepts and cinematic ad variations" width="1600" height="840" loading="eager" fetchpriority="high"/><figcaption class="agentic-art__hud"><span><small>Creative engine · generating</small><strong>Hooks → scenes → variants → winners</strong></span><i class="agentic-art__pulse" aria-hidden="true"></i></figcaption></figure>
+      <div class="adfan" role="img" aria-label="One ad idea shown as three finished formats: a vertical 15-second reel, a square feed cut and a wide 30-second story cut, each with captions burned in">
+        <figure class="adframe adframe--wide"><div class="adframe__bar"><span>16:9 &middot; 0:30 &middot; story cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">The 30-second version, for people who stay.</p><span class="adframe__cap">same idea &middot; longer cut</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--feed"><div class="adframe__bar"><span>1:1 &middot; feed cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Monsoon-ready.<br/>One visit.</p><span class="adframe__cap">square, for the feed</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--reel"><div class="adframe__bar"><span>9:16 &middot; 0:15 &middot; reel</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Your yard, monsoon&#8209;ready in one visit.</p><span class="adframe__cap">captions burned in — the feed plays on mute</span></div><div class="adframe__prog"><i></i></div></figure>
+        <div class="adfan__hud"><span>One idea &rarr; every format</span><i class="agentic-art__pulse" aria-hidden="true"></i></div>
+      </div>
     </div>
     </div>
   </div>
+
+  <section class="section" id="angles" aria-labelledby="angles-h">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">The Spread</span>
+        <h2 id="angles-h">One idea never gets one ad here.<br/>It gets the whole wall.</h2>
+        <p class="wall-lede">Seven ways every batch attacks the same idea — the problem, the question, the before-and-after, the testimonial style, the founder cut, the offer, the clock. Nobody can tell you in advance which one your market clicks on. The wall is how you find out.</p>
+      </div>
+      <div class="wall">
+        <figure class="adtile adtile--problem"><div class="adtile__meta"><span>Angle 01 &middot; The Problem</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">Your yard survived the summer. Barely.</p><span class="adtile__cap">monsoon cleanup, booked this week</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--quote"><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true">★★★★★</div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--urgency"><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--question"><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--offer"><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--founder"><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--split"><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
+      </div>
+      <p class="wall-note">These specimens are written for Eagle Landscaping — the fictional demo business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. Your batch is written for your business, from your brief, and you approve every hook before production.</p>
+    </div>
+  </section>
 
   <section class="section" id="svc-main" aria-labelledby="what-h">
     <div class="container">
@@ -391,9 +547,9 @@
             <li><a href="pay.html?sku=employees-front-desk" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
             <li><a href="catch.html">Watch it catch a lead</a></li>
             <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
-            <li><a href="service-web-design.html">Web Design &amp; Development</a></li>
+            
             <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
-            <li><a href="service-ai-consulting.html">AI Business Consulting</a></li>
+            
           </ul>
         </div>
 
@@ -440,7 +596,22 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
-  <script src="checkout.js?v=1"></script>
+  <script src="script.js?v=12"></script>
+  <script src="checkout.js?v=2"></script>
+  <script>
+  /* The wall rises in on scroll. The animation class is only ever ADDED by
+     this script, so no JS (or reduced motion) means the tiles simply show. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var wall = document.querySelector('.wall');
+    if (!wall || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { wall.classList.add('wall-live'); io.disconnect(); }
+      });
+    }, { threshold: 0.15 });
+    io.observe(wall);
+  })();
+  </script>
 </body>
 </html>

@@ -43,15 +43,7 @@
   var QUOTE_ONLY = {
     'ads-starter': true,
     'ads-growth': true,
-    'ads-scale': true,
-    'consulting': true,
-    'web-sub-launch': true,
-    'web-sub-growth': true,
-    'web-premium': true,
-    'web-sub-flagship': true,
-    'web-starter': true,
-    'web-business': true,
-    'web-maintenance': true
+    'ads-scale': true
   };
 
   /* pay.html sells exactly one plan right now (the one-price rule — see

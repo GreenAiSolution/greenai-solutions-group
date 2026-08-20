@@ -3,129 +3,239 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onboarding — Start Your AI Employee | GreenAI Solutions Team</title>
-  <meta name="description" content="Tell us how your business answers the phone — trade, hours, services, prices and service area. This is the exact information your AI employee is trained on. About 3 minutes, no payment details." />
+  <title>Welcome Aboard — Start Your AI Employee | GreenAI Solutions Team</title>
+  <meta name="description" content="Board in four short steps — mostly clicks, barely any typing. Your AI employee answers every call in 8 seconds for $497/mo. No payment details collected here." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=20" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="canonical" href="https://greenaidigital.com/start.html" />
   <style>
-    /* Dark page — every element states its own colour (body ink is for white pages). */
-    .ob-page { min-height: 100vh; padding: 7.5rem 0 5rem; background:
-      radial-gradient(900px 420px at 80% 8%, rgba(76,175,110,.13), transparent 60%), #050b07; color: rgba(255,255,255,.78); position: relative; overflow: hidden; }
-    .ob-page::before { content:''; position:absolute; inset:0; pointer-events:none;
-      background: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 56px 56px; }
-    .ob-shell { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; }
-    .ob-kicker { color:#7de3a4; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
-    .ob-shell h1 { margin:.7rem 0 .9rem; color:#fff; font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.02; letter-spacing:-.04em; }
-    .ob-shell h1 span { color:#e7c85f; }
-    .ob-lede { max-width:56ch; color:rgba(255,255,255,.62); font-size:1rem; line-height:1.75; }
+    /* ==========================================================================
+       BOARDING — the onboarding as stepping onto a night yacht.
+       Dark page: every element states its own colour (body ink is white-page ink).
+       ======================================================================= */
+    .yb-page { position:relative; overflow:hidden; min-height:100vh; padding:7.25rem 0 6.5rem;
+      background:
+        radial-gradient(560px 340px at 76% 10%, rgba(240,223,160,.12), transparent 65%), /* moon glow */
+        radial-gradient(1100px 520px at 18% 4%, rgba(76,175,110,.1), transparent 60%),
+        linear-gradient(180deg, #030806 0%, #050b07 46%, #071710 78%, #0a2417 100%);
+      color: rgba(255,255,255,.78); }
 
-    /* The console panel the form lives in — same vocabulary as the homepage. */
-    .ob-console { margin-top:2.25rem; border:1px solid rgba(255,255,255,.12); border-radius:20px; background:rgba(8,19,12,.72); backdrop-filter:blur(18px); box-shadow:0 30px 100px rgba(0,0,0,.36); overflow:hidden; }
-    .ob-top { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.4rem; border-bottom:1px solid rgba(255,255,255,.09); }
-    .ob-top__title { display:flex; align-items:center; gap:.55rem; color:rgba(255,255,255,.72); font-size:.64rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    .ob-top__dot { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 16px #7de3a4; animation:obPulse 2.2s ease-in-out infinite; }
-    .ob-top__ref { color:rgba(255,255,255,.35); font:600 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; }
-    @keyframes obPulse { 50% { opacity:.45; box-shadow:0 0 7px #7de3a4; } }
+    /* Stars — two drifts of box-shadow points, far and near. */
+    .yb-stars, .yb-stars--far { position:absolute; inset:0; pointer-events:none; }
+    .yb-stars i, .yb-stars--far i { position:absolute; width:2px; height:2px; border-radius:50%; background:rgba(255,255,255,.7);
+      box-shadow: 6vw 12vh 0 rgba(255,255,255,.5), 14vw 6vh 0 rgba(255,255,255,.35), 23vw 18vh 0 rgba(255,255,255,.55),
+        31vw 4vh 0 rgba(255,255,255,.4), 38vw 14vh 0 rgba(255,255,255,.6), 47vw 8vh 0 rgba(255,255,255,.35),
+        55vw 16vh 0 rgba(255,255,255,.5), 63vw 5vh 0 rgba(255,255,255,.45), 71vw 11vh 0 rgba(255,255,255,.35),
+        83vw 15vh 0 rgba(255,255,255,.55), 91vw 7vh 0 rgba(255,255,255,.4), 96vw 19vh 0 rgba(255,255,255,.5);
+      animation: ybTwinkle 5.5s ease-in-out infinite; }
+    .yb-stars--far i { transform: translate(3vw, 9vh) scale(.6); opacity:.5; animation-delay: 2.7s; }
+    @keyframes ybTwinkle { 50% { opacity:.35; } }
 
-    /* Step rail */
-    .ob-rail { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid rgba(255,255,255,.09); }
-    .ob-rail__step { position:relative; padding:.85rem .6rem .8rem; text-align:center; color:rgba(255,255,255,.32); font:700 .58rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; text-transform:uppercase; }
-    .ob-rail__step::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:transparent; transition:background .3s ease; }
-    .ob-rail__step.is-now { color:#e7c85f; }
-    .ob-rail__step.is-now::after { background:linear-gradient(90deg,#e7c85f,#7de3a4); }
-    .ob-rail__step.is-done { color:#7de3a4; }
+    /* The moon. */
+    .yb-moon { position:absolute; top:74px; right:12%; width:64px; height:64px; border-radius:50%; pointer-events:none;
+      background: radial-gradient(circle at 38% 36%, #fdf6dc, #e7c85f 68%, rgba(231,200,95,.0) 72%);
+      box-shadow: 0 0 60px rgba(240,223,160,.4), 0 0 140px rgba(240,223,160,.18); }
 
-    .ob-body { padding:clamp(1.4rem,3.5vw,2.2rem); }
-    .ob-step[hidden] { display:none; }
-    .ob-step__title { margin:0 0 .35rem; color:#fff; font-family:Inter,sans-serif; font-size:1.15rem; font-weight:700; letter-spacing:-.01em; }
-    .ob-step__sub { margin:0 0 1.5rem; color:rgba(255,255,255,.5); font-size:.86rem; line-height:1.6; }
+    /* The sea — three drifting swell bands + a moonlit reflection column. */
+    .yb-sea { position:absolute; left:0; right:0; bottom:0; height:200px; pointer-events:none; overflow:hidden; }
+    .yb-sea::before { content:''; position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent, rgba(125,227,164,.06) 30%, rgba(10,36,23,.85)); }
+    .yb-swell { position:absolute; left:-50%; width:200%; height:26px; opacity:.5;
+      background: repeating-linear-gradient(90deg, transparent 0 34px, rgba(125,227,164,.16) 34px 68px);
+      border-radius:50%; filter: blur(1px); }
+    .yb-swell--1 { bottom:118px; animation: ybSwell 11s linear infinite; }
+    .yb-swell--2 { bottom:74px; opacity:.35; animation: ybSwell 17s linear infinite reverse; }
+    .yb-swell--3 { bottom:30px; opacity:.28; animation: ybSwell 23s linear infinite; }
+    @keyframes ybSwell { to { transform: translateX(68px); } }
+    .yb-glint { position:absolute; bottom:0; right:calc(12% - 34px); width:130px; height:170px; opacity:.5;
+      background: linear-gradient(180deg, rgba(240,223,160,.28), transparent 85%);
+      -webkit-mask-image: repeating-linear-gradient(180deg, black 0 5px, transparent 5px 11px);
+      mask-image: repeating-linear-gradient(180deg, black 0 5px, transparent 5px 11px);
+      animation: ybGlint 4.5s ease-in-out infinite; }
+    @keyframes ybGlint { 50% { opacity:.25; transform: translateX(5px); } }
 
-    .ob-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.05rem 1.2rem; }
-    .ob-field { display:flex; flex-direction:column; gap:.42rem; }
-    .ob-field--wide { grid-column:1/-1; }
-    .ob-field label { color:rgba(255,255,255,.8); font-size:.8rem; font-weight:700; }
-    .ob-field label small { color:rgba(255,255,255,.38); font-weight:500; }
-    .ob-field input, .ob-field select, .ob-field textarea {
-      width:100%; padding:.78rem .9rem; border:1px solid rgba(255,255,255,.16); border-radius:11px;
-      background:rgba(5,11,7,.6); color:#fff; font:500 .92rem/1.45 Inter,system-ui,sans-serif;
-      transition:border-color .2s ease, box-shadow .2s ease; }
-    .ob-field select { appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' fill='none' stroke='%237de3a4' stroke-width='1.6' stroke-linecap='round'/></svg>"); background-repeat:no-repeat; background-position:right .95rem center; }
-    .ob-field select option { background:#0a140d; color:#fff; }
-    .ob-field textarea { min-height:106px; resize:vertical; }
-    .ob-field input::placeholder, .ob-field textarea::placeholder { color:rgba(255,255,255,.28); }
-    .ob-field input:focus, .ob-field select:focus, .ob-field textarea:focus { outline:none; border-color:#7de3a4; box-shadow:0 0 0 3px rgba(125,227,164,.14); }
-    .ob-field.is-bad input, .ob-field.is-bad select, .ob-field.is-bad textarea { border-color:rgba(255,120,120,.65); }
-    .ob-field .ob-err { display:none; color:#ff9d9d; font-size:.72rem; }
-    .ob-field.is-bad .ob-err { display:block; }
+    /* The yacht — gold line art, riding the swell. */
+    .yb-yacht { position:absolute; bottom:96px; left:7%; width:min(300px,30vw); pointer-events:none; opacity:.9;
+      animation: ybRide 7s ease-in-out infinite; transform-origin: 50% 100%; }
+    .yb-yacht path, .yb-yacht line, .yb-yacht polyline { fill:none; stroke:#d9bc57; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .yb-yacht .hullfill { fill:rgba(217,188,87,.1); stroke:#d9bc57; }
+    .yb-yacht .cabin { stroke:rgba(217,188,87,.75); }
+    .yb-yacht .light { fill:#7de3a4; stroke:none; }
+    @keyframes ybRide { 0%,100% { transform: rotate(-1.1deg) translateY(0); } 50% { transform: rotate(1.1deg) translateY(-5px); } }
 
-    .ob-checks { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; }
-    .ob-check { position:relative; }
-    .ob-check input { position:absolute; opacity:0; pointer-events:none; }
-    .ob-check span { display:block; padding:.6rem .5rem; border:1px solid rgba(255,255,255,.14); border-radius:10px; background:rgba(255,255,255,.03); color:rgba(255,255,255,.6); font-size:.78rem; font-weight:600; text-align:center; cursor:pointer; transition:all .2s ease; }
-    .ob-check input:checked + span { border-color:rgba(125,227,164,.55); background:rgba(125,227,164,.1); color:#bdf0d2; }
-    .ob-check input:focus-visible + span { outline:2px solid #7de3a4; outline-offset:2px; }
+    /* ---- layout ---- */
+    .yb-shell { position:relative; z-index:2; max-width:71rem; margin:0 auto; display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(2rem,4.5vw,4rem); align-items:start; }
+    .yb-kicker { color:#e7c85f; font-size:.66rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
+    .yb-head h1 { margin:.6rem 0 .8rem; color:#fff; font-size:clamp(2.4rem,5.4vw,3.9rem); line-height:1; letter-spacing:-.04em; }
+    .yb-head h1 em { font-style:italic; color:#e7c85f; }
+    .yb-lede { max-width:52ch; color:rgba(255,255,255,.6); font-size:.99rem; line-height:1.75; }
 
-    .ob-nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:1.8rem; padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.08); }
-    .ob-back { background:none; border:0; color:rgba(255,255,255,.5); font:600 .85rem/1 Inter,sans-serif; cursor:pointer; padding:.6rem .4rem; }
-    .ob-back:hover { color:#fff; }
-    .ob-next, .ob-send { position:relative; display:inline-flex; align-items:center; gap:.55rem; padding:.95rem 1.6rem; border:0; border-radius:12px; background:linear-gradient(135deg,#1a5c2a,#2e8b47); color:#fff; font:700 .95rem/1 Inter,sans-serif; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
-    .ob-next:hover, .ob-send:hover { transform:translateY(-1px); box-shadow:0 14px 40px rgba(46,139,71,.35); }
-    .ob-send { background:linear-gradient(135deg,#c9a437,#e7c85f); color:#061008; }
-    .ob-send:disabled { opacity:.6; cursor:wait; transform:none; }
-    /* display:inline-flex above would override the hidden attribute. */
-    .ob-next[hidden], .ob-send[hidden], .ob-back[hidden] { display:none; }
-    .ob-note { margin:1.1rem 0 0; color:rgba(255,255,255,.38); font-size:.75rem; line-height:1.6; }
-    .ob-note a { color:rgba(255,255,255,.6); text-decoration:underline; text-underline-offset:2px; }
-    .ob-fail { display:none; margin-top:1rem; padding:.9rem 1.05rem; border:1px solid rgba(255,120,120,.4); border-radius:11px; background:rgba(255,100,100,.08); color:#ffc9c9; font-size:.84rem; line-height:1.6; }
-    .ob-fail.is-on { display:block; }
-    .ob-fail a { color:#fff; }
+    /* Gangway progress — four portholes on a railing. */
+    .yb-gang { display:flex; align-items:center; gap:0; margin:1.8rem 0 1.4rem; }
+    .yb-port { position:relative; width:34px; height:34px; border-radius:50%; flex:0 0 auto;
+      border:2px solid rgba(255,255,255,.2); background:rgba(8,19,12,.8); display:grid; place-items:center;
+      color:rgba(255,255,255,.4); font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; transition:all .35s ease; }
+    .yb-rail { height:2px; flex:1 1 auto; max-width:70px; background:rgba(255,255,255,.14); transition:background .35s ease; }
+    .yb-port.is-now { border-color:#e7c85f; color:#061008; background:#e7c85f; box-shadow:0 0 22px rgba(231,200,95,.45); }
+    .yb-port.is-done { border-color:rgba(125,227,164,.7); color:#7de3a4; }
+    .yb-rail.is-done { background:linear-gradient(90deg,#7de3a4,rgba(125,227,164,.35)); }
 
-    /* ---- Success state: the satisfying part ---- */
-    .ob-done { display:none; padding:clamp(2.2rem,5vw,3.2rem) clamp(1.4rem,3.5vw,2.2rem); text-align:center; }
-    .ob-done.is-on { display:block; }
-    .ob-done__ring { position:relative; width:96px; height:96px; margin:0 auto 1.4rem; }
-    .ob-done__ring svg { width:100%; height:100%; transform:rotate(-90deg); }
-    .ob-done__ring .ring-track { fill:none; stroke:rgba(255,255,255,.1); stroke-width:5; }
-    .ob-done__ring .ring-fill { fill:none; stroke:url(#obGrad); stroke-width:5; stroke-linecap:round; stroke-dasharray:264; stroke-dashoffset:264; }
-    .ob-done.is-on .ring-fill { animation:obRing .9s cubic-bezier(.6,0,.3,1) forwards; }
-    @keyframes obRing { to { stroke-dashoffset:0; } }
-    .ob-done__check { position:absolute; inset:0; display:grid; place-items:center; }
-    .ob-done__check svg { width:42px; height:42px; }
-    .ob-done__check path { fill:none; stroke:#7de3a4; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:40; stroke-dashoffset:40; filter:drop-shadow(0 0 10px rgba(125,227,164,.7)); }
-    .ob-done.is-on .ob-done__check path { animation:obCheck .5s .75s ease forwards; }
-    @keyframes obCheck { to { stroke-dashoffset:0; } }
-    .ob-done h2 { margin:0 0 .6rem; color:#fff; font-size:clamp(1.5rem,3.4vw,2.1rem); letter-spacing:-.02em; }
-    .ob-done p { margin:0 auto; max-width:44ch; color:rgba(255,255,255,.62); font-size:.95rem; line-height:1.7; }
-    .ob-done__ticker { margin:1.5rem auto 0; max-width:340px; text-align:left; display:grid; gap:.45rem; }
-    .ob-done__ticker span { color:rgba(255,255,255,.45); font:600 .68rem/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; opacity:0; transform:translateY(4px); }
-    .ob-done.is-on .ob-done__ticker span { animation:obTick .4s ease forwards; }
-    .ob-done.is-on .ob-done__ticker span:nth-child(1) { animation-delay:.55s; }
-    .ob-done.is-on .ob-done__ticker span:nth-child(2) { animation-delay:1.05s; }
-    .ob-done.is-on .ob-done__ticker span:nth-child(3) { animation-delay:1.55s; color:#7de3a4; }
-    @keyframes obTick { to { opacity:1; transform:none; } }
+    /* Crew greeter beside each deck's title. */
+    .yb-greet { display:flex; align-items:center; gap:.9rem; margin-bottom:1.3rem; }
+    .yb-greet img { width:58px; height:58px; object-fit:contain; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+    .yb-greet__bubble { position:relative; padding:.7rem 1rem; border:1px solid rgba(125,227,164,.3); border-radius:13px; background:rgba(125,227,164,.07); color:rgba(255,255,255,.86); font-size:.9rem; line-height:1.5; }
+    .yb-greet__bubble::before { content:''; position:absolute; left:-6px; top:50%; width:10px; height:10px; transform:translateY(-50%) rotate(45deg); border-left:1px solid rgba(125,227,164,.3); border-bottom:1px solid rgba(125,227,164,.3); background:#0a1911; }
+    .yb-greet__bubble b { color:#7de3a4; }
 
-    #obConfetti { position:fixed; inset:0; pointer-events:none; z-index:60; }
+    /* ---- decks (steps) ---- */
+    .yb-deck[hidden] { display:none; }
+    .yb-deck.is-in { animation: deckIn .55s cubic-bezier(.2,.75,.25,1) both; }
+    @keyframes deckIn { from { opacity:0; transform: translateX(46px); } to { opacity:1; transform:none; } }
+    .yb-deck legend, .yb-deck .yb-deck__title { color:#fff; font-family:'Playfair Display',serif; font-size:1.45rem; margin:0 0 .3rem; }
+    .yb-deck__sub { margin:0 0 1.3rem; color:rgba(255,255,255,.48); font-size:.86rem; }
 
-    @media (max-width:700px) { .ob-grid { grid-template-columns:1fr; } .ob-checks { grid-template-columns:repeat(2,1fr); } }
+    /* Trade picker — one click, big art cards. */
+    .yb-trades { display:grid; grid-template-columns:repeat(4,1fr); gap:.75rem; }
+    .yb-trade { position:relative; padding:1.05rem .6rem .95rem; border:1px solid rgba(255,255,255,.13); border-radius:15px;
+      background:rgba(8,19,12,.72); color:rgba(255,255,255,.78); font:600 .8rem/1.3 Inter,sans-serif; text-align:center;
+      cursor:pointer; transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease; }
+    .yb-trade i { display:block; font-style:normal; font-size:1.5rem; margin-bottom:.45rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+    .yb-trade:hover { transform:translateY(-3px); border-color:rgba(231,200,95,.55); background:rgba(231,200,95,.06); }
+    .yb-trade.is-picked { border-color:#e7c85f; background:rgba(231,200,95,.12); box-shadow:0 0 0 1px #e7c85f, 0 14px 40px rgba(0,0,0,.4); transform:scale(1.04); color:#fff; }
+    .yb-trade:focus-visible { outline:2px solid #7de3a4; outline-offset:2px; }
+
+    /* Chip groups (hours, channels, best time). */
+    .yb-chips { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .yb-chip { position:relative; }
+    .yb-chip input { position:absolute; opacity:0; pointer-events:none; }
+    .yb-chip span { display:inline-block; padding:.68rem 1.05rem; border:1px solid rgba(255,255,255,.16); border-radius:100px;
+      background:rgba(8,19,12,.72); color:rgba(255,255,255,.66); font:600 .82rem/1 Inter,sans-serif; cursor:pointer;
+      transition: all .2s ease; }
+    .yb-chip span:hover { border-color:rgba(231,200,95,.5); color:#fff; }
+    .yb-chip input:checked + span { border-color:#7de3a4; background:rgba(125,227,164,.13); color:#dffbea; box-shadow:0 0 18px rgba(125,227,164,.18); }
+    .yb-chip input:focus-visible + span { outline:2px solid #7de3a4; outline-offset:2px; }
+    .yb-chip--gold input:checked + span { border-color:#e7c85f; background:rgba(231,200,95,.13); color:#f7ecc4; box-shadow:0 0 18px rgba(231,200,95,.2); }
+    .yb-group { margin-bottom:1.5rem; }
+    .yb-group > label { display:block; margin-bottom:.6rem; color:rgba(255,255,255,.82); font-size:.82rem; font-weight:700; }
+    .yb-group > label small { color:rgba(255,255,255,.38); font-weight:500; }
+
+    /* The few real inputs that remain. */
+    .yb-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem 1.1rem; }
+    .yb-field { display:flex; flex-direction:column; gap:.4rem; }
+    .yb-field--wide { grid-column:1/-1; }
+    .yb-field label { color:rgba(255,255,255,.82); font-size:.8rem; font-weight:700; }
+    .yb-field label small { color:rgba(255,255,255,.38); font-weight:500; }
+    .yb-field input, .yb-field textarea { width:100%; padding:.8rem .95rem; border:1px solid rgba(255,255,255,.16); border-radius:12px;
+      background:rgba(5,11,7,.65); color:#fff; font:500 .93rem/1.45 Inter,system-ui,sans-serif; transition:border-color .2s ease, box-shadow .2s ease; }
+    .yb-field textarea { min-height:96px; resize:vertical; }
+    .yb-field input::placeholder, .yb-field textarea::placeholder { color:rgba(255,255,255,.26); }
+    .yb-field input:focus, .yb-field textarea:focus { outline:none; border-color:#e7c85f; box-shadow:0 0 0 3px rgba(231,200,95,.14); }
+    .yb-field.is-bad input { border-color:rgba(255,120,120,.65); }
+    .yb-field .yb-err { display:none; color:#ff9d9d; font-size:.72rem; }
+    .yb-field.is-bad .yb-err { display:block; }
+    .yb-more { margin-top:.4rem; border:1px dashed rgba(255,255,255,.18); border-radius:13px; }
+    .yb-more summary { padding:.85rem 1.05rem; cursor:pointer; color:rgba(255,255,255,.55); font-size:.83rem; font-weight:600; list-style:none; }
+    .yb-more summary::-webkit-details-marker { display:none; }
+    .yb-more summary::before { content:'⚓  '; }
+    .yb-more[open] summary { color:#e7c85f; border-bottom:1px dashed rgba(255,255,255,.14); }
+    .yb-more__body { padding:1rem 1.05rem 1.2rem; display:grid; gap:1rem; }
+
+    /* Nav buttons. */
+    .yb-nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:1.7rem; padding-top:1.3rem; border-top:1px solid rgba(255,255,255,.09); }
+    .yb-back { background:none; border:0; color:rgba(255,255,255,.5); font:600 .85rem/1 Inter,sans-serif; cursor:pointer; padding:.6rem .4rem; }
+    .yb-back:hover { color:#fff; }
+    .yb-next, .yb-send { display:inline-flex; align-items:center; gap:.55rem; padding:.95rem 1.7rem; border:0; border-radius:100px;
+      font:700 .95rem/1 Inter,sans-serif; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
+    .yb-next { background:linear-gradient(135deg,#1a5c2a,#2e8b47); color:#fff; }
+    .yb-next:hover { transform:translateY(-1px); box-shadow:0 14px 40px rgba(46,139,71,.35); }
+    .yb-send { background:linear-gradient(135deg,#c9a437,#e7c85f); color:#061008; box-shadow:0 10px 34px rgba(231,200,95,.25); }
+    .yb-send:hover { transform:translateY(-1px); box-shadow:0 16px 46px rgba(231,200,95,.4); }
+    .yb-send:disabled { opacity:.6; cursor:wait; transform:none; }
+    .yb-next[hidden], .yb-send[hidden], .yb-back[hidden] { display:none; }
+    .yb-note { margin:1rem 0 0; color:rgba(255,255,255,.38); font-size:.74rem; line-height:1.6; }
+    .yb-note a { color:rgba(255,255,255,.6); text-decoration:underline; text-underline-offset:2px; }
+    .yb-fail { display:none; margin-top:1rem; padding:.9rem 1.05rem; border:1px solid rgba(255,120,120,.4); border-radius:11px; background:rgba(255,100,100,.08); color:#ffc9c9; font-size:.84rem; line-height:1.6; }
+    .yb-fail.is-on { display:block; }
+    .yb-fail a { color:#fff; }
+
+    /* ---- THE BOARDING PASS — fills in live as they click. ---- */
+    .yb-pass { position:sticky; top:96px; border-radius:18px; overflow:hidden;
+      background:linear-gradient(160deg,#10190f 0%, #0b130b 55%, #131a0e 100%);
+      border:1px solid rgba(231,200,95,.4); box-shadow:0 34px 90px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+      transition: transform .5s ease, box-shadow .5s ease; }
+    .yb-pass__head { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid rgba(231,200,95,.3);
+      background:linear-gradient(90deg, rgba(231,200,95,.14), rgba(231,200,95,.03)); }
+    .yb-pass__line { color:#e7c85f; font:800 .64rem/1.3 Inter,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
+    .yb-pass__line small { display:block; color:rgba(255,255,255,.42); font:600 .56rem/1.4 ui-monospace,Menlo,monospace; letter-spacing:.12em; }
+    .yb-pass__head img { width:34px; height:34px; }
+    .yb-pass__body { padding:1.15rem 1.25rem .9rem; display:grid; gap:.8rem; }
+    .yb-pass__row small { display:block; color:rgba(255,255,255,.35); font:700 .56rem/1 ui-monospace,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.28rem; }
+    .yb-pass__row b { display:block; color:#fff; font:700 .95rem/1.3 Inter,sans-serif; min-height:1.2em; overflow-wrap:anywhere; }
+    .yb-pass__row b:empty::before, .yb-pass__row b.is-empty::before { content:'———'; color:rgba(255,255,255,.16); letter-spacing:.2em; }
+    .yb-pass__duo { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+    .yb-pass__fare b { color:#e7c85f; font-family:'Playfair Display',serif; font-size:1.35rem; }
+    .yb-pass__crew { display:flex; gap:.45rem; padding:.75rem 1.25rem; border-top:1px dashed rgba(255,255,255,.16); align-items:center; }
+    .yb-pass__crew img { width:30px; height:30px; object-fit:contain; opacity:.85; }
+    .yb-pass__crew small { margin-left:auto; color:rgba(255,255,255,.35); font:600 .56rem/1.4 ui-monospace,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; text-align:right; }
+    .yb-pass__strip { height:34px; margin:0 1.25rem 1.1rem; border-radius:5px; opacity:.55;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.75) 0 2px, transparent 2px 5px, rgba(255,255,255,.75) 5px 6px, transparent 6px 11px); }
+    /* punched notches on the perforation line */
+    .yb-pass__crew { position:relative; }
+    .yb-pass__crew::before, .yb-pass__crew::after { content:''; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%; background:#071710; border:1px solid rgba(231,200,95,.35); }
+    .yb-pass__crew::before { left:-10px; } .yb-pass__crew::after { right:-10px; }
+    /* the stamp */
+    .yb-stamp { position:absolute; top:38%; left:50%; z-index:3; padding:.5rem 1.3rem; border:3px solid #7de3a4; border-radius:10px;
+      color:#7de3a4; font:800 1.5rem/1 Inter,sans-serif; letter-spacing:.22em; text-transform:uppercase;
+      transform: translate(-50%,-50%) rotate(-14deg) scale(3); opacity:0; pointer-events:none;
+      text-shadow:0 0 22px rgba(125,227,164,.6); box-shadow:0 0 0 2px rgba(125,227,164,.25), inset 0 0 24px rgba(125,227,164,.14); }
+    .yb-pass.is-stamped .yb-stamp { animation: stampIn .45s cubic-bezier(.2,1.4,.4,1) forwards; }
+    @keyframes stampIn { to { opacity:1; transform: translate(-50%,-50%) rotate(-14deg) scale(1); } }
+    .yb-pass.is-stamped { transform: rotate(-1.6deg) scale(1.02); box-shadow:0 40px 110px rgba(0,0,0,.6), 0 0 60px rgba(125,227,164,.15); }
+
+    /* ---- success state ---- */
+    .yb-done { display:none; text-align:center; padding:1.4rem 0 0; }
+    .yb-done.is-on { display:block; animation: deckIn .5s ease both; }
+    .yb-done h2 { margin:.4rem 0 .6rem; color:#fff; font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.6vw,2.4rem); }
+    .yb-done h2 em { font-style:italic; color:#e7c85f; }
+    .yb-done p { margin:0 auto; max-width:46ch; color:rgba(255,255,255,.62); font-size:.95rem; line-height:1.7; }
+    .yb-done__ticker { margin:1.4rem auto 0; max-width:360px; text-align:left; display:grid; gap:.45rem; }
+    .yb-done__ticker span { color:rgba(255,255,255,.45); font:600 .68rem/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; opacity:0; transform:translateY(4px); }
+    .yb-done.is-on .yb-done__ticker span { animation: tickIn .4s ease forwards; }
+    .yb-done.is-on .yb-done__ticker span:nth-child(1) { animation-delay:.5s; }
+    .yb-done.is-on .yb-done__ticker span:nth-child(2) { animation-delay:1.05s; }
+    .yb-done.is-on .yb-done__ticker span:nth-child(3) { animation-delay:1.6s; color:#7de3a4; }
+    @keyframes tickIn { to { opacity:1; transform:none; } }
+    #ybConfetti { position:fixed; inset:0; pointer-events:none; z-index:60; }
+
+    /* ---- responsive ---- */
+    @media (max-width:980px) {
+      .yb-shell { grid-template-columns:1fr; }
+      .yb-pass { position:relative; top:0; order:2; max-width:420px; }
+      .yb-trades { grid-template-columns:repeat(3,1fr); }
+      .yb-yacht { opacity:.45; }
+    }
+    @media (max-width:560px) {
+      .yb-trades { grid-template-columns:repeat(2,1fr); }
+      .yb-grid { grid-template-columns:1fr; }
+      .yb-moon { right:6%; width:48px; height:48px; }
+    }
     @media (prefers-reduced-motion:reduce) {
-      .ob-top__dot { animation:none; }
-      .ob-done.is-on .ring-fill, .ob-done.is-on .ob-done__check path, .ob-done.is-on .ob-done__ticker span { animation:none; }
-      .ob-done.is-on .ring-fill { stroke-dashoffset:0; }
-      .ob-done.is-on .ob-done__check path { stroke-dashoffset:0; }
-      .ob-done.is-on .ob-done__ticker span { opacity:1; transform:none; }
+      .yb-stars i, .yb-stars--far i, .yb-swell, .yb-glint, .yb-yacht { animation:none; }
+      .yb-deck.is-in, .yb-done.is-on { animation:none; opacity:1; transform:none; }
+      .yb-done.is-on .yb-done__ticker span { animation:none; opacity:1; transform:none; }
+      .yb-pass.is-stamped .yb-stamp { animation:none; opacity:1; transform:translate(-50%,-50%) rotate(-14deg) scale(1); }
+      .yb-pass, .yb-trade, .yb-next, .yb-send { transition:none; }
     }
   </style>
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/start.html" />
-  <meta property="og:title" content="Onboarding — Start Your AI Employee | GreenAI Solutions Team" />
-  <meta property="og:description" content="Tell us how your business answers the phone. About 3 minutes, no payment details." />
+  <meta property="og:title" content="Welcome Aboard — Start Your AI Employee | GreenAI Solutions Team" />
+  <meta property="og:description" content="Board in four short steps — mostly clicks, barely any typing. No payment details collected here." />
   <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
   <script src="analytics.js?v=2"></script>
 </head>
@@ -163,180 +273,251 @@
     </div>
   </nav>
 
-  <main id="main" class="ob-page">
+  <main id="main" class="yb-page">
+    <div class="yb-stars" aria-hidden="true"><i></i></div>
+    <div class="yb-stars--far" aria-hidden="true"><i></i></div>
+    <div class="yb-moon" aria-hidden="true"></div>
+
+    <!-- The yacht -->
+    <svg class="yb-yacht" viewBox="0 0 300 150" aria-hidden="true">
+      <!-- hull -->
+      <path class="hullfill" d="M18 108 L282 108 L258 132 Q254 136 246 136 L60 136 Q46 136 38 128 Z"/>
+      <!-- deck + cabin -->
+      <path class="cabin" d="M74 108 L74 94 Q74 88 82 88 L170 88 Q178 88 178 94 L178 108"/>
+      <path class="cabin" d="M92 88 L92 76 Q92 71 99 71 L145 71 Q152 71 152 76 L152 88"/>
+      <!-- mast + rigging -->
+      <line x1="120" y1="71" x2="120" y2="14"/>
+      <polyline points="120 14 208 100"/>
+      <polyline points="120 14 44 100"/>
+      <!-- bow rail -->
+      <line x1="18" y1="108" x2="46" y2="96"/>
+      <!-- masthead + cabin lights -->
+      <circle class="light" cx="120" cy="12" r="3"/>
+      <circle class="light" cx="104" cy="80" r="2"/>
+      <circle class="light" cx="126" cy="80" r="2"/>
+      <circle class="light" cx="146" cy="80" r="2"/>
+    </svg>
+
+    <div class="yb-sea" aria-hidden="true">
+      <div class="yb-swell yb-swell--1"></div>
+      <div class="yb-swell yb-swell--2"></div>
+      <div class="yb-swell yb-swell--3"></div>
+      <div class="yb-glint"></div>
+    </div>
+
     <div class="container">
-      <div class="ob-shell">
-        <p class="ob-kicker">AI Employee &middot; Onboarding</p>
-        <h1>Tell us how <span>you</span> answer.</h1>
-        <p class="ob-lede">This is the exact information your AI employee is trained on &mdash; your trade, your hours, your prices, your questions. About 3 minutes. No payment details are collected here; Jaden replies the same business day with next steps and your first invoice.</p>
+      <div class="yb-shell">
+        <section aria-label="Boarding">
+          <p class="yb-kicker">GreenAI Line &middot; First-class boarding</p>
+          <div class="yb-head"><h1>Welcome <em>aboard.</em></h1></div>
+          <p class="yb-lede">Four short steps &mdash; mostly clicks, barely any typing. Your crew of four AI employees is already lined up on the gangway. No payment details are collected here; Jaden replies the same business day.</p>
 
-        <div class="ob-console">
-          <div class="ob-top">
-            <span class="ob-top__title"><i class="ob-top__dot" aria-hidden="true"></i> Intake &middot; AI Employee &middot; $497/mo</span>
-            <span class="ob-top__ref">REF <span data-ref>GA-&hellip;</span></span>
-          </div>
-          <div class="ob-rail" aria-hidden="true">
-            <div class="ob-rail__step is-now" data-rail="1">01 &middot; Your business</div>
-            <div class="ob-rail__step" data-rail="2">02 &middot; How you answer</div>
-            <div class="ob-rail__step" data-rail="3">03 &middot; You &amp; send</div>
+          <div class="yb-gang" aria-hidden="true">
+            <div class="yb-port is-now" data-port="1">I</div><div class="yb-rail" data-rail="1"></div>
+            <div class="yb-port" data-port="2">II</div><div class="yb-rail" data-rail="2"></div>
+            <div class="yb-port" data-port="3">III</div><div class="yb-rail" data-rail="3"></div>
+            <div class="yb-port" data-port="4">IV</div>
           </div>
 
-          <form class="ob-body" id="obForm" novalidate>
-            <!-- honeypot -->
+          <form id="ybForm" novalidate>
             <input type="checkbox" name="botcheck" tabindex="-1" style="display:none" aria-hidden="true" />
 
-            <!-- STEP 1 -->
-            <fieldset class="ob-step" data-step="1" style="border:0;margin:0;padding:0">
-              <legend class="ob-step__title">Your business</legend>
-              <p class="ob-step__sub">Who the AI employee works for.</p>
-              <div class="ob-grid">
-                <div class="ob-field">
-                  <label for="obBiz">Business name</label>
-                  <input id="obBiz" name="business_name" type="text" autocomplete="organization" required placeholder="e.g. Eagle Landscaping" />
-                  <span class="ob-err">We need the business name.</span>
+            <!-- DECK I — trade, one click -->
+            <fieldset class="yb-deck is-in" data-deck="1" style="border:0;margin:0;padding:0">
+              <div class="yb-greet">
+                <img src="agents/agent-sterling.svg" alt="" width="58" height="58" loading="eager" decoding="async"/>
+                <div class="yb-greet__bubble"><b>STERLING</b>, inbound sales. What line of work are we answering for? One click &mdash; I'll take it from there.</div>
+              </div>
+              <legend>Deck I &middot; Your trade</legend>
+              <p class="yb-deck__sub">Pick one. It advances on its own.</p>
+              <div class="yb-trades" role="listbox" aria-label="Pick your trade">
+                <button type="button" class="yb-trade" data-trade="Pool service"><i>💧</i>Pool service</button>
+                <button type="button" class="yb-trade" data-trade="Landscaping"><i>🌿</i>Landscaping</button>
+                <button type="button" class="yb-trade" data-trade="HVAC"><i>❄️</i>HVAC</button>
+                <button type="button" class="yb-trade" data-trade="Plumbing"><i>🔧</i>Plumbing</button>
+                <button type="button" class="yb-trade" data-trade="Electrical"><i>⚡</i>Electrical</button>
+                <button type="button" class="yb-trade" data-trade="Cleaning"><i>✨</i>Cleaning</button>
+                <button type="button" class="yb-trade" data-trade="Contractor / remodel"><i>🏗️</i>Contractor</button>
+                <button type="button" class="yb-trade" data-trade="Salon / spa"><i>💈</i>Salon / spa</button>
+                <button type="button" class="yb-trade" data-trade="Clinic / medical"><i>🩺</i>Clinic</button>
+                <button type="button" class="yb-trade" data-trade="Real estate"><i>🏡</i>Real estate</button>
+                <button type="button" class="yb-trade" data-trade="Restaurant"><i>🍽️</i>Restaurant</button>
+                <button type="button" class="yb-trade" data-trade="Auto services"><i>🚗</i>Auto services</button>
+                <button type="button" class="yb-trade" data-trade="Other"><i>⚓</i>Other</button>
+              </div>
+            </fieldset>
+
+            <!-- DECK II — the vessel's registry -->
+            <fieldset class="yb-deck" data-deck="2" hidden style="border:0;margin:0;padding:0">
+              <div class="yb-greet">
+                <img src="agents/agent-maven.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
+                <div class="yb-greet__bubble"><b>MAVEN</b>, front desk. Three lines for the ship's registry and you're through.</div>
+              </div>
+              <legend>Deck II &middot; The registry</legend>
+              <p class="yb-deck__sub">The only real typing on board.</p>
+              <div class="yb-grid">
+                <div class="yb-field yb-field--wide">
+                  <label for="ybBiz">Business name</label>
+                  <input id="ybBiz" name="business_name" type="text" autocomplete="organization" required placeholder="e.g. Eagle Landscaping" />
+                  <span class="yb-err">The registry needs a name.</span>
                 </div>
-                <div class="ob-field">
-                  <label for="obTrade">Trade / industry</label>
-                  <select id="obTrade" name="trade" required>
-                    <option value="" selected disabled>Pick the closest&hellip;</option>
-                    <option>Pool service</option>
-                    <option>Landscaping</option>
-                    <option>HVAC</option>
-                    <option>Plumbing</option>
-                    <option>Electrical</option>
-                    <option>Cleaning</option>
-                    <option>Contractor / remodel</option>
-                    <option>Salon / spa</option>
-                    <option>Clinic / medical</option>
-                    <option>Real estate</option>
-                    <option>Restaurant</option>
-                    <option>Auto services</option>
-                    <option>Other</option>
-                  </select>
-                  <span class="ob-err">Pick the closest trade.</span>
+                <div class="yb-field">
+                  <label for="ybArea">Home port <small>&mdash; city / service area</small></label>
+                  <input id="ybArea" name="service_area" type="text" required placeholder="e.g. Gilbert + East Valley" />
+                  <span class="yb-err">Where do you work?</span>
                 </div>
-                <div class="ob-field">
-                  <label for="obArea">City / service area</label>
-                  <input id="obArea" name="service_area" type="text" required placeholder="e.g. Gilbert + East Valley" />
-                  <span class="ob-err">Where do you work?</span>
-                </div>
-                <div class="ob-field">
-                  <label for="obBizPhone">Business phone <small>&mdash; the number customers call</small></label>
-                  <input id="obBizPhone" name="business_phone" type="tel" autocomplete="tel" required placeholder="(480) 555-0142" />
-                  <span class="ob-err">We need the line the AI will answer.</span>
-                </div>
-                <div class="ob-field ob-field--wide">
-                  <label for="obSite">Website <small>&mdash; optional</small></label>
-                  <input id="obSite" name="website" type="url" inputmode="url" placeholder="https://" />
+                <div class="yb-field">
+                  <label for="ybPhone">Line to answer <small>&mdash; the number customers call</small></label>
+                  <input id="ybPhone" name="business_phone" type="tel" autocomplete="tel" required placeholder="(480) 555-0142" />
+                  <span class="yb-err">We need the line your crew will answer.</span>
                 </div>
               </div>
             </fieldset>
 
-            <!-- STEP 2 -->
-            <fieldset class="ob-step" data-step="2" hidden style="border:0;margin:0;padding:0">
-              <legend class="ob-step__title">How you answer</legend>
-              <p class="ob-step__sub">Write it the way you would say it on the phone &mdash; this becomes your employee's script.</p>
-              <div class="ob-grid">
-                <div class="ob-field ob-field--wide">
-                  <label for="obServices">Your main services and typical prices</label>
-                  <textarea id="obServices" name="services_and_prices" required placeholder="Weekly pool cleaning — $120/mo&#10;Filter clean — $95&#10;Green-to-clean — quoted on site"></textarea>
-                  <span class="ob-err">List at least your main services — rough prices are fine.</span>
+            <!-- DECK III — how you run the ship (clicks) -->
+            <fieldset class="yb-deck" data-deck="3" hidden style="border:0;margin:0;padding:0">
+              <div class="yb-greet">
+                <img src="agents/agent-ledger.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
+                <div class="yb-greet__bubble"><b>LEDGER</b>, scheduling &amp; ops. Tap how you run the ship &mdash; no essays.</div>
+              </div>
+              <legend>Deck III &middot; How you run it</legend>
+              <p class="yb-deck__sub">All clicks. The anchor at the bottom is optional.</p>
+
+              <div class="yb-group">
+                <label>When are you open?</label>
+                <div class="yb-chips" data-need="hours">
+                  <label class="yb-chip yb-chip--gold"><input type="radio" name="hours_pick" value="Weekdays, business hours" /><span>Weekdays</span></label>
+                  <label class="yb-chip yb-chip--gold"><input type="radio" name="hours_pick" value="Weekdays + Saturday" /><span>Weekdays + Sat</span></label>
+                  <label class="yb-chip yb-chip--gold"><input type="radio" name="hours_pick" value="Every day" /><span>Every day</span></label>
+                  <label class="yb-chip yb-chip--gold"><input type="radio" name="hours_pick" value="24/7 — we take emergency calls" /><span>24/7 emergencies</span></label>
                 </div>
-                <div class="ob-field ob-field--wide">
-                  <label for="obQs">The questions you always ask a new customer <small>&mdash; optional</small></label>
-                  <textarea id="obQs" name="qualifying_questions" placeholder="Where are you located? Is it a repair or a new install? How soon do you need it?"></textarea>
+                <span class="yb-err" style="display:none;color:#ff9d9d;font-size:.72rem" data-err="hours">Tap one so your crew knows when you're open.</span>
+              </div>
+
+              <div class="yb-group">
+                <label>Where do leads come in today? <small>&mdash; tap all that apply</small></label>
+                <div class="yb-chips">
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Phone calls" /><span>Phone calls</span></label>
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Texts" /><span>Texts</span></label>
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Website form" /><span>Website form</span></label>
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Google" /><span>Google</span></label>
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Facebook / Instagram" /><span>FB / IG</span></label>
+                  <label class="yb-chip"><input type="checkbox" name="lead_channels" value="Referrals" /><span>Referrals</span></label>
                 </div>
-                <div class="ob-field">
-                  <label for="obHours">Business hours</label>
-                  <input id="obHours" name="hours" type="text" required placeholder="Mon–Fri 8–5, Sat 9–1" />
-                  <span class="ob-err">When are you open?</span>
-                </div>
-                <div class="ob-field">
-                  <label for="obCal">Calendar / scheduling tool <small>&mdash; optional</small></label>
-                  <input id="obCal" name="calendar_tool" type="text" placeholder="Google Calendar, Jobber, paper…" />
-                </div>
-                <div class="ob-field ob-field--wide">
-                  <label>Where leads come in today <small>&mdash; tick all that apply</small></label>
-                  <div class="ob-checks">
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Phone calls" /><span>Phone calls</span></label>
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Texts" /><span>Texts</span></label>
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Website form" /><span>Website form</span></label>
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Google" /><span>Google</span></label>
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Facebook / Instagram" /><span>FB / IG</span></label>
-                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Referrals" /><span>Referrals</span></label>
+              </div>
+
+              <details class="yb-more">
+                <summary>Ship's log — add services, prices &amp; house rules now (optional, or we take it on the welcome call)</summary>
+                <div class="yb-more__body">
+                  <div class="yb-field">
+                    <label for="ybServices">Main services and typical prices</label>
+                    <textarea id="ybServices" name="services_and_prices" placeholder="Weekly mowing — $45/visit&#10;Seasonal cleanup — $220&#10;Big jobs — quoted on site"></textarea>
+                  </div>
+                  <div class="yb-field">
+                    <label for="ybQs">Questions you always ask a new customer</label>
+                    <textarea id="ybQs" name="qualifying_questions" style="min-height:70px" placeholder="Where are you located? How soon do you need it?"></textarea>
+                  </div>
+                  <div class="yb-field">
+                    <label for="ybNotes">House rules <small>&mdash; what your crew must never do</small></label>
+                    <textarea id="ybNotes" name="notes" style="min-height:70px" placeholder="Never quote repairs over the phone. No commercial properties."></textarea>
+                  </div>
+                  <div class="yb-field">
+                    <label for="ybCal">Calendar / scheduling tool</label>
+                    <input id="ybCal" name="calendar_tool" type="text" placeholder="Google Calendar, Jobber, paper…" />
                   </div>
                 </div>
-                <div class="ob-field ob-field--wide">
-                  <label for="obNotes">Anything else your employee should know? <small>&mdash; optional</small></label>
-                  <textarea id="obNotes" name="notes" style="min-height:76px" placeholder="We don't service commercial properties. Never quote repairs over the phone."></textarea>
-                </div>
-              </div>
+              </details>
             </fieldset>
 
-            <!-- STEP 3 -->
-            <fieldset class="ob-step" data-step="3" hidden style="border:0;margin:0;padding:0">
-              <legend class="ob-step__title">You</legend>
-              <p class="ob-step__sub">Where Jaden sends your setup and your first invoice. Nothing is charged today.</p>
-              <div class="ob-grid">
-                <div class="ob-field">
-                  <label for="obName">Your name</label>
-                  <input id="obName" name="name" type="text" autocomplete="name" required placeholder="First and last" />
-                  <span class="ob-err">We need a name.</span>
+            <!-- DECK IV — the captain -->
+            <fieldset class="yb-deck" data-deck="4" hidden style="border:0;margin:0;padding:0">
+              <div class="yb-greet">
+                <img src="agents/agent-hunter.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
+                <div class="yb-greet__bubble"><b>HUNTER</b>, outbound. Last deck, captain &mdash; where do we send your welcome and the first invoice?</div>
+              </div>
+              <legend>Deck IV &middot; The captain</legend>
+              <p class="yb-deck__sub">Nothing is charged today.</p>
+              <div class="yb-grid">
+                <div class="yb-field">
+                  <label for="ybName">Your name</label>
+                  <input id="ybName" name="name" type="text" autocomplete="name" required placeholder="First and last" />
+                  <span class="yb-err">Every ship has a captain.</span>
                 </div>
-                <div class="ob-field">
-                  <label for="obEmail">Email</label>
-                  <input id="obEmail" name="email" type="email" autocomplete="email" required placeholder="you@business.com" />
-                  <span class="ob-err">A working email, so the setup can reach you.</span>
+                <div class="yb-field">
+                  <label for="ybEmail">Email</label>
+                  <input id="ybEmail" name="email" type="email" autocomplete="email" required placeholder="you@business.com" />
+                  <span class="yb-err">A working email, so the welcome can reach you.</span>
                 </div>
-                <div class="ob-field">
-                  <label for="obCell">Your mobile</label>
-                  <input id="obCell" name="mobile" type="tel" autocomplete="tel" required placeholder="(480) 555-0199" />
-                  <span class="ob-err">Jaden confirms fit by phone or text.</span>
-                </div>
-                <div class="ob-field">
-                  <label for="obWhen">Best time to reach you</label>
-                  <select id="obWhen" name="best_time">
-                    <option selected>Any time</option>
-                    <option>Morning</option>
-                    <option>Afternoon</option>
-                    <option>Evening</option>
-                  </select>
+                <div class="yb-field yb-field--wide">
+                  <label for="ybCell">Your mobile</label>
+                  <input id="ybCell" name="mobile" type="tel" autocomplete="tel" required placeholder="(480) 555-0199" />
+                  <span class="yb-err">Jaden confirms fit by phone or text.</span>
                 </div>
               </div>
-              <p class="ob-note">Sending this starts nothing automatically and charges nothing. Jaden reads every request himself, confirms fit the same business day, and sends your first invoice with the <a href="agreement.html">service agreement</a>. Month to month, cancel anytime.</p>
-              <div class="ob-fail" data-fail>That didn&rsquo;t send. Your answers are still here &mdash; try again, or email them straight to <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>.</div>
+              <div class="yb-group" style="margin-top:1.2rem">
+                <label>Best time to reach you</label>
+                <div class="yb-chips">
+                  <label class="yb-chip"><input type="radio" name="best_time" value="Any time" checked /><span>Any time</span></label>
+                  <label class="yb-chip"><input type="radio" name="best_time" value="Morning" /><span>Morning</span></label>
+                  <label class="yb-chip"><input type="radio" name="best_time" value="Afternoon" /><span>Afternoon</span></label>
+                  <label class="yb-chip"><input type="radio" name="best_time" value="Evening" /><span>Evening</span></label>
+                </div>
+              </div>
+              <p class="yb-note">Boarding starts nothing automatically and charges nothing. Jaden reads every request himself, confirms fit the same business day, and sends your first invoice with the <a href="agreement.html">service agreement</a>. Month to month, cancel anytime.</p>
+              <div class="yb-fail" data-fail>That didn&rsquo;t send. Your answers are still here &mdash; try again, or email them straight to <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>.</div>
             </fieldset>
 
-            <div class="ob-nav">
-              <button type="button" class="ob-back" data-back hidden>&larr; Back</button>
+            <div class="yb-nav">
+              <button type="button" class="yb-back" data-back hidden>&larr; Back a deck</button>
               <span></span>
-              <button type="button" class="ob-next" data-next>Continue &rarr;</button>
-              <button type="submit" class="ob-send" data-send hidden>Send it to Jaden &rarr;</button>
+              <button type="button" class="yb-next" data-next hidden>Next deck &rarr;</button>
+              <button type="submit" class="yb-send" data-send hidden>Come aboard &rarr;</button>
             </div>
           </form>
 
           <!-- SUCCESS -->
-          <div class="ob-done" data-done aria-live="polite">
-            <div class="ob-done__ring" aria-hidden="true">
-              <svg viewBox="0 0 96 96">
-                <defs><linearGradient id="obGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7c85f"/><stop offset="1" stop-color="#7de3a4"/></linearGradient></defs>
-                <circle class="ring-track" cx="48" cy="48" r="42"/>
-                <circle class="ring-fill" cx="48" cy="48" r="42"/>
-              </svg>
-              <div class="ob-done__check"><svg viewBox="0 0 42 42"><path d="M11 22l7.5 7.5L31 14"/></svg></div>
-            </div>
-            <h2>It&rsquo;s in Jaden&rsquo;s inbox.</h2>
-            <p>Your start request just landed, reference <strong style="color:#e7c85f" data-ref-out>GA-&hellip;</strong>. You&rsquo;ll hear back the same business day.</p>
-            <div class="ob-done__ticker" aria-hidden="true">
-              <span>&gt; REQUEST LOGGED &middot; <span data-ref-tick></span></span>
+          <div class="yb-done" data-done aria-live="polite">
+            <h2>You&rsquo;re <em>aboard.</em></h2>
+            <p>Your boarding pass is stamped and your request is in Jaden&rsquo;s inbox. You&rsquo;ll hear back the same business day.</p>
+            <div class="yb-done__ticker" aria-hidden="true">
+              <span>&gt; BOARDING LOGGED &middot; <span data-ref-tick></span></span>
               <span>&gt; ROUTED &rarr; JADEN &middot; SAME BUSINESS DAY</span>
-              <span>&gt; STATUS: YOUR AI EMPLOYEE IS IN THE QUEUE ✓</span>
+              <span>&gt; STATUS: CREW ASSIGNED &middot; WELCOME ABOARD ✓</span>
             </div>
           </div>
-        </div>
+        </section>
+
+        <!-- THE BOARDING PASS -->
+        <aside class="yb-pass" data-pass aria-label="Your boarding pass — fills in as you go">
+          <div class="yb-stamp" aria-hidden="true">Aboard</div>
+          <div class="yb-pass__head">
+            <div class="yb-pass__line">GreenAI Line<small>FIRST-CLASS BOARDING PASS</small></div>
+            <img src="logo-mark.png" alt="" width="34" height="34" loading="eager" decoding="async"/>
+          </div>
+          <div class="yb-pass__body">
+            <div class="yb-pass__row"><small>Passenger &middot; business</small><b class="is-empty" data-bp="business"></b></div>
+            <div class="yb-pass__duo">
+              <div class="yb-pass__row"><small>Trade</small><b class="is-empty" data-bp="trade"></b></div>
+              <div class="yb-pass__row"><small>Home port</small><b class="is-empty" data-bp="area"></b></div>
+            </div>
+            <div class="yb-pass__duo">
+              <div class="yb-pass__row"><small>Class</small><b>AI Employee</b></div>
+              <div class="yb-pass__row yb-pass__fare"><small>Fare</small><b>$497<span style="font-size:.55em;color:rgba(255,255,255,.45)">/mo</span></b></div>
+            </div>
+            <div class="yb-pass__row"><small>Boarding ref</small><b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:.08em" data-ref>GA-&hellip;</b></div>
+          </div>
+          <div class="yb-pass__crew">
+            <img src="agents/agent-sterling.svg" alt="STERLING" loading="lazy" decoding="async"/>
+            <img src="agents/agent-hunter.svg" alt="HUNTER" loading="lazy" decoding="async"/>
+            <img src="agents/agent-maven.svg" alt="MAVEN" loading="lazy" decoding="async"/>
+            <img src="agents/agent-ledger.svg" alt="LEDGER" loading="lazy" decoding="async"/>
+            <small>Your crew of four<br/>on duty 24/7</small>
+          </div>
+          <div class="yb-pass__strip" aria-hidden="true"></div>
+        </aside>
       </div>
     </div>
-    <canvas id="obConfetti" aria-hidden="true"></canvas>
+    <canvas id="ybConfetti" aria-hidden="true"></canvas>
   </main>
 
   <footer class="footer" aria-label="Site footer">
@@ -348,74 +529,112 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
   <script>
   (function () {
     'use strict';
-    var form   = document.getElementById('obForm');
+    var form   = document.getElementById('ybForm');
     if (!form) return;
-    var steps  = Array.prototype.slice.call(form.querySelectorAll('.ob-step'));
+    var decks  = Array.prototype.slice.call(form.querySelectorAll('.yb-deck'));
+    var ports  = Array.prototype.slice.call(document.querySelectorAll('[data-port]'));
     var rails  = Array.prototype.slice.call(document.querySelectorAll('[data-rail]'));
     var back   = form.querySelector('[data-back]');
     var next   = form.querySelector('[data-next]');
     var send   = form.querySelector('[data-send]');
     var fail   = form.querySelector('[data-fail]');
     var done   = document.querySelector('[data-done]');
+    var pass   = document.querySelector('[data-pass]');
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var at = 1;
+    var at = 1, trade = '';
 
-    /* Same reference format the payment portal used: GA-YYYYMMDD-XXXX. */
+    /* Same reference format the rest of the funnel uses: GA-YYYYMMDD-XXXX. */
     var d = new Date();
     var REF = 'GA-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') +
               '-' + String(Math.floor(1000 + Math.random()*9000));
-    Array.prototype.forEach.call(document.querySelectorAll('[data-ref],[data-ref-out],[data-ref-tick]'), function (el) { el.textContent = REF; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ref],[data-ref-tick]'), function (el) { el.textContent = REF; });
+
+    /* ---- live boarding pass ---- */
+    function bp(key, val) {
+      var el = document.querySelector('[data-bp="' + key + '"]');
+      if (!el) return;
+      el.textContent = val || '';
+      el.classList.toggle('is-empty', !val);
+    }
+    document.getElementById('ybBiz').addEventListener('input', function () { bp('business', this.value.trim()); });
+    document.getElementById('ybArea').addEventListener('input', function () { bp('area', this.value.trim()); });
 
     function show(n) {
       at = n;
-      steps.forEach(function (s) { s.hidden = (+s.getAttribute('data-step') !== n); });
-      rails.forEach(function (r) {
-        var i = +r.getAttribute('data-rail');
-        r.classList.toggle('is-now', i === n);
-        r.classList.toggle('is-done', i < n);
+      decks.forEach(function (s) {
+        var mine = (+s.getAttribute('data-deck') === n);
+        s.hidden = !mine;
+        s.classList.toggle('is-in', mine);
       });
+      ports.forEach(function (p) {
+        var i = +p.getAttribute('data-port');
+        p.classList.toggle('is-now', i === n);
+        p.classList.toggle('is-done', i < n);
+        if (i < n) p.textContent = '✓'; else p.textContent = ['I','II','III','IV'][i-1];
+      });
+      rails.forEach(function (r) { r.classList.toggle('is-done', +r.getAttribute('data-rail') < n); });
       back.hidden = (n === 1);
-      next.hidden = (n === 3);
-      send.hidden = (n !== 3);
-      var first = steps[n-1].querySelector('input:not([type=checkbox]), select, textarea');
-      if (first && n > 1) first.focus({ preventScroll: false });
+      next.hidden = (n === 1 || n === 4);   /* deck 1 advances itself */
+      send.hidden = (n !== 4);
+      if (n > 1) {
+        var first = decks[n-1].querySelector('input:not([type=checkbox]):not([type=radio]), textarea');
+        if (first) first.focus({ preventScroll: false });
+      }
     }
 
-    function valid(n) {
+    /* Deck I — one click picks the trade and sails on. */
+    Array.prototype.forEach.call(form.querySelectorAll('.yb-trade'), function (btn) {
+      btn.addEventListener('click', function () {
+        Array.prototype.forEach.call(form.querySelectorAll('.yb-trade'), function (b) { b.classList.remove('is-picked'); });
+        btn.classList.add('is-picked');
+        trade = btn.getAttribute('data-trade');
+        bp('trade', trade);
+        setTimeout(function () { show(2); }, reduce ? 0 : 420);
+      });
+    });
+
+    function validDeck(n) {
       var ok = true;
-      var fields = steps[n-1].querySelectorAll('[required]');
+      var fields = decks[n-1].querySelectorAll('[required]');
       Array.prototype.forEach.call(fields, function (f) {
-        var wrap = f.closest('.ob-field');
+        var wrap = f.closest('.yb-field');
         var good = f.checkValidity();
         if (wrap) wrap.classList.toggle('is-bad', !good);
         if (!good && ok) { ok = false; f.focus(); }
       });
+      if (n === 3) {
+        var picked = form.querySelector('input[name="hours_pick"]:checked');
+        var err = document.querySelector('[data-err="hours"]');
+        err.style.display = picked ? 'none' : 'block';
+        if (!picked) ok = false;
+      }
       return ok;
     }
     form.addEventListener('input', function (e) {
-      var wrap = e.target.closest && e.target.closest('.ob-field');
+      var wrap = e.target.closest && e.target.closest('.yb-field');
       if (wrap && wrap.classList.contains('is-bad') && e.target.checkValidity()) wrap.classList.remove('is-bad');
+      if (e.target.name === 'hours_pick') document.querySelector('[data-err="hours"]').style.display = 'none';
     });
 
-    next.addEventListener('click', function () { if (valid(at)) show(at + 1); });
+    next.addEventListener('click', function () { if (validDeck(at)) show(at + 1); });
     back.addEventListener('click', function () { show(at - 1); });
 
     /* ---- confetti: brand gold + green, one burst, no library ---- */
     function confetti() {
       if (reduce) return;
-      var cv = document.getElementById('obConfetti');
+      var cv = document.getElementById('ybConfetti');
       var ctx = cv.getContext('2d');
       var W = cv.width = innerWidth, H = cv.height = innerHeight;
       var colors = ['#e7c85f', '#7de3a4', '#ffffff', '#d5b64c', '#4caf6e'];
       var bits = [], i;
-      for (i = 0; i < 160; i++) {
-        var a = -Math.PI/2 + (Math.random() - .5) * 1.6;
+      for (i = 0; i < 170; i++) {
+        var a = -Math.PI/2 + (Math.random() - .5) * 1.7;
         var v = 7 + Math.random() * 9;
-        bits.push({ x: W/2, y: H*0.42, vx: Math.cos(a)*v, vy: Math.sin(a)*v,
+        bits.push({ x: W/2, y: H*0.4, vx: Math.cos(a)*v, vy: Math.sin(a)*v,
           w: 4+Math.random()*5, h: 7+Math.random()*7, r: Math.random()*Math.PI,
           vr: (Math.random()-.5)*.3, c: colors[i % colors.length], life: 1 });
       }
@@ -443,18 +662,18 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!valid(3)) return;
+      if (!validDeck(4)) return;
       fail.classList.remove('is-on');
       send.disabled = true;
-      send.textContent = 'Sending…';
+      send.textContent = 'Boarding…';
 
       var fd = new FormData(form);
       var channels = fd.getAll('lead_channels').join(', ');
+      var hours = (fd.get('hours_pick') || '—');
       var g = function (k, alt) { return (fd.get(k) || alt || '—'); };
 
       /* One preformatted block at the top of the email: the invoice half and
-         the build half, ready to act on without hunting through field rows.
-         The individual fields still follow it for anything automated later. */
+         the build half, ready to act on without hunting through field rows. */
       var brief = [
         '================  SEND THE INVOICE  ================',
         'Bill to ....... ' + g('name') + ' — ' + g('business_name'),
@@ -464,21 +683,20 @@
         'Reference ..... ' + REF + '   (quote this on the invoice)',
         '',
         '================  BUILD THE EMPLOYEE  ==============',
-        'Business ...... ' + g('business_name') + '  (' + g('trade') + ')',
+        'Business ...... ' + g('business_name') + '  (' + (trade || '—') + ')',
         'Line to answer  ' + g('business_phone'),
         'Service area .. ' + g('service_area'),
-        'Hours ......... ' + g('hours'),
-        'Website ....... ' + g('website'),
+        'Hours ......... ' + hours,
         'Lead channels . ' + (channels || '—'),
         'Calendar ...... ' + g('calendar_tool'),
         '',
         '--- Services & prices (their words) ---',
-        g('services_and_prices'),
+        g('services_and_prices', '— (collect on the welcome call)'),
         '',
         '--- Qualifying questions they always ask ---',
-        g('qualifying_questions'),
+        g('qualifying_questions', '— (collect on the welcome call)'),
         '',
-        '--- Rules / notes ---',
+        '--- House rules / notes ---',
         g('notes')
       ].join('\n');
 
@@ -491,15 +709,14 @@
         reference: REF,
         sku: 'employees-front-desk',
         plan: 'AI Employee — $497/mo',
-        business_name: fd.get('business_name'), trade: fd.get('trade'),
+        business_name: fd.get('business_name'), trade: trade || '—',
         service_area: fd.get('service_area'), business_phone: fd.get('business_phone'),
-        website: g('website'),
-        services_and_prices: fd.get('services_and_prices'),
-        qualifying_questions: g('qualifying_questions'),
-        hours: fd.get('hours'), calendar_tool: g('calendar_tool'),
+        services_and_prices: g('services_and_prices', '— (collect on the welcome call)'),
+        qualifying_questions: g('qualifying_questions', '— (collect on the welcome call)'),
+        hours: hours, calendar_tool: g('calendar_tool'),
         lead_channels: channels || '—', notes: g('notes'),
         name: fd.get('name'), email: fd.get('email'), mobile: fd.get('mobile'),
-        best_time: fd.get('best_time')
+        best_time: g('best_time', 'Any time')
       };
 
       fetch('https://api.web3forms.com/submit', {
@@ -509,16 +726,19 @@
       }).then(function (r) { return r.json(); }).then(function (res) {
         if (!res.success) throw new Error('web3forms rejected');
         form.style.display = 'none';
-        document.querySelector('.ob-rail').style.display = 'none';
+        document.querySelector('.yb-gang').style.display = 'none';
+        bp('business', fd.get('business_name'));
+        bp('area', fd.get('service_area'));
+        pass.classList.add('is-stamped');
         done.classList.add('is-on');
         confetti();
         done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
         setTimeout(function () {
           window.location.href = 'thankyou.html?start=' + encodeURIComponent(REF);
-        }, reduce ? 900 : 3400);
+        }, reduce ? 900 : 3600);
       }).catch(function () {
         send.disabled = false;
-        send.innerHTML = 'Send it to Jaden &rarr;';
+        send.innerHTML = 'Come aboard &rarr;';
         fail.classList.add('is-on');
       });
     });
