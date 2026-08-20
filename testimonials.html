@@ -20,119 +20,131 @@
   <meta property="og:url" content="https://greenaidigital.com/testimonials.html" />
   <meta property="og:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
   <meta property="og:description" content="Two client websites, eight live products, and three open-source engineering projects anyone can verify. Every link is live." />
-  <meta property="og:image" content="https://greenaidigital.com/julia-case-study.jpg" />
+  <meta property="og:image" content="https://greenaidigital.com/previews/julia-site.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Work — Built, Shipped &amp; Live | GreenAI Solutions Team" />
   <meta name="twitter:description" content="Built and shipped by GreenAI Solutions. Every link on the page is live." />
-  <meta name="twitter:image" content="https://greenaidigital.com/julia-case-study.jpg" />
+  <meta name="twitter:image" content="https://greenaidigital.com/previews/julia-site.webp" />
 
   <style>
-    /* The site-wide "green horizon" rule (style.css) repaints the first
-       .section after a .page-hero to a near-white glaze — built for an
-       ordinary light section, and it silently overrides a dark
-       case-study-section here. Restate the real background at ID
-       specificity so it wins regardless of cascade order. */
-    #client-work.case-study-section {
+    /* ==========================================================================
+       WORK — one dark gallery system. Every element states its own colour
+       (body ink is white-page ink; this page is night from top to bottom).
+       ======================================================================= */
+
+    /* The site-wide "green horizon" rule repaints the first .section after a
+       .page-hero near-white. ID-scoped restatement so this dark page wins. */
+    #client-work.section {
       background:
-        radial-gradient(1000px 480px at 84% 10%, rgba(26,92,42,0.18), transparent 62%),
-        #0a0f0b;
+        radial-gradient(1000px 480px at 84% 6%, rgba(26,92,42,.16), transparent 62%),
+        #050b07;
     }
 
-    /* ---- the quote inside a case study ---- */
-    .cs-quote {
-      font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.6;
-      color: #fff; margin: 0 0 1.2rem; padding-left: 1.1rem; border-left: 2px solid var(--green-accent);
-    }
-    .cs-byline { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.5rem; }
-    .cs-byline i {
-      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
-      background: linear-gradient(135deg, #1a5c2a, #4caf6e);
-      display: flex; align-items: center; justify-content: center;
-      font-style: normal; font-weight: 800; color: #fff;
-    }
-    .cs-byline b { display: block; font-size: .92rem; color: #fff; }
-    .cs-byline span { font-size: .8rem; color: rgba(255,255,255,.55); }
+    /* hero index strip */
+    .wk-index { display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-top:1.6rem; }
+    .wk-index span { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .95rem; border:1px solid rgba(255,255,255,.14); border-radius:100px; background:rgba(8,19,12,.6); color:rgba(255,255,255,.7); font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; }
+    .wk-index b { color:#e7c85f; font-size:.72rem; }
 
-    /* ---- live products: a dark band in the homepage's console language.
-       Dark ground, so every element states its own colour —
-       body{color:var(--gray-800)} is ink for white pages. ---- */
-    #products.section {
-      background: #07110b;
-      border-top: 1px solid rgba(125,227,164,.12);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      color: rgba(255,255,255,.74);
-    }
-    #products .section-label { color: #7de3a4; }
-    #products h2 { color: #fff; }
-    #products .text-center > p { color: rgba(255,255,255,.62); }
+    /* shared section header */
+    .wk-head { text-align:center; max-width:640px; margin:0 auto 3rem; }
+    .wk-head .section-label { color:#7de3a4; }
+    .wk-head h2 { color:#fff; margin:.4rem 0 0; }
+    .wk-head p { margin:1.1rem auto 0; color:rgba(255,255,255,.58); line-height:1.75; }
 
-    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.4rem; margin-top: 2.5rem; }
-    .product-card {
-      background: rgba(8,19,12,.72); border: 1px solid rgba(255,255,255,.1); border-radius: 18px;
-      overflow: hidden; display: flex; flex-direction: column;
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-    .product-card:hover { transform: translateY(-4px); border-color: rgba(125,227,164,.32); box-shadow: 0 18px 50px rgba(0,0,0,.35); }
-    .product-card__shot { position: relative; width: 100%; aspect-ratio: 16/9; background: #0a0f0b; border-bottom: 1px solid rgba(255,255,255,.08); flex: 0 0 auto; }
-    .product-card__shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-    .product-card__body { padding: 1.15rem 1.25rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
-    .product-card__tag {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .6rem; letter-spacing: .13em;
-      text-transform: uppercase; color: #7de3a4; font-weight: 700; margin-bottom: .45rem;
-    }
-    .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 0 0 .5rem; color: #fff; }
-    .product-card p { font-size: .85rem; line-height: 1.55; color: rgba(255,255,255,.55); margin: 0 0 1rem; flex: 1; }
-    .product-card a {
-      font-size: .8rem; font-weight: 700; color: #e7c85f;
-      border-bottom: 1px solid rgba(231,200,95,.35); padding-bottom: 2px; align-self: flex-start;
-    }
-    .product-card a:hover { color: #f0dfa0; border-bottom-color: #f0dfa0; }
+    /* ---- client case rows ---- */
+    #client-work { color:rgba(255,255,255,.76); }
+    .wk-case { display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,4.5vw,4rem); align-items:center; }
+    .wk-case + .wk-case { margin-top:clamp(3.5rem,7vw,5.5rem); padding-top:clamp(3.5rem,7vw,5.5rem); border-top:1px solid rgba(255,255,255,.08); }
+    .wk-case--flip .wk-browser { order:2; }
+    .wk-kicker { display:block; color:#7de3a4; font:800 .64rem/1.4 Inter,sans-serif; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.7rem; }
+    .wk-case h3 { color:#fff; font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.2vw,2.4rem); margin:0 0 .8rem; letter-spacing:-.01em; }
+    .wk-case > div > p { color:rgba(255,255,255,.66); line-height:1.75; margin:0 0 1.2rem; }
+    .wk-facts { list-style:none; margin:0 0 1.5rem; padding:0; display:grid; gap:.6rem; }
+    .wk-facts li { position:relative; padding-left:1.5rem; color:rgba(255,255,255,.72); font-size:.9rem; line-height:1.55; }
+    .wk-facts li::before { content:''; position:absolute; left:.1rem; top:.5em; width:9px; height:5px; border-left:2px solid #7de3a4; border-bottom:2px solid #7de3a4; transform:rotate(-45deg); }
+    .wk-quote { margin:0 0 1.4rem; padding:1.05rem 1.2rem; border-left:2px solid #e7c85f; border-radius:0 12px 12px 0; background:rgba(231,200,95,.06); }
+    .wk-quote p { margin:0 0 .6rem; color:#fff; font-family:'Playfair Display',serif; font-style:italic; font-size:1.02rem; line-height:1.6; }
+    .wk-quote footer { color:rgba(255,255,255,.5); font-size:.78rem; }
+    .wk-quote footer b { color:rgba(255,255,255,.85); }
+    .wk-case__cta { display:flex; flex-wrap:wrap; gap:.85rem; align-items:center; }
+    .wk-more { color:rgba(255,255,255,.5); font-size:.82rem; text-decoration:underline; text-underline-offset:3px; }
+    .wk-more:hover { color:#7de3a4; }
+
+    /* ---- browser frame ---- */
+    .wk-browser { border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.13); background:#0a140d; box-shadow:0 34px 90px rgba(0,0,0,.55); }
+    .wk-browser__bar { display:flex; align-items:center; gap:.7rem; padding:.6rem .9rem; background:rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.09); }
+    .wk-browser__dots { display:flex; gap:5px; }
+    .wk-browser__dots i { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.18); }
+    .wk-browser__url { flex:1; text-align:center; color:rgba(255,255,255,.55); font:600 .66rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.04em; background:rgba(0,0,0,.3); border-radius:6px; padding:.3rem .7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .wk-browser__live { color:#7de3a4; font:800 .54rem/1 ui-monospace,Menlo,monospace; letter-spacing:.12em; }
+    .wk-browser__shot { position:relative; aspect-ratio:16/10; }
+    .wk-browser__shot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+
+    /* ---- live products ---- */
+    #products.section { background:#07110b; border-top:1px solid rgba(125,227,164,.1); border-bottom:1px solid rgba(255,255,255,.06); color:rgba(255,255,255,.74); }
+    .wk-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.3rem; }
+    .wk-card { display:flex; flex-direction:column; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:rgba(8,19,12,.72); transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+    .wk-card:hover { transform:translateY(-4px); border-color:rgba(125,227,164,.35); box-shadow:0 20px 50px rgba(0,0,0,.45); }
+    .wk-card__bar { display:flex; align-items:center; gap:.55rem; padding:.45rem .7rem; background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.08); }
+    .wk-card__bar .wk-browser__dots i { width:7px; height:7px; }
+    .wk-card__dom { color:rgba(255,255,255,.42); font:600 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .wk-card__shot { position:relative; aspect-ratio:16/9; background:#0a0f0b; flex:0 0 auto; }
+    .wk-card__shot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; }
+    .wk-card__body { flex:1; display:flex; flex-direction:column; padding:1.05rem 1.15rem 1.2rem; }
+    .wk-card__tag { color:#7de3a4; font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.13em; text-transform:uppercase; margin-bottom:.45rem; }
+    .wk-card h3 { color:#fff; font-family:'Playfair Display',serif; font-size:1.12rem; margin:0 0 .45rem; }
+    .wk-card p { flex:1; color:rgba(255,255,255,.55); font-size:.84rem; line-height:1.55; margin:0 0 1rem; }
+    .wk-card a { align-self:flex-start; color:#e7c85f; font-size:.78rem; font-weight:700; border-bottom:1px solid rgba(231,200,95,.35); padding-bottom:2px; }
+    .wk-card a:hover { color:#f0dfa0; border-bottom-color:#f0dfa0; }
 
     /* ---- engineering ---- */
-    .eng-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2.5rem 0 2rem; }
-    .eng-stat {
-      text-align: center; padding: 1.9rem 1.3rem; background: var(--white);
-      border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
-    }
-    .eng-stat__v { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem,3.2vw,2.5rem); font-weight: 800; color: var(--green-dark); line-height: 1; }
-    .eng-stat__v span { font-size: .55em; color: var(--gray-400); }
-    .eng-stat__c { margin-top: .7rem; font-size: .86rem; line-height: 1.55; color: var(--gray-600); }
-    .eng-acts { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center; margin-top: .5rem; }
+    #engineering.section { background:#050b07; color:rgba(255,255,255,.74); }
+    .wk-kiln { display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(1.6rem,3.5vw,3rem); align-items:center; padding:clamp(1.6rem,3.5vw,2.6rem); border:1px solid rgba(255,255,255,.11); border-radius:18px; background:rgba(8,19,12,.72); }
+    .wk-kiln h3 { color:#fff; font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 .8rem; }
+    .wk-kiln p { color:rgba(255,255,255,.62); font-size:.94rem; line-height:1.75; margin:0 0 1.4rem; }
+    .wk-kiln__cta { display:flex; flex-wrap:wrap; gap:.8rem; }
+    .wk-stats { list-style:none; margin:0; padding:0; display:grid; gap:1rem; }
+    .wk-stats li { display:flex; align-items:baseline; gap:1rem; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .wk-stats li:last-child { border-bottom:0; padding-bottom:0; }
+    .wk-stats b { min-width:7.2rem; font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:800; line-height:1; color:#e7c85f; white-space:nowrap; }
+    .wk-stats b small { font-size:.55em; color:rgba(255,255,255,.4); font-weight:700; }
+    .wk-stats span { color:rgba(255,255,255,.66); font-size:.88rem; line-height:1.5; }
+    .wk-duo { display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; margin-top:1.3rem; }
+    .wk-repo { padding:1.6rem 1.6rem 1.5rem; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(8,19,12,.72); display:flex; flex-direction:column; }
+    .wk-repo__tag { color:#7de3a4; font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; margin-bottom:.6rem; }
+    .wk-repo h3 { color:#fff; font-family:'Playfair Display',serif; font-size:1.35rem; margin:0 0 .35rem; }
+    .wk-repo__n { font-family:'Playfair Display',serif; font-weight:800; font-size:1.9rem; line-height:1.1; color:#e7c85f; margin-bottom:.55rem; }
+    .wk-repo__n small { font-size:.55em; color:rgba(255,255,255,.4); }
+    .wk-repo p { flex:1; color:rgba(255,255,255,.58); font-size:.86rem; line-height:1.65; margin:0 0 1.1rem; }
+    .wk-repo a { align-self:flex-start; color:#e7c85f; font-size:.78rem; font-weight:700; border-bottom:1px solid rgba(231,200,95,.35); padding-bottom:2px; }
+    .wk-repo a:hover { color:#f0dfa0; border-bottom-color:#f0dfa0; }
+    .wk-foot { max-width:680px; margin:2.2rem auto 0; text-align:center; color:rgba(255,255,255,.45); font-size:.82rem; line-height:1.7; }
 
-    .eng-proofs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3.5rem; text-align: left; }
-    .eng-proof { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.9rem 1.7rem; box-shadow: var(--shadow-sm); }
-    .eng-proof__tag { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--green-mid); margin: 0 0 .5rem; }
-    .eng-proof h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 0 0 .7rem; }
-    .eng-proof__n { font-family: 'Playfair Display', serif; font-weight: 800; color: var(--green-dark); font-size: 2rem; line-height: 1; }
-    .eng-proof__n span { font-size: .55em; color: var(--gray-400); }
-    .eng-proof p { font-size: .87rem; line-height: 1.65; color: var(--gray-600); margin: .7rem 0 1.1rem; }
-    .eng-proof a { font-size: .8rem; font-weight: 700; color: var(--green-dark); border-bottom: 1px solid rgba(26,92,42,.3); padding-bottom: 2px; }
-    .eng-proof a:hover { color: var(--green-light); border-bottom-color: var(--green-light); }
+    /* ---- closing band (proof-close shape) ---- */
+    .work-end { background:#061008; border-top:1px solid rgba(125,227,164,.14); color:rgba(255,255,255,.78); }
+    .work-end__inner { display:grid; grid-template-columns:1.35fr .65fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
+    .work-end .section-label { color:#7de3a4; }
+    .work-end h2 { margin:.6rem 0 1rem; color:#fff; font-size:clamp(1.9rem,3.4vw,2.9rem); line-height:1.14; letter-spacing:-.02em; }
+    .work-end__hl { color:#e7c85f; }
+    .work-end p { margin:0; color:rgba(255,255,255,.66); font-size:1.02rem; }
+    .work-end__actions { display:flex; flex-direction:column; gap:.85rem; }
+    .work-end__actions .btn { width:100%; justify-content:center; }
+    .work-end__ghost { border:1px solid rgba(255,255,255,.28); background:transparent; color:#fff; }
+    .work-end__ghost:hover { background:rgba(255,255,255,.1); border-color:#fff; color:#fff; }
 
-    /* ---- closing band — same shape and ground as the homepage's
-       proof-close: near-black, green hairline, gold highlight, the one
-       standard ask. Dark band, so every element states its own colour. ---- */
-    .work-end { background: #061008; border-top: 1px solid rgba(125,227,164,.14); color: rgba(255,255,255,.78); }
-    .work-end__inner { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(2rem,5vw,4.5rem); align-items: center; }
-    .work-end .section-label { color: #7de3a4; }
-    .work-end h2 { margin: .6rem 0 1rem; color: #fff; font-size: clamp(1.9rem,3.4vw,2.9rem); line-height: 1.14; letter-spacing: -.02em; }
-    .work-end__hl { color: #e7c85f; }
-    .work-end p { margin: 0; color: rgba(255,255,255,.66); font-size: 1.02rem; }
-    .work-end__actions { display: flex; flex-direction: column; gap: .85rem; }
-    .work-end__actions .btn { width: 100%; justify-content: center; }
-    .work-end__ghost { border: 1px solid rgba(255,255,255,.28); background: transparent; color: #fff; }
-    .work-end__ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; color: #fff; }
-    @media (max-width: 820px) {
-      .work-end__inner { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width:980px) {
+      .wk-case { grid-template-columns:1fr; }
+      .wk-case--flip .wk-browser { order:0; }
+      .wk-grid { grid-template-columns:repeat(2,1fr); }
+      .wk-kiln { grid-template-columns:1fr; }
+      .wk-duo { grid-template-columns:1fr; }
     }
-
-    @media (max-width: 900px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .eng-stats { grid-template-columns: 1fr; }
-      .eng-proofs { grid-template-columns: 1fr; }
+    @media (max-width:820px) {
+      .work-end__inner { grid-template-columns:1fr; gap:2rem; }
     }
-    @media (max-width: 560px) {
-      .product-grid { grid-template-columns: 1fr; }
+    @media (max-width:560px) {
+      .wk-grid { grid-template-columns:1fr; }
+      .wk-stats b { min-width:6rem; font-size:1.6rem; }
     }
   </style>
   <script type="application/ld+json">
@@ -204,204 +216,209 @@
     <div class="container" style="position:relative;z-index:1">
       <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Built &amp; Shipped</div>
       <h1>Everything here is live.<br/>Click it.</h1>
-      <p>No mock-ups and no borrowed screenshots. Two client sites, eight products you can open in a new tab right now, and three open-source engineering projects whose every number a stranger can check for themselves.</p>
+      <p>No mock-ups and no borrowed screenshots &mdash; every screenshot on this page is a capture of a live site, and every link opens.</p>
+      <div class="wk-index" aria-label="What is on this page">
+        <span><b>02</b> client sites</span>
+        <span><b>08</b> live products</span>
+        <span><b>03</b> open-source projects</span>
+      </div>
     </div>
   </div>
 
   <main id="main">
 
-    <!-- ===== CLIENT WORK · JULIA ===== -->
-    <section class="section case-study-section" id="client-work" aria-labelledby="julia-h">
+    <!-- ===== CLIENT WORK ===== -->
+    <section class="section" id="client-work" aria-labelledby="client-h">
       <div class="container">
-        <div class="cs-inner">
-          <div class="cs-image-wrap reveal">
-            <img src="julia-case-study.jpg" alt="The website and digital infrastructure GreenAI Solutions built for Julia's Performance Lab" width="1024" height="1024" loading="lazy" decoding="async"/>
-            <div class="cs-badge">&#9733; Real Client. Real Results.</div>
-          </div>
-          <div class="cs-content reveal">
-            <span class="section-label">Client Work · Our First Build</span>
-            <h2 id="julia-h">Julia's Performance Lab</h2>
-            <p>A complete digital foundation — a custom, high-performance website plus the infrastructure behind it.</p>
-            <blockquote class="cs-quote">Working with GreenAI completely changed how my business shows up online. They built me a website I'm genuinely proud of — fast, clean, and exactly the energy of my brand. It finally feels real.</blockquote>
-            <div class="cs-byline">
-              <i>J</i>
-              <div><b>Julia</b><span>Founder — Julia's Performance Lab</span></div>
-            </div>
-            <p style="display:flex;flex-wrap:wrap;gap:.85rem;margin:0">
-              <a href="https://performancelab.fitness" class="btn btn-primary" target="_blank" rel="noopener" style="text-decoration:none">Visit performancelab.fitness ↗</a>
-              <a href="contact.html" class="btn btn-secondary" style="text-decoration:none">Start Your Project</a>
-            </p>
-          </div>
+        <div class="wk-head reveal">
+          <span class="section-label">Client Work</span>
+          <h2 id="client-h">Built for real businesses.</h2>
+          <p>Both sites are live right now &mdash; the screenshots below are captures of the real homepages, not mock-ups.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ===== CLIENT WORK · HANDMADE BY HALLE ===== -->
-    <section class="section case-study-section case-study-section--alt" id="handmade" aria-labelledby="halle-h">
-      <div class="container">
-        <div class="cs-inner cs-inner--flip">
-          <div class="cs-image-wrap reveal">
-            <img src="handmade-case-study.webp" alt="The Handmade by Halle storefront GreenAI Solutions built — handmade home decor from a studio in the Valley, Arizona" width="1200" height="750" loading="lazy" decoding="async"/>
-            <div class="cs-badge cs-badge--emerald">&#9733; Live Site. Real Shop.</div>
+        <!-- Julia -->
+        <article class="wk-case reveal" aria-labelledby="julia-h">
+          <div class="wk-browser">
+            <div class="wk-browser__bar" aria-hidden="true">
+              <span class="wk-browser__dots"><i></i><i></i><i></i></span>
+              <span class="wk-browser__url">performancelab.fitness</span>
+              <span class="wk-browser__live">&#9679; LIVE</span>
+            </div>
+            <div class="wk-browser__shot"><img src="previews/julia-site.webp" alt="The live homepage of Julia's Performance Lab — 'Science-driven performance'" width="1100" height="687" loading="lazy" decoding="async"/></div>
           </div>
-          <div class="cs-content reveal">
-            <span class="section-label">Client Work · Handmade Retail</span>
-            <h2 id="halle-h">Handmade by Halle</h2>
-            <p>A storefront for a one-woman home-decor studio in the Valley. Every piece is sewn, painted or formed by hand, so the site was built by hand too — no theme, no template, nothing borrowed.</p>
-            <ul class="cs-deliverables">
+          <div>
+            <span class="wk-kicker">Real client &middot; Our first build</span>
+            <h3 id="julia-h">Julia&rsquo;s Performance Lab</h3>
+            <p>A complete digital foundation for a Seattle personal trainer &mdash; a custom, high-performance website plus the brand and infrastructure behind it, built and live in a single session.</p>
+            <blockquote class="wk-quote">
+              <p>&ldquo;Working with GreenAI completely changed how my business shows up online. They built me a website I&rsquo;m genuinely proud of &mdash; fast, clean, and exactly the energy of my brand. It finally feels real.&rdquo;</p>
+              <footer><b>Julia</b> &middot; Founder, Julia&rsquo;s Performance Lab</footer>
+            </blockquote>
+            <div class="wk-case__cta">
+              <a href="https://performancelab.fitness" class="btn btn-primary" target="_blank" rel="noopener">Visit performancelab.fitness &#8599;</a>
+              <a href="contact.html" class="wk-more">Start your project</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Halle -->
+        <article class="wk-case wk-case--flip reveal" aria-labelledby="halle-h">
+          <div class="wk-browser">
+            <div class="wk-browser__bar" aria-hidden="true">
+              <span class="wk-browser__dots"><i></i><i></i><i></i></span>
+              <span class="wk-browser__url">handmadebyhalle.com</span>
+              <span class="wk-browser__live">&#9679; LIVE</span>
+            </div>
+            <div class="wk-browser__shot"><img src="handmade-case-study.webp" alt="The live Handmade by Halle storefront — 'Made by hand. Every stitch of it.'" width="1200" height="750" loading="lazy" decoding="async"/></div>
+          </div>
+          <div>
+            <span class="wk-kicker">Client work &middot; Handmade retail</span>
+            <h3 id="halle-h">Handmade by Halle</h3>
+            <p>A storefront for a one-woman home-decor studio in the Valley. Every piece is sewn, painted or formed by hand, so the site was built by hand too &mdash; no theme, no template, nothing borrowed.</p>
+            <ul class="wk-facts" role="list">
               <li>Fourteen pieces listed, each with its own photography and description</li>
               <li>Seasonal collections that change with the calendar, not with a rebuild</li>
-              <li>Her own domain, her own brand, secured and running on her own terms</li>
-              <li>Buying hands off to her established Etsy shop — no new account to trust</li>
+              <li>Her own domain and brand, secured and running on her own terms</li>
+              <li>Buying hands off to her established Etsy shop &mdash; no new account to trust</li>
             </ul>
-            <p style="display:flex;flex-wrap:wrap;gap:.85rem;margin:0">
-              <a href="https://handmadebyhalle.com" class="btn btn-primary" target="_blank" rel="noopener" style="text-decoration:none">Visit handmadebyhalle.com ↗</a>
-              <a href="contact.html" class="btn btn-secondary" style="text-decoration:none">Start Your Project</a>
-            </p>
+            <div class="wk-case__cta">
+              <a href="https://handmadebyhalle.com" class="btn btn-primary" target="_blank" rel="noopener">Visit handmadebyhalle.com &#8599;</a>
+              <a href="contact.html" class="wk-more">Start your project</a>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
     <!-- ===== LIVE PRODUCTS ===== -->
     <section class="section" id="products" aria-labelledby="fleet-h">
       <div class="container">
-        <div class="text-center">
+        <div class="wk-head reveal">
           <span class="section-label">Live Products</span>
           <h2 id="fleet-h">Eight built. Eight online.</h2>
-          <div class="section-divider"></div>
-          <p style="max-width:620px;margin:0 auto">Every one of these opens in a new tab. Nothing here is a mock-up.</p>
+          <p>Products we designed, engineered and shipped ourselves. Every one opens in a new tab &mdash; nothing here is a mock-up.</p>
         </div>
-        <div class="product-grid">
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/bidwell.webp" alt="The Bidwell homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Construction</p><h3>Bidwell</h3>
-              <p>An estimating desk for contractors — takes a set of plans and turns it into a priced bid.</p>
-              <a href="https://bidwell-ivory.vercel.app" target="_blank" rel="noopener">Open Bidwell ↗</a>
+        <div class="wk-grid">
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">bidwell-ivory.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/bidwell.webp" alt="The Bidwell homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Construction</p><h3>Bidwell</h3>
+              <p>An estimating desk for contractors &mdash; takes a set of plans and turns it into a priced bid.</p>
+              <a href="https://bidwell-ivory.vercel.app" target="_blank" rel="noopener">Open Bidwell &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/binder.webp" alt="The BINDER homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Construction</p><h3>BINDER</h3>
-              <p>A watchdog for subcontractor insurance — warns before a certificate lapses.</p>
-              <a href="https://binder-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open BINDER ↗</a>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">binder&hellip;.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/binder.webp" alt="The BINDER homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Construction</p><h3>BINDER</h3>
+              <p>A watchdog for subcontractor insurance &mdash; warns before a certificate lapses.</p>
+              <a href="https://binder-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open BINDER &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/relay.webp" alt="The RELAY homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Home Care</p><h3>RELAY</h3>
-              <p>Hiring and shift-fill for home-care agencies — same-day cover for open shifts.</p>
-              <a href="https://greenai-relay.vercel.app" target="_blank" rel="noopener">Open RELAY ↗</a>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">greenai-relay.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/relay.webp" alt="The RELAY homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Home Care</p><h3>RELAY</h3>
+              <p>Hiring and shift-fill for home-care agencies &mdash; same-day cover for open shifts.</p>
+              <a href="https://greenai-relay.vercel.app" target="_blank" rel="noopener">Open RELAY &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/asked.webp" alt="The ASKED homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">AI Visibility</p><h3>ASKED</h3>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">asked&hellip;.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/asked.webp" alt="The ASKED homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">AI Visibility</p><h3>ASKED</h3>
               <p>Reads a business the way an AI assistant does, and scores how ready it is to be answered about.</p>
-              <a href="https://asked-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open ASKED ↗</a>
+              <a href="https://asked-jaden-green-s-projects.vercel.app" target="_blank" rel="noopener">Open ASKED &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/mandate.webp" alt="The MANDATE homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Agent Commerce</p><h3>MANDATE</h3>
-              <p>A know-your-agent trust layer — verifies which automated buyer is which before money moves.</p>
-              <a href="https://greenai-mandate.vercel.app" target="_blank" rel="noopener">Open MANDATE ↗</a>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">greenai-mandate.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/mandate.webp" alt="The MANDATE homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Agent Commerce</p><h3>MANDATE</h3>
+              <p>A know-your-agent trust layer &mdash; verifies which automated buyer is which before money moves.</p>
+              <a href="https://greenai-mandate.vercel.app" target="_blank" rel="noopener">Open MANDATE &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/wick.webp" alt="The WICK homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Consumer</p><h3>WICK</h3>
-              <p>A household almanac on subscription — what a home needs doing, and when.</p>
-              <a href="https://greenai-wick.vercel.app" target="_blank" rel="noopener">Open WICK ↗</a>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">greenai-wick.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/wick.webp" alt="The WICK homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Consumer</p><h3>WICK</h3>
+              <p>A household almanac on subscription &mdash; what a home needs doing, and when.</p>
+              <a href="https://greenai-wick.vercel.app" target="_blank" rel="noopener">Open WICK &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/phxstaff.webp" alt="The PHX Growth Staff homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Staffing</p><h3>PHX Growth Staff</h3>
-              <p>The agentic staffing desk — posts, screening and scheduling handled by software.</p>
-              <a href="https://staffbell.vercel.app" target="_blank" rel="noopener">Open Staff ↗</a>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">staffbell.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/phxstaff.webp" alt="The PHX Growth Staff homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Staffing</p><h3>PHX Growth Staff</h3>
+              <p>The agentic staffing desk &mdash; posts, screening and scheduling handled by software.</p>
+              <a href="https://staffbell.vercel.app" target="_blank" rel="noopener">Open Staff &#8599;</a>
             </div>
           </article>
-          <article class="product-card">
-            <div class="product-card__shot"><img src="previews/phxsolo.webp" alt="The PHX Growth Solo homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
-            <div class="product-card__body">
-              <p class="product-card__tag">Small Business</p><h3>PHX Growth Solo</h3>
+          <article class="wk-card">
+            <div class="wk-card__bar" aria-hidden="true"><span class="wk-browser__dots"><i></i><i></i><i></i></span><span class="wk-card__dom">phxgrowth-solo.vercel.app</span></div>
+            <div class="wk-card__shot"><img src="previews/phxsolo.webp" alt="The PHX Growth Solo homepage" width="800" height="500" loading="lazy" decoding="async"/></div>
+            <div class="wk-card__body">
+              <p class="wk-card__tag">Small Business</p><h3>PHX Growth Solo</h3>
               <p>The one-person version of the growth stack, priced for an operator running it all alone.</p>
-              <a href="https://phxgrowth-solo.vercel.app" target="_blank" rel="noopener">Open Solo ↗</a>
+              <a href="https://phxgrowth-solo.vercel.app" target="_blank" rel="noopener">Open Solo &#8599;</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Circuit divider -->
-    <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-      <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-        <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-        <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-        <circle class="cd-node" cx="290" cy="12" r="3"/>
-        <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-        <circle class="cd-node" cx="850" cy="22" r="3"/>
-        <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-        <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-      </svg>
-    </div>
-
     <!-- ===== ENGINEERING ===== -->
-    <section class="section bg-gray" id="engineering" aria-labelledby="kiln-h">
+    <section class="section" id="engineering" aria-labelledby="eng-h">
       <div class="container">
-        <div class="text-center">
-          <span class="section-label">Open Source · Independently Verifiable</span>
-          <h2 id="kiln-h">KILN</h2>
-          <div class="section-divider"></div>
-          <p style="max-width:680px;margin:0 auto">Most agencies ask you to take their word for it. This is the opposite: a tensor compiler we wrote from scratch that generates its own machine code — published, MIT-licensed, and reproducible from a fresh clone in about two minutes.</p>
+        <div class="wk-head reveal">
+          <span class="section-label">Open Source &middot; Independently Verifiable</span>
+          <h2 id="eng-h">Don&rsquo;t take our word for any of it.</h2>
+          <p>Three engineering projects, published in full. Every number below can be reproduced from a fresh clone &mdash; no API key, no GPU.</p>
         </div>
 
-        <div class="eng-stats">
-          <div class="eng-stat">
-            <div class="eng-stat__v">491<span>/491</span></div>
-            <p class="eng-stat__c">instructions byte-identical to Apple's own assembler</p>
+        <div class="wk-kiln reveal">
+          <div>
+            <p class="wk-repo__tag">Flagship &middot; Tensor Compiler &middot; MIT</p>
+            <h3>KILN</h3>
+            <p>A tensor compiler written from scratch that generates its own ARM64 machine code &mdash; published, MIT-licensed, and reproducible in about two minutes. Apple&rsquo;s own Accelerate library still beats it at large matrix multiply, using an on-die coprocessor no public instruction reaches. The write-up says so plainly, which is rather the point.</p>
+            <div class="wk-kiln__cta">
+              <a href="https://greenaisolution.github.io/kiln/" class="btn btn-primary" target="_blank" rel="noopener">Read the write-up</a>
+              <a href="https://github.com/GreenAiSolution/kiln" class="btn btn-lg work-end__ghost" style="padding:.7rem 1.4rem;font-size:.9rem" target="_blank" rel="noopener">View the source</a>
+            </div>
           </div>
-          <div class="eng-stat">
-            <div class="eng-stat__v">97.6<span>%</span></div>
-            <p class="eng-stat__c">of the hardware speed ceiling, on a benchmark it measures itself</p>
-          </div>
-          <div class="eng-stat">
-            <div class="eng-stat__v">2.9<span>×</span></div>
-            <p class="eng-stat__c">median speed-up against numpy across the kernel set</p>
-          </div>
+          <ul class="wk-stats" role="list">
+            <li><b>491<small>/491</small></b><span>instructions byte-identical to Apple&rsquo;s own assembler</span></li>
+            <li><b>97.6<small>%</small></b><span>of the hardware speed ceiling, on a benchmark it measures itself</span></li>
+            <li><b>2.9<small>&times;</small></b><span>median speed-up against numpy across the kernel set</span></li>
+          </ul>
         </div>
 
-        <div class="eng-acts">
-          <a href="https://greenaisolution.github.io/kiln/" class="btn btn-primary" target="_blank" rel="noopener">Read the write-up</a>
-          <a href="https://github.com/GreenAiSolution/kiln" class="btn btn-secondary" target="_blank" rel="noopener">View the source</a>
-        </div>
-        <p style="text-align:center;max-width:680px;margin:1.5rem auto 0;font-size:.85rem;color:var(--gray-400)">Apple's own Accelerate library still beats it at large matrix multiply, using an on-die coprocessor no public instruction reaches. The write-up says so plainly, which is rather the point.</p>
-
-        <div class="eng-proofs">
-          <article class="eng-proof">
-            <p class="eng-proof__tag">Search &amp; Retrieval</p>
+        <div class="wk-duo">
+          <article class="wk-repo reveal">
+            <p class="wk-repo__tag">Search &amp; Retrieval</p>
             <h3>STRATA</h3>
-            <div class="eng-proof__n">0.0066</div>
-            <p>Average gap between its hand-written keyword search and the baselines published by other researchers, across five public datasets. A hybrid search engine — keyword, vector, fusion and re-ranking — written from scratch in numpy. With a proper encoder in the vector leg, combining the two beats keyword search on all five datasets, every one at p &le; 0.001.</p>
-            <a href="https://github.com/GreenAiSolution/greenai-strata" target="_blank" rel="noopener">View the source ↗</a>
+            <div class="wk-repo__n">0.0066</div>
+            <p>Average gap between its hand-written keyword search and the baselines published by other researchers, across five public datasets. A hybrid search engine &mdash; keyword, vector, fusion and re-ranking &mdash; written from scratch in numpy. With a proper encoder in the vector leg, the hybrid beats keyword search on all five datasets, every one at p &le; 0.001.</p>
+            <a href="https://github.com/GreenAiSolution/greenai-strata" target="_blank" rel="noopener">View the source &#8599;</a>
           </article>
-          <article class="eng-proof">
-            <p class="eng-proof__tag">Agent Evaluation</p>
+          <article class="wk-repo reveal">
+            <p class="wk-repo__tag">Agent Evaluation</p>
             <h3>CRUCIBLE</h3>
-            <div class="eng-proof__n">27<span>/30</span></div>
-            <p>Tasks where friendly, obvious automation breaks a rule that actually matters. A simulated front desk for a small service company — an agent works one shift and ordinary Python checks what it actually did. No model grading another model; every task ships its own answer key.</p>
-            <a href="https://github.com/GreenAiSolution/crucible" target="_blank" rel="noopener">View the source ↗</a>
+            <div class="wk-repo__n">27<small>/30</small></div>
+            <p>Tasks where friendly, obvious automation breaks a rule that actually matters. A simulated front desk for a small service company &mdash; an agent works one shift and ordinary Python checks what it actually did. No model grading another model; every task ships its own answer key.</p>
+            <a href="https://github.com/GreenAiSolution/crucible" target="_blank" rel="noopener">View the source &#8599;</a>
           </article>
         </div>
-        <p style="text-align:center;max-width:680px;margin:1.5rem auto 0;font-size:.85rem;color:var(--gray-400)">Neither needs an API key or a GPU to reproduce. That is deliberate: the reason to publish them is so you do not have to take our word for any of it.</p>
+
+        <p class="wk-foot">Why publish any of this? Because most agencies ask you to take their word for it. These repos exist so you don&rsquo;t have to take ours.</p>
       </div>
     </section>
 
