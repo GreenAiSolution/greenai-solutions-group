@@ -18,259 +18,65 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/services.html" />
   <meta property="og:title" content="Services &amp; Pricing — GreenAI Solutions Team" />
-  <meta property="og:description" content="AI employees on your phones, a fresh stream of ads every month, AI systems, and websites built to convert." />
+  <meta property="og:description" content="An AI employee that answers every call, text and web form in 8 seconds, books the job and follows up. $497 a month, flat." />
   <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Services &amp; Pricing — GreenAI Solutions Team" />
-  <meta name="twitter:description" content="AI employees, AI ad creation, AI consulting and web design — with the prices on the page." />
+  <meta name="twitter:description" content="An AI employee that answers every call, text and web form in 8 seconds, books the job and follows up. $497 a month, flat." />
   <meta name="twitter:image" content="https://greenaidigital.com/logo.jpg" />
 
   <style>
-    /* ============================================================
-       SERVICES — the same flight as the Work page, with one rule
-       laid over it: a services page has to sell, so the immersive
-       run stops at the pricing. Everything below the landing is an
-       ordinary, dense, scannable document.
-       ============================================================ */
-
-    :root {
-      --ink: #040a06; --ink-2: #07130c;
-      --emer: #4caf6e; --emer-hi: #7de3a4; --gold: #D4AF37;
+    /* ---- page hero extras ---- */
+    .svc-lede { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,.78); max-width: 62ch; margin: 1.1rem auto 0; }
+    .svc-flag {
+      display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem;
+      background: rgba(212,175,55,.12); border: 1px solid rgba(212,175,55,.35);
+      color: #f0dfa0; border-radius: 100px; padding: .55rem 1.25rem;
+      font-size: .9rem; font-weight: 600;
     }
+    .svc-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; justify-content: center; }
 
-    html { scroll-behavior: smooth; }
-    body.work { background: var(--ink); color: #fff; overflow-x: hidden; }
+    /* ---- the crew, four cards ---- */
+    .crew-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .crew-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+      padding: 1.9rem 1.5rem; text-align: center; box-shadow: var(--shadow-sm);
+    }
+    .crew-card img { width: 84px; height: 84px; object-fit: contain; margin: 0 auto 1.1rem; display: block; }
+    .crew-card h3 { font-family: 'Playfair Display', serif; font-size: 1.28rem; margin: 0 0 .25rem; }
+    .crew-card i {
+      display: block; font-style: normal; font-size: .66rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--green-mid); margin-bottom: .8rem;
+    }
+    .crew-card p { font-size: .9rem; line-height: 1.65; color: var(--gray-600); margin: 0; }
 
-    body.work .nav.scrolled {
-      background: rgba(5,14,8,.72);
-      backdrop-filter: blur(18px) saturate(1.3);
-      -webkit-backdrop-filter: blur(18px) saturate(1.3);
-      box-shadow: 0 1px 0 rgba(76,175,110,.14);
+    /* ---- comparison table ---- */
+    .cmp-wrap { overflow-x: auto; margin-top: 2rem; }
+    .cmp-table {
+      width: 100%; min-width: 640px; border-collapse: collapse; background: var(--white);
+      border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; font-size: .92rem;
     }
-    body.work .nav.scrolled .nav__logo-name,
-    body.work .nav.scrolled .nav__logo-sub { color: #fff; }
-    body.work .nav.scrolled .nav__link { color: rgba(255,255,255,.82); }
-    body.work .nav.scrolled .nav__link:hover { color: #fff; background: rgba(255,255,255,.12); }
-    body.work .nav.scrolled .nav__hamburger span { background: #fff; }
-    body.work .nav__mobile { background: #07130c; box-shadow: 0 14px 24px rgba(0,0,0,.5); }
-    body.work .nav__mobile .nav__link { color: #fff; }
-    body.work .nav__mobile .nav__submenu a { color: rgba(255,255,255,.62); }
-
-    #deep {
-      position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; display: block;
-      background: radial-gradient(120% 90% at 50% 12%, #10321b 0%, #071409 46%, #030805 100%);
-    }
-    .veil {
-      position: fixed; inset: 0; z-index: 1; pointer-events: none;
-      background: radial-gradient(95% 78% at 50% 46%, transparent 52%, rgba(3,8,5,.55) 100%);
-    }
-    .flight { position: relative; z-index: 2; }
-
-    .stage { position: relative; }
-    .stage__pin {
-      position: sticky; top: 0; height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 96px 24px 48px; text-align: center;
-    }
-    .kicker {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: .7rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--emer-hi); opacity: .85; margin-bottom: 1.1rem;
-    }
-    body.work h1, body.work h2, body.work h3, body.work h4, body.work .huge { color: #fff; }
-    .huge {
-      font-family: 'Playfair Display', serif; font-weight: 800;
-      font-size: clamp(2.2rem, 6.4vw, 4.8rem); line-height: .98;
-      letter-spacing: -.02em; margin: 0; text-shadow: 0 2px 40px rgba(0,0,0,.55);
-    }
-    .huge em { font-style: normal; color: var(--gold); }
-    .sub {
-      margin: 1.3rem auto 0; max-width: 46rem;
-      font-size: clamp(.98rem, 1.5vw, 1.14rem); line-height: 1.7; color: rgba(255,255,255,.8);
-    }
-    .price-flag {
-      display: inline-block; margin-top: 1.6rem; padding: .55rem 1.15rem;
-      border: 1px solid rgba(212,175,55,.4); border-radius: 99px;
-      font-size: .84rem; font-weight: 700; color: var(--gold);
-      background: rgba(212,175,55,.08);
-    }
-
-    .entry__cue {
-      position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      font-size: .66rem; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(255,255,255,.42); font-weight: 700;
-    }
-    .entry__cue i {
-      width: 1px; height: 42px; background: linear-gradient(to bottom, transparent, var(--emer));
-      display: block; animation: cue 2.2s ease-in-out infinite;
-    }
-    @keyframes cue { 0%,100% { opacity:.25; transform: scaleY(.6);} 50% { opacity:1; transform: scaleY(1);} }
-
-    /* A buyer who only wants the number should never have to fly for it. */
-    .jump {
-      position: fixed; right: 22px; bottom: 22px; z-index: 40;
-      display: inline-flex; align-items: center; gap: .45rem;
-      padding: .7rem 1.15rem; border-radius: 99px;
-      background: rgba(5,14,8,.78); backdrop-filter: blur(14px);
-      border: 1px solid rgba(212,175,55,.42); color: var(--gold);
-      font-size: .8rem; font-weight: 700; text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
-      transition: opacity .4s ease, transform .4s ease;
-    }
-    .jump:hover { color: #f2dc8a; transform: translateY(-2px); }
-    .jump.gone { opacity: 0; pointer-events: none; transform: translateY(12px); }
-
-    /* ---- the crew ring (four robots) ---- */
-    .crew__scene { perspective: 1500px; width: 100%; height: 430px; margin-top: 1.8rem; }
-    .crew { position: relative; width: 280px; height: 400px; margin: 0 auto; transform-style: preserve-3d; will-change: transform; }
-    .mate {
-      position: absolute; inset: 0; border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(76,175,110,.3); background: #0c1a0e;
-      box-shadow: 0 30px 70px rgba(0,0,0,.6); backface-visibility: hidden;
-      display: flex; flex-direction: column;
-    }
-    .mate img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .mate__cap {
-      position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.1rem 1.2rem;
-      background: linear-gradient(to top, #0c1a0e 12%, rgba(12,26,14,.72) 46%, transparent);
-      text-align: left;
-    }
-    .mate__cap b { display: block; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; }
-    .mate__cap i {
-      display: block; font-style: normal; font-size: .64rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-top: .3rem;
-    }
-    .mate__cap p { margin: .55rem 0 0; font-size: .82rem; line-height: 1.5; color: rgba(255,255,255,.66); }
-
-    .runner {
-      margin-top: 1.4rem; font-family: ui-monospace, Menlo, monospace;
-      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.4);
-    }
-
-    /* ---- dark treatment for the panels we already draw ---- */
-    .artframe {
-      max-width: 620px; width: 100%; border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(76,175,110,.24); box-shadow: 0 30px 70px rgba(0,0,0,.4);
-    }
-    .artframe img { width: 100%; height: auto; display: block; }
-
-    .points { list-style: none; padding: 0; margin: 1.6rem auto 0; max-width: 46rem; text-align: left; display: grid; gap: .8rem; }
-    .points li { display: flex; gap: .7rem; align-items: flex-start; font-size: .95rem; line-height: 1.6; color: rgba(255,255,255,.84); }
-    .points b { color: #fff; font-weight: 600; }
-    .points span { color: var(--emer); font-weight: 800; flex-shrink: 0; }
-
-    /* the comparison table, re-dressed for deep space */
-    .vs { width: 100%; border-collapse: collapse; margin-top: 1.8rem; font-size: .88rem; text-align: left; }
-    .vs th, .vs td { padding: .9rem 1rem; border-bottom: 1px solid rgba(255,255,255,.16); vertical-align: top; }
-    .vs thead th {
-      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,.66); font-weight: 800; border-bottom: 2px solid rgba(255,255,255,.24);
-    }
-    .vs .vs-us { background: rgba(76,175,110,.1); }
-    .vs thead .vs-us { color: var(--emer-hi); background: rgba(76,175,110,.16); border-bottom-color: var(--emer); }
-    .vs tbody th { font-weight: 600; color: #fff; font-size: .86rem; }
-    .vs td { color: rgba(255,255,255,.82); }
-    .vs td.vs-us { color: var(--emer-hi); font-weight: 600; }
-    .vs-note { font-size: .78rem; color: rgba(255,255,255,.6); margin-top: .9rem; line-height: 1.6; text-align: left; }
-
-    /* the ad wall keeps its own look — it was already deep-space native */
-    .adwall { position: relative; border-radius: 20px; overflow: hidden; background: #0b0f16; border: 1px solid rgba(212,175,55,.34); box-shadow: 0 26px 60px rgba(0,0,0,.45), inset 0 0 60px rgba(212,175,55,.05); padding: 2.2rem 0; width: 100%; }
-    .adtrack { display: flex; gap: .85rem; width: max-content; animation: adScroll 42s linear infinite; }
-    .adtrack--r { animation-direction: reverse; margin-top: .85rem; }
-    .adwall:hover .adtrack { animation-play-state: paused; }
-    @keyframes adScroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
-    .adcell { width: 122px; height: 162px; flex-shrink: 0; border-radius: 12px; border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: .55rem; }
-    .adcell { filter: saturate(1.3) brightness(1.45); }
-    .adcell span { filter: none; font-size: .56rem; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.9); text-transform: uppercase; line-height: 1.3; position: relative; z-index: 2; }
-    .adcell::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.75), transparent 60%); }
-    .adwall__fade { position: absolute; top: 0; bottom: 0; width: 80px; z-index: 3; pointer-events: none; }
-    .adwall__fade--l { left: 0; background: linear-gradient(to right, #07090e, transparent); }
-    .adwall__fade--r { right: 0; background: linear-gradient(to left, #07090e, transparent); }
-
-    .mathbox { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 1.8rem; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; overflow: hidden; width: 100%; }
-    .mathcell { padding: 1.4rem 1.2rem; border-right: 1px solid rgba(255,255,255,.14); text-align: left; }
-    .mathcell:last-child { border-right: none; background: rgba(76,175,110,.1); }
-    .mathcell__k { font-size: .62rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,255,255,.66); }
-    .mathcell:last-child .mathcell__k { color: var(--emer-hi); }
-    .mathcell__v { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 800; color: #fff; margin-top: .45rem; line-height: 1; }
-    .mathcell:last-child .mathcell__v { color: var(--gold); }
-    .mathcell__c { font-size: .8rem; color: rgba(255,255,255,.74); margin-top: .5rem; line-height: 1.5; }
-
-    .btn-glow { background: linear-gradient(135deg,#c9a12e,#e8c84a); color: #0a0a0a; border: none; font-weight: 800; }
-    .btn-glow:hover { filter: brightness(1.08); color: #0a0a0a; }
-    .btn-wire { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.38); }
-    .btn-wire:hover { background: rgba(255,255,255,.1); color: #fff; }
-
-    .rv { opacity: 0; transform: translate3d(0,32px,0); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1); }
-    .rv.in { opacity: 1; transform: none; }
-    .rv.d1 { transition-delay: .1s; } .rv.d2 { transition-delay: .2s; } .rv.d3 { transition-delay: .3s; }
-
-    /* ============ THE LANDING ============
-       Flight over. Everything from here is a normal document, because
-       this is where the buyer reads numbers and fills in a form. */
-    .ground { position: relative; z-index: 2; background: #f6f8f6; color: var(--gray-800); }
-    /* body.work h2 out-specifies a bare .ground h2, so the landing has to
-       restate the selector with the body class or every heading down here
-       renders white on a near-white ground. */
-    body.work .ground h1, body.work .ground h2,
-    body.work .ground h3, body.work .ground h4 { color: var(--gray-800); }
-    body.work .ground .section-label { color: var(--green-light); }
-    body.work .ground p, body.work .ground li { color: inherit; }
-
-    /* The Elite Partnership card is a dark panel sitting inside the light
-       .ground, so the rules above (which are more specific than the card's
-       own .elite-* colors) were painting its text near-black on near-black.
-       Restate every colour at .ground weight so the card reads again. */
-    body.work .ground .elite-section { color: rgba(255,255,255,.72); }
-    body.work .ground .elite-title,
-    body.work .ground .elite-form-title { color: #fff; }
-    body.work .ground .elite-eyebrow,
-    body.work .ground .elite-section-title,
-    body.work .ground .elite-stat-num,
-    body.work .ground .elite-check { color: #d4af37; }
-    body.work .ground .elite-desc { color: rgba(255,255,255,.62); }
-    body.work .ground .elite-list li { color: rgba(255,255,255,.75); }
-    body.work .ground .elite-stat-label { color: rgba(255,255,255,.45); }
-    body.work .ground .elite-form-sub { color: rgba(255,255,255,.5); }
-    body.work .ground .elite-form-group label { color: rgba(255,255,255,.65); }
-    body.work .ground .elite-form-group input,
-    body.work .ground .elite-form-group select,
-    body.work .ground .elite-form-group textarea { color: rgba(255,255,255,.92); }
-    body.work .ground .elite-submit { color: #0a0a0a; }
+    .cmp-table th, .cmp-table td { padding: 1rem 1.15rem; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
+    .cmp-table thead th { font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-400); font-weight: 800; background: var(--gray-100); }
+    .cmp-table .cmp-us { background: var(--green-pale); }
+    .cmp-table thead .cmp-us { color: var(--green-dark); background: rgba(76,175,110,.16); }
+    .cmp-table tbody th { font-weight: 700; color: var(--gray-800); font-size: .9rem; }
+    .cmp-table td.cmp-us { color: var(--green-dark); font-weight: 700; }
+    .cmp-table tr:last-child td, .cmp-table tr:last-child th { border-bottom: none; }
+    .cmp-note { font-size: .85rem; color: var(--gray-400); margin-top: 1.1rem; line-height: 1.7; max-width: 760px; }
 
     @media (max-width: 900px) {
-      .crew__scene { height: 400px; perspective: 1000px; }
-      .mathbox { grid-template-columns: 1fr; }
-      .mathcell { border-right: none; border-bottom: 1px solid rgba(255,255,255,.14); }
-      .mathcell:last-child { border-bottom: none; }
-      .stage__pin { padding: 88px 18px 40px; }
-      .vs { font-size: .8rem; } .vs th, .vs td { padding: .65rem .55rem; }
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .stage { height: auto !important; }
-      .stage__pin { position: relative; height: auto; min-height: 0; padding: 64px 22px; }
-      .crew__scene { perspective: none; height: auto; }
-      .crew { transform: none !important; width: 100%; max-width: 320px; height: auto; }
-      .mate { position: relative; inset: auto; transform: none !important; opacity: 1 !important; margin-bottom: 1rem; backface-visibility: visible; }
-      .mate img { height: auto; }
-      .rv { opacity: 1; transform: none; transition: none; }
-      .adtrack { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
-      .entry__cue, #deep, .veil, .jump { display: none; }
-      body.work { background: #07130c; }
+    @media (max-width: 560px) {
+      .crew-grid { grid-template-columns: 1fr; }
     }
-
-    .nojs .stage { height: auto !important; }
-    .nojs .stage__pin { position: relative; height: auto; padding: 64px 22px; }
-    .nojs .crew__scene { perspective: none; height: auto; }
-    .nojs .crew { width: 100%; max-width: 320px; height: auto; transform: none; }
-    .nojs .mate { position: relative; inset: auto; margin-bottom: 1rem; }
-    .nojs .mate img { height: auto; }
-    .nojs .rv { opacity: 1; transform: none; }
-    .nojs .jump { display: none; }
+    /* The comparison table's whole point is the "us" column, so on a phone
+       it has to shrink to fit rather than scroll it out of view. */
+    @media (max-width: 700px) {
+      .cmp-table { min-width: 0; font-size: .74rem; }
+      .cmp-table th, .cmp-table td { padding: .65rem .55rem; }
+    }
   </style>
   <script type="application/ld+json">
 {
@@ -294,12 +100,8 @@
   </script>
   <script src="analytics.js?v=2"></script>
 </head>
-<body class="work nojs">
-  <script>document.body.classList.remove('nojs');</script>
-  <a href="#entry" class="skip-link">Skip to main content</a>
-
-  <canvas id="deep" aria-hidden="true"></canvas>
-  <span class="veil" aria-hidden="true"></span>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -340,164 +142,161 @@
     </div>
   </nav>
 
-  <a class="jump" id="jump" href="#pricing">See pricing ↓</a>
+  <!-- ===== HERO ===== -->
+  <div class="page-hero" style="position:relative;overflow:hidden">
+    <div class="container" style="position:relative;z-index:1">
+      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · What We Sell</div>
+      <h1>Staff that never sleeps.<br/>Leads that never go cold.</h1>
+      <p class="svc-lede">One AI employee that answers every call, text and web form in 8 seconds &mdash; day, night, weekend &mdash; books the job into your calendar, and keeps chasing the ones who go quiet. $497 a month. That is the whole offer.</p>
+      <span class="svc-flag">⚡ Flat rate · unlimited leads · no per-call charge</span>
+      <div class="svc-cta-row">
+        <a class="btn btn-primary btn-lg buy" data-sku="employees-front-desk" href="pay.html?sku=employees-front-desk">Get it running &mdash; $497/mo</a>
+        <a class="btn btn-secondary btn-lg" href="catch.html" style="color:#fff;border-color:rgba(255,255,255,.45)">Watch it catch a lead</a>
+      </div>
+    </div>
+  </div>
 
-  <main id="main" class="flight">
+  <main id="main">
 
-    <!-- ============ 01 · ENTRY ============ -->
-    <section class="stage" id="entry" style="height:170vh" aria-labelledby="entry-h">
-      <div class="stage__pin">
-        <p class="kicker rv">GreenAI &middot; What We Sell</p>
-        <h1 class="huge rv d1" id="entry-h">Staff That Never<br/>Sleeps. Leads That<br/>Never Go <em>Cold</em>.</h1>
-        <p class="sub rv d2">One AI employee that answers every call, text and web form in 8 seconds &mdash; day, night, weekend &mdash; books the job into your calendar, and keeps chasing the ones who go quiet. $497 a month. That is the whole offer.</p>
-        <div class="entry__cue" aria-hidden="true"><i></i>Scroll</div>
+    <!-- ===== THE CREW ===== -->
+    <section class="section" id="employees" aria-labelledby="emp-h">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">The Offer</span>
+          <h2 id="emp-h">One employee. Four jobs.</h2>
+          <div class="section-divider"></div>
+          <p style="max-width:620px;margin:0 auto">They work for you. They answer every call, make the calls you never get around to, and they do it at 2am on a Sunday without being asked twice.</p>
+        </div>
+        <div class="crew-grid">
+          <article class="crew-card">
+            <img src="agents/agent-sterling.svg" alt="STERLING, an AI employee robot with a headset for inbound sales calls" width="84" height="84" loading="lazy" decoding="async"/>
+            <h3>STERLING</h3><i>Inbound Sales</i>
+            <p>Picks up on the first ring, works out what they need, and puts the appointment straight in your calendar.</p>
+          </article>
+          <article class="crew-card">
+            <img src="agents/agent-hunter.svg" alt="HUNTER, an AI employee robot with a boom mic and antenna for outbound calls" width="84" height="84" loading="lazy" decoding="async"/>
+            <h3>HUNTER</h3><i>Outbound Calls</i>
+            <p>Rings back every missed call and every lead that went cold months ago. The follow-up you keep meaning to do.</p>
+          </article>
+          <article class="crew-card">
+            <img src="agents/agent-maven.svg" alt="MAVEN, an AI employee robot with a reception headset for front-desk questions" width="84" height="84" loading="lazy" decoding="async"/>
+            <h3>MAVEN</h3><i>Front Desk</i>
+            <p>Hours, pricing, directions, "do you service my area" — answered properly, every time, in your words.</p>
+          </article>
+          <article class="crew-card">
+            <img src="agents/agent-ledger.svg" alt="LEDGER, an AI employee robot with a precision visor for scheduling and operations" width="84" height="84" loading="lazy" decoding="async"/>
+            <h3>LEDGER</h3><i>Scheduling &amp; Ops</i>
+            <p>Confirms tomorrow's jobs, chases the no-shows, and reschedules them before the slot goes to waste.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 02 · AI EMPLOYEES ============ -->
-    <section class="stage" id="ai-employees" style="height:400vh" aria-labelledby="emp-h">
-      <div class="stage__pin">
-        <p class="kicker rv">The offer</p>
-        <h2 class="huge rv d1" id="emp-h" style="font-size:clamp(2rem,5vw,3.4rem)">AI <em>Employees</em></h2>
-        <p class="sub rv d1">They work for you. They answer every call, make the calls you never get around to, and they do it at 2am on a Sunday without being asked twice.</p>
-
-        <div class="crew__scene">
-          <div class="crew" id="crew">
-            <article class="mate">
-              <img src="agents/agent-sterling.svg" alt="STERLING, an AI employee robot with a headset for inbound sales calls" width="432" height="576" loading="lazy" decoding="async"/>
-              <div class="mate__cap"><b>STERLING</b><i>Inbound Sales</i><p>Picks up on the first ring, works out what they need, and puts the appointment straight in your calendar.</p></div>
-            </article>
-            <article class="mate">
-              <img src="agents/agent-hunter.svg" alt="HUNTER, an AI employee robot with a boom mic and antenna for outbound calls" width="432" height="576" loading="lazy" decoding="async"/>
-              <div class="mate__cap"><b>HUNTER</b><i>Outbound Calls</i><p>Rings back every missed call and every lead that went cold months ago. The follow-up you keep meaning to do.</p></div>
-            </article>
-            <article class="mate">
-              <img src="agents/agent-maven.svg" alt="MAVEN, an AI employee robot with a reception headset for front-desk questions" width="432" height="576" loading="lazy" decoding="async"/>
-              <div class="mate__cap"><b>MAVEN</b><i>Front Desk</i><p>Hours, pricing, directions, "do you service my area" — answered properly, every time, in your words.</p></div>
-            </article>
-            <article class="mate">
-              <img src="agents/agent-ledger.svg" alt="LEDGER, an AI employee robot with a precision visor for scheduling and operations" width="432" height="576" loading="lazy" decoding="async"/>
-              <div class="mate__cap"><b>LEDGER</b><i>Scheduling &amp; Ops</i><p>Confirms tomorrow's jobs, chases the no-shows, and reschedules them before the slot goes to waste.</p></div>
-            </article>
-          </div>
+    <!-- ===== THE ARGUMENT ===== -->
+    <section class="section bg-gray" id="compare" aria-labelledby="cmp-h">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Why This Beats The Alternatives</span>
+          <h2 id="cmp-h">There are two ways to buy this today.<br/>Both have a catch.</h2>
+          <div class="section-divider"></div>
         </div>
-
-        <p class="runner"><span id="crewPos">01</span> / 04 &nbsp;·&nbsp; your crew</p>
-        <p class="price-flag rv d2">$497/mo flat &middot; unlimited leads, no per-call charge</p>
+        <div class="cmp-wrap">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Build-it-yourself<br/>voice platform</th>
+                <th scope="col">Per-call<br/>answering service</th>
+                <th scope="col" class="cmp-us">GreenAI<br/>AI Employees</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">What you pay</th>
+                <td>$50&ndash;$450/mo plus roughly $0.07&ndash;$0.10 a minute</td>
+                <td>$95&ndash;$245/mo, then about $3&ndash;$5 every call past a small bundle</td>
+                <td class="cmp-us">One flat monthly fee</td>
+              </tr>
+              <tr>
+                <th scope="row">A busy month costs you</th>
+                <td>More minutes, more money</td>
+                <td>More calls, more money</td>
+                <td class="cmp-us">Exactly the same</td>
+              </tr>
+              <tr>
+                <th scope="row">Who builds it</th>
+                <td>You do. It's a toolkit.</td>
+                <td>They script it generically</td>
+                <td class="cmp-us">We build it around your business</td>
+              </tr>
+              <tr>
+                <th scope="row">Makes outbound calls</th>
+                <td>If you build that too</td>
+                <td>Rarely — they answer</td>
+                <td class="cmp-us">Yes, that's HUNTER's whole job</td>
+              </tr>
+              <tr>
+                <th scope="row">Nights and weekends</th>
+                <td>Yes</td>
+                <td>Often costs extra</td>
+                <td class="cmp-us">Included</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="cmp-note">Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered — check their current pricing before you decide. Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.</p>
       </div>
     </section>
 
-    <!-- ============ 03 · THE ARGUMENT ============ -->
-    <section class="stage" id="compare" style="height:200vh" aria-labelledby="cmp-h">
-      <div class="stage__pin">
-        <div style="max-width:1000px;width:100%">
-          <p class="kicker rv">Why This Beats The Alternatives</p>
-          <h2 class="rv d1" id="cmp-h" style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.4vw,2.4rem);margin:0">There are two ways to buy this today.<br/>Both have a catch.</h2>
-          <div class="rv d2" style="overflow-x:auto">
-      <table class="vs ">
-        <thead>
-          <tr>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">Build-it-yourself<br/>voice platform</th>
-            <th scope="col">Per-call<br/>answering service</th>
-            <th scope="col" class="vs-us">GreenAI<br/>AI Employees</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">What you pay</th>
-            <td>$50–$450/mo plus roughly $0.07–$0.10 a minute</td>
-            <td>$95–$245/mo, then about $3–$5 every call past a small bundle</td>
-            <td class="vs-us">One flat monthly fee</td>
-          </tr>
-          <tr>
-            <th scope="row">A busy month costs you</th>
-            <td>More minutes, more money</td>
-            <td>More calls, more money</td>
-            <td class="vs-us">Exactly the same</td>
-          </tr>
-          <tr>
-            <th scope="row">Who builds it</th>
-            <td>You do. It's a toolkit.</td>
-            <td>They script it generically</td>
-            <td class="vs-us">We build it around your business</td>
-          </tr>
-          <tr>
-            <th scope="row">Makes outbound calls</th>
-            <td>If you build that too</td>
-            <td>Rarely — they answer</td>
-            <td class="vs-us">Yes, that's HUNTER's whole job</td>
-          </tr>
-          <tr>
-            <th scope="row">Nights and weekends</th>
-            <td>Yes</td>
-            <td>Often costs extra</td>
-            <td class="vs-us">Included</td>
-          </tr>
-        </tbody>
-      </table>
-      
-          </div>
-          <p class="vs-note rv d3">Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered — check their current pricing before you decide. Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.</p>
+    <!-- ===== PRICING ===== -->
+    <section class="section" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">The Price</span>
+          <h2 id="pricing-heading">One thing.<br/>One price.</h2>
+          <div class="section-divider"></div>
+          <p style="max-width:540px;margin:0 auto 3rem">No tiers, no packages, no &ldquo;starting at&rdquo;. $497 a month for an AI employee that answers every lead in 8 seconds. No setup fee, no contract, cancel anytime.</p>
         </div>
+
+        <div class="reveal offer-panel">
+          <div class="offer-panel__main">
+            <span class="offer-panel__eyebrow">AI Employee &middot; Phoenix service businesses</span>
+            <h3 class="offer-panel__title">Answers every lead in 8 seconds. Books the job. Chases the ones who go quiet.</h3>
+            <ul class="offer-panel__list" role="list">
+              <li><strong>Every call, text and web form</strong> &mdash; 24 hours a day, nights, weekends and holidays</li>
+              <li><strong>Answered in 8 seconds</strong> &mdash; before your customer moves on to the next name on the list</li>
+              <li><strong>Unlimited leads</strong> &mdash; a busy month costs exactly the same as a quiet one</li>
+              <li><strong>Books into your calendar</strong> &mdash; it only offers the slots you actually have open</li>
+              <li><strong>Texts back every missed call</strong> and keeps following up until they reply</li>
+              <li><strong>Trained on your services, prices and service area</strong> &mdash; not a generic script</li>
+              <li><strong>Full transcripts in your inbox</strong> &mdash; your rules, and we maintain it, not you</li>
+            </ul>
+          </div>
+          <div class="offer-panel__side">
+            <span class="offer-panel__fig">$497</span>
+            <span class="offer-panel__cad">per month</span>
+            <ul class="offer-panel__terms" role="list">
+              <li>Setup included &mdash; no setup fee</li>
+              <li>No per-call or per-minute charge</li>
+              <li>Month to month, cancel anytime</li>
+              <li>Direct access to Jaden</li>
+            </ul>
+            <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg offer-panel__cta buy" data-sku="employees-front-desk">Get it running &rarr;</a>
+            <a href="catch.html" class="offer-panel__demo">or watch it catch a lead first &#8599;</a>
+          </div>
+        </div>
+
+        <p class="offer-also">
+          Already have the phones covered? We also build
+          <a href="service-web-design.html">websites</a>,
+          <a href="service-ai-ads.html">ad creative</a> and
+          <a href="service-ai-consulting.html">AI systems</a>
+          for the businesses we work with &mdash; each priced on its own page.
+        </p>
       </div>
     </section>
 
   </main>
-
-  <!-- ============ THE LANDING — flight over, plain document from here ============ -->
-  <div class="ground">
-
-  <!-- ===== PRICING ===== -->
-  <section class="section" id="pricing" aria-labelledby="pricing-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">The Price</span>
-        <h2 id="pricing-heading">One thing.<br/>One price.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:540px;margin:0 auto 3rem">No tiers, no packages, no &ldquo;starting at&rdquo;. $497 a month for an AI employee that answers every lead in 8 seconds. No setup fee, no contract, cancel anytime.</p>
-      </div>
-
-      <div class="reveal offer-panel">
-        <div class="offer-panel__main">
-          <span class="offer-panel__eyebrow">AI Employee &middot; Phoenix service businesses</span>
-          <h3 class="offer-panel__title">Answers every lead in 8 seconds. Books the job. Chases the ones who go quiet.</h3>
-          <ul class="offer-panel__list" role="list">
-            <li><strong>Every call, text and web form</strong> &mdash; 24 hours a day, nights, weekends and holidays</li>
-            <li><strong>Answered in 8 seconds</strong> &mdash; before your customer moves on to the next name on the list</li>
-            <li><strong>Unlimited leads</strong> &mdash; a busy month costs exactly the same as a quiet one</li>
-            <li><strong>Books into your calendar</strong> &mdash; it only offers the slots you actually have open</li>
-            <li><strong>Texts back every missed call</strong> and keeps following up until they reply</li>
-            <li><strong>Trained on your services, prices and service area</strong> &mdash; not a generic script</li>
-            <li><strong>Full transcripts in your inbox</strong> &mdash; your rules, and we maintain it, not you</li>
-          </ul>
-        </div>
-        <div class="offer-panel__side">
-          <span class="offer-panel__fig">$497</span>
-          <span class="offer-panel__cad">per month</span>
-          <ul class="offer-panel__terms" role="list">
-            <li>Setup included &mdash; no setup fee</li>
-            <li>No per-call or per-minute charge</li>
-            <li>Month to month, cancel anytime</li>
-            <li>Direct access to Jaden</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary btn-lg offer-panel__cta">Get it running &rarr;</a>
-          <a href="catch.html" class="offer-panel__demo">or watch it catch a lead first &#8599;</a>
-        </div>
-      </div>
-
-      <p class="offer-also">
-        Already have the phones covered? We also build
-        <a href="service-web-design.html">websites</a>,
-        <a href="service-ai-ads.html">ad creative</a> and
-        <a href="service-ai-consulting.html">AI systems</a>
-        for the businesses we work with &mdash; each priced on its own page.
-      </p>
-
-    </div>
-  </section>
-
-  </div><!-- /.ground -->
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
@@ -580,113 +379,6 @@
   </footer>
 
   <script src="script.js?v=10"></script>
-  <script>
-  (function () {
-    'use strict';
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* reveals — IntersectionObserver keeps firing when rAF is parked */
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: .16, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-
-    /* ---- the crew carousel: four robots on a cylinder ---- */
-    var crew = document.getElementById('crew');
-    var mates = crew ? Array.prototype.slice.call(crew.children) : [];
-    var posEl = document.getElementById('crewPos');
-    // A true cylinder puts four cards 90deg apart, which leaves the
-    // neighbours edge-on and invisible. An arc keeps them in shot.
-    var N = mates.length, STEP = 58, RADIUS = 420;
-
-    function layoutCrew() {
-      RADIUS = window.innerWidth < 900 ? 300 : 420;
-      mates.forEach(function (m, i) {
-        m.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
-      });
-    }
-    if (crew && !reduce) { layoutCrew(); window.addEventListener('resize', layoutCrew); }
-
-    var empStage = document.getElementById('ai-employees');
-    var lastIdx = -1;
-    function driveCrew() {
-      if (!crew || reduce || !empStage) return;
-      var r = empStage.getBoundingClientRect();
-      var span = r.height - window.innerHeight;
-      var p = span > 0 ? Math.min(Math.max(-r.top / span, 0), 1) : 0;
-      var turns = p * (N - 1);
-      crew.style.transform = 'translateZ(-' + RADIUS + 'px) rotateY(' + (-turns * STEP) + 'deg)';
-      var idx = Math.round(turns);
-      if (idx !== lastIdx && posEl) { lastIdx = idx; posEl.textContent = ('0' + (idx + 1)).slice(-2); }
-      mates.forEach(function (m, i) {
-        var d = Math.abs(i - turns);
-        m.style.opacity = String(Math.max(0.16, 1 - d * 0.46));
-      });
-    }
-
-    /* hide the pricing shortcut once the buyer has actually reached pricing */
-    var jump = document.getElementById('jump'), priceEl = document.getElementById('pricing');
-    function driveJump() {
-      if (!jump || !priceEl) return;
-      jump.classList.toggle('gone', priceEl.getBoundingClientRect().top < window.innerHeight * 0.9);
-    }
-
-    /* ---- depth field: hand-projected stars + horizon grid on one 2D canvas ---- */
-    var cv = document.getElementById('deep'), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-    var stars = [], DEPTH = 900, dpr = 1, w = 0, h = 0, flown = 0, target = 0;
-
-    function seed() {
-      stars.length = 0;
-      var n = window.innerWidth < 900 ? 130 : 250;
-      for (var i = 0; i < n; i++) {
-        stars.push({ x: (Math.random() - .5) * 1800, y: (Math.random() - .5) * 1200, z: Math.random() * DEPTH, g: Math.random() < .16 });
-      }
-    }
-    function sizeCanvas() {
-      if (!cv) return;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = cv.clientWidth; h = cv.clientHeight;
-      cv.width = w * dpr; cv.height = h * dpr;
-      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function paint() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, w, h);
-      var cx = w / 2, cy = h / 2, F = 520;
-      ctx.lineWidth = 1;
-      for (var g = 1; g <= 14; g++) {
-        var gz = (g * 90 - (flown % 90));
-        if (gz <= 1) continue;
-        var s = F / gz, yy = cy + 240 * s;
-        if (yy > h + 40 || yy < cy) continue;
-        ctx.strokeStyle = 'rgba(76,175,110,' + (0.14 * (1 - gz / 1260)).toFixed(3) + ')';
-        ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(w, yy); ctx.stroke();
-      }
-      for (var i = 0; i < stars.length; i++) {
-        var st = stars[i], z = st.z - (flown % DEPTH);
-        if (z <= 1) z += DEPTH;
-        var k = F / z, sx = cx + st.x * k, sy = cy + st.y * k;
-        if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
-        var a = Math.min(1, (1 - z / DEPTH) * 1.5), rr = Math.max(.4, 2.4 * k);
-        ctx.fillStyle = st.g ? 'rgba(212,175,55,' + (a * .85).toFixed(3) + ')'
-                             : 'rgba(150,240,185,' + (a * .7).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(sx, sy, rr, 0, 6.2832); ctx.fill();
-      }
-    }
-
-    function onScroll() { target = window.scrollY * 0.55; driveCrew(); driveJump(); }
-    function loop() { flown += (target - flown) * 0.06; paint(); requestAnimationFrame(loop); }
-
-    if (cv && ctx && !reduce) {
-      sizeCanvas(); seed(); onScroll(); paint();
-      window.addEventListener('resize', function () { sizeCanvas(); seed(); paint(); }, { passive: true });
-      requestAnimationFrame(loop);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    window.__workStep = function (n) { flown = n || target; paint(); driveCrew(); driveJump(); };
-  })();
-  </script>
+  <script src="checkout.js?v=1"></script>
 </body>
 </html>
