@@ -87,7 +87,12 @@
     }
     .wall .adtile:hover { transform:translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,.6); z-index:2; }
     .adtile__ph { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    /* Full-bleed painted scene behind each tile's copy. slice = cover. */
+    .adtile__art { position:absolute; inset:0; width:100%; height:100%; display:block; }
+    .adtile__meta, .adtile__body, .adtile__prog { position:relative; z-index:1; }
     .adtile__meta { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .85rem; font-size:.55rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    /* Photo tiles: a quiet dark band keeps the meta line readable on any sky. */
+    .adtile--problem .adtile__meta, .adtile--urgency .adtile__meta, .adtile--question .adtile__meta, .adtile--founder .adtile__meta { background:linear-gradient(180deg,rgba(3,8,5,.72),rgba(3,8,5,.35) 70%,transparent); }
     .adtile__meta .fmt { opacity:.7; letter-spacing:.08em; }
     .adtile__body { flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.15rem; }
     .adtile__hook { font-family:'Playfair Display',serif; font-weight:800; line-height:1.14; }
@@ -97,21 +102,16 @@
     .adtile__prog i { display:block; height:100%; background:currentColor; }
 
     .adtile--problem { aspect-ratio:9/14; color:#ffb27d; background:linear-gradient(184deg,#2a3a20 0%,#1c2412 40%,#4a2410 125%); }
-    .adtile--problem .adtile__body::before { content:''; position:absolute; top:8%; right:12%; width:64px; height:64px; border-radius:50%; background:radial-gradient(circle,#ffe9c4 0 42%,rgba(255,190,120,.85) 55%,transparent 72%); box-shadow:0 0 55px 26px rgba(255,160,80,.35); pointer-events:none; }
-    .adtile--problem .adtile__body::after { content:''; position:absolute; inset:auto 0 0 0; height:46%; background:repeating-linear-gradient(88deg,transparent 0 22px,rgba(58,28,9,.5) 22px 24px),linear-gradient(180deg,transparent,rgba(46,26,10,.55)); pointer-events:none; }
+    .adtile--problem .adtile__body { background:linear-gradient(180deg,transparent 34%,rgba(20,10,3,.55) 66%,rgba(14,7,2,.92) 100%); }
     .adtile--problem .adtile__hook { font-size:1.5rem; color:#fff; }
-    .adtile--problem .adtile__hook, .adtile--problem .adtile__cap { position:relative; z-index:1; }
     .adtile--problem .adtile__prog i { width:28%; }
 
     .adtile--question { aspect-ratio:1/1; color:#9fd9c0; background:linear-gradient(180deg,#123240 0%,#0d2823 46%,#081409 100%); }
-    .adtile--question .adtile__body::before { content:''; position:absolute; top:26%; left:12%; width:5px; height:5px; border-radius:50%; background:#ffd98c; box-shadow:0 0 10px 3px rgba(255,217,140,.75), 34px 16px 0 0 #ffd98c, 34px 16px 10px 3px rgba(255,217,140,.6), 70px 24px 0 0 #ffd98c, 70px 24px 10px 3px rgba(255,217,140,.7), 108px 22px 0 0 #ffd98c, 108px 22px 10px 3px rgba(255,217,140,.55), 146px 12px 0 0 #ffd98c, 146px 12px 10px 3px rgba(255,217,140,.7), 182px -2px 0 0 #ffd98c, 182px -2px 10px 3px rgba(255,217,140,.6); pointer-events:none; }
-    .adtile--question .adtile__body::after { content:''; position:absolute; top:calc(26% - 26px); left:10%; width:82%; height:52px; border-bottom:1.5px solid rgba(255,235,190,.28); border-radius:0 0 100% 100%/0 0 200% 200%; pointer-events:none; }
+    .adtile--question .adtile__body { background:linear-gradient(180deg,transparent 38%,rgba(3,10,7,.55) 68%,rgba(2,8,5,.9) 100%); }
     .adtile--question .adtile__hook { font-size:1.35rem; color:#fff; font-family:Inter,sans-serif; font-weight:800; letter-spacing:-.01em; }
     .adtile--question .adtile__prog i { width:52%; }
 
     .adtile--split { aspect-ratio:4/5; color:#2a241a; background:linear-gradient(155deg,#b7a98f 0 49.6%,#1a5c2a 50.4% 100%); }
-    .adtile--split .adtile__body::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(80,68,48,.55) 1.3px,transparent 1.4px); background-size:11px 11px; -webkit-mask:linear-gradient(155deg,#000 0 49.6%,transparent 50%); mask:linear-gradient(155deg,#000 0 49.6%,transparent 50%); pointer-events:none; }
-    .adtile--split .adtile__body::after { content:''; position:absolute; inset:0; background:repeating-linear-gradient(65deg,rgba(255,255,255,.07) 0 4px,transparent 4px 11px); -webkit-mask:linear-gradient(155deg,transparent 0 50.4%,#000 50.5%); mask:linear-gradient(155deg,transparent 0 50.4%,#000 50.5%); pointer-events:none; }
     .adtile--split .word, .adtile--split .daychip { position:relative; z-index:1; }
     .adtile--split .adtile__body { justify-content:space-between; }
     .adtile--split .word { font-family:'Archivo Black',Inter,sans-serif; font-size:1.5rem; letter-spacing:.02em; text-transform:uppercase; }
@@ -121,6 +121,7 @@
     .adtile--split .adtile__prog { background:rgba(0,0,0,.25); } .adtile--split .adtile__prog i { width:70%; color:#0d2a17; }
 
     .adtile--founder { aspect-ratio:9/14; color:#ff6b6b; background:linear-gradient(200deg,#122417,#080f0a 70%); }
+    .adtile--founder .adtile__body { background:linear-gradient(180deg,transparent 40%,rgba(4,9,5,.55) 70%,rgba(3,7,4,.92) 100%); }
     .adtile--founder .adtile__body::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent calc(33.3% - 1px),rgba(255,255,255,.055) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(255,255,255,.055) calc(66.6% - 1px) 66.6%,transparent 66.6%),linear-gradient(180deg,transparent calc(33.3% - 1px),rgba(255,255,255,.055) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(255,255,255,.055) calc(66.6% - 1px) 66.6%,transparent 66.6%); pointer-events:none; }
     .adtile--founder .adtile__hook { font-size:1.22rem; color:#fff; font-family:Inter,sans-serif; font-weight:700; position:relative; z-index:1; }
     .adtile--founder .rec { display:inline-flex; align-items:center; gap:.4rem; color:#ff6b6b; }
@@ -132,6 +133,8 @@
     .adtile--founder .adtile__prog i { width:44%; }
 
     .adtile--quote { aspect-ratio:1/1.05; color:#6d5716; background:#f4efe3; border-color:rgba(0,0,0,.08); }
+    .adtile--quote .adtile__meta { background:linear-gradient(180deg,rgba(244,239,227,.92),rgba(244,239,227,.55) 70%,transparent); }
+    .adtile--quote .adtile__body { background:linear-gradient(180deg,transparent 4%,rgba(244,239,227,.6) 34%,rgba(244,239,227,.96) 58%); }
     .adtile--quote .adtile__body::before { content:'\201C'; position:absolute; top:-4%; left:4%; font-family:'Playfair Display',serif; font-weight:800; font-size:6.5rem; line-height:1; color:rgba(184,134,11,.16); pointer-events:none; }
     .adtile--quote .adtile__hook { font-size:1.3rem; color:#21281f; font-style:italic; position:relative; z-index:1; }
     .adtile--quote .stars { margin-top:.7rem; color:#b8860b; font-size:.85rem; letter-spacing:.2em; }
@@ -148,7 +151,8 @@
     .adtile--offer .adtile__prog { background:rgba(0,0,0,.5); } .adtile--offer .adtile__prog i { width:88%; color:#ffd75e; }
 
     .adtile--urgency { aspect-ratio:9/13; color:#7de3a4; background:repeating-linear-gradient(112deg,transparent 0 15px,rgba(170,220,255,.05) 15px 16.5px),linear-gradient(190deg,#20323c 0%,#0e2018 42%,#04150b 78%,#001007 100%); }
-    .adtile--urgency .adtile__body::before { content:'3'; position:absolute; top:-3%; right:5%; font-family:'Archivo Black',Inter,sans-serif; font-size:8.5rem; line-height:1; color:rgba(125,227,164,.13); pointer-events:none; }
+    .adtile--urgency .adtile__body { background:linear-gradient(180deg,transparent 30%,rgba(2,10,6,.55) 62%,rgba(1,8,5,.92) 100%); }
+    .adtile--urgency .adtile__body::before { content:'3'; position:absolute; top:-3%; right:5%; font-family:'Archivo Black',Inter,sans-serif; font-size:8.5rem; line-height:1; color:rgba(125,227,164,.18); pointer-events:none; }
     .adtile--urgency .slots { align-self:flex-start; margin-bottom:.7rem; background:#7de3a4; color:#04150b; font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; padding:.35rem .65rem; border-radius:6px; }
     .adtile--urgency .adtile__hook { font-size:1.32rem; color:#fff; }
     .adtile--urgency .adtile__prog i { width:91%; }
@@ -382,13 +386,13 @@
         <p class="wall-lede">Seven ways every batch attacks the same idea — the problem, the question, the before-and-after, the testimonial style, the founder cut, the offer, the clock. Nobody can tell you in advance which one your market clicks on. The wall is how you find out.</p>
       </div>
       <div class="wall">
-        <figure class="adtile adtile--problem"><div class="adtile__meta"><span>Angle 01 &middot; The Problem</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">Your yard survived the summer. Barely.</p><span class="adtile__cap">monsoon cleanup, booked this week</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--quote"><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true">★★★★★</div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--urgency"><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--question"><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--problem"><img class="adtile__ph" src="art/ad-angle-problem.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 01 &middot; The Problem</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">Your yard survived the summer. Barely.</p><span class="adtile__cap">monsoon cleanup, booked this week</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--quote"><img class="adtile__ph" src="art/ad-angle-quote.webp" alt="" width="720" height="720" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true">★★★★★</div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--urgency"><img class="adtile__ph" src="art/ad-angle-clock.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--question"><img class="adtile__ph" src="art/ad-angle-question.webp" alt="" width="720" height="720" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
         <figure class="adtile adtile--offer"><img class="adtile__ph" src="art/ad-campaign-lawn.webp" alt="" width="640" height="800" loading="lazy"/><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--founder"><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--split"><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--founder"><img class="adtile__ph" src="art/ad-angle-founder.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--split"><img class="adtile__ph" src="art/ad-angle-split.webp" alt="" width="720" height="893" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
       </div>
       <p class="wall-note">These specimens — copy and photography — are demo creative made for Eagle Landscaping, the fictional business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. Nothing here is client work. Your batch is written and shot for your business, from your brief, and you approve every hook before production.</p>
     </div>
