@@ -154,8 +154,6 @@
     .brandad__tag--day b { color:#fff; }
     /* ad chrome: the meta chip sits top-centre between the two time tags;
        the drag hint rides along under the gold grip. */
-    .brandad__meta { position:absolute; top:5.5rem; left:50%; transform:translateX(-50%); z-index:2; display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap; color:rgba(255,255,255,.72); font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; background:rgba(3,8,5,.62); border:1px solid rgba(255,255,255,.14); border-radius:100px; padding:.45rem .8rem; backdrop-filter:blur(6px); pointer-events:none; }
-    .brandad__dot { width:6px; height:6px; border-radius:50%; background:#7de3a4; box-shadow:0 0 12px #7de3a4; animation:homePulse 2.2s ease-in-out infinite; }
     .brandad__hint { position:absolute; top:calc(50% + 40px); left:50%; transform:translateX(-50%); white-space:nowrap; color:#f7ecc4; font:700 .56rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; background:rgba(3,8,5,.66); border:1px solid rgba(231,200,95,.35); border-radius:100px; padding:.4rem .7rem; }
     /* copy block */
     .brandad__copy { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:7rem clamp(1.4rem,5vw,4.5rem) 3.2rem; background:linear-gradient(180deg,transparent 0%,rgba(2,6,4,.45) 38%,rgba(2,6,4,.88) 100%); pointer-events:none; }
@@ -179,14 +177,12 @@
       .brandad__tag b { font-size:.72rem; }
       .brandad__tag--night { top:4.9rem; left:.9rem; }
       .brandad__tag--day { top:4.9rem; right:.9rem; }
-      .brandad__meta { display:none; }
       /* keep the handle off the copy block */
       .brandad__grip { top:31%; }
       .brandad__hint { top:calc(31% + 40px); }
       .brandad__copy { padding-bottom:3.4rem; }
       .brandad__img { object-position:62% 30%; }
     }
-    @media (prefers-reduced-motion:reduce) { .brandad__dot { animation:none; } }
   </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -288,8 +284,6 @@
 
       <div class="brandad__seam" data-nd-seam aria-hidden="true"><span class="brandad__grip">&#9666;&nbsp;&#9656;</span><span class="brandad__hint">night &#8646; day &middot; drag it</span></div>
       <input type="range" class="brandad__range" data-nd-range min="0" max="100" value="50" step="1" aria-label="Slide between night and day" />
-
-      <span class="brandad__meta" aria-hidden="true"><i class="brandad__dot"></i> GreenAI &middot; the ad we&rsquo;d run for ourselves</span>
 
       <div class="brandad__copy">
         <p class="brandad__kicker">GreenAI Solutions &middot; AI employees for Phoenix service businesses</p>
