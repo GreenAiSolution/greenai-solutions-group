@@ -256,6 +256,31 @@
      that: the order and the signed agreement are in, and an invoice is coming.
      Claiming "payment received" here would be a lie the customer would catch. */
   (function () {
+    /* start.html sends its onboarding request back here with ?start=GA-… .
+       No agreement is signed at that point and nothing is charged — the copy
+       must not claim either. */
+    var s = /[?&]start=([A-Za-z0-9-]{4,40})/.exec(window.location.search);
+    if (s) {
+      var ref2 = s[1];
+      var h2 = document.querySelector('h1');
+      if (h2) h2.textContent = "Start request received.";
+      var p2 = h2 && h2.parentNode ? h2.parentNode.querySelector('p') : null;
+      if (p2) {
+        p2.innerHTML =
+          "Your business details are in Jaden's inbox. He reads every request " +
+          "himself and replies the same business day with next steps, the " +
+          "service agreement and your first invoice — quoting this reference:" +
+          "<br/><br/>" +
+          '<span style="display:inline-block;font-family:ui-monospace,Menlo,monospace;' +
+          'font-size:1.05rem;font-weight:700;letter-spacing:.06em;color:#fff;' +
+          'background:rgba(76,175,110,.18);border:1px solid rgba(76,175,110,.45);' +
+          'border-radius:8px;padding:.55rem 1rem">' + ref2 + "</span><br/><br/>" +
+          "Nothing has been charged and no payment details were entered. " +
+          "Month to month, cancel anytime.";
+      }
+      document.title = "Start request received — GreenAI Solutions Team";
+      return;
+    }
     var m = /[?&]order=([A-Za-z0-9-]{4,40})/.exec(window.location.search);
     if (!m) return;
     var ref = m[1];

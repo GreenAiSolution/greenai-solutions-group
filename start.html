@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding — Start Your AI Employee | GreenAI Solutions Team</title>
+  <meta name="description" content="Tell us how your business answers the phone — trade, hours, services, prices and service area. This is the exact information your AI employee is trained on. About 3 minutes, no payment details." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/start.html" />
+  <style>
+    /* Dark page — every element states its own colour (body ink is for white pages). */
+    .ob-page { min-height: 100vh; padding: 7.5rem 0 5rem; background:
+      radial-gradient(900px 420px at 80% 8%, rgba(76,175,110,.13), transparent 60%), #050b07; color: rgba(255,255,255,.78); position: relative; overflow: hidden; }
+    .ob-page::before { content:''; position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 56px 56px; }
+    .ob-shell { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; }
+    .ob-kicker { color:#7de3a4; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .ob-shell h1 { margin:.7rem 0 .9rem; color:#fff; font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.02; letter-spacing:-.04em; }
+    .ob-shell h1 span { color:#e7c85f; }
+    .ob-lede { max-width:56ch; color:rgba(255,255,255,.62); font-size:1rem; line-height:1.75; }
+
+    /* The console panel the form lives in — same vocabulary as the homepage. */
+    .ob-console { margin-top:2.25rem; border:1px solid rgba(255,255,255,.12); border-radius:20px; background:rgba(8,19,12,.72); backdrop-filter:blur(18px); box-shadow:0 30px 100px rgba(0,0,0,.36); overflow:hidden; }
+    .ob-top { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.4rem; border-bottom:1px solid rgba(255,255,255,.09); }
+    .ob-top__title { display:flex; align-items:center; gap:.55rem; color:rgba(255,255,255,.72); font-size:.64rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .ob-top__dot { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 16px #7de3a4; animation:obPulse 2.2s ease-in-out infinite; }
+    .ob-top__ref { color:rgba(255,255,255,.35); font:600 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; }
+    @keyframes obPulse { 50% { opacity:.45; box-shadow:0 0 7px #7de3a4; } }
+
+    /* Step rail */
+    .ob-rail { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid rgba(255,255,255,.09); }
+    .ob-rail__step { position:relative; padding:.85rem .6rem .8rem; text-align:center; color:rgba(255,255,255,.32); font:700 .58rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; text-transform:uppercase; }
+    .ob-rail__step::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:transparent; transition:background .3s ease; }
+    .ob-rail__step.is-now { color:#e7c85f; }
+    .ob-rail__step.is-now::after { background:linear-gradient(90deg,#e7c85f,#7de3a4); }
+    .ob-rail__step.is-done { color:#7de3a4; }
+
+    .ob-body { padding:clamp(1.4rem,3.5vw,2.2rem); }
+    .ob-step[hidden] { display:none; }
+    .ob-step__title { margin:0 0 .35rem; color:#fff; font-family:Inter,sans-serif; font-size:1.15rem; font-weight:700; letter-spacing:-.01em; }
+    .ob-step__sub { margin:0 0 1.5rem; color:rgba(255,255,255,.5); font-size:.86rem; line-height:1.6; }
+
+    .ob-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.05rem 1.2rem; }
+    .ob-field { display:flex; flex-direction:column; gap:.42rem; }
+    .ob-field--wide { grid-column:1/-1; }
+    .ob-field label { color:rgba(255,255,255,.8); font-size:.8rem; font-weight:700; }
+    .ob-field label small { color:rgba(255,255,255,.38); font-weight:500; }
+    .ob-field input, .ob-field select, .ob-field textarea {
+      width:100%; padding:.78rem .9rem; border:1px solid rgba(255,255,255,.16); border-radius:11px;
+      background:rgba(5,11,7,.6); color:#fff; font:500 .92rem/1.45 Inter,system-ui,sans-serif;
+      transition:border-color .2s ease, box-shadow .2s ease; }
+    .ob-field select { appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' fill='none' stroke='%237de3a4' stroke-width='1.6' stroke-linecap='round'/></svg>"); background-repeat:no-repeat; background-position:right .95rem center; }
+    .ob-field select option { background:#0a140d; color:#fff; }
+    .ob-field textarea { min-height:106px; resize:vertical; }
+    .ob-field input::placeholder, .ob-field textarea::placeholder { color:rgba(255,255,255,.28); }
+    .ob-field input:focus, .ob-field select:focus, .ob-field textarea:focus { outline:none; border-color:#7de3a4; box-shadow:0 0 0 3px rgba(125,227,164,.14); }
+    .ob-field.is-bad input, .ob-field.is-bad select, .ob-field.is-bad textarea { border-color:rgba(255,120,120,.65); }
+    .ob-field .ob-err { display:none; color:#ff9d9d; font-size:.72rem; }
+    .ob-field.is-bad .ob-err { display:block; }
+
+    .ob-checks { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; }
+    .ob-check { position:relative; }
+    .ob-check input { position:absolute; opacity:0; pointer-events:none; }
+    .ob-check span { display:block; padding:.6rem .5rem; border:1px solid rgba(255,255,255,.14); border-radius:10px; background:rgba(255,255,255,.03); color:rgba(255,255,255,.6); font-size:.78rem; font-weight:600; text-align:center; cursor:pointer; transition:all .2s ease; }
+    .ob-check input:checked + span { border-color:rgba(125,227,164,.55); background:rgba(125,227,164,.1); color:#bdf0d2; }
+    .ob-check input:focus-visible + span { outline:2px solid #7de3a4; outline-offset:2px; }
+
+    .ob-nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:1.8rem; padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.08); }
+    .ob-back { background:none; border:0; color:rgba(255,255,255,.5); font:600 .85rem/1 Inter,sans-serif; cursor:pointer; padding:.6rem .4rem; }
+    .ob-back:hover { color:#fff; }
+    .ob-next, .ob-send { position:relative; display:inline-flex; align-items:center; gap:.55rem; padding:.95rem 1.6rem; border:0; border-radius:12px; background:linear-gradient(135deg,#1a5c2a,#2e8b47); color:#fff; font:700 .95rem/1 Inter,sans-serif; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .ob-next:hover, .ob-send:hover { transform:translateY(-1px); box-shadow:0 14px 40px rgba(46,139,71,.35); }
+    .ob-send { background:linear-gradient(135deg,#c9a437,#e7c85f); color:#061008; }
+    .ob-send:disabled { opacity:.6; cursor:wait; transform:none; }
+    /* display:inline-flex above would override the hidden attribute. */
+    .ob-next[hidden], .ob-send[hidden], .ob-back[hidden] { display:none; }
+    .ob-note { margin:1.1rem 0 0; color:rgba(255,255,255,.38); font-size:.75rem; line-height:1.6; }
+    .ob-note a { color:rgba(255,255,255,.6); text-decoration:underline; text-underline-offset:2px; }
+    .ob-fail { display:none; margin-top:1rem; padding:.9rem 1.05rem; border:1px solid rgba(255,120,120,.4); border-radius:11px; background:rgba(255,100,100,.08); color:#ffc9c9; font-size:.84rem; line-height:1.6; }
+    .ob-fail.is-on { display:block; }
+    .ob-fail a { color:#fff; }
+
+    /* ---- Success state: the satisfying part ---- */
+    .ob-done { display:none; padding:clamp(2.2rem,5vw,3.2rem) clamp(1.4rem,3.5vw,2.2rem); text-align:center; }
+    .ob-done.is-on { display:block; }
+    .ob-done__ring { position:relative; width:96px; height:96px; margin:0 auto 1.4rem; }
+    .ob-done__ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .ob-done__ring .ring-track { fill:none; stroke:rgba(255,255,255,.1); stroke-width:5; }
+    .ob-done__ring .ring-fill { fill:none; stroke:url(#obGrad); stroke-width:5; stroke-linecap:round; stroke-dasharray:264; stroke-dashoffset:264; }
+    .ob-done.is-on .ring-fill { animation:obRing .9s cubic-bezier(.6,0,.3,1) forwards; }
+    @keyframes obRing { to { stroke-dashoffset:0; } }
+    .ob-done__check { position:absolute; inset:0; display:grid; place-items:center; }
+    .ob-done__check svg { width:42px; height:42px; }
+    .ob-done__check path { fill:none; stroke:#7de3a4; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:40; stroke-dashoffset:40; filter:drop-shadow(0 0 10px rgba(125,227,164,.7)); }
+    .ob-done.is-on .ob-done__check path { animation:obCheck .5s .75s ease forwards; }
+    @keyframes obCheck { to { stroke-dashoffset:0; } }
+    .ob-done h2 { margin:0 0 .6rem; color:#fff; font-size:clamp(1.5rem,3.4vw,2.1rem); letter-spacing:-.02em; }
+    .ob-done p { margin:0 auto; max-width:44ch; color:rgba(255,255,255,.62); font-size:.95rem; line-height:1.7; }
+    .ob-done__ticker { margin:1.5rem auto 0; max-width:340px; text-align:left; display:grid; gap:.45rem; }
+    .ob-done__ticker span { color:rgba(255,255,255,.45); font:600 .68rem/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; opacity:0; transform:translateY(4px); }
+    .ob-done.is-on .ob-done__ticker span { animation:obTick .4s ease forwards; }
+    .ob-done.is-on .ob-done__ticker span:nth-child(1) { animation-delay:.55s; }
+    .ob-done.is-on .ob-done__ticker span:nth-child(2) { animation-delay:1.05s; }
+    .ob-done.is-on .ob-done__ticker span:nth-child(3) { animation-delay:1.55s; color:#7de3a4; }
+    @keyframes obTick { to { opacity:1; transform:none; } }
+
+    #obConfetti { position:fixed; inset:0; pointer-events:none; z-index:60; }
+
+    @media (max-width:700px) { .ob-grid { grid-template-columns:1fr; } .ob-checks { grid-template-columns:repeat(2,1fr); } }
+    @media (prefers-reduced-motion:reduce) {
+      .ob-top__dot { animation:none; }
+      .ob-done.is-on .ring-fill, .ob-done.is-on .ob-done__check path, .ob-done.is-on .ob-done__ticker span { animation:none; }
+      .ob-done.is-on .ring-fill { stroke-dashoffset:0; }
+      .ob-done.is-on .ob-done__check path { stroke-dashoffset:0; }
+      .ob-done.is-on .ob-done__ticker span { opacity:1; transform:none; }
+    }
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/start.html" />
+  <meta property="og:title" content="Onboarding — Start Your AI Employee | GreenAI Solutions Team" />
+  <meta property="og:description" content="Tell us how your business answers the phone. About 3 minutes, no payment details." />
+  <meta property="og:image" content="https://greenaidigital.com/logo.jpg" />
+  <script src="analytics.js?v=2"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        </ul>
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+        <li><a href="services.html" class="nav__link" data-page="services.html">Services</a></li>
+        <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" class="ob-page">
+    <div class="container">
+      <div class="ob-shell">
+        <p class="ob-kicker">AI Employee &middot; Onboarding</p>
+        <h1>Tell us how <span>you</span> answer.</h1>
+        <p class="ob-lede">This is the exact information your AI employee is trained on &mdash; your trade, your hours, your prices, your questions. About 3 minutes. No payment details are collected here; Jaden replies the same business day with next steps and your first invoice.</p>
+
+        <div class="ob-console">
+          <div class="ob-top">
+            <span class="ob-top__title"><i class="ob-top__dot" aria-hidden="true"></i> Intake &middot; AI Employee &middot; $497/mo</span>
+            <span class="ob-top__ref">REF <span data-ref>GA-&hellip;</span></span>
+          </div>
+          <div class="ob-rail" aria-hidden="true">
+            <div class="ob-rail__step is-now" data-rail="1">01 &middot; Your business</div>
+            <div class="ob-rail__step" data-rail="2">02 &middot; How you answer</div>
+            <div class="ob-rail__step" data-rail="3">03 &middot; You &amp; send</div>
+          </div>
+
+          <form class="ob-body" id="obForm" novalidate>
+            <!-- honeypot -->
+            <input type="checkbox" name="botcheck" tabindex="-1" style="display:none" aria-hidden="true" />
+
+            <!-- STEP 1 -->
+            <fieldset class="ob-step" data-step="1" style="border:0;margin:0;padding:0">
+              <legend class="ob-step__title">Your business</legend>
+              <p class="ob-step__sub">Who the AI employee works for.</p>
+              <div class="ob-grid">
+                <div class="ob-field">
+                  <label for="obBiz">Business name</label>
+                  <input id="obBiz" name="business_name" type="text" autocomplete="organization" required placeholder="e.g. Eagle Landscaping" />
+                  <span class="ob-err">We need the business name.</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obTrade">Trade / industry</label>
+                  <select id="obTrade" name="trade" required>
+                    <option value="" selected disabled>Pick the closest&hellip;</option>
+                    <option>Pool service</option>
+                    <option>Landscaping</option>
+                    <option>HVAC</option>
+                    <option>Plumbing</option>
+                    <option>Electrical</option>
+                    <option>Cleaning</option>
+                    <option>Contractor / remodel</option>
+                    <option>Salon / spa</option>
+                    <option>Clinic / medical</option>
+                    <option>Real estate</option>
+                    <option>Restaurant</option>
+                    <option>Auto services</option>
+                    <option>Other</option>
+                  </select>
+                  <span class="ob-err">Pick the closest trade.</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obArea">City / service area</label>
+                  <input id="obArea" name="service_area" type="text" required placeholder="e.g. Gilbert + East Valley" />
+                  <span class="ob-err">Where do you work?</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obBizPhone">Business phone <small>&mdash; the number customers call</small></label>
+                  <input id="obBizPhone" name="business_phone" type="tel" autocomplete="tel" required placeholder="(480) 555-0142" />
+                  <span class="ob-err">We need the line the AI will answer.</span>
+                </div>
+                <div class="ob-field ob-field--wide">
+                  <label for="obSite">Website <small>&mdash; optional</small></label>
+                  <input id="obSite" name="website" type="url" inputmode="url" placeholder="https://" />
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 2 -->
+            <fieldset class="ob-step" data-step="2" hidden style="border:0;margin:0;padding:0">
+              <legend class="ob-step__title">How you answer</legend>
+              <p class="ob-step__sub">Write it the way you would say it on the phone &mdash; this becomes your employee's script.</p>
+              <div class="ob-grid">
+                <div class="ob-field ob-field--wide">
+                  <label for="obServices">Your main services and typical prices</label>
+                  <textarea id="obServices" name="services_and_prices" required placeholder="Weekly pool cleaning — $120/mo&#10;Filter clean — $95&#10;Green-to-clean — quoted on site"></textarea>
+                  <span class="ob-err">List at least your main services — rough prices are fine.</span>
+                </div>
+                <div class="ob-field ob-field--wide">
+                  <label for="obQs">The questions you always ask a new customer <small>&mdash; optional</small></label>
+                  <textarea id="obQs" name="qualifying_questions" placeholder="Where are you located? Is it a repair or a new install? How soon do you need it?"></textarea>
+                </div>
+                <div class="ob-field">
+                  <label for="obHours">Business hours</label>
+                  <input id="obHours" name="hours" type="text" required placeholder="Mon–Fri 8–5, Sat 9–1" />
+                  <span class="ob-err">When are you open?</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obCal">Calendar / scheduling tool <small>&mdash; optional</small></label>
+                  <input id="obCal" name="calendar_tool" type="text" placeholder="Google Calendar, Jobber, paper…" />
+                </div>
+                <div class="ob-field ob-field--wide">
+                  <label>Where leads come in today <small>&mdash; tick all that apply</small></label>
+                  <div class="ob-checks">
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Phone calls" /><span>Phone calls</span></label>
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Texts" /><span>Texts</span></label>
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Website form" /><span>Website form</span></label>
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Google" /><span>Google</span></label>
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Facebook / Instagram" /><span>FB / IG</span></label>
+                    <label class="ob-check"><input type="checkbox" name="lead_channels" value="Referrals" /><span>Referrals</span></label>
+                  </div>
+                </div>
+                <div class="ob-field ob-field--wide">
+                  <label for="obNotes">Anything else your employee should know? <small>&mdash; optional</small></label>
+                  <textarea id="obNotes" name="notes" style="min-height:76px" placeholder="We don't service commercial properties. Never quote repairs over the phone."></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 3 -->
+            <fieldset class="ob-step" data-step="3" hidden style="border:0;margin:0;padding:0">
+              <legend class="ob-step__title">You</legend>
+              <p class="ob-step__sub">Where Jaden sends your setup and your first invoice. Nothing is charged today.</p>
+              <div class="ob-grid">
+                <div class="ob-field">
+                  <label for="obName">Your name</label>
+                  <input id="obName" name="name" type="text" autocomplete="name" required placeholder="First and last" />
+                  <span class="ob-err">We need a name.</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obEmail">Email</label>
+                  <input id="obEmail" name="email" type="email" autocomplete="email" required placeholder="you@business.com" />
+                  <span class="ob-err">A working email, so the setup can reach you.</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obCell">Your mobile</label>
+                  <input id="obCell" name="mobile" type="tel" autocomplete="tel" required placeholder="(480) 555-0199" />
+                  <span class="ob-err">Jaden confirms fit by phone or text.</span>
+                </div>
+                <div class="ob-field">
+                  <label for="obWhen">Best time to reach you</label>
+                  <select id="obWhen" name="best_time">
+                    <option selected>Any time</option>
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                  </select>
+                </div>
+              </div>
+              <p class="ob-note">Sending this starts nothing automatically and charges nothing. Jaden reads every request himself, confirms fit the same business day, and sends your first invoice with the <a href="agreement.html">service agreement</a>. Month to month, cancel anytime.</p>
+              <div class="ob-fail" data-fail>That didn&rsquo;t send. Your answers are still here &mdash; try again, or email them straight to <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>.</div>
+            </fieldset>
+
+            <div class="ob-nav">
+              <button type="button" class="ob-back" data-back hidden>&larr; Back</button>
+              <span></span>
+              <button type="button" class="ob-next" data-next>Continue &rarr;</button>
+              <button type="submit" class="ob-send" data-send hidden>Send it to Jaden &rarr;</button>
+            </div>
+          </form>
+
+          <!-- SUCCESS -->
+          <div class="ob-done" data-done aria-live="polite">
+            <div class="ob-done__ring" aria-hidden="true">
+              <svg viewBox="0 0 96 96">
+                <defs><linearGradient id="obGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7c85f"/><stop offset="1" stop-color="#7de3a4"/></linearGradient></defs>
+                <circle class="ring-track" cx="48" cy="48" r="42"/>
+                <circle class="ring-fill" cx="48" cy="48" r="42"/>
+              </svg>
+              <div class="ob-done__check"><svg viewBox="0 0 42 42"><path d="M11 22l7.5 7.5L31 14"/></svg></div>
+            </div>
+            <h2>It&rsquo;s in Jaden&rsquo;s inbox.</h2>
+            <p>Your start request just landed, reference <strong style="color:#e7c85f" data-ref-out>GA-&hellip;</strong>. You&rsquo;ll hear back the same business day.</p>
+            <div class="ob-done__ticker" aria-hidden="true">
+              <span>&gt; REQUEST LOGGED &middot; <span data-ref-tick></span></span>
+              <span>&gt; ROUTED &rarr; JADEN &middot; SAME BUSINESS DAY</span>
+              <span>&gt; STATUS: YOUR AI EMPLOYEE IS IN THE QUEUE ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <canvas id="obConfetti" aria-hidden="true"></canvas>
+  </main>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=10"></script>
+  <script>
+  (function () {
+    'use strict';
+    var form   = document.getElementById('obForm');
+    if (!form) return;
+    var steps  = Array.prototype.slice.call(form.querySelectorAll('.ob-step'));
+    var rails  = Array.prototype.slice.call(document.querySelectorAll('[data-rail]'));
+    var back   = form.querySelector('[data-back]');
+    var next   = form.querySelector('[data-next]');
+    var send   = form.querySelector('[data-send]');
+    var fail   = form.querySelector('[data-fail]');
+    var done   = document.querySelector('[data-done]');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var at = 1;
+
+    /* Same reference format the payment portal used: GA-YYYYMMDD-XXXX. */
+    var d = new Date();
+    var REF = 'GA-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') +
+              '-' + String(Math.floor(1000 + Math.random()*9000));
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ref],[data-ref-out],[data-ref-tick]'), function (el) { el.textContent = REF; });
+
+    function show(n) {
+      at = n;
+      steps.forEach(function (s) { s.hidden = (+s.getAttribute('data-step') !== n); });
+      rails.forEach(function (r) {
+        var i = +r.getAttribute('data-rail');
+        r.classList.toggle('is-now', i === n);
+        r.classList.toggle('is-done', i < n);
+      });
+      back.hidden = (n === 1);
+      next.hidden = (n === 3);
+      send.hidden = (n !== 3);
+      var first = steps[n-1].querySelector('input:not([type=checkbox]), select, textarea');
+      if (first && n > 1) first.focus({ preventScroll: false });
+    }
+
+    function valid(n) {
+      var ok = true;
+      var fields = steps[n-1].querySelectorAll('[required]');
+      Array.prototype.forEach.call(fields, function (f) {
+        var wrap = f.closest('.ob-field');
+        var good = f.checkValidity();
+        if (wrap) wrap.classList.toggle('is-bad', !good);
+        if (!good && ok) { ok = false; f.focus(); }
+      });
+      return ok;
+    }
+    form.addEventListener('input', function (e) {
+      var wrap = e.target.closest && e.target.closest('.ob-field');
+      if (wrap && wrap.classList.contains('is-bad') && e.target.checkValidity()) wrap.classList.remove('is-bad');
+    });
+
+    next.addEventListener('click', function () { if (valid(at)) show(at + 1); });
+    back.addEventListener('click', function () { show(at - 1); });
+
+    /* ---- confetti: brand gold + green, one burst, no library ---- */
+    function confetti() {
+      if (reduce) return;
+      var cv = document.getElementById('obConfetti');
+      var ctx = cv.getContext('2d');
+      var W = cv.width = innerWidth, H = cv.height = innerHeight;
+      var colors = ['#e7c85f', '#7de3a4', '#ffffff', '#d5b64c', '#4caf6e'];
+      var bits = [], i;
+      for (i = 0; i < 160; i++) {
+        var a = -Math.PI/2 + (Math.random() - .5) * 1.6;
+        var v = 7 + Math.random() * 9;
+        bits.push({ x: W/2, y: H*0.42, vx: Math.cos(a)*v, vy: Math.sin(a)*v,
+          w: 4+Math.random()*5, h: 7+Math.random()*7, r: Math.random()*Math.PI,
+          vr: (Math.random()-.5)*.3, c: colors[i % colors.length], life: 1 });
+      }
+      var t0 = null;
+      function tick(t) {
+        if (!t0) t0 = t;
+        var age = (t - t0) / 1000;
+        ctx.clearRect(0, 0, W, H);
+        var alive = false;
+        bits.forEach(function (b) {
+          if (b.life <= 0) return;
+          alive = true;
+          b.vy += .22; b.vx *= .985; b.x += b.vx; b.y += b.vy; b.r += b.vr;
+          if (age > .9) b.life -= .03;
+          ctx.save(); ctx.globalAlpha = Math.max(0, b.life);
+          ctx.translate(b.x, b.y); ctx.rotate(b.r);
+          ctx.fillStyle = b.c; ctx.fillRect(-b.w/2, -b.h/2, b.w, b.h);
+          ctx.restore();
+        });
+        if (alive && age < 3) requestAnimationFrame(tick);
+        else ctx.clearRect(0, 0, W, H);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!valid(3)) return;
+      fail.classList.remove('is-on');
+      send.disabled = true;
+      send.textContent = 'Sending…';
+
+      var fd = new FormData(form);
+      var channels = fd.getAll('lead_channels').join(', ');
+      var payload = {
+        access_key: 'bcd1e0cd-c6df-461e-a83a-f475273ec6ac',
+        subject: 'AI Employee START REQUEST — ' + (fd.get('business_name') || 'unknown') + ' [' + REF + ']',
+        from_name: 'GreenAI onboarding (start.html)',
+        botcheck: fd.get('botcheck') || '',
+        reference: REF,
+        sku: 'employees-front-desk',
+        plan: 'AI Employee — $497/mo',
+        business_name: fd.get('business_name'), trade: fd.get('trade'),
+        service_area: fd.get('service_area'), business_phone: fd.get('business_phone'),
+        website: fd.get('website') || '—',
+        services_and_prices: fd.get('services_and_prices'),
+        qualifying_questions: fd.get('qualifying_questions') || '—',
+        hours: fd.get('hours'), calendar_tool: fd.get('calendar_tool') || '—',
+        lead_channels: channels || '—', notes: fd.get('notes') || '—',
+        name: fd.get('name'), email: fd.get('email'), mobile: fd.get('mobile'),
+        best_time: fd.get('best_time')
+      };
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (!res.success) throw new Error('web3forms rejected');
+        form.style.display = 'none';
+        document.querySelector('.ob-rail').style.display = 'none';
+        done.classList.add('is-on');
+        confetti();
+        done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+        setTimeout(function () {
+          window.location.href = 'thankyou.html?start=' + encodeURIComponent(REF);
+        }, reduce ? 900 : 3400);
+      }).catch(function () {
+        send.disabled = false;
+        send.innerHTML = 'Send it to Jaden &rarr;';
+        fail.classList.add('is-on');
+      });
+    });
+
+    show(1);
+  })();
+  </script>
+</body>
+</html>

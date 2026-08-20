@@ -66,8 +66,79 @@
     }
     .catch-hero { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
     .catch-hero h1 { font-size:clamp(2rem,4vw,3rem); line-height:1.1; letter-spacing:-.03em; color:#fff; margin-bottom:.75rem; }
+    .catch-hero h1 span { color:#e7c85f; }
     .catch-hero p { color:rgba(255,255,255,.55); font-size:1rem; max-width:580px; margin:0 auto; }
     @media (max-width:900px) { .catch-page{min-height:0;padding:80px 0 50px}.catch-grid{grid-template-columns:1fr;gap:1.5rem} }
+
+    /* --- Futuristic pass ----------------------------------------------------
+       This is the demo page — the one place on the site that is allowed to
+       move. The homepage's "trust reads as still" rule stays where it is. */
+    .catch-sys { display:inline-flex; align-items:center; gap:.55rem; margin-bottom:1.1rem; padding:.5rem 1.05rem; border:1px solid rgba(125,227,164,.28); border-radius:100px; background:rgba(125,227,164,.06); color:#7de3a4; font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.15em; text-transform:uppercase; }
+    .catch-sys i { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 14px #7de3a4; animation:catchPulse 2.2s ease-in-out infinite; }
+    @keyframes catchPulse { 50% { opacity:.4; box-shadow:0 0 5px #7de3a4; } }
+
+    /* Grid floor drifting toward the viewer + one slow scan beam. */
+    .catch-page::after { content:''; position:absolute; left:0; right:0; bottom:0; height:38%; pointer-events:none;
+      background: linear-gradient(rgba(125,227,164,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(125,227,164,.09) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: linear-gradient(180deg, transparent, black 75%);
+      mask-image: linear-gradient(180deg, transparent, black 75%);
+      animation: gridDrift 7s linear infinite; }
+    @keyframes gridDrift { to { background-position: 0 44px, 0 0; } }
+    .catch-scan { position:absolute; left:0; right:0; top:-8%; height:120px; pointer-events:none; z-index:0;
+      background: linear-gradient(180deg, transparent, rgba(125,227,164,.05) 45%, rgba(125,227,164,.12) 50%, rgba(125,227,164,.05) 55%, transparent);
+      animation: scanY 8.5s linear infinite; }
+    @keyframes scanY { to { top: 108%; } }
+
+    /* HUD sub-status under each column header. */
+    .catch-header__sys { margin-left:auto; color:rgba(255,255,255,.3); font:600 .56rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .catch-header--ai .catch-header__sys { color:rgba(125,227,164,.55); }
+
+    /* HUD corner brackets + a breathing glow on the AI column. */
+    .catch-column { position:relative; }
+    .catch-column .hud-c { position:absolute; width:14px; height:14px; opacity:.55; pointer-events:none; }
+    .catch-column--today .hud-c { border-color:rgba(255,120,120,.5) !important; }
+    .catch-column--ai .hud-c { border-color:rgba(125,227,164,.7) !important; }
+    .hud-c--tl { top:7px; left:7px; border-top:2px solid; border-left:2px solid; }
+    .hud-c--tr { top:7px; right:7px; border-top:2px solid; border-right:2px solid; }
+    .hud-c--bl { bottom:7px; left:7px; border-bottom:2px solid; border-left:2px solid; }
+    .hud-c--br { bottom:7px; right:7px; border-bottom:2px solid; border-right:2px solid; }
+    .catch-column--ai { animation: aiBreathe 3.6s ease-in-out infinite; }
+    @keyframes aiBreathe { 50% { box-shadow: 0 0 0 1px rgba(125,227,164,.14), 0 0 44px rgba(125,227,164,.1); } }
+
+    /* Event entrance: one light sweep as each row switches on. */
+    .catch-event { position:relative; overflow:hidden; }
+    .is-playable .catch-event.is-on::after { content:''; position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.09), transparent 70%);
+      transform: translateX(-110%); animation: rowSweep .8s ease .05s forwards; }
+    @keyframes rowSweep { to { transform: translateX(110%); } }
+    /* The 8-second answer gets a radar ping on top of the existing flare. */
+    .catch-event.is-hit::before { content:''; position:absolute; left:14px; top:50%; width:10px; height:10px; margin-top:-5px; border-radius:50%; border:2px solid rgba(125,227,164,.9); animation: hitPing 1s ease-out 2; pointer-events:none; }
+    @keyframes hitPing { from { transform:scale(.4); opacity:1; } to { transform:scale(5); opacity:0; } }
+
+    /* Clock: glowing readout, flare on answer. */
+    .catch-clock__secs { text-shadow: 0 0 18px rgba(231,200,95,.35); }
+    .catch-clock.is-answered { border-color: rgba(125,227,164,.5); animation: clockFlare 1.1s ease 1; }
+    .catch-clock.is-answered .catch-clock__secs { text-shadow: 0 0 20px rgba(125,227,164,.8); }
+    @keyframes clockFlare { 30% { box-shadow: 0 0 0 3px rgba(125,227,164,.25), 0 0 60px rgba(125,227,164,.3); } }
+
+    /* Verdict stamp — appears when the run finishes. Both numbers are the
+       story shown above, not new claims. */
+    .catch-verdict { max-width:900px; margin:2.25rem auto 0; padding:1.5rem 2rem; display:flex; align-items:center; justify-content:center; gap:clamp(1rem,3.5vw,2.4rem); flex-wrap:wrap; border:1px solid rgba(125,227,164,.3); border-radius:18px; background:rgba(125,227,164,.05); position:relative; z-index:1; opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease; }
+    .catch-verdict.is-on { opacity:1; transform:none; }
+    .catch-verdict b { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,5vw,3.2rem); line-height:.95; color:#7de3a4; text-shadow:0 0 26px rgba(125,227,164,.4); }
+    .catch-verdict i { font-style:normal; color:rgba(255,255,255,.4); font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; }
+    .catch-verdict b + i + b { color:rgba(255,150,150,.85); text-shadow:none; font-size:clamp(1.5rem,3.4vw,2.1rem); }
+    .catch-verdict small { flex-basis:100%; text-align:center; color:rgba(255,255,255,.5); font-size:.82rem; }
+
+    @media (prefers-reduced-motion:reduce) {
+      .catch-sys i, .catch-page::after, .catch-column--ai { animation:none; }
+      .catch-scan { display:none; }
+      .is-playable .catch-event.is-on::after, .catch-event.is-hit::before { animation:none; content:none; }
+      .catch-clock.is-answered { animation:none; }
+      /* No clock in reduced motion, so the verdict is simply present. */
+      .catch-verdict { opacity:1; transform:none; transition:none; }
+    }
   </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -131,10 +202,12 @@
 
   <!-- ===== MAIN CONTENT ===== -->
   <div id="main" class="catch-page" style="position:relative;overflow:hidden">
+    <div class="catch-scan" aria-hidden="true"></div>
     <div class="container">
       <div class="catch-hero">
-        <h1>What Happens to a Lead</h1>
-        <p>A side-by-side illustration of the same lead arriving at 7:42pm</p>
+        <span class="catch-sys"><i aria-hidden="true"></i> Live demo &middot; GreenAI response engine</span>
+        <h1>Watch our system <span>catch a lead.</span></h1>
+        <p>The same lead arrives at two businesses at 7:42pm. One of them has an AI employee on the phones. Side by side, in real time.</p>
       </div>
 
       <div class="catch-clock" data-clock>
@@ -152,9 +225,11 @@
       <div class="catch-grid">
         <!-- Left: Today -->
         <div class="catch-column catch-column--today">
+          <span class="hud-c hud-c--tl" aria-hidden="true"></span><span class="hud-c hud-c--tr" aria-hidden="true"></span><span class="hud-c hud-c--bl" aria-hidden="true"></span><span class="hud-c hud-c--br" aria-hidden="true"></span>
           <div class="catch-header catch-header--today">
             <div class="catch-header__dot"></div>
             <span class="catch-header__label">Without an AI employee</span>
+            <span class="catch-header__sys" aria-hidden="true">SYS: VOICEMAIL</span>
           </div>
           <div class="catch-timeline">
             <div class="catch-event" data-at="0">
@@ -178,9 +253,11 @@
 
         <!-- Right: With AI -->
         <div class="catch-column catch-column--ai">
+          <span class="hud-c hud-c--tl" aria-hidden="true"></span><span class="hud-c hud-c--tr" aria-hidden="true"></span><span class="hud-c hud-c--bl" aria-hidden="true"></span><span class="hud-c hud-c--br" aria-hidden="true"></span>
           <div class="catch-header catch-header--ai">
             <div class="catch-header__dot"></div>
             <span class="catch-header__label">With an AI employee</span>
+            <span class="catch-header__sys" aria-hidden="true">SYS: GREENAI &middot; ON DUTY 24/7</span>
           </div>
           <div class="catch-timeline">
             <div class="catch-event catch-event--ai" data-at="8" data-flash="1">
@@ -201,6 +278,13 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="catch-verdict" data-verdict aria-live="polite">
+        <b>8 seconds</b>
+        <i>versus</i>
+        <b>the next morning</b>
+        <small>That is the whole product. Same lead, same 7:42pm &mdash; one of them got answered before the other phone stopped ringing.</small>
       </div>
 
       <div class="catch-disclaimer">
@@ -321,6 +405,8 @@
   var barEl  = root.querySelector('[data-bar]');
   var unitEl = root.querySelector('.catch-clock__unit');
 
+  var verdict = document.querySelector('[data-verdict]');
+
   var REAL_WINDOW = 8;    // story seconds that play at true 1:1 speed
   var COMPRESS    = 24;   // everything after that runs this many times faster
   var END         = 200;  // story seconds in the whole run
@@ -338,6 +424,7 @@
     elapsed = 0;
     events.forEach(function (e) { e.classList.remove('is-on', 'is-hit'); });
     root.classList.remove('is-answered');
+    if (verdict) verdict.classList.remove('is-on');
     secsEl.textContent = '0.0';
     unitEl.style.display = '';
     capEl.textContent  = 'since the phone rang';
@@ -387,6 +474,7 @@
       playing = false;
       label.textContent = 'Play it again';
       capEl.textContent = 'one lead, two businesses, same 7:42pm';
+      if (verdict) verdict.classList.add('is-on');
     }
   }
 
