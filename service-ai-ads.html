@@ -199,6 +199,37 @@
     .wall-note { max-width:760px; margin:2.6rem auto 0; text-align:center; font-size:.85rem; line-height:1.7; color:rgba(223,243,230,.6); }
     .wall-note a { color:#7de3a4; text-decoration:underline; }
 
+    /* ---- the Scoreboard: Windsor.ai closes the loop the wall opens ------ */
+    #scoreboard { background:#07110b; color:#dff3e6; }
+    #scoreboard .section-label { color:#f0cf6b; }
+    #scoreboard h2 { color:#fff; }
+    .score-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center; max-width:1080px; margin:0 auto; }
+    .score-copy p { color:rgba(223,243,230,.78); line-height:1.8; margin-bottom:1.05rem; }
+    .score-copy strong { color:#fff; }
+    .score-steps { list-style:none; margin:1.4rem 0 1.6rem; padding:0; counter-reset:sc; }
+    .score-steps li { counter-increment:sc; position:relative; padding:.45rem 0 .45rem 2.4rem; color:rgba(223,243,230,.82); line-height:1.65; }
+    .score-steps li::before { content:counter(sc); position:absolute; left:0; top:.5rem; width:1.55rem; height:1.55rem; border:1px solid rgba(240,207,107,.55); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:800; color:#f0cf6b; }
+    .score-steps b { color:#fff; }
+    .score-cta { display:flex; flex-wrap:wrap; gap:.85rem; align-items:center; }
+    .score-cta .quiet { font-size:.82rem; color:rgba(223,243,230,.55); }
+    /* the mini report card */
+    .scorecard { border:1px solid rgba(255,255,255,.14); border-radius:16px; background:linear-gradient(165deg,#0b1a10,#060f09); padding:1.5rem 1.5rem 1.3rem; box-shadow:0 24px 55px rgba(0,0,0,.45); }
+    .scorecard__stamp { display:inline-block; border:1px solid rgba(240,207,107,.5); color:#f0cf6b; font-size:.58rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; padding:.3rem .6rem; border-radius:5px; margin-bottom:1rem; }
+    .scorecard__title { font-family:'Playfair Display',serif; font-size:1.35rem; color:#fff; margin-bottom:.2rem; }
+    .scorecard__meta { font-size:.72rem; color:rgba(223,243,230,.55); margin-bottom:1.15rem; }
+    .scorerow { margin-bottom:.95rem; }
+    .scorerow__head { display:flex; justify-content:space-between; gap:.6rem; font-size:.8rem; font-weight:700; color:rgba(255,255,255,.9); }
+    .scorerow__head .cpl { color:rgba(223,243,230,.6); font-weight:600; }
+    .scorerow--win .scorerow__head { color:#ffd75e; }
+    .scorerow--win .scorerow__head .cpl { color:#ffd75e; }
+    .scorebar { height:6px; border-radius:4px; background:rgba(255,255,255,.1); margin-top:.4rem; overflow:hidden; }
+    .scorebar i { display:block; height:100%; border-radius:4px; background:#4caf6e; width:var(--w,60%); }
+    .scorerow--win .scorebar i { background:linear-gradient(90deg,#d4af37,#ffd75e); }
+    .is-rolling .scorebar i { animation:scoreGrow 1.2s cubic-bezier(.22,1,.36,1) both; }
+    .scorerow:nth-child(4) .scorebar i { animation-delay:.15s; } .scorerow:nth-child(5) .scorebar i { animation-delay:.3s; } .scorerow:nth-child(6) .scorebar i { animation-delay:.45s; }
+    @keyframes scoreGrow { from { width:0; } to { width:var(--w,60%); } }
+    .scorecard__foot { margin-top:1.05rem; padding-top:.9rem; border-top:1px solid rgba(255,255,255,.1); font-size:.72rem; line-height:1.6; color:rgba(223,243,230,.55); }
+
     /* reveal: JS adds .wall-live, tiles rise in; without JS everything shows */
     .wall-live .adtile { opacity:0; transform:translateY(26px); animation:tileUp .7s cubic-bezier(.22,1,.36,1) forwards; }
     .wall-live .adtile:nth-child(1){animation-delay:.05s}.wall-live .adtile:nth-child(2){animation-delay:.14s}.wall-live .adtile:nth-child(3){animation-delay:.23s}.wall-live .adtile:nth-child(4){animation-delay:.32s}.wall-live .adtile:nth-child(5){animation-delay:.41s}.wall-live .adtile:nth-child(6){animation-delay:.5s}.wall-live .adtile:nth-child(7){animation-delay:.59s}
@@ -216,6 +247,7 @@
       .is-rolling.adtile--offer .sweep::before,
       .is-rolling.adtile--split .sweepline::before,
       .is-rolling.adtile--split .word--after { animation:none; }
+      .is-rolling .scorebar i { animation:none; }
       .onair { display:none !important; }
     }
 
@@ -308,6 +340,7 @@
     .svc-end p { color: rgba(255,255,255,.72); }
 
     @media (max-width: 900px) {
+      .score-grid { grid-template-columns:1fr; gap:2.2rem; }
       .agentic-hero { min-height:0; }
       .agentic-hero .svc-hero-grid { grid-template-columns:1fr; }
       .adshelf { margin-top:1.5rem; max-width:560px; justify-self:center; width:100%; }
@@ -493,7 +526,7 @@
         <div class="svc-step"><h3>We take the brief once</h3><p>What you sell, who buys it, what your offer is, and what has worked or flopped before. This happens once, not every month.</p><span class="when">Week 1</span></div>
         <div class="svc-step"><h3>Scripts and hooks first</h3><p>Before anything is filmed or rendered, the angles get written out. You see the hooks. Anything that does not sound like your business gets cut at this stage, when changing it is free.</p><span class="when">Week 1</span></div>
         <div class="svc-step"><h3>The batch gets produced</h3><p>Every approved angle is built out into its formats — vertical, square, 15s, 30s — with captions burned in, because most of the feed plays on mute.</p><span class="when">Week 1–2</span></div>
-        <div class="svc-step"><h3>You get the files</h3><p>Delivered as finished files you own outright. Run them on Meta, TikTok, YouTube, anywhere, forever. No usage window, no licence to renew.</p><span class="when">Every month</span></div>
+        <div class="svc-step"><h3>You get the files</h3><p>Delivered as finished files you own outright. Run them on Meta, TikTok, YouTube, anywhere, forever. No usage window, no licence to renew. Every file is named by its angle — upload them as-is and that naming is what powers the Scoreboard.</p><span class="when">Every month</span></div>
         <div class="svc-step"><h3>The next batch lands before fatigue does</h3><p>A new set arrives before the last one tires. That cadence is the product — ad fatigue never gets a chance to bite.</p><span class="when">Ongoing</span></div>
       </div>
     </div>
@@ -513,8 +546,42 @@
         <div><span class="k">✓</span><span><b>Captions burned in</b> — because the majority of the feed plays on mute</span></div>
         <div><span class="k">✓</span><span><b>A deliberate spread of angles</b> — problem, question, before/after, testimonial, founder, offer, urgency</span></div>
         <div><span class="k">✓</span><span><b>A new batch before the last one tires</b> — the cadence is what keeps performance from decaying</span></div>
+        <div><span class="k">✓</span><span><b>The monthly Winner Report</b> — which angle won, read from your own ad account; see the Scoreboard below</span></div>
         <div><span class="k">✓</span><span><b>You own every file outright</b> — run them anywhere, forever, with no usage window</span></div>
         <div><span class="k">✓</span><span><b>Direct access to Jaden</b> — same-day priority support, always</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scoreboard" aria-labelledby="score-h">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">The Scoreboard</span>
+        <h2 id="score-h">The wall finds your winner.<br/>The Scoreboard names it.</h2>
+      </div>
+      <div class="score-grid" style="margin-top:2.6rem">
+        <div class="score-copy">
+          <p>Twenty-five ads are only worth more than one if somebody <strong>reads the results</strong>. Most businesses never do — the ads run, the month ends, and nobody can say which angle actually paid. Here, the reading is part of the product.</p>
+          <ol class="score-steps">
+            <li><b>Every file we deliver carries its angle in the name.</b> Upload them as-is and the ad platform keeps the name — no pixel, no code on your site, nothing to install.</li>
+            <li><b>You connect your ad account once.</b> One link, read-only, revocable any time — Meta, Google, TikTok and 350+ other platforms, through Windsor.ai.</li>
+            <li><b>Every month you get the Winner Report.</b> Spend, clicks and cost per lead for each of the seven angles, from your own account — and the next batch leans into the angle that won.</li>
+          </ol>
+          <div class="score-cta">
+            <a class="btn btn-secondary" href="scoreboard-sample.html" style="color:#fff;border-color:rgba(255,255,255,.45)">Read a specimen report &rarr;</a>
+            <span class="quiet">Included in every tier. We read the scoreboard — running the spend stays yours.</span>
+          </div>
+        </div>
+        <div class="scorecard" aria-label="Miniature of a Winner Report: the before-and-after angle ranked first at $12.97 per lead">
+          <span class="scorecard__stamp">Specimen &middot; fictional demo business</span>
+          <div class="scorecard__title">The Winner Report</div>
+          <div class="scorecard__meta">Eagle Landscaping &middot; August 2026 &middot; read from Meta Ads via Windsor.ai</div>
+          <div class="scorerow scorerow--win"><div class="scorerow__head"><span>&#9733; Angle 03 &middot; Before / After</span><span class="cpl">$12.97 / lead</span></div><div class="scorebar"><i style="--w:100%"></i></div></div>
+          <div class="scorerow"><div class="scorerow__head"><span>Angle 05 &middot; The Founder Cut</span><span class="cpl">$17.62 / lead</span></div><div class="scorebar"><i style="--w:74%"></i></div></div>
+          <div class="scorerow"><div class="scorerow__head"><span>Angle 06 &middot; The Offer</span><span class="cpl">$18.39 / lead</span></div><div class="scorebar"><i style="--w:71%"></i></div></div>
+          <div class="scorerow"><div class="scorerow__head"><span>Angle 07 &middot; The Clock</span><span class="cpl">$18.52 / lead</span></div><div class="scorebar"><i style="--w:70%"></i></div></div>
+          <div class="scorecard__foot">Numbers are from the specimen batch for Eagle Landscaping, the fictional demo business — <a href="scoreboard-sample.html" style="color:#7de3a4">the full report</a> shows all seven angles and how each figure is computed. Your report reads your account.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -528,7 +595,7 @@
         <p style="max-width:640px;margin:0 auto 2.5rem">Creative is what we make. Here is where the line sits, so nobody buys the wrong thing.</p>
       </div>
       <ul class="svc-limits" role="list">
-          <li><span class="x">✕</span><span><b>This is not ad management.</b> We make the creative; running the accounts and the spend is a separate conversation.</span></li>
+          <li><span class="x">✕</span><span><b>This is not ad management.</b> We make the creative and read your results for the Winner Report; running the accounts and the spend is a separate conversation.</span></li>
           <li><span class="x">✕</span><span><b>We do not guarantee a result from a creative package.</b> Anyone who does is guessing with your money — the honest promise is volume, speed and ownership.</span></li>
           <li><span class="x">✕</span><span><b>It is not a replacement for having an offer.</b> If the offer does not work, twenty-five ads will find that out faster, which is useful but not the same as fixing it.</span></li>
           <li><span class="x">✕</span><span><b>Ten ads a month is thin for a competitive market.</b> Starter exists for testing the waters; if you are actively spending, the 25-ad tier is where the math starts working.</span></li>
@@ -598,6 +665,7 @@
         <details><summary>When does the first batch arrive?</summary><p>Inside the first two weeks. The brief and the script approval take up most of that; once the angles are signed off, production is quick.</p></details>
         <details><summary>Do I really own the files?</summary><p>Yes, outright and permanently. Run them on any platform, for as long as you like, including after you cancel. There is no usage window and no licence to renew.</p></details>
         <details><summary>What if I hate the hooks?</summary><p>You see them before anything is produced, which is exactly why that step exists. Cut the ones that do not sound like you and we write more.</p></details>
+        <details><summary>How do you know which ad actually won?</summary><p>Every file we deliver carries its angle in the filename, and ad platforms keep that name when you upload. You connect your ad account once — read-only, through Windsor.ai, revocable any time — and each month we read spend, clicks and leads per angle straight out of your own account. That becomes the Winner Report. Nothing is installed on your site and we never touch your spend. <a href="scoreboard-sample.html" style="color:var(--green-mid);text-decoration:underline">Here is a specimen report</a> so you can see exactly what you get.</p></details>
         <details><summary>Can you run the ads too?</summary><p>Ad management is a separate service, not part of this package. Ask and we will tell you honestly whether you need it yet.</p></details>
         <details><summary>Do I need to be on camera?</summary><p>No. Founder-to-camera is one style among several. If you would rather not be in them, the batch is built from the other angles.</p></details>
         <details><summary>Can I switch tiers?</summary><p>Any month. Move up when spend justifies it, move down when it does not.</p></details>
@@ -716,7 +784,7 @@
      reduced motion (or no JS) leaves the stills exactly as they were. */
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var cards = document.querySelectorAll('.adframe, .adtile');
+    var cards = document.querySelectorAll('.adframe, .adtile, .scorecard');
     if (!cards.length) return;
     function roll (card, on) {
       card.classList.toggle('is-rolling', on);
