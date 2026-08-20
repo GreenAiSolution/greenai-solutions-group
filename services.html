@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=20" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -27,7 +27,7 @@
 
   <style>
     /* ---- page hero extras ---- */
-    .svc-lede { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,.78); max-width: 62ch; margin: 1.1rem auto 0; }
+    .svc-lede { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,.66); max-width: 62ch; margin: 1.1rem auto 0; }
     .svc-flag {
       display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem;
       background: rgba(212,175,55,.12); border: 1px solid rgba(212,175,55,.35);
@@ -36,46 +36,55 @@
     }
     .svc-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; justify-content: center; }
 
-    /* ---- the crew, four cards ---- */
-    .crew-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    /* ---- the crew: a dark band in the homepage's console language.
+       ID-scoped background because the site-wide "green horizon" rule
+       (.page-hero + main > .section:first-child) repaints the first
+       section after a page-hero white — correct for light pages,
+       silently wrong here. Dark band, so every element states its own
+       colour: body{color:var(--gray-800)} is ink for white pages. ---- */
+    #employees.section {
+      background:
+        radial-gradient(1000px 480px at 16% 0, rgba(26,92,42,.16), transparent 62%),
+        #050b07;
+      color: rgba(255,255,255,.74);
+    }
+    #employees .section-label { color: #7de3a4; }
+    #employees h2 { color: #fff; }
+    #employees .text-center > p { color: rgba(255,255,255,.62); }
+
+    .crew-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.4rem; margin-top: 2.5rem; }
     .crew-card {
-      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
-      padding: 1.9rem 1.5rem; text-align: center; box-shadow: var(--shadow-sm);
+      background: rgba(8,19,12,.72); border: 1px solid rgba(255,255,255,.1); border-radius: 18px;
+      padding: 1.35rem 1.4rem 1.7rem; text-align: center;
+      transition: border-color .25s ease, background-color .25s ease, transform .25s ease;
+    }
+    .crew-card:hover { background: rgba(125,227,164,.05); border-color: rgba(125,227,164,.3); transform: translateY(-3px); }
+    .crew-card__top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem; padding-bottom: .95rem; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .crew-card__num {
+      display: grid; place-items: center; width: 30px; height: 30px;
+      border: 1px solid rgba(212,175,55,.28); border-radius: 9px;
+      color: #d5b64c; font: 700 .62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .crew-card__state {
+      color: #7de3a4; font: 700 .54rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .12em; text-transform: uppercase;
     }
     .crew-card img { width: 84px; height: 84px; object-fit: contain; margin: 0 auto 1.1rem; display: block; }
-    .crew-card h3 { font-family: 'Playfair Display', serif; font-size: 1.28rem; margin: 0 0 .25rem; }
+    .crew-card h3 { font-family: 'Playfair Display', serif; font-size: 1.28rem; margin: 0 0 .3rem; color: #fff; }
     .crew-card i {
-      display: block; font-style: normal; font-size: .66rem; font-weight: 800;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--green-mid); margin-bottom: .8rem;
+      display: block; font-style: normal; font-size: .62rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; color: #7de3a4; margin-bottom: .8rem;
     }
-    .crew-card p { font-size: .9rem; line-height: 1.65; color: var(--gray-600); margin: 0; }
-
-    /* ---- comparison table ---- */
-    .cmp-wrap { overflow-x: auto; margin-top: 2rem; }
-    .cmp-table {
-      width: 100%; min-width: 640px; border-collapse: collapse; background: var(--white);
-      border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; font-size: .92rem;
-    }
-    .cmp-table th, .cmp-table td { padding: 1rem 1.15rem; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
-    .cmp-table thead th { font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-400); font-weight: 800; background: var(--gray-100); }
-    .cmp-table .cmp-us { background: var(--green-pale); }
-    .cmp-table thead .cmp-us { color: var(--green-dark); background: rgba(76,175,110,.16); }
-    .cmp-table tbody th { font-weight: 700; color: var(--gray-800); font-size: .9rem; }
-    .cmp-table td.cmp-us { color: var(--green-dark); font-weight: 700; }
-    .cmp-table tr:last-child td, .cmp-table tr:last-child th { border-bottom: none; }
-    .cmp-note { font-size: .85rem; color: var(--gray-400); margin-top: 1.1rem; line-height: 1.7; max-width: 760px; }
+    .crew-card p { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.55); margin: 0; }
 
     @media (max-width: 900px) {
       .crew-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 560px) {
       .crew-grid { grid-template-columns: 1fr; }
-    }
-    /* The comparison table's whole point is the "us" column, so on a phone
-       it has to shrink to fit rather than scroll it out of view. */
-    @media (max-width: 700px) {
-      .cmp-table { min-width: 0; font-size: .74rem; }
-      .cmp-table th, .cmp-table td { padding: .65rem .55rem; }
     }
   </style>
   <script type="application/ld+json">
@@ -143,7 +152,7 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <div class="page-hero" style="position:relative;overflow:hidden">
+  <div class="page-hero page-hero--night" style="position:relative;overflow:hidden">
     <div class="container" style="position:relative;z-index:1">
       <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · What We Sell</div>
       <h1>Staff that never sleeps.<br/>Leads that never go cold.</h1>
@@ -169,21 +178,25 @@
         </div>
         <div class="crew-grid">
           <article class="crew-card">
+            <div class="crew-card__top"><span class="crew-card__num">01</span><span class="crew-card__state">On duty 24/7</span></div>
             <img src="agents/agent-sterling.svg" alt="STERLING, an AI employee robot with a headset for inbound sales calls" width="84" height="84" loading="lazy" decoding="async"/>
             <h3>STERLING</h3><i>Inbound Sales</i>
             <p>Picks up on the first ring, works out what they need, and puts the appointment straight in your calendar.</p>
           </article>
           <article class="crew-card">
+            <div class="crew-card__top"><span class="crew-card__num">02</span><span class="crew-card__state">On duty 24/7</span></div>
             <img src="agents/agent-hunter.svg" alt="HUNTER, an AI employee robot with a boom mic and antenna for outbound calls" width="84" height="84" loading="lazy" decoding="async"/>
             <h3>HUNTER</h3><i>Outbound Calls</i>
             <p>Rings back every missed call and every lead that went cold months ago. The follow-up you keep meaning to do.</p>
           </article>
           <article class="crew-card">
+            <div class="crew-card__top"><span class="crew-card__num">03</span><span class="crew-card__state">On duty 24/7</span></div>
             <img src="agents/agent-maven.svg" alt="MAVEN, an AI employee robot with a reception headset for front-desk questions" width="84" height="84" loading="lazy" decoding="async"/>
             <h3>MAVEN</h3><i>Front Desk</i>
             <p>Hours, pricing, directions, "do you service my area" — answered properly, every time, in your words.</p>
           </article>
           <article class="crew-card">
+            <div class="crew-card__top"><span class="crew-card__num">04</span><span class="crew-card__state">On duty 24/7</span></div>
             <img src="agents/agent-ledger.svg" alt="LEDGER, an AI employee robot with a precision visor for scheduling and operations" width="84" height="84" loading="lazy" decoding="async"/>
             <h3>LEDGER</h3><i>Scheduling &amp; Ops</i>
             <p>Confirms tomorrow's jobs, chases the no-shows, and reschedules them before the slot goes to waste.</p>
@@ -192,7 +205,20 @@
       </div>
     </section>
 
-    <!-- ===== THE ARGUMENT ===== -->
+    <!-- Circuit divider -->
+    <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+      <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+        <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+        <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+        <circle class="cd-node" cx="290" cy="12" r="3"/>
+        <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+        <circle class="cd-node" cx="850" cy="22" r="3"/>
+        <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+        <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+      </svg>
+    </div>
+
+    <!-- ===== THE ARGUMENT — same .cmp decision-layer panel as the homepage ===== -->
     <section class="section bg-gray" id="compare" aria-labelledby="cmp-h">
       <div class="container">
         <div class="text-center">
@@ -200,53 +226,76 @@
           <h2 id="cmp-h">There are two ways to buy this today.<br/>Both have a catch.</h2>
           <div class="section-divider"></div>
         </div>
-        <div class="cmp-wrap">
-          <table class="cmp-table">
-            <thead>
+
+        <div class="reveal cmp">
+          <div class="cmp__panel">
+            <div class="cmp__top">
+              <span class="cmp__title"><i class="cmp__dot" aria-hidden="true"></i>Decision layer</span>
+              <span class="cmp__mode">5 LINES &#183; 3 WAYS TO BUY</span>
+            </div>
+
+            <table class="cmp__table">
+              <caption class="cmp__cap">How the GreenAI AI Employee compares with a build-it-yourself voice platform and a per-call answering service</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="cmp__h">What you're comparing</th>
+                  <th scope="col" class="cmp__h cmp__h--them">DIY voice platform<span class="cmp__flag">Typical terms</span></th>
+                  <th scope="col" class="cmp__h cmp__h--them">Per-call answering service<span class="cmp__flag">Typical terms</span></th>
+                  <th scope="col" class="cmp__h cmp__h--us">GreenAI AI Employee<span class="cmp__flag cmp__flag--on">Our terms</span></th>
+                </tr>
+              </thead>
+              <tbody>
               <tr>
-                <th scope="col">&nbsp;</th>
-                <th scope="col">Build-it-yourself<br/>voice platform</th>
-                <th scope="col">Per-call<br/>answering service</th>
-                <th scope="col" class="cmp-us">GreenAI<br/>AI Employees</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">What you pay</th>
-                <td>$50&ndash;$450/mo plus roughly $0.07&ndash;$0.10 a minute</td>
-                <td>$95&ndash;$245/mo, then about $3&ndash;$5 every call past a small bundle</td>
-                <td class="cmp-us">One flat monthly fee</td>
-              </tr>
-              <tr>
-                <th scope="row">A busy month costs you</th>
-                <td>More minutes, more money</td>
-                <td>More calls, more money</td>
-                <td class="cmp-us">Exactly the same</td>
-              </tr>
-              <tr>
-                <th scope="row">Who builds it</th>
-                <td>You do. It's a toolkit.</td>
-                <td>They script it generically</td>
-                <td class="cmp-us">We build it around your business</td>
+                <th scope="row" class="cmp__crit"><span class="cmp__num">01</span>What you pay</th>
+                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$50&ndash;$450/mo plus roughly $0.07&ndash;$0.10 a minute</span></td>
+                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$95&ndash;$245/mo, then about $3&ndash;$5 every call past a small bundle</span></td>
+                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">One flat monthly fee &mdash; $497</span></td>
               </tr>
               <tr>
-                <th scope="row">Makes outbound calls</th>
-                <td>If you build that too</td>
-                <td>Rarely — they answer</td>
-                <td class="cmp-us">Yes, that's HUNTER's whole job</td>
+                <th scope="row" class="cmp__crit"><span class="cmp__num">02</span>A busy month costs you</th>
+                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">More minutes, more money</span></td>
+                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">More calls, more money</span></td>
+                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Exactly the same</span></td>
               </tr>
               <tr>
-                <th scope="row">Nights and weekends</th>
-                <td>Yes</td>
-                <td>Often costs extra</td>
-                <td class="cmp-us">Included</td>
+                <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>Who builds it</th>
+                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">You do. It's a toolkit.</span></td>
+                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">They script it generically</span></td>
+                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">We build it around your business</span></td>
               </tr>
-            </tbody>
-          </table>
+              <tr>
+                <th scope="row" class="cmp__crit"><span class="cmp__num">04</span>Makes outbound calls</th>
+                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Only if you build that too</span></td>
+                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Rarely &mdash; they answer</span></td>
+                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Yes &mdash; that's HUNTER's whole job</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="cmp__crit"><span class="cmp__num">05</span>Nights and weekends</th>
+                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Yes</span></td>
+                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Often costs extra</span></td>
+                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Included</span></td>
+              </tr>
+              </tbody>
+            </table>
+
+            <p class="cmp__foot">Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered &mdash; check their current pricing before you decide. Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.</p>
+          </div>
         </div>
-        <p class="cmp-note">Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered — check their current pricing before you decide. Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.</p>
       </div>
     </section>
+
+    <!-- Circuit divider -->
+    <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
+      <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+        <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
+        <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
+        <circle class="cd-node" cx="290" cy="12" r="3"/>
+        <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
+        <circle class="cd-node" cx="850" cy="22" r="3"/>
+        <circle class="cd-node" cx="210" cy="28" r="2.5"/>
+        <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
+      </svg>
+    </div>
 
     <!-- ===== PRICING ===== -->
     <section class="section" id="pricing" aria-labelledby="pricing-heading">
