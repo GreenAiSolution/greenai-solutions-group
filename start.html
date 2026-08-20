@@ -450,21 +450,54 @@
 
       var fd = new FormData(form);
       var channels = fd.getAll('lead_channels').join(', ');
+      var g = function (k, alt) { return (fd.get(k) || alt || '—'); };
+
+      /* One preformatted block at the top of the email: the invoice half and
+         the build half, ready to act on without hunting through field rows.
+         The individual fields still follow it for anything automated later. */
+      var brief = [
+        '================  SEND THE INVOICE  ================',
+        'Bill to ....... ' + g('name') + ' — ' + g('business_name'),
+        'Email ......... ' + g('email') + '   (replying to this email reaches them)',
+        'Mobile ........ ' + g('mobile') + '   · best time: ' + g('best_time', 'Any time'),
+        'Plan .......... AI Employee — $497/mo, month to month, setup included',
+        'Reference ..... ' + REF + '   (quote this on the invoice)',
+        '',
+        '================  BUILD THE EMPLOYEE  ==============',
+        'Business ...... ' + g('business_name') + '  (' + g('trade') + ')',
+        'Line to answer  ' + g('business_phone'),
+        'Service area .. ' + g('service_area'),
+        'Hours ......... ' + g('hours'),
+        'Website ....... ' + g('website'),
+        'Lead channels . ' + (channels || '—'),
+        'Calendar ...... ' + g('calendar_tool'),
+        '',
+        '--- Services & prices (their words) ---',
+        g('services_and_prices'),
+        '',
+        '--- Qualifying questions they always ask ---',
+        g('qualifying_questions'),
+        '',
+        '--- Rules / notes ---',
+        g('notes')
+      ].join('\n');
+
       var payload = {
         access_key: 'bcd1e0cd-c6df-461e-a83a-f475273ec6ac',
         subject: 'AI Employee START REQUEST — ' + (fd.get('business_name') || 'unknown') + ' [' + REF + ']',
         from_name: 'GreenAI onboarding (start.html)',
         botcheck: fd.get('botcheck') || '',
+        ACTION_BRIEF: '\n' + brief + '\n',
         reference: REF,
         sku: 'employees-front-desk',
         plan: 'AI Employee — $497/mo',
         business_name: fd.get('business_name'), trade: fd.get('trade'),
         service_area: fd.get('service_area'), business_phone: fd.get('business_phone'),
-        website: fd.get('website') || '—',
+        website: g('website'),
         services_and_prices: fd.get('services_and_prices'),
-        qualifying_questions: fd.get('qualifying_questions') || '—',
-        hours: fd.get('hours'), calendar_tool: fd.get('calendar_tool') || '—',
-        lead_channels: channels || '—', notes: fd.get('notes') || '—',
+        qualifying_questions: g('qualifying_questions'),
+        hours: fd.get('hours'), calendar_tool: g('calendar_tool'),
+        lead_channels: channels || '—', notes: g('notes'),
         name: fd.get('name'), email: fd.get('email'), mobile: fd.get('mobile'),
         best_time: fd.get('best_time')
       };
