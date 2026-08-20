@@ -42,36 +42,36 @@
     .agentic-art__pulse { width:9px; height:9px; border-radius:50%; background:#7de3a4; box-shadow:0 0 0 6px rgba(125,227,164,.12),0 0 22px #7de3a4; animation:agentPulse 2s ease-in-out infinite; flex-shrink:0; }
     @keyframes agentPulse { 50% { box-shadow:0 0 0 11px rgba(125,227,164,0),0 0 30px #7de3a4; } }
 
-    /* ---- hero: one idea, three formats — a fan of finished ad frames ---- */
-    .adfan { position:relative; display:grid; place-items:center; min-height:560px; }
-    .adfan > * { grid-area:1/1; }
+    /* ---- hero: one campaign photo, three finished formats, cleanly aligned.
+       No overlap, no rotation — reel spans the left column, feed and wide
+       stack on the right, all sharing one grid so edges line up exactly. ---- */
+    .adshelf { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1fr); grid-template-rows:auto auto auto; gap:14px; }
     .adframe {
-      margin:0; border-radius:18px; overflow:hidden; position:relative;
-      background:#0b2114; border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 30px 70px rgba(0,0,0,.55);
+      margin:0; border-radius:14px; overflow:hidden; position:relative;
+      background:#0b2114; border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 22px 55px rgba(0,0,0,.5);
       display:flex; flex-direction:column; color:#fff;
-      transition:transform .9s cubic-bezier(.22,1,.36,1);
+      transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
     }
-    .adframe__bar { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .8rem; font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#7de3a4; border-bottom:1px solid rgba(255,255,255,.09); }
-    .adframe__bar .mute { color:rgba(255,255,255,.55); letter-spacing:0; font-size:.62rem; }
-    .adframe__stage { flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.1rem; position:relative; }
-    .adframe__hook { font-family:'Playfair Display',serif; font-weight:800; line-height:1.12; color:#fff; }
-    .adframe__cap { align-self:flex-start; margin-top:.7rem; background:rgba(0,0,0,.82); color:#fff; font-size:.62rem; font-weight:700; padding:.32rem .55rem; border-radius:6px; letter-spacing:.02em; }
-    .adframe__prog { height:3px; background:rgba(255,255,255,.16); }
+    .adframe:hover { transform:translateY(-4px); box-shadow:0 30px 65px rgba(0,0,0,.6); }
+    .adframe__ph { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .adframe__bar { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .8rem; font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#8ceab0; background:rgba(4,12,7,.72); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,.1); }
+    .adframe__bar .mute { color:rgba(255,255,255,.7); letter-spacing:0; font-size:.62rem; }
+    .adframe__stage { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.1rem; background:linear-gradient(180deg,transparent 0%,rgba(3,10,6,.2) 42%,rgba(3,10,6,.9) 100%); }
+    .adframe__hook { font-family:'Playfair Display',serif; font-weight:800; line-height:1.12; color:#fff; text-shadow:0 1px 14px rgba(0,0,0,.45); }
+    .adframe__cap { align-self:flex-start; margin-top:.7rem; background:rgba(0,0,0,.85); color:#fff; font-size:.62rem; font-weight:700; padding:.32rem .55rem; border-radius:6px; letter-spacing:.02em; }
+    .adframe__prog { position:relative; z-index:1; height:3px; background:rgba(0,0,0,.55); }
     .adframe__prog i { display:block; height:100%; background:#7de3a4; }
-    .adframe--reel { width:250px; aspect-ratio:9/16; z-index:3; transform:rotate(4deg) translateX(56px); background:linear-gradient(178deg,#0d2a17 0%,#08170e 55%,#241207 130%); }
-    .adframe--reel .adframe__hook { font-size:1.45rem; }
+    .adframe--reel { grid-column:1; grid-row:1/3; }
+    .adframe--reel .adframe__hook { font-size:1.4rem; }
     .adframe--reel .adframe__prog i { width:34%; }
-    .adframe--feed { width:270px; aspect-ratio:1/1; z-index:2; transform:rotate(-6deg) translate(-118px,-118px); background:linear-gradient(160deg,#0a1f12,#051009 70%); }
-    .adframe--feed .adframe__hook { font-size:1.3rem; }
+    .adframe--feed { grid-column:2; grid-row:1; aspect-ratio:1/1; }
+    .adframe--feed .adframe__hook { font-size:1.25rem; }
     .adframe--feed .adframe__prog i { width:62%; }
-    .adframe--wide { width:330px; aspect-ratio:16/9; z-index:1; transform:rotate(2deg) translate(44px,206px); background:linear-gradient(115deg,#0a1f12,#0e2416 60%,#123018); }
-    .adframe--wide .adframe__hook { font-size:1.05rem; }
+    .adframe--wide { grid-column:2; grid-row:2; aspect-ratio:16/9; }
+    .adframe--wide .adframe__hook { font-size:.92rem; max-width:30ch; }
     .adframe--wide .adframe__prog i { width:81%; }
-    .adfan:hover .adframe--reel { transform:rotate(2deg) translateX(56px) translateY(-8px); }
-    .adfan:hover .adframe--feed { transform:rotate(-8deg) translate(-124px,-124px); }
-    .adfan:hover .adframe--wide { transform:rotate(3deg) translate(48px,212px); }
-    .adfan__hud { position:absolute; left:50%; bottom:-8px; transform:translateX(-50%); display:flex; align-items:center; gap:.65rem; white-space:nowrap; padding:.6rem 1rem; border:1px solid rgba(255,255,255,.15); border-radius:100px; background:rgba(3,11,7,.82); backdrop-filter:blur(12px); font-size:.62rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#7de3a4; z-index:4; }
+    .adshelf__hud { grid-column:1/-1; grid-row:3; justify-self:center; display:flex; align-items:center; gap:.65rem; white-space:nowrap; padding:.6rem 1.1rem; border:1px solid rgba(255,255,255,.15); border-radius:100px; background:rgba(3,11,7,.82); font-size:.62rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#8ceab0; }
 
     /* ---- the angle wall: seven specimen ads, one per hook type ---------- */
     #angles { background:#07110b; color:#dff3e6; overflow:hidden; }
@@ -85,10 +85,8 @@
       border:1px solid rgba(255,255,255,.1); box-shadow:0 18px 44px rgba(0,0,0,.45);
       transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s;
     }
-    .wall .adtile:nth-child(3n+1) { transform:rotate(-1.4deg); }
-    .wall .adtile:nth-child(3n+2) { transform:rotate(1.1deg); }
-    .wall .adtile:nth-child(3n)   { transform:rotate(-.6deg); }
-    .wall .adtile:hover { transform:rotate(0) translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,.6); z-index:2; }
+    .wall .adtile:hover { transform:translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,.6); z-index:2; }
+    .adtile__ph { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .adtile__meta { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .85rem; font-size:.55rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
     .adtile__meta .fmt { opacity:.7; letter-spacing:.08em; }
     .adtile__body { flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.15rem; }
@@ -98,17 +96,23 @@
     .adtile__prog { height:3px; background:rgba(255,255,255,.15); }
     .adtile__prog i { display:block; height:100%; background:currentColor; }
 
-    .adtile--problem { aspect-ratio:9/14; color:#ffb27d; background:linear-gradient(184deg,#0d2a17 0%,#0a1c10 46%,#3a1c09 125%); }
-    .adtile--problem .adtile__body::before { content:''; position:absolute; top:14%; right:-18%; width:190px; height:190px; border-radius:50%; background:radial-gradient(circle,rgba(232,111,58,.55),rgba(232,111,58,.14) 55%,transparent 70%); pointer-events:none; }
+    .adtile--problem { aspect-ratio:9/14; color:#ffb27d; background:linear-gradient(184deg,#2a3a20 0%,#1c2412 40%,#4a2410 125%); }
+    .adtile--problem .adtile__body::before { content:''; position:absolute; top:8%; right:12%; width:64px; height:64px; border-radius:50%; background:radial-gradient(circle,#ffe9c4 0 42%,rgba(255,190,120,.85) 55%,transparent 72%); box-shadow:0 0 55px 26px rgba(255,160,80,.35); pointer-events:none; }
+    .adtile--problem .adtile__body::after { content:''; position:absolute; inset:auto 0 0 0; height:46%; background:repeating-linear-gradient(88deg,transparent 0 22px,rgba(58,28,9,.5) 22px 24px),linear-gradient(180deg,transparent,rgba(46,26,10,.55)); pointer-events:none; }
     .adtile--problem .adtile__hook { font-size:1.5rem; color:#fff; }
+    .adtile--problem .adtile__hook, .adtile--problem .adtile__cap { position:relative; z-index:1; }
     .adtile--problem .adtile__prog i { width:28%; }
 
-    .adtile--question { aspect-ratio:1/1; color:#7de3a4; background:radial-gradient(circle at 30% 20%,#0f2818,#050d08 75%); }
-    .adtile--question .adtile__body::before { content:'?'; position:absolute; top:-6%; right:4%; font-family:'Playfair Display',serif; font-weight:800; font-size:9rem; line-height:1; color:rgba(125,227,164,.14); pointer-events:none; }
+    .adtile--question { aspect-ratio:1/1; color:#9fd9c0; background:linear-gradient(180deg,#123240 0%,#0d2823 46%,#081409 100%); }
+    .adtile--question .adtile__body::before { content:''; position:absolute; top:26%; left:12%; width:5px; height:5px; border-radius:50%; background:#ffd98c; box-shadow:0 0 10px 3px rgba(255,217,140,.75), 34px 16px 0 0 #ffd98c, 34px 16px 10px 3px rgba(255,217,140,.6), 70px 24px 0 0 #ffd98c, 70px 24px 10px 3px rgba(255,217,140,.7), 108px 22px 0 0 #ffd98c, 108px 22px 10px 3px rgba(255,217,140,.55), 146px 12px 0 0 #ffd98c, 146px 12px 10px 3px rgba(255,217,140,.7), 182px -2px 0 0 #ffd98c, 182px -2px 10px 3px rgba(255,217,140,.6); pointer-events:none; }
+    .adtile--question .adtile__body::after { content:''; position:absolute; top:calc(26% - 26px); left:10%; width:82%; height:52px; border-bottom:1.5px solid rgba(255,235,190,.28); border-radius:0 0 100% 100%/0 0 200% 200%; pointer-events:none; }
     .adtile--question .adtile__hook { font-size:1.35rem; color:#fff; font-family:Inter,sans-serif; font-weight:800; letter-spacing:-.01em; }
     .adtile--question .adtile__prog i { width:52%; }
 
     .adtile--split { aspect-ratio:4/5; color:#2a241a; background:linear-gradient(155deg,#b7a98f 0 49.6%,#1a5c2a 50.4% 100%); }
+    .adtile--split .adtile__body::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(80,68,48,.55) 1.3px,transparent 1.4px); background-size:11px 11px; -webkit-mask:linear-gradient(155deg,#000 0 49.6%,transparent 50%); mask:linear-gradient(155deg,#000 0 49.6%,transparent 50%); pointer-events:none; }
+    .adtile--split .adtile__body::after { content:''; position:absolute; inset:0; background:repeating-linear-gradient(65deg,rgba(255,255,255,.07) 0 4px,transparent 4px 11px); -webkit-mask:linear-gradient(155deg,transparent 0 50.4%,#000 50.5%); mask:linear-gradient(155deg,transparent 0 50.4%,#000 50.5%); pointer-events:none; }
+    .adtile--split .word, .adtile--split .daychip { position:relative; z-index:1; }
     .adtile--split .adtile__body { justify-content:space-between; }
     .adtile--split .word { font-family:'Archivo Black',Inter,sans-serif; font-size:1.5rem; letter-spacing:.02em; text-transform:uppercase; }
     .adtile--split .word--after { color:#fff; align-self:flex-end; text-align:right; }
@@ -117,7 +121,8 @@
     .adtile--split .adtile__prog { background:rgba(0,0,0,.25); } .adtile--split .adtile__prog i { width:70%; color:#0d2a17; }
 
     .adtile--founder { aspect-ratio:9/14; color:#ff6b6b; background:linear-gradient(200deg,#122417,#080f0a 70%); }
-    .adtile--founder .adtile__hook { font-size:1.22rem; color:#fff; font-family:Inter,sans-serif; font-weight:700; }
+    .adtile--founder .adtile__body::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent calc(33.3% - 1px),rgba(255,255,255,.055) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(255,255,255,.055) calc(66.6% - 1px) 66.6%,transparent 66.6%),linear-gradient(180deg,transparent calc(33.3% - 1px),rgba(255,255,255,.055) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(255,255,255,.055) calc(66.6% - 1px) 66.6%,transparent 66.6%); pointer-events:none; }
+    .adtile--founder .adtile__hook { font-size:1.22rem; color:#fff; font-family:Inter,sans-serif; font-weight:700; position:relative; z-index:1; }
     .adtile--founder .rec { display:inline-flex; align-items:center; gap:.4rem; color:#ff6b6b; }
     .adtile--founder .rec::before { content:''; width:7px; height:7px; border-radius:50%; background:#ff6b6b; animation:agentPulse 1.6s ease-in-out infinite; }
     .adtile--founder .corners { position:absolute; inset:12px; pointer-events:none; }
@@ -127,19 +132,22 @@
     .adtile--founder .adtile__prog i { width:44%; }
 
     .adtile--quote { aspect-ratio:1/1.05; color:#6d5716; background:#f4efe3; border-color:rgba(0,0,0,.08); }
-    .adtile--quote .adtile__hook { font-size:1.3rem; color:#21281f; font-style:italic; }
+    .adtile--quote .adtile__body::before { content:'\201C'; position:absolute; top:-4%; left:4%; font-family:'Playfair Display',serif; font-weight:800; font-size:6.5rem; line-height:1; color:rgba(184,134,11,.16); pointer-events:none; }
+    .adtile--quote .adtile__hook { font-size:1.3rem; color:#21281f; font-style:italic; position:relative; z-index:1; }
     .adtile--quote .stars { margin-top:.7rem; color:#b8860b; font-size:.85rem; letter-spacing:.2em; }
     .adtile--quote .adtile__sub { color:#5a5648; opacity:1; }
     .adtile--quote .adtile__prog { background:rgba(0,0,0,.12); } .adtile--quote .adtile__prog i { width:58%; color:#b8860b; }
 
-    .adtile--offer { aspect-ratio:4/5; color:#1c1608; background:linear-gradient(170deg,#e6c34c,#c99f2b); }
-    .adtile--offer .adtile__body { justify-content:center; text-align:center; }
-    .adtile--offer .adtile__body::before { content:''; position:absolute; inset:12px; border:2px dashed rgba(28,22,8,.4); border-radius:12px; pointer-events:none; }
-    .adtile--offer .adtile__hook { font-family:'Archivo Black',Inter,sans-serif; font-size:2.5rem; color:#1c1608; line-height:1.02; letter-spacing:-.01em; }
-    .adtile--offer .adtile__sub { color:#3a2f10; opacity:1; font-weight:700; }
-    .adtile--offer .adtile__prog { background:rgba(0,0,0,.22); } .adtile--offer .adtile__prog i { width:88%; color:#1c1608; }
+    .adtile--offer { aspect-ratio:4/5; color:#f0cf6b; background:#0a1409; }
+    .adtile--offer .adtile__meta { position:relative; z-index:1; background:rgba(4,12,7,.66); backdrop-filter:blur(6px); }
+    .adtile--offer .adtile__body { position:relative; z-index:1; justify-content:flex-end; background:linear-gradient(180deg,transparent 26%,rgba(6,14,6,.55) 58%,rgba(5,12,5,.94) 100%); }
+    .adtile--offer .adtile__prog { position:relative; z-index:1; }
+    .adtile--offer::after { content:''; position:absolute; inset:12px; border:2px dashed rgba(240,207,107,.65); border-radius:12px; pointer-events:none; z-index:2; }
+    .adtile--offer .adtile__hook { font-family:'Archivo Black',Inter,sans-serif; font-size:2.4rem; color:#ffd75e; line-height:1.02; letter-spacing:-.01em; text-shadow:0 1px 12px rgba(0,0,0,.5); }
+    .adtile--offer .adtile__sub { color:#fff; opacity:1; font-weight:700; }
+    .adtile--offer .adtile__prog { background:rgba(0,0,0,.5); } .adtile--offer .adtile__prog i { width:88%; color:#ffd75e; }
 
-    .adtile--urgency { aspect-ratio:9/13; color:#7de3a4; background:linear-gradient(190deg,#0a1f12,#04150b 60%,#001007); }
+    .adtile--urgency { aspect-ratio:9/13; color:#7de3a4; background:repeating-linear-gradient(112deg,transparent 0 15px,rgba(170,220,255,.05) 15px 16.5px),linear-gradient(190deg,#20323c 0%,#0e2018 42%,#04150b 78%,#001007 100%); }
     .adtile--urgency .adtile__body::before { content:'3'; position:absolute; top:-3%; right:5%; font-family:'Archivo Black',Inter,sans-serif; font-size:8.5rem; line-height:1; color:rgba(125,227,164,.13); pointer-events:none; }
     .adtile--urgency .slots { align-self:flex-start; margin-bottom:.7rem; background:#7de3a4; color:#04150b; font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; padding:.35rem .65rem; border-radius:6px; }
     .adtile--urgency .adtile__hook { font-size:1.32rem; color:#fff; }
@@ -152,14 +160,10 @@
     .wall-live .adtile { opacity:0; transform:translateY(26px); animation:tileUp .7s cubic-bezier(.22,1,.36,1) forwards; }
     .wall-live .adtile:nth-child(1){animation-delay:.05s}.wall-live .adtile:nth-child(2){animation-delay:.14s}.wall-live .adtile:nth-child(3){animation-delay:.23s}.wall-live .adtile:nth-child(4){animation-delay:.32s}.wall-live .adtile:nth-child(5){animation-delay:.41s}.wall-live .adtile:nth-child(6){animation-delay:.5s}.wall-live .adtile:nth-child(7){animation-delay:.59s}
     @keyframes tileUp { to { opacity:1; transform:translateY(0); } }
-    .wall-live .adtile:nth-child(3n+1){animation-name:tileUpA} @keyframes tileUpA { to { opacity:1; transform:rotate(-1.4deg) translateY(0); } }
-    .wall-live .adtile:nth-child(3n+2){animation-name:tileUpB} @keyframes tileUpB { to { opacity:1; transform:rotate(1.1deg) translateY(0); } }
-    .wall-live .adtile:nth-child(3n){animation-name:tileUpC} @keyframes tileUpC { to { opacity:1; transform:rotate(-.6deg) translateY(0); } }
 
     @media (prefers-reduced-motion: reduce) {
-      .adframe, .adfan:hover .adframe--reel, .adfan:hover .adframe--feed, .adfan:hover .adframe--wide { transition:none; }
+      .adframe, .adframe:hover, .wall .adtile:hover { transition:none; transform:none; }
       .wall-live .adtile { animation:none; opacity:1; transform:none; }
-      .wall .adtile:nth-child(n) { transform:none; }
       .agentic-art__pulse, .adtile--founder .rec::before { animation:none; }
     }
 
@@ -235,22 +239,10 @@
     .svc-end h2, .svc-end p { color: #fff; }
     .svc-end p { color: rgba(255,255,255,.72); }
 
-    @media (max-width: 1120px) {
-      .adframe--reel { transform:rotate(4deg) translateX(30px); }
-      .adframe--feed { transform:rotate(-6deg) translate(-96px,-110px); }
-      .adframe--wide { transform:rotate(2deg) translate(30px,200px); }
-    }
     @media (max-width: 900px) {
       .agentic-hero { min-height:0; }
       .agentic-hero .svc-hero-grid { grid-template-columns:1fr; }
-      .adfan { min-height:0; margin-top:1.5rem; padding-bottom:2.2rem; }
-      .adfan > * { grid-area:auto; }
-      .adfan { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:1.1rem; }
-      .adframe--reel, .adframe--feed, .adframe--wide { transform:rotate(0); }
-      .adframe--reel { transform:rotate(2deg); }
-      .adframe--feed { transform:rotate(-2deg); }
-      .adframe--wide { display:none; }
-      .adfan__hud { bottom:-6px; }
+      .adshelf { margin-top:1.5rem; max-width:560px; justify-self:center; width:100%; }
       .wall { columns:2; }
       .svc-two { grid-template-columns: 1fr; gap: 2rem; }
       .svc-inc { grid-template-columns: 1fr; }
@@ -260,7 +252,11 @@
     }
     @media (max-width: 560px) {
       .wall { columns:1; max-width:340px; }
-      .adframe--feed { display:none; }
+      .adshelf { grid-template-columns:1fr; }
+      .adframe--reel { display:none; }
+      .adframe--feed { grid-column:1; grid-row:1; }
+      .adframe--wide { grid-column:1; grid-row:2; }
+      .adshelf__hud { grid-row:3; }
     }
   </style>
   <script type="application/ld+json">
@@ -368,11 +364,11 @@
         <span class="svc-flag">★ About $52 an ad at the Growth tier · you own every file</span>
         <div class="svc-cta-row"><a class="btn btn-primary btn-lg buy" data-sku="ads-growth" href="contact.html">Start Growth — 25 ads, $1,297/mo</a><a class="btn btn-secondary btn-lg" href="#how" style="color:#fff;border-color:rgba(255,255,255,.45)">How it works ↓</a></div>
       </div>
-      <div class="adfan" role="img" aria-label="One ad idea shown as three finished formats: a vertical 15-second reel, a square feed cut and a wide 30-second story cut, each with captions burned in">
-        <figure class="adframe adframe--wide"><div class="adframe__bar"><span>16:9 &middot; 0:30 &middot; story cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">The 30-second version, for people who stay.</p><span class="adframe__cap">same idea &middot; longer cut</span></div><div class="adframe__prog"><i></i></div></figure>
-        <figure class="adframe adframe--feed"><div class="adframe__bar"><span>1:1 &middot; feed cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Monsoon-ready.<br/>One visit.</p><span class="adframe__cap">square, for the feed</span></div><div class="adframe__prog"><i></i></div></figure>
-        <figure class="adframe adframe--reel"><div class="adframe__bar"><span>9:16 &middot; 0:15 &middot; reel</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Your yard, monsoon&#8209;ready in one visit.</p><span class="adframe__cap">captions burned in — the feed plays on mute</span></div><div class="adframe__prog"><i></i></div></figure>
-        <div class="adfan__hud"><span>One idea &rarr; every format</span><i class="agentic-art__pulse" aria-hidden="true"></i></div>
+      <div class="adshelf" role="img" aria-label="One campaign photograph of a landscaped Phoenix backyard, finished as three ad formats: a vertical 15-second reel, a square feed cut and a wide 30-second story cut, each with captions burned in">
+        <figure class="adframe adframe--reel"><img class="adframe__ph" src="art/ad-campaign-reel.webp" alt="" width="540" height="960" loading="eager" fetchpriority="high"/><div class="adframe__bar"><span>9:16 &middot; 0:15 &middot; reel</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Your yard, monsoon&#8209;ready in one visit.</p><span class="adframe__cap">captions burned in — the feed plays on mute</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--feed"><img class="adframe__ph" src="art/ad-campaign-feed.webp" alt="" width="720" height="720" loading="eager"/><div class="adframe__bar"><span>1:1 &middot; feed cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Monsoon-ready. One visit.</p><span class="adframe__cap">square, for the feed</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--wide"><img class="adframe__ph" src="art/ad-campaign-wide.webp" alt="" width="1000" height="558" loading="eager"/><div class="adframe__bar"><span>16:9 &middot; 0:30 &middot; story cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">The 30-second version, for people who stay.</p><span class="adframe__cap">same shot &middot; longer cut</span></div><div class="adframe__prog"><i></i></div></figure>
+        <div class="adshelf__hud"><span>One shot &rarr; every format &middot; specimen campaign</span><i class="agentic-art__pulse" aria-hidden="true"></i></div>
       </div>
     </div>
     </div>
@@ -390,11 +386,11 @@
         <figure class="adtile adtile--quote"><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true">★★★★★</div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
         <figure class="adtile adtile--urgency"><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
         <figure class="adtile adtile--question"><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--offer"><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--offer"><img class="adtile__ph" src="art/ad-campaign-lawn.webp" alt="" width="640" height="800" loading="lazy"/><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
         <figure class="adtile adtile--founder"><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
         <figure class="adtile adtile--split"><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
       </div>
-      <p class="wall-note">These specimens are written for Eagle Landscaping — the fictional demo business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. Your batch is written for your business, from your brief, and you approve every hook before production.</p>
+      <p class="wall-note">These specimens — copy and photography — are demo creative made for Eagle Landscaping, the fictional business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. Nothing here is client work. Your batch is written and shot for your business, from your brief, and you approve every hook before production.</p>
     </div>
   </section>
 
