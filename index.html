@@ -133,6 +133,60 @@
     }
     @media (prefers-reduced-motion:reduce) { .agent-console__dot,.agentic-loop::after { animation:none; } }
     .future-stack{padding:clamp(5rem,8vw,8rem) 0;background:#050b07;color:#fff}.future-stack__head{display:grid;grid-template-columns:1.15fr .85fr;gap:4rem;align-items:end;margin-bottom:3rem}.future-stack__head h2{color:#fff;max-width:720px;margin:.7rem 0 0;font-size:clamp(2.3rem,4.6vw,4.2rem);line-height:1.02;letter-spacing:-.045em}.future-stack__head p{color:rgba(255,255,255,.52);max-width:52ch;line-height:1.8}.future-stack__label{color:#7de3a4;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.future-stack__grid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;background:rgba(255,255,255,.025)}.future-pillar{position:relative;min-height:300px;padding:1.6rem 1.35rem;color:inherit;text-decoration:none;border-right:1px solid rgba(255,255,255,.08);transition:background .3s ease}.future-pillar:last-child{border-right:0}.future-pillar:hover{background:rgba(125,227,164,.065)}.future-pillar__num{color:#d5b64c;font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace}.future-pillar h3{margin:5rem 0 .8rem;color:#fff;font-family:Inter,sans-serif;font-size:1.04rem;line-height:1.25}.future-pillar p{color:rgba(255,255,255,.4);font-size:.76rem;line-height:1.65}.future-pillar__arrow{position:absolute;right:1.3rem;bottom:1.25rem;color:#7de3a4}.future-studio-cta{margin-top:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.35rem 1.5rem;border:1px solid rgba(212,175,55,.22);border-radius:18px;background:linear-gradient(105deg,rgba(212,175,55,.08),rgba(125,227,164,.035))}.future-studio-cta strong{display:block;color:#fff;font-size:1rem}.future-studio-cta span{color:rgba(255,255,255,.4);font-size:.78rem}@media(max-width:1000px){.future-stack__grid{grid-template-columns:repeat(2,1fr)}.future-pillar{border-bottom:1px solid rgba(255,255,255,.08)}.future-pillar:last-child{grid-column:1/-1}.future-stack__head{grid-template-columns:1fr;gap:1.5rem}}@media(max-width:600px){.future-stack__grid{grid-template-columns:1fr}.future-pillar,.future-pillar:last-child{grid-column:auto;min-height:230px;border-right:0}.future-pillar h3{margin-top:3.5rem}.future-studio-cta{align-items:flex-start;flex-direction:column}}
+
+    /* ===== BRAND AD — the night/day slider ================================
+       Dark full-bleed opener. Every element states its own colour. */
+    .brandad { background:#030805; }
+    .brandad__stage { position:relative; height:min(92vh,860px); min-height:560px; overflow:hidden; }
+    .brandad__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+    .brandad__night { position:absolute; inset:0; clip-path:inset(0 50% 0 0); will-change:clip-path; }
+    /* the seam */
+    .brandad__seam { position:absolute; top:0; bottom:0; left:50%; width:2px; margin-left:-1px; background:linear-gradient(180deg,rgba(231,200,95,.15),#e7c85f 30%,#e7c85f 70%,rgba(231,200,95,.15)); box-shadow:0 0 22px rgba(231,200,95,.55); pointer-events:none; z-index:3; }
+    .brandad__grip { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#e7c85f; color:#061008; font-size:.8rem; font-weight:800; letter-spacing:.05em; box-shadow:0 6px 26px rgba(0,0,0,.55), 0 0 0 5px rgba(231,200,95,.25); }
+    .brandad__range { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; z-index:4; -webkit-appearance:none; appearance:none; touch-action:pan-y; }
+    .brandad__range:focus-visible ~ .brandad__seam .brandad__grip { outline:3px solid #7de3a4; outline-offset:3px; }
+    /* time tags — each clipped to its own world */
+    .brandad__tag { position:absolute; display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .85rem; border-radius:100px; font:600 .74rem/1.3 Inter,sans-serif; z-index:2; backdrop-filter:blur(6px); }
+    .brandad__tag b { font-weight:800; letter-spacing:.06em; }
+    .brandad__tag--night { left:1.4rem; top:5.4rem; background:rgba(3,10,16,.72); color:#bfe0ff; border:1px solid rgba(160,200,255,.3); }
+    .brandad__tag--night b { color:#fff; }
+    .brandad__tag--day { right:1.4rem; top:5.4rem; background:rgba(38,26,4,.55); color:#ffe9b0; border:1px solid rgba(255,215,130,.4); }
+    .brandad__tag--day b { color:#fff; }
+    /* ad chrome: the meta chip sits top-centre between the two time tags;
+       the drag hint rides along under the gold grip. */
+    .brandad__meta { position:absolute; top:5.5rem; left:50%; transform:translateX(-50%); z-index:2; display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap; color:rgba(255,255,255,.72); font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; background:rgba(3,8,5,.62); border:1px solid rgba(255,255,255,.14); border-radius:100px; padding:.45rem .8rem; backdrop-filter:blur(6px); pointer-events:none; }
+    .brandad__dot { width:6px; height:6px; border-radius:50%; background:#7de3a4; box-shadow:0 0 12px #7de3a4; animation:homePulse 2.2s ease-in-out infinite; }
+    .brandad__hint { position:absolute; top:calc(50% + 40px); left:50%; transform:translateX(-50%); white-space:nowrap; color:#f7ecc4; font:700 .56rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; background:rgba(3,8,5,.66); border:1px solid rgba(231,200,95,.35); border-radius:100px; padding:.4rem .7rem; }
+    /* copy block */
+    .brandad__copy { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:7rem clamp(1.4rem,5vw,4.5rem) 3.2rem; background:linear-gradient(180deg,transparent 0%,rgba(2,6,4,.45) 38%,rgba(2,6,4,.88) 100%); pointer-events:none; }
+    .brandad__copy .btn, .brandad__fine a { pointer-events:auto; }
+    .brandad__kicker { margin:0 0 .6rem; color:#7de3a4; font-size:.64rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    .brandad__h { margin:0 0 .8rem; color:#fff; font-size:clamp(2.4rem,5.6vw,4.4rem); line-height:.98; letter-spacing:-.04em; }
+    .brandad__h em { font-style:italic; color:#e7c85f; }
+    .brandad__sub { margin:0; max-width:56ch; color:rgba(255,255,255,.78); font-size:1.02rem; line-height:1.7; }
+    .brandad__cta { display:flex; flex-wrap:wrap; gap:.85rem; margin-top:1.5rem; }
+    .brandad__ghost { border:1px solid rgba(255,255,255,.4); background:rgba(3,8,5,.35); color:#fff; backdrop-filter:blur(4px); }
+    .brandad__ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; color:#fff; }
+    .brandad__fine { margin:1.1rem 0 0; color:rgba(255,255,255,.48); font-size:.74rem; }
+    .brandad__fine a { color:rgba(255,255,255,.72); text-decoration:underline; text-underline-offset:2px; }
+    /* the film progress line follows the slider */
+    .brandad__prog { position:absolute; left:0; right:0; bottom:0; height:3px; background:rgba(255,255,255,.12); z-index:3; }
+    .brandad__prog i { display:block; height:100%; width:50%; background:linear-gradient(90deg,#e7c85f,#7de3a4); box-shadow:0 0 14px rgba(125,227,164,.5); }
+    @media (max-width:820px) {
+      .brandad__stage { height:88vh; min-height:620px; }
+      /* tags shrink to just the time so they cannot collide */
+      .brandad__tag { font-size:0; gap:0; padding:.45rem .7rem; }
+      .brandad__tag b { font-size:.72rem; }
+      .brandad__tag--night { top:4.9rem; left:.9rem; }
+      .brandad__tag--day { top:4.9rem; right:.9rem; }
+      .brandad__meta { display:none; }
+      /* keep the handle off the copy block */
+      .brandad__grip { top:31%; }
+      .brandad__hint { top:calc(31% + 40px); }
+      .brandad__copy { padding-bottom:3.4rem; }
+      .brandad__img { object-position:62% 30%; }
+    }
+    @media (prefers-reduced-motion:reduce) { .brandad__dot { animation:none; } }
   </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -217,6 +271,40 @@
       </ul>
     </div>
   </nav>
+
+  <!-- ===== BRAND AD — night and day, literally =====================
+       The opener. One office, twice: 2:47 AM with the AI employee on the
+       phone, 8:00 AM with the owner collecting a booked schedule. The
+       visitor drags the gold seam between them. Both frames are generated
+       brand illustration, and the caption says so. -->
+  <section class="brandad" aria-label="GreenAI brand film — the difference between night and day">
+    <div class="brandad__stage" data-nd>
+      <img class="brandad__img" src="art/brand-day.webp" alt="Bright morning in a small-business office: the owner, coffee in hand, takes the day's booked schedule from a friendly green robot receptionist" width="1600" height="893" loading="eager" fetchpriority="high" decoding="async"/>
+      <div class="brandad__night" data-nd-night>
+        <img class="brandad__img" src="art/brand-night.webp" alt="The same office at 2:47 AM: the robot receptionist answers the ringing phone and writes the appointment down while the owner's chair sits empty" width="1600" height="893" loading="eager" decoding="async"/>
+        <span class="brandad__tag brandad__tag--night"><b>2:47 AM</b> a lead calls &mdash; your AI employee picks up in 8 seconds</span>
+      </div>
+      <span class="brandad__tag brandad__tag--day"><b>8:00 AM</b> the job is on your calendar</span>
+
+      <div class="brandad__seam" data-nd-seam aria-hidden="true"><span class="brandad__grip">&#9666;&nbsp;&#9656;</span><span class="brandad__hint">night &#8646; day &middot; drag it</span></div>
+      <input type="range" class="brandad__range" data-nd-range min="0" max="100" value="50" step="1" aria-label="Slide between night and day" />
+
+      <span class="brandad__meta" aria-hidden="true"><i class="brandad__dot"></i> GreenAI &middot; the ad we&rsquo;d run for ourselves</span>
+
+      <div class="brandad__copy">
+        <p class="brandad__kicker">GreenAI Solutions &middot; AI employees for Phoenix service businesses</p>
+        <h2 class="brandad__h">Night and day.<br/><em>Literally.</em></h2>
+        <p class="brandad__sub">One AI employee answers every call, text and form in 8 seconds &mdash; at 2am, on Sundays, on holidays &mdash; books the job, and chases the quiet ones. You get your evenings back. The leads don&rsquo;t get away.</p>
+        <div class="brandad__cta">
+          <a href="catch.html" class="btn btn-white btn-lg">Watch it catch a lead</a>
+          <a href="pay.html?sku=employees-front-desk" class="btn btn-lg brandad__ghost" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
+        </div>
+        <p class="brandad__fine">Brand illustration of the mechanism &mdash; the <a href="catch.html">demo</a> and the <a href="#proof-run-heading">morning&rsquo;s real run</a> are below.</p>
+      </div>
+
+      <div class="brandad__prog" aria-hidden="true"><i data-nd-prog></i></div>
+    </div>
+  </section>
 
   <!-- ===== HERO ===== -->
   <section id="main" class="hero hero--split home-agentic" aria-labelledby="hero-heading">
@@ -862,6 +950,49 @@ If we're ever late, that visit is free.
     (function(){
       const yearEl = document.querySelector('.js-year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+
+    /* ===== BRAND AD — night/day slider =====
+       The range input is the single source of truth: full-area, invisible,
+       draggable and keyboard-operable. Everything else follows its value.
+       Without JS the page still shows a clean 50/50 split. */
+    (function () {
+      var stage = document.querySelector('[data-nd]');
+      if (!stage) return;
+      var range = stage.querySelector('[data-nd-range]');
+      var night = stage.querySelector('[data-nd-night]');
+      var seam  = stage.querySelector('[data-nd-seam]');
+      var prog  = stage.querySelector('[data-nd-prog]');
+      var hint  = stage.querySelector('.brandad__hint');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function setP(p) {
+        night.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
+        seam.style.left = p + '%';
+        if (prog) prog.style.width = p + '%';
+      }
+      range.addEventListener('input', function () {
+        setP(+range.value);
+        if (hint) hint.style.display = 'none';   // they've got it
+      });
+
+      /* Intro sweep: night washes across once, then settles at half —
+         shows there are two worlds here and that the seam moves. */
+      if (!reduce) {
+        var from = 82, to = 50, t0 = null;
+        setP(from); range.value = from;
+        function ease(x){ return 1 - Math.pow(1 - x, 3); }
+        function tick(t) {
+          if (!t0) t0 = t;
+          var k = Math.min(1, (t - t0) / 1300);
+          var p = from + (to - from) * ease(k);
+          setP(p); range.value = p;
+          if (k < 1) requestAnimationFrame(tick);
+        }
+        setTimeout(function(){ requestAnimationFrame(tick); }, 500);
+      } else {
+        setP(50);
+      }
     })();
   </script>
 </body>
