@@ -55,6 +55,16 @@
     }
     .adframe:hover { transform:translateY(-4px); box-shadow:0 30px 65px rgba(0,0,0,.6); }
     .adframe__ph { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    /* LIVE chip — only shown once JS confirms the preview video is actually
+       rolling (.is-rolling), so a static/no-JS page never claims playback */
+    .onair { display:none; align-items:center; gap:.35rem; color:#ff8484; letter-spacing:.14em; }
+    .onair i { width:6px; height:6px; border-radius:50%; background:#ff5f5f; box-shadow:0 0 8px #ff5f5f; animation:onairBlink 1.4s ease-in-out infinite; }
+    .is-rolling .onair { display:inline-flex; }
+    @keyframes onairBlink { 50% { opacity:.25; } }
+    /* progress bars play like a real ad while the card is rolling; static
+       widths below remain the no-JS / reduced-motion fallback */
+    .is-rolling .adframe__prog i, .is-rolling .adtile__prog i { animation:adProg var(--addur,15s) linear infinite; }
+    @keyframes adProg { from { width:0; } to { width:100%; } }
     .adframe__bar { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .8rem; font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#8ceab0; background:rgba(4,12,7,.72); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,.1); }
     .adframe__bar .mute { color:rgba(255,255,255,.7); letter-spacing:0; font-size:.62rem; }
     .adframe__stage { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; justify-content:flex-end; padding:1.1rem; background:linear-gradient(180deg,transparent 0%,rgba(3,10,6,.2) 42%,rgba(3,10,6,.9) 100%); }
@@ -87,6 +97,10 @@
     }
     .wall .adtile:hover { transform:translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,.6); z-index:2; }
     .adtile__ph { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    /* The three photo tiles without footage get a slow Ken Burns drift, so
+       every card on the wall moves once it is on screen. */
+    .is-rolling .adtile__ph--kb { animation:kenBurns 16s ease-in-out infinite alternate; }
+    @keyframes kenBurns { from { transform:scale(1) translate(0,0); } to { transform:scale(1.09) translate(-1.5%,1.2%); } }
     /* Full-bleed painted scene behind each tile's copy. slice = cover. */
     .adtile__art { position:absolute; inset:0; width:100%; height:100%; display:block; }
     .adtile__meta, .adtile__body, .adtile__prog { position:relative; z-index:1; }
@@ -157,6 +171,31 @@
     .adtile--urgency .adtile__hook { font-size:1.32rem; color:#fff; }
     .adtile--urgency .adtile__prog i { width:91%; }
 
+    /* ---- live motion on the three non-footage tiles -------------------- */
+    /* quote: the five stars twinkle on in sequence, forever */
+    .adtile--quote .stars b { display:inline-block; font-style:normal; }
+    .is-rolling.adtile--quote .stars b { animation:starTwinkle 5s ease-in-out infinite; }
+    .is-rolling.adtile--quote .stars b:nth-child(2) { animation-delay:.18s; }
+    .is-rolling.adtile--quote .stars b:nth-child(3) { animation-delay:.36s; }
+    .is-rolling.adtile--quote .stars b:nth-child(4) { animation-delay:.54s; }
+    .is-rolling.adtile--quote .stars b:nth-child(5) { animation-delay:.72s; }
+    @keyframes starTwinkle { 0%,6% { opacity:.25; transform:scale(.7); } 14%,82% { opacity:1; transform:scale(1); } 92%,100% { opacity:.25; transform:scale(.7); } }
+    /* offer: the coupon breathes — $99 pulses, the dashed frame glows, and a
+       light sweep passes over the photo */
+    .is-rolling.adtile--offer .adtile__hook { animation:offerPulse 2.6s ease-in-out infinite; transform-origin:left bottom; }
+    @keyframes offerPulse { 50% { transform:scale(1.045); text-shadow:0 1px 22px rgba(255,215,94,.55); } }
+    .is-rolling.adtile--offer::after { animation:couponGlow 2.6s ease-in-out infinite; }
+    @keyframes couponGlow { 50% { border-color:rgba(255,215,94,.95); box-shadow:0 0 22px rgba(240,207,107,.25) inset; } }
+    .adtile--offer .sweep { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+    .is-rolling.adtile--offer .sweep::before { content:''; position:absolute; top:-20%; bottom:-20%; width:34%; left:-40%; background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent); transform:skewX(-14deg); animation:offerSweep 4.2s ease-in-out infinite; }
+    @keyframes offerSweep { 0%,55% { left:-40%; } 90%,100% { left:130%; } }
+    /* before/after: a bright reveal line sweeps the frame, day 1 -> day 30 */
+    .adtile--split .sweepline { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+    .is-rolling.adtile--split .sweepline::before { content:''; position:absolute; top:0; bottom:0; width:3px; background:linear-gradient(180deg,rgba(255,255,255,.05),#fff 45%,rgba(255,255,255,.05)); box-shadow:0 0 18px rgba(255,255,255,.8); animation:splitSweep 6s cubic-bezier(.6,.05,.35,1) infinite; }
+    @keyframes splitSweep { 0%,12% { left:6%; opacity:0; } 18% { opacity:1; } 82% { opacity:1; } 88%,100% { left:94%; opacity:0; } }
+    .is-rolling.adtile--split .word--after { animation:wordGlow 6s ease-in-out infinite; }
+    @keyframes wordGlow { 0%,55% { text-shadow:none; } 78% { text-shadow:0 1px 18px rgba(255,255,255,.65); } 100% { text-shadow:none; } }
+
     .wall-note { max-width:760px; margin:2.6rem auto 0; text-align:center; font-size:.85rem; line-height:1.7; color:rgba(223,243,230,.6); }
     .wall-note a { color:#7de3a4; text-decoration:underline; }
 
@@ -169,6 +208,15 @@
       .adframe, .adframe:hover, .wall .adtile:hover { transition:none; transform:none; }
       .wall-live .adtile { animation:none; opacity:1; transform:none; }
       .agentic-art__pulse, .adtile--founder .rec::before { animation:none; }
+      /* stills only: no video playback (JS never starts it), no player chrome */
+      .is-rolling .adframe__prog i, .is-rolling .adtile__prog i,
+      .is-rolling .adtile__ph--kb, .onair i,
+      .is-rolling.adtile--quote .stars b,
+      .is-rolling.adtile--offer .adtile__hook, .is-rolling.adtile--offer::after,
+      .is-rolling.adtile--offer .sweep::before,
+      .is-rolling.adtile--split .sweepline::before,
+      .is-rolling.adtile--split .word--after { animation:none; }
+      .onair { display:none !important; }
     }
 
     .svc-two { display: grid; grid-template-columns: 1.35fr .9fr; gap: 3.5rem; align-items: start; }
@@ -382,11 +430,11 @@
         <span class="svc-flag">★ About $52 an ad at the Growth tier · you own every file</span>
         <div class="svc-cta-row"><a class="btn btn-primary btn-lg buy" data-sku="ads-growth" href="contact.html">Start Growth — 25 ads, $1,297/mo</a><a class="btn btn-secondary btn-lg" href="#how" style="color:#fff;border-color:rgba(255,255,255,.45)">How it works ↓</a></div>
       </div>
-      <div class="adshelf" role="img" aria-label="One campaign photograph of a landscaped Phoenix backyard, finished as three ad formats: a vertical 15-second reel, a square feed cut and a wide 30-second story cut, each with captions burned in">
-        <figure class="adframe adframe--reel"><img class="adframe__ph" src="art/ad-campaign-reel.webp" alt="" width="540" height="960" loading="eager" fetchpriority="high"/><div class="adframe__bar"><span>9:16 &middot; 0:15 &middot; reel</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Your yard, monsoon&#8209;ready in one visit.</p><span class="adframe__cap">captions burned in — the feed plays on mute</span></div><div class="adframe__prog"><i></i></div></figure>
-        <figure class="adframe adframe--feed"><img class="adframe__ph" src="art/ad-campaign-feed.webp" alt="" width="720" height="720" loading="eager"/><div class="adframe__bar"><span>1:1 &middot; feed cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Monsoon-ready. One visit.</p><span class="adframe__cap">square, for the feed</span></div><div class="adframe__prog"><i></i></div></figure>
-        <figure class="adframe adframe--wide"><img class="adframe__ph" src="art/ad-campaign-wide.webp" alt="" width="1000" height="558" loading="eager"/><div class="adframe__bar"><span>16:9 &middot; 0:30 &middot; story cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">The 30-second version, for people who stay.</p><span class="adframe__cap">same shot &middot; longer cut</span></div><div class="adframe__prog"><i></i></div></figure>
-        <div class="adshelf__hud"><span>One shot &rarr; every format &middot; specimen campaign</span><i class="agentic-art__pulse" aria-hidden="true"></i></div>
+      <div class="adshelf" role="img" aria-label="One campaign shot of a landscaped Phoenix backyard, finished as three live ad previews: a vertical 15-second reel, a square feed cut and a wide 30-second story cut, each moving, each with captions burned in">
+        <figure class="adframe adframe--reel" style="--addur:15s"><video class="adframe__ph js-adplay" muted loop playsinline preload="metadata" poster="art/ad-campaign-reel.webp" width="540" height="960" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-reel.mp4" type="video/mp4"/></video><div class="adframe__bar"><span class="onair" aria-hidden="true"><i></i>LIVE</span><span>9:16 &middot; 0:15 &middot; reel</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Your yard, monsoon&#8209;ready in one visit.</p><span class="adframe__cap">captions burned in — the feed plays on mute</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--feed" style="--addur:15s"><video class="adframe__ph js-adplay" muted loop playsinline preload="metadata" poster="art/ad-campaign-feed.webp" width="720" height="720" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-feed.mp4" type="video/mp4"/></video><div class="adframe__bar"><span class="onair" aria-hidden="true"><i></i>LIVE</span><span>1:1 &middot; feed cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">Monsoon-ready. One visit.</p><span class="adframe__cap">square, for the feed</span></div><div class="adframe__prog"><i></i></div></figure>
+        <figure class="adframe adframe--wide" style="--addur:30s"><video class="adframe__ph js-adplay" muted loop playsinline preload="metadata" poster="art/ad-campaign-wide.webp" width="1000" height="558" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-wide.mp4" type="video/mp4"/></video><div class="adframe__bar"><span class="onair" aria-hidden="true"><i></i>LIVE</span><span>16:9 &middot; 0:30 &middot; story cut</span><span class="mute">🔇 CC</span></div><div class="adframe__stage"><p class="adframe__hook">The 30-second version, for people who stay.</p><span class="adframe__cap">same shot &middot; longer cut</span></div><div class="adframe__prog"><i></i></div></figure>
+        <div class="adshelf__hud"><span>One shot &rarr; every format &middot; specimen campaign, live</span><i class="agentic-art__pulse" aria-hidden="true"></i></div>
       </div>
     </div>
     </div>
@@ -400,15 +448,15 @@
         <p class="wall-lede">Seven ways every batch attacks the same idea — the problem, the question, the before-and-after, the testimonial style, the founder cut, the offer, the clock. Nobody can tell you in advance which one your market clicks on. The wall is how you find out.</p>
       </div>
       <div class="wall">
-        <figure class="adtile adtile--problem"><img class="adtile__ph" src="art/ad-angle-problem.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 01 &middot; The Problem</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">Your yard survived the summer. Barely.</p><span class="adtile__cap">monsoon cleanup, booked this week</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--quote"><img class="adtile__ph" src="art/ad-angle-quote.webp" alt="" width="720" height="720" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true">★★★★★</div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--urgency"><img class="adtile__ph" src="art/ad-angle-clock.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt">9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--question"><img class="adtile__ph" src="art/ad-angle-question.webp" alt="" width="720" height="720" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--offer"><img class="adtile__ph" src="art/ad-campaign-lawn.webp" alt="" width="640" height="800" loading="lazy"/><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--founder"><img class="adtile__ph" src="art/ad-angle-founder.webp" alt="" width="720" height="1290" loading="lazy" decoding="async"/><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
-        <figure class="adtile adtile--split"><img class="adtile__ph" src="art/ad-angle-split.webp" alt="" width="720" height="893" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--problem" style="--addur:15s"><video class="adtile__ph js-adplay" muted loop playsinline preload="none" poster="art/ad-angle-problem.webp" width="720" height="1290" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-problem.mp4" type="video/mp4"/></video><div class="adtile__meta"><span>Angle 01 &middot; The Problem</span><span class="fmt"><span class="onair" aria-hidden="true"><i></i>LIVE</span> 9:16 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">Your yard survived the summer. Barely.</p><span class="adtile__cap">monsoon cleanup, booked this week</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--quote" style="--addur:15s"><img class="adtile__ph adtile__ph--kb" src="art/ad-angle-quote.webp" alt="" width="720" height="720" loading="lazy" decoding="async"/><div class="adtile__meta"><span>Angle 04 &middot; Testimonial Style</span><span class="fmt">1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Done in a day. I never lifted a finger.&rdquo;</p><div class="stars" aria-hidden="true"><b>★</b><b>★</b><b>★</b><b>★</b><b>★</b></div><p class="adtile__sub">The review-shaped cut — the words your happiest customer would say, on screen.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--urgency" style="--addur:15s"><video class="adtile__ph js-adplay" muted loop playsinline preload="none" poster="art/ad-angle-clock.webp" width="720" height="1290" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-clock.mp4" type="video/mp4"/></video><div class="adtile__meta"><span>Angle 07 &middot; The Clock</span><span class="fmt"><span class="onair" aria-hidden="true"><i></i>LIVE</span> 9:16 &middot; 0:15</span></div><div class="adtile__body"><span class="slots">3 slots left</span><p class="adtile__hook">Monsoon hits in three weeks. Good crews book out in one.</p><span class="adtile__cap">this week&rsquo;s schedule, on screen</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--question" style="--addur:15s"><video class="adtile__ph js-adplay" muted loop playsinline preload="none" poster="art/ad-angle-question.webp" width="720" height="720" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-question.mp4" type="video/mp4"/></video><div class="adtile__meta"><span>Angle 02 &middot; The Question</span><span class="fmt"><span class="onair" aria-hidden="true"><i></i>LIVE</span> 1:1 &middot; 0:15</span></div><div class="adtile__body"><p class="adtile__hook">When did you last actually sit in your own backyard?</p><span class="adtile__cap">no pitch until second 9</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--offer" style="--addur:15s"><img class="adtile__ph adtile__ph--kb" src="art/ad-campaign-lawn.webp" alt="" width="640" height="800" loading="lazy"/><div class="sweep" aria-hidden="true"></div><div class="adtile__meta"><span>Angle 06 &middot; The Offer</span><span class="fmt">4:5 &middot; static + motion</span></div><div class="adtile__body"><p class="adtile__hook">$99 first mow.</p><p class="adtile__sub">This month. New yards only. No contract.</p></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--founder" style="--addur:30s"><video class="adtile__ph js-adplay" muted loop playsinline preload="none" poster="art/ad-angle-founder.webp" width="720" height="1290" aria-hidden="true" tabindex="-1"><source src="art/ad-vid-founder.mp4" type="video/mp4"/></video><div class="corners" aria-hidden="true"></div><div class="adtile__meta"><span class="rec">REC &middot; Angle 05 &middot; Founder</span><span class="fmt">9:16 &middot; 0:30</span></div><div class="adtile__body"><p class="adtile__hook">&ldquo;Four thousand lawns in, here&rsquo;s what actually kills winter grass&hellip;&rdquo;</p><span class="adtile__cap">you, to camera — or not; your call</span></div><div class="adtile__prog"><i></i></div></figure>
+        <figure class="adtile adtile--split" style="--addur:15s"><img class="adtile__ph adtile__ph--kb" src="art/ad-angle-split.webp" alt="" width="720" height="893" loading="lazy" decoding="async"/><div class="sweepline" aria-hidden="true"></div><div class="adtile__meta"><span>Angle 03 &middot; Before / After</span><span class="fmt">4:5 &middot; 0:15</span></div><div class="adtile__body"><span class="word">Gravel.</span><span class="daychip">day 1 &rarr; day 30</span><span class="word word--after">Garden.</span></div><div class="adtile__prog"><i></i></div></figure>
       </div>
-      <p class="wall-note">These specimens — copy and photography — are demo creative made for Eagle Landscaping, the fictional business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. Nothing here is client work. Your batch is written and shot for your business, from your brief, and you approve every hook before production.</p>
+      <p class="wall-note">These specimens — copy, photography and the moving previews — are demo creative made for Eagle Landscaping, the fictional business every GreenAI example runs against, the same one in the <a href="index.html#proof-run">homepage proof run</a>. The previews play the way the finished files do: silent, captioned, looping. Nothing here is client work. Your batch is written and shot for your business, from your brief, and you approve every hook before production.</p>
     </div>
   </section>
 
@@ -661,6 +709,28 @@
       });
     }, { threshold: 0.15 });
     io.observe(wall);
+  })();
+
+  /* Every ad card plays like a real ad while it is on screen: video previews
+     roll, progress bars fill, the LIVE chip lights. All of it is gated here —
+     reduced motion (or no JS) leaves the stills exactly as they were. */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cards = document.querySelectorAll('.adframe, .adtile');
+    if (!cards.length) return;
+    function roll (card, on) {
+      card.classList.toggle('is-rolling', on);
+      var v = card.querySelector('video.js-adplay');
+      if (v) { if (on) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); } }
+    }
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(cards, function (c) { roll(c, true); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { roll(e.target, e.isIntersecting); });
+    }, { threshold: 0.2 });
+    Array.prototype.forEach.call(cards, function (c) { io.observe(c); });
   })();
   </script>
 </body>
