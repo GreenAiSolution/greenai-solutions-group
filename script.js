@@ -68,7 +68,6 @@
 
     // Service detail pages live under the Services dropdown.
     const parentOf = {
-      'service-ai-employees.html': 'services.html',
       'service-ai-ads.html': 'services.html',
       'service-ai-consulting.html': 'services.html',
       'service-web-design.html': 'services.html'
