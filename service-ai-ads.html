@@ -211,22 +211,38 @@
     .svc-limits li:last-child { border-bottom: none; }
     .svc-limits .x { color: #c0392b; font-weight: 800; flex-shrink: 0; }
 
-    /* ---- the buy table ---- */
-    .buytable { max-width: 880px; margin: 0 auto; border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg); overflow: hidden; background: var(--white);
-      box-shadow: var(--shadow-md); }
-    .buyrow { display: grid; grid-template-columns: 1fr auto auto; gap: 1.25rem;
-      align-items: center; padding: 1.35rem 1.75rem; border-bottom: 1px solid var(--gray-200); }
-    .buyrow:last-child { border-bottom: none; }
-    .buyrow--star { background: #f4fbf6; }
-    .buyrow__name { font-weight: 700; color: var(--gray-800); font-size: 1.02rem; }
-    .buyrow__sub { font-size: .87rem; color: var(--gray-500); margin-top: .2rem; line-height: 1.5; }
-    .buyrow__price { font-family: 'Playfair Display', serif; font-size: 1.6rem;
-      color: var(--green-dark); white-space: nowrap; }
-    .buyrow__price small { font-family: Inter, sans-serif; font-size: .72rem; color: var(--gray-400);
-      font-weight: 600; display: block; text-align: right; }
-    .buyrow .btn { white-space: nowrap; }
-    .buynote { max-width: 880px; margin: 1.25rem auto 0; font-size: .88rem; color: var(--gray-500);
+    /* ---- pricing cards: three volumes, Growth crowned most popular ---- */
+    .paidgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+      max-width: 1020px; margin: 0 auto; align-items: stretch; }
+    .paidcard { position: relative; display: flex; flex-direction: column; text-align: left;
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 2rem 1.6rem 1.6rem;
+      box-shadow: var(--shadow-sm); }
+    .paidcard__name { font-size: .74rem; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--green-mid); }
+    .paidcard__price { font-family: 'Playfair Display', serif; font-size: 2.5rem;
+      color: var(--gray-800); margin-top: .55rem; line-height: 1; }
+    .paidcard__price small { font-family: Inter, sans-serif; font-size: .8rem;
+      color: var(--gray-400); font-weight: 600; }
+    .paidcard__vol { margin-top: .6rem; font-size: .95rem; font-weight: 700; color: var(--gray-800); }
+    .paidcard__per { font-size: .8rem; color: var(--gray-500); margin-top: .15rem; }
+    .paidcard ul { list-style: none; margin: 1.1rem 0 1.4rem; padding: 0; flex: 1; }
+    .paidcard ul li { position: relative; padding: .38rem 0 .38rem 1.45rem;
+      font-size: .88rem; line-height: 1.55; color: var(--gray-600); }
+    .paidcard ul li::before { content: '✓'; position: absolute; left: 0; top: .38rem;
+      color: var(--green-light); font-weight: 800; }
+    .paidcard .btn { width: 100%; justify-content: center; }
+    .paidcard--pop { border: 2px solid var(--green-light); background: #f4fbf6;
+      box-shadow: 0 18px 45px rgba(26,92,42,.18); }
+    .paidcard--pop .paidcard__price { color: var(--green-dark); }
+    .paidcard__badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--green-dark); color: #fff; font-size: .62rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; padding: .38rem .9rem;
+      border-radius: 100px; white-space: nowrap; box-shadow: 0 6px 16px rgba(26,92,42,.3); }
+    @media (min-width: 901px) {
+      .paidcard--pop { transform: translateY(-10px); padding-top: 2.3rem; }
+    }
+    .buynote { max-width: 880px; margin: 1.6rem auto 0; font-size: .88rem; color: var(--gray-500);
       text-align: center; line-height: 1.7; }
 
     /* ---- faq ---- */
@@ -250,9 +266,7 @@
       .wall { columns:2; }
       .svc-two { grid-template-columns: 1fr; gap: 2rem; }
       .svc-inc { grid-template-columns: 1fr; }
-      .buyrow { grid-template-columns: 1fr; gap: .85rem; }
-      .buyrow__price, .buyrow__price small { text-align: left; }
-      .buyrow .btn { width: 100%; justify-content: center; }
+      .paidgrid { grid-template-columns: 1fr; max-width: 420px; gap: 1.6rem; }
     }
     @media (max-width: 560px) {
       .wall { columns:1; max-width:340px; }
@@ -482,8 +496,44 @@
         <div class="section-divider"></div>
         <p style="max-width:620px;margin:0 auto 2.5rem">No setup fee. No long-term contract. Cancel any time. You own every file from every batch, permanently.</p>
       </div>
-      <div class="buytable">
-        <div class="buyrow"><div><div class="buyrow__name">Starter</div><div class="buyrow__sub">10 finished ads a month · about $70 each</div></div><div class="buyrow__price">$697<small>per month</small></div><a class="btn btn-primary buy" data-sku="ads-starter" href="contact.html">Start Starter</a></div><div class="buyrow buyrow--star"><div><div class="buyrow__name">Growth ★</div><div class="buyrow__sub">25 finished ads a month · about $52 each — the tier most take</div></div><div class="buyrow__price">$1,297<small>per month</small></div><a class="btn btn-primary buy" data-sku="ads-growth" href="contact.html">Start Growth</a></div><div class="buyrow"><div><div class="buyrow__name">Scale</div><div class="buyrow__sub">60 finished ads a month · about $42 each</div></div><div class="buyrow__price">$2,497<small>per month</small></div><a class="btn btn-primary buy" data-sku="ads-scale" href="contact.html">Start Scale</a></div>
+      <div class="paidgrid">
+        <div class="paidcard">
+          <div class="paidcard__name">Starter</div>
+          <div class="paidcard__price">$697<small> /month</small></div>
+          <div class="paidcard__vol">10 finished ads a month</div>
+          <div class="paidcard__per">about $70 per ad</div>
+          <ul>
+            <li>Every format — vertical, square, 15s, 30s</li>
+            <li>Captions burned in, files delivered, you own them</li>
+            <li>Built for testing the waters before you commit volume</li>
+          </ul>
+          <a class="btn btn-primary buy" data-sku="ads-starter" href="contact.html">Start with 10 ads</a>
+        </div>
+        <div class="paidcard paidcard--pop">
+          <div class="paidcard__badge">★ Most Popular</div>
+          <div class="paidcard__name">Growth</div>
+          <div class="paidcard__price">$1,297<small> /month</small></div>
+          <div class="paidcard__vol">25 finished ads a month</div>
+          <div class="paidcard__per">about $52 per ad — vs roughly $200 at an agency</div>
+          <ul>
+            <li>The whole seven-angle spread, every month</li>
+            <li>Enough volume to actually find your winner</li>
+            <li>A fresh batch lands before the last one fatigues</li>
+          </ul>
+          <a class="btn btn-primary buy" data-sku="ads-growth" href="contact.html">Start with 25 ads</a>
+        </div>
+        <div class="paidcard">
+          <div class="paidcard__name">Scale</div>
+          <div class="paidcard__price">$2,497<small> /month</small></div>
+          <div class="paidcard__vol">60 finished ads a month</div>
+          <div class="paidcard__per">about $42 per ad — the best rate</div>
+          <ul>
+            <li>For heavy spend across several platforms</li>
+            <li>Fatigue never catches up at this cadence</li>
+            <li>Move down any month if spend drops</li>
+          </ul>
+          <a class="btn btn-primary buy" data-sku="ads-scale" href="contact.html">Start with 60 ads</a>
+        </div>
       </div>
       <p class="buynote">You pick a plan, sign the agreement and we invoice you — payment is by bank transfer, so no card fee comes out of your budget and no card details are entered on this site. Cancel any time; the files you already have stay yours. Paying a year ahead costs ten months for twelve, and still creates no lock-in — cancel and we refund the whole months you have not used.</p>
     </div>
