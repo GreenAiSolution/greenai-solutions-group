@@ -256,6 +256,36 @@
      that: the order and the signed agreement are in, and an invoice is coming.
      Claiming "payment received" here would be a lie the customer would catch. */
   (function () {
+    /* Stripe Payment Links redirect back here with ?paid=<sku>&session_id=… .
+       This is the ONE branch where "payment received" is true — Stripe only
+       redirects after a successful charge. The job now is to route the new
+       subscriber into the boarding form so the build can start. */
+    var pd = /[?&]paid=([A-Za-z0-9-]{2,40})/.exec(window.location.search);
+    if (pd) {
+      var PLANS = {
+        'employees-front-desk': 'the AI Employee — $497/mo',
+        'ads-starter': 'AI Ad Creation — Starter, 10 ads/mo',
+        'ads-growth': 'AI Ad Creation — Growth, 25 ads/mo',
+        'ads-scale': 'AI Ad Creation — Scale, 60 ads/mo'
+      };
+      var plan = PLANS[pd[1]] || 'your plan';
+      var h0 = document.querySelector('h1');
+      if (h0) h0.textContent = "Payment received. Welcome aboard.";
+      var p0 = h0 && h0.parentNode ? h0.parentNode.querySelector('p') : null;
+      if (p0) {
+        p0.innerHTML =
+          "You are subscribed to " + plan + " — Stripe is emailing your receipt " +
+          "now, and your card is never seen by this site. One step left, and it " +
+          "takes about three minutes: tell us about your business so the build " +
+          "can start today.<br/><br/>" +
+          '<a href="start.html" class="btn btn-primary btn-lg">Start boarding — 3 minutes</a>' +
+          "<br/><br/>Month to month, cancel any time; the Service Agreement " +
+          'that covers your plan is <a href="agreement.html" ' +
+          'style="color:#7de3a4;text-decoration:underline">here</a>.';
+      }
+      document.title = "Payment received — GreenAI Solutions Team";
+      return;
+    }
     /* start.html sends its onboarding request back here with ?start=GA-… .
        No agreement is signed at that point and nothing is charged — the copy
        must not claim either. */

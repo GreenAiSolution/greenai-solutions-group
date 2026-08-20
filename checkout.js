@@ -13,19 +13,10 @@
    greenaidigital.com is static hosting on GitHub Pages: there is no server, so
    nothing here can process a payment, and collecting card numbers in
    client-side JavaScript would require PCI DSS Level 1 compliance. So the site
-   does not take card details at all. pay.html builds the order and captures the
-   signed service agreement, then Jaden invoices and the customer pays by bank
-   transfer — which also means no processor takes a percentage. A card rail can add processing fees that are better handled through a hosted checkout link when needed.
-
-   HISTORY
-   Buttons now land on a working portal instead of collecting payment details on the static site.
-
-   IF A HOSTED CARD RAIL IS ADDED LATER
-   Put its hosted link in CARD_LINKS below, keyed by SKU. Any SKU with a link
-   there gets a "Pay by card" behaviour instead of the portal; anything left
-   empty keeps using the portal. Hosted payment links are not secrets and are
-   safe in this file and in git. A secret API key never belongs here, and none
-   is needed for a hosted link.
+   never takes card details itself. Since 2026-08-20 every SKU has a hosted
+   Stripe Payment Link (card entered on buy.stripe.com, not here); pay.html
+   remains the invoice / bank-transfer alternative for buyers who want 0%
+   processor fees, and captures the signed service agreement for that path.
    ========================================================================= */
 
 (function () {
@@ -33,18 +24,24 @@
 
   var PORTAL = 'pay.html';
 
-  /* The core funnel has one purchasable SKU. The value is a hosted
-     card-checkout URL, or '' to send the buyer to the invoice portal. */
+  /* LIVE Stripe Payment Links (created 2026-08-20 in the GreenGeniusAI
+     account, acct_1TYicEKX2eavW3SQ). These are hosted checkout pages on
+     buy.stripe.com — card entry happens on Stripe, never on this site, so
+     the site's "no card details are entered here" promise stays true.
+     Each link redirects to thankyou.html?paid=<sku> after a successful
+     charge. A hosted link is not a secret and is safe in git; a secret API
+     key never belongs in this file, and none is needed.
+     Set a value to '' to fall back to the invoice portal / contact form. */
   var CARD_LINKS = {
-    'employees-front-desk': ''
+    'employees-front-desk': 'https://buy.stripe.com/9B63cwfpQaKxaFdgbObZe00',
+    'ads-starter': 'https://buy.stripe.com/3cIaEY7Xo9GteVt2kYbZe01',
+    'ads-growth': 'https://buy.stripe.com/bJe4gA0uW9GtdRp4t6bZe02',
+    'ads-scale': 'https://buy.stripe.com/8x27sMcdE6uh14D3p2bZe03'
   };
 
-  /* All other service pages are quoted separately and route to the contact form. */
-  var QUOTE_ONLY = {
-    'ads-starter': true,
-    'ads-growth': true,
-    'ads-scale': true
-  };
+  /* SKUs quoted case-by-case route to the contact form. The ads tiers left
+     this list on 2026-08-20 when their Payment Links went live. */
+  var QUOTE_ONLY = {};
 
   /* pay.html sells exactly one plan right now (the one-price rule — see
      project memory). Any other SKU has no matching radio there, so
