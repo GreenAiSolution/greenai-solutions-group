@@ -328,35 +328,79 @@
   </footer>
 
   <script src="script.js?v=12" defer></script>
-  <script src="checkout.js?v=3" defer></script>
+  <script src="checkout.js?v=4" defer></script>
   <script>
   /* ================= MAVEN — the in-browser phone call =================
-     Runs 100% on the visitor's device. Free browser speech both ways:
-     speechSynthesis speaks, webkitSpeechRecognition listens (optional —
-     chips and typing always work). No network calls, nothing recorded. */
+     Runs 100% on the visitor's device. MAVEN's voice is a set of small
+     pre-generated neural-TTS clips in /voice (one-time generation, $0 to
+     serve, $0 per call); browser speechSynthesis is the automatic fallback
+     for the rare dynamic line or a failed clip. Optional
+     webkitSpeechRecognition listens — chips and typing always work.
+     No network calls beyond the static clips, nothing recorded. */
   (function () {
     'use strict';
 
+    /* ---------- every sentence MAVEN can speak, one clip each ----------
+       Single source of truth: gen_voice.py reads THIS block to build the
+       mp3s. Change a line here -> regenerate its clip. */
+    var LINES = {
+      /* shared */
+      'quote-ack':  "Happy to. Quotes here start with a quick look, so the number you get is real instead of a guess.",
+      'passalong':  "Got it — I'll make sure that reaches the owner word for word. So the right person calls you back ready:",
+      'price':      "Straight answer? I never invent a price. The owner's own price list is the only thing I'm allowed to quote from, and anything with a dollar sign gets checked against it before it leaves the building. The owner confirms the number after the look.",
+      'human':      "Fully AI — and I say so every time I'm asked. The trade-off is, I pick up in 8 seconds at 2 in the morning, every single night. Now —",
+      'hours':      "The crew keeps normal hours. The phone doesn't — I answer around the clock, so nothing waits for morning.",
+      'reask-menu': "What can I get moving for you?",
+      'reask-when': "Morning at 8:40, or afternoon at 2:20 — which suits?",
+      'reask-name': "What name do I put on the booking?",
+      'reask-wrap': "Anything else I can set up?",
+      'slots-urgent': "Okay — you're flagged urgent, so the owner's phone is buzzing with this right now. Soonest windows:",
+      'slots-normal': "Here's what's actually open:",
+      'slots':      "Tomorrow 8:40 in the morning, or 2:20 in the afternoon. Which works?",
+      'locked-am':  "Locked — tomorrow, 8:40 in the morning.",
+      'locked-pm':  "Locked — tomorrow, 2:20 in the afternoon.",
+      'ask-name':   "Last thing — what name goes on it?",
+      'wrap-am':    "Done — you're on for tomorrow, 8:40 in the morning.",
+      'wrap-pm':    "Done — you're on for tomorrow, 2:20 in the afternoon.",
+      'wrap-rest':  "Your confirmation text is on its way, and the owner just got the full summary on their phone. Anything else?",
+      'bye':        "Thanks for calling — you're all set.",
+      /* per trade: greeting */
+      'greet-landscaping': "Thanks for calling Eagle Landscaping — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      'greet-pool':        "Thanks for calling Saguaro Pool Care — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      'greet-hvac':        "Thanks for calling Desert Air Heating and Cooling — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      'greet-plumbing':    "Thanks for calling Copper Canyon Plumbing — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      'greet-contractor':  "Thanks for calling Mesa Verde Builders — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      'greet-salon':       "Thanks for calling Solstice Salon — you're on with Maven, the A.I. front desk. What can I get moving for you?",
+      /* per trade: emergency acknowledgement */
+      'em-landscaping': "That's a live water line, so you're my next priority. Two quick things so the crew rolls ready — where is it, roughly?",
+      'em-pool':        "A green pool in this heat only goes one direction — good call ringing now. Where's the pool at?",
+      'em-hvac':        "No AC in Phoenix isn't a maybe — I'm treating this as urgent. What area are you in, and is anyone home who's vulnerable to the heat?",
+      'em-plumbing':    "Okay — first thing: if you can reach the valve on top of the heater, turn it clockwise to stop the feed. Where are you located?",
+      'em-contractor':  "That needs eyes today, before the next storm cell. I can get a tarp crew queued — what area is the house in?",
+      'em-salon':       "Let me look — yes, there's room this week. What service are you after?",
+      /* per trade: detail question */
+      'dq-landscaping': "What part of town are you in?",
+      'dq-pool':        "Is it a residential pool, and what area?",
+      'dq-hvac':        "What area are you in, and roughly how old is the unit?",
+      'dq-plumbing':    "What part of town, and is the water shut off?",
+      'dq-contractor':  "What area, and roughly how big is the damage?",
+      'dq-salon':       "Which service, and any stylist preference?"
+    };
+
     /* ---------- fictional demo businesses, one per trade ---------- */
     var TRADES = [
-      { key:'landscaping', label:'Landscaping',  biz:'Eagle Landscaping',       owner:'Alex',
-        em:'Irrigation line burst — water everywhere', emAck:"That's a live water line, so you're my next priority. Two quick things so the crew rolls ready — where is it, roughly?",
-        quoteEx:'a cleanup and monthly maintenance', detail:'What part of town are you in?' },
-      { key:'pool',        label:'Pool service', biz:'Saguaro Pool Care',       owner:'Sam',
-        em:'My pool turned green overnight',           emAck:"A green pool in this heat only goes one direction — good call ringing now. Where's the pool at?",
-        quoteEx:'a green-to-clean and weekly service', detail:'Is it a residential pool, and what area?' },
-      { key:'hvac',        label:'HVAC',         biz:'Desert Air Heating & Cooling', owner:'Riley',
-        em:'My AC died and it is 100° inside',         emAck:"No AC in Phoenix isn't a maybe — I'm treating this as urgent. What's the address area, and is anyone home vulnerable to the heat?",
-        quoteEx:'a diagnostic and repair',             detail:'What area are you in, and roughly how old is the unit?' },
-      { key:'plumbing',    label:'Plumbing',     biz:'Copper Canyon Plumbing',  owner:'Jordan',
-        em:'Water heater is leaking into the garage',  emAck:"Okay — first thing, if you can reach the valve on top of the heater, turn it clockwise to stop the feed. Where are you located?",
-        quoteEx:'a water heater replacement',          detail:'What part of town, and is the water shut off?' },
-      { key:'contractor',  label:'Contractor',   biz:'Mesa Verde Builders',     owner:'Casey',
-        em:'Monsoon took part of my roof off',         emAck:"That needs eyes today before the next storm cell. I can get a tarp crew queued — what area is the house in?",
-        quoteEx:'a repair estimate',                   detail:'What area, and how big is the damage roughly?' },
-      { key:'salon',       label:'Salon / spa',  biz:'Solstice Salon',          owner:'Morgan',
-        em:'Can I still get in this week?',            emAck:"Let me look — yes, there's room this week. What service are you after?",
-        quoteEx:'color and a cut',                     detail:'Which service, and any stylist preference?' }
+      { key:'landscaping', label:'Landscaping',  biz:'Eagle Landscaping',
+        em:'Irrigation line burst — water everywhere' },
+      { key:'pool',        label:'Pool service', biz:'Saguaro Pool Care',
+        em:'My pool turned green overnight' },
+      { key:'hvac',        label:'HVAC',         biz:'Desert Air Heating & Cooling',
+        em:'My AC died and it is 100° inside' },
+      { key:'plumbing',    label:'Plumbing',     biz:'Copper Canyon Plumbing',
+        em:'Water heater is leaking into the garage' },
+      { key:'contractor',  label:'Contractor',   biz:'Mesa Verde Builders',
+        em:'Monsoon took part of my roof off' },
+      { key:'salon',       label:'Salon / spa',  biz:'Solstice Salon',
+        em:'Can I still get in this week?' }
     ];
     var trade = TRADES[0];
 
@@ -384,13 +428,16 @@
 
     /* time-of-day flavor */
     var hr = new Date().getHours();
-    var daypart = hr < 5 ? 'tonight' : hr < 12 ? 'this morning' : hr < 17 ? 'this afternoon' : 'tonight';
     var afterHours = (hr >= 17 || hr < 8);
     $('idle-note').textContent = afterHours
       ? 'It’s after hours right now. Which is exactly the point.'
       : 'Businesses miss calls at 2pm too. Try it.';
 
-    /* ---------- speech out (free, built into the browser) ---------- */
+    /* ---------- MAVEN's voice: pre-generated clips, TTS fallback ---------- */
+    var player = new Audio();
+    player.preload = 'auto';
+    var clipsOK = true;   /* flips false on first failure -> synthesis takes over */
+
     var voice = null;
     function pickVoice() {
       var vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
@@ -407,14 +454,49 @@
       voice = pickVoice();
       speechSynthesis.onvoiceschanged = function () { voice = pickVoice(); };
     }
-    function speak(text) {
+    function synth(text) {
       if (!window.speechSynthesis) return;
       try {
-        var u = new SpeechSynthesisUtterance(text.replace(/MAVEN/g, 'Maven'));
+        var u = new SpeechSynthesisUtterance(text.replace(/MAVEN/g, 'Maven').replace(/A\.I\./g, 'AI'));
         if (voice) u.voice = voice;
         u.rate = 1.02; u.pitch = 1.0;
         speechSynthesis.speak(u);
       } catch (e) {}
+    }
+    function stopVoice() {
+      try { player.pause(); } catch (e) {}
+      if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch (e) {} }
+    }
+    /* play a list of clip ids in order; if anything fails, speak the rest */
+    function playIds(ids) {
+      stopVoice();
+      var queue = ids.slice();
+      if (!clipsOK) { synth(queue.map(function (i) { return LINES[i]; }).join(' ')); return; }
+      var bail = function () {
+        clipsOK = false;
+        synth(queue.map(function (i) { return LINES[i]; }).join(' '));
+      };
+      var next = function () {
+        if (!queue.length) return;
+        player.src = 'voice/' + queue[0] + '.mp3';
+        player.onended = function () { queue.shift(); next(); };
+        player.onerror = bail;
+        var p = player.play();
+        if (p && p.catch) p.catch(bail);
+      };
+      next();
+    }
+    /* iOS unlocks audio only inside a user gesture — one silent play() on
+       the Call tap unlocks the shared player for the whole conversation. */
+    function unlockAudio(firstClipId) {
+      try {
+        player.muted = true;
+        player.src = 'voice/' + firstClipId + '.mp3';
+        var p = player.play();
+        var arm = function () { player.pause(); player.currentTime = 0; player.muted = false; };
+        if (p && p.then) p.then(arm).catch(function () { player.muted = false; });
+        else arm();
+      } catch (e) { player.muted = false; }
     }
 
     /* ---------- speech in (free, optional; chips always work) ---------- */
@@ -428,10 +510,7 @@
           rec = new SR();
           rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 1;
           micBtn.classList.add('listening');
-          rec.onresult = function (e) {
-            var said = e.results[0][0].transcript;
-            hear(said);
-          };
+          rec.onresult = function (e) { hear(e.results[0][0].transcript); };
           rec.onend = function () { micBtn.classList.remove('listening'); rec = null; };
           rec.onerror = function () { micBtn.classList.remove('listening'); rec = null; };
           rec.start();
@@ -470,7 +549,17 @@
       stage.scrollTop = stage.scrollHeight;
       return d;
     }
-    function ai(text) { bub('ai', text); speak(text); transcript.push(['MAVEN', text]); }
+    /* MAVEN says a sequence of pre-recorded lines */
+    function ai(ids) {
+      var text = ids.map(function (i) { return LINES[i]; }).join(' ');
+      bub('ai', text); transcript.push(['MAVEN', text]);
+      playIds(ids);
+    }
+    /* rare dynamic line — synthesis fallback path */
+    function aiDyn(text) {
+      bub('ai', text); transcript.push(['MAVEN', text]);
+      stopVoice(); synth(text);
+    }
     function sys(text) { bub('sys', text); }
 
     /* ---------- call state ---------- */
@@ -513,6 +602,7 @@
       btnCall.hidden = true; btnEnd.hidden = false;
       $('after').hidden = true;
       statusEl.textContent = 'CALLING ' + trade.biz.toUpperCase();
+      unlockAudio('greet-' + trade.key);   /* inside the tap = iOS-safe */
       ringTone(0);
       t0 = Date.now();
       var rc = $('ring-clock'), rl = $('ring-label');
@@ -534,7 +624,7 @@
       statusEl.textContent = 'MAVEN · ' + trade.biz.toUpperCase();
       sys('Answered — 0:08');
       typingEl.hidden = false;
-      ai('Thanks for calling ' + trade.biz + ' ' + daypart + ' — this is Maven, the AI front desk. What can I get moving for you?');
+      ai(['greet-' + trade.key]);
       setChips([trade.em, 'I need a quote', 'What are your hours?', 'Are you a real person?']);
     }
 
@@ -561,20 +651,21 @@
       later(function () { respond(text); }, 550);
     }
 
+    function reask() {
+      switch (state) {
+        case 'menu':  return ['reask-menu'];
+        case 'detail':return ['dq-' + trade.key];
+        case 'when':  return ['reask-when'];
+        case 'name':  return ['reask-name'];
+        default:      return ['reask-wrap'];
+      }
+    }
+
     function respond(t) {
       /* universal trip-up handlers first — any state, any time */
-      if (matches(t, W.human)) {
-        ai('Fully AI — and I say so whenever I’m asked. The trade-off is I pick up in eight seconds at two in the morning, every single night. Now — ' + reask());
-        return;
-      }
-      if (matches(t, W.price)) {
-        ai('Straight answer: I never invent a price. ' + trade.owner + '’s own price list is the only thing I’m allowed to quote from, and anything with a dollar sign gets checked against it before it leaves the building. For this one, ' + trade.owner + ' confirms the number after the look. ' + reask());
-        return;
-      }
-      if (matches(t, W.hours)) {
-        ai('The crew works normal hours — but the phone doesn’t. I answer around the clock so nothing waits for morning. ' + reask());
-        return;
-      }
+      if (matches(t, W.human)) { ai(['human'].concat(reask())); return; }
+      if (matches(t, W.price)) { ai(['price'].concat(reask())); return; }
+      if (matches(t, W.hours)) { ai(['hours'].concat(reask())); return; }
       if (matches(t, W.bye) && state !== 'name') { endCall(true); return; }
 
       switch (state) {
@@ -583,14 +674,14 @@
             lead.intent = 'urgent'; lead.intentLabel = 'EMERGENCY';
             lead.detail = t;
             state = 'detail';
-            ai(trade.emAck);
+            ai(['em-' + trade.key]);
             setChips(['I’m in Gilbert', 'Near downtown Phoenix', 'East Mesa']);
           } else if (matches(t, W.quote)) {
             lead.intent = 'quote'; lead.intentLabel = 'QUOTE REQUEST';
             lead.detail = t;
             state = 'detail';
-            ai('Happy to — quotes here start with a quick look so the number is real, not a guess. ' + trade.detail);
-            setChips(['I’m in Gilbert', 'Chandler area', 'It’s for ' + trade.quoteEx]);
+            ai(['quote-ack', 'dq-' + trade.key]);
+            setChips(['I’m in Gilbert', 'Chandler area', 'Just book me in']);
           } else if (matches(t, W.book)) {
             lead.intent = 'book'; lead.intentLabel = 'BOOKING';
             lead.detail = t;
@@ -601,7 +692,7 @@
             lead.intent = lead.intent || 'book'; lead.intentLabel = lead.intentLabel || 'NEW ENQUIRY';
             lead.detail = lead.detail || t;
             state = 'detail';
-            ai('Got it — I’ll make sure that reaches ' + trade.owner + ' word for word. So the right person calls you back ready: ' + trade.detail);
+            ai(['passalong', 'dq-' + trade.key]);
             setChips(['I’m in Gilbert', 'Chandler area', 'Just book me in']);
           }
           break;
@@ -613,11 +704,18 @@
           break;
 
         case 'when':
-          lead.when = matches(t, ['8:40', 'morning', 'first']) ? 'Tomorrow 8:40 AM'
-                    : matches(t, ['2:20', 'afternoon', 'second']) ? 'Tomorrow 2:20 PM'
-                    : matches(t, W.yes) ? 'Tomorrow 8:40 AM' : t;
+          var am = matches(t, ['8:40', 'morning', 'first']);
+          var pm = matches(t, ['2:20', 'afternoon', 'second']);
+          if (!am && !pm && matches(t, W.yes)) am = true;
           state = 'name';
-          ai('Locked: ' + lead.when + '. Last thing — what name do I put on it?');
+          if (am || pm) {
+            lead.when = am ? 'Tomorrow 8:40 AM' : 'Tomorrow 2:20 PM';
+            lead.slot = am ? 'am' : 'pm';
+            ai([am ? 'locked-am' : 'locked-pm', 'ask-name']);
+          } else {
+            lead.when = t; lead.slot = '';
+            aiDyn('Locked: ' + t + '. Last thing — what name goes on it?');
+          }
           setChips([]);
           sayEl.placeholder = 'Your first name is fine…';
           break;
@@ -626,32 +724,22 @@
           lead.name = t.replace(/^(i'?m|my name is|it'?s|this is)\s+/i, '').replace(/[.!]/g, '').trim() || 'Pat';
           lead.name = lead.name.charAt(0).toUpperCase() + lead.name.slice(1);
           state = 'wrap';
-          ai('Done, ' + lead.name + '. You’re on for ' + lead.when.toLowerCase() + ' — confirmation text on its way, and ' + trade.owner + ' just got the full summary on their phone. Anything else ' + daypart + '?');
+          if (lead.slot) {
+            ai([lead.slot === 'am' ? 'wrap-am' : 'wrap-pm', 'wrap-rest']);
+          } else {
+            aiDyn('Done — you’re on for ' + lead.when + '. Your confirmation text is on its way, and the owner just got the full summary on their phone. Anything else?');
+          }
           setChips(['No, that’s everything — thanks!', 'Actually, how much will it cost?']);
           break;
 
         case 'wrap':
-          if (matches(t, W.price)) { /* handled above, but belt & braces */ }
           endCall(true);
           break;
       }
     }
 
-    function reask() {
-      switch (state) {
-        case 'menu':  return 'what can I get moving for you?';
-        case 'detail':return trade.detail;
-        case 'when':  return 'Morning at 8:40 or afternoon at 2:20 — which suits?';
-        case 'name':  return 'What name do I put on the booking?';
-        default:      return 'anything else I can set up?';
-      }
-    }
-
     function offerSlots() {
-      ai((lead.intent === 'urgent'
-          ? 'Okay — you’re flagged urgent, so ' + trade.owner + '’s phone is buzzing with this right now. Soonest windows: '
-          : 'Here’s what’s actually open — ')
-        + 'tomorrow 8:40 in the morning, or 2:20 in the afternoon. Which works?');
+      ai([lead.intent === 'urgent' ? 'slots-urgent' : 'slots-normal', 'slots']);
       setChips(['Tomorrow 8:40am', 'Tomorrow 2:20pm']);
     }
 
@@ -660,15 +748,10 @@
       live = false; state = 'idle';
       clearInterval(tick);
       timers.forEach(clearTimeout); timers = [];
-      if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch (e) {} }
       if (rec) { try { rec.stop(); } catch (e) {} }
       var total = fmt(elapsed());
-      if (booked) {
-        ai('Thanks for calling ' + trade.biz + ' — you’re all set.');
-        sys('Call ended — ' + total);
-      } else {
-        sys('Call ended — ' + total);
-      }
+      if (booked) { ai(['bye']); } else { stopVoice(); }
+      sys('Call ended — ' + total);
       btnEnd.hidden = true; btnCall.hidden = false;
       btnCall.innerHTML = btnCall.innerHTML.replace('Call the AI employee', 'Call again');
       typingEl.hidden = true; setChips([]);
