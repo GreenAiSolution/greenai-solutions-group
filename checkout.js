@@ -28,27 +28,44 @@
      Flip to true the moment Stripe finishes verifying the GreenGeniusAI
      account (acct_1TYicEKX2eavW3SQ) and charges_enabled goes true.
 
-     Checked 2026-08-21: charges_enabled=false, payouts_enabled=false,
-     card_payments="pending", disabled_reason="requirements.pending_verification".
-     Everything is submitted — ToS accepted, ID provided, nothing currently
-     due — Stripe is simply still reviewing. Until that clears, a buyer who
-     reaches buy.stripe.com gets an error instead of a checkout, which is
-     worse than no card button at all: it burns the one motivated buyer.
+     ON since 2026-08-21: the links below live in Greenvlt
+     (acct_1U1tvI4E6AUMDj1M), which is verified — charges_enabled=true,
+     payouts_enabled=true, card_payments=active, daily payouts.
 
-     While this is false every SKU falls through to the invoice portal /
-     intake form below, which works today and captures the signed service
-     agreement. No other line in this file needs to change. ---------- */
-  var CARD_RAIL_LIVE = false;
+     Set it back to false to park the card rail: every SKU then falls
+     through to the invoice portal / intake form below, which works on its
+     own and captures the signed service agreement. No other line in this
+     file needs to change either way. ---------- */
+  var CARD_RAIL_LIVE = true;
 
-  /* LIVE Stripe Payment Links (created 2026-08-20 in the GreenGeniusAI
-     account, acct_1TYicEKX2eavW3SQ). These are hosted checkout pages on
+  /* LIVE Stripe Payment Links, rebuilt 2026-08-21 in the **Greenvlt**
+     account, acct_1U1tvI4E6AUMDj1M. These are hosted checkout pages on
      buy.stripe.com — card entry happens on Stripe, never on this site, so
      the site's "no card details are entered here" promise stays true.
      Each link redirects to thankyou.html?paid=<sku> after a successful
      charge. A hosted link is not a secret and is safe in git; a secret API
      key never belongs in this file, and none is needed.
-     Set a value to '' to fall back to the invoice portal / contact form. */
+     Set a value to '' to fall back to the invoice portal / contact form.
+
+     WHY GREENVLT AND NOT GreenGeniusAI
+     The GreenGeniusAI account (acct_1TYicEKX2eavW3SQ) that held the
+     2026-08-20 links is still stuck in Stripe verification —
+     charges_enabled=false. Greenvlt is fully enabled and takes money today,
+     so Jaden chose it on 2026-08-21. The trade-off he accepted: Greenvlt
+     bills as PHXGROWTH, so that is disclosed on the checkout page, on
+     pay.html and on thankyou.html. Do not "fix" that wording — an
+     undisclosed unfamiliar descriptor is what causes chargebacks.
+     The old GreenGeniusAI links are kept below, dormant, in case the
+     billing entity moves back. */
   var CARD_LINKS = {
+    'employees-front-desk': 'https://buy.stripe.com/5kQ8wIdlaegEgpO3QP8EM0L',
+    'ads-starter': 'https://buy.stripe.com/28E8wIa8Y2xWa1q4UT8EM0M',
+    'ads-growth': 'https://buy.stripe.com/00weV65SIb4s4H6afd8EM0N',
+    'ads-scale': 'https://buy.stripe.com/fZu14g6WM1tSehG1IH8EM0O'
+  };
+
+  /* Dormant — GreenGeniusAI acct_1TYicEKX2eavW3SQ, blocked on verification. */
+  var CARD_LINKS_GREENGENIUSAI = {
     'employees-front-desk': 'https://buy.stripe.com/9B63cwfpQaKxaFdgbObZe00',
     'ads-starter': 'https://buy.stripe.com/3cIaEY7Xo9GteVt2kYbZe01',
     'ads-growth': 'https://buy.stripe.com/bJe4gA0uW9GtdRp4t6bZe02',

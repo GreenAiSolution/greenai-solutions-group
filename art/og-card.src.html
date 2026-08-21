@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>OG card source — render at 1200x630</title>
+<!-- Source for og-card.jpg. Render: chrome --headless=old --window-size=1200,630
+     --screenshot art/og-card.src.html, then convert to jpg. Not linked from the site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  .card{position:relative;width:1200px;height:630px;background:#030805;font-family:Inter,sans-serif;overflow:hidden}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
+  .veil{position:absolute;inset:0;background:
+      linear-gradient(100deg,rgba(2,6,4,.96) 0%,rgba(2,6,4,.88) 42%,rgba(2,6,4,.35) 72%,rgba(2,6,4,.18) 100%)}
+  .inner{position:absolute;inset:0;padding:54px 62px;display:flex;flex-direction:column;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .mark{width:44px;height:44px;border-radius:11px;background:linear-gradient(140deg,#1a5c2a,#7de3a4);
+      display:grid;place-items:center;font:800 20px Inter;color:#04180c}
+  .brand .name{font:800 21px/1 Inter;letter-spacing:.01em;color:#fff}
+  .brand .name i{font-style:normal;color:#e7c85f}
+  .brand .sub{font:700 10px/1 Inter;letter-spacing:.26em;color:rgba(255,255,255,.55);margin-top:5px}
+  h1{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:66px;line-height:1.0;
+     letter-spacing:-.03em;color:#fff;max-width:14ch}
+  h1 em{font-style:italic;color:#e7c85f}
+  .sub2{margin-top:18px;font:400 20px/1.5 Inter;color:rgba(255,255,255,.82);max-width:40ch}
+  .foot{display:flex;align-items:center;gap:22px}
+  .pill{display:inline-flex;align-items:baseline;gap:9px;padding:13px 22px;border-radius:100px;
+        background:#e7c85f;color:#0a1c10;font:800 23px Inter;letter-spacing:-.01em}
+  .pill span{font:700 14px Inter;opacity:.72}
+  .meta{font:600 16px/1.5 Inter;color:rgba(255,255,255,.66)}
+  .meta b{display:block;color:#fff;font-weight:700}
+  .rule{position:absolute;left:0;right:0;bottom:0;height:5px;
+        background:linear-gradient(90deg,#e7c85f,#7de3a4)}
+</style></head>
+<body><div class="card">
+  <img src="brand-night.webp" alt="">
+  <div class="veil"></div>
+  <div class="inner">
+    <div class="brand">
+      <div class="mark">G</div>
+      <div><div class="name">Green<i>AI</i></div><div class="sub">SOLUTIONS TEAM</div></div>
+    </div>
+    <div>
+      <h1>Answers every lead in <em>8 seconds.</em></h1>
+      <p class="sub2">Every call, text and web form &mdash; at 2am, on Sundays, on holidays. Books the job. Chases the quiet ones.</p>
+    </div>
+    <div class="foot">
+      <div class="pill">$497<span>/month, flat</span></div>
+      <div class="meta"><b>One AI employee &middot; unlimited leads</b>Phoenix service businesses &middot; greenaidigital.com</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+</div></body></html>
