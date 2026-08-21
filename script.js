@@ -111,15 +111,63 @@
     });
   });
 
-  /* ---- CONTACT FORM (if on contact page) ---- */
+  /* ---- SITE FORMS (contact page, demo page) ----------------------------
+     These used to POST straight at web3forms, which now answers with a
+     Cloudflare bot challenge instead of accepting the submission: the button
+     stuck on "Sending…" forever and nothing was ever delivered. Not one
+     enquiry ever reached the inbox.
+
+     They now go to our own endpoint (greenai-forms.vercel.app), which renders
+     the GreenAI lead dossier and mails it to jaden@greenaidigital.com with
+     Reply-To set to the customer. We submit with fetch so a failure can be
+     shown in place instead of navigating away to raw JSON. ------------- */
   const form = document.querySelector('.js-contact-form') || document.getElementById('contactForm');
   if (form) {
-    form.addEventListener('submit', () => {
-      const btn = form.querySelector('[type=submit]');
-      if (btn) {
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
+    const btn = form.querySelector('[type=submit]');
+    const original = btn ? btn.innerHTML : '';
+
+    let errorBox = null;
+    const showError = (msg) => {
+      if (!errorBox) {
+        errorBox = document.createElement('p');
+        errorBox.setAttribute('role', 'alert');
+        errorBox.style.cssText =
+          'margin:1rem 0 0;padding:.85rem 1rem;border:1px solid rgba(220,90,90,.45);' +
+          'border-radius:10px;background:rgba(220,90,90,.08);color:#d66;font-size:.88rem;line-height:1.6';
+        form.appendChild(errorBox);
       }
+      errorBox.innerHTML = msg;
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (errorBox) errorBox.innerHTML = '';
+
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+
+      const payload = {};
+      new FormData(form).forEach((v, k) => { payload[k] = v; });
+      payload.form = form.getAttribute('data-form') || 'contact';
+      payload.source = form.getAttribute('data-source') || location.host + location.pathname;
+
+      fetch(form.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then((r) => r.json().catch(() => ({ ok: false })))
+        .then((res) => {
+          if (!res.ok) throw new Error(res.error || 'rejected');
+          window.location.href = form.getAttribute('data-redirect') || 'thankyou.html';
+        })
+        .catch(() => {
+          if (btn) { btn.innerHTML = original; btn.disabled = false; }
+          showError('That did not go through. Call <a href="tel:4807980753" style="color:inherit">(480) 798-0753</a> ' +
+                    'or email <a href="mailto:jaden@greenaidigital.com" style="color:inherit">jaden@greenaidigital.com</a> ' +
+                    'and you will get a person.');
+        });
     });
   }
 

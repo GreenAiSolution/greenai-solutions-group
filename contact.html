@@ -209,13 +209,10 @@
             <p id="wantBody" style="font-size:.88rem;margin:0;color:var(--gray-800)">Send this over and Jaden will get you set up personally — usually the same day. Prefer to pay by card right now? Every plan has a secure Stripe checkout on its pricing page.</p>
           </div>
 
-          <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Contact form">
-            <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
+          <form class="js-contact-form" action="https://greenai-forms.vercel.app/api/submit" method="POST" novalidate aria-label="Contact form"
+                data-form="contact" data-source="greenaidigital.com/contact.html"
+                data-redirect="thankyou.html">
             <input type="hidden" name="wanted_plan" id="wantedPlan" value="" />
-            <input type="hidden" name="to" value="jaden@greenaidigital.com" />
-            <input type="hidden" name="subject" value="📩 New Contact Form — GreenAI Solutions Team" />
-            <input type="hidden" name="from_name" value="GreenAI Website — Contact Form" />
-            <input type="hidden" name="redirect" value="https://greenaidigital.com/thankyou.html" />
             <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
@@ -393,7 +390,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
 
   <!-- Someone clicked a price on a service page before card checkout was live.
        checkout.js sent the SKU along as ?want=; turn it into a preselected

@@ -155,12 +155,9 @@
           <h2>Build mine</h2>
           <p>Everything marked * is required. The rest just makes it sound more like you.</p>
 
-          <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Demo request form">
-            <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
-            <input type="hidden" name="to" value="jaden@greenaidigital.com" />
-            <input type="hidden" name="subject" value="&#127911; Demo request — hear it as their business" />
-            <input type="hidden" name="from_name" value="GreenAI Website — Demo Request" />
-            <input type="hidden" name="redirect" value="https://greenaidigital.com/thankyou.html?demo=1" />
+          <form class="js-contact-form" action="https://greenai-forms.vercel.app/api/submit" method="POST" novalidate aria-label="Demo request form"
+                data-form="demo" data-source="greenaidigital.com/demo.html"
+                data-redirect="thankyou.html?demo=1">
             <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="form-group">
@@ -298,7 +295,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
 
   <!-- Someone clicked a price on a service page before card checkout was live.
        checkout.js sent the SKU along as ?want=; turn it into a preselected

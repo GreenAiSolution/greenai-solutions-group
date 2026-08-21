@@ -532,7 +532,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
   <script>
   (function () {
     'use strict';
@@ -704,9 +704,8 @@
       ].join('\n');
 
       var payload = {
-        access_key: 'bcd1e0cd-c6df-461e-a83a-f475273ec6ac',
-        subject: 'AI Employee START REQUEST — ' + (fd.get('business_name') || 'unknown') + ' [' + REF + ']',
-        from_name: 'GreenAI onboarding (start.html)',
+        form: 'start',
+        source: 'greenaidigital.com/start.html',
         botcheck: fd.get('botcheck') || '',
         ACTION_BRIEF: '\n' + brief + '\n',
         reference: REF,
@@ -722,12 +721,12 @@
         best_time: g('best_time', 'Any time')
       };
 
-      fetch('https://api.web3forms.com/submit', {
+      fetch('https://greenai-forms.vercel.app/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       }).then(function (r) { return r.json(); }).then(function (res) {
-        if (!res.success) throw new Error('web3forms rejected');
+        if (!res.ok) throw new Error('form endpoint rejected');
         form.style.display = 'none';
         document.querySelector('.yb-gang').style.display = 'none';
         bp('business', fd.get('business_name'));
