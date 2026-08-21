@@ -1192,6 +1192,100 @@ body.light-top .nav.transparent .nav__hamburger span { background: var(--gray-80
   border: 2px solid rgba(255,255,255,.3);
 }
 
+/* Founder card — stands where the founder photo used to. The trust signal is a
+   phone number that rings a person, not a portrait. */
+.founder-card {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-accent) 145%);
+  color: var(--white);
+  text-decoration: none;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 40px rgba(0,0,0,.18);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.founder-card:hover,
+.founder-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(0,0,0,.26);
+}
+
+.founder-card::after {
+  content: "";
+  position: absolute;
+  right: -30%;
+  bottom: -35%;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+}
+
+.founder-card > *  { position: relative; z-index: 1; }
+
+.founder-card__label {
+  font-size: .7rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,.65);
+}
+
+.founder-card__num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.4vw, 2.7rem);
+  line-height: 1.05;
+  margin: .45rem 0 .85rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.founder-card__num:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+.founder-card__mail {
+  display: block;
+  font-size: .82rem;
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  margin-bottom: .7rem;
+  word-break: break-all;
+}
+
+.founder-card__mail:hover { color: var(--white); text-decoration: underline; }
+
+.founder-card__note {
+  font-size: .88rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,.82);
+  margin: 0;
+}
+
+.founder-card__foot {
+  border-top: 1px solid rgba(255,255,255,.22);
+  padding-top: .9rem;
+}
+
+.founder-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.founder-card__role {
+  font-size: .8rem;
+  color: rgba(255,255,255,.72);
+}
+
 .about-stat-badge {
   position: absolute;
   background: var(--white);
