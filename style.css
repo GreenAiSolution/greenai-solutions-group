@@ -3668,3 +3668,24 @@ body.work #next { height: 120vh !important; }
   color: #7de3a4;
 }
 .page-hero--night .page-hero__chip-dot { background: #7de3a4; box-shadow: 0 0 12px #7de3a4; }
+
+/* ============================================================
+   Mobile-only polish pass — phone widths; desktop untouched.
+   Kept at the very end of the file on purpose (source order wins
+   against the art passes above, same reason as .page-hero--night).
+   ============================================================ */
+@media (max-width: 640px) {
+  /* The 1200-unit circuit SVGs compress into dot-noise at phone width. */
+  .circuit-divider { display: none; }
+}
+@media (max-width: 860px) {
+  /* Stacked comparison rows rendered the ✓/✗ box flush against the text. */
+  .cmp__mark { margin-right: .5rem; }
+}
+@media (max-width: 560px) {
+  /* Process steps were two cramped ~160px columns on a phone. */
+  .grid-4 { grid-template-columns: 1fr; }
+  /* nowrap CTAs with long labels force horizontal overflow on phones —
+     the ads-page hero was 423px wide inside a 390px viewport. */
+  .btn { white-space: normal; text-align: center; }
+}

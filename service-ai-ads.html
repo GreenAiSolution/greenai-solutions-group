@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Archivo+Black&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=21" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -355,7 +355,9 @@
       .adframe--reel { display:none; }
       .adframe--feed { grid-column:1; grid-row:1; }
       .adframe--wide { grid-column:1; grid-row:2; }
-      .adshelf__hud { grid-row:3; }
+      /* nowrap made this pill 423px of unbreakable text — the whole hero
+         grid overflowed a 390px phone. Let it wrap on small screens. */
+      .adshelf__hud { grid-row:3; white-space:normal; text-align:center; }
     }
   </style>
   <script type="application/ld+json">
