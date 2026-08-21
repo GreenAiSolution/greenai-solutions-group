@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call the AI — Talk to the Employee Before You Hire It</title>
+  <meta name="description" content="Talk to a GreenAI AI employee right now, live in your browser. It rings, it answers in 8 seconds, it books the job. No phone bill, nothing recorded." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=21" />
+  <style>
+    .callpage { position:relative; min-height:100vh; padding:120px 0 80px; background:#050b07; color:#eef6f0; overflow:hidden; }
+    .callpage::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 22% 30%,rgba(76,175,110,.13),transparent 40%),radial-gradient(circle at 85% 75%,rgba(212,175,55,.07),transparent 45%),linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px); background-size:auto,auto,56px 56px,56px 56px; pointer-events:none; }
+    .call-grid { position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:3.5rem; align-items:start; }
+
+    .call-chip { display:inline-flex; align-items:center; gap:.55rem; padding:.5rem 1.1rem; border:1px solid rgba(125,227,164,.32); border-radius:100px; background:rgba(125,227,164,.08); color:#7de3a4; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .call-chip i { width:8px; height:8px; border-radius:50%; background:#7de3a4; box-shadow:0 0 10px #7de3a4; }
+    .call-copy h1 { margin:.9rem 0 1.1rem; font-size:clamp(2.4rem,4.6vw,3.9rem); line-height:1.04; letter-spacing:-.035em; color:#fff; }
+    .call-copy h1 em { font-style:italic; color:#e7c85f; }
+    .call-copy .lede { color:rgba(255,255,255,.72); max-width:46ch; line-height:1.8; }
+    .call-trylist { margin:1.9rem 0 0; padding:1.2rem 1.4rem; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(7,18,11,.6); }
+    .call-trylist b { display:block; font-size:.66rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#d5b64c; margin-bottom:.6rem; }
+    .call-trylist ul { margin:0; padding:0; list-style:none; }
+    .call-trylist li { position:relative; padding:.28rem 0 .28rem 1.2rem; color:rgba(255,255,255,.66); font-size:.9rem; }
+    .call-trylist li::before { content:'→'; position:absolute; left:0; color:#7de3a4; }
+    .call-honest { margin-top:1.6rem; font-size:.76rem; line-height:1.7; color:rgba(255,255,255,.45); max-width:52ch; }
+    .call-honest a { color:rgba(255,255,255,.6); }
+
+    .call-trades { margin-top:1.9rem; }
+    .call-trades b { display:block; font-size:.66rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#7de3a4; margin-bottom:.7rem; }
+    .call-trades .row { display:flex; flex-wrap:wrap; gap:.55rem; }
+    .tradebtn { padding:.55rem 1rem; border-radius:100px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.04); color:rgba(255,255,255,.75); font-size:.84rem; font-weight:600; cursor:pointer; transition:all .2s; }
+    .tradebtn:hover { border-color:rgba(125,227,164,.5); color:#fff; }
+    .tradebtn.on { background:rgba(125,227,164,.14); border-color:#7de3a4; color:#aef0c6; }
+
+    /* display classes below would defeat the hidden attribute — never remove */
+    .handset [hidden] { display:none !important; }
+
+    /* ---------- the handset ---------- */
+    .handset { position:relative; z-index:1; margin:0 auto; width:100%; max-width:400px; border-radius:30px; border:1px solid rgba(255,255,255,.14); background:linear-gradient(170deg,#0a1810,#060f09 60%,#040a06); box-shadow:0 34px 90px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.07); overflow:hidden; }
+    .handset__bar { display:flex; align-items:center; justify-content:space-between; padding:.85rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.08); background:rgba(4,10,6,.6); font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; color:#8ceab0; }
+    .handset__bar .tm { color:#e7c85f; font-size:.78rem; letter-spacing:.06em; }
+    .handset__scr { position:relative; height:430px; display:flex; flex-direction:column; }
+    .handset__stage { flex:1; overflow-y:auto; padding:1.1rem 1rem 0.6rem; scroll-behavior:smooth; }
+
+    /* idle view */
+    .hs-idle { text-align:center; padding-top:1.6rem; }
+    .hs-idle img { width:96px; height:96px; object-fit:contain; border-radius:20px; filter:drop-shadow(0 10px 24px rgba(0,0,0,.5)); }
+    .hs-idle .who { margin:.8rem 0 .15rem; font-family:'Playfair Display',serif; font-size:1.35rem; color:#fff; }
+    .hs-idle .role { font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.18em; text-transform:uppercase; color:#7de3a4; }
+    .hs-idle .as { margin-top:1rem; font-size:.8rem; color:rgba(255,255,255,.55); }
+    .hs-idle .as b { color:#e7c85f; font-weight:700; }
+    .hs-idle .nb { margin-top:.5rem; font-size:.72rem; color:rgba(255,255,255,.4); }
+
+    /* ringing view */
+    .hs-ring { text-align:center; padding-top:2.2rem; display:none; }
+    .hs-ring .clockbig { font:800 3.4rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:#fff; letter-spacing:.02em; }
+    .hs-ring .clockbig small { font-size:1.1rem; color:rgba(255,255,255,.5); }
+    .hs-ring .ringlabel { margin-top:.9rem; font:700 .66rem/1.8 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; color:#8ceab0; min-height:2.2em; }
+    .hs-ring .pulsering { margin:1.6rem auto 0; width:74px; height:74px; border-radius:50%; border:2px solid rgba(125,227,164,.5); display:flex; align-items:center; justify-content:center; position:relative; }
+    .hs-ring .pulsering::before, .hs-ring .pulsering::after { content:''; position:absolute; inset:-2px; border-radius:50%; border:2px solid rgba(125,227,164,.4); animation:ringPulse 1.6s ease-out infinite; }
+    .hs-ring .pulsering::after { animation-delay:.8s; }
+    @keyframes ringPulse { from { transform:scale(1); opacity:1; } to { transform:scale(1.85); opacity:0; } }
+    .hs-ring .pulsering svg { width:30px; height:30px; }
+    .hs-ring .vs { margin-top:1.7rem; font-size:.74rem; color:rgba(255,255,255,.42); }
+
+    /* transcript bubbles */
+    .bub { max-width:86%; margin:0 0 .7rem; padding:.65rem .85rem; border-radius:14px; font-size:.88rem; line-height:1.55; animation:bubIn .25s ease-out; }
+    @keyframes bubIn { from { opacity:0; transform:translateY(6px); } }
+    .bub--ai { background:rgba(125,227,164,.1); border:1px solid rgba(125,227,164,.2); color:#e9f7ee; border-bottom-left-radius:4px; }
+    .bub--me { margin-left:auto; background:rgba(212,175,55,.13); border:1px solid rgba(212,175,55,.3); color:#f4e9c8; border-bottom-right-radius:4px; }
+    .bub--sys { max-width:100%; text-align:center; background:none; border:0; color:rgba(255,255,255,.38); font:700 .58rem/1.6 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; text-transform:uppercase; padding:.2rem 0; }
+    .bub--ai .spk { display:block; font:700 .54rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; color:#7de3a4; margin-bottom:.35rem; }
+
+    /* controls */
+    .handset__ctl { border-top:1px solid rgba(255,255,255,.08); background:rgba(4,10,6,.75); padding:.8rem .9rem 1rem; }
+    .ctl-chips { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:.65rem; }
+    .ctl-chip { padding:.42rem .8rem; border-radius:100px; border:1px solid rgba(125,227,164,.35); background:rgba(125,227,164,.07); color:#aef0c6; font-size:.76rem; font-weight:600; cursor:pointer; transition:all .15s; }
+    .ctl-chip:hover { background:rgba(125,227,164,.18); }
+    .ctl-row { display:flex; gap:.5rem; align-items:center; }
+    .ctl-row input { flex:1; min-width:0; padding:.6rem .8rem; border-radius:10px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.05); color:#fff; font-size:.86rem; }
+    .ctl-row input::placeholder { color:rgba(255,255,255,.35); }
+    .ctl-btn { flex:0 0 auto; width:40px; height:40px; border-radius:10px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.05); color:#cfe9d8; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .15s; }
+    .ctl-btn:hover { border-color:rgba(125,227,164,.5); }
+    .ctl-btn.listening { border-color:#ff8484; color:#ff9d9d; box-shadow:0 0 0 4px rgba(255,95,95,.12); animation:micPulse 1.2s ease-in-out infinite; }
+    @keyframes micPulse { 50% { box-shadow:0 0 0 9px rgba(255,95,95,0); } }
+    .callbtn { width:100%; margin-top:.2rem; padding:1rem; border-radius:14px; border:0; cursor:pointer; font-weight:800; font-size:1rem; letter-spacing:.02em; display:flex; align-items:center; justify-content:center; gap:.6rem; transition:transform .15s; }
+    .callbtn:active { transform:scale(.98); }
+    .callbtn--go { background:linear-gradient(135deg,#1a5c2a,#2e7d32); color:#fff; box-shadow:0 14px 34px rgba(26,92,42,.45); }
+    .callbtn--end { background:rgba(255,95,95,.14); border:1px solid rgba(255,95,95,.4); color:#ff9d9d; font-size:.84rem; padding:.7rem; }
+
+    /* wrap / verdict */
+    .call-after { position:relative; z-index:1; margin-top:3.5rem; }
+    .call-after__grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:stretch; }
+    .smscard { border-radius:18px; border:1px solid rgba(255,255,255,.13); background:rgba(7,18,11,.8); overflow:hidden; }
+    .smscard__bar { padding:.7rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.08); font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.15em; text-transform:uppercase; color:#8ceab0; display:flex; align-items:center; gap:.5rem; }
+    .smscard__bar i { width:7px; height:7px; border-radius:50%; background:#7de3a4; }
+    .smscard pre { margin:0; padding:1.15rem 1.2rem; font:500 .84rem/1.8 ui-monospace,SFMono-Regular,Menlo,monospace; color:rgba(255,255,255,.88); white-space:pre-wrap; }
+    .smscard pre b { color:#e7c85f; font-weight:700; }
+    .verdict { display:flex; flex-direction:column; justify-content:center; padding:1.6rem 1.8rem; border-radius:18px; border:1px solid rgba(212,175,55,.24); background:linear-gradient(120deg,rgba(212,175,55,.09),rgba(125,227,164,.04)); }
+    .verdict .big { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.2rem); color:#fff; line-height:1.2; }
+    .verdict .big b { color:#e7c85f; }
+    .verdict p { margin:.9rem 0 1.4rem; color:rgba(255,255,255,.65); font-size:.94rem; line-height:1.7; }
+    .verdict .row { display:flex; flex-wrap:wrap; gap:.8rem; align-items:center; }
+    .verdict .alt { color:rgba(255,255,255,.55); font-size:.8rem; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.2); }
+    .verdict .alt:hover { color:#7de3a4; }
+
+    @media (max-width: 900px) {
+      .callpage { padding-top:104px; }
+      .call-grid { grid-template-columns:1fr; gap:2.4rem; }
+      .call-after__grid { grid-template-columns:1fr; }
+      .handset { max-width:100%; }
+    }
+    @media (max-width: 560px) {
+      .handset__scr { height:400px; }
+      .hs-ring .clockbig { font-size:2.7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hs-ring .pulsering::before, .hs-ring .pulsering::after, .ctl-btn.listening { animation:none; }
+      .bub { animation:none; }
+    }
+  </style>
+  <script src="analytics.js?v=2"></script>
+</head>
+<body>
+
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+  <section class="callpage" aria-label="Live browser demo — talk to the AI employee">
+    <div class="container">
+      <div class="call-grid">
+
+        <div class="call-copy">
+          <span class="call-chip"><i aria-hidden="true"></i> Live in your browser &middot; no phone bill</span>
+          <h1>Go ahead.<br/><em>Call us.</em></h1>
+          <p class="lede">The whole site says the AI employee answers in 8 seconds and books the job. Don't take the site's word for it &mdash; this page <strong>is</strong> a phone. Tap call, talk out loud or tap what you'd say, and try to trip it up.</p>
+
+          <div class="call-trades">
+            <b>Pick the business it answers as</b>
+            <div class="row" id="trades"></div>
+          </div>
+
+          <div class="call-trylist">
+            <b>Things people try</b>
+            <ul>
+              <li>Say it's an emergency at 2am &mdash; see what it does first.</li>
+              <li>Ask what a job costs. It will not invent a price. Ever.</li>
+              <li>Ask if it's a real person. It tells the truth.</li>
+              <li>Just say something confusing. Watch it keep its footing.</li>
+            </ul>
+          </div>
+
+          <p class="call-honest">Honesty first: this is a demonstration that runs entirely on your device &mdash; your voice and words never leave this page and nothing is recorded. The businesses are fictional. The version we install answers your real phone number and texts real customers; <a href="index.html#proof-run">the morning report on the homepage</a> shows an actual run.</p>
+        </div>
+
+        <div>
+          <div class="handset" id="handset">
+            <div class="handset__bar">
+              <span id="hs-status">MAVEN &middot; FRONT DESK</span>
+              <span class="tm" id="hs-clock">0:00</span>
+            </div>
+            <div class="handset__scr">
+              <div class="handset__stage" id="stage">
+
+                <div class="hs-idle" id="view-idle">
+                  <img src="agents/agent-maven.svg" alt="MAVEN, the AI front desk employee" width="96" height="96"/>
+                  <div class="who">MAVEN</div>
+                  <div class="role">AI Employee &middot; On duty 24/7</div>
+                  <p class="as">Answering as <b id="idle-biz">Eagle Landscaping</b></p>
+                  <p class="nb" id="idle-note">It's late somewhere. That's the point.</p>
+                </div>
+
+                <div class="hs-ring" id="view-ring">
+                  <div class="clockbig"><span id="ring-clock">0.0</span><small>s</small></div>
+                  <div class="ringlabel" id="ring-label">Calling&hellip;</div>
+                  <div class="pulsering"><svg viewBox="0 0 24 24" fill="none" stroke="#7de3a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                  <p class="vs">Most shops tonight: four rings, voicemail.<br/>This one picks up at <strong style="color:#e7c85f">0:08</strong>.</p>
+                </div>
+
+                <div id="view-talk" style="display:none"></div>
+
+              </div>
+              <div class="handset__ctl" id="ctl">
+                <div class="ctl-chips" id="chips" hidden></div>
+                <div class="ctl-row" id="typing" hidden>
+                  <input type="text" id="say" placeholder="Type what you'd say&hellip;" autocomplete="off" maxlength="140"/>
+                  <button class="ctl-btn" id="send" aria-label="Send"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+                  <button class="ctl-btn" id="mic" aria-label="Speak instead of typing" hidden><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+                </div>
+                <button class="callbtn callbtn--go" id="btn-call"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call the AI employee</button>
+                <button class="callbtn callbtn--end" id="btn-end" hidden>End call</button>
+              </div>
+            </div>
+          </div>
+          <p style="text-align:center;margin-top:.9rem;font-size:.72rem;color:rgba(255,255,255,.38)">Sound on if you can &mdash; it speaks. Works silently too.</p>
+        </div>
+
+      </div>
+
+      <div class="call-after" id="after" hidden>
+        <div class="call-after__grid">
+          <div class="smscard">
+            <div class="smscard__bar"><i aria-hidden="true"></i> While you talked &mdash; the owner's phone got this</div>
+            <pre id="sms"></pre>
+          </div>
+          <div class="verdict">
+            <div class="big" id="verdict-line">Ring to booked: <b>0:00</b>.</div>
+            <p>No hold music. No voicemail. No "we'll call you back." That conversation is what every one of your missed calls turns into &mdash; at 2:47am, on Sundays, during monsoon season. <strong style="color:#fff">$497 a month, flat.</strong></p>
+            <div class="row">
+              <a class="btn btn-primary btn-lg buy" data-sku="employees-front-desk" href="pay.html?sku=employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
+              <a class="alt" href="catch.html">or watch it catch a web lead &nearr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <noscript><p style="position:relative;z-index:1;margin-top:2rem;color:rgba(255,255,255,.6)">This live demo needs JavaScript. See the <a href="catch.html" style="color:#7de3a4">side-by-side demo</a> instead.</p></noscript>
+    </div>
+  </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="pay.html?sku=employees-front-desk" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="call.html">Call the AI &mdash; live demo</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12 13 2 6"/></svg></div>
+            <div>
+              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296</div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span class="js-year">2026</span> GreenAI Solutions Team. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=12" defer></script>
+  <script src="checkout.js?v=3" defer></script>
+  <script>
+  /* ================= MAVEN — the in-browser phone call =================
+     Runs 100% on the visitor's device. Free browser speech both ways:
+     speechSynthesis speaks, webkitSpeechRecognition listens (optional —
+     chips and typing always work). No network calls, nothing recorded. */
+  (function () {
+    'use strict';
+
+    /* ---------- fictional demo businesses, one per trade ---------- */
+    var TRADES = [
+      { key:'landscaping', label:'Landscaping',  biz:'Eagle Landscaping',       owner:'Alex',
+        em:'Irrigation line burst — water everywhere', emAck:"That's a live water line, so you're my next priority. Two quick things so the crew rolls ready — where is it, roughly?",
+        quoteEx:'a cleanup and monthly maintenance', detail:'What part of town are you in?' },
+      { key:'pool',        label:'Pool service', biz:'Saguaro Pool Care',       owner:'Sam',
+        em:'My pool turned green overnight',           emAck:"A green pool in this heat only goes one direction — good call ringing now. Where's the pool at?",
+        quoteEx:'a green-to-clean and weekly service', detail:'Is it a residential pool, and what area?' },
+      { key:'hvac',        label:'HVAC',         biz:'Desert Air Heating & Cooling', owner:'Riley',
+        em:'My AC died and it is 100° inside',         emAck:"No AC in Phoenix isn't a maybe — I'm treating this as urgent. What's the address area, and is anyone home vulnerable to the heat?",
+        quoteEx:'a diagnostic and repair',             detail:'What area are you in, and roughly how old is the unit?' },
+      { key:'plumbing',    label:'Plumbing',     biz:'Copper Canyon Plumbing',  owner:'Jordan',
+        em:'Water heater is leaking into the garage',  emAck:"Okay — first thing, if you can reach the valve on top of the heater, turn it clockwise to stop the feed. Where are you located?",
+        quoteEx:'a water heater replacement',          detail:'What part of town, and is the water shut off?' },
+      { key:'contractor',  label:'Contractor',   biz:'Mesa Verde Builders',     owner:'Casey',
+        em:'Monsoon took part of my roof off',         emAck:"That needs eyes today before the next storm cell. I can get a tarp crew queued — what area is the house in?",
+        quoteEx:'a repair estimate',                   detail:'What area, and how big is the damage roughly?' },
+      { key:'salon',       label:'Salon / spa',  biz:'Solstice Salon',          owner:'Morgan',
+        em:'Can I still get in this week?',            emAck:"Let me look — yes, there's room this week. What service are you after?",
+        quoteEx:'color and a cut',                     detail:'Which service, and any stylist preference?' }
+    ];
+    var trade = TRADES[0];
+
+    /* ---------- els ---------- */
+    var $ = function (id) { return document.getElementById(id); };
+    var stage=$('stage'), viewIdle=$('view-idle'), viewRing=$('view-ring'), viewTalk=$('view-talk');
+    var chipsEl=$('chips'), typingEl=$('typing'), sayEl=$('say'), micBtn=$('mic');
+    var btnCall=$('btn-call'), btnEnd=$('btn-end'), clockEl=$('hs-clock'), statusEl=$('hs-status');
+
+    /* ---------- trade picker ---------- */
+    var tradesRow = $('trades');
+    TRADES.forEach(function (t, i) {
+      var b = document.createElement('button');
+      b.className = 'tradebtn' + (i === 0 ? ' on' : '');
+      b.type = 'button'; b.textContent = t.label;
+      b.addEventListener('click', function () {
+        if (live) return;
+        trade = t;
+        tradesRow.querySelectorAll('.tradebtn').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        $('idle-biz').textContent = t.biz;
+      });
+      tradesRow.appendChild(b);
+    });
+
+    /* time-of-day flavor */
+    var hr = new Date().getHours();
+    var daypart = hr < 5 ? 'tonight' : hr < 12 ? 'this morning' : hr < 17 ? 'this afternoon' : 'tonight';
+    var afterHours = (hr >= 17 || hr < 8);
+    $('idle-note').textContent = afterHours
+      ? 'It’s after hours right now. Which is exactly the point.'
+      : 'Businesses miss calls at 2pm too. Try it.';
+
+    /* ---------- speech out (free, built into the browser) ---------- */
+    var voice = null;
+    function pickVoice() {
+      var vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+      var prefs = ['Samantha','Google US English','Aria','Ava','Allison','Victoria','Alex'];
+      for (var i = 0; i < prefs.length; i++) {
+        for (var j = 0; j < vs.length; j++) {
+          if (vs[j].name.indexOf(prefs[i]) !== -1 && vs[j].lang.indexOf('en') === 0) return vs[j];
+        }
+      }
+      for (var k = 0; k < vs.length; k++) if (vs[k].lang.indexOf('en') === 0) return vs[k];
+      return vs[0] || null;
+    }
+    if (window.speechSynthesis) {
+      voice = pickVoice();
+      speechSynthesis.onvoiceschanged = function () { voice = pickVoice(); };
+    }
+    function speak(text) {
+      if (!window.speechSynthesis) return;
+      try {
+        var u = new SpeechSynthesisUtterance(text.replace(/MAVEN/g, 'Maven'));
+        if (voice) u.voice = voice;
+        u.rate = 1.02; u.pitch = 1.0;
+        speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+
+    /* ---------- speech in (free, optional; chips always work) ---------- */
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var rec = null;
+    if (SR) {
+      micBtn.hidden = false;
+      micBtn.addEventListener('click', function () {
+        if (rec) { rec.stop(); return; }
+        try {
+          rec = new SR();
+          rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 1;
+          micBtn.classList.add('listening');
+          rec.onresult = function (e) {
+            var said = e.results[0][0].transcript;
+            hear(said);
+          };
+          rec.onend = function () { micBtn.classList.remove('listening'); rec = null; };
+          rec.onerror = function () { micBtn.classList.remove('listening'); rec = null; };
+          rec.start();
+        } catch (e) { micBtn.classList.remove('listening'); rec = null; }
+      });
+    }
+
+    /* ---------- ringback tone (WebAudio — also free) ---------- */
+    var actx = null;
+    function ringTone(startAt) {
+      try {
+        actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+        [440, 480].forEach(function (f) {
+          var o = actx.createOscillator(), g = actx.createGain();
+          o.frequency.value = f; o.connect(g); g.connect(actx.destination);
+          g.gain.value = 0;
+          [0, 6].forEach(function (t0) { /* US cadence: 2s on, 4s off */
+            g.gain.setValueAtTime(0.05, actx.currentTime + startAt + t0);
+            g.gain.setValueAtTime(0, actx.currentTime + startAt + t0 + 2);
+          });
+          o.start(); o.stop(actx.currentTime + startAt + 8.4);
+        });
+      } catch (e) {}
+    }
+
+    /* ---------- transcript ---------- */
+    function bub(kind, text, spk) {
+      var d = document.createElement('div');
+      d.className = 'bub bub--' + kind;
+      if (kind === 'ai' && spk !== false) {
+        var s = document.createElement('span'); s.className = 'spk'; s.textContent = 'MAVEN';
+        d.appendChild(s);
+      }
+      d.appendChild(document.createTextNode(text));
+      viewTalk.appendChild(d);
+      stage.scrollTop = stage.scrollHeight;
+      return d;
+    }
+    function ai(text) { bub('ai', text); speak(text); transcript.push(['MAVEN', text]); }
+    function sys(text) { bub('sys', text); }
+
+    /* ---------- call state ---------- */
+    var live = false, t0 = 0, tick = null, state = 'idle', transcript = [];
+    var lead = { intent:null, intentLabel:'', detail:'', when:'', name:'' };
+    var timers = [];
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function fmt(s) { return Math.floor(s / 60) + ':' + ('0' + Math.floor(s % 60)).slice(-2); }
+    function elapsed() { return (Date.now() - t0) / 1000; }
+
+    function setChips(list) {
+      chipsEl.innerHTML = '';
+      chipsEl.hidden = !list || !list.length;
+      (list || []).forEach(function (c) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'ctl-chip'; b.textContent = c;
+        b.addEventListener('click', function () { hear(c); });
+        chipsEl.appendChild(b);
+      });
+    }
+
+    /* ---------- the call ---------- */
+    btnCall.addEventListener('click', startCall);
+    btnEnd.addEventListener('click', function () { endCall(false); });
+    $('send').addEventListener('click', function () { submitTyped(); });
+    sayEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') submitTyped(); });
+    function submitTyped() {
+      var v = sayEl.value.trim();
+      if (!v) return;
+      sayEl.value = '';
+      hear(v);
+    }
+
+    function startCall() {
+      live = true; state = 'ringing'; transcript = [];
+      lead = { intent:null, intentLabel:'', detail:'', when:'', name:'' };
+      viewIdle.style.display = 'none';
+      viewRing.style.display = 'block';
+      viewTalk.style.display = 'none'; viewTalk.innerHTML = '';
+      btnCall.hidden = true; btnEnd.hidden = false;
+      $('after').hidden = true;
+      statusEl.textContent = 'CALLING ' + trade.biz.toUpperCase();
+      ringTone(0);
+      t0 = Date.now();
+      var rc = $('ring-clock'), rl = $('ring-label');
+      tick = setInterval(function () {
+        var s = elapsed();
+        clockEl.textContent = fmt(s);
+        if (state === 'ringing') rc.textContent = s.toFixed(1);
+      }, 100);
+      later(function () { rl.innerHTML = 'Ring one&hellip;'; }, 300);
+      later(function () { rl.innerHTML = 'Ring two&hellip;'; }, 6200);
+      later(answer, 8000);
+    }
+
+    function answer() {
+      if (!live) return;
+      state = 'menu';
+      viewRing.style.display = 'none';
+      viewTalk.style.display = 'block';
+      statusEl.textContent = 'MAVEN · ' + trade.biz.toUpperCase();
+      sys('Answered — 0:08');
+      typingEl.hidden = false;
+      ai('Thanks for calling ' + trade.biz + ' ' + daypart + ' — this is Maven, the AI front desk. What can I get moving for you?');
+      setChips([trade.em, 'I need a quote', 'What are your hours?', 'Are you a real person?']);
+    }
+
+    /* ---------- understanding (generous keyword buckets) ---------- */
+    function matches(t, words) {
+      t = t.toLowerCase();
+      return words.some(function (w) { return t.indexOf(w) !== -1; });
+    }
+    var W = {
+      price:   ['how much','price','cost','charge','rate','what do you charge','expensive','dollar','$'],
+      human:   ['human','real person','robot','are you ai','a machine','automated','a bot','an ai'],
+      hours:   ['hour','open','closed','when are you'],
+      urgent:  ['emergency','urgent','asap','right now','tonight','burst','leak','flood','broke','broken','died','no ac','not cooling','green','clog','backed up','overflow','no heat','damage','off my roof','leaking'],
+      quote:   ['quote','estimate','bid','ballpark','how much for'],
+      book:    ['book','appointment','schedule','come out','visit','opening','get in','slot'],
+      yes:     ['yes','yeah','yep','sure','sounds good','ok','okay','works','perfect','that one','fine'],
+      bye:     ['bye','goodbye','hang up','that’s all','thats all','nothing else']
+    };
+
+    function hear(text) {
+      if (!live || state === 'ringing') return;
+      bub('me', text); transcript.push(['Caller', text]);
+      stage.scrollTop = stage.scrollHeight;
+      later(function () { respond(text); }, 550);
+    }
+
+    function respond(t) {
+      /* universal trip-up handlers first — any state, any time */
+      if (matches(t, W.human)) {
+        ai('Fully AI — and I say so whenever I’m asked. The trade-off is I pick up in eight seconds at two in the morning, every single night. Now — ' + reask());
+        return;
+      }
+      if (matches(t, W.price)) {
+        ai('Straight answer: I never invent a price. ' + trade.owner + '’s own price list is the only thing I’m allowed to quote from, and anything with a dollar sign gets checked against it before it leaves the building. For this one, ' + trade.owner + ' confirms the number after the look. ' + reask());
+        return;
+      }
+      if (matches(t, W.hours)) {
+        ai('The crew works normal hours — but the phone doesn’t. I answer around the clock so nothing waits for morning. ' + reask());
+        return;
+      }
+      if (matches(t, W.bye) && state !== 'name') { endCall(true); return; }
+
+      switch (state) {
+        case 'menu':
+          if (matches(t, W.urgent) || t === trade.em) {
+            lead.intent = 'urgent'; lead.intentLabel = 'EMERGENCY';
+            lead.detail = t;
+            state = 'detail';
+            ai(trade.emAck);
+            setChips(['I’m in Gilbert', 'Near downtown Phoenix', 'East Mesa']);
+          } else if (matches(t, W.quote)) {
+            lead.intent = 'quote'; lead.intentLabel = 'QUOTE REQUEST';
+            lead.detail = t;
+            state = 'detail';
+            ai('Happy to — quotes here start with a quick look so the number is real, not a guess. ' + trade.detail);
+            setChips(['I’m in Gilbert', 'Chandler area', 'It’s for ' + trade.quoteEx]);
+          } else if (matches(t, W.book)) {
+            lead.intent = 'book'; lead.intentLabel = 'BOOKING';
+            lead.detail = t;
+            state = 'when';
+            offerSlots();
+          } else {
+            /* graceful catch-all — exactly one clarify, then route forward */
+            lead.intent = lead.intent || 'book'; lead.intentLabel = lead.intentLabel || 'NEW ENQUIRY';
+            lead.detail = lead.detail || t;
+            state = 'detail';
+            ai('Got it — I’ll make sure that reaches ' + trade.owner + ' word for word. So the right person calls you back ready: ' + trade.detail);
+            setChips(['I’m in Gilbert', 'Chandler area', 'Just book me in']);
+          }
+          break;
+
+        case 'detail':
+          lead.detail = (lead.detail ? lead.detail + ' · ' : '') + t;
+          state = 'when';
+          offerSlots();
+          break;
+
+        case 'when':
+          lead.when = matches(t, ['8:40', 'morning', 'first']) ? 'Tomorrow 8:40 AM'
+                    : matches(t, ['2:20', 'afternoon', 'second']) ? 'Tomorrow 2:20 PM'
+                    : matches(t, W.yes) ? 'Tomorrow 8:40 AM' : t;
+          state = 'name';
+          ai('Locked: ' + lead.when + '. Last thing — what name do I put on it?');
+          setChips([]);
+          sayEl.placeholder = 'Your first name is fine…';
+          break;
+
+        case 'name':
+          lead.name = t.replace(/^(i'?m|my name is|it'?s|this is)\s+/i, '').replace(/[.!]/g, '').trim() || 'Pat';
+          lead.name = lead.name.charAt(0).toUpperCase() + lead.name.slice(1);
+          state = 'wrap';
+          ai('Done, ' + lead.name + '. You’re on for ' + lead.when.toLowerCase() + ' — confirmation text on its way, and ' + trade.owner + ' just got the full summary on their phone. Anything else ' + daypart + '?');
+          setChips(['No, that’s everything — thanks!', 'Actually, how much will it cost?']);
+          break;
+
+        case 'wrap':
+          if (matches(t, W.price)) { /* handled above, but belt & braces */ }
+          endCall(true);
+          break;
+      }
+    }
+
+    function reask() {
+      switch (state) {
+        case 'menu':  return 'what can I get moving for you?';
+        case 'detail':return trade.detail;
+        case 'when':  return 'Morning at 8:40 or afternoon at 2:20 — which suits?';
+        case 'name':  return 'What name do I put on the booking?';
+        default:      return 'anything else I can set up?';
+      }
+    }
+
+    function offerSlots() {
+      ai((lead.intent === 'urgent'
+          ? 'Okay — you’re flagged urgent, so ' + trade.owner + '’s phone is buzzing with this right now. Soonest windows: '
+          : 'Here’s what’s actually open — ')
+        + 'tomorrow 8:40 in the morning, or 2:20 in the afternoon. Which works?');
+      setChips(['Tomorrow 8:40am', 'Tomorrow 2:20pm']);
+    }
+
+    function endCall(booked) {
+      if (!live) return;
+      live = false; state = 'idle';
+      clearInterval(tick);
+      timers.forEach(clearTimeout); timers = [];
+      if (window.speechSynthesis) { try { speechSynthesis.cancel(); } catch (e) {} }
+      if (rec) { try { rec.stop(); } catch (e) {} }
+      var total = fmt(elapsed());
+      if (booked) {
+        ai('Thanks for calling ' + trade.biz + ' — you’re all set.');
+        sys('Call ended — ' + total);
+      } else {
+        sys('Call ended — ' + total);
+      }
+      btnEnd.hidden = true; btnCall.hidden = false;
+      btnCall.innerHTML = btnCall.innerHTML.replace('Call the AI employee', 'Call again');
+      typingEl.hidden = true; setChips([]);
+      statusEl.textContent = 'MAVEN · FRONT DESK';
+
+      /* the owner's-phone card + verdict */
+      var now = new Date();
+      var hh = now.getHours() % 12 || 12, mm = ('0' + now.getMinutes()).slice(-2);
+      var ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+      $('sms').innerHTML =
+        '<b>NEW LEAD — ' + hh + ':' + mm + ' ' + ampm + '</b>\n' +
+        (lead.name || 'Caller') + ' · ' + (lead.intentLabel || 'ENQUIRY') + '\n' +
+        (lead.detail ? '“' + lead.detail.slice(0, 90) + '”\n' : '') +
+        (lead.when ? 'Booked: <b>' + lead.when + '</b>\n' : 'No booking — follow-up queued\n') +
+        'Answered in 8s · full transcript in your inbox';
+      $('verdict-line').innerHTML = 'Ring to ' + (lead.when ? 'booked' : 'handled') + ': <b>' + total + '</b>.';
+      $('after').hidden = false;
+      $('after').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  })();
+  </script>
+</body>
+</html>
