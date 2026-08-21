@@ -3,101 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Not Found — GreenAI Solutions Team</title>
-  <meta name="description" content="The page you're looking for doesn't exist. Head back to the GreenAI Solutions Team homepage." />
-  <meta name="robots" content="noindex" />
+  <title>Hear it answer as your business — free demo — GreenAI Solutions</title>
+  <meta name="description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=21" />
+  <style>
+    /* Demo request — the step between "watched the demo" and "$497 a month".
+       call.html lets them hear a fictional shop; this asks for their own. */
+    .demo-hero { position:relative; overflow:hidden; }
+    .demo-grid { display:grid; grid-template-columns:1fr .92fr; gap:clamp(2.5rem,6vw,5rem); align-items:start; }
+    .demo-steps { list-style:none; margin:2.5rem 0 0; padding:0; max-width:520px; }
+    .demo-steps li { display:grid; grid-template-columns:38px 1fr; gap:1rem; padding:1.15rem 0;
+      border-top:1px solid rgba(26,92,42,.12); }
+    .demo-steps li:first-child { border-top:0; padding-top:0; }
+    .demo-steps b { width:32px; height:32px; display:grid; place-items:center; border-radius:9px;
+      background:var(--green-pale); color:var(--green-dark); font:800 .82rem/1 Inter,sans-serif; }
+    .demo-steps strong { display:block; font-family:var(--font-display); font-size:1.02rem; color:var(--gray-800); }
+    .demo-steps span { display:block; margin-top:.28rem; font-size:.9rem; color:var(--gray-600); line-height:1.6; }
+    .demo-card { background:#fff; border:1px solid rgba(26,92,42,.13); border-radius:18px;
+      box-shadow:0 28px 70px rgba(6,31,16,.1); padding:clamp(1.5rem,3vw,2.2rem); }
+    .demo-card h2 { font-size:1.35rem; margin:0 0 .4rem; }
+    .demo-card > p { font-size:.9rem; color:var(--gray-600); margin:0 0 1.5rem; }
+    .demo-card input, .demo-card select, .demo-card textarea { border-radius:10px; background:#fbfdfc; }
+    .demo-card .form-submit { width:100%; justify-content:center; background:#123f22; border-color:#123f22; }
+    .demo-fine { margin-top:1rem; font-size:.78rem; color:var(--gray-400); line-height:1.6; text-align:center; }
+    .demo-free { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .9rem; border-radius:100px;
+      background:var(--green-pale); color:var(--green-dark); font-size:.75rem; font-weight:800;
+      letter-spacing:.06em; text-transform:uppercase; margin-bottom:1rem; }
+    .demo-alt { max-width:820px; margin:4rem auto 0; padding:1.6rem 1.8rem; border-radius:16px;
+      border:1px solid rgba(26,92,42,.14); background:var(--green-pale); display:flex; flex-wrap:wrap;
+      align-items:center; gap:1rem 1.5rem; }
+    .demo-alt p { margin:0; flex:1 1 300px; font-size:.94rem; color:var(--gray-800); }
+    @media (max-width:900px) { .demo-grid { grid-template-columns:1fr; } }
+  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <style>
-    .errorpage {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #0f2114 0%, #1a5c2a 50%, #236b35 100%);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 1.5rem;
-      position: relative;
-      overflow: hidden;
+  <link rel="canonical" href="https://greenaidigital.com/demo.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/demo.html" />
+  <meta property="og:title" content="Hear it answer as your business — free demo — GreenAI Solutions" />
+  <meta property="og:description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="GreenAI Solutions — one AI employee answers every lead in 8 seconds, $497 a month." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hear it answer as your business — free demo — GreenAI Solutions" />
+  <meta name="twitter:description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
+  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://greenaidigital.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Free demo",
+      "item": "https://greenaidigital.com/demo.html"
     }
-    .errorpage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-    .errorpage__inner { position: relative; z-index: 1; max-width: 580px; }
-    .errorpage__code {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(6rem, 18vw, 11rem);
-      font-weight: 800;
-      line-height: 1;
-      background: linear-gradient(135deg, #ffd97d, #e89c0a);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-    .errorpage h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-    .errorpage p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,.85);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    .errorpage__actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .errorpage__btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .9rem 1.6rem;
-      border-radius: 100px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all .2s ease;
-    }
-    .errorpage__btn--primary {
-      background: #fff;
-      color: #1a5c2a;
-    }
-    .errorpage__btn--primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .errorpage__btn--ghost {
-      background: rgba(255,255,255,.08);
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,.45);
-    }
-    .errorpage__btn--ghost:hover {
-      background: rgba(255,255,255,.16);
-      border-color: #fff;
-    }
-  </style>
+  ]
+}
+  </script>
   <script src="analytics.js?v=2"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
-  <!-- Nav -->
+  <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -135,18 +119,105 @@
       </ul>
     </div>
   </nav>
-  <section id="main" class="errorpage">
-    <div class="errorpage__inner">
-      <div class="errorpage__code">404</div>
-      <h1>This page wandered off into the desert</h1>
-      <p>We couldn't find the page you were looking for. It may have moved, been renamed, or never existed — but we're still here, ready to help your business grow.</p>
-      <div class="errorpage__actions">
-        <a href="/" class="errorpage__btn errorpage__btn--primary">← Back to Home</a>
-        <a href="/contact.html" class="errorpage__btn errorpage__btn--ghost">Contact GreenAI</a>
+
+  <!-- ===== PAGE HERO ===== -->
+  <div class="page-hero demo-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--green-accent)">Free &middot; no card &middot; no obligation</span>
+      <h1>Hear it answer<br/><em>as your business.</em></h1>
+      <p>The demo on this site answers as a made-up landscaping company. This one answers as yours &mdash; your
+        trade, your service area, the questions your customers actually ask. I build it by hand and send it back,
+        usually the same day and always within one business day.</p>
+    </div>
+  </div>
+
+  <section id="main" class="section">
+    <div class="container">
+      <div class="demo-grid">
+        <div>
+          <span class="section-label">What you get back</span>
+          <h2>A recording and a transcript. That is the whole thing.</h2>
+          <div class="section-divider section-divider--left"></div>
+          <ol class="demo-steps">
+            <li><b>01</b><div><strong>You fill in six boxes</strong><span>Your trade, your area, and the questions
+              you get asked most. Two minutes, and I do not need access to anything.</span></div></li>
+            <li><b>02</b><div><strong>I build it as your business</strong><span>Your name, your services, your
+              service area, your prices if you give them to me. Not a template with your name pasted in.</span></div></li>
+            <li><b>03</b><div><strong>You get a call recording and the transcript</strong><span>A real conversation:
+              a customer calls your shop after hours and it handles them. Emailed to you.</span></div></li>
+            <li><b>04</b><div><strong>You decide, or you do not</strong><span>Keep the recording either way. If it
+              is not for you, tell me and I will stop emailing you &mdash; that is the whole follow-up.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="demo-card">
+          <span class="demo-free">Costs nothing</span>
+          <h2>Build mine</h2>
+          <p>Everything marked * is required. The rest just makes it sound more like you.</p>
+
+          <form class="js-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Demo request form">
+            <input type="hidden" name="access_key" value="bcd1e0cd-c6df-461e-a83a-f475273ec6ac" />
+            <input type="hidden" name="to" value="jaden@greenaidigital.com" />
+            <input type="hidden" name="subject" value="&#127911; Demo request — hear it as their business" />
+            <input type="hidden" name="from_name" value="GreenAI Website — Demo Request" />
+            <input type="hidden" name="redirect" value="https://greenaidigital.com/thankyou.html?demo=1" />
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="form-group">
+              <label for="d-business">Business name *</label>
+              <input type="text" id="d-business" name="business" placeholder="e.g. Red Rock Plumbing" required autocomplete="organization" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="d-trade">What you do *</label>
+                <select id="d-trade" name="trade" required>
+                  <option value="">Choose one&hellip;</option>
+                  <option>Plumbing</option><option>HVAC</option><option>Landscaping / lawn</option>
+                  <option>Pool service</option><option>Electrical</option><option>Roofing</option>
+                  <option>Garage / auto</option><option>Cleaning</option><option>Salon / spa</option>
+                  <option>General contracting</option><option>Something else</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="d-area">Service area</label>
+                <input type="text" id="d-area" name="service_area" placeholder="Gilbert, Mesa, Chandler" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="d-email">Where do I send it? *</label>
+              <input type="email" id="d-email" name="email" placeholder="you@yourbusiness.com" required autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="d-phone">Phone (optional)</label>
+              <input type="tel" id="d-phone" name="phone" placeholder="(480) 555-0100" autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label for="d-asked">What do people always ask you?</label>
+              <textarea id="d-asked" name="always_asked" rows="4" placeholder="Do you come out to Queen Creek? What does a water heater run? Can you get here today?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">Build mine &rarr;</button>
+            <p class="demo-fine">No card, no call, no obligation. I use your details to build the demo and to email
+              it to you &mdash; nothing else, and I do not pass them on. See the
+              <a href="privacy.html">privacy policy</a>.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="demo-alt">
+        <p><strong>Do not want to wait?</strong> The demo already on this site is a working phone call that runs in
+          your browser right now. It answers as a fictional shop, but everything else about it is real.</p>
+        <a href="call.html" class="btn btn-primary">Call the AI now</a>
+        <a href="faq.html" class="btn btn-secondary">Read the questions first</a>
       </div>
     </div>
   </section>
-  <!-- Footer -->
+
+  <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
@@ -228,5 +299,48 @@
   </footer>
 
   <script src="script.js?v=12"></script>
+
+  <!-- Someone clicked a price on a service page before card checkout was live.
+       checkout.js sent the SKU along as ?want=; turn it into a preselected
+       service, a filled-in first line, and a plain explanation of what
+       happened, so the click lands as a real enquiry instead of a bounce. -->
+  <script>
+  (function () {
+    var WANT = {
+      'employees-front-desk': { pick: 'employees', name: 'AI Employee', price: '$497/mo' },
+      'quote':                { pick: 'unsure',    name: 'A quote for something else', price: 'quoted per job' },
+      'ads-starter':          { pick: 'ads',       name: 'AI Ad Creation — Starter', price: '$697/mo' },
+      'ads-growth':           { pick: 'ads',       name: 'AI Ad Creation — Growth',  price: '$1,297/mo' },
+      'ads-scale':            { pick: 'ads',       name: 'AI Ad Creation — Scale',   price: '$2,497/mo' }
+    };
+
+    var sku = new URLSearchParams(window.location.search).get('want');
+    var want = sku && WANT[sku];
+    if (!want) return;
+
+    var label = want.name + ' · ' + want.price;
+
+    var note = document.getElementById('wantNote');
+    var title = document.getElementById('wantTitle');
+    if (note && title) { title.textContent = 'You picked: ' + label; note.hidden = false; }
+
+    var body = document.getElementById('wantBody');
+    if (body && want.note) body.textContent = want.note;
+
+    /* Tell Jaden which plan it was, even if they rewrite the message. */
+    var hidden = document.getElementById('wantedPlan');
+    if (hidden) hidden.value = label;
+
+    var select = document.getElementById('service');
+    if (select) select.value = want.pick;
+
+    var msg = document.getElementById('message');
+    if (msg && !msg.value) {
+      msg.value = 'I want to start ' + want.name + ' (' + want.price + ').\n\nAbout my business: ';
+      /* Land the cursor where they need to type. */
+      try { msg.focus({ preventScroll: true }); msg.setSelectionRange(msg.value.length, msg.value.length); } catch (e) {}
+    }
+  })();
+  </script>
 </body>
 </html>

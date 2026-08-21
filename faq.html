@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions &amp; Answers — the AI Employee, $497/mo — GreenAI Solutions</title>
+  <meta name="description" content="Straight answers on the $497/mo AI employee: what it covers, what happens when it does not know, whether you keep your number, how fast you can cancel, and what is not included." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=21" />
+  <style>
+    /* FAQ — an accordion, because 22 answers as flat prose is a wall nobody reads. */
+    .faq-hero { position:relative; overflow:hidden; }
+    .faq-jump { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:2rem; }
+    .faq-jump a { display:inline-flex; align-items:center; gap:.45rem; padding:.55rem 1rem; border-radius:100px;
+      border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.05); color:rgba(255,255,255,.86);
+      font-size:.82rem; font-weight:600; text-decoration:none; transition:.2s ease; }
+    .faq-jump a:hover { background:rgba(125,227,164,.14); border-color:rgba(125,227,164,.5); color:#fff; }
+    .faq-group { max-width:820px; margin:0 auto; }
+    .faq-group + .faq-group { margin-top:3.5rem; }
+    .faq-group__head { display:flex; align-items:baseline; gap:.9rem; padding-bottom:1rem; margin-bottom:.5rem;
+      border-bottom:2px solid var(--green-pale); }
+    .faq-group__head h2 { font-size:1.5rem; margin:0; }
+    .faq-group__head span { margin-left:auto; font:700 .72rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+      letter-spacing:.1em; color:var(--gray-400); }
+    .faq-q { border-bottom:1px solid rgba(26,92,42,.12); }
+    .faq-q summary { display:flex; align-items:flex-start; gap:1rem; padding:1.15rem .25rem; cursor:pointer;
+      font-family:var(--font-display); font-size:1.06rem; font-weight:700; color:var(--gray-800); list-style:none; }
+    .faq-q summary::-webkit-details-marker { display:none; }
+    .faq-q summary::after { content:'+'; margin-left:auto; flex:none; width:26px; height:26px; display:grid;
+      place-items:center; border-radius:50%; background:var(--green-pale); color:var(--green-dark);
+      font:700 1.1rem/1 Inter,sans-serif; transition:transform .22s ease, background .22s ease; }
+    .faq-q[open] summary::after { content:'\2212'; background:var(--green-dark); color:#fff; }
+    .faq-q summary:hover { color:var(--green-dark); }
+    .faq-q summary:focus-visible { outline:3px solid var(--green-light); outline-offset:2px; border-radius:6px; }
+    .faq-a { padding:0 3rem 1.4rem .25rem; color:var(--gray-600); line-height:1.75; }
+    .faq-a a { color:var(--green-dark); font-weight:600; }
+    .faq-cta { max-width:820px; margin:4.5rem auto 0; padding:2.4rem 2rem; border-radius:20px; text-align:center;
+      background:linear-gradient(150deg,var(--green-dark) 0%,var(--green-mid) 100%); color:#fff; }
+    .faq-cta h2 { color:#fff; font-size:1.7rem; margin:0 0 .6rem; }
+    .faq-cta p { color:rgba(255,255,255,.8); max-width:46ch; margin:0 auto 1.6rem; }
+    .faq-cta .btn-row { display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; }
+    @media (max-width:640px) { .faq-a { padding-right:1rem; } }
+  </style>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/faq.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/faq.html" />
+  <meta property="og:title" content="Questions &amp; Answers — the AI Employee, $497/mo — GreenAI Solutions" />
+  <meta property="og:description" content="Straight answers on the $497/mo AI employee: what it covers, what happens when it does not know, whether you keep your number, how fast you can cancel, and what is not included." />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="GreenAI Solutions — one AI employee answers every lead in 8 seconds, $497 a month." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Questions &amp; Answers — the AI Employee, $497/mo — GreenAI Solutions" />
+  <meta name="twitter:description" content="Straight answers on the $497/mo AI employee: what it covers, what happens when it does not know, whether you keep your number, how fast you can cancel, and what is not included." />
+  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://greenaidigital.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Questions & Answers",
+      "item": "https://greenaidigital.com/faq.html"
+    }
+  ]
+}
+  </script>
+
+  <!-- FAQPage schema: the same answers, machine-readable, so an assistant asked
+       "how much is GreenAI" reads this instead of guessing. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an \u201cAI employee\u201d, in plain English?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is software that picks up your phone, answers your texts and replies to your web-form leads \u2014 in your business\u2019s own words. Not a chat bubble on your website, and not a person. It answers in about eight seconds, works out what the caller needs, and puts the appointment straight into your calendar. One employee doing four jobs: taking the calls that come in, making the follow-up calls you never get around to, answering the front-desk questions, and confirming tomorrow\u2019s schedule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my customers know they are talking to an AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If they ask, yes. It does not pretend to be a person and it will not take a human name. Ask it straight out whether it is a real person and it tells you the truth. You can try that yourself on the live demo \u2014 it is one of the things we suggest you try."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I keep my own phone number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your number stays yours and nothing on your truck, your cards or your Google listing has to change. At setup you choose how it works: either the AI answers first, or it picks up only the calls you miss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when it does not know the answer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It says so. That is deliberate \u2014 the system is built to say \u201cI\u2019m not sure\u201d rather than invent an answer, because an invented answer is the one thing you would have to apologise for. When that happens it takes the details, tells the caller you will follow up, and the whole conversation lands in your inbox so you can."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What actually happens at 2am?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The same thing that happens at 2pm. Every call, text and web form is answered in about eight seconds \u2014 nights, weekends, holidays, monsoon season. It books what it can book and sends you the full transcript. You read it over coffee instead of losing the lead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this replace my receptionist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and it is not sold as one. It covers the hours and the calls nobody is covering \u2014 the phone that rings out at 7pm, the missed call you meant to return on Tuesday, the second caller while your person is already on the line. If you have someone at the desk, this is what happens when they cannot get to it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does $497 a month cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One AI employee and unlimited leads. Answering every call, text and web form; booking into your calendar; chasing the ones who go quiet; full transcripts in your inbox; and me maintaining it, including changing what it says whenever you want it changed. Flat rate \u2014 a busy month costs exactly the same as a quiet one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a setup fee or a per-call charge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No to both. No setup fee, no per-call charge, no per-minute charge, no charge for a busy month. $497 is the whole price. That is the part we think is broken about metered plans: they charge you more for having a good month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is not included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anything paid to someone else, which we never mark up: a phone number if you need a new one, any CRM or scheduling tool you want it to write into, and advertising spend if you also run ads with us. We tell you about a required third-party cost before it is incurred, not after."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I pay, and when am I charged?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By card or bank debit through Stripe, our payment processor. Your details go on Stripe\u2019s own checkout page \u2014 never on this website and never to me directly. The first payment is taken when you place the order, and it renews on the same day each month, in advance. Prefer a bank transfer and an invoice? Say so and we do it that way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any time. Month to month, no minimum term, no lock-in and no cancellation fee. Email jaden@greenaidigital.com or call (480) 798-0753. It stops at the end of the month you have already paid for \u2014 you cancel forward, not backward \u2014 and we do not bill you again after that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you guarantee I will get more bookings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and be wary of anyone who does. How many leads turn into jobs depends on your market, your pricing, your offer and your follow-through, and none of those are mine to control. Any number we discuss in advance is an estimate, not a promise. What I do stand behind is the system doing what I said it does."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until it is live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About two weeks from the day you answer the setup questions. There are four steps: you tell us how you answer the phone, we build it, you test it yourself, and then it goes on duty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need from me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One round of questions \u2014 your trade, your hours, your service area, your prices, and the questions you always ask a new customer \u2014 plus access to whatever it needs to book into, usually your calendar. Email or a call, your choice. If we end up waiting on you, the go-live date moves by however long we wait."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I hear it before my customers do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and you should try to break it. Nothing goes live until you have called your own number and tried to trip it up on your own questions. If you want to hear the idea right now, before any of this, the demo on this site is a working phone call in your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I want it to say something differently?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You tell me and I change it. That is included in the monthly \u2014 no change fee, no ticket queue, no waiting for a release. It is the reason the price is flat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if it books a job I cannot do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You set the boundaries and it works inside them: only the slots you actually have open, only the services you told it you offer, only inside your service area. Anyone outside that gets their details taken and handed to you as a lead \u2014 it does not commit you to work you did not agree to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is responsible if it says something wrong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Straight answer: AI output can be wrong. That is why a second system checks the first, why it is built to say \u201cI\u2019m not sure\u201d instead of guessing, and why you approve what it says before it goes live. The agreement splits it plainly \u2014 you are responsible for how your business runs, and I am responsible for the system doing what I said it would do. If it says something you do not like, tell me and it changes that day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my customers\u2019 information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It stays yours. You own your data, your configuration and your transcripts, and both of us keep the other\u2019s non-public business information confidential \u2014 during the work and after it ends. If you leave, you take all of it with you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I already use Jobber or Housecall Pro. Does this replace it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 it feeds it. Bookings land in your calendar. If your scheduling lives in Jobber, Housecall Pro or ServiceTitan, tell me during setup and we work out how bookings get there. Where a direct connection is not possible on your plan, it books into your calendar and emails you the full details so nothing is retyped twice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you only work with Phoenix businesses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is designed around Phoenix service businesses \u2014 that is the market it was built for, and it is where I am. But nothing about it is physically local. If you are outside the Valley and it sounds like it fits, email me and say so."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who am I actually dealing with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Me \u2014 Jaden Green, in Gilbert, Arizona. GreenAI Solutions is owner-operated: I build the system, I maintain it, and you deal with me directly rather than a rep, a reseller or a support queue. (480) 798-0753."
+      }
+    }
+  ]
+}
+  </script>
+  <script src="analytics.js?v=2"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions Team</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+          <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="catch.html" class="btn btn-primary nav__cta">Watch it catch a lead</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+        <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
+        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <div class="page-hero faq-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--green-accent)">Questions &amp; Answers</span>
+      <h1>The questions you<br/><em>would ask me anyway.</em></h1>
+      <p>Everything a Phoenix service business asks before handing its phone to an AI &mdash; what it costs, what it
+        does when it does not know something, and how fast you can walk away. Answered straight, including the ones
+        where the answer is no.</p>
+      <div class="faq-jump">
+        <a href="#g0">How it works <b style="opacity:.55">6</b></a>
+        <a href="#g1">What it costs <b style="opacity:.55">6</b></a>
+        <a href="#g2">Getting it running <b style="opacity:.55">4</b></a>
+        <a href="#g3">Risk, control and who you are dealing with <b style="opacity:.55">6</b></a>
+      </div>
+    </div>
+  </div>
+
+  <section id="main" class="section">
+    <div class="container">
+      <div class="faq-group" id="g0">
+        <div class="faq-group__head">
+          <h2>How it works</h2><span>06 QUESTIONS</span>
+        </div>
+        <details class="faq-q">
+          <summary>What is an &ldquo;AI employee&rdquo;, in plain English?</summary>
+          <div class="faq-a"><p>It is software that picks up your phone, answers your texts and replies to your web-form leads &mdash; in your business&rsquo;s own words. Not a chat bubble on your website, and not a person. It answers in about eight seconds, works out what the caller needs, and puts the appointment straight into your calendar. One employee doing four jobs: taking the calls that come in, making the follow-up calls you never get around to, answering the front-desk questions, and confirming tomorrow&rsquo;s schedule.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Do my customers know they are talking to an AI?</summary>
+          <div class="faq-a"><p>If they ask, yes. It does not pretend to be a person and it will not take a human name. Ask it straight out whether it is a real person and it tells you the truth. You can try that yourself on the <a href="call.html">live demo</a> &mdash; it is one of the things we suggest you try.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Do I keep my own phone number?</summary>
+          <div class="faq-a"><p>Yes. Your number stays yours and nothing on your truck, your cards or your Google listing has to change. At setup you choose how it works: either the AI answers first, or it picks up only the calls you miss.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What happens when it does not know the answer?</summary>
+          <div class="faq-a"><p>It says so. That is deliberate &mdash; the system is built to say &ldquo;I&rsquo;m not sure&rdquo; rather than invent an answer, because an invented answer is the one thing you would have to apologise for. When that happens it takes the details, tells the caller you will follow up, and the whole conversation lands in your inbox so you can.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What actually happens at 2am?</summary>
+          <div class="faq-a"><p>The same thing that happens at 2pm. Every call, text and web form is answered in about eight seconds &mdash; nights, weekends, holidays, monsoon season. It books what it can book and sends you the full transcript. You read it over coffee instead of losing the lead.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Does this replace my receptionist?</summary>
+          <div class="faq-a"><p>No, and it is not sold as one. It covers the hours and the calls nobody is covering &mdash; the phone that rings out at 7pm, the missed call you meant to return on Tuesday, the second caller while your person is already on the line. If you have someone at the desk, this is what happens when they cannot get to it.</p></div>
+        </details>
+      </div>
+      <div class="faq-group" id="g1">
+        <div class="faq-group__head">
+          <h2>What it costs</h2><span>06 QUESTIONS</span>
+        </div>
+        <details class="faq-q">
+          <summary>What does $497 a month cover?</summary>
+          <div class="faq-a"><p>One AI employee and unlimited leads. Answering every call, text and web form; booking into your calendar; chasing the ones who go quiet; full transcripts in your inbox; and me maintaining it, including changing what it says whenever you want it changed. Flat rate &mdash; a busy month costs exactly the same as a quiet one.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Is there a setup fee or a per-call charge?</summary>
+          <div class="faq-a"><p>No to both. No setup fee, no per-call charge, no per-minute charge, no charge for a busy month. $497 is the whole price. That is the part we think is broken about metered plans: they charge you more for having a good month.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What is not included?</summary>
+          <div class="faq-a"><p>Anything paid to someone else, which we never mark up: a phone number if you need a new one, any CRM or scheduling tool you want it to write into, and advertising spend if you also run ads with us. We tell you about a required third-party cost before it is incurred, not after.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>How do I pay, and when am I charged?</summary>
+          <div class="faq-a"><p>By card or bank debit through Stripe, our payment processor. Your details go on Stripe&rsquo;s own checkout page &mdash; never on this website and never to me directly. The first payment is taken when you place the order, and it renews on the same day each month, in advance. Prefer a bank transfer and an invoice? Say so and we do it that way.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Can I cancel?</summary>
+          <div class="faq-a"><p>Any time. Month to month, no minimum term, no lock-in and no cancellation fee. Email <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a> or call <a href="tel:4807980753">(480)&nbsp;798-0753</a>. It stops at the end of the month you have already paid for &mdash; you cancel forward, not backward &mdash; and we do not bill you again after that.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Do you guarantee I will get more bookings?</summary>
+          <div class="faq-a"><p>No, and be wary of anyone who does. How many leads turn into jobs depends on your market, your pricing, your offer and your follow-through, and none of those are mine to control. Any number we discuss in advance is an estimate, not a promise. What I do stand behind is the system doing what I said it does.</p></div>
+        </details>
+      </div>
+      <div class="faq-group" id="g2">
+        <div class="faq-group__head">
+          <h2>Getting it running</h2><span>04 QUESTIONS</span>
+        </div>
+        <details class="faq-q">
+          <summary>How long until it is live?</summary>
+          <div class="faq-a"><p>About two weeks from the day you answer the setup questions. There are four steps: you tell us how you answer the phone, we build it, you test it yourself, and then it goes on duty.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What do you need from me?</summary>
+          <div class="faq-a"><p>One round of questions &mdash; your trade, your hours, your service area, your prices, and the questions you always ask a new customer &mdash; plus access to whatever it needs to book into, usually your calendar. Email or a call, your choice. If we end up waiting on you, the go-live date moves by however long we wait.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Can I hear it before my customers do?</summary>
+          <div class="faq-a"><p>Yes, and you should try to break it. Nothing goes live until you have called your own number and tried to trip it up on your own questions. If you want to hear the idea right now, before any of this, the <a href="call.html">demo on this site</a> is a working phone call in your browser.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What if I want it to say something differently?</summary>
+          <div class="faq-a"><p>You tell me and I change it. That is included in the monthly &mdash; no change fee, no ticket queue, no waiting for a release. It is the reason the price is flat.</p></div>
+        </details>
+      </div>
+      <div class="faq-group" id="g3">
+        <div class="faq-group__head">
+          <h2>Risk, control and who you are dealing with</h2><span>06 QUESTIONS</span>
+        </div>
+        <details class="faq-q">
+          <summary>What if it books a job I cannot do?</summary>
+          <div class="faq-a"><p>You set the boundaries and it works inside them: only the slots you actually have open, only the services you told it you offer, only inside your service area. Anyone outside that gets their details taken and handed to you as a lead &mdash; it does not commit you to work you did not agree to.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Who is responsible if it says something wrong?</summary>
+          <div class="faq-a"><p>Straight answer: AI output can be wrong. That is why a second system checks the first, why it is built to say &ldquo;I&rsquo;m not sure&rdquo; instead of guessing, and why you approve what it says before it goes live. The agreement splits it plainly &mdash; you are responsible for how your business runs, and I am responsible for the system doing what I said it would do. If it says something you do not like, tell me and it changes that day.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>What happens to my customers&rsquo; information?</summary>
+          <div class="faq-a"><p>It stays yours. You own your data, your configuration and your transcripts, and both of us keep the other&rsquo;s non-public business information confidential &mdash; during the work and after it ends. If you leave, you take all of it with you.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>I already use Jobber or Housecall Pro. Does this replace it?</summary>
+          <div class="faq-a"><p>No &mdash; it feeds it. Bookings land in your calendar. If your scheduling lives in Jobber, Housecall Pro or ServiceTitan, tell me during setup and we work out how bookings get there. Where a direct connection is not possible on your plan, it books into your calendar and emails you the full details so nothing is retyped twice.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Do you only work with Phoenix businesses?</summary>
+          <div class="faq-a"><p>It is designed around Phoenix service businesses &mdash; that is the market it was built for, and it is where I am. But nothing about it is physically local. If you are outside the Valley and it sounds like it fits, email me and say so.</p></div>
+        </details>
+        <details class="faq-q">
+          <summary>Who am I actually dealing with?</summary>
+          <div class="faq-a"><p>Me &mdash; Jaden Green, in Gilbert, Arizona. GreenAI Solutions is owner-operated: I build the system, I maintain it, and you deal with me directly rather than a rep, a reseller or a support queue. <a href="tel:4807980753">(480)&nbsp;798-0753</a>.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cta">
+        <h2>Still deciding?</h2>
+        <p>You do not have to take the page&rsquo;s word for any of it. Call the thing and try to trip it up &mdash;
+          it runs in your browser and costs nothing.</p>
+        <div class="btn-row">
+          <a href="call.html" class="btn btn-white">Call the AI employee</a>
+          <a href="demo.html" class="btn btn-secondary" style="border-color:rgba(255,255,255,.45);color:#fff">Hear it as your business</a>
+          <a href="pay.html?sku=employees-front-desk" class="btn btn-secondary" style="border-color:rgba(255,255,255,.45);color:#fff">Start it &mdash; $497/mo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
+          </a>
+          <p class="footer__tagline">An AI employee for Phoenix service businesses &mdash; it answers every call, text and form in 8 seconds, books the job, and follows up until they reply. $497 a month, flat.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Navigation</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="faq.html">Questions &amp; Answers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start a plan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="pay.html?sku=employees-front-desk" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
+            
+            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
+            
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact Us</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296</div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div>
+              <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
+        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=12"></script>
+
+  <!-- Someone clicked a price on a service page before card checkout was live.
+       checkout.js sent the SKU along as ?want=; turn it into a preselected
+       service, a filled-in first line, and a plain explanation of what
+       happened, so the click lands as a real enquiry instead of a bounce. -->
+  <script>
+  (function () {
+    var WANT = {
+      'employees-front-desk': { pick: 'employees', name: 'AI Employee', price: '$497/mo' },
+      'quote':                { pick: 'unsure',    name: 'A quote for something else', price: 'quoted per job' },
+      'ads-starter':          { pick: 'ads',       name: 'AI Ad Creation — Starter', price: '$697/mo' },
+      'ads-growth':           { pick: 'ads',       name: 'AI Ad Creation — Growth',  price: '$1,297/mo' },
+      'ads-scale':            { pick: 'ads',       name: 'AI Ad Creation — Scale',   price: '$2,497/mo' }
+    };
+
+    var sku = new URLSearchParams(window.location.search).get('want');
+    var want = sku && WANT[sku];
+    if (!want) return;
+
+    var label = want.name + ' · ' + want.price;
+
+    var note = document.getElementById('wantNote');
+    var title = document.getElementById('wantTitle');
+    if (note && title) { title.textContent = 'You picked: ' + label; note.hidden = false; }
+
+    var body = document.getElementById('wantBody');
+    if (body && want.note) body.textContent = want.note;
+
+    /* Tell Jaden which plan it was, even if they rewrite the message. */
+    var hidden = document.getElementById('wantedPlan');
+    if (hidden) hidden.value = label;
+
+    var select = document.getElementById('service');
+    if (select) select.value = want.pick;
+
+    var msg = document.getElementById('message');
+    if (msg && !msg.value) {
+      msg.value = 'I want to start ' + want.name + ' (' + want.price + ').\n\nAbout my business: ';
+      /* Land the cursor where they need to type. */
+      try { msg.focus({ preventScroll: true }); msg.setSelectionRange(msg.value.length, msg.value.length); } catch (e) {}
+    }
+  })();
+  </script>
+</body>
+</html>

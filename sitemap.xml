@@ -93,4 +93,20 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- Added 2026-08-21: the two pages that sit between "interested" and "paid",
+       plus the in-browser call demo. -->
+  <url>
+    <loc>https://greenaidigital.com/faq.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://greenaidigital.com/demo.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
