@@ -139,14 +139,16 @@
     /* ===== BRAND AD — the night/day slider ================================
        Dark full-bleed opener. Every element states its own colour. */
     .brandad { background:#030805; }
-    .brandad__stage { position:relative; height:min(92vh,860px); min-height:560px; overflow:hidden; }
-    .brandad__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+    .brandad__stage { position:relative; height:min(92vh,860px); min-height:560px; overflow:hidden; cursor:ew-resize; touch-action:pan-y; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
+    .brandad__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; pointer-events:none; -webkit-user-drag:none; }
     .brandad__night { position:absolute; inset:0; clip-path:inset(0 50% 0 0); will-change:clip-path; }
     /* the seam */
     .brandad__seam { position:absolute; top:0; bottom:0; left:50%; width:2px; margin-left:-1px; background:linear-gradient(180deg,rgba(231,200,95,.15),#e7c85f 30%,#e7c85f 70%,rgba(231,200,95,.15)); box-shadow:0 0 22px rgba(231,200,95,.55); pointer-events:none; z-index:3; }
-    .brandad__grip { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#e7c85f; color:#061008; font-size:.8rem; font-weight:800; letter-spacing:.05em; box-shadow:0 6px 26px rgba(0,0,0,.55), 0 0 0 5px rgba(231,200,95,.25); }
-    .brandad__range { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; z-index:4; -webkit-appearance:none; appearance:none; touch-action:pan-y; }
-    .brandad__range:focus-visible ~ .brandad__seam .brandad__grip { outline:3px solid #7de3a4; outline-offset:3px; }
+    .brandad__grip { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#e7c85f; color:#061008; font-size:.8rem; font-weight:800; letter-spacing:.05em; box-shadow:0 6px 26px rgba(0,0,0,.55), 0 0 0 5px rgba(231,200,95,.25); transition:transform .16s ease, box-shadow .16s ease; }
+    .brandad__stage.is-dragging { cursor:grabbing; }
+    .brandad__stage.is-dragging .brandad__grip { transform:translate(-50%,-50%) scale(1.12); box-shadow:0 8px 30px rgba(0,0,0,.6), 0 0 0 9px rgba(231,200,95,.3); }
+    .brandad__range { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; z-index:4; -webkit-appearance:none; appearance:none; pointer-events:none; }
+    .brandad__stage.is-kb .brandad__grip { outline:3px solid #7de3a4; outline-offset:3px; }
     /* time tags — each clipped to its own world */
     .brandad__tag { position:absolute; display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .85rem; border-radius:100px; font:600 .74rem/1.3 Inter,sans-serif; z-index:2; backdrop-filter:blur(6px); }
     .brandad__tag b { font-weight:800; letter-spacing:.06em; }
@@ -180,8 +182,9 @@
       .brandad__tag--night { top:4.9rem; left:.9rem; }
       .brandad__tag--day { top:4.9rem; right:.9rem; }
       /* keep the handle off the copy block */
-      .brandad__grip { top:31%; }
-      .brandad__hint { top:calc(31% + 40px); }
+      .brandad__grip { top:31%; width:64px; height:64px; font-size:1rem; }
+      .brandad__stage.is-dragging .brandad__grip { transform:translate(-50%,-50%) scale(1.08); }
+      .brandad__hint { top:calc(31% + 46px); font-size:.6rem; padding:.45rem .8rem; }
       .brandad__copy { padding-bottom:3.4rem; }
       .brandad__img { object-position:62% 30%; }
     }
@@ -949,8 +952,13 @@ If we're ever late, that visit is free.
     })();
 
     /* ===== BRAND AD — night/day slider =====
-       The range input is the single source of truth: full-area, invisible,
-       draggable and keyboard-operable. Everything else follows its value.
+       The stage itself is the drag surface. The range input stays in the
+       DOM as the keyboard and screen-reader control, but no longer handles
+       pointers: on iOS a range only responds to a touch that STARTS on its
+       thumb, and that thumb was invisible and vertically centred while the
+       gold grip sits at 31% — so on a phone there was nothing to grab.
+       touch-action:pan-y on the stage lets the browser keep vertical page
+       scrolling while every horizontal gesture comes to us.
        Without JS the page still shows a clean 50/50 split. */
     (function () {
       var stage = document.querySelector('[data-nd]');
@@ -961,31 +969,72 @@ If we're ever late, that visit is free.
       var prog  = stage.querySelector('[data-nd-prog]');
       var hint  = stage.querySelector('.brandad__hint');
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var dragging = false, introId = null;
 
       function setP(p) {
+        p = p < 0 ? 0 : p > 100 ? 100 : p;
         night.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
         seam.style.left = p + '%';
         if (prog) prog.style.width = p + '%';
+        return p;
       }
-      range.addEventListener('input', function () {
-        setP(+range.value);
-        if (hint) hint.style.display = 'none';   // they've got it
-      });
+      function commit(p) { range.value = Math.round(setP(p)); }
+      function hideHint() { if (hint) { hint.style.display = 'none'; hint = null; } }
+      function pctFromX(x) {
+        var r = stage.getBoundingClientRect();
+        return r.width ? ((x - r.left) / r.width) * 100 : 50;
+      }
+      function stopIntro() {
+        if (introId) { cancelAnimationFrame(introId); introId = null; }
+      }
+
+      /* keyboard and assistive tech still drive the range */
+      range.addEventListener('input', function () { setP(+range.value); hideHint(); });
+      range.addEventListener('focus', function () { stage.classList.add('is-kb'); stopIntro(); });
+      range.addEventListener('blur',  function () { stage.classList.remove('is-kb'); });
+
+      if (window.PointerEvent) {
+        stage.addEventListener('pointerdown', function (e) {
+          if (e.button > 0) return;
+          if (e.target && e.target.closest && e.target.closest('a,button')) return; // CTAs stay CTAs
+          stopIntro();
+          dragging = true;
+          stage.classList.add('is-dragging');
+          try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+          commit(pctFromX(e.clientX));
+          hideHint();
+        });
+        stage.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          if (e.cancelable) e.preventDefault();
+          commit(pctFromX(e.clientX));
+        }, { passive: false });
+        ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (evt) {
+          stage.addEventListener(evt, function () {
+            if (!dragging) return;
+            dragging = false;
+            stage.classList.remove('is-dragging');
+          });
+        });
+      } else {
+        /* no Pointer Events (very old browser): give the native range back */
+        range.style.pointerEvents = 'auto';
+        range.style.touchAction = 'pan-y';
+      }
 
       /* Intro sweep: night washes across once, then settles at half —
          shows there are two worlds here and that the seam moves. */
       if (!reduce) {
         var from = 82, to = 50, t0 = null;
-        setP(from); range.value = from;
-        function ease(x){ return 1 - Math.pow(1 - x, 3); }
+        commit(from);
+        function ease(x) { return 1 - Math.pow(1 - x, 3); }
         function tick(t) {
           if (!t0) t0 = t;
           var k = Math.min(1, (t - t0) / 1300);
-          var p = from + (to - from) * ease(k);
-          setP(p); range.value = p;
-          if (k < 1) requestAnimationFrame(tick);
+          commit(from + (to - from) * ease(k));
+          introId = k < 1 ? requestAnimationFrame(tick) : null;
         }
-        setTimeout(function(){ requestAnimationFrame(tick); }, 500);
+        setTimeout(function () { if (!dragging) introId = requestAnimationFrame(tick); }, 500);
       } else {
         setP(50);
       }
