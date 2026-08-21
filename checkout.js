@@ -24,6 +24,22 @@
 
   var PORTAL = 'pay.html';
 
+  /* ---- THE CARD RAIL SWITCH ------------------------------------------
+     Flip to true the moment Stripe finishes verifying the GreenGeniusAI
+     account (acct_1TYicEKX2eavW3SQ) and charges_enabled goes true.
+
+     Checked 2026-08-21: charges_enabled=false, payouts_enabled=false,
+     card_payments="pending", disabled_reason="requirements.pending_verification".
+     Everything is submitted — ToS accepted, ID provided, nothing currently
+     due — Stripe is simply still reviewing. Until that clears, a buyer who
+     reaches buy.stripe.com gets an error instead of a checkout, which is
+     worse than no card button at all: it burns the one motivated buyer.
+
+     While this is false every SKU falls through to the invoice portal /
+     intake form below, which works today and captures the signed service
+     agreement. No other line in this file needs to change. ---------- */
+  var CARD_RAIL_LIVE = false;
+
   /* LIVE Stripe Payment Links (created 2026-08-20 in the GreenGeniusAI
      account, acct_1TYicEKX2eavW3SQ). These are hosted checkout pages on
      buy.stripe.com — card entry happens on Stripe, never on this site, so
@@ -65,7 +81,7 @@
         return;
       }
 
-      var card = Object.prototype.hasOwnProperty.call(CARD_LINKS, sku) ? CARD_LINKS[sku] : null;
+      var card = cardLinkFor(sku);
 
       if (card === null) {
         /* Unknown SKU — the attribute is probably a typo. Send the click
@@ -92,17 +108,22 @@
     });
   }
 
+  /* '' means "use the portal", null means "no such SKU". A hosted link is
+     only handed out once the account can actually accept the charge. */
+  function cardLinkFor(sku) {
+    if (!Object.prototype.hasOwnProperty.call(CARD_LINKS, sku)) { return null; }
+    return CARD_RAIL_LIVE ? CARD_LINKS[sku] : '';
+  }
+
   window.GreenAICheckout = {
     portal: PORTAL,
     cardLinks: CARD_LINKS,
     wire: wire,
-    /* '' means "use the portal", null means "no such SKU". */
-    cardLinkFor: function (sku) {
-      return Object.prototype.hasOwnProperty.call(CARD_LINKS, sku) ? CARD_LINKS[sku] : null;
-    },
+    cardRailLive: CARD_RAIL_LIVE,
+    cardLinkFor: function (sku) { return cardLinkFor(sku); },
     hrefFor: function (sku) {
       if (QUOTE_ONLY[sku]) { return 'contact.html?want=' + encodeURIComponent(sku); }
-      var card = this.cardLinkFor(sku);
+      var card = cardLinkFor(sku);
       if (card === null) { return 'contact.html?want=' + encodeURIComponent(sku); }
       if (card) { return card; }
       return PORTAL_READY[sku] ? (PORTAL + '?sku=' + encodeURIComponent(sku)) : ('contact.html?want=' + encodeURIComponent(sku));
