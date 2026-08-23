@@ -25,12 +25,11 @@
   var PORTAL = 'pay.html';
 
   /* ---- THE CARD RAIL SWITCH ------------------------------------------
-     Flip to true the moment Stripe finishes verifying the GreenGeniusAI
-     account (acct_1TYicEKX2eavW3SQ) and charges_enabled goes true.
-
-     ON since 2026-08-21: the links below live in Greenvlt
-     (acct_1U1tvI4E6AUMDj1M), which is verified — charges_enabled=true,
-     payouts_enabled=true, card_payments=active, daily payouts.
+     ON since 2026-08-22: every SKU below is a live Payment Link in
+     **Green AI Solutions Inc.** (acct_1U7U3XQKwkBwdEjz) — Jaden's own
+     company, verified and taking charges. The checkout page was loaded and
+     confirmed reading "Green AI Solutions Inc." at $497/mo before this
+     went in.
 
      Set it back to false to park the card rail: every SKU then falls
      through to the invoice portal / intake form below, which works on its
@@ -38,8 +37,8 @@
      file needs to change either way. ---------- */
   var CARD_RAIL_LIVE = true;
 
-  /* LIVE Stripe Payment Links, rebuilt 2026-08-21 in the **Greenvlt**
-     account, acct_1U1tvI4E6AUMDj1M. These are hosted checkout pages on
+  /* LIVE Stripe Payment Links, rebuilt 2026-08-22 in **Green AI Solutions
+     Inc.**, acct_1U7U3XQKwkBwdEjz. These are hosted checkout pages on
      buy.stripe.com — card entry happens on Stripe, never on this site, so
      the site's "no card details are entered here" promise stays true.
      Each link redirects to thankyou.html?paid=<sku> after a successful
@@ -47,17 +46,33 @@
      key never belongs in this file, and none is needed.
      Set a value to '' to fall back to the invoice portal / contact form.
 
-     WHY GREENVLT AND NOT GreenGeniusAI
-     The GreenGeniusAI account (acct_1TYicEKX2eavW3SQ) that held the
-     2026-08-20 links is still stuck in Stripe verification —
-     charges_enabled=false. Greenvlt is fully enabled and takes money today,
-     so Jaden chose it on 2026-08-21. The trade-off he accepted: Greenvlt
-     bills as PHXGROWTH, so that is disclosed on the checkout page, on
-     pay.html and on thankyou.html. Do not "fix" that wording — an
-     undisclosed unfamiliar descriptor is what causes chargebacks.
-     The old GreenGeniusAI links are kept below, dormant, in case the
-     billing entity moves back. */
+     WHY THE BILLING ENTITY MOVED HERE, 2026-08-22
+     The rail used to run through Greenvlt, which bills as PHXGROWTH — a
+     name no buyer of this site has any reason to recognise, so every page
+     had to apologise for it. Green AI Solutions Inc. bills under its own
+     name, so the disclosure on index.html and thankyou.html now names the
+     real company. Each product also carries its own statement descriptor
+     (GREENAI AI EMPLOYEE, GREENAI ADS STARTER / GROWTH / SCALE). Keep that
+     wording matching whatever Stripe actually prints — an undisclosed
+     unfamiliar descriptor is what causes chargebacks.
+
+     GOTCHA: Managed Payments is ON by default in this account, which would
+     make Stripe the merchant of record and silently drops custom_text.
+     All four links were created with managed_payments[enabled]=false so
+     Green AI Solutions Inc. stays the seller. Any link rebuilt by hand in
+     the dashboard has to match, or the agreement line disappears. */
   var CARD_LINKS = {
+    'employees-front-desk': 'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',
+    'ads-starter': 'https://buy.stripe.com/9B63cx4R57aY9T15uI5EY01',
+    'ads-growth': 'https://buy.stripe.com/9B628t6Zd66U2qz2iw5EY02',
+    'ads-scale': 'https://buy.stripe.com/28E9AV4R552Q2qz4qE5EY03'
+  };
+
+  /* Dormant — Greenvlt acct_1U1tvI4E6AUMDj1M, the rail this site used from
+     2026-08-21 to 2026-08-22. Bills as PHXGROWTH. If it is ever switched
+     back on, the PHXGROWTH disclosure has to go back on index.html and
+     thankyou.html with it. */
+  var CARD_LINKS_GREENVLT = {
     'employees-front-desk': 'https://buy.stripe.com/5kQ8wIdlaegEgpO3QP8EM0L',
     'ads-starter': 'https://buy.stripe.com/28E8wIa8Y2xWa1q4UT8EM0M',
     'ads-growth': 'https://buy.stripe.com/00weV65SIb4s4H6afd8EM0N',
