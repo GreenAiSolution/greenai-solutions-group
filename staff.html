@@ -75,6 +75,8 @@
     .idc { position:relative; background:#fff; border:1px solid rgba(26,92,42,.14); border-radius:18px; padding:1.25rem 1.1rem 1.2rem; display:flex; flex-direction:column; box-shadow:0 18px 45px rgba(0,0,0,.08); transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; overflow:hidden; }
     .idc::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#1a5c2a,#4caf6e,#D4AF37); }
     .idc:hover { transform:translateY(-6px); box-shadow:0 30px 60px rgba(0,0,0,.14); }
+    .idc--pop { border-color:rgba(212,175,55,.6); box-shadow:0 18px 45px rgba(212,175,55,.18); }
+    .idc__pop { position:absolute; top:-1px; left:50%; transform:translateX(-50%); background:#D4AF37; color:#0d2e14; font:800 .58rem/1 Inter,sans-serif; letter-spacing:.18em; text-transform:uppercase; padding:.45rem .9rem; border-radius:0 0 8px 8px; z-index:3; box-shadow:0 4px 12px rgba(0,0,0,.2); white-space:nowrap; }
     .idc__top { display:flex; justify-content:space-between; font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; color:var(--gray-400,#999); margin-bottom:1rem; }
     .idc__on { display:inline-flex; align-items:center; gap:.35rem; color:#2e7d45; }
     .idc__on i { width:6px; height:6px; border-radius:50%; background:#4caf6e; box-shadow:0 0 8px #4caf6e; animation:onduty 1.6s ease-in-out infinite; }
@@ -166,7 +168,8 @@
   <section id="main" class="section bg-pale">
     <div class="container">
       <div class="roster">
-      <article class="idc reveal tilt" style="--i:0">
+      <article class="idc reveal tilt idc--pop" style="--i:0">
+        <span class="idc__pop">Most popular</span>
         <div class="idc__top"><span class="idc__id">ID 01</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="8" y="14" width="44" height="30" rx="3" stroke="#2e7d45" stroke-width="1.2"/><line x1="8" y1="24" x2="52" y2="24" stroke="#2e7d45"/><line x1="8" y1="34" x2="52" y2="34" stroke="#2e7d45"/><rect x="70" y="20" width="40" height="26" rx="3" stroke="#2e7d45" stroke-width="1.2"/></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><rect x="30" y="52" width="60" height="18" rx="6" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><path d="M40 52 C40 36 80 36 80 52" stroke="#7de3a4" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="60" cy="61" r="4" fill="#7de3a4"/></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="ripple"><circle cx="60" cy="61" r="12" stroke="#7de3a4" stroke-width="1.2" fill="none"/><circle cx="60" cy="61" r="22" stroke="#7de3a4" stroke-width=".8" fill="none" opacity=".5"/></g><rect x="78" y="30" width="34" height="12" rx="6" fill="#D4AF37"/><text x="95" y="39" font-size="7" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">8 SEC</text></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
@@ -178,6 +181,7 @@
         <a href="phone.html" class="idc__more">See a day in its life &rarr;</a>
       </article>
       <article class="idc reveal tilt" style="--i:1">
+        
         <div class="idc__top"><span class="idc__id">ID 02</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="10" y="16" width="100" height="46" rx="4" stroke="#2e7d45" stroke-width="1.2"/><line x1="10" y1="28" x2="110" y2="28" stroke="#2e7d45"/></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><rect x="22" y="34" width="52" height="20" rx="8" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><path d="M30 54 L28 62 L38 54" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><rect x="50" y="56" width="46" height="18" rx="8" fill="#D4AF37"/><path d="M88 74 L92 80 L82 74" fill="#D4AF37"/></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="chip c1"><rect x="6" y="6" width="28" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="20" y="13.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">FORM</text></g><g class="chip c2"><rect x="80" y="4" width="32" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="96" y="11.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">GOOGLE</text></g><g class="chip c3"><rect x="44" y="82" width="30" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="59" y="89.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">TEXT</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
@@ -189,6 +193,7 @@
         <a href="leads.html" class="idc__more">See a day in its life &rarr;</a>
       </article>
       <article class="idc reveal tilt" style="--i:2">
+        
         <div class="idc__top"><span class="idc__id">ID 03</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><g stroke="#2e7d45" stroke-width="1"><line x1="14" y1="64" x2="106" y2="64"/><line x1="14" y1="48" x2="106" y2="48"/><line x1="14" y1="32" x2="106" y2="32"/><line x1="14" y1="16" x2="106" y2="16"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="bars"><rect x="20" y="50" width="12" height="14" rx="2" fill="#1a5c2a"/><rect x="38" y="40" width="12" height="24" rx="2" fill="#1a5c2a"/><rect x="56" y="30" width="12" height="34" rx="2" fill="#2e7d45"/><rect x="74" y="22" width="12" height="42" rx="2" fill="#4caf6e"/><rect x="92" y="12" width="12" height="52" rx="2" fill="#7de3a4"/></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><path class="line" d="M20 56 L44 46 L62 36 L80 26 L98 14" stroke="#D4AF37" stroke-width="2.5" fill="none" stroke-linecap="round"/><g class="chip c1"><circle cx="98" cy="14" r="5" fill="#D4AF37"/><rect x="72" y="0" width="40" height="10" rx="5" fill="#D4AF37"/><text x="92" y="7.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">WINNER</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
@@ -200,6 +205,7 @@
         <a href="ads.html" class="idc__more">See a day in its life &rarr;</a>
       </article>
       <article class="idc reveal tilt" style="--i:3">
+        
         <div class="idc__top"><span class="idc__id">ID 04</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="12" y="12" width="96" height="52" rx="4" stroke="#2e7d45" stroke-width="1.2"/><g stroke="#2e7d45"><line x1="20" y1="26" x2="70" y2="26"/><line x1="20" y1="36" x2="90" y2="36"/><line x1="20" y1="46" x2="60" y2="46"/><line x1="20" y1="56" x2="80" y2="56"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="ticks"><g class="t t1"><circle cx="100" cy="26" r="6" fill="#4caf6e"/><path d="M97 26 L99.5 28.5 L103.5 23.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t2"><circle cx="100" cy="36" r="6" fill="#4caf6e"/><path d="M97 36 L99.5 38.5 L103.5 33.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t3"><circle cx="100" cy="46" r="6" fill="#4caf6e"/><path d="M97 46 L99.5 48.5 L103.5 43.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t4"><circle cx="100" cy="56" r="6" fill="#D4AF37"/><text x="100" y="58.5" font-size="7" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">!</text></g></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="chip c2"><rect x="6" y="76" width="72" height="12" rx="6" fill="#fff" stroke="#7de3a4"/><text x="42" y="84.5" font-size="6.2" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">3 SOLVED · 1 TO YOU</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
@@ -211,6 +217,7 @@
         <a href="support.html" class="idc__more">See a day in its life &rarr;</a>
       </article>
       <article class="idc reveal tilt" style="--i:4">
+        
         <div class="idc__top"><span class="idc__id">ID 05</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="30" y="8" width="60" height="70" rx="3" fill="#0b2a15" stroke="#2e7d45" stroke-width="1.2"/><g stroke="#2e7d45"><line x1="38" y1="22" x2="82" y2="22"/><line x1="38" y1="32" x2="70" y2="32"/><line x1="38" y1="42" x2="76" y2="42"/><line x1="38" y1="52" x2="64" y2="52"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="stamp"><rect x="40" y="56" width="40" height="16" rx="3" stroke="#7de3a4" stroke-width="2" fill="none" transform="rotate(-8 60 64)"/><text x="60" y="67.5" font-size="8" font-weight="900" fill="#7de3a4" text-anchor="middle" font-family="Inter,sans-serif" transform="rotate(-8 60 64)">PAID</text></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="coin c1"><circle cx="18" cy="30" r="9" fill="#D4AF37"/><text x="18" y="33" font-size="9" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">$</text></g><g class="coin c2"><circle cx="102" cy="40" r="7" fill="#D4AF37"/><text x="102" y="42.5" font-size="7" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">$</text></g><g class="coin c3"><circle cx="14" cy="60" r="5" fill="#F3DF9A"/></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
         <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
@@ -332,7 +339,7 @@
   </footer>
 
   <script src="script.js?v=13"></script>
-  <script src="checkout.js?v=5"></script>
+  <script src="checkout.js?v=4"></script>
   <script>
   (function(){
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover:hover)').matches) return;
