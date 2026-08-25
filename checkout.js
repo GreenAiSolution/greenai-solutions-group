@@ -98,14 +98,18 @@
      this list on 2026-08-20 when their Payment Links went live. */
   var QUOTE_ONLY = {};
 
-  /* pay.html sells exactly one plan right now (the one-price rule — see
-     project memory). Any other SKU has no matching radio there, so
-     pay.html?sku=X would silently land the buyer on the $497 AI Employee
-     plan instead of what they clicked. Only send SKUs here that pay.html
-     can actually preselect; everything else goes to the contact form,
-     same as a quote. */
+  /* pay.html knows every staff SKU (since 2026-08-24 it reads ?sku= and
+     shows RING / REPLY / BOOST / ANSWER / COLLECT / Full Staff with the
+     right price, then hands the SKU on to start.html). The ads tiers have
+     no page there yet, so with the card rail off they go to the contact
+     form, same as a quote. */
   var PORTAL_READY = {
-    'employees-front-desk': true
+    'employees-front-desk': true,
+    'agent-reply': true,
+    'agent-boost': true,
+    'agent-answer': true,
+    'agent-collect': true,
+    'full-staff': true
   };
 
   function wire(root) {

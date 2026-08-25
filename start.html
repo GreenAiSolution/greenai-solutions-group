@@ -519,8 +519,8 @@
               <div class="yb-pass__row"><small>Home port</small><b class="is-empty" data-bp="area"></b></div>
             </div>
             <div class="yb-pass__duo">
-              <div class="yb-pass__row"><small>Class</small><b>AI Employee</b></div>
-              <div class="yb-pass__row yb-pass__fare"><small>Fare</small><b>$497<span style="font-size:.55em;color:rgba(255,255,255,.45)">/mo</span></b></div>
+              <div class="yb-pass__row"><small>Class</small><b data-plan-name>AI Employee</b></div>
+              <div class="yb-pass__row yb-pass__fare"><small>Fare</small><b><span data-plan-price>$497</span><span style="font-size:.55em;color:rgba(255,255,255,.45)">/mo</span></b></div>
             </div>
             <div class="yb-pass__row"><small>Boarding ref</small><b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:.08em" data-ref>GA-&hellip;</b></div>
           </div>
@@ -547,6 +547,29 @@
     </div>
   </footer>
 
+  <script>
+  /* Which employee is boarding. pay.html?sku=… hands the SKU here; Stripe's
+     thankyou redirect does too. Unknown/missing SKU = RING, the original
+     $497 AI Employee. Prices must match staff.html + checkout.js. */
+  window.GreenAIPlan = (function () {
+    var PLANS = {
+      'employees-front-desk': { name: 'RING \u00b7 AI Employee', price: '$497', plan: 'RING \u2014 AI front-desk employee, $497/mo' },
+      'agent-reply':   { name: 'REPLY',      price: '$397',   plan: 'REPLY \u2014 lead-response agent, $397/mo' },
+      'agent-boost':   { name: 'BOOST',      price: '$997',   plan: 'BOOST \u2014 media-buying agent, $997/mo' },
+      'agent-answer':  { name: 'ANSWER',     price: '$347',   plan: 'ANSWER \u2014 support agent, $347/mo' },
+      'agent-collect': { name: 'COLLECT',    price: '$297',   plan: 'COLLECT \u2014 billing & collections agent, $297/mo' },
+      'full-staff':    { name: 'Full Staff', price: '$1,797', plan: 'The Full Staff \u2014 all five employees, $1,797/mo' }
+    };
+    var m = /[?&]sku=([A-Za-z0-9-]{2,40})/.exec(window.location.search);
+    var sku = (m && PLANS[m[1]]) ? m[1] : 'employees-front-desk';
+    var p = PLANS[sku];
+    document.addEventListener('DOMContentLoaded', function () {
+      var n = document.querySelector('[data-plan-name]'); if (n) n.textContent = p.name;
+      var f = document.querySelector('[data-plan-price]'); if (f) f.textContent = p.price;
+    });
+    return { sku: sku, name: p.name, price: p.price, plan: p.plan };
+  })();
+  </script>
   <script src="script.js?v=13"></script>
   <script>
   (function () {
@@ -692,12 +715,13 @@
 
       /* One preformatted block at the top of the email: the invoice half and
          the build half, ready to act on without hunting through field rows. */
+      var PLAN = window.GreenAIPlan;
       var brief = [
         '================  SEND THE INVOICE  ================',
         'Bill to ....... ' + g('name') + ' — ' + g('business_name'),
         'Email ......... ' + g('email') + '   (replying to this email reaches them)',
         'Mobile ........ ' + g('mobile') + '   · best time: ' + g('best_time', 'Any time'),
-        'Plan .......... AI Employee — $497/mo, month to month, setup included',
+        'Plan .......... ' + PLAN.plan + ', month to month, setup included',
         'Reference ..... ' + REF + '   (quote this on the invoice)',
         '',
         '================  BUILD THE EMPLOYEE  ==============',
@@ -724,8 +748,8 @@
         botcheck: fd.get('botcheck') || '',
         ACTION_BRIEF: '\n' + brief + '\n',
         reference: REF,
-        sku: 'employees-front-desk',
-        plan: 'AI Employee — $497/mo',
+        sku: PLAN.sku,
+        plan: PLAN.plan,
         business_name: fd.get('business_name'), trade: trade || '—',
         service_area: fd.get('service_area'), business_phone: fd.get('business_phone'),
         services_and_prices: g('services_and_prices', '— (collect on the welcome call)'),
