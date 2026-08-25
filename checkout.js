@@ -65,7 +65,14 @@
     'employees-front-desk': 'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',
     'ads-starter': 'https://buy.stripe.com/9B63cx4R57aY9T15uI5EY01',
     'ads-growth': 'https://buy.stripe.com/9B628t6Zd66U2qz2iw5EY02',
-    'ads-scale': 'https://buy.stripe.com/28E9AV4R552Q2qz4qE5EY03'
+    'ads-scale': 'https://buy.stripe.com/28E9AV4R552Q2qz4qE5EY03',
+    /* The Staff — created 2026-08-24 in Green AI Solutions Inc., same shape
+       (managed_payments off, agreement line, redirect to thankyou). */
+    'agent-reply':   'https://buy.stripe.com/3cIaEZ1ETeDq9T15uI5EY06',
+    'agent-boost':   'https://buy.stripe.com/dRm5kF4R5bred5d7CQ5EY07',
+    'agent-answer':  'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',
+    'agent-collect': 'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09',
+    'full-staff':    'https://buy.stripe.com/8x28wR3N166UaX5bT65EY0a'
   };
 
   /* Dormant — Greenvlt acct_1U1tvI4E6AUMDj1M, the rail this site used from
