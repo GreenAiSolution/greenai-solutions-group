@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services &amp; Pricing — GreenAI Solutions Team</title>
-  <meta name="description" content="An AI employee that answers every call, text and web form in 8 seconds, books the job and follows up. $497 a month, flat, for Phoenix service businesses." />
+  <title>Hire the Staff — five AI employees, each with a name, a job and a flat price — GreenAI Solutions Team</title>
+  <meta name="description" content="RING answers the phone. REPLY handles every lead. BOOST runs the ads. ANSWER handles support. COLLECT gets you paid. Hire one for as little as $297/mo or the whole staff for $1,797." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=21" />
   <link rel="stylesheet" href="visuals.css?v=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/staff.html" />
+  <meta property="og:title" content="Hire the Staff — GreenAI Solutions Team" />
+  <meta property="og:description" content="Five AI employees, each with a name, a job and a flat monthly price." />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <style>
 
     /* ===== 4D cards: perspective tilt + depth layers + light sweep + dust ===== */
@@ -99,113 +107,9 @@
     .why p { font-size:.9rem; color:var(--gray-600,#555); margin:0; }
         @media (max-width:760px) { .roster, .why { grid-template-columns:1fr; } .payroll { grid-template-columns:1fr; } .payroll .mid { display:none; } .bundle { padding:2.5rem 1.25rem; } .bundle__math b { font-size:3.2rem; } }
   </style>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="canonical" href="https://greenaidigital.com/services.html" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://greenaidigital.com/services.html" />
-  <meta property="og:title" content="Services &amp; Pricing — GreenAI Solutions Team" />
-  <meta property="og:description" content="An AI employee that answers every call, text and web form in 8 seconds, books the job and follows up. $497 a month, flat." />
-  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="GreenAI Solutions — one AI employee answers every lead in 8 seconds, $497 a month." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Services &amp; Pricing — GreenAI Solutions Team" />
-  <meta name="twitter:description" content="An AI employee that answers every call, text and web form in 8 seconds, books the job and follows up. $497 a month, flat." />
-  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
-
-  <style>
-    /* ---- page hero extras ---- */
-    .svc-lede { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,.66); max-width: 62ch; margin: 1.1rem auto 0; }
-    .svc-flag {
-      display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem;
-      background: rgba(212,175,55,.12); border: 1px solid rgba(212,175,55,.35);
-      color: #f0dfa0; border-radius: 100px; padding: .55rem 1.25rem;
-      font-size: .9rem; font-weight: 600;
-    }
-    .svc-cta-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; justify-content: center; }
-
-    /* ---- the crew: a dark band in the homepage's console language.
-       ID-scoped background because the site-wide "green horizon" rule
-       (.page-hero + main > .section:first-child) repaints the first
-       section after a page-hero white — correct for light pages,
-       silently wrong here. Dark band, so every element states its own
-       colour: body{color:var(--gray-800)} is ink for white pages. ---- */
-    #employees.section {
-      background:
-        radial-gradient(1000px 480px at 16% 0, rgba(26,92,42,.16), transparent 62%),
-        #050b07;
-      color: rgba(255,255,255,.74);
-    }
-    #employees .section-label { color: #7de3a4; }
-    #employees h2 { color: #fff; }
-    #employees .text-center > p { color: rgba(255,255,255,.62); }
-
-    .crew-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.4rem; margin-top: 2.5rem; }
-    .crew-card {
-      background: rgba(8,19,12,.72); border: 1px solid rgba(255,255,255,.1); border-radius: 18px;
-      padding: 1.35rem 1.4rem 1.7rem; text-align: center;
-      transition: border-color .25s ease, background-color .25s ease, transform .25s ease;
-    }
-    .crew-card:hover { background: rgba(125,227,164,.05); border-color: rgba(125,227,164,.3); transform: translateY(-3px); }
-    .crew-card__top {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.2rem; padding-bottom: .95rem; border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .crew-card__num {
-      display: grid; place-items: center; width: 30px; height: 30px;
-      border: 1px solid rgba(212,175,55,.28); border-radius: 9px;
-      color: #d5b64c; font: 700 .62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-    .crew-card__state {
-      color: #7de3a4; font: 700 .54rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-      letter-spacing: .12em; text-transform: uppercase;
-    }
-    .crew-card img { width: 84px; height: 84px; object-fit: contain; margin: 0 auto 1.1rem; display: block; }
-    .crew-card h3 { font-family: 'Playfair Display', serif; font-size: 1.28rem; margin: 0 0 .3rem; color: #fff; }
-    .crew-card i {
-      display: block; font-style: normal; font-size: .62rem; font-weight: 800;
-      letter-spacing: .14em; text-transform: uppercase; color: #7de3a4; margin-bottom: .8rem;
-    }
-    .crew-card p { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.55); margin: 0; }
-
-    @media (max-width: 900px) {
-      .crew-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 560px) {
-      .crew-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://greenaidigital.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://greenaidigital.com/services.html"
-    }
-  ]
-}
-  </script>
-  <script src="analytics.js?v=2"></script>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-
-  <!-- ===== NAVIGATION ===== -->
+  <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -244,39 +148,24 @@
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <div class="page-hero page-hero--night" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative;z-index:1">
-      <div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · What We Sell</div>
-      <h1>Staff that never sleeps.<br/>Leads that never go cold.</h1>
-      <p class="svc-lede">One AI employee. Answers in 8 seconds, books the job, chases the quiet ones. $497 a month &mdash; that is the whole offer.</p>
-      
-      <div class="gv gv-spec" role="img" aria-label="One AI employee answers calls, texts and web forms in about eight seconds at any hour, books the job, chases the quiet ones, for 497 dollars a month flat.">
-        <span class="gv-spec__i"><b class="gv-spec__k">ANSWERS</b><span class="gv-spec__v">Calls, texts and web forms</span></span>
-        <span class="gv-spec__i"><b class="gv-spec__k">SPEED</b><span class="gv-spec__v">About 8 seconds, any hour</span></span>
-        <span class="gv-spec__i"><b class="gv-spec__k">THEN</b><span class="gv-spec__v">Books it, chases the quiet ones</span></span>
-        <span class="gv-spec__i"><b class="gv-spec__k">PRICE</b><span class="gv-spec__v">$497/mo flat, month to month</span></span>
+  <div class="page-hero roster-hero">
+    <img class="wm" src="art/watermark.svg" alt="" aria-hidden="true"/><img class="wm wm--l" src="art/watermark.svg" alt="" aria-hidden="true"/>
+    <div class="container">
+      <span class="section-label" style="color:var(--green-accent)">The staff</span>
+      <h1>Five employees. Five names.<br/><em>Hire the ones you need.</em></h1>
+      <p class="lede">Each one does a job a real business pays a real person to do &mdash; badly, late, or not at all. Each has a flat price. None of them call in sick.</p>
+      <div class="payroll">
+        <div class="h"><span>What the humans cost</span><b>$15,600<small>/mo</small></b></div>
+        <div class="mid">VS</div>
+        <div class="a"><span>The whole GreenAI staff</span><b>$1,797<small>/mo</small></b></div>
       </div>
-      <span class="svc-flag">⚡ Flat rate · unlimited leads · no per-call charge</span>
-      <div class="svc-cta-row">
-        <a class="btn btn-primary btn-lg buy" data-sku="employees-front-desk" href="pay.html?sku=employees-front-desk">Get it running &mdash; $497/mo</a>
-        <a class="btn btn-secondary btn-lg" href="catch.html" style="color:#fff;border-color:rgba(255,255,255,.45)">Watch it catch a lead</a>
-      </div>
+      <p style="font-size:.74rem;color:rgba(255,255,255,.45);margin-top:1rem">Human figures are typical Phoenix full-time wages plus payroll taxes, or a typical agency retainer. Yours may differ &mdash; the point is the gap.</p>
     </div>
   </div>
 
-  <main id="main">
-
-    <!-- ===== THE CREW ===== -->
-    <section class="section bg-pale" id="employees" aria-labelledby="emp-h">
-      <div class="container">
-        <div class="text-center" style="margin-bottom:2.5rem">
-          <span class="section-label">The Staff</span>
-          <h2 id="emp-h">Five employees. Five names.<br/>Hire the ones you need.</h2>
-          <div class="section-divider"></div>
-          <p style="max-width:620px;margin:0 auto">Each one does a job you'd otherwise pay a person for. Each has a flat price. None of them call in sick.</p>
-        </div>
-        <div class="roster">
+  <section id="main" class="section bg-pale">
+    <div class="container">
+      <div class="roster">
       <article class="idc reveal tilt" style="--i:0">
         <div class="idc__top"><span class="idc__id">ID 01</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
         <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="8" y="14" width="44" height="30" rx="3" stroke="#2e7d45" stroke-width="1.2"/><line x1="8" y1="24" x2="52" y2="24" stroke="#2e7d45"/><line x1="8" y1="34" x2="52" y2="34" stroke="#2e7d45"/><rect x="70" y="20" width="40" height="26" rx="3" stroke="#2e7d45" stroke-width="1.2"/></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><rect x="30" y="52" width="60" height="18" rx="6" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><path d="M40 52 C40 36 80 36 80 52" stroke="#7de3a4" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="60" cy="61" r="4" fill="#7de3a4"/></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="ripple"><circle cx="60" cy="61" r="12" stroke="#7de3a4" stroke-width="1.2" fill="none"/><circle cx="60" cy="61" r="22" stroke="#7de3a4" stroke-width=".8" fill="none" opacity=".5"/></g><rect x="78" y="30" width="34" height="12" rx="6" fill="#D4AF37"/><text x="95" y="39" font-size="7" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">8 SEC</text></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
@@ -333,8 +222,12 @@
         <a href="billing.html" class="idc__more">See a day in its life &rarr;</a>
       </article>
       </div>
-        <div style="height:3rem"></div>
-        <div class="bundle">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="bundle">
         <span class="section-label" style="color:#7de3a4">All five, one payroll</span>
         <h2>The Full Staff. <em>One invoice.</em></h2>
         <p>Phone answered, leads replied to, ads running, support handled, invoices paid. Everything on this page working together, reporting to you every Monday.</p>
@@ -343,155 +236,20 @@
         <div><a href="pay.html?sku=full-staff" class="btn btn-primary btn-lg" data-sku="full-staff">Hire the Full Staff — $1,797/mo</a></div>
         <div class="bundle__names"><span>RING</span><span>REPLY</span><span>BOOST</span><span>ANSWER</span><span>COLLECT</span></div>
       </div>
-        <p class="text-center" style="font-size:.78rem;color:var(--gray-400);margin-top:1.5rem">Human figures on the cards are typical Phoenix full-time wages plus payroll taxes, or a typical agency retainer. <a href="staff.html">See each employee's day &rarr;</a></p>
-      </div>
-    </section>
-
-    <!-- Circuit divider -->
-    <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-      <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-        <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-        <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-        <circle class="cd-node" cx="290" cy="12" r="3"/>
-        <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-        <circle class="cd-node" cx="850" cy="22" r="3"/>
-        <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-        <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-      </svg>
     </div>
+  </section>
 
-    <!-- ===== THE ARGUMENT — same .cmp decision-layer panel as the homepage ===== -->
-    <section class="section bg-gray" id="compare" aria-labelledby="cmp-h">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-label">Why This Beats The Alternatives</span>
-          <h2 id="cmp-h">There are two ways to buy this today.<br/>Both have a catch.</h2>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="reveal cmp">
-          <div class="cmp__panel">
-            <div class="cmp__top">
-              <span class="cmp__title"><i class="cmp__dot" aria-hidden="true"></i>Decision layer</span>
-              <span class="cmp__mode">5 LINES &#183; 3 WAYS TO BUY</span>
-            </div>
-
-            <table class="cmp__table">
-              <caption class="cmp__cap">How the GreenAI AI Employee compares with a build-it-yourself voice platform and a per-call answering service</caption>
-              <thead>
-                <tr>
-                  <th scope="col" class="cmp__h">What you're comparing</th>
-                  <th scope="col" class="cmp__h cmp__h--them">DIY voice platform<span class="cmp__flag">Typical terms</span></th>
-                  <th scope="col" class="cmp__h cmp__h--them">Per-call answering service<span class="cmp__flag">Typical terms</span></th>
-                  <th scope="col" class="cmp__h cmp__h--us">GreenAI AI Employee<span class="cmp__flag cmp__flag--on">Our terms</span></th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <th scope="row" class="cmp__crit"><span class="cmp__num">01</span>What you pay</th>
-                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$50&ndash;$450/mo plus roughly $0.07&ndash;$0.10 a minute</span></td>
-                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">$95&ndash;$245/mo, then about $3&ndash;$5 every call past a small bundle</span></td>
-                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">One flat monthly fee &mdash; $497</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="cmp__crit"><span class="cmp__num">02</span>A busy month costs you</th>
-                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">More minutes, more money</span></td>
-                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">More calls, more money</span></td>
-                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Exactly the same</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>Who builds it</th>
-                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">You do. It's a toolkit.</span></td>
-                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">They script it generically</span></td>
-                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">We build it around your business</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="cmp__crit"><span class="cmp__num">04</span>Makes outbound calls</th>
-                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Only if you build that too</span></td>
-                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Rarely &mdash; they answer</span></td>
-                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Yes &mdash; that's HUNTER's whole job</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="cmp__crit"><span class="cmp__num">05</span>Nights and weekends</th>
-                <td class="cmp__them"><span class="cmp__who">DIY platform</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Yes</span></td>
-                <td class="cmp__them"><span class="cmp__who">Per-call service</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Often costs extra</span></td>
-                <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Included</span></td>
-              </tr>
-              </tbody>
-            </table>
-
-            <p class="cmp__foot">Competitor figures are the published rates of well-known providers in this category as of August 2026, quoted as ranges because every plan is tiered &mdash; check their current pricing before you decide. Straight answer on where we lose: if you take fewer than about 40 calls a month, a metered plan is cheaper. Past that, metering charges you more for having a good month, and that is the part we think is broken.</p>
-          </div>
-        </div>
+  <section class="section bg-pale">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2rem"><span class="section-label">Why this beats the alternatives</span><h2>Flat. Named. Accountable.</h2></div>
+      <div class="why">
+        <div><h3>Flat, not metered</h3><p>Every competitor charges per call, per minute, per resolution or per percent of ad spend. They earn more when you have a good month. We don't.</p></div>
+        <div><h3>A name on every result</h3><p>Every booked call, every reply, every paid invoice is logged under the employee that did it. Your Monday email reads like a staff report.</p></div>
+        <div><h3>One human behind all five</h3><p>Jaden builds, maintains and answers for every agent. Say the word and it changes that day. No ticket queue, no account manager.</p></div>
       </div>
-    </section>
-
-    <!-- Circuit divider -->
-    <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-      <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-        <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-        <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-        <circle class="cd-node" cx="290" cy="12" r="3"/>
-        <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-        <circle class="cd-node" cx="850" cy="22" r="3"/>
-        <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-        <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-      </svg>
     </div>
+  </section>
 
-    <!-- ===== PRICING ===== -->
-    <section class="section" id="pricing" aria-labelledby="pricing-heading">
-      <div class="container">
-        <div class="text-center reveal">
-          <span class="section-label">The Price</span>
-          <h2 id="pricing-heading">Start with RING.<br/>$497, flat.</h2>
-          <div class="section-divider"></div>
-          <p style="max-width:540px;margin:0 auto 3rem">The one most businesses hire first: the phone answered in 8 seconds, every lead booked. $497 a month, no setup fee, no contract, cancel anytime. Add the rest of the staff whenever you like.</p>
-        </div>
-
-        <div class="reveal offer-panel">
-          <div class="offer-panel__main">
-            <span class="offer-panel__eyebrow">AI Employee &middot; Phoenix service businesses</span>
-            <h3 class="offer-panel__title">Answers every lead in 8 seconds. Books the job. Chases the ones who go quiet.</h3>            <ul class="offer-panel__list" role="list">
-              <li><strong>Every call, text and web form</strong> &mdash; 24 hours a day, nights, weekends and holidays</li>
-              <li><strong>Answered in 8 seconds</strong> &mdash; and it takes two callers at once, so nobody gets a busy signal</li><li><strong>Books into your calendar</strong> &mdash; only the slots you actually have open, with a confirmation to the customer</li>
-              <li><strong>Texts back every missed call</strong> &mdash; then follows up on day 1, 3 and 7, stopping the moment they reply</li>
-              <li><strong>It cannot invent a price</strong> &mdash; a second system checks every number against your price list before anything sends</li>
-              <li><strong>Trained on your services, prices and service area</strong> &mdash; and you approve the script before it goes live</li>
-              <li><strong>Full transcripts in your inbox</strong> &mdash; plus a Monday summary of what came in and what booked</li>
-              <li><strong>Unlimited leads</strong> &mdash; a busy month costs exactly the same as a quiet one</li>
-            </ul>
-          </div>
-          <div class="offer-panel__side">
-            <span class="offer-panel__fig">$497</span>
-            <span class="offer-panel__cad">per month</span>
-            <ul class="offer-panel__terms" role="list">
-              <li>Setup included &mdash; no setup fee</li>
-              <li>No per-call or per-minute charge</li>
-              <li>Month to month, cancel anytime</li>
-              <li>Direct access to Jaden</li>
-            </ul>
-            <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg offer-panel__cta buy" data-sku="employees-front-desk">Get it running &rarr;</a>
-            <a href="catch.html" class="offer-panel__demo">or watch it catch a lead first &#8599;</a>
-          </div>
-        </div>
-
-        <p class="offer-also" style="margin-top:2rem">
-          Not ready to hand over your phone? Read the
-          <a href="faq.html">22 questions people ask</a>, or have me
-          <a href="demo.html">build the demo as your business</a>, free.
-        </p>
-
-        <p class="offer-also">
-          Phones covered already? We also make
-          <a href="service-ai-ads.html">finished ad creative</a> &mdash; a month of angles, ready to run.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">

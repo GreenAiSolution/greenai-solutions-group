@@ -3,86 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hear it answer as your business — free demo — GreenAI Solutions</title>
-  <meta name="description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
+  <title>BOOST — Media-buying agent, $997/mo — GreenAI Solutions Team</title>
+  <meta name="description" content="BOOST — Media-buying agent, $997/mo flat. It writes the ads, runs them, kills the losers, puts more money behind the winners, and sends you one scoreboard " />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=21" />
   <link rel="stylesheet" href="visuals.css?v=1" />
-  <style>
-    /* Demo request — the step between "watched the demo" and "$497 a month".
-       call.html lets them hear a fictional shop; this asks for their own. */
-    .demo-hero { position:relative; overflow:hidden; }
-    .demo-grid { display:grid; grid-template-columns:1fr .92fr; gap:clamp(2.5rem,6vw,5rem); align-items:start; }
-    .demo-steps { list-style:none; margin:2.5rem 0 0; padding:0; max-width:520px; }
-    .demo-steps li { display:grid; grid-template-columns:38px 1fr; gap:1rem; padding:1.15rem 0;
-      border-top:1px solid rgba(26,92,42,.12); }
-    .demo-steps li:first-child { border-top:0; padding-top:0; }
-    .demo-steps b { width:32px; height:32px; display:grid; place-items:center; border-radius:9px;
-      background:var(--green-pale); color:var(--green-dark); font:800 .82rem/1 Inter,sans-serif; }
-    .demo-steps strong { display:block; font-family:var(--font-display); font-size:1.02rem; color:var(--gray-800); }
-    .demo-steps span { display:block; margin-top:.28rem; font-size:.9rem; color:var(--gray-600); line-height:1.6; }
-    .demo-card { background:#fff; border:1px solid rgba(26,92,42,.13); border-radius:18px;
-      box-shadow:0 28px 70px rgba(6,31,16,.1); padding:clamp(1.5rem,3vw,2.2rem); }
-    .demo-card h2 { font-size:1.35rem; margin:0 0 .4rem; }
-    .demo-card > p { font-size:.9rem; color:var(--gray-600); margin:0 0 1.5rem; }
-    .demo-card input, .demo-card select, .demo-card textarea { border-radius:10px; background:#fbfdfc; }
-    .demo-card .form-submit { width:100%; justify-content:center; background:#123f22; border-color:#123f22; }
-    .demo-fine { margin-top:1rem; font-size:.78rem; color:var(--gray-400); line-height:1.6; text-align:center; }
-    .demo-free { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .9rem; border-radius:100px;
-      background:var(--green-pale); color:var(--green-dark); font-size:.75rem; font-weight:800;
-      letter-spacing:.06em; text-transform:uppercase; margin-bottom:1rem; }
-    .demo-alt { max-width:820px; margin:4rem auto 0; padding:1.6rem 1.8rem; border-radius:16px;
-      border:1px solid rgba(26,92,42,.14); background:var(--green-pale); display:flex; flex-wrap:wrap;
-      align-items:center; gap:1rem 1.5rem; }
-    .demo-alt p { margin:0; flex:1 1 300px; font-size:.94rem; color:var(--gray-800); }
-    @media (max-width:900px) { .demo-grid { grid-template-columns:1fr; } }
-  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="canonical" href="https://greenaidigital.com/demo.html" />
-
-  <!-- Open Graph -->
+  <link rel="canonical" href="https://greenaidigital.com/ads.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://greenaidigital.com/demo.html" />
-  <meta property="og:title" content="Hear it answer as your business — free demo — GreenAI Solutions" />
-  <meta property="og:description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
+  <meta property="og:url" content="https://greenaidigital.com/ads.html" />
+  <meta property="og:title" content="BOOST — Media-buying agent, $997/mo — GreenAI Solutions Team" />
+  <meta property="og:description" content="BOOST — Media-buying agent, $997/mo flat. It writes the ads, runs them, kills the losers, puts more money behind the winners, and sends you one scoreboard " />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="GreenAI Solutions — one AI employee answers every lead in 8 seconds, $497 a month." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hear it answer as your business — free demo — GreenAI Solutions" />
-  <meta name="twitter:description" content="Free, no card: tell me your trade and service area and I build the AI employee as your business, then email you the call recording and transcript within one business day." />
-  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://greenaidigital.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Free demo",
-      "item": "https://greenaidigital.com/demo.html"
-    }
-  ]
-}
-  </script>
-  <script src="analytics.js?v=2"></script>
+
+  <style>
+    .page-hero .wm { position:absolute; right:-140px; top:-120px; width:620px; height:620px; opacity:.08; pointer-events:none; animation: wmspin 90s linear infinite; z-index:0; }
+    .page-hero .wm--l { right:auto; left:-220px; top:auto; bottom:-260px; width:520px; height:520px; opacity:.05; animation-direction:reverse; }
+    @keyframes wmspin { to { transform: rotate(360deg) } }
+    @media (prefers-reduced-motion: reduce) { .page-hero .wm { animation:none } }
+    .cap-hero h1 em { font-style: italic; color: #D4AF37; }
+    .cap-hero .page-hero-lede { max-width: 640px; }
+    .cap-big { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:900px; margin:2.5rem auto 0; }
+    .cap-big div { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:1.4rem 1rem; }
+    .cap-big b { display:block; font-family:'Playfair Display',serif; font-size:2.6rem; line-height:1; color:#7de3a4; margin-bottom:.45rem; }
+    .cap-big span { font-size:.85rem; color:rgba(255,255,255,.7); line-height:1.4; display:block; }
+    .cap-ghost { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.35); color:#fff; }
+    .cap-ghost:hover { background:rgba(125,227,164,.15); border-color:#7de3a4; color:#fff; }
+    .cap-hero .features-grid, .cap-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:1000px; margin:0 auto; }
+    .badge { display:inline-flex; flex-direction:column; align-items:center; gap:.2rem; padding:.9rem 1.6rem; margin-bottom:1.5rem; border:1px solid rgba(212,175,55,.45); border-radius:12px; background:linear-gradient(180deg,rgba(212,175,55,.12),rgba(212,175,55,.03)); box-shadow:0 0 0 4px rgba(212,175,55,.06), 0 20px 40px rgba(0,0,0,.3); }
+    .badge__id { font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.22em; color:rgba(212,175,55,.8); }
+    .badge b { font-family:'Playfair Display',serif; font-size:1.7rem; letter-spacing:.08em; color:#fff; }
+    .badge__role { font-size:.78rem; color:rgba(255,255,255,.65); letter-spacing:.04em; }
+    .vs { display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:1rem; max-width:760px; margin:2.5rem auto 0; }
+    .vs__col { border-radius:14px; padding:1.25rem 1rem; text-align:center; }
+    .vs__col span { display:block; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.4rem; }
+    .vs__col b { display:block; font-family:'Playfair Display',serif; font-size:2.6rem; line-height:1; }
+    .vs__col b small { font-size:1rem; font-family:Inter,sans-serif; font-weight:500; opacity:.7; }
+    .vs__col em { display:block; font-style:normal; font-size:.8rem; margin-top:.5rem; color:#7de3a4; }
+    .vs__col--human { background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.25); color:rgba(255,255,255,.6); }
+    .vs__col--human b { color:rgba(255,255,255,.55); text-decoration:line-through; text-decoration-color:rgba(255,95,95,.8); text-decoration-thickness:3px; }
+    .vs__col--agent { background:rgba(125,227,164,.08); border:1px solid rgba(125,227,164,.5); color:#fff; box-shadow:0 0 40px rgba(125,227,164,.12); }
+    .vs__col--agent b { color:#7de3a4; }
+    .vs__mid { align-self:center; font:800 .8rem/1 Inter,sans-serif; letter-spacing:.2em; color:rgba(255,255,255,.4); }
+    @media (max-width:640px) { .vs { grid-template-columns:1fr; } .vs__mid { display:none; } }
+    .cap-cta { display:flex; flex-wrap:wrap; gap:.85rem; justify-content:center; margin-top:2.25rem; }
+    .cap-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1000px; margin:0 auto; }
+    .cap-step { position:relative; padding:1.5rem 1.5rem 1.5rem 1.5rem; border-left:3px solid var(--green-accent,#4caf6e); background:var(--white,#fff); border-radius:0 14px 14px 0; box-shadow:0 10px 30px rgba(0,0,0,.05); }
+    .cap-step time { font:700 .72rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; color:var(--green-accent,#4caf6e); text-transform:uppercase; }
+    .cap-step h3 { font-size:1.08rem; margin:.6rem 0 .4rem; }
+    .cap-step p { font-size:.92rem; color:var(--gray-600,#555); margin:0; }
+    .cap-demo { max-width:640px; margin:0 auto; background:#071a0e; border:1px solid rgba(125,227,164,.25); border-radius:18px; padding:1.5rem; box-shadow:0 30px 70px rgba(0,0,0,.35); }
+    .cap-demo__row { display:flex; gap:.9rem; padding:.6rem 0; border-bottom:1px solid rgba(255,255,255,.06); }
+    .cap-demo__row:last-child { border-bottom:0; }
+    .cap-demo__who { flex:0 0 96px; font:700 .68rem/1.6 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; color:#D4AF37; }
+    .cap-demo__row.ai .cap-demo__who { color:#7de3a4; }
+    .cap-demo__txt { color:rgba(255,255,255,.88); font-size:.95rem; line-height:1.55; }
+    .cap-price { text-align:center; max-width:640px; margin:0 auto; }
+    .cap-price .n { font-family:'Playfair Display',serif; font-size:4rem; line-height:1; color:var(--green-dark,#0d2e14); }
+    .cap-price .n small { font-size:1.2rem; color:var(--gray-600,#555); font-family:Inter,sans-serif; font-weight:500; }
+    .cap-price p { color:var(--gray-600,#555); margin:.75rem auto 1.5rem; }
+    .cap-others { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; max-width:1000px; margin:0 auto; }
+    .cap-others a { display:block; padding:1.1rem 1.2rem; border-radius:12px; border:1px solid rgba(26,92,42,.15); text-decoration:none; color:var(--gray-800,#222); background:var(--white,#fff); transition:.2s; }
+    .cap-others a:hover { border-color:var(--green-accent,#4caf6e); transform:translateY(-2px); }
+    .cap-others a b { display:block; font-size:1rem; color:var(--green-dark,#0d2e14); }
+    .cap-others a span { font-size:.82rem; color:var(--gray-600,#555); }
+    @media (max-width: 860px) { .cap-big, .cap-steps, .cap-cards { grid-template-columns:1fr; } .cap-others { grid-template-columns:1fr 1fr; } .cap-price .n { font-size:3rem; } }
+    @media (max-width: 520px) { .cap-others { grid-template-columns:1fr; } }
+  </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-  <!-- ===== NAVIGATION ===== -->
+  <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -121,107 +116,64 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero demo-hero">
+  <div class="page-hero cap-hero">
+    <img class="wm" src="art/watermark.svg" alt="" aria-hidden="true"/><img class="wm wm--l" src="art/watermark.svg" alt="" aria-hidden="true"/>
     <div class="container">
-      <span class="section-label" style="color:var(--green-accent)">Free &middot; no card &middot; no obligation</span>
-      <h1>Hear it answer<br/><em>as your business.</em></h1>
-      <p>The demo on this site answers as a made-up landscaper. This one answers as yours. Built by hand, back within one business day.</p>
-      <div class="gv gv-rail" role="img" aria-label="Four steps: you fill six boxes in two minutes, I build it as your business the same day, you get a call recording and transcript by email, then you decide.">
-        <span class="gv-tag">How it goes</span>
-        <div class="gv-rail__track">
-        <div class="gv-rail__line"></div>
-        <div class="gv-rail__pulse"></div>
-        <div class="gv-rail__stops">
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">2 MIN</b><b class="gv-stop__t">Six boxes</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">SAME DAY</b><b class="gv-stop__t">I build it</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">EMAILED</b><b class="gv-stop__t">Call + transcript</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">YOURS</b><b class="gv-stop__t">You decide</b></span>
-        </div>
-        </div>
+      <div class="badge"><span class="badge__id">GREENAI STAFF &middot; ID 03</span><b>BOOST</b><span class="badge__role">Media-buying agent &middot; Runs your ads</span></div>
+      <h1>Ads that <em>test themselves.</em></h1>
+      <p class="page-hero-lede">It writes the ads, runs them, kills the losers, puts more money behind the winners, and sends you one scoreboard a month with a name on it: which ad made the phone ring.</p>
+      <div class="cap-big"><div><b>10–60</b><span>finished ads a month, ready to run</span></div><div><b>1</b><span>monthly Winner Report</span></div><div><b>100%</b><span>of the files are yours</span></div></div>
+      <div class="gv gv-spec" style="margin-top:2rem"><span class="gv-spec__i"><b class="gv-spec__k">MAKES</b><span class="gv-spec__v">Video, image, caption, hook</span></span><span class="gv-spec__i"><b class="gv-spec__k">RUNS ON</b><span class="gv-spec__v">Meta, Google, TikTok</span></span><span class="gv-spec__i"><b class="gv-spec__k">DECIDES</b><span class="gv-spec__v">Weekly, by results</span></span><span class="gv-spec__i"><b class="gv-spec__k">REPORTS</b><span class="gv-spec__v">Monthly, one page</span></span></div>
+      <div class="vs">
+        <div class="vs__col vs__col--human"><span>an ad agency retainer — plus their 15% of spend</span><b>$2,500<small>/mo</small></b></div>
+        <div class="vs__mid">vs</div>
+        <div class="vs__col vs__col--agent"><span>BOOST</span><b>$997<small>/mo</small></b><em>keeps $1,503 a month in your pocket</em></div>
       </div>
-
+      <div class="cap-cta">
+        <a href="pay.html?sku=agent-boost" class="btn btn-primary btn-lg" data-sku="agent-boost">Hire BOOST — $997/mo</a>
+        <a href="scoreboard-sample.html" class="btn btn-lg cap-ghost">See a sample scoreboard</a>
+      </div>
     </div>
   </div>
 
-  <section id="main" class="section">
+  <section id="main" class="section bg-pale">
     <div class="container">
-      <div class="demo-grid">
-        <div>
-          <span class="section-label">What you get back</span>
-          <h2>A recording and a transcript. That is the whole thing.</h2>
-          <div class="section-divider section-divider--left"></div>
-          <ol class="demo-steps">
-            <li><b>01</b><div><strong>You fill in six boxes</strong><span>Your trade, your area, the questions you get asked most. Two minutes.</span></div></li>
-            <li><b>02</b><div><strong>I build it as your business</strong><span>Your name, services, area and prices. Not a template with your name pasted in.</span></div></li>
-            <li><b>03</b><div><strong>You get a call recording and the transcript</strong><span>A customer calls your shop after hours and it handles them. Emailed to you.</span></div></li>
-            <li><b>04</b><div><strong>You decide, or you do not</strong><span>Keep the recording either way. Say no and the follow-up stops there.</span></div></li>
-          </ol>
-        </div>
+      <div class="text-center" style="margin-bottom:2.5rem"><span class="section-label">One ordinary day</span><h2>What actually happens</h2></div>
+      <div class="cap-steps"><div class="cap-step reveal"><time>Week 1</time><h3>Ten ads go live, five angles.</h3><p>Different hook, same offer. Nobody knows which wins yet — that's the point.</p></div><div class="cap-step reveal"><time>Week 2</time><h3>Three are losing. They're paused.</h3><p>Budget moves to the two that are booking calls. No meeting needed.</p></div><div class="cap-step reveal"><time>Month end</time><h3>One-page scoreboard.</h3><p>“The ‘same-day’ angle booked 14 calls at $23 each.” That's what next month gets more of.</p></div></div>
+    </div>
+  </section>
 
-        <div class="demo-card">
-          <span class="demo-free">Costs nothing</span>
-          <h2>Build mine</h2>
-          <p>Everything marked * is required. The rest just makes it sound more like you.</p>
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2.5rem"><span class="section-label">How it behaves</span><h2>The rules it works inside</h2></div>
+      <div class="cap-cards"><div class="feature-card reveal"><h3>Every ad has a name</h3><p>Each creative is tagged so the scoreboard can say which one earned the call, not just “ads worked.”</p></div><div class="feature-card reveal"><h3>Loser rule</h3><p>An ad that hasn't produced in 7 days at full budget gets paused. Automatically.</p></div><div class="feature-card reveal"><h3>Winner rule</h3><p>An ad beating the average gets more budget the following week. Also automatically.</p></div><div class="feature-card reveal"><h3>Ad spend is yours</h3><p>We charge for the work. The money that goes to Meta or Google goes from your card, never marked up.</p></div></div>
+    </div>
+  </section>
 
-          <form class="js-contact-form" action="https://greenai-forms.vercel.app/api/submit" method="POST" novalidate aria-label="Demo request form"
-                data-form="demo" data-source="greenaidigital.com/demo.html"
-                data-redirect="thankyou.html?demo=1">
-            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+  <section class="section bg-dark">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2.5rem"><span class="section-label" style="color:var(--green-accent)">Sample</span><h2 style="color:#fff">What it looks like</h2></div>
+      <div class="cap-demo"><div class="cap-demo__row"><div class="cap-demo__who">Report</div><div class="cap-demo__txt">Winner Report — July</div></div><div class="cap-demo__row"><div class="cap-demo__who">#1</div><div class="cap-demo__txt">“Same-day service” reel — 14 calls, $23/call</div></div><div class="cap-demo__row"><div class="cap-demo__who">#2</div><div class="cap-demo__txt">“Before & after” carousel — 9 calls, $31/call</div></div><div class="cap-demo__row"><div class="cap-demo__who">Paused</div><div class="cap-demo__txt">“10% off” static — 1 call, $210/call</div></div><div class="cap-demo__row"><div class="cap-demo__who">Next month</div><div class="cap-demo__txt">More of #1. Two new angles to test against it.</div></div></div>
+    </div>
+  </section>
 
-            <div class="form-group">
-              <label for="d-business">Business name *</label>
-              <input type="text" id="d-business" name="business" placeholder="e.g. Red Rock Plumbing" required autocomplete="organization" />
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="d-trade">What you do *</label>
-                <select id="d-trade" name="trade" required>
-                  <option value="">Choose one&hellip;</option>
-                  <option>Plumbing</option><option>HVAC</option><option>Landscaping / lawn</option>
-                  <option>Pool service</option><option>Electrical</option><option>Roofing</option>
-                  <option>Garage / auto</option><option>Cleaning</option><option>Salon / spa</option>
-                  <option>General contracting</option><option>Something else</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="d-area">Service area</label>
-                <input type="text" id="d-area" name="service_area" placeholder="Gilbert, Mesa, Chandler" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="d-email">Where do I send it? *</label>
-              <input type="email" id="d-email" name="email" placeholder="you@yourbusiness.com" required autocomplete="email" />
-            </div>
-
-            <div class="form-group">
-              <label for="d-phone">Phone (optional)</label>
-              <input type="tel" id="d-phone" name="phone" placeholder="(480) 555-0100" autocomplete="tel" />
-            </div>
-
-            <div class="form-group">
-              <label for="d-asked">What do people always ask you?</label>
-              <textarea id="d-asked" name="always_asked" rows="4" placeholder="Do you come out to Queen Creek? What does a water heater run? Can you get here today?"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary form-submit">Build mine &rarr;</button>
-            <p class="demo-fine">No card, no call, no obligation. Your details build the demo and email it to you &mdash; nothing else. See the
-              <a href="privacy.html">privacy policy</a>.</p>
-          </form>
-        </div>
-      </div>
-
-      <div class="demo-alt">
-        <p><strong>Don't want to wait? The demo on this site is a working call that runs in your browser right now.</p>
-        <a href="call.html" class="btn btn-primary">Call the AI now</a>
-        <a href="faq.html" class="btn btn-secondary">Read the questions first</a>
+  <section class="section">
+    <div class="container">
+      <div class="cap-price">
+        <div class="n">$997<small>/month, flat</small></div>
+        <p>Agencies take a cut of spend, so they earn more when you spend more. This one is flat. No setup fee, no per-use charges, cancel any time. Or hire the whole staff for $1,797/mo.</p>
+        <a href="pay.html?sku=agent-boost" class="btn btn-primary btn-lg" data-sku="agent-boost">Hire BOOST — $997/mo</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <section class="section bg-pale section--sm">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:1.5rem"><span class="section-label">The rest of the staff</span><h2>Four more you can hire</h2></div>
+      <div class="cap-others"><a href="phone.html"><b>RING</b><span>Answers the phone &middot; $497/mo</span></a><a href="leads.html"><b>REPLY</b><span>Replies to every lead &middot; $397/mo</span></a><a href="support.html"><b>ANSWER</b><span>Handles support &middot; $347/mo</span></a><a href="billing.html"><b>COLLECT</b><span>Sends invoices, chases late ones &middot; $297/mo</span></a></div>
+    </div>
+  </section>
+
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
@@ -304,48 +256,6 @@
   </footer>
 
   <script src="script.js?v=13"></script>
-
-  <!-- Someone clicked a price on a service page before card checkout was live.
-       checkout.js sent the SKU along as ?want=; turn it into a preselected
-       service, a filled-in first line, and a plain explanation of what
-       happened, so the click lands as a real enquiry instead of a bounce. -->
-  <script>
-  (function () {
-    var WANT = {
-      'employees-front-desk': { pick: 'employees', name: 'AI Employee', price: '$497/mo' },
-      'quote':                { pick: 'unsure',    name: 'A quote for something else', price: 'quoted per job' },
-      'ads-starter':          { pick: 'ads',       name: 'AI Ad Creation — Starter', price: '$697/mo' },
-      'ads-growth':           { pick: 'ads',       name: 'AI Ad Creation — Growth',  price: '$1,297/mo' },
-      'ads-scale':            { pick: 'ads',       name: 'AI Ad Creation — Scale',   price: '$2,497/mo' }
-    };
-
-    var sku = new URLSearchParams(window.location.search).get('want');
-    var want = sku && WANT[sku];
-    if (!want) return;
-
-    var label = want.name + ' · ' + want.price;
-
-    var note = document.getElementById('wantNote');
-    var title = document.getElementById('wantTitle');
-    if (note && title) { title.textContent = 'You picked: ' + label; note.hidden = false; }
-
-    var body = document.getElementById('wantBody');
-    if (body && want.note) body.textContent = want.note;
-
-    /* Tell Jaden which plan it was, even if they rewrite the message. */
-    var hidden = document.getElementById('wantedPlan');
-    if (hidden) hidden.value = label;
-
-    var select = document.getElementById('service');
-    if (select) select.value = want.pick;
-
-    var msg = document.getElementById('message');
-    if (msg && !msg.value) {
-      msg.value = 'I want to start ' + want.name + ' (' + want.price + ').\n\nAbout my business: ';
-      /* Land the cursor where they need to type. */
-      try { msg.focus({ preventScroll: true }); msg.setSelectionRange(msg.value.length, msg.value.length); } catch (e) {}
-    }
-  })();
-  </script>
+  <script src="checkout.js?v=4"></script>
 </body>
 </html>

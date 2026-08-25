@@ -1,0 +1,198 @@
+/* ==========================================================================
+   visuals.css — GreenAI visual devices
+   Diagrams that carry meaning so the copy doesn't have to. Self-contained,
+   no libraries, no images. Prefix: .gv-
+   Dark by default (the site's sections are dark); add .gv-light on a device
+   sitting on bg-gray / bg-pale.
+   ========================================================================== */
+
+.gv{
+  --gv-ink:      #eef2ee;
+  --gv-dim:      rgba(238,242,238,.58);
+  --gv-faint:    rgba(238,242,238,.13);
+  --gv-line:     rgba(238,242,238,.16);
+  --gv-panel:    rgba(255,255,255,.035);
+  --gv-accent:   #4caf6e;
+  --gv-accent-2: #4dd0e1;
+  --gv-gold:     #d4af37;
+  --gv-mono:     ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  color: var(--gv-ink);
+  margin: 2.6rem 0 0;
+}
+.gv-light{
+  --gv-ink:   #16281c;
+  --gv-dim:   rgba(22,40,28,.62);
+  --gv-faint: rgba(22,40,28,.10);
+  --gv-line:  rgba(22,40,28,.14);
+  --gv-panel: rgba(13,50,25,.035);
+}
+
+/* micro label + caption -------------------------------------------------- */
+.gv-tag{
+  font: 600 .62rem/1 var(--gv-mono);
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gv-dim); display:block; margin-bottom:.9rem;
+}
+.gv-cap{
+  font-size:.82rem; line-height:1.5; color:var(--gv-dim);
+  margin:1rem 0 0; max-width:62ch;
+}
+
+/* ---------- 1. THE RAIL: a lead moving through the stages --------------- */
+.gv-rail{ padding:.5rem 0 .25rem; }
+.gv-rail__track{ position:relative; }
+.gv-rail__line{
+  position:absolute; left:0; right:0; top:19px; height:2px;
+  background:linear-gradient(90deg,var(--gv-faint),var(--gv-line),var(--gv-faint));
+  border-radius:2px;
+}
+.gv-rail__pulse{
+  position:absolute; top:14px; left:0; width:12px; height:12px; border-radius:50%;
+  background:var(--gv-accent);
+  box-shadow:0 0 0 5px rgba(76,175,110,.16), 0 0 18px 3px rgba(76,175,110,.55);
+  animation:gvRun 7s cubic-bezier(.65,0,.35,1) infinite;
+}
+@keyframes gvRun{
+  0%{left:0;opacity:0}     6%{opacity:1}
+  20%{left:25%}  40%{left:50%}  60%{left:75%}
+  82%{left:100%;opacity:1} 92%{left:100%;opacity:0} 100%{left:0;opacity:0}
+}
+.gv-rail__stops{
+  position:relative; display:grid; gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+}
+.gv-stop{ text-align:left; }
+.gv-stop__dot{
+  display:block; width:14px;height:14px;border-radius:50%;
+  background:var(--gv-panel); border:2px solid var(--gv-line);
+  margin:13px 0 1rem; position:relative; z-index:1;
+}
+.gv-stop:first-child .gv-stop__dot{ border-color:var(--gv-accent); }
+.gv-stop:last-child  .gv-stop__dot{ border-color:var(--gv-gold); }
+.gv-stop__n{
+  font:600 .6rem/1 var(--gv-mono); letter-spacing:.14em;
+  color:var(--gv-dim); display:block; margin-bottom:.35rem;
+}
+.gv-stop__t{ font-weight:700; font-size:1rem; letter-spacing:-.01em; display:block; }
+.gv-stop__d{ font-size:.82rem; line-height:1.45; color:var(--gv-dim); margin:.3rem 0 0; }
+
+/* ---------- 2. THE TICK: two moments on a clock ------------------------- */
+.gv-tick{ position:relative; margin-top:1.75rem; }
+.gv-tick__bar{
+  height:3px; border-radius:3px; position:relative;
+  background:linear-gradient(90deg,var(--gv-accent) 0 6%,var(--gv-line) 6% 100%);
+}
+.gv-tick__marks{ display:flex; justify-content:space-between; margin-top:.85rem; gap:1rem; }
+.gv-tick__m{ flex:1; }
+.gv-tick__m:last-child{ text-align:right; }
+.gv-tick__time{
+  font:700 .68rem/1 var(--gv-mono); letter-spacing:.12em;
+  color:var(--gv-accent); display:block; margin-bottom:.3rem;
+}
+.gv-tick__m--lost .gv-tick__time{ color:var(--gv-dim); }
+.gv-tick__lbl{ font-size:.84rem; line-height:1.4; color:var(--gv-ink); }
+.gv-tick__m--lost .gv-tick__lbl{ color:var(--gv-dim); text-decoration:line-through; text-decoration-thickness:1px; }
+.gv-tick__pip{
+  position:absolute; top:-4px; width:11px; height:11px; border-radius:50%;
+  background:var(--gv-accent); box-shadow:0 0 0 4px rgba(76,175,110,.18);
+}
+.gv-tick__pip--a{ left:calc(6% - 5px); }
+.gv-tick__pip--b{ right:-5px; background:transparent; border:2px solid var(--gv-line); box-shadow:none; }
+
+/* ---------- 3. THE LOOP: observe / decide / act / improve --------------- */
+.gv-loop{
+  display:grid; gap:.75rem;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  counter-reset:gvl;
+}
+.gv-loop__step{
+  position:relative; padding:1.05rem 1.1rem;
+  border:1px solid var(--gv-line); border-radius:14px;
+  background:var(--gv-panel);
+}
+.gv-loop__step::after{
+  content:'→'; position:absolute; right:-.72rem; top:50%; transform:translateY(-50%);
+  font-size:.9rem; color:var(--gv-line); z-index:2;
+}
+.gv-loop__step:last-child::after{ content:'↺'; color:var(--gv-accent); }
+.gv-loop__n{ font:600 .58rem/1 var(--gv-mono); letter-spacing:.16em; color:var(--gv-accent); }
+.gv-loop__t{ display:block; font-weight:700; margin:.5rem 0 .2rem; }
+.gv-loop__d{ font-size:.78rem; color:var(--gv-dim); line-height:1.4; }
+
+/* ---------- 4. THE GANTT: what happens in which week -------------------- */
+.gv-gantt{ display:grid; gap:.55rem; }
+.gv-gantt__head{
+  display:grid; grid-template-columns:9.5rem 1fr 1fr;
+  font:600 .6rem/1 var(--gv-mono); letter-spacing:.14em; color:var(--gv-dim);
+  padding-bottom:.5rem; border-bottom:1px solid var(--gv-line);
+}
+.gv-gantt__row{ display:grid; grid-template-columns:9.5rem 1fr; align-items:center; gap:.9rem; }
+.gv-gantt__lbl{ font-size:.85rem; font-weight:600; }
+.gv-gantt__lbl small{ display:block; font-weight:400; font-size:.74rem; color:var(--gv-dim); margin-top:.15rem; }
+.gv-gantt__track{ position:relative; height:26px; border-radius:6px; background:var(--gv-faint); overflow:hidden; }
+.gv-gantt__fill{
+  position:absolute; top:0; bottom:0; border-radius:6px;
+  background:linear-gradient(90deg,rgba(76,175,110,.85),rgba(35,107,53,.85));
+}
+.gv-gantt__fill--you{ background:linear-gradient(90deg,rgba(212,175,55,.8),rgba(212,175,55,.45)); }
+@media (max-width:640px){
+  .gv-gantt__row{ grid-template-columns:1fr; gap:.35rem; }
+  .gv-gantt__head{ display:none; }
+}
+
+/* ---------- 5. THE GUARD: a value gets checked before it leaves --------- */
+.gv-guard{ display:flex; align-items:stretch; gap:0; flex-wrap:wrap; }
+.gv-guard__box{
+  flex:1 1 150px; padding:1rem 1.05rem;
+  border:1px solid var(--gv-line); background:var(--gv-panel);
+}
+.gv-guard__box:first-child{ border-radius:14px 0 0 14px; }
+.gv-guard__box:last-child{ border-radius:0 14px 14px 0; border-color:rgba(212,175,55,.5); }
+.gv-guard__box + .gv-guard__box{ border-left:none; }
+.gv-guard__k{ font:600 .58rem/1 var(--gv-mono); letter-spacing:.15em; color:var(--gv-dim); }
+.gv-guard__v{ display:block; font-weight:700; font-size:1.02rem; margin-top:.5rem; }
+.gv-guard__v--strike{ text-decoration:line-through; text-decoration-thickness:2px; color:var(--gv-dim); }
+.gv-guard__v--stop{ color:var(--gv-gold); }
+@media (max-width:640px){
+  .gv-guard__box, .gv-guard__box:first-child, .gv-guard__box:last-child{ border-radius:12px; }
+  .gv-guard__box + .gv-guard__box{ border-left:1px solid var(--gv-line); margin-top:.5rem; }
+}
+
+/* ---------- 6. THE SPEC STRIP: facts instead of a paragraph ------------- */
+.gv-spec{
+  display:grid; gap:0;
+  grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
+  border-top:1px solid var(--gv-line);
+}
+.gv-spec__i{ padding:1rem 1.1rem 1.05rem; border-bottom:1px solid var(--gv-line); }
+.gv-spec__k{ font:600 .58rem/1 var(--gv-mono); letter-spacing:.15em; color:var(--gv-dim); display:block; }
+.gv-spec__v{ display:block; margin-top:.5rem; font-size:.92rem; line-height:1.4; font-weight:600; }
+
+/* ---------- 7. THE COUNT: one number doing the talking ------------------ */
+.gv-count{ display:flex; flex-wrap:wrap; gap:2.4rem; align-items:flex-start; }
+.gv-count__i{ min-width:92px; }
+.gv-count__n{
+  display:block; font-family:var(--font-display),Georgia,serif;
+  font-size:clamp(2.6rem,6vw,3.9rem); line-height:.9; letter-spacing:-.03em;
+}
+.gv-count__n em{ font-style:normal; color:var(--gv-accent); }
+.gv-count__n .gv-zero{ color:var(--gv-gold); }
+.gv-count__k{
+  display:block; margin-top:.65rem; font:600 .6rem/1.4 var(--gv-mono);
+  letter-spacing:.13em; text-transform:uppercase; color:var(--gv-dim); max-width:14ch;
+}
+
+/* ---------- 8. THE METER: a simple honest comparison bar ---------------- */
+.gv-meter{ display:grid; gap:.9rem; }
+.gv-meter__row{ display:grid; grid-template-columns:8.5rem 1fr auto; align-items:center; gap:.9rem; }
+.gv-meter__k{ font:600 .62rem/1.3 var(--gv-mono); letter-spacing:.1em; color:var(--gv-dim); text-transform:uppercase; }
+.gv-meter__bar{ height:10px; border-radius:10px; background:var(--gv-faint); overflow:hidden; }
+.gv-meter__fill{ height:100%; border-radius:10px; background:linear-gradient(90deg,var(--gv-accent),rgba(35,107,53,.9)); }
+.gv-meter__fill--alt{ background:linear-gradient(90deg,rgba(212,175,55,.75),rgba(212,175,55,.35)); }
+.gv-meter__v{ font:700 .8rem/1 var(--gv-mono); }
+@media (max-width:640px){ .gv-meter__row{ grid-template-columns:1fr auto; } .gv-meter__bar{ grid-column:1/-1; } }
+
+@media (prefers-reduced-motion:reduce){
+  .gv-rail__pulse{ animation:none; left:100%; }
+  .gv *{ transition:none !important; }
+}

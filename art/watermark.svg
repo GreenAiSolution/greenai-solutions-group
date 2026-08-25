@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" fill="none">
+  <defs>
+    <linearGradient id="wmGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3DF9A"/><stop offset="1" stop-color="#B8912E"/></linearGradient>
+    <linearGradient id="wmGreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7DE3A4"/><stop offset="1" stop-color="#1A5C2A"/></linearGradient>
+    <path id="wmArcTop" d="M60 200 A140 140 0 0 1 340 200"/>
+    <path id="wmArcBot" d="M340 200 A140 140 0 0 1 60 200"/>
+  </defs>
+  <!-- outer orbit ring -->
+  <circle cx="200" cy="200" r="186" stroke="url(#wmGold)" stroke-width="1" stroke-dasharray="2 6" opacity=".9"/>
+  <circle cx="200" cy="200" r="160" stroke="url(#wmGold)" stroke-width=".8" opacity=".55"/>
+  <!-- arc wordmark -->
+  <text font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800" letter-spacing="7" fill="url(#wmGold)">
+    <textPath href="#wmArcTop" startOffset="50%" text-anchor="middle">GREENAI SOLUTIONS</textPath>
+  </text>
+  <text font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="6" fill="url(#wmGold)" opacity=".8">
+    <textPath href="#wmArcBot" startOffset="50%" text-anchor="middle">EST. GILBERT, ARIZONA · AI STAFF</textPath>
+  </text>
+  <!-- twin hexagons -->
+  <polygon points="200,88 297,144 297,256 200,312 103,256 103,144" stroke="url(#wmGreen)" stroke-width="2.2"/>
+  <polygon points="200,106 281,153 281,247 200,294 119,247 119,153" stroke="url(#wmGreen)" stroke-width=".9" opacity=".6"/>
+  <!-- circuit ticks on the hex vertices -->
+  <g stroke="url(#wmGold)" stroke-width="2" stroke-linecap="round">
+    <line x1="297" y1="144" x2="318" y2="132"/><line x1="297" y1="256" x2="318" y2="268"/>
+    <line x1="103" y1="144" x2="82" y2="132"/><line x1="103" y1="256" x2="82" y2="268"/>
+    <line x1="200" y1="88" x2="200" y2="66"/><line x1="200" y1="312" x2="200" y2="334"/>
+  </g>
+  <g fill="url(#wmGold)"><circle cx="318" cy="132" r="3"/><circle cx="318" cy="268" r="3"/><circle cx="82" cy="132" r="3"/><circle cx="82" cy="268" r="3"/><circle cx="200" cy="66" r="3"/><circle cx="200" cy="334" r="3"/></g>
+  <!-- the G as a circuit trace -->
+  <path d="M248 160 C232 146 176 140 156 176 C138 208 152 254 200 258 C238 260 252 232 250 212 L206 212" stroke="url(#wmGreen)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M248 160 C232 146 176 140 156 176 C138 208 152 254 200 258 C238 260 252 232 250 212 L206 212" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+  <circle cx="206" cy="212" r="6" fill="url(#wmGold)"/><circle cx="248" cy="160" r="6" fill="url(#wmGold)"/>
+  <!-- AI node -->
+  <circle cx="200" cy="200" r="4" fill="#7DE3A4"/>
+</svg>
