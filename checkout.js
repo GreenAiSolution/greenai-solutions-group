@@ -25,11 +25,17 @@
   var PORTAL = 'pay.html';
 
   /* ---- THE CARD RAIL SWITCH ------------------------------------------
-     ON since 2026-08-22: every SKU below is a live Payment Link in
-     **Green AI Solutions Inc.** (acct_1U7U3XQKwkBwdEjz) — Jaden's own
-     company, verified and taking charges. The checkout page was loaded and
-     confirmed reading "Green AI Solutions Inc." at $497/mo before this
-     went in.
+     ON since 2026-08-22: every SKU below is a live Payment Link in Stripe
+     account acct_1U7U3XQKwkBwdEjz — Jaden's own, verified and taking charges.
+
+     THE SELLER IS A SOLE PROPRIETOR, NOT A CORPORATION (confirmed 2026-08-25).
+     Stripe has this account as business_type "individual": no company name, no
+     EIN, verified personally as Jaden Green. The account's display name had
+     been typed as "Green AI Solutions Inc." and that wording had spread to the
+     billing lines and to every Payment Link's agreement text, so the site was
+     telling customers they were buying from a corporation that was never
+     filed. All of it now reads "Jaden Green, doing business as GreenAI
+     Solutions". Do not reintroduce "Inc." unless a real filing exists.
 
      Set it back to false to park the card rail: every SKU then falls
      through to the invoice portal / intake form below, which works on its
@@ -49,24 +55,24 @@
      WHY THE BILLING ENTITY MOVED HERE, 2026-08-22
      The rail used to run through Greenvlt, which bills as PHXGROWTH — a
      name no buyer of this site has any reason to recognise, so every page
-     had to apologise for it. Green AI Solutions Inc. bills under its own
-     name, so the disclosure on index.html and thankyou.html now names the
-     real company. Each product also carries its own statement descriptor
+     had to apologise for it. This account bills under a name the buyer has
+     just seen, so the disclosure on index.html and thankyou.html names the
+     seller directly. Each product also carries its own statement descriptor
      (GREENAI AI EMPLOYEE, GREENAI ADS STARTER / GROWTH / SCALE). Keep that
      wording matching whatever Stripe actually prints — an undisclosed
      unfamiliar descriptor is what causes chargebacks.
 
      GOTCHA: Managed Payments is ON by default in this account, which would
      make Stripe the merchant of record and silently drops custom_text.
-     All four links were created with managed_payments[enabled]=false so
-     Green AI Solutions Inc. stays the seller. Any link rebuilt by hand in
-     the dashboard has to match, or the agreement line disappears. */
+     All the links were created with managed_payments[enabled]=false so Jaden
+     stays the seller. Any link rebuilt by hand in the dashboard has to match,
+     or the agreement line disappears. */
   var CARD_LINKS = {
     'employees-front-desk': 'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',
     'ads-starter': 'https://buy.stripe.com/9B63cx4R57aY9T15uI5EY01',
     'ads-growth': 'https://buy.stripe.com/9B628t6Zd66U2qz2iw5EY02',
     'ads-scale': 'https://buy.stripe.com/28E9AV4R552Q2qz4qE5EY03',
-    /* The Staff — created 2026-08-24 in Green AI Solutions Inc., same shape
+    /* The Staff — created 2026-08-24 in the same account, same shape
        (managed_payments off, agreement line, redirect to thankyou). */
     'agent-reply':   'https://buy.stripe.com/3cIaEZ1ETeDq9T15uI5EY06',
     'agent-boost':   'https://buy.stripe.com/dRm5kF4R5bred5d7CQ5EY07',
