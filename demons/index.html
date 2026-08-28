@@ -307,6 +307,46 @@ addStation('dronelab',g=>{g.add(box(20,.2,16,new THREE.MeshStandardMaterial({col
   const c1=quad(0x2a2f33);g.add(c1);DRONES.push({m:c1,kind:'cage',cx:7.5,cz:-4.5,r:1.2,y:2.4,w:1.1,ph:0});
   const c2=quad(0x1f6f8b);g.add(c2);DRONES.push({m:c2,kind:'orbit',cx:0,cz:0,r:9,y:7.5,w:.35,ph:2});
   const c3=quad(0x4b6a3a);scene.add(c3);DRONES.push({m:c3,kind:'patrol',ph:0});});
+
+// ===== SECURITY: rooftop sign, gun-camera turrets, patrol helicopter =====
+const SEC_GREEN=0x22e06a;
+(()=>{const roofY=H+2.9;const signT=text('Green AI Inc.','#22e06a',null,'600 170px "Cormorant Garamond", Georgia, serif',2048,320);
+  const signM=new THREE.MeshStandardMaterial({map:signT,transparent:true,emissive:0x22e06a,emissiveMap:signT,emissiveIntensity:2.2,side:THREE.FrontSide});
+  scene.add(box(100,14,1.2,new THREE.MeshStandardMaterial({color:0x14181b,roughness:.6,metalness:.4}),0,roofY+9,0));
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(96,15),signM);sign.position.set(0,roofY+9,.75);scene.add(sign);
+  const back=sign.clone();back.rotation.y=Math.PI;back.position.z=-.75;scene.add(back);
+  for(let x=-40;x<=40;x+=20)scene.add(box(1,7,1,M.graphite,x,roofY+3.5,0));
+  scene.add(box(100,.8,3,M.graphite,0,roofY+.4,0));
+  const gl=new THREE.PointLight(SEC_GREEN,.9,30,1.8);gl.position.set(0,roofY+14,0);scene.add(gl);})();
+const TURRETS=[];const lensM=M.glow(0xff3030,3),gunM=new THREE.MeshStandardMaterial({color:0x1b1f23,roughness:.35,metalness:.85}),armorM=new THREE.MeshStandardMaterial({color:0x3a4148,roughness:.5,metalness:.6});
+function turret(){const g=new THREE.Group();g.add(box(3.2,1.2,2.4,armorM,0,.6,0));const head=new THREE.Group();head.position.y=1.6;
+  head.add(cyl(1.1,1.3,1.4,armorM,0,0,0,16));head.add(box(1.6,.9,1.2,gunM,0,.2,1.2));head.add(cyl(.32,.32,.1,lensM,0,.2,1.85,16).rotateX(Math.PI/2));
+  [-.75,.75].forEach(x=>{head.add(cyl(.14,.14,3.2,gunM,x,-.2,2.6,10).rotateX(Math.PI/2));head.add(cyl(.2,.2,.5,gunM,x,-.2,4.1,10).rotateX(Math.PI/2));});
+  head.add(cyl(.06,.06,2.2,gunM,0,1.4,0,6));head.add(box(.5,.4,.5,lensM,0,2.5,0));g.add(head);g.userData.head=head;g.userData.ph=Math.random()*6;g.scale.setScalar(2.2);TURRETS.push(g);return g;}
+(()=>{const fx=(W+6)/2+1.7,fz=(D+6)/2+1.7;const ys=[-6,-30,-60,-95,-130,-170];
+  ys.forEach((y,k)=>{const yy=y;[[-W/3,0],[0,0],[W/3,0]].forEach(([x])=>{if(k%2===0){const t=turret();t.position.set(x,yy,fz);scene.add(t);const t2=turret();t2.position.set(x,yy,-fz);t2.rotation.y=Math.PI;scene.add(t2);}});
+    if(k%2===1){[-D/4,D/4].forEach(z=>{const t=turret();t.position.set(fx,yy,z);t.rotation.y=Math.PI/2;scene.add(t);const t2=turret();t2.position.set(-fx,yy,z);t2.rotation.y=-Math.PI/2;scene.add(t2);});}});
+  [[fx,fz],[fx,-fz],[-fx,fz],[-fx,-fz]].forEach(([x,z])=>{const t=turret();t.position.set(x,H+2.9,z);t.rotation.y=Math.atan2(x,z);scene.add(t);});})();
+function updateTurrets(now){TURRETS.forEach(t=>{const h=t.userData.head;h.rotation.y=Math.sin(now*.6+t.userData.ph)*.9;h.rotation.x=-.15+Math.sin(now*.9+t.userData.ph)*.12;});}
+const HELI=(()=>{const g=new THREE.Group();const body=new THREE.MeshStandardMaterial({color:0x0f7a3f,roughness:.3,metalness:.55}),dark=gunM,glassM=new THREE.MeshPhysicalMaterial({color:0x9fd8ff,roughness:.05,metalness:.2,transparent:true,opacity:.55});
+  const fus=new THREE.Mesh(new THREE.SphereGeometry(2.4,20,14),body);fus.scale.set(2.4,.75,.95);g.add(fus);
+  const cock=new THREE.Mesh(new THREE.SphereGeometry(2.1,20,14),glassM);cock.scale.set(1.2,.68,.85);cock.position.set(3.2,.35,0);g.add(cock);
+  g.add(cyl(.55,.9,9,body,-7.5,.6,0,10).rotateZ(Math.PI/2));g.add(box(.5,3.4,1.6,body,-12,2.2,0));g.add(box(3,.35,5,body,-10.5,1.8,0));
+  g.add(cyl(1.4,1.4,.5,dark,0,2.2,0,16));g.add(cyl(.25,.25,1.2,dark,0,2.6,0,10));
+  const rotor=new THREE.Group();rotor.position.y=3.1;[0,Math.PI/2].forEach(a=>{const b=box(24,.12,.9,dark);b.rotation.y=a;rotor.add(b);});g.add(rotor);
+  const tail=new THREE.Group();tail.position.set(-12,2.2,1);[0,Math.PI/2].forEach(a=>{const b=box(3.4,.1,.35,dark);b.rotation.y=Math.PI/2;b.rotation.x=a;tail.add(b);});g.add(tail);
+  [-1.4,1.4].forEach(z=>{g.add(box(7,.2,.25,dark,.5,-2.3,z));g.add(cyl(.1,.1,1.4,dark,-1.5,-1.6,z,6));g.add(cyl(.1,.1,1.4,dark,2.5,-1.6,z,6));});
+  [-2.2,2.2].forEach(z=>{g.add(box(3,.3,1.2,dark,.5,-.4,z));g.add(cyl(.12,.12,2.6,dark,2.2,-.4,z,8).rotateZ(Math.PI/2));});
+  const lamp=cyl(.55,.7,.8,M.glow(0xfff4d0,2.5),2.2,-1.5,0,16);lamp.rotation.x=Math.PI/2;g.add(lamp);
+  const spot=new THREE.SpotLight(0xfff4d0,2.2,140,.32,.5,1);spot.position.set(2.2,-1.5,0);const tgt=new THREE.Object3D();tgt.position.set(30,-40,0);g.add(tgt);spot.target=tgt;g.add(spot);
+  const nav=cyl(.25,.25,.3,M.glow(SEC_GREEN,4),-12.2,4.1,0,8);g.add(nav);const nav2=cyl(.2,.2,.3,M.glow(0xff2a2a,4),0,-.9,-2.5,8);g.add(nav2);
+  const lab=new THREE.Mesh(new THREE.PlaneGeometry(6,1.1),new THREE.MeshBasicMaterial({map:text('GREENAI SECURITY','#ffffff',null,'700 120px Inter, Helvetica, Arial'),transparent:true,side:THREE.FrontSide}));lab.position.set(-6,.9,2.25);g.add(lab);
+  const lab2=lab.clone();lab2.position.z=-2.25;lab2.rotation.y=Math.PI;g.add(lab2);
+  g.traverse(o=>{if(o.isMesh){o.castShadow=true;}});g.userData={rotor,tail,nav,nav2};scene.add(g);return g;})();
+function updateHeli(dt,now){const u=HELI.userData;u.rotor.rotation.y+=dt*22;u.tail.rotation.z+=dt*40;const a=now*.22;const R=Math.hypot(W/2+40,D/2+30);
+  const x=Math.cos(a)*(W/2+45),z=Math.sin(a)*(D/2+45)*1.25,y=H+14+Math.sin(now*.5)*3;HELI.position.set(x,y,z);
+  const nx=Math.cos(a+.05)*(W/2+45),nz=Math.sin(a+.05)*(D/2+45)*1.25;HELI.rotation.set(0,Math.atan2(-(nz-z),nx-x),0);HELI.rotateZ(-.22);HELI.rotateX(.18);
+  u.nav.material.emissiveIntensity=(now*3|0)%2?4:.2;u.nav2.material.emissiveIntensity=((now*3+1.5)|0)%2?4:.2;}
 function updateDrones(dt,now){DRONES.forEach(d=>{d.m.userData.rotors.forEach((r,i)=>r.rotation.y+=dt*(i%2?55:-55));
   if(d.kind==='cage'){d.m.position.set(d.cx+Math.cos(now*d.w+d.ph)*d.r,d.y+Math.sin(now*2.1+d.ph)*.4,d.cz+Math.sin(now*d.w+d.ph)*d.r);d.m.rotation.y=-now*d.w;d.m.rotation.z=Math.sin(now*d.w)*.15;}
   else if(d.kind==='orbit'){d.m.position.set(d.cx+Math.cos(now*d.w+d.ph)*d.r,d.y+Math.sin(now*.9)*.6,d.cz+Math.sin(now*d.w+d.ph)*d.r);d.m.rotation.y=-now*d.w+Math.PI/2;d.m.rotation.z=-.18;}
@@ -430,7 +470,7 @@ pullState();setInterval(pullState,15000);
 const clock=new THREE.Clock();let hudT=0;
 function frame(){const dt=Math.min(clock.getDelta(),.05);const now=clock.elapsedTime;
   demons.forEach(d=>updateDemon(d,dt,now));
-  stationGroups.fab.userData.sparks.update(dt);updateDrones(dt,now);updateCars(dt,now);if(Math.floor(now*4)!==Math.floor((now-dt)*4))updateSignals(now);
+  stationGroups.fab.userData.sparks.update(dt);updateDrones(dt,now);updateTurrets(now);updateHeli(dt,now);updateCars(dt,now);if(Math.floor(now*4)!==Math.floor((now-dt)*4))updateSignals(now);
   const leds=stationGroups.network.userData.leds;if(Math.random()<.25){const l=leds[Math.floor(Math.random()*leds.length)];l.material=M.glow(Math.random()<.85?0x0f7a3f:0xb08d3c,2);}
   const tgt=cam.follow?cam.follow.g.position.clone().setY(1.7):new THREE.Vector3(0,cam.dist>140?-Math.min(210,(cam.dist-140)*.55):2,0);cam.center.lerp(tgt,dt*4);
   camera.position.set(cam.center.x+cam.dist*Math.sin(cam.phi)*Math.sin(cam.theta),cam.center.y+cam.dist*Math.cos(cam.phi),cam.center.z+cam.dist*Math.sin(cam.phi)*Math.cos(cam.theta));
