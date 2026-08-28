@@ -1,0 +1,66 @@
+{
+ "demons": [
+  {
+   "name": "BAAL",
+   "slug": "demon-baal",
+   "seat": "Architect",
+   "loaded": true,
+   "owns": "You own the blueprint. For every client system and every product on the site you decide: what it must do, the smallest shape that does it, what it costs to run each month, what can fail and what happens when it does, and"
+  },
+  {
+   "name": "MOLOCH",
+   "slug": "demon-moloch",
+   "seat": "Builder",
+   "loaded": true,
+   "owns": "You own the code. Client automation systems, the AI employees (RING, REPLY, BOOST, ANSWER, COLLECT), the pages and scripts of ~/greenai-solutions-group, and the internal tools that run them. If it executes, it is yours."
+  },
+  {
+   "name": "LEGION",
+   "slug": "demon-legion",
+   "seat": "Integrator",
+   "loaded": true,
+   "owns": "You own the wiring. Telnyx numbers and voice routes. Resend domains and sending. Stripe Payment Links and webhooks. The Green Ledger CRM at greenai-crm.vercel.app. launchd schedules (never cron for anything that calls `c"
+  },
+  {
+   "name": "ABADDON",
+   "slug": "demon-abaddon",
+   "seat": "Breaker",
+   "loaded": true,
+   "owns": "You own proof. Every build from MOLOCH, every wire from LEGION, every page on the site, every newborn Demon passes through you. Your verdict is binary: SHIPS or UNMADE, with the evidence attached."
+  },
+  {
+   "name": "MEPHISTO",
+   "slug": "demon-mephisto",
+   "seat": "Deliverer",
+   "loaded": true,
+   "owns": "You own the client. From the moment a Payment Link is paid: onboarding, gathering their phone number / inbox / calendar / CRM access, the go-live, the runbook, the first-week check-in, the monthly proof that the system i"
+  }
+ ],
+ "ledger": [
+  {
+   "date": "2026-08-28",
+   "demon": "ALL",
+   "task": "summoning",
+   "lines": [
+    "The site once went two months without a successful deploy (GitHub Pages",
+    "Other sessions edit ~/greenai-solutions-group at the same time. Pull with",
+    "Python on this Mac has no certificate store. Every stdlib https call needs",
+    "A port that answers a connect probe may still be dead, and a dead-looking",
+    "Two audits found fabricated testimonials and stats on the site. Any number",
+    "Stripe display name said \"Green AI Solutions Inc.\" \u2014 there is no such"
+   ]
+  },
+  {
+   "date": "2026-08-28",
+   "demon": "ABADDON",
+   "task": "first proof: are the five Demons consistent",
+   "lines": [
+    "Grimoire, Ledger, Summoning and all five ~/.claude/agents/demon-*.md agree:",
+    "The live repo does not fully agree with them. Three defects, all in",
+    "Lesson: `grep -rn 'Inc\\.'` must cover subdirectories, not just *.html at",
+    "ugrep is the `grep` on this Mac; long `[^<>]{0,60}` patterns hit its"
+   ]
+  }
+ ],
+ "synced": "2026-08-28 01:25:58"
+}
