@@ -108,8 +108,8 @@ let LIVE = {demons:[], ledger:[]};
 
 // ============================================================ RENDERER
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xa9c8e3);
-scene.fog = new THREE.Fog(0xc4d6e4, 520, 2200);
+scene.background = new THREE.Color(0x8fc3ec);
+scene.fog = new THREE.Fog(0xd8e6ee, 900, 2600);
 const renderer = new THREE.WebGLRenderer({antialias:true, powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
@@ -157,12 +157,12 @@ Object.entries(STATIONS).forEach(([k,s])=>{if(k==='table')return;const r=new THR
 // ============================================================ THE CITY, 60 STORIES DOWN
 const FLOOR_H=3.6, STORIES=60, TOWER_H=FLOOR_H*STORIES, GROUND=-TOWER_H;
 // sky dome
-const skyT=tex(64,512,(g,w,h)=>{const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,'#3f7fc0');gr.addColorStop(.4,'#8fb8dd');gr.addColorStop(.6,'#cfdfeb');gr.addColorStop(1,'#b9c8d3');g.fillStyle=gr;g.fillRect(0,0,w,h);});
+const skyT=tex(64,512,(g,w,h)=>{const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,'#2b6fc4');gr.addColorStop(.35,'#6fb0e6');gr.addColorStop(.55,'#bfe0f4');gr.addColorStop(.66,'#f6dcb8');gr.addColorStop(.8,'#d9c9b6');gr.addColorStop(1,'#b9c8d3');g.fillStyle=gr;g.fillRect(0,0,w,h);});
 const sky=new THREE.Mesh(new THREE.SphereGeometry(1500,32,24),new THREE.MeshBasicMaterial({map:skyT,side:THREE.BackSide,fog:false}));sky.position.y=-200;scene.add(sky);
 // window texture for the towers
 function windowsTex(tint){return tex(128,256,(g,w,h)=>{g.fillStyle=tint;g.fillRect(0,0,w,h);for(let y=6;y<h;y+=14)for(let x=6;x<w;x+=16){const lit=Math.random()<.55;g.fillStyle=lit?`rgba(255,244,214,${rnd(.35,.8)})`:`rgba(40,60,80,${rnd(.4,.8)})`;g.fillRect(x,y,10,8);}});}
-const towerMats=['#3f4b57','#5a6672','#2c3640','#6d7883','#48545f'].map(t=>{const m=windowsTex(t);m.repeat.set(4,16);return new THREE.MeshStandardMaterial({map:m,roughness:.55,metalness:.35});});
-const glassTower=new THREE.MeshStandardMaterial({color:0x9fbfd6,roughness:.15,metalness:.8});
+const towerMats=['#b8674a','#d9b98a','#2e4a6b','#3f8a86','#e6dcc8','#8c5a3c','#5a6672','#a8452e','#6b8c5a','#c9a24e','#2c3640','#9b7fb8'].map(t=>{const m=windowsTex(t);m.repeat.set(4,16);return new THREE.MeshStandardMaterial({map:m,roughness:.55,metalness:.35});});
+const glassTowers=[0x6fb7d9,0x4fa98a,0xe0b24a,0x7a9fe0,0xd98a6f].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:.12,metalness:.85}));
 // ground far below: dark streets with a faint grid
 const streets=tex(512,512,(g,w,h)=>{g.fillStyle='#2b3138';g.fillRect(0,0,w,h);g.strokeStyle='rgba(255,220,160,.35)';g.lineWidth=3;for(let i=0;i<=8;i++){g.beginPath();g.moveTo(i*w/8,0);g.lineTo(i*w/8,h);g.stroke();g.beginPath();g.moveTo(0,i*h/8);g.lineTo(w,i*h/8);g.stroke();}});streets.repeat.set(40,40);
 scene.add(plane(3000,3000,new THREE.MeshStandardMaterial({map:streets,roughness:1}),0,GROUND,0,-Math.PI/2));
@@ -172,13 +172,15 @@ const cityG=new THREE.Group();
 const roadMat=new THREE.MeshStandardMaterial({map:tex(256,64,(g,w,h)=>{g.fillStyle='#2a2e33';g.fillRect(0,0,w,h);g.fillStyle='#e8d98a';for(let x=0;x<w;x+=40)g.fillRect(x,h/2-1.5,20,3);g.fillStyle='#d8dadc';g.fillRect(0,2,w,2);g.fillRect(0,h-4,w,2);},[60,1]),roughness:.95});
 const roadMatZ=roadMat.clone();roadMatZ.map=roadMat.map.clone();roadMatZ.map.rotation=Math.PI/2;roadMatZ.map.needsUpdate=true;
 for(let k=-BLOCKS;k<BLOCKS;k++){const c=(k+.5)*PITCH;const rx=plane(PITCH*BLOCKS*2,ROAD,roadMat,0,GROUND+.15,c,-Math.PI/2);cityG.add(rx);const rz=plane(ROAD,PITCH*BLOCKS*2,roadMatZ,c,GROUND+.16,0,-Math.PI/2);cityG.add(rz);}
-const walk=new THREE.MeshStandardMaterial({color:0x9aa1a7,roughness:.9});
+const walk=new THREE.MeshStandardMaterial({color:0xc9bfae,roughness:.9});
+const park=new THREE.MeshStandardMaterial({color:0x4e9a4a,roughness:1});const parkLeaf=new THREE.MeshStandardMaterial({color:0x2f7a3e,roughness:.9}),parkLeaf2=new THREE.MeshStandardMaterial({color:0x7cb342,roughness:.9}),parkTrunk=new THREE.MeshStandardMaterial({color:0x6b4a2e,roughness:.9});const pond=new THREE.MeshStandardMaterial({color:0x4aa3d9,roughness:.1,metalness:.4});
 for(let i=-BLOCKS;i<=BLOCKS;i++)for(let j=-BLOCKS;j<=BLOCKS;j++){if(i===0&&j===0)continue;const bx=i*PITCH,bz=j*PITCH,inner=PITCH-ROAD-6;
   cityG.add(plane(inner+4,inner+4,walk,bx,GROUND+.12,bz,-Math.PI/2));
+  if(Math.abs(i)+Math.abs(j)>1&&((i*13+j*7)%9===0||(i*3+j*11)%11===0)){cityG.add(plane(inner-6,inner-6,park,bx,GROUND+.2,bz,-Math.PI/2));if((i+j)%2===0)cityG.add(cyl(rnd(14,24),rnd(14,24),.3,pond,bx+rnd(-20,20),GROUND+.3,bz+rnd(-20,20),32));for(let t=0;t<28;t++){const tx=bx+rnd(-inner/2+8,inner/2-8),tz=bz+rnd(-inner/2+8,inner/2-8),th=rnd(6,12);cityG.add(cyl(.5,.7,th,parkTrunk,tx,GROUND+th/2,tz,6));const lf=new THREE.Mesh(new THREE.SphereGeometry(rnd(4,7),8,6),Math.random()<.5?parkLeaf:parkLeaf2);lf.position.set(tx,GROUND+th+2,tz);cityG.add(lf);}continue;}
   const dist=Math.hypot(bx,bz);const n=1+Math.floor(rnd(1,3.5));const cols=n>2?2:n,rows=Math.ceil(n/cols);
   for(let q=0;q<n;q++){const cw=inner/cols,ch=inner/rows;const cx=bx-inner/2+cw*((q%cols)+.5),cz=bz-inner/2+ch*(Math.floor(q/cols)+.5);const w=cw*rnd(.55,.85),d=ch*rnd(.55,.85);
     let h=rnd(40,150);if(Math.random()<.2)h=rnd(130,240);if(dist<500&&Math.random()<.5)h=rnd(160,262);if(dist>900)h*=.7;
-    const mat=Math.random()<.2?glassTower:towerMats[(i*7+j*3+q)%towerMats.length];
+    const pm=(x,n)=>((x%n)+n)%n;const mat=Math.random()<.22?glassTowers[pm(i*5+j*3+q,glassTowers.length)]:towerMats[pm(i*7+j*3+q,towerMats.length)];
     const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);b.position.set(cx,GROUND+h/2,cz);b.castShadow=false;b.receiveShadow=false;cityG.add(b);
     if(h>150&&Math.random()<.5){const crown=new THREE.Mesh(new THREE.BoxGeometry(w*.6,rnd(6,18),d*.6),M.graphite);crown.position.set(cx,GROUND+h+4,cz);cityG.add(crown);}
     if(h>180){cityG.add(cyl(.6,1.2,rnd(15,40),M.graphite,cx,GROUND+h+12,cz,6));}}}
@@ -192,7 +194,7 @@ function signalState(inter,now){const t=(now+inter.phase)%24;return t<10?'xg':t<
 function updateSignals(now){SIG.forEach(inter=>{const st=signalState(inter,now);inter.heads.forEach(({h,axis})=>{const l=h.userData.l;const mine=st[0]===axis;l.r.material=mine?sigOff:sigRed;l.y.material=mine&&st[1]==='y'?sigYel:sigOff;l.gr.material=mine&&st[1]==='g'?sigGrn:sigOff;});});}
 // traffic
 const NCARS=520;const carGeo=new THREE.BoxGeometry(5.2,2,2.4);const carMesh=new THREE.InstancedMesh(carGeo,new THREE.MeshStandardMaterial({roughness:.4,metalness:.5}),NCARS);carMesh.castShadow=false;carMesh.receiveShadow=false;scene.add(carMesh);
-const CARS=[];const palette=[0xffffff,0xd9dde0,0x2a2f33,0xc8283f,0x2f5fd6,0xe0a020,0x6b7280,0x0f7a3f];const dummy=new THREE.Object3D();const colr=new THREE.Color();
+const CARS=[];const palette=[0xffffff,0xc8283f,0x2f5fd6,0xe0a020,0x0f7a3f,0xff6a1a,0x1fb3c9,0xd946a8,0xfff04a,0x2a2f33,0x8b5cf6,0xd9dde0];const dummy=new THREE.Object3D();const colr=new THREE.Color();
 for(let i=0;i<NCARS;i++){const axis=Math.random()<.5?'x':'z';const k=Math.floor(rnd(-BLOCKS,BLOCKS));const dir=Math.random()<.5?1:-1;const lane=(k+.5)*PITCH+dir*(Math.random()<.5?3.2:6.8);CARS.push({axis,lane,dir,p:rnd(-BLOCKS*PITCH,BLOCKS*PITCH),v:rnd(11,20),v0:0});CARS[i].v0=CARS[i].v;colr.setHex(palette[i%palette.length]);carMesh.setColorAt(i,colr);}
 function updateCars(dt,now){const lim=BLOCKS*PITCH;CARS.forEach((c,i)=>{let blocked=false;const nextI=(Math.floor((c.p+ (c.dir>0?0:0))/PITCH)+(c.dir>0?.5:-.5));
   // nearest intersection ahead
