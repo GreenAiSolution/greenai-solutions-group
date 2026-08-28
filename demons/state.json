@@ -5,6 +5,7 @@
    "slug": "demon-baal",
    "seat": "Architect",
    "loaded": true,
+   "squad": "founding",
    "owns": "You own the blueprint. For every client system and every product on the site you decide: what it must do, the smallest shape that does it, what it costs to run each month, what can fail and what happens when it does, and"
   },
   {
@@ -12,6 +13,7 @@
    "slug": "demon-moloch",
    "seat": "Builder",
    "loaded": true,
+   "squad": "founding",
    "owns": "You own the code. Client automation systems, the AI employees (RING, REPLY, BOOST, ANSWER, COLLECT), the pages and scripts of ~/greenai-solutions-group, and the internal tools that run them. If it executes, it is yours."
   },
   {
@@ -19,6 +21,7 @@
    "slug": "demon-legion",
    "seat": "Integrator",
    "loaded": true,
+   "squad": "founding",
    "owns": "You own the wiring. Telnyx numbers and voice routes. Resend domains and sending. Stripe Payment Links and webhooks. The Green Ledger CRM at greenai-crm.vercel.app. launchd schedules (never cron for anything that calls `c"
   },
   {
@@ -26,6 +29,7 @@
    "slug": "demon-abaddon",
    "seat": "Breaker",
    "loaded": true,
+   "squad": "founding",
    "owns": "You own proof. Every build from MOLOCH, every wire from LEGION, every page on the site, every newborn Demon passes through you. Your verdict is binary: SHIPS or UNMADE, with the evidence attached."
   },
   {
@@ -33,7 +37,88 @@
    "slug": "demon-mephisto",
    "seat": "Deliverer",
    "loaded": true,
+   "squad": "founding",
    "owns": "You own the client. From the moment a Payment Link is paid: onboarding, gathering their phone number / inbox / calendar / CRM access, the go-live, the runbook, the first-week check-in, the monthly proof that the system i"
+  },
+  {
+   "name": "HERALD",
+   "slug": "demon-marketing-herald",
+   "seat": "Positioning",
+   "loaded": true,
+   "squad": "marketing",
+   "owns": "HERALD owns the one-line promise and the offer. Decides what greenaidigital.com says it is, to whom, and why the $497 employee beats a $3,400 hire. Every page headline, every pitch, every ad angle traces to HERALD's posi"
+  },
+  {
+   "name": "SIREN",
+   "slug": "demon-marketing-siren",
+   "seat": "Copy",
+   "loaded": true,
+   "squad": "marketing",
+   "owns": "SIREN owns every customer-facing word: page copy, emails, ad text, the staff pages, FAQ answers. Writes in Jaden's plain voice \u2014 one owner talking to another."
+  },
+  {
+   "name": "BEACON",
+   "slug": "demon-marketing-beacon",
+   "seat": "Paid media",
+   "loaded": true,
+   "squad": "marketing",
+   "owns": "BEACON owns paid acquisition for greenaidigital.com: ad angles, creative briefs, budgets proposed (never spent without Jaden), landing-page pairing, and the Windsor/ADSCORE attribution loop."
+  },
+  {
+   "name": "ORACLE",
+   "slug": "demon-marketing-oracle",
+   "seat": "Analytics",
+   "loaded": true,
+   "squad": "marketing",
+   "owns": "ORACLE owns the numbers: site analytics, form and Stripe events, ad attribution, the weekly asks-made count, and the monthly truth about what earns. If a number is on a page or in a report, ORACLE sourced it."
+  },
+  {
+   "name": "ENVOY",
+   "slug": "demon-marketing-envoy",
+   "seat": "Outreach",
+   "loaded": true,
+   "squad": "marketing",
+   "owns": "ENVOY owns the sending: staged drafts to named owners, follow-ups, reply triage, opt-outs, and the count that goes to ORACLE. ENVOY is the only marketing hand that touches a Send button."
+  },
+  {
+   "name": "TALON",
+   "slug": "demon-drone-talon",
+   "seat": "Flight operations",
+   "loaded": true,
+   "squad": "drone",
+   "owns": "TALON owns every drone mission greenaidigital.com sells or flies: mission planning, crew, weather calls, go/no-go, and the flight log. TALON decides whether an aircraft leaves the roof."
+  },
+  {
+   "name": "AEGIS",
+   "slug": "demon-drone-aegis",
+   "seat": "Airworthiness",
+   "loaded": true,
+   "squad": "drone",
+   "owns": "AEGIS owns safety and legality: FAA Part 107 currency, registration, airworthiness checks, maintenance intervals, insurance status, the pre-flight checklist, and incident reports."
+  },
+  {
+   "name": "KESTREL",
+   "slug": "demon-drone-kestrel",
+   "seat": "Pilot",
+   "loaded": true,
+   "squad": "drone",
+   "owns": "KESTREL owns the stick: flying the mission TALON planned, the capture pattern, sensor settings, and getting clean data home. KESTREL's output is a folder of usable frames, not a story about the flight."
+  },
+  {
+   "name": "GANTRY",
+   "slug": "demon-drone-gantry",
+   "seat": "Build & robotics",
+   "loaded": true,
+   "squad": "drone",
+   "owns": "GANTRY owns the Drone & Robotics Lab: building and repairing airframes, the assembly gantry, the robot arm, firmware, bench tests, spares inventory. If it has motors, GANTRY built or fixed it."
+  },
+  {
+   "name": "IRIS",
+   "slug": "demon-drone-iris",
+   "seat": "Deliverables",
+   "loaded": true,
+   "squad": "drone",
+   "owns": "IRIS owns what the client actually buys: turning captures into the report \u2014 roof/thermal/site inspections, annotated findings, measurements, before/after \u2014 and the delivery to MEPHISTO's onboarding flow."
   }
  ],
  "ledger": [
@@ -60,7 +145,17 @@
     "Lesson: `grep -rn 'Inc\\.'` must cover subdirectories, not just *.html at",
     "ugrep is the `grep` on this Mac; long `[^<>]{0,60}` patterns hit its"
    ]
+  },
+  {
+   "date": "2026-08-28",
+   "demon": "ALL",
+   "task": "ten more summoned, hangar grows a lab and a studio",
+   "lines": [
+    "Jaden summoned ten directly: Marketing Squad (HERALD, SIREN, BEACON, ORACLE,",
+    "Hangar One widened to 176 m: Marketing Studio (west), Drone & Robotics Lab",
+    "Lesson: pkill + immediate restart of server.py races the old listener; check"
+   ]
   }
  ],
- "synced": "2026-08-28 01:35:59"
+ "synced": "2026-08-28 01:45:57"
 }
