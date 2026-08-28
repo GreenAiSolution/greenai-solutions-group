@@ -520,7 +520,7 @@ function updateOwner(dt,now){if(!OWNER.active)return;
 const TOWERBOX={x:0,y:(GROUND-1.5)/2,z:0,hx:(W+16)/2,hy:(-1.5-GROUND)/2,hz:(D+16)/2,r:.5,tower:true};
 const WALLS=[{x:W/2+1,y:H/2,z:0,hx:2,hy:H/2,hz:D/2+8,r:1.5},{x:-W/2-1,y:H/2,z:0,hx:2,hy:H/2,hz:D/2+8,r:1.5}];
 function hitBox(p,r,b){r=b.r??r;const dx=Math.max(Math.abs(p.x-b.x)-b.hx,0),dy=Math.max(Math.abs(p.y-b.y)-b.hy,0),dz=Math.max(Math.abs(p.z-b.z)-b.hz,0);return dx*dx+dy*dy+dz*dz<r*r;}
-function pushOut(p,r,b){r=b.r??r;const px=b.hx+r-Math.abs(p.x-b.x),py=b.hy+r-Math.abs(p.y-b.y),pz=b.hz+r-Math.abs(p.z-b.z);const sg=v=>v<0?-1:1;
+function pushOut(p,r,b){r=(b.r??r)+.3;const px=b.hx+r-Math.abs(p.x-b.x),py=b.hy+r-Math.abs(p.y-b.y),pz=b.hz+r-Math.abs(p.z-b.z);const sg=v=>v<0?-1:1;
   if(px<=py&&px<=pz)p.x+=sg(p.x-b.x)*px;else if(py<=pz)p.y+=sg(p.y-b.y)*py;else p.z+=sg(p.z-b.z)*pz;}
 function solidsNear(p){const out=[TOWERBOX,WALLS[0],WALLS[1]];const cx=Math.round(p.x/PITCH),cz=Math.round(p.z/PITCH);for(let i=-1;i<=1;i++)for(let k=-1;k<=1;k++){const l=BGRID.get((cx+i)+','+(cz+k));if(l)for(const b of l)out.push(b);}return out;}
 function probeSolid(p,r){for(const b of solidsNear(p))if(hitBox(p,r,b))return b;if(p.distanceTo(HELI.position)<r+9)return 'heli';return null;}
@@ -532,9 +532,10 @@ const FLIGHT={fuel:100,ab:false,gearDown:true,wingman:false,smoke:false,autopilo
     this.msgT-=dt;this.flash=Math.max(0,this.flash-dt*2.5);
     for(let i=this.fx.length-1;i>=0;i--){const e=this.fx[i];e.t+=dt;e.m.scale.setScalar(1+e.t*34);e.m.material.opacity=Math.max(0,.9-e.t*1.1);if(e.t>.85){scene.remove(e.m);this.fx.splice(i,1);}}},
   collide(j,sp){const p=_tmpV.copy(j.position);p.y+=3;const b=probeSolid(p,4);if(!b)return false;
-    this.hits++;this.flash=1;this.shake=Math.min(1.4,.35+sp/120);
-    if(sp>75||b==='heli'){this.crash(j,sp,b==='heli');return true;}
-    pushOut(p,4,b);j.position.set(p.x,p.y-3,p.z);OWNER.speed=0;const ey=new THREE.Euler().setFromQuaternion(j.quaternion,'YXZ');j.rotation.set(0,ey.y,0);
+    if(sp>75||b==='heli'){this.hits++;this.flash=1;this.shake=1.4;this.crash(j,sp,b==='heli');return true;}
+    pushOut(p,4.6,b);
+    if(sp<6){j.position.set(p.x,p.y-3,p.z);OWNER.speed=0;return false;}// resting against it: hold, don't re-count
+    this.hits++;this.flash=1;this.shake=Math.min(1.4,.35+sp/120);j.position.set(p.x,p.y-3,p.z);OWNER.speed=0;const ey=new THREE.Euler().setFromQuaternion(j.quaternion,'YXZ');j.rotation.set(0,ey.y,0);
     this.msg((b.tower?'HIT THE TOWER':b.hy>H?'HIT A BUILDING':'HIT THE HANGAR WALL')+' at '+(sp|0)+' — solid. Back off and climb (Space).',2.8);return false;},
   crash(j,sp,heli){this.crashes++;this.dead=true;this.respawnT=1.4;this.pending=j;const e=new THREE.Mesh(new THREE.SphereGeometry(1,16,12),new THREE.MeshBasicMaterial({color:0xffb14a,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false}));e.position.copy(j.position);e.position.y+=3;scene.add(e);this.fx.push({m:e,t:0});j.visible=false;j.userData.flames.forEach(f=>f.visible=false);this.autopilot=false;this.racing=false;this.ringI=0;
     this.msg((heli?'MID-AIR with GreenAI Security':'CRASHED')+' at '+(sp|0)+' — respawning at Hangar One',3);},
@@ -579,14 +580,14 @@ const FLIGHT={fuel:100,ab:false,gearDown:true,wingman:false,smoke:false,autopilo
   wing(j,dt){const w=j===jetA?jetB:jetA;const u=w.userData;
     if(!this.wingman){if(u.wing){w.position.lerp(u.home.p,Math.min(1,dt*.9));w.quaternion.slerp(u.home.q,Math.min(1,dt*.9));u.gear.scale.y+=(1-u.gear.scale.y)*dt*2;u.gear.visible=true;if(w.position.distanceTo(u.home.p)<.4){u.wing=false;w.position.copy(u.home.p);w.quaternion.copy(u.home.q);}u.flames.forEach(f=>f.visible=false);}return;}
     u.wing=true;const tgt=_tmpV.set(-16,1.5,-20).applyQuaternion(j.quaternion).add(j.position);w.position.lerp(tgt,Math.min(1,dt*2.4));w.quaternion.slerp(j.quaternion,Math.min(1,dt*3));u.gear.scale.y+=(j.userData.gear.scale.y-u.gear.scale.y)*dt*3;u.gear.visible=u.gear.scale.y>.06;u.flames.forEach(f=>f.visible=this.ab);},
-  setNight(on){this.night=on;const S=on;scene.background.set(S?0x0b1220:0x8fc3ec);scene.fog.color.set(S?0x0b1220:0xd8e6ee);sky.material.color.set(S?0x1e2a3d:0xffffff);amb.intensity=S?.12:.36;hemi.intensity=S?.18:.75;sun.intensity=S?.22:1.35;sun.color.set(S?0x9fb4d8:0xfff4e2);fill.intensity=S?.08:.35;
+  setNight(on){this.night=on;const S=on;scene.background.set(S?0x0b1220:0x8fc3ec);scene.fog.color.set(S?0x0b1220:0xd8e6ee);sky.material.color.set(S?0x0d1420:0xffffff);amb.intensity=S?.07:.36;hemi.intensity=S?.1:.75;sun.intensity=S?.12:1.35;sun.color.set(S?0x9fb4d8:0xfff4e2);fill.intensity=S?.08:.35;
     towerMats.forEach(m=>{m.emissiveMap=m.map;m.emissive.set(S?0xffe2a8:0x000000);m.emissiveIntensity=S?.9:0;m.needsUpdate=true;});glassTowers.forEach(m=>{m.emissive.set(m.color);m.emissiveIntensity=S?.22:0;});
     this.msg(S?'NIGHT FLIGHT — the city lights up, nav lights on':'DAY',1.8);},
   camera(dt,now){const j=OWNER.jet;if(!j)return;_fwd.set(1,0,0).applyQuaternion(j.quaternion);_up.set(0,1,0).applyQuaternion(j.quaternion);const v=this.view;
-    if(v===1){const p=_tmpV.set(8,5.7,0).applyMatrix4(j.matrixWorld);camera.position.copy(p);camera.up.copy(_up);camera.lookAt(p.clone().addScaledVector(_fwd,60).addScaledVector(_up,2));}
+    if(v===1){const p=_tmpV.set(14.2,5.6,0).applyMatrix4(j.matrixWorld);camera.position.copy(p);camera.up.copy(_up);camera.lookAt(p.clone().addScaledVector(_fwd,60).addScaledVector(_up,2));}
     else if(v===2){const a=now*.35;const want=j.position.clone().add(new THREE.Vector3(Math.cos(a)*58,16,Math.sin(a)*58));camera.position.lerp(want,Math.min(1,dt*2.5));camera.up.set(0,1,0);camera.lookAt(j.position);}
     else if(v===3){camera.position.lerp(new THREE.Vector3(0,H+42,D/2+34),Math.min(1,dt*2));camera.up.set(0,1,0);camera.lookAt(j.position);}
-    else{const want=j.position.clone().addScaledVector(_fwd,-cam.dist).addScaledVector(_up,cam.dist*.3).add(new THREE.Vector3(0,cam.dist*.12,0));camera.position.lerp(want,Math.min(1,dt*5));cam.center.copy(j.position).addScaledVector(_fwd,12);camera.up.lerp(_up,Math.min(1,dt*4)).normalize();camera.lookAt(cam.center);}
+    else{let want=j.position.clone().addScaledVector(_fwd,-cam.dist).addScaledVector(_up,cam.dist*.3).add(new THREE.Vector3(0,cam.dist*.12,0));for(let k=0;k<6&&probeSolid(want,3);k++)want=j.position.clone().lerp(want,.55-k*.08).add(new THREE.Vector3(0,6,0));camera.position.lerp(want,Math.min(1,dt*5));cam.center.copy(j.position).addScaledVector(_fwd,12);camera.up.lerp(_up,Math.min(1,dt*4)).normalize();camera.lookAt(cam.center);}
     if(this.shake>0){camera.position.x+=(Math.random()-.5)*this.shake*2.2;camera.position.y+=(Math.random()-.5)*this.shake*2.2;this.shake=Math.max(0,this.shake-dt*2.2);}
     const wantF=this.ab?60:v===1?70:45;if(Math.abs(camera.fov-wantF)>.2){camera.fov+=(wantF-camera.fov)*Math.min(1,dt*4);camera.updateProjectionMatrix();}},
   frame(dt,now){if(!(OWNER.active&&OWNER.mode==='fly')&&this.trails.size){this.trails.forEach(tr=>tr.forEach(s=>s.line.material.opacity=Math.max(0,s.line.material.opacity-dt)));}if(Math.abs(camera.fov-45)>.2&&!(OWNER.active&&OWNER.mode==='fly')){camera.fov=45;camera.updateProjectionMatrix();}},
