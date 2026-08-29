@@ -117,7 +117,7 @@
      stuck on "Sending…" forever and nothing was ever delivered. Not one
      enquiry ever reached the inbox.
 
-     They now go to our own endpoint (greenai-forms.vercel.app), which renders
+     They now go to our own endpoint (greenai-forms-production.up.railway.app), which renders
      the GreenAI lead dossier and mails it to jaden@greenaidigital.com with
      Reply-To set to the customer. We submit with fetch so a failure can be
      shown in place instead of navigating away to raw JSON. ------------- */

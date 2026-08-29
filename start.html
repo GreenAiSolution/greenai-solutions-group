@@ -570,7 +570,7 @@
     return { sku: sku, name: p.name, price: p.price, plan: p.plan };
   })();
   </script>
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
   <script>
   (function () {
     'use strict';
@@ -760,7 +760,7 @@
         best_time: g('best_time', 'Any time')
       };
 
-      fetch('https://greenai-forms.vercel.app/api/submit', {
+      fetch('https://greenai-forms-production.up.railway.app/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
