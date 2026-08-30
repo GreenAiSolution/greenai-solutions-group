@@ -285,10 +285,10 @@ addStation('test',g=>{g.add(box(6,.3,4,M.white,0,.15,0));[[-2.8,-1.8],[2.8,-1.8]
   desk(g,-5.2,.4,3.8);monitor(g,-5.6,-.2,.2,0xfdeef0,2.4);monitor(g,-3.9,-.2,-.1,0xfdeef0,1.6);chair(g,-5.2,2.2);
   g.add(cyl(.45,.5,1.1,M.graphite,3.9,.55,1.6));g.add(cyl(.35,.35,.2,M.glow(0xc8283f,1.2),3.9,1.2,1.6));const al=new THREE.PointLight(0xc8283f,0,12);al.position.set(0,3.8,0);g.add(al);g.userData.alarm=al;
   g.add(box(.9,2.2,.6,M.graphite,4.4,1.1,-1.6));g.add(box(.7,1.2,.05,M.screen(0xffffff,.5),4.4,1.4,-1.28));});
-addStation('delivery',g=>{for(let i=0;i<4;i++){const p=new THREE.Group();p.add(box(2.2,.14,2.2,M.oak,0,.5,0));for(let k=0;k<3;k++)p.add(box(2.2,.36,.3,M.oak,0,.25,-.9+k*.9));p.add(box(1.9,1.5,1.9,M.white,0,1.35,0));p.add(box(1.94,.06,1.94,M.mullion,0,2.12,0));const label=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.5),new THREE.MeshBasicMaterial({map:text(['RING · $497','REPLY · $397','FULL STAFF','ANSWER · $347'][i],'#14181b','#ffffff','600 80px Inter, Helvetica, Arial'),transparent:true}));label.position.set(0,1.45,.96);p.add(label);p.position.set(-5.5+i*3.6,0,1.2);g.add(p);}
+addStation('delivery',g=>{for(let i=0;i<6;i++){const p=new THREE.Group();p.add(box(2.2,.14,2.2,M.oak,0,.5,0));for(let k=0;k<3;k++)p.add(box(2.2,.36,.3,M.oak,0,.25,-.9+k*.9));p.add(box(1.9,1.5,1.9,M.white,0,1.35,0));p.add(box(1.94,.06,1.94,M.mullion,0,2.12,0));const label=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.5),new THREE.MeshBasicMaterial({map:text(['RING · $497','REPLY · $397','BOOST · $997','ANSWER · $347','COLLECT · $297','FULL STAFF · $1,797'][i],'#14181b','#ffffff','600 80px Inter, Helvetica, Arial'),transparent:true}));label.position.set(0,1.45,.96);p.add(label);p.position.set(-7+i*2.8,0,1.2);g.add(p);}
   desk(g,0,-3.2,4.6);monitor(g,0,-3.8,0,0xfff9ec,2.6);chair(g,0,-1.4,Math.PI);
-  const tug=new THREE.Group();tug.add(box(2.2,1,3.2,new THREE.MeshStandardMaterial({color:0xb08d3c,roughness:.5}),0,.9,0));tug.add(box(1.8,.9,1.2,M.graphite,0,1.8,-.6));[[-1.1,1],[1.1,1],[-1.1,-1],[1.1,-1]].forEach(([x,z])=>{const w=cyl(.35,.35,.3,M.graphite,x,.35,z);w.rotation.z=Math.PI/2;tug.add(w);});tug.position.set(8,0,.5);tug.rotation.y=-.8;g.add(tug);
-  g.add(box(14,.12,.5,line,0,.06,-1.5));plant(g,-8,-3);plant(g,8,-3);});
+  const tug=new THREE.Group();tug.add(box(2.2,1,3.2,new THREE.MeshStandardMaterial({color:0xb08d3c,roughness:.5}),0,.9,0));tug.add(box(1.8,.9,1.2,M.graphite,0,1.8,-.6));[[-1.1,1],[1.1,1],[-1.1,-1],[1.1,-1]].forEach(([x,z])=>{const w=cyl(.35,.35,.3,M.graphite,x,.35,z);w.rotation.z=Math.PI/2;tug.add(w);});tug.position.set(10.5,0,.5);tug.rotation.y=-.8;g.add(tug);
+  g.add(box(18,.12,.5,line,0,.06,-1.5));plant(g,-10.5,-3);plant(g,10.5,-3);});
 // MARKETING STUDIO — a glass-walled suite
 addStation('marketing',g=>{g.add(box(18,.2,14,new THREE.MeshStandardMaterial({color:0xe9ebe8,roughness:.6}),0,.1,0));
   for(let i=0;i<5;i++){desk(g,-7+i*3.5,-2.5,3);monitor(g,-7+i*3.5,-3.1,0,[0xf3f0ff,0xfff0f7,0xfff7e6,0xecfaf7,0xeef3ff][i],2.2);chair(g,-7+i*3.5,-.9,Math.PI);}
@@ -325,7 +325,7 @@ addStation('dronelab',g=>{g.add(box(20,.2,16,new THREE.MeshStandardMaterial({col
 
 // ===== SECURITY: rooftop sign, gun-camera turrets, patrol helicopter =====
 const SEC_GREEN=0x22e06a;
-(()=>{const roofY=H+2.9;const signT=text('Green AI Inc.','#22e06a',null,'600 170px "Cormorant Garamond", Georgia, serif',2048,320);
+(()=>{const roofY=H+2.9;const signT=text('GreenAI Solutions','#22e06a',null,'600 170px "Cormorant Garamond", Georgia, serif',2048,320);
   const signM=new THREE.MeshStandardMaterial({map:signT,transparent:true,emissive:0x22e06a,emissiveMap:signT,emissiveIntensity:2.2,side:THREE.FrontSide});
   scene.add(box(100,14,1.2,new THREE.MeshStandardMaterial({color:0x14181b,roughness:.6,metalness:.4}),0,roofY+9,0));
   const sign=new THREE.Mesh(new THREE.PlaneGeometry(96,15),signM);sign.position.set(0,roofY+9,.75);scene.add(sign);
