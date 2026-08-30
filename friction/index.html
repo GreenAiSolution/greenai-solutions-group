@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FRICTION — feel what bad design costs | GreenAI Solutions</title>
+<meta name="description" content="One signup form, twice. Six made-up facts. This page measures every keystroke, backspace and rage click you make — then hands you the bill. Nothing leaves your browser.">
+<link rel="canonical" href="https://greenaidigital.com/friction/">
+<meta property="og:title" content="FRICTION — feel what bad design costs">
+<meta property="og:description" content="Fill the same form twice — once as it's usually shipped, once designed right. Your own cursor, measured. Nothing leaves your browser.">
+<meta property="og:image" content="https://greenaidigital.com/friction/og.jpg">
+<meta property="og:url" content="https://greenaidigital.com/friction/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,640&display=swap">
+<style>
+:root{
+  --ground:#050b07; --panel:#0a130d; --panel2:#0d1810; --line:rgba(125,227,164,.14);
+  --ink:#e8f2ea; --ink-dim:rgba(232,242,234,.62); --ink-faint:rgba(232,242,234,.4);
+  --green:#7de3a4; --gold:#f0cf6b; --ember:#ff7a68; --ember-dim:rgba(255,122,104,.5);
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --disp:'Fraunces',Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ground); color:var(--ink); font-family:var(--sans);
+  min-height:100vh; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::before{ /* faint blueprint grid — the instrument bench */
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(rgba(125,227,164,.03) 1px, transparent 1px) 0 0/100% 56px,
+    linear-gradient(90deg, rgba(125,227,164,.03) 1px, transparent 1px) 0 0/56px 100%,
+    radial-gradient(1200px 600px at 50% -10%, rgba(125,227,164,.06), transparent 60%);
+}
+.wrap{position:relative; z-index:1; max-width:880px; margin:0 auto; padding:0 20px 80px}
+a{color:var(--green)}
+
+/* ---------- top strip ---------- */
+.lab-top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:18px 2px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-faint);
+}
+.lab-top b{color:var(--green); font-weight:600}
+.lab-top a{color:var(--ink-faint); text-decoration:none}
+.lab-top a:hover{color:var(--green)}
+
+/* ---------- intro ---------- */
+.hero{padding:8vh 0 40px; text-align:center}
+.hero h1{
+  font-family:var(--disp); font-weight:640; font-size:clamp(2.5rem,7vw,4.6rem);
+  line-height:1.04; letter-spacing:-.01em;
+}
+.hero h1 em{font-style:italic; color:var(--ember)}
+.hero .sub{
+  margin:26px auto 0; max-width:560px; color:var(--ink-dim); font-size:1.05rem; line-height:1.65;
+}
+.chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:30px 0 8px}
+.chip{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; color:var(--ink-dim);
+  border:1px solid var(--line); border-radius:999px; padding:7px 14px; background:rgba(10,19,13,.6);
+}
+.chip b{color:var(--green); font-weight:600}
+.fake-note{
+  margin:22px auto 0; max-width:430px; font-size:.85rem; color:var(--gold);
+  border:1px dashed rgba(240,207,107,.35); border-radius:10px; padding:10px 16px; background:rgba(240,207,107,.04);
+}
+.big-cta{
+  display:inline-block; margin-top:34px; padding:17px 42px; border-radius:12px; border:0; cursor:pointer;
+  background:linear-gradient(180deg,#8fe9b2,#5fca8b); color:#04120a; font-weight:700; font-size:1.05rem;
+  box-shadow:0 12px 40px rgba(125,227,164,.22), inset 0 1px 0 rgba(255,255,255,.5);
+  font-family:var(--sans);
+}
+.big-cta:hover{filter:brightness(1.06)}
+.big-cta:active{transform:translateY(1px)}
+
+/* ---------- HUD ---------- */
+.hud{
+  position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:12px 16px; margin:10px 0 26px; border:1px solid var(--line); border-radius:12px;
+  background:rgba(5,11,7,.92); backdrop-filter:blur(6px); font-family:var(--mono);
+}
+.hud .round-tag{
+  font-size:.72rem; letter-spacing:.16em; padding:5px 12px; border-radius:6px; font-weight:700;
+}
+.hud .round-tag.a{background:rgba(255,122,104,.14); color:var(--ember); border:1px solid rgba(255,122,104,.3)}
+.hud .round-tag.b{background:rgba(125,227,164,.12); color:var(--green); border:1px solid rgba(125,227,164,.3)}
+.hud .clock{font-size:1.5rem; color:var(--ink); font-variant-numeric:tabular-nums; min-width:96px}
+.hud .meters{display:flex; gap:16px; margin-left:auto; flex-wrap:wrap}
+.hud .m{font-size:.7rem; color:var(--ink-faint); letter-spacing:.05em}
+.hud .m b{display:block; font-size:1.05rem; color:var(--ink); font-variant-numeric:tabular-nums; font-weight:600}
+.hud .m.hot b{color:var(--ember)}
+.rec-dot{width:9px;height:9px;border-radius:50%;background:var(--ember);box-shadow:0 0 10px var(--ember);animation:rec 1.4s ease-in-out infinite}
+@keyframes rec{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){.rec-dot{animation:none}}
+
+/* ---------- form shells ---------- */
+.stage-note{font-family:var(--mono); font-size:.75rem; color:var(--ink-faint); margin:0 0 14px; letter-spacing:.08em}
+.form-card{
+  border-radius:16px; padding:34px 34px 30px; position:relative;
+  border:1px solid var(--line); background:linear-gradient(180deg,var(--panel),var(--panel2));
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.form-card h2{font-family:var(--disp); font-weight:600; font-size:1.5rem; margin-bottom:4px}
+.form-card .fc-sub{color:var(--ink-faint); font-size:.85rem; margin-bottom:24px}
+.f-banner{
+  border:1px solid rgba(255,122,104,.4); background:rgba(255,122,104,.08); color:var(--ember);
+  border-radius:8px; padding:11px 14px; font-size:.85rem; margin-bottom:18px;
+}
+.f-row{margin-bottom:16px}
+.f-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.f-grid3{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:10px}
+input,select{
+  width:100%; background:#081009; border:1px solid rgba(232,242,234,.16); border-radius:8px;
+  color:var(--ink); font-size:.95rem; padding:12px 13px; font-family:var(--sans);
+}
+input::placeholder{color:rgba(232,242,234,.34)}
+input:focus,select:focus{outline:2px solid rgba(125,227,164,.5); outline-offset:1px; border-color:transparent}
+.bad{border-color:var(--ember)!important; background:rgba(255,122,104,.05)}
+label.f-label{display:block; font-size:.82rem; font-weight:600; color:var(--ink); margin-bottom:6px}
+label.f-label span{color:var(--ink-faint); font-weight:400}
+.f-help{font-size:.75rem; color:var(--ink-faint); margin-top:5px}
+.f-err{font-size:.78rem; color:var(--ember); margin-top:5px}
+.f-ok{font-size:.78rem; color:var(--green); margin-top:5px}
+.pw-rules{list-style:none; margin-top:7px; display:flex; gap:12px; flex-wrap:wrap}
+.pw-rules li{font-family:var(--mono); font-size:.7rem; color:var(--ink-faint)}
+.pw-rules li::before{content:"○ "}
+.pw-rules li.ok{color:var(--green)}
+.pw-rules li.ok::before{content:"● "}
+.f-submit{
+  margin-top:6px; padding:14px 30px; border-radius:10px; border:0; cursor:pointer; font-weight:700; font-size:1rem;
+  background:linear-gradient(180deg,#8fe9b2,#5fca8b); color:#04120a; font-family:var(--sans);
+}
+/* form A's deliberately mean bits */
+.formA .f-submit{background:#26352b; color:var(--ink-dim); font-weight:500; padding:10px 22px; font-size:.9rem}
+.formA .terms{display:flex; gap:8px; align-items:flex-start; font-size:.72rem; color:var(--ink-faint); margin:14px 0 10px}
+.formA .terms input{width:11px; height:11px; margin-top:3px; flex:0 0 auto}
+.formB .terms{display:flex; gap:10px; align-items:center; font-size:.88rem; color:var(--ink-dim); margin:14px 0 12px}
+.formB .terms input{width:18px; height:18px; accent-color:var(--green); flex:0 0 auto}
+.giveup{display:block; margin:18px auto 0; text-align:center; font-size:.85rem; color:var(--ink-faint)}
+.giveup a{color:var(--ember-dim)}
+
+/* ---------- interstitial ---------- */
+.inter{text-align:center; padding:10vh 0}
+.inter .kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ember)}
+.inter h2{font-family:var(--disp); font-weight:640; font-size:clamp(2.2rem,6vw,3.6rem); margin:14px 0 6px}
+.inter .bigtime{font-family:var(--mono); font-size:clamp(3rem,10vw,5.2rem); color:var(--ember); font-variant-numeric:tabular-nums; margin:10px 0 18px}
+.inter p{color:var(--ink-dim); max-width:480px; margin:0 auto 8px; line-height:1.6}
+.inter .honesty{font-size:.83rem; color:var(--ink-faint); max-width:440px; margin:18px auto 0; border-top:1px solid var(--line); padding-top:14px}
+
+/* ---------- results ---------- */
+.res-kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--green); text-align:center; margin-top:6vh}
+.res-h{font-family:var(--disp); font-weight:640; font-size:clamp(2rem,5.6vw,3.4rem); text-align:center; line-height:1.1; margin:14px 0 40px}
+.res-h em{font-style:italic; color:var(--gold)}
+.verdict{display:flex; justify-content:center; align-items:stretch; gap:0; margin-bottom:14px; text-align:center}
+.verdict .side{flex:1; max-width:250px; padding:20px 10px; }
+.verdict .side .lab{font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; margin-bottom:8px}
+.verdict .side .t{font-family:var(--mono); font-size:clamp(2rem,6vw,3.2rem); font-variant-numeric:tabular-nums}
+.verdict .a .lab{color:var(--ember)} .verdict .a .t{color:var(--ember)}
+.verdict .b .lab{color:var(--green)} .verdict .b .t{color:var(--green)}
+.verdict .x{
+  align-self:center; font-family:var(--disp); font-style:italic; font-size:clamp(1.4rem,4vw,2rem);
+  color:var(--gold); padding:0 18px; white-space:nowrap;
+}
+.tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0 40px}
+.tile{border:1px solid var(--line); border-radius:12px; padding:16px 14px; background:rgba(10,19,13,.5); text-align:center}
+.tile .name{font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px}
+.tile .pair{display:flex; justify-content:center; align-items:baseline; gap:10px; font-variant-numeric:tabular-nums}
+.tile .va{font-family:var(--mono); font-size:1.5rem; color:var(--ember)}
+.tile .vs{font-size:.7rem; color:var(--ink-faint)}
+.tile .vb{font-family:var(--mono); font-size:1.5rem; color:var(--green)}
+.art-frame{border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#040906; position:relative}
+.art-frame canvas{display:block; width:100%; height:auto}
+.art-cap{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:12px 16px; border-top:1px solid var(--line); font-family:var(--mono); font-size:.7rem; color:var(--ink-faint)}
+.art-cap .lg span{display:inline-block; width:9px; height:9px; border-radius:50%; margin:0 5px 0 14px; vertical-align:-1px}
+.art-cap .lg span.a{background:var(--ember)} .art-cap .lg span.b{background:var(--green)}
+.art-cap button{background:none; border:1px solid var(--line); color:var(--ink-dim); border-radius:6px; padding:5px 12px; cursor:pointer; font-family:var(--mono); font-size:.7rem}
+.art-cap button:hover{color:var(--green); border-color:rgba(125,227,164,.4)}
+.art-title{text-align:center; font-family:var(--disp); font-style:italic; font-size:1.15rem; color:var(--ink-dim); margin:44px 0 14px}
+.receipt-wrap{margin:46px auto 0; max-width:430px}
+.receipt{
+  font-family:var(--mono); font-size:.8rem; line-height:1.75; color:var(--ink);
+  background:#f5f1e6; color:#22281f; border-radius:10px; padding:24px 26px;
+  box-shadow:0 24px 60px rgba(0,0,0,.5); white-space:pre; overflow-x:auto;
+  transform:rotate(-.6deg);
+}
+.receipt b{font-weight:700}
+.receipt-actions{text-align:center; margin-top:16px}
+.receipt-actions button{
+  background:none; border:1px solid var(--line); color:var(--ink-dim); border-radius:8px;
+  padding:9px 20px; cursor:pointer; font-family:var(--mono); font-size:.75rem;
+}
+.receipt-actions button:hover{color:var(--green); border-color:rgba(125,227,164,.4)}
+.point{max-width:560px; margin:64px auto 0; text-align:center}
+.point p{color:var(--ink-dim); line-height:1.7; margin-bottom:18px; font-size:1.02rem}
+.point p b{color:var(--ink)}
+.point .rig{
+  margin-top:34px; border:1px solid var(--line); border-radius:14px; padding:22px 26px;
+  background:rgba(10,19,13,.5); font-size:.92rem; color:var(--ink-dim); line-height:1.65;
+}
+.point .rig a{font-weight:600}
+.again{display:block; text-align:center; margin-top:40px; font-family:var(--mono); font-size:.78rem; color:var(--ink-faint)}
+.foot{margin-top:80px; text-align:center; font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); letter-spacing:.08em}
+.foot a{color:var(--ink-faint)}
+
+@media (max-width:640px){
+  .verdict{flex-direction:column; gap:2px}
+  .verdict .side{max-width:none; padding:10px}
+  .verdict .x{padding:6px 0}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .f-grid{grid-template-columns:1fr}
+  .form-card{padding:24px 18px 22px}
+  .hud .clock{font-size:1.2rem; min-width:76px}
+  .verdict .x{padding:0 8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="lab-top">
+    <span><b>FRICTION</b> · a live experiment</span>
+    <a href="https://greenaidigital.com">GreenAI Solutions ↗</a>
+  </header>
+
+  <!-- INTRO -->
+  <section id="scr-intro">
+    <div class="hero">
+      <h1>You're about to feel<br>what <em>bad design</em> costs.</h1>
+      <p class="sub">One signup form. You'll fill it twice — once the way it's usually shipped,
+      once designed right. This page measures everything you do, then hands you the bill.</p>
+      <div class="chips">
+        <span class="chip"><b>⏱</b> every second timed</span>
+        <span class="chip"><b>⌫</b> every backspace counted</span>
+        <span class="chip"><b>👆</b> your cursor, recorded</span>
+        <span class="chip"><b>🔒</b> nothing leaves this page</span>
+      </div>
+      <p class="fake-note">Use <b>made-up answers</b> — a fake name, a fake email, a fake number.
+      Type the same fake answers both rounds.</p>
+      <button class="big-cta" id="btn-start-a">Start Round A</button>
+    </div>
+  </section>
+
+  <!-- ROUND (rebuilt per variant) -->
+  <section id="scr-round" hidden>
+    <div class="hud">
+      <span class="rec-dot" aria-hidden="true"></span>
+      <span class="round-tag a" id="hud-tag">ROUND A</span>
+      <span class="clock" id="hud-clock">0:00.0</span>
+      <div class="meters">
+        <span class="m">KEYS<b id="hud-keys">0</b></span>
+        <span class="m hot">BACKSPACE<b id="hud-backs">0</b></span>
+        <span class="m hot">RAGE<b id="hud-rage">0</b></span>
+        <span class="m">ERRORS<b id="hud-errs">0</b></span>
+      </div>
+    </div>
+    <p class="stage-note" id="stage-note"></p>
+    <div id="form-mount"></div>
+    <p class="giveup" id="giveup" hidden>Had enough? <a href="#" id="giveup-link">I give up →</a></p>
+  </section>
+
+  <!-- INTERSTITIAL -->
+  <section id="scr-inter" hidden>
+    <div class="inter">
+      <p class="kicker" id="inter-kicker">Round A complete</p>
+      <h2 id="inter-h">That took you</h2>
+      <div class="bigtime" id="inter-time">0:00.0</div>
+      <p id="inter-copy">Now the same six facts — same fake answers — on the same form, <b>designed</b>.</p>
+      <p class="honesty">Fair warning for the skeptics: you'll be a little faster on any second attempt.
+      Type the same answers — the gap that's left over is design.</p>
+      <button class="big-cta" id="btn-start-b">Start Round B</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="scr-results" hidden>
+    <p class="res-kicker">The bill</p>
+    <h2 class="res-h">Same you. Same six facts.<br>Only the <em>design</em> changed.</h2>
+
+    <div class="verdict">
+      <div class="side a"><div class="lab">FORM A — AS SHIPPED</div><div class="t" id="r-time-a">—</div></div>
+      <div class="x" id="r-mult">×</div>
+      <div class="side b"><div class="lab">FORM B — DESIGNED</div><div class="t" id="r-time-b">—</div></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile"><div class="name">Keystrokes</div><div class="pair"><span class="va" id="r-keys-a">0</span><span class="vs">vs</span><span class="vb" id="r-keys-b">0</span></div></div>
+      <div class="tile"><div class="name">Backspaces</div><div class="pair"><span class="va" id="r-backs-a">0</span><span class="vs">vs</span><span class="vb" id="r-backs-b">0</span></div></div>
+      <div class="tile"><div class="name">Rage clicks</div><div class="pair"><span class="va" id="r-rage-a">0</span><span class="vs">vs</span><span class="vb" id="r-rage-b">0</span></div></div>
+      <div class="tile"><div class="name">Submit attempts</div><div class="pair"><span class="va" id="r-sub-a">0</span><span class="vs">vs</span><span class="vb" id="r-sub-b">0</span></div></div>
+    </div>
+
+    <p class="art-title">Your hand, drawn. Hesitation leaves a mark.</p>
+    <div class="art-frame">
+      <canvas id="art" width="1200" height="750"></canvas>
+      <div class="art-cap">
+        <span class="lg">CURSOR PATH<span class="a"></span>Form A<span class="b"></span>Form B</span>
+        <button id="btn-replay">↻ replay</button>
+      </div>
+    </div>
+
+    <div class="receipt-wrap">
+      <pre class="receipt" id="receipt"></pre>
+      <div class="receipt-actions"><button id="btn-copy">⧉ copy my receipt</button></div>
+    </div>
+
+    <div class="point">
+      <p>Every number above is <b>you</b> — measured, not estimated. A sample size of one,
+      and that's the point: you just <b>felt</b> it.</p>
+      <p>Now multiply Form A by every customer who meets your business when nobody's watching.
+      They don't file a complaint. They just leave.</p>
+      <p>Designers have been saying this forever. <b>Engineers can measure it.</b></p>
+      <div class="rig">
+        Both forms and the instruments live in this one page — view source, it's all here.
+        Built by <a href="https://greenaidigital.com">GreenAI Solutions</a>, where every system
+        goes through a test rig that breaks it on purpose before a client ever sees it.
+        This page is that idea, pointed at a signup form.
+      </div>
+    </div>
+
+    <a class="again" href="./">↻ run it again — or hand your phone to someone who ships forms</a>
+  </section>
+
+  <footer class="foot">
+    FRICTION · measured in your browser · no analytics, no storage, no network calls with your data ·
+    <a href="https://greenaidigital.com">greenaidigital.com</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s){ return document.querySelector(s); };
+var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------------- state ---------------- */
+function blankRec(){ return { t0:0, t1:0, keys:0, backs:0, clicks:0, rage:0, errors:0, submits:0,
+  trail:[], rect:null, abandoned:false }; }
+var R = { A: blankRec(), B: blankRec() };
+var current = null;       /* 'A' | 'B' */
+var clockTimer = null, giveupTimer = null;
+var lastClicks = [];
+
+/* ---------------- data ---------------- */
+var STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+"Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine",
+"Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada",
+"New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma",
+"Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+"Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+var STATE_CODES = {"al":"Alabama","ak":"Alaska","az":"Arizona","ar":"Arkansas","ca":"California","co":"Colorado",
+"ct":"Connecticut","de":"Delaware","fl":"Florida","ga":"Georgia","hi":"Hawaii","id":"Idaho","il":"Illinois",
+"in":"Indiana","ia":"Iowa","ks":"Kansas","ky":"Kentucky","la":"Louisiana","me":"Maine","md":"Maryland",
+"ma":"Massachusetts","mi":"Michigan","mn":"Minnesota","ms":"Mississippi","mo":"Missouri","mt":"Montana",
+"ne":"Nebraska","nv":"Nevada","nh":"New Hampshire","nj":"New Jersey","nm":"New Mexico","ny":"New York",
+"nc":"North Carolina","nd":"North Dakota","oh":"Ohio","ok":"Oklahoma","or":"Oregon","pa":"Pennsylvania",
+"ri":"Rhode Island","sc":"South Carolina","sd":"South Dakota","tn":"Tennessee","tx":"Texas","ut":"Utah",
+"vt":"Vermont","va":"Virginia","wa":"Washington","wv":"West Virginia","wi":"Wisconsin","wy":"Wyoming"};
+/* Form A shows them in this fixed "database order" — not alphabetical. A real pattern. */
+var STATES_SCRAMBLED = ["Texas","Maine","California","Ohio","Nevada","Georgia","Vermont","Florida","Utah",
+"New York","Kansas","Oregon","Alabama","Wyoming","Illinois","Delaware","Arizona","Montana","Michigan",
+"South Carolina","Idaho","Massachusetts","North Dakota","Louisiana","Washington","New Jersey","Hawaii",
+"Missouri","Connecticut","Nebraska","Virginia","Oklahoma","Rhode Island","Indiana","Colorado","Kentucky",
+"New Mexico","Tennessee","Alaska","Wisconsin","Maryland","Mississippi","North Carolina","Iowa","Arkansas",
+"New Hampshire","Pennsylvania","South Dakota","West Virginia","Minnesota"];
+var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+var emailOk = function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); };
+var pwRules = [
+  { t:"at least 8 characters", f:function(v){ return v.length >= 8; } },
+  { t:"an uppercase letter",   f:function(v){ return /[A-Z]/.test(v); } },
+  { t:"a number",              f:function(v){ return /[0-9]/.test(v); } }
+];
+
+/* ---------------- helpers ---------------- */
+function fmt(ms){
+  if (ms == null) return "—";
+  var s = ms/1000, m = Math.floor(s/60), r = (s - m*60);
+  return m + ":" + (r < 10 ? "0" : "") + r.toFixed(1);
+}
+function el(html){ var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+function show(id){
+  ['scr-intro','scr-round','scr-inter','scr-results'].forEach(function(s){ $('#'+s).hidden = (s !== id); });
+  window.scrollTo(0,0);
+}
+
+/* ---------------- instrumentation ---------------- */
+function startTracking(which){
+  current = which;
+  var rec = R[which];
+  rec.t0 = performance.now();
+  lastClicks = [];
+  $('#hud-tag').textContent = 'ROUND ' + which;
+  $('#hud-tag').className = 'round-tag ' + which.toLowerCase();
+  updHud();
+  if (clockTimer) clearInterval(clockTimer);
+  clockTimer = setInterval(function(){
+    $('#hud-clock').textContent = fmt(performance.now() - rec.t0);
+  }, 100);
+}
+function stopTracking(){
+  if (clockTimer){ clearInterval(clockTimer); clockTimer = null; }
+  if (giveupTimer){ clearTimeout(giveupTimer); giveupTimer = null; }
+  var rec = current && R[current];
+  if (rec && !rec.t1) rec.t1 = performance.now();
+  if (rec){
+    var mount = $('#form-mount').firstElementChild;
+    if (mount){
+      var r = mount.getBoundingClientRect();
+      rec.rect = { left: r.left + scrollX, top: r.top + scrollY, w: r.width, h: r.height };
+    }
+  }
+  current = null;
+}
+function updHud(){
+  var rec = current && R[current]; if (!rec) return;
+  $('#hud-keys').textContent = rec.keys;
+  $('#hud-backs').textContent = rec.backs;
+  $('#hud-rage').textContent = rec.rage;
+  $('#hud-errs').textContent = rec.errors;
+}
+var lastSample = 0;
+addEventListener('pointermove', function(e){
+  if (!current) return;
+  var now = performance.now();
+  if (now - lastSample < 24) return;
+  lastSample = now;
+  var rec = R[current];
+  if (rec.trail.length < 9000) rec.trail.push([e.pageX, e.pageY, now - rec.t0]);
+}, {passive:true});
+addEventListener('pointerdown', function(e){
+  if (!current) return;
+  var rec = R[current], now = performance.now();
+  rec.clicks++;
+  rec.trail.push([e.pageX, e.pageY, now - rec.t0, 1]);   /* click marker */
+  lastClicks.push([e.pageX, e.pageY, now]);
+  lastClicks = lastClicks.filter(function(c){ return now - c[2] < 800; });
+  if (lastClicks.length >= 3){
+    var d = Math.hypot(lastClicks[0][0] - e.pageX, lastClicks[0][1] - e.pageY);
+    if (d < 30){ rec.rage++; lastClicks = []; }
+  }
+  updHud();
+}, {passive:true});
+addEventListener('keydown', function(e){
+  if (!current) return;
+  var t = e.target;
+  if (!t || (t.tagName !== 'INPUT' && t.tagName !== 'SELECT')) return;
+  var rec = R[current];
+  rec.keys++;
+  if (e.key === 'Backspace' || e.key === 'Delete') rec.backs++;
+  updHud();
+});
+
+/* ---------------- FORM A — as shipped ---------------- */
+function buildFormA(){
+  var f = el('<form class="form-card formA" novalidate autocomplete="off">' +
+    '<h2>Create your account</h2>' +
+    '<div class="fc-sub">* All fields are required</div>' +
+    '<div class="f-banner" id="a-banner" hidden>⚠ Some fields need attention.</div>' +
+    '<div class="f-row"><input id="a-name" placeholder="Full name" aria-label="Full name"></div>' +
+    '<div class="f-grid">' +
+      '<div class="f-row"><input id="a-email" placeholder="Email" aria-label="Email"></div>' +
+      '<div class="f-row"><input id="a-email2" placeholder="Confirm email" aria-label="Confirm email"></div>' +
+    '</div>' +
+    '<div class="f-grid">' +
+      '<div class="f-row"><input id="a-phone" placeholder="Phone number" aria-label="Phone number"></div>' +
+      '<div class="f-row"><select id="a-state" aria-label="State"><option value="">-- Select --</option>' +
+        STATES_SCRAMBLED.map(function(s){ return '<option>' + s + '</option>'; }).join('') +
+      '</select></div>' +
+    '</div>' +
+    '<div class="f-row"><input id="a-pw" type="password" placeholder="Password" aria-label="Password">' +
+      '<div class="f-err" id="a-pw-err" hidden></div></div>' +
+    '<div class="f-row"><div class="f-grid3">' +
+      '<select id="a-mm" aria-label="Birth month"><option value="">Month</option>' + MONTHS.map(function(m){ return '<option>'+m+'</option>'; }).join('') + '</select>' +
+      '<select id="a-dd" aria-label="Birth day"><option value="">Day</option>' + Array.from({length:31},function(_,i){ return '<option>'+(i+1)+'</option>'; }).join('') + '</select>' +
+      '<select id="a-yy" aria-label="Birth year"><option value="">Year</option>' + Array.from({length:91},function(_,i){ return '<option>'+(1920+i)+'</option>'; }).join('') + '</select>' +
+    '</div></div>' +
+    '<label class="terms"><input type="checkbox" id="a-terms"><span>I have read and agree to the Terms of Service and Privacy Policy and consent to the processing of my information in accordance with said policies</span></label>' +
+    '<button class="f-submit" type="submit">Submit</button>' +
+    '</form>');
+
+  /* the classics: paste blocked on confirm-email */
+  f.querySelector('#a-email2').addEventListener('paste', function(e){ e.preventDefault(); });
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var rec = R.A; rec.submits++;
+    var bad = [];
+    var get = function(id){ return f.querySelector(id); };
+    var name = get('#a-name'), em = get('#a-email'), em2 = get('#a-email2'),
+        ph = get('#a-phone'), st = get('#a-state'), pw = get('#a-pw'),
+        mm = get('#a-mm'), dd = get('#a-dd'), yy = get('#a-yy'), tm = get('#a-terms');
+    [name,em,em2,ph,st,pw,mm,dd,yy].forEach(function(i){ i.classList.remove('bad'); });
+    var pwErr = get('#a-pw-err'); pwErr.hidden = true;
+
+    if (name.value.trim().length < 2) bad.push(name);
+    if (!emailOk(em.value)) bad.push(em);
+    if (em2.value.trim() !== em.value.trim() || !em2.value.trim()) bad.push(em2);
+    if (!/^\(\d{3}\) \d{3}-\d{4}$/.test(ph.value)) bad.push(ph);       /* exact format, never explained */
+    if (!st.value) bad.push(st);
+    /* password: reveal ONE failed rule per attempt */
+    var failed = pwRules.filter(function(r){ return !r.f(pw.value); });
+    if (failed.length){
+      bad.push(pw);
+      pwErr.textContent = 'Password must contain ' + failed[0].t + '.';
+      pwErr.hidden = false;
+    }
+    if (!mm.value) bad.push(mm);
+    if (!dd.value) bad.push(dd);
+    if (!yy.value) bad.push(yy);
+    if (!tm.checked) bad.push(tm);
+
+    if (bad.length){
+      bad.forEach(function(i){ i.classList.add('bad'); });
+      rec.errors += bad.length;
+      updHud();
+      var b = get('#a-banner'); b.hidden = false;
+      f.scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'start'});
+      return;
+    }
+    finishRound('A');
+  });
+  return f;
+}
+
+/* ---------------- FORM B — designed ---------------- */
+function buildFormB(){
+  var f = el('<form class="form-card formB" novalidate>' +
+    '<h2>Create your account</h2>' +
+    '<div class="fc-sub">Six quick things — about 30 seconds.</div>' +
+    '<div class="f-row"><label class="f-label" for="b-name">Full name</label>' +
+      '<input id="b-name" autocomplete="name" autocapitalize="words"><div class="f-err" hidden></div></div>' +
+    '<div class="f-row"><label class="f-label" for="b-email">Email</label>' +
+      '<input id="b-email" type="email" autocomplete="email" inputmode="email"><div class="f-err" hidden></div></div>' +
+    '<div class="f-grid">' +
+    '<div class="f-row"><label class="f-label" for="b-phone">Phone</label>' +
+      '<input id="b-phone" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(555) 123-4567">' +
+      '<div class="f-help">Formats itself — just type the digits.</div><div class="f-err" hidden></div></div>' +
+    '<div class="f-row"><label class="f-label" for="b-state">State</label>' +
+      '<input id="b-state" list="b-states" autocomplete="address-level1" placeholder="Start typing…">' +
+      '<datalist id="b-states">' + STATES.map(function(s){ return '<option value="'+s+'">'; }).join('') + '</datalist>' +
+      '<div class="f-err" hidden></div></div>' +
+    '</div>' +
+    '<div class="f-row"><label class="f-label" for="b-pw">Password</label>' +
+      '<input id="b-pw" type="password" autocomplete="new-password">' +
+      '<ul class="pw-rules">' + pwRules.map(function(r){ return '<li>'+r.t+'</li>'; }).join('') + '</ul>' +
+      '<div class="f-err" hidden></div></div>' +
+    '<div class="f-row"><label class="f-label" for="b-dob">Date of birth <span>· MM/DD/YYYY</span></label>' +
+      '<input id="b-dob" inputmode="numeric" placeholder="04/16/1990" autocomplete="bday">' +
+      '<div class="f-err" hidden></div></div>' +
+    '<label class="terms"><input type="checkbox" id="b-terms"><span>I agree to the <a href="../terms.html" target="_blank">Terms</a> &amp; <a href="../privacy.html" target="_blank">Privacy Policy</a></span></label>' +
+    '<div class="f-err" id="b-terms-err" hidden></div>' +
+    '<button class="f-submit" type="submit">Create account →</button>' +
+    '</form>');
+
+  var get = function(id){ return f.querySelector(id); };
+
+  /* phone: formats itself */
+  get('#b-phone').addEventListener('input', function(){
+    var d = this.value.replace(/\D/g,'').slice(0,10), out = d;
+    if (d.length > 6) out = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    else if (d.length > 3) out = '(' + d.slice(0,3) + ') ' + d.slice(3);
+    else if (d.length > 0) out = '(' + d;
+    this.value = out;
+  });
+  /* dob: slashes insert themselves */
+  get('#b-dob').addEventListener('input', function(){
+    var d = this.value.replace(/\D/g,'').slice(0,8), out = d;
+    if (d.length > 4) out = d.slice(0,2) + '/' + d.slice(2,4) + '/' + d.slice(4);
+    else if (d.length > 2) out = d.slice(0,2) + '/' + d.slice(2);
+    this.value = out;
+  });
+  /* password: live checklist */
+  get('#b-pw').addEventListener('input', function(){
+    var v = this.value;
+    f.querySelectorAll('.pw-rules li').forEach(function(li, i){
+      li.classList.toggle('ok', pwRules[i].f(v));
+    });
+  });
+
+  var VAL = {
+    'b-name':  function(v){ return v.trim().length >= 2 ? '' : 'Please enter your name.'; },
+    'b-email': function(v){ return emailOk(v) ? '' : 'That email doesn’t look right — check for typos.'; },
+    'b-phone': function(v){ return v.replace(/\D/g,'').length === 10 ? '' : 'Enter a 10-digit phone number.'; },
+    'b-state': function(v){
+      v = v.trim().toLowerCase();
+      if (STATE_CODES[v]) return '';
+      return STATES.some(function(s){ return s.toLowerCase() === v; }) ? '' : 'Pick a state from the list (name or two-letter code).';
+    },
+    'b-pw':    function(v){ return pwRules.every(function(r){ return r.f(v); }) ? '' : 'Not quite — see the checklist above.'; },
+    'b-dob':   function(v){
+      var m = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if (!m) return 'Use MM/DD/YYYY — like 04/16/1990.';
+      var mo = +m[1], da = +m[2], yr = +m[3];
+      return (mo >= 1 && mo <= 12 && da >= 1 && da <= 31 && yr >= 1900 && yr <= 2020) ? '' : 'That date doesn’t look real.';
+    }
+  };
+  function validateField(input){
+    var msg = VAL[input.id](input.value);
+    var err = input.closest('.f-row').querySelector('.f-err');
+    input.classList.toggle('bad', !!msg);
+    err.textContent = msg; err.hidden = !msg;
+    if (msg){ R.B.errors++; updHud(); }
+    return !msg;
+  }
+  Object.keys(VAL).forEach(function(id){
+    var input = get('#'+id);
+    input.addEventListener('blur', function(){ if (input.value) validateField(input); });
+    input.addEventListener('input', function(){        /* forgiving: clear as soon as it's fixed */
+      if (input.classList.contains('bad') && !VAL[id](input.value)){
+        input.classList.remove('bad');
+        var err = input.closest('.f-row').querySelector('.f-err');
+        err.hidden = true;
+      }
+    });
+  });
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var rec = R.B; rec.submits++;
+    var allOk = true, firstBad = null;
+    Object.keys(VAL).forEach(function(id){
+      var input = get('#'+id);
+      var msg = VAL[id](input.value);
+      var err = input.closest('.f-row').querySelector('.f-err');
+      input.classList.toggle('bad', !!msg);
+      err.textContent = msg; err.hidden = !msg;
+      if (msg){ allOk = false; firstBad = firstBad || input; rec.errors++; }
+    });
+    var terms = get('#b-terms'), tErr = get('#b-terms-err');
+    if (!terms.checked){ allOk = false; tErr.textContent = 'Please tick the box to continue.'; tErr.hidden = false; rec.errors++; }
+    else tErr.hidden = true;
+    updHud();
+    if (!allOk){ if (firstBad) firstBad.focus(); return; }
+    finishRound('B');
+  });
+  return f;
+}
+
+/* ---------------- flow ---------------- */
+function startRound(which){
+  var mount = $('#form-mount');
+  mount.innerHTML = '';
+  mount.appendChild(which === 'A' ? buildFormA() : buildFormB());
+  $('#stage-note').textContent = which === 'A'
+    ? 'FORM A — the signup form as it usually ships. Good luck.'
+    : 'FORM B — the same six facts, designed. Same fake answers.';
+  $('#giveup').hidden = true;
+  show('scr-round');
+  startTracking(which);
+  if (which === 'A'){
+    giveupTimer = setTimeout(function(){ $('#giveup').hidden = false; }, 45000);
+  }
+}
+function finishRound(which){
+  stopTracking();
+  if (which === 'A'){
+    var rec = R.A;
+    $('#inter-kicker').textContent = rec.abandoned ? 'Round A abandoned' : 'Round A complete';
+    $('#inter-h').textContent = rec.abandoned ? 'You gave up after' : 'That took you';
+    $('#inter-time').textContent = fmt(rec.t1 - rec.t0);
+    $('#inter-copy').innerHTML = rec.abandoned
+      ? 'Your customers do the same thing — except they don’t press a button that says so. Now try the same six facts, <b>designed</b>.'
+      : 'Now the same six facts — same fake answers — on the same form, <b>designed</b>.';
+    show('scr-inter');
+  } else {
+    buildResults();
+    show('scr-results');
+  }
+}
+$('#btn-start-a').addEventListener('click', function(){ startRound('A'); });
+$('#btn-start-b').addEventListener('click', function(){ startRound('B'); });
+$('#giveup-link').addEventListener('click', function(e){
+  e.preventDefault();
+  R.A.abandoned = true;
+  finishRound('A');
+});
+
+/* ---------------- results ---------------- */
+function buildResults(){
+  var a = R.A, b = R.B;
+  var ta = a.t1 - a.t0, tb = b.t1 - b.t0;
+  $('#r-time-a').textContent = fmt(ta) + (a.abandoned ? ' DNF' : '');
+  $('#r-time-b').textContent = fmt(tb);
+  var mult = (tb > 500) ? (ta / tb) : 0;
+  $('#r-mult').textContent = a.abandoned
+    ? 'you walked'
+    : (mult >= 1.05 ? mult.toFixed(1) + '× slower' : 'a wash — you’re fast');
+  $('#r-keys-a').textContent = a.keys;   $('#r-keys-b').textContent = b.keys;
+  $('#r-backs-a').textContent = a.backs; $('#r-backs-b').textContent = b.backs;
+  $('#r-rage-a').textContent = a.rage;   $('#r-rage-b').textContent = b.rage;
+  $('#r-sub-a').textContent = a.submits; $('#r-sub-b').textContent = b.submits;
+
+  var pad = function(s, n){ s = String(s); while (s.length < n) s += ' '; return s; };
+  var line = function(name, va, vb){ return pad(name,12) + pad(va,11) + vb; };
+  $('#receipt').textContent =
+    'FRICTION — the receipt\n' +
+    'same person · same six facts · two designs\n' +
+    '────────────────────────────────\n' +
+    line('', 'FORM A', 'FORM B') + '\n' +
+    line('time', fmt(ta) + (a.abandoned ? '*' : ''), fmt(tb)) + '\n' +
+    line('keystrokes', a.keys, b.keys) + '\n' +
+    line('backspaces', a.backs, b.backs) + '\n' +
+    line('rage clicks', a.rage, b.rage) + '\n' +
+    line('submits', a.submits, b.submits) + '\n' +
+    line('questions', '10', '7') + '\n' +
+    '────────────────────────────────\n' +
+    (a.abandoned
+      ? '* gave up. customers do this silently.\n'
+      : 'design made me ' + (mult >= 1.05 ? mult.toFixed(1) + '× slower.' : 'this much slower: barely.') + '\n') +
+    'measure yourself: greenaidigital.com/friction';
+
+  drawArt(true);
+}
+$('#btn-copy').addEventListener('click', function(){
+  var txt = $('#receipt').textContent;
+  var done = function(){ $('#btn-copy').textContent = '✓ copied'; setTimeout(function(){ $('#btn-copy').textContent = '⧉ copy my receipt'; }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, done);
+});
+$('#btn-replay').addEventListener('click', function(){ drawArt(true); });
+
+/* ---------------- the cursor art ---------------- */
+var artAnim = null;
+function normTrail(rec){
+  if (!rec.rect || !rec.trail.length) return [];
+  var r = rec.rect;
+  return rec.trail.map(function(p){
+    return { x: (p[0] - r.left) / r.w, y: (p[1] - r.top) / r.h, t: p[2], click: !!p[3] };
+  }).filter(function(p){ return p.x > -0.25 && p.x < 1.25 && p.y > -0.35 && p.y < 1.35; });
+}
+function hesitations(pts){
+  /* dwell >500ms within a 10px-normalized radius leaves a mark */
+  var out = [], i = 0;
+  while (i < pts.length){
+    var j = i;
+    while (j + 1 < pts.length &&
+           Math.hypot(pts[j+1].x - pts[i].x, pts[j+1].y - pts[i].y) < 0.012) j++;
+    var dwell = pts[j].t - pts[i].t;
+    if (dwell > 500) out.push({ x: pts[i].x, y: pts[i].y, w: Math.min(dwell/1000, 6) });
+    i = j + 1;
+  }
+  return out;
+}
+function drawArt(animate){
+  var cv = $('#art'), ctx = cv.getContext('2d');
+  var W = cv.width, H = cv.height;
+  var A = normTrail(R.A), B = normTrail(R.B);
+  var hesA = hesitations(A), hesB = hesitations(B);
+  var durA = A.length ? A[A.length-1].t : 1, durB = B.length ? B[B.length-1].t : 1;
+  var longest = Math.max(durA, durB, 1);
+  var REPLAY = reduced || !animate ? 0 : 5200;   /* both trails on one honest clock */
+
+  /* two side-by-side frames: A left, B right */
+  function mapper(side){
+    var m = 70, w = (W - m*3) / 2, h = H - m*2;
+    var x0 = side === 'A' ? m : m*2 + w;
+    return function(p){ return [ x0 + p.x * w, m + p.y * h ]; };
+  }
+  var mapA = mapper('A'), mapB = mapper('B');
+
+  function ground(){
+    ctx.fillStyle = '#040906'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle = 'rgba(125,227,164,.05)'; ctx.lineWidth = 1;
+    for (var x = 0; x < W; x += 50){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (var y = 0; y < H; y += 50){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+    ctx.font = '600 13px ui-monospace,monospace';
+    ctx.fillStyle = 'rgba(255,122,104,.6)';  ctx.fillText('FORM A — ' + fmt(durA), 70, 42);
+    ctx.fillStyle = 'rgba(125,227,164,.7)';  ctx.fillText('FORM B — ' + fmt(durB), W/2 + 35, 42);
+  }
+  function drawTrail(pts, map, color, upTo){
+    if (pts.length < 2) return;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (var i = 1; i < pts.length; i++){
+      if (pts[i].t > upTo) break;
+      var p0 = map(pts[i-1]), p1 = map(pts[i]);
+      var dt = Math.max(pts[i].t - pts[i-1].t, 1);
+      var speed = Math.hypot(p1[0]-p0[0], p1[1]-p0[1]) / dt;   /* px per ms */
+      var alpha = Math.max(0.18, Math.min(0.85, 0.75 - speed * 0.35));
+      var width = Math.max(1, Math.min(5, 3.6 - speed * 2.2));
+      ctx.strokeStyle = color + alpha + ')';
+      ctx.lineWidth = width;
+      ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]); ctx.stroke();
+      if (pts[i].click){
+        ctx.fillStyle = color + '.9)';
+        ctx.beginPath(); ctx.arc(p1[0], p1[1], 4, 0, 7); ctx.fill();
+      }
+    }
+  }
+  function drawHes(hes, map, color, upToFrac){
+    hes.forEach(function(h2){
+      var p = map(h2);
+      ctx.strokeStyle = color + (0.35 * upToFrac) + ')';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(p[0], p[1], 6 + h2.w * 5, 0, 7); ctx.stroke();
+    });
+  }
+  function frame(prog){  /* prog 0..1 over the honest clock */
+    ground();
+    var clock = prog * longest;
+    drawTrail(A, mapA, 'rgba(255,122,104,', clock);
+    drawTrail(B, mapB, 'rgba(125,227,164,', clock);
+    drawHes(hesA, mapA, 'rgba(255,122,104,', prog);
+    drawHes(hesB, mapB, 'rgba(125,227,164,', prog);
+    if (clock >= durB && durB < durA && prog < 1){
+      ctx.font = 'italic 600 15px Georgia,serif';
+      ctx.fillStyle = 'rgba(240,207,107,.9)';
+      ctx.fillText('B is done. A is still in there.', W/2 + 35, H - 28);
+    }
+  }
+  if (artAnim) cancelAnimationFrame(artAnim);
+  if (!REPLAY){ frame(1); return; }
+  var start = performance.now();
+  (function tick(){
+    var prog = Math.min((performance.now() - start) / REPLAY, 1);
+    frame(prog);
+    if (prog < 1) artAnim = requestAnimationFrame(tick);
+  })();
+}
+
+/* ---------------- self test (?selftest=1) ---------------- */
+if (location.search.indexOf('selftest=1') !== -1){
+  var fire = function(elm, type){ elm.dispatchEvent(new Event(type, {bubbles:true})); };
+  var setv = function(sel, v){ var i = document.querySelector(sel); i.value = v; fire(i,'input'); fire(i,'change'); };
+  var fail = function(why){ document.title = 'SELFTEST FAIL: ' + why; throw new Error(why); };
+  try {
+    $('#btn-start-a').click();
+    if ($('#scr-round').hidden) fail('round A did not open');
+    document.querySelector('.formA button.f-submit').click();
+    if (document.querySelector('#a-banner').hidden) fail('A empty submit showed no banner');
+    if (R.A.submits !== 1) fail('A submit not counted');
+    setv('#a-name','Test Person'); setv('#a-email','t@example.com'); setv('#a-email2','t@example.com');
+    setv('#a-phone','(555) 123-4567'); setv('#a-state','Arizona'); setv('#a-pw','Passw0rd');
+    setv('#a-mm','April'); setv('#a-dd','16'); setv('#a-yy','1990');
+    document.querySelector('#a-terms').checked = true;
+    document.querySelector('.formA button.f-submit').click();
+    if ($('#scr-inter').hidden) fail('A valid submit did not advance');
+    $('#btn-start-b').click();
+    if ($('#scr-round').hidden) fail('round B did not open');
+    var ph = document.querySelector('#b-phone'); ph.value = '5551234567'; fire(ph,'input');
+    if (ph.value !== '(555) 123-4567') fail('phone mask wrong: ' + ph.value);
+    var dob = document.querySelector('#b-dob'); dob.value = '04161990'; fire(dob,'input');
+    if (dob.value !== '04/16/1990') fail('dob mask wrong: ' + dob.value);
+    setv('#b-name','Test Person'); setv('#b-email','t@example.com'); setv('#b-state','az');
+    setv('#b-pw','Passw0rd');
+    document.querySelector('#b-terms').checked = true;
+    document.querySelector('.formB button.f-submit').click();
+    if ($('#scr-results').hidden) fail('B valid submit did not show results');
+    if (!$('#receipt').textContent.length) fail('receipt empty');
+    document.title = 'SELFTEST PASS A=' + Math.round(R.A.t1 - R.A.t0) + 'ms B=' + Math.round(R.B.t1 - R.B.t0) + 'ms subsA=' + R.A.submits;
+  } catch(err){
+    if (document.title.indexOf('SELFTEST') !== 0) document.title = 'SELFTEST FAIL: ' + err.message;
+  }
+}
+})();
+</script>
+</body>
+</html>
