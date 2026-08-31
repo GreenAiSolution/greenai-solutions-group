@@ -209,6 +209,69 @@ label.f-label span{color:var(--ink-faint); font-weight:400}
 .foot{margin-top:80px; text-align:center; font-family:var(--mono); font-size:.68rem; color:var(--ink-faint); letter-spacing:.08em}
 .foot a{color:var(--ink-faint)}
 
+/* ---------- portal brand strip ---------- */
+.fc-brand{
+  display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:.68rem;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint);
+  border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:20px;
+}
+.fc-brand .mark{width:26px; height:26px; flex:0 0 auto}
+.fc-brand b{color:var(--gold); font-weight:600}
+
+/* ---------- click fx ---------- */
+.fx{position:fixed; z-index:95; pointer-events:none; border-radius:50%; transform:translate(-50%,-50%)}
+.fx.ring{width:14px; height:14px; border:2px solid rgba(125,227,164,.8); animation:fxring .5s ease-out forwards}
+.fx.burst{width:12px; height:12px; border:2px solid rgba(255,122,104,.9); animation:fxburst .6s ease-out forwards}
+.fx.spark{width:6px; height:6px; border-radius:1px; background:var(--c,#f0cf6b); animation:fxspark .85s cubic-bezier(.15,.6,.4,1) forwards}
+@keyframes fxring{from{opacity:.9; transform:translate(-50%,-50%) scale(.4)} to{opacity:0; transform:translate(-50%,-50%) scale(3.2)}}
+@keyframes fxburst{from{opacity:1; transform:translate(-50%,-50%) scale(.4)} to{opacity:0; transform:translate(-50%,-50%) scale(5.5)}}
+@keyframes fxspark{from{opacity:1} to{opacity:0; transform:translate(var(--dx,0px),var(--dy,-60px)) rotate(300deg) scale(.35)}}
+@keyframes shakeX{0%,100%{transform:none}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.shake{animation:shakeX .3s ease}
+@media (prefers-reduced-motion: reduce){.fx{display:none}.shake{animation:none}}
+
+/* ---------- account-created stamp ---------- */
+.made{
+  position:fixed; inset:0; z-index:90; display:flex; align-items:center; justify-content:center;
+  background:rgba(4,9,6,.7); backdrop-filter:blur(3px);
+}
+.made .stamp{
+  font-family:var(--mono); border:3px solid var(--green); color:var(--green);
+  padding:20px 36px; border-radius:10px; font-size:clamp(1.1rem,4.5vw,1.8rem); letter-spacing:.18em;
+  transform:rotate(-4deg); background:rgba(5,11,7,.88); text-align:center;
+  box-shadow:0 0 70px rgba(125,227,164,.28);
+  animation:stampIn .45s cubic-bezier(.2,1.6,.4,1) both;
+}
+.made .stamp small{display:block; letter-spacing:.1em; font-size:.62rem; color:var(--ink-dim); margin-top:10px}
+@keyframes stampIn{from{opacity:0; transform:rotate(-4deg) scale(2.6)} to{opacity:1; transform:rotate(-4deg) scale(1)}}
+@media (prefers-reduced-motion: reduce){.made .stamp{animation:none}}
+
+/* ---------- the bridge to the niche ---------- */
+.bridge{
+  margin-top:70px; border:1px solid var(--line); border-radius:18px; overflow:hidden; position:relative;
+  background:linear-gradient(180deg,#08120b,#050b07); text-align:center; padding:48px 26px 42px;
+}
+.bridge::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(620px 260px at 50% 0%, rgba(240,207,107,.07), transparent 70%);
+}
+.bridge > *{position:relative}
+.bridge .kicker{font-family:var(--mono); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold)}
+.bridge h3{font-family:var(--disp); font-weight:640; font-size:clamp(1.7rem,5vw,2.6rem); margin:14px auto 14px; max-width:600px; line-height:1.15}
+.bridge p{color:var(--ink-dim); max-width:530px; margin:0 auto 10px; line-height:1.7}
+.bridge .verdict{margin:26px 0 14px}
+.bridge .verdict .t.small{font-size:clamp(1rem,3vw,1.5rem); line-height:1.25; padding-top:12px}
+.bridge .verdict .lab2{font-family:var(--mono); font-size:.66rem; color:var(--ink-faint); margin-top:8px; letter-spacing:.08em}
+.cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:26px}
+a.big-cta{text-decoration:none}
+.big-cta.sm{margin-top:0; padding:15px 30px; font-size:1rem}
+.cta-ghost{
+  display:inline-block; padding:14px 28px; border-radius:12px; border:1px solid rgba(125,227,164,.4);
+  color:var(--green); text-decoration:none; font-weight:600; font-size:1rem;
+}
+.cta-ghost:hover{background:rgba(125,227,164,.08)}
+.bridge .fine{font-family:var(--mono); font-size:.72rem; color:var(--ink-faint); margin-top:18px}
+
 @media (max-width:640px){
   .verdict{flex-direction:column; gap:2px}
   .verdict .side{max-width:none; padding:10px}
@@ -233,16 +296,18 @@ label.f-label span{color:var(--ink-faint); font-weight:400}
   <section id="scr-intro">
     <div class="hero">
       <h1>You're about to feel<br>what <em>bad design</em> costs.</h1>
-      <p class="sub">One signup form. You'll fill it twice — once the way it's usually shipped,
-      once designed right. This page measures everything you do, then hands you the bill.</p>
+      <p class="sub">Meet <b>Eagle Landscaping</b> — a fictional Phoenix landscaping company.
+      You're their newest customer, and their website wants you to create an account.
+      You'll do it twice — once the way signup forms usually ship, once designed right.
+      This page measures everything you do, then hands you the bill.</p>
       <div class="chips">
         <span class="chip"><b>⏱</b> every second timed</span>
         <span class="chip"><b>⌫</b> every backspace counted</span>
         <span class="chip"><b>👆</b> your cursor, recorded</span>
         <span class="chip"><b>🔒</b> nothing leaves this page</span>
       </div>
-      <p class="fake-note">Use <b>made-up answers</b> — a fake name, a fake email, a fake number.
-      Type the same fake answers both rounds.</p>
+      <p class="fake-note">Eagle Landscaping isn't real, so use <b>made-up answers</b> — a fake name,
+      a fake email, a fake number. Type the same fake answers both rounds.</p>
       <button class="big-cta" id="btn-start-a">Start Round A</button>
     </div>
   </section>
@@ -324,6 +389,25 @@ label.f-label span{color:var(--ink-faint); font-weight:400}
       </div>
     </div>
 
+    <div class="bridge">
+      <p class="kicker">Where friction really lives</p>
+      <h3>Forms lose customers quietly.<br>Phones lose them faster.</h3>
+      <p>The same customer who just fought Form A also calls Eagle Landscaping at 9&nbsp;PM
+      and hears voicemail. They don't leave a message. They dial the next company on the list.</p>
+      <div class="verdict">
+        <div class="side b"><div class="lab">GREENAI AI EMPLOYEE</div><div class="t">0:08</div><div class="lab2">answers every lead, day or night</div></div>
+        <div class="x">vs</div>
+        <div class="side a"><div class="lab">VOICEMAIL</div><div class="t small">next morning</div><div class="lab2">if they ever call back</div></div>
+      </div>
+      <p>That's the friction we remove. An AI employee that picks up in 8 seconds,
+      every hour of every night — and it never ships a form like Form A.</p>
+      <div class="cta-row">
+        <a class="big-cta sm" href="https://greenaidigital.com/call.html">📞 Call the AI — live demo</a>
+        <a class="cta-ghost" href="https://greenaidigital.com/catch.html">Watch it catch a lead →</a>
+      </div>
+      <p class="fine">$497/mo · month-to-month · you own everything we build</p>
+    </div>
+
     <a class="again" href="./">↻ run it again — or hand your phone to someone who ships forms</a>
   </section>
 
@@ -338,6 +422,38 @@ label.f-label span{color:var(--ink-faint); font-weight:400}
 'use strict';
 var $ = function(s){ return document.querySelector(s); };
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var SELFTEST = location.search.indexOf('selftest=1') !== -1;
+
+/* the fictional client whose portal this is — same demo business as the rest of the site */
+var BRAND = '<svg class="mark" viewBox="0 0 32 32" aria-hidden="true">' +
+  '<circle cx="22" cy="9" r="5" fill="#f0cf6b"/>' +
+  '<path d="M2 27 L12 12 L19 22 L24 15 L30 27 Z" fill="#5fca8b"/></svg>' +
+  '<span><b>EAGLE LANDSCAPING</b> · Phoenix AZ · customer portal</span>';
+
+/* ---------------- click fx ---------------- */
+function fx(x, y, cls){
+  if (reduced) return;
+  var d = document.createElement('span');
+  d.className = 'fx ' + cls;
+  d.style.left = x + 'px'; d.style.top = y + 'px';
+  document.body.appendChild(d);
+  setTimeout(function(){ d.remove(); }, 900);
+}
+function sparks(x, y, n, spread){
+  if (reduced) return;
+  var colors = ['#7de3a4','#f0cf6b','#8fe9b2','#ffdf8a'];
+  for (var i = 0; i < n; i++){
+    var s = document.createElement('span');
+    s.className = 'fx spark';
+    s.style.left = x + 'px'; s.style.top = y + 'px';
+    s.style.setProperty('--dx', (Math.random() * spread * 2 - spread) + 'px');
+    s.style.setProperty('--dy', (Math.random() * spread * 1.7 - spread * 1.2) + 'px');
+    s.style.setProperty('--c', colors[i % colors.length]);
+    document.body.appendChild(s);
+    (function(node){ setTimeout(function(){ node.remove(); }, 950); })(s);
+  }
+}
+addEventListener('pointerdown', function(e){ fx(e.clientX, e.clientY, 'ring'); }, {passive:true});
 
 /* ---------------- state ---------------- */
 function blankRec(){ return { t0:0, t1:0, keys:0, backs:0, clicks:0, rage:0, errors:0, submits:0,
@@ -443,7 +559,7 @@ addEventListener('pointerdown', function(e){
   lastClicks = lastClicks.filter(function(c){ return now - c[2] < 800; });
   if (lastClicks.length >= 3){
     var d = Math.hypot(lastClicks[0][0] - e.pageX, lastClicks[0][1] - e.pageY);
-    if (d < 30){ rec.rage++; lastClicks = []; }
+    if (d < 30){ rec.rage++; lastClicks = []; fx(e.clientX, e.clientY, 'burst'); sparks(e.clientX, e.clientY, 6, 60); }
   }
   updHud();
 }, {passive:true});
@@ -460,19 +576,24 @@ addEventListener('keydown', function(e){
 /* ---------------- FORM A — as shipped ---------------- */
 function buildFormA(){
   var f = el('<form class="form-card formA" novalidate autocomplete="off">' +
+    '<div class="fc-brand">' + BRAND + '</div>' +
     '<h2>Create your account</h2>' +
     '<div class="fc-sub">* All fields are required</div>' +
     '<div class="f-banner" id="a-banner" hidden>⚠ Some fields need attention.</div>' +
-    '<div class="f-row"><input id="a-name" placeholder="Full name" aria-label="Full name"></div>' +
+    '<div class="f-row"><input id="a-name" placeholder="Full name" aria-label="Full name">' +
+      '<div class="f-err" id="a-name-err" hidden></div></div>' +
     '<div class="f-grid">' +
-      '<div class="f-row"><input id="a-email" placeholder="Email" aria-label="Email"></div>' +
-      '<div class="f-row"><input id="a-email2" placeholder="Confirm email" aria-label="Confirm email"></div>' +
+      '<div class="f-row"><input id="a-email" placeholder="Email" aria-label="Email">' +
+        '<div class="f-err" id="a-email-err" hidden></div></div>' +
+      '<div class="f-row"><input id="a-email2" placeholder="Confirm email" aria-label="Confirm email">' +
+        '<div class="f-err" id="a-email2-err" hidden></div></div>' +
     '</div>' +
     '<div class="f-grid">' +
-      '<div class="f-row"><input id="a-phone" placeholder="Phone number" aria-label="Phone number"></div>' +
+      '<div class="f-row"><input id="a-phone" placeholder="Phone number" aria-label="Phone number">' +
+        '<div class="f-err" id="a-phone-err" hidden></div></div>' +
       '<div class="f-row"><select id="a-state" aria-label="State"><option value="">-- Select --</option>' +
         STATES_SCRAMBLED.map(function(s){ return '<option>' + s + '</option>'; }).join('') +
-      '</select></div>' +
+      '</select><div class="f-err" id="a-state-err" hidden></div></div>' +
     '</div>' +
     '<div class="f-row"><input id="a-pw" type="password" placeholder="Password" aria-label="Password">' +
       '<div class="f-err" id="a-pw-err" hidden></div></div>' +
@@ -480,14 +601,16 @@ function buildFormA(){
       '<select id="a-mm" aria-label="Birth month"><option value="">Month</option>' + MONTHS.map(function(m){ return '<option>'+m+'</option>'; }).join('') + '</select>' +
       '<select id="a-dd" aria-label="Birth day"><option value="">Day</option>' + Array.from({length:31},function(_,i){ return '<option>'+(i+1)+'</option>'; }).join('') + '</select>' +
       '<select id="a-yy" aria-label="Birth year"><option value="">Year</option>' + Array.from({length:91},function(_,i){ return '<option>'+(1920+i)+'</option>'; }).join('') + '</select>' +
-    '</div></div>' +
+    '</div><div class="f-err" id="a-dob-err" hidden></div></div>' +
     '<label class="terms"><input type="checkbox" id="a-terms"><span>I have read and agree to the Terms of Service and Privacy Policy and consent to the processing of my information in accordance with said policies</span></label>' +
+    '<div class="f-err" id="a-terms-err" hidden></div>' +
     '<button class="f-submit" type="submit">Submit</button>' +
     '</form>');
 
   /* the classics: paste blocked on confirm-email */
   f.querySelector('#a-email2').addEventListener('paste', function(e){ e.preventDefault(); });
 
+  var phoneFails = 0;   /* the format hint is earned, not given */
   f.addEventListener('submit', function(e){
     e.preventDefault();
     var rec = R.A; rec.submits++;
@@ -496,28 +619,49 @@ function buildFormA(){
     var name = get('#a-name'), em = get('#a-email'), em2 = get('#a-email2'),
         ph = get('#a-phone'), st = get('#a-state'), pw = get('#a-pw'),
         mm = get('#a-mm'), dd = get('#a-dd'), yy = get('#a-yy'), tm = get('#a-terms');
-    [name,em,em2,ph,st,pw,mm,dd,yy].forEach(function(i){ i.classList.remove('bad'); });
-    var pwErr = get('#a-pw-err'); pwErr.hidden = true;
+    [name,em,em2,ph,st,pw,mm,dd,yy].forEach(function(i){ i.classList.remove('bad','shake'); });
+    ['#a-name-err','#a-email-err','#a-email2-err','#a-phone-err','#a-state-err','#a-pw-err','#a-dob-err','#a-terms-err']
+      .forEach(function(id){ var d = get(id); if (d) d.hidden = true; });
+    var say = function(input, errId, msg){
+      bad.push(input);
+      var d = get(errId);
+      if (d){ d.textContent = msg; d.hidden = false; }
+    };
 
-    if (name.value.trim().length < 2) bad.push(name);
-    if (!emailOk(em.value)) bad.push(em);
-    if (em2.value.trim() !== em.value.trim() || !em2.value.trim()) bad.push(em2);
-    if (!/^\(\d{3}\) \d{3}-\d{4}$/.test(ph.value)) bad.push(ph);       /* exact format, never explained */
-    if (!st.value) bad.push(st);
+    if (name.value.trim().length < 2) say(name, '#a-name-err', 'This field is required.');
+    if (!emailOk(em.value)) say(em, '#a-email-err', 'Invalid email address.');
+    if (em2.value.trim() !== em.value.trim() || !em2.value.trim())
+      say(em2, '#a-email2-err', 'Email addresses do not match.');
+    /* exact format — the vague error becomes a real hint only after it beats you twice */
+    if (!/^\(\d{3}\) \d{3}-\d{4}$/.test(ph.value)){
+      if (!ph.value.trim()){
+        say(ph, '#a-phone-err', 'This field is required.');
+      } else {
+        phoneFails++;
+        say(ph, '#a-phone-err', phoneFails >= 2
+          ? 'Phone number must match the format (555) 123-4567.'
+          : 'Invalid phone number.');
+      }
+    }
+    if (!st.value) say(st, '#a-state-err', 'This field is required.');
     /* password: reveal ONE failed rule per attempt */
     var failed = pwRules.filter(function(r){ return !r.f(pw.value); });
-    if (failed.length){
-      bad.push(pw);
-      pwErr.textContent = 'Password must contain ' + failed[0].t + '.';
-      pwErr.hidden = false;
+    if (failed.length) say(pw, '#a-pw-err', 'Password must contain ' + failed[0].t + '.');
+    var dobBad = [];
+    if (!mm.value) dobBad.push(mm);
+    if (!dd.value) dobBad.push(dd);
+    if (!yy.value) dobBad.push(yy);
+    if (dobBad.length){
+      dobBad.forEach(function(i){ bad.push(i); });
+      var dErr = get('#a-dob-err'); dErr.textContent = 'Date of birth is required.'; dErr.hidden = false;
     }
-    if (!mm.value) bad.push(mm);
-    if (!dd.value) bad.push(dd);
-    if (!yy.value) bad.push(yy);
-    if (!tm.checked) bad.push(tm);
+    if (!tm.checked) say(tm, '#a-terms-err', 'You must accept the terms to continue.');
 
     if (bad.length){
-      bad.forEach(function(i){ i.classList.add('bad'); });
+      bad.forEach(function(i){
+        i.classList.add('bad');
+        if (!reduced && i.type !== 'checkbox'){ void i.offsetWidth; i.classList.add('shake'); }
+      });
       rec.errors += bad.length;
       updHud();
       var b = get('#a-banner'); b.hidden = false;
@@ -532,6 +676,7 @@ function buildFormA(){
 /* ---------------- FORM B — designed ---------------- */
 function buildFormB(){
   var f = el('<form class="form-card formB" novalidate>' +
+    '<div class="fc-brand">' + BRAND + '</div>' +
     '<h2>Create your account</h2>' +
     '<div class="fc-sub">Six quick things — about 30 seconds.</div>' +
     '<div class="f-row"><label class="f-label" for="b-name">Full name</label>' +
@@ -603,9 +748,11 @@ function buildFormB(){
   };
   function validateField(input){
     var msg = VAL[input.id](input.value);
-    var err = input.closest('.f-row').querySelector('.f-err');
+    var err = input.closest('.f-row').querySelector('.f-err, .f-ok');
     input.classList.toggle('bad', !!msg);
-    err.textContent = msg; err.hidden = !msg;
+    err.className = msg ? 'f-err' : 'f-ok';
+    err.textContent = msg || '✓';
+    err.hidden = !msg && !input.value;
     if (msg){ R.B.errors++; updHud(); }
     return !msg;
   }
@@ -615,8 +762,8 @@ function buildFormB(){
     input.addEventListener('input', function(){        /* forgiving: clear as soon as it's fixed */
       if (input.classList.contains('bad') && !VAL[id](input.value)){
         input.classList.remove('bad');
-        var err = input.closest('.f-row').querySelector('.f-err');
-        err.hidden = true;
+        var err = input.closest('.f-row').querySelector('.f-err, .f-ok');
+        err.className = 'f-ok'; err.textContent = '✓'; err.hidden = false;
       }
     });
   });
@@ -628,9 +775,10 @@ function buildFormB(){
     Object.keys(VAL).forEach(function(id){
       var input = get('#'+id);
       var msg = VAL[id](input.value);
-      var err = input.closest('.f-row').querySelector('.f-err');
+      var err = input.closest('.f-row').querySelector('.f-err, .f-ok');
       input.classList.toggle('bad', !!msg);
-      err.textContent = msg; err.hidden = !msg;
+      if (msg){ err.className = 'f-err'; err.textContent = msg; err.hidden = false; }
+      else err.hidden = true;
       if (msg){ allOk = false; firstBad = firstBad || input; rec.errors++; }
     });
     var terms = get('#b-terms'), tErr = get('#b-terms-err');
@@ -649,7 +797,7 @@ function startRound(which){
   mount.innerHTML = '';
   mount.appendChild(which === 'A' ? buildFormA() : buildFormB());
   $('#stage-note').textContent = which === 'A'
-    ? 'FORM A — the signup form as it usually ships. Good luck.'
+    ? 'FORM A — the Eagle Landscaping signup, as it usually ships. Good luck.'
     : 'FORM B — the same six facts, designed. Same fake answers.';
   $('#giveup').hidden = true;
   show('scr-round');
@@ -672,7 +820,16 @@ function finishRound(which){
   } else {
     buildResults();
     show('scr-results');
+    celebrate();
   }
+}
+function celebrate(){
+  if (SELFTEST) return;
+  var ov = el('<div class="made"><div class="stamp">✓ ACCOUNT CREATED' +
+    '<small>Eagle Landscaping · customer portal · a demo — nothing was stored</small></div></div>');
+  document.body.appendChild(ov);
+  sparks(innerWidth / 2, innerHeight / 2, 44, 240);
+  setTimeout(function(){ ov.remove(); }, 1800);
 }
 $('#btn-start-a').addEventListener('click', function(){ startRound('A'); });
 $('#btn-start-b').addEventListener('click', function(){ startRound('B'); });
@@ -692,10 +849,20 @@ function buildResults(){
   $('#r-mult').textContent = a.abandoned
     ? 'you walked'
     : (mult >= 1.05 ? mult.toFixed(1) + '× slower' : 'a wash — you’re fast');
-  $('#r-keys-a').textContent = a.keys;   $('#r-keys-b').textContent = b.keys;
-  $('#r-backs-a').textContent = a.backs; $('#r-backs-b').textContent = b.backs;
-  $('#r-rage-a').textContent = a.rage;   $('#r-rage-b').textContent = b.rage;
-  $('#r-sub-a').textContent = a.submits; $('#r-sub-b').textContent = b.submits;
+  var countUp = function(id, v){
+    var node = $(id);
+    if (reduced || SELFTEST || v === 0){ node.textContent = v; return; }
+    var t0 = performance.now(), dur = 750;
+    (function step(){
+      var p = Math.min((performance.now() - t0) / dur, 1);
+      node.textContent = Math.round(v * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    })();
+  };
+  countUp('#r-keys-a', a.keys);   countUp('#r-keys-b', b.keys);
+  countUp('#r-backs-a', a.backs); countUp('#r-backs-b', b.backs);
+  countUp('#r-rage-a', a.rage);   countUp('#r-rage-b', b.rage);
+  countUp('#r-sub-a', a.submits); countUp('#r-sub-b', b.submits);
 
   var pad = function(s, n){ s = String(s); while (s.length < n) s += ' '; return s; };
   var line = function(name, va, vb){ return pad(name,12) + pad(va,11) + vb; };
@@ -835,9 +1002,16 @@ if (location.search.indexOf('selftest=1') !== -1){
     if (document.querySelector('#a-banner').hidden) fail('A empty submit showed no banner');
     if (R.A.submits !== 1) fail('A submit not counted');
     setv('#a-name','Test Person'); setv('#a-email','t@example.com'); setv('#a-email2','t@example.com');
-    setv('#a-phone','(555) 123-4567'); setv('#a-state','Arizona'); setv('#a-pw','Passw0rd');
+    setv('#a-phone','5551234567'); setv('#a-state','Arizona'); setv('#a-pw','Passw0rd');
     setv('#a-mm','April'); setv('#a-dd','16'); setv('#a-yy','1990');
     document.querySelector('#a-terms').checked = true;
+    document.querySelector('.formA button.f-submit').click();
+    if (!$('#scr-inter').hidden) fail('A accepted a bad-format phone');
+    var perr = document.querySelector('#a-phone-err');
+    if (perr.hidden || !perr.textContent) fail('A bad phone showed no error message');
+    document.querySelector('.formA button.f-submit').click();
+    if (perr.textContent.indexOf('(555)') === -1) fail('A phone hint never revealed the format');
+    setv('#a-phone','(555) 123-4567');
     document.querySelector('.formA button.f-submit').click();
     if ($('#scr-inter').hidden) fail('A valid submit did not advance');
     $('#btn-start-b').click();
