@@ -632,14 +632,14 @@ function buildFormA(){
     if (!emailOk(em.value)) say(em, '#a-email-err', 'Invalid email address.');
     if (em2.value.trim() !== em.value.trim() || !em2.value.trim())
       say(em2, '#a-email2-err', 'Email addresses do not match.');
-    /* exact format — the vague error becomes a real hint only after it beats you twice */
-    if (!/^\(\d{3}\) \d{3}-\d{4}$/.test(ph.value)){
+    /* 10 bare digits only — the vague error becomes a real hint only after it beats you twice */
+    if (!/^\d{10}$/.test(ph.value)){
       if (!ph.value.trim()){
         say(ph, '#a-phone-err', 'This field is required.');
       } else {
         phoneFails++;
         say(ph, '#a-phone-err', phoneFails >= 2
-          ? 'Phone number must match the format (555) 123-4567.'
+          ? 'Phone number must be 10 digits, no spaces or dashes — like 5551234567.'
           : 'Invalid phone number.');
       }
     }
@@ -1002,7 +1002,7 @@ if (location.search.indexOf('selftest=1') !== -1){
     if (document.querySelector('#a-banner').hidden) fail('A empty submit showed no banner');
     if (R.A.submits !== 1) fail('A submit not counted');
     setv('#a-name','Test Person'); setv('#a-email','t@example.com'); setv('#a-email2','t@example.com');
-    setv('#a-phone','5551234567'); setv('#a-state','Arizona'); setv('#a-pw','Passw0rd');
+    setv('#a-phone','(555) 123-4567'); setv('#a-state','Arizona'); setv('#a-pw','Passw0rd');
     setv('#a-mm','April'); setv('#a-dd','16'); setv('#a-yy','1990');
     document.querySelector('#a-terms').checked = true;
     document.querySelector('.formA button.f-submit').click();
@@ -1010,8 +1010,8 @@ if (location.search.indexOf('selftest=1') !== -1){
     var perr = document.querySelector('#a-phone-err');
     if (perr.hidden || !perr.textContent) fail('A bad phone showed no error message');
     document.querySelector('.formA button.f-submit').click();
-    if (perr.textContent.indexOf('(555)') === -1) fail('A phone hint never revealed the format');
-    setv('#a-phone','(555) 123-4567');
+    if (perr.textContent.indexOf('5551234567') === -1) fail('A phone hint never revealed the format');
+    setv('#a-phone','5551234567');
     document.querySelector('.formA button.f-submit').click();
     if ($('#scr-inter').hidden) fail('A valid submit did not advance');
     $('#btn-start-b').click();
