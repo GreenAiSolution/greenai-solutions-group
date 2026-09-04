@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="104 146 432 576" width="432" height="576" role="img">
+  <defs>
+    <radialGradient id="bg6" cx="50%" cy="38%" r="78%">
+      <stop offset="0%" stop-color="#0f3218"/>
+      <stop offset="100%" stop-color="#040d07"/>
+    </radialGradient>
+
+    <linearGradient id="hull6" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%"   stop-color="#7fa389"/>
+      <stop offset="45%"  stop-color="#456b52"/>
+      <stop offset="100%" stop-color="#172a1e"/>
+    </linearGradient>
+
+    <linearGradient id="hullv6" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#7fa389"/>
+      <stop offset="60%"  stop-color="#456b52"/>
+      <stop offset="100%" stop-color="#172a1e"/>
+    </linearGradient>
+
+    <linearGradient id="face6" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"   stop-color="#0c1a10"/>
+      <stop offset="100%" stop-color="#040a06"/>
+    </linearGradient>
+
+    <linearGradient id="gold6" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#8a6d1c"/>
+      <stop offset="50%"  stop-color="#e8c84a"/>
+      <stop offset="100%" stop-color="#8a6d1c"/>
+    </linearGradient>
+
+    <linearGradient id="panel6" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#7DE3A4" stop-opacity=".30"/>
+      <stop offset="100%" stop-color="#7DE3A4" stop-opacity=".08"/>
+    </linearGradient>
+
+    <!-- rim light spilling around the silhouette -->
+    <filter id="rim6" x="-45%" y="-45%" width="190%" height="190%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="glow6" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="soft6" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+
+    <!-- fine matte grain so the plating doesn't read as flat vector fill -->
+    <filter id="grain6" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="6"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+
+    <clipPath id="crop6"><rect width="640" height="854" rx="0"/></clipPath>
+  </defs>
+  <rect width="640" height="854" fill="url(#bg6)"/>
+  <!-- back rim glow -->
+  <ellipse cx="320" cy="300" rx="190" ry="205" fill="#4caf6e" opacity=".30" filter="url(#rim6)"/>
+  <ellipse cx="320" cy="330" rx="120" ry="130" fill="#7de3a4" opacity=".18" filter="url(#rim6)"/>
+  <!-- neck, behind the shoulders -->
+  <rect x="268" y="536" width="104" height="72" rx="16" fill="#26352a"/>
+  <rect x="278" y="548" width="84" height="11" rx="5.5" fill="#5f7a66" opacity=".85"/>
+  <rect x="278" y="566" width="84" height="11" rx="5.5" fill="#5f7a66" opacity=".85"/>
+  <rect x="278" y="584" width="84" height="11" rx="5.5" fill="#5f7a66" opacity=".85"/>
+
+  <!-- shoulders -->
+  <path d="M78 990 L78 700 Q78 622 162 596 L244 572 L396 572 L478 596
+           Q562 622 562 700 L562 990 Z" fill="url(#hull6)"/>
+  <!-- lit left shoulder edge -->
+  <path d="M78 990 L78 726 Q78 648 162 622 L206 610 Q118 664 118 742 L118 854 Z"
+        fill="#ffffff" opacity=".15"/>
+  <!-- shoulder caps in shadow -->
+  <path d="M78 764 Q78 634 176 602 L200 680 Q128 700 122 774 Z" fill="#26352a" opacity=".6"/>
+  <path d="M562 764 Q562 634 464 602 L440 680 Q512 700 518 774 Z" fill="#26352a" opacity=".6"/>
+  <!-- chest deck plate -->
+  <path d="M204 990 L204 690 Q204 658 240 652 L400 652 Q436 658 436 690 L436 854 Z"
+        fill="url(#hullv6)"/>
+  <path d="M204 640 Q204 610 238 604 L402 604 Q436 610 436 640 L436 650 L204 650 Z"
+        fill="url(#gold6)" opacity=".9"/>
+  <g stroke="#7DE3A4" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round">
+    <path d="M132 720 L132 678 L172 678"/>
+    <path d="M132 754 L158 754 L158 726"/>
+    <path d="M508 720 L508 678 L468 678"/>
+    <path d="M508 754 L482 754 L482 726"/>
+  </g>
+  <g fill="#7DE3A4" opacity=".8">
+    <circle cx="172" cy="678" r="4"/><circle cx="158" cy="726" r="4"/>
+    <circle cx="468" cy="678" r="4"/><circle cx="482" cy="726" r="4"/>
+  </g>
+  <g transform="translate(0,-46) scale(1)">
+    <rect x="244" y="700" width="152" height="110" rx="11" fill="#7DE3A4" opacity=".20" filter="url(#glow6)"/>
+    <rect x="248" y="704" width="144" height="102" rx="9" fill="#031008"/>
+    <rect x="248" y="704" width="144" height="102" rx="9" fill="url(#panel6)"/>
+    <rect x="248" y="704" width="144" height="102" rx="9" fill="none" stroke="#7DE3A4" stroke-width="2" opacity=".75"/>
+    
+  <path d="M320 722 L320 790" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <path d="M296 790 L344 790" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <path d="M272 736 L368 736" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M272 736 L262 764 M272 736 L282 764" stroke="#7DE3A4" stroke-width="1.6" opacity=".7"/>
+  <path d="M368 736 L358 764 M368 736 L378 764" stroke="#7DE3A4" stroke-width="1.6" opacity=".7"/>
+  <path d="M256 766 Q272 776 288 766 Z" fill="#7DE3A4" opacity=".85"/>
+  <path d="M352 766 Q368 776 384 766 Z" fill="#7DE3A4" opacity=".85"/>
+  <path d="M272 744 q6 8 0 14 q-6 -6 0 -14z" fill="#ffffff" opacity=".85"/>
+  <path d="M368 744 q6 8 0 14 q-6 -6 0 -14z" fill="#ffffff" opacity=".85"/>
+  <circle cx="320" cy="736" r="4" fill="#7DE3A4"/>
+  </g>
+  <!-- ear / audio housings -->
+  <ellipse cx="168" cy="392" rx="38" ry="54" fill="#26352a"/>
+  <ellipse cx="168" cy="392" rx="21" ry="32" fill="#08130b"/>
+  <ellipse cx="472" cy="392" rx="38" ry="54" fill="#26352a"/>
+  <ellipse cx="472" cy="392" rx="21" ry="32" fill="#08130b"/>
+  <circle cx="472" cy="392" r="11" fill="#D4AF37" opacity=".6"/>
+
+  <!-- cranium -->
+  <path d="M186 392 Q186 196 320 196 Q454 196 454 392 L454 462
+           Q454 556 320 556 Q186 556 186 462 Z" fill="url(#hull6)"/>
+  <!-- lit left edge: one hard highlight is what makes flat vector read as metal -->
+  <path d="M186 392 Q186 196 320 196 Q356 196 384 208 Q252 214 224 396 L224 470
+           Q224 520 268 540 Q206 528 192 470 Z" fill="#ffffff" opacity=".17"/>
+  <!-- crown sheen -->
+  <ellipse cx="300" cy="262" rx="86" ry="34" fill="#ffffff" opacity=".13"/>
+  <!-- gold crown band, high on the forehead and clear of the face -->
+  <path d="M198 272 Q320 244 442 272 L442 284 Q320 256 198 284 Z" fill="url(#gold6)" opacity=".95"/>
+
+  <!-- faceplate recess -->
+  <path d="M222 356 Q320 336 418 356 L418 470 Q418 526 320 526 Q222 526 222 470 Z"
+        fill="url(#face6)"/>
+  <path d="M222 356 Q320 336 418 356 L418 470 Q418 526 320 526 Q222 526 222 470 Z"
+        fill="none" stroke="#26352a" stroke-width="3" opacity=".9"/>
+
+  <!-- optics -->
+  <ellipse cx="272" cy="418" rx="36" ry="22" fill="#ffb43a" opacity=".28" filter="url(#glow6)"/>
+  <ellipse cx="368" cy="418" rx="36" ry="22" fill="#ffb43a" opacity=".28" filter="url(#glow6)"/>
+  <circle cx="272" cy="418" r="19" fill="#3a2a08"/>
+  <circle cx="368" cy="418" r="19" fill="#3a2a08"/>
+  <circle cx="272" cy="418" r="15" fill="#ffb43a"/>
+  <circle cx="368" cy="418" r="15" fill="#ffb43a"/>
+  <circle cx="272" cy="418" r="6" fill="#fff6e0"/>
+  <circle cx="368" cy="418" r="6" fill="#fff6e0"/>
+  <circle cx="267" cy="412" r="3.5" fill="#ffffff"/>
+  <circle cx="363" cy="412" r="3.5" fill="#ffffff"/>
+
+  <!-- vent mouth -->
+  <rect x="276" y="472" width="88" height="7" rx="3.5" fill="#4caf6e" opacity=".55"/>
+  <rect x="288" y="488" width="64" height="5" rx="2.5" fill="#4caf6e" opacity=".32"/>
+  <rect x="300" y="502" width="40" height="4" rx="2" fill="#4caf6e" opacity=".18"/>
+  <rect x="244" y="288" width="152" height="54" rx="10" fill="#7DE3A4" opacity=".26" filter="url(#glow6)"/>
+  <rect x="248" y="292" width="144" height="46" rx="8" fill="#01120a"/>
+  <rect x="248" y="292" width="144" height="46" rx="8" fill="none" stroke="#7DE3A4" stroke-width="2" opacity=".85"/>
+  <path d="M320 302 L320 330" stroke="#7DE3A4" stroke-width="2.4" stroke-linecap="round"/><path d="M282 308 L358 308" stroke="#7DE3A4" stroke-width="2.4" stroke-linecap="round"/><path d="M272 322 Q282 328 292 322 Z" fill="#7DE3A4"/><path d="M348 322 Q358 328 368 322 Z" fill="#7DE3A4"/><path d="M282 308 L276 320 M282 308 L288 320 M358 308 L352 320 M358 308 L364 320" stroke="#7DE3A4" stroke-width="1.2" opacity=".7"/>
+  <path d="M164 352 Q320 286 476 352" stroke="#26352a" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <ellipse cx="164" cy="392" rx="26" ry="36" fill="#0d1a12"/>
+  <ellipse cx="476" cy="392" rx="26" ry="36" fill="#0d1a12"/>
+  <ellipse cx="164" cy="392" rx="13" ry="20" fill="#1c3024"/>
+  <ellipse cx="476" cy="392" rx="13" ry="20" fill="#1c3024"/>
+  <!-- level vial across the crown band -->
+  <rect x="236" y="226" width="168" height="22" rx="11" fill="#0a1a10" stroke="#26352a" stroke-width="3"/>
+  <rect x="240" y="230" width="160" height="14" rx="7" fill="#7DE3A4" opacity=".16"/>
+  <path d="M300 230 L300 244 M340 230 L340 244" stroke="#7DE3A4" stroke-width="1.6" opacity=".7"/>
+  <ellipse cx="320" cy="237" rx="16" ry="6" fill="#7DE3A4" opacity=".95"/>
+  <ellipse cx="316" cy="235" rx="6" ry="2" fill="#ffffff" opacity=".6"/>
+  <!-- mic stub -->
+  <path d="M166 428 Q202 478 236 488" stroke="#0d1a12" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <ellipse cx="248" cy="482" rx="14" ry="10" fill="#0f1f15"/>
+  <circle cx="248" cy="482" r="4" fill="#7DE3A4"/>  <rect width="640" height="854" filter="url(#grain6)" opacity=".05" style="mix-blend-mode:overlay"/>
+</svg>

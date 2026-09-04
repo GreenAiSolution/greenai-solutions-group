@@ -78,7 +78,17 @@
     'agent-boost':   'https://buy.stripe.com/dRm5kF4R5bred5d7CQ5EY07',
     'agent-answer':  'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',
     'agent-collect': 'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09',
-    'full-staff':    'https://buy.stripe.com/8x28wR3N166UaX5bT65EY0a'
+    'full-staff':    'https://buy.stripe.com/8x28wR3N166UaX5bT65EY0a',
+    /* POOL-ONLY, 2026-09-03. The site now sells three AI employees to pool
+       service companies: NET $497, BALANCE $347, PUMP $297. Each reuses the
+       live Payment Link of the retired product at the SAME price, so no new
+       link had to be created in Stripe. The Stripe checkout page still shows
+       the old product names (AI Employee – Front Desk / ANSWER / COLLECT)
+       until Jaden renames them in the dashboard or new links are created —
+       the price is correct. Source of truth: data/catalog.json. */
+    'pool-net':     'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
+    'pool-balance': 'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',  /* = agent-answer, $347 */
+    'pool-pump':    'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09'   /* = agent-collect, $297 */
   };
 
   /* Dormant — Greenvlt acct_1U1tvI4E6AUMDj1M, the rail this site used from
@@ -115,7 +125,10 @@
     'agent-boost': true,
     'agent-answer': true,
     'agent-collect': true,
-    'full-staff': true
+    'full-staff': true,
+    'pool-net': true,
+    'pool-balance': true,
+    'pool-pump': true
   };
 
   function wire(root) {

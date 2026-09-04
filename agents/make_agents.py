@@ -356,6 +356,167 @@ def mini_list():
     return d
 
 
+# ---------------------------------------------------------------- pool crew
+# Added 2026-09-03 when the site went pool-only. Three more chassis on the same
+# base: NET (catches every lead), BALANCE (keeps every customer), PUMP (keeps
+# the money moving). Accent colours come from data/catalog.json agents[].color.
+
+AQUA = "#3FD0C3"    # NET
+MINT = "#7DE3A4"    # BALANCE
+FLOW = "#FFB43C"    # PUMP
+
+
+def gear_skimmer(uid):
+    """NET — a skimmer pole over the right shoulder with a mesh hoop at the top,
+    plus the slim earpiece. The hoop sits in the always-visible top band."""
+    mesh = ""
+    for k in range(-3, 4):
+        d = k * 11
+        mesh += (f'<path d="M{482 + d} 334 L{518 + d} 370" stroke="{AQUA}" stroke-width="1.1" opacity=".55"/>'
+                 f'<path d="M{518 + d} 334 L{482 + d} 370" stroke="{AQUA}" stroke-width="1.1" opacity=".55"/>')
+    return f"""
+  <path d="M168 356 Q320 296 472 356" stroke="{HULL_LO}" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M168 352 Q320 292 472 352" stroke="{HULL_HI}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+  <!-- pole: from behind the shoulder up past the ear -->
+  <path d="M474 640 L500 392" stroke="{HULL_LO}" stroke-width="9" stroke-linecap="round"/>
+  <path d="M474 640 L500 392" stroke="{HULL_HI}" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  <!-- hoop -->
+  <g clip-path="url(#hoop{uid})">{mesh}</g>
+  <ellipse cx="500" cy="352" rx="30" ry="24" fill="none" stroke="{HULL_HI}" stroke-width="5"/>
+  <ellipse cx="500" cy="352" rx="30" ry="24" fill="none" stroke="{AQUA}" stroke-width="1.5" opacity=".8"/>
+  <!-- the caught lead -->
+  <circle cx="508" cy="356" r="9" fill="{AQUA}" opacity=".35" filter="url(#glow{uid})"/>
+  <circle cx="508" cy="356" r="4.5" fill="{AQUA}"/>
+  <defs><clipPath id="hoop{uid}"><ellipse cx="500" cy="352" rx="28" ry="22"/></clipPath></defs>"""
+
+
+def gear_level(uid):
+    """BALANCE — a spirit level across the crown with a centred bubble, and the
+    dual-ear reception headset. Level bubble in the middle = every customer
+    kept where they were."""
+    return f"""
+  <path d="M164 352 Q320 286 476 352" stroke="{HULL_LO}" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <ellipse cx="164" cy="392" rx="26" ry="36" fill="#0d1a12"/>
+  <ellipse cx="476" cy="392" rx="26" ry="36" fill="#0d1a12"/>
+  <ellipse cx="164" cy="392" rx="13" ry="20" fill="#1c3024"/>
+  <ellipse cx="476" cy="392" rx="13" ry="20" fill="#1c3024"/>
+  <!-- level vial across the crown band -->
+  <rect x="236" y="226" width="168" height="22" rx="11" fill="#0a1a10" stroke="{HULL_LO}" stroke-width="3"/>
+  <rect x="240" y="230" width="160" height="14" rx="7" fill="{MINT}" opacity=".16"/>
+  <path d="M300 230 L300 244 M340 230 L340 244" stroke="{MINT}" stroke-width="1.6" opacity=".7"/>
+  <ellipse cx="320" cy="237" rx="16" ry="6" fill="{MINT}" opacity=".95"/>
+  <ellipse cx="316" cy="235" rx="6" ry="2" fill="#ffffff" opacity=".6"/>
+  <!-- mic stub -->
+  <path d="M166 428 Q202 478 236 488" stroke="#0d1a12" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <ellipse cx="248" cy="482" rx="14" ry="10" fill="#0f1f15"/>
+  <circle cx="248" cy="482" r="4" fill="{MINT}"/>"""
+
+
+def gear_impeller(uid):
+    """PUMP — an impeller housing on the right shoulder with a pipe elbow
+    running up to the neck, and the slim earpiece."""
+    blades = ""
+    for i in range(6):
+        a = i * 60
+        blades += (f'<path d="M500 684 Q516 674 522 658" stroke="{FLOW}" stroke-width="4" fill="none" '
+                   f'stroke-linecap="round" transform="rotate({a} 500 684)" opacity=".9"/>')
+    return f"""
+  <path d="M168 356 Q320 296 472 356" stroke="{HULL_LO}" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M168 352 Q320 292 472 352" stroke="{HULL_HI}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+  <!-- pipe from housing up into the neck plate -->
+  <path d="M500 652 L500 636 Q500 618 480 618 L392 618" stroke="{HULL_LO}" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M500 652 L500 636 Q500 618 480 618 L392 618" stroke="{HULL_HI}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".45"/>
+  <!-- impeller housing -->
+  <circle cx="500" cy="684" r="34" fill="{HULL_LO}"/>
+  <circle cx="500" cy="684" r="27" fill="#120e06"/>
+  <circle cx="500" cy="684" r="27" fill="none" stroke="{FLOW}" stroke-width="2" opacity=".6"/>
+  {blades}
+  <circle cx="500" cy="684" r="6" fill="{FLOW}"/>
+  <!-- mic stub -->
+  <path d="M172 420 Q212 458 242 468" stroke="#1a140a" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <circle cx="246" cy="463" r="9" fill="#1f1810"/>
+  <circle cx="246" cy="463" r="4" fill="{FLOW}" opacity=".9"/>"""
+
+
+def glyph_net():
+    """A net: mesh with one lead caught in it, answered in 8 s."""
+    mesh = ""
+    for k in range(-5, 6):
+        d = k * 14
+        mesh += (f'<path d="M{262 + d} 718 L{320 + d} 776" stroke="{AQUA}" stroke-width="1.2" opacity=".5"/>'
+                 f'<path d="M{320 + d} 718 L{262 + d} 776" stroke="{AQUA}" stroke-width="1.2" opacity=".5"/>')
+    return f"""
+  <g clip-path="url(#netclip)">{mesh}</g>
+  <defs><clipPath id="netclip"><rect x="256" y="712" width="128" height="64" rx="6"/></clipPath></defs>
+  <circle cx="338" cy="748" r="12" fill="{AQUA}" opacity=".3" filter="url(#glowN)"/>
+  <circle cx="338" cy="748" r="6" fill="{AQUA}"/>
+  <text x="320" y="798" font-family="ui-monospace,Menlo,monospace" font-size="13"
+        font-weight="700" fill="{AQUA}" opacity=".9" text-anchor="middle">8 SEC</text>
+  <defs><filter id="glowN" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="5"/></filter></defs>"""
+
+
+def glyph_scale():
+    """A balance scale, level: two water drops weighing the same."""
+    return f"""
+  <path d="M320 722 L320 790" stroke="{MINT}" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <path d="M296 790 L344 790" stroke="{MINT}" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <path d="M272 736 L368 736" stroke="{MINT}" stroke-width="3" stroke-linecap="round"/>
+  <path d="M272 736 L262 764 M272 736 L282 764" stroke="{MINT}" stroke-width="1.6" opacity=".7"/>
+  <path d="M368 736 L358 764 M368 736 L378 764" stroke="{MINT}" stroke-width="1.6" opacity=".7"/>
+  <path d="M256 766 Q272 776 288 766 Z" fill="{MINT}" opacity=".85"/>
+  <path d="M352 766 Q368 776 384 766 Z" fill="{MINT}" opacity=".85"/>
+  <path d="M272 744 q6 8 0 14 q-6 -6 0 -14z" fill="#ffffff" opacity=".85"/>
+  <path d="M368 744 q6 8 0 14 q-6 -6 0 -14z" fill="#ffffff" opacity=".85"/>
+  <circle cx="320" cy="736" r="4" fill="{MINT}"/>"""
+
+
+def glyph_flow():
+    """Money moving: an impeller and three ledger lines ticking paid."""
+    blades = "".join(
+        f'<path d="M282 752 Q292 746 296 736" stroke="{FLOW}" stroke-width="3" fill="none" '
+        f'stroke-linecap="round" transform="rotate({i * 60} 282 752)" opacity=".9"/>' for i in range(6))
+    rows = ""
+    for i, w in enumerate([54, 40, 48]):
+        y = 730 + i * 18
+        rows += (f'<rect x="318" y="{y}" width="{w}" height="7" rx="3.5" fill="{FLOW}" opacity=".8"/>'
+                 f'<path d="M{318 + w + 8} {y + 4} l3 3 l6 -7" stroke="{FLOW}" stroke-width="2.2" fill="none" '
+                 f'stroke-linecap="round" stroke-linejoin="round"/>')
+    return f"""
+  <circle cx="282" cy="752" r="22" fill="none" stroke="{FLOW}" stroke-width="1.5" opacity=".5"/>
+  {blades}
+  <circle cx="282" cy="752" r="4" fill="{FLOW}"/>
+  {rows}"""
+
+
+def mini_net():
+    d = ""
+    for k in range(-3, 4):
+        x = k * 12
+        d += (f'<path d="M{300 + x} 300 L{318 + x} 330" stroke="{AQUA}" stroke-width="1.2" opacity=".6"/>'
+              f'<path d="M{318 + x} 300 L{300 + x} 330" stroke="{AQUA}" stroke-width="1.2" opacity=".6"/>')
+    return (f'<g clip-path="url(#miniN)">{d}</g>'
+            f'<defs><clipPath id="miniN"><rect x="262" y="300" width="116" height="30" rx="4"/></clipPath></defs>'
+            f'<circle cx="332" cy="316" r="5" fill="{AQUA}"/>')
+
+
+def mini_scale():
+    return (f'<path d="M320 302 L320 330" stroke="{MINT}" stroke-width="2.4" stroke-linecap="round"/>'
+            f'<path d="M282 308 L358 308" stroke="{MINT}" stroke-width="2.4" stroke-linecap="round"/>'
+            f'<path d="M272 322 Q282 328 292 322 Z" fill="{MINT}"/>'
+            f'<path d="M348 322 Q358 328 368 322 Z" fill="{MINT}"/>'
+            f'<path d="M282 308 L276 320 M282 308 L288 320 M358 308 L352 320 M358 308 L364 320" stroke="{MINT}" stroke-width="1.2" opacity=".7"/>')
+
+
+def mini_flow():
+    d = ""
+    for i, w in enumerate([62, 46, 54]):
+        y = 302 + i * 11
+        d += f'<rect x="284" y="{y}" width="{w}" height="6" rx="3" fill="{FLOW}" opacity=".85"/>'
+        d += (f'<path d="M266 {y + 3} l4 4 l7 -8" stroke="{FLOW}" stroke-width="2.4" fill="none" '
+              f'stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>')
+    return d
+
+
 AGENTS = [
     dict(uid=1, slug="sterling", hull=(HULL_HI, HULL_MID, HULL_LO), panel=EMER,
          gear=headset_slim, glyph=glyph_calendar, mini=mini_calendar, trace=EMER),
@@ -365,6 +526,13 @@ AGENTS = [
          gear=headset_reception, glyph=glyph_clock, mini=mini_clock, trace=GOLD),
     dict(uid=4, slug="ledger", hull=("#4a5f68", "#2e3f45", "#121b1f"), panel=EMER,
          gear=visor_precision, glyph=glyph_schedule, mini=mini_list, trace=EMER),
+    # the pool crew — deep-end teal, plaster-green and pump-bronze hulls
+    dict(uid=5, slug="net", hull=("#6f9a9c", "#3c6366", "#12292d"), panel=AQUA,
+         gear=gear_skimmer, glyph=glyph_net, mini=mini_net, trace=AQUA),
+    dict(uid=6, slug="balance", hull=("#7fa389", "#456b52", "#172a1e"), panel=MINT,
+         gear=gear_level, glyph=glyph_scale, mini=mini_scale, trace=MINT),
+    dict(uid=7, slug="pump", hull=("#a08a5e", "#63533a", "#26201a"), panel=FLOW,
+         gear=gear_impeller, glyph=glyph_flow, mini=mini_flow, trace=FLOW),
 ]
 
 

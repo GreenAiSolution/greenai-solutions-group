@@ -1,0 +1,132 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for the GreenAI pool-company offer (decided 2026-09-03). The MCP server (mcp/server.mjs) and the greenaidigital.com pages are both generated from / checked against this file. Change a price or a claim HERE first; a test in mcp/test/ fails if the live site disagrees.",
+  "version": "2026-09-03",
+  "brand": {
+    "company": "GreenAI Solutions",
+    "legal": "Jaden Green, doing business as GreenAI Solutions",
+    "domain": "greenaidigital.com",
+    "owner": "Jaden Green",
+    "phone_display": "(480) 798-0753",
+    "phone_tel": "4807980753",
+    "email": "jaden@greenaidigital.com",
+    "city": "Gilbert, AZ"
+  },
+  "niche": {
+    "headline": "Three AI employees, built for one trade: pool service.",
+    "one_line": "GreenAI builds, trains and runs three AI employees for residential pool service companies in the Phoenix metro — each one custom-made for your company, your prices and your routes.",
+    "buyer": "Owner of a residential weekly pool service company (1–10 trucks) in Phoenix / Mesa / Gilbert / Chandler / Scottsdale / Tempe / Glendale / Peoria that also does repairs.",
+    "why_this_niche": [
+      "Flat recurring revenue: weekly service runs $110–$150/month per pool (verified from local companies' own sites), and customers stay for years.",
+      "Phoenix has 257,983 residential pools inside city limits alone — 27.6% of properties (Vexcel aerial survey, the only figure that traces to a primary source).",
+      "The owner answers his own phone from a truck. Nobody sets automation up for him — every tool in this trade is do-it-yourself.",
+      "Selling window is February–April: owners have route capacity right before the spring rush."
+    ],
+    "rejected_alternatives": [
+      "Every Phoenix service business (too broad — the last 18 months of the site).",
+      "Pool builders / remodelers ($50k+ jobs, months-long sales cycles, a handful of leads a year — an AI employee has nothing to answer all day).",
+      "Pool repair-only specialists (real, but most repair work in Phoenix is done by service companies — this niche already includes them).",
+      "Pool supply / retail stores (walk-in traffic and water testing — different systems entirely).",
+      "Commercial / HOA pool management (contracts, compliance logs, very few buyers, long procurement)."
+    ],
+    "banned_stats": [
+      "62% of home-service calls go unanswered",
+      "85% never call back",
+      "$126,000 lost per year",
+      "320,000 pools in Maricopa",
+      "390,000 pools in the metro",
+      "any customer count, testimonial, logo, ROI %, or 'clients see X'"
+    ]
+  },
+  "agents": [
+    {
+      "id": "net",
+      "name": "NET",
+      "role": "Catches every lead",
+      "tagline": "Every lead answered in 8 seconds. Quoted from your price list. Chased until it books.",
+      "price_month": 497,
+      "sku": "pool-net",
+      "stripe_link_alias": "employees-front-desk",
+      "page": "net.html",
+      "color": "#3FD0C3",
+      "channels": ["Phone (answers, or texts back a missed call)", "Website form", "Google Business messages", "Thumbtack", "Angi", "Yelp", "Text message", "Email"],
+      "jobs": [
+        "Answers a new lead in 8 seconds, any hour, any channel.",
+        "Asks the four things a pool quote needs: address, pool size, current condition (green? equipment issues?), and how often they want service.",
+        "Quotes weekly and bi-weekly service only from your approved price list — a price that is not on your list is blocked before it sends.",
+        "Follows up on day 1, day 3 and day 7 until the lead books or says stop.",
+        "Books the first visit into the slot you give it and texts you the address.",
+        "Stops the moment someone says stop, and tells you it did."
+      ],
+      "wont": [
+        "Never invents a price. If the answer is not on your list, it says the owner will confirm.",
+        "Never claims to be a person.",
+        "Does not promise a booking count. It promises the reply and the follow-up."
+      ],
+      "trained_on": ["Your weekly / bi-weekly prices by pool size", "Your service area (cities and zips)", "Your green-pool and start-up policy", "Your available first-visit windows", "Your name and how you like to be introduced"],
+      "human_comparison": { "label": "a full-time office person, Phoenix wage + payroll tax", "usd_month": 3400 }
+    },
+    {
+      "id": "balance",
+      "name": "BALANCE",
+      "role": "Keeps every customer",
+      "tagline": "Answers your customers, sends the service note, asks for the review. You stay on the route.",
+      "price_month": 347,
+      "sku": "pool-balance",
+      "stripe_link_alias": "agent-answer",
+      "page": "balance.html",
+      "color": "#7DE3A4",
+      "channels": ["Text message", "Email", "Website chat", "Google Business messages"],
+      "jobs": [
+        "Answers 'is my tech coming today?', 'why is my pool cloudy?', 'can you skip next week?' from the schedule and house rules you give it.",
+        "Sends the after-visit service note (what was done, readings you entered, what to watch) the same day.",
+        "Asks for a Google review two days after a visit went well — and routes a complaint to you instead of to Google.",
+        "Sends seasonal notices you approve: filter clean due, monsoon debris pass, salt-cell inspection, winter schedule change.",
+        "Handles reschedules and gate/dog/access notes and puts them in front of you before the route.",
+        "Flags a customer who has gone quiet or complained twice so you can call them before they cancel."
+      ],
+      "wont": [
+        "Does not diagnose equipment or give chemical dosing over text — it books a tech visit.",
+        "Does not send anything a customer has not agreed to receive; one 'stop' ends all messages.",
+        "Never posts a review or writes one — it only asks the customer to."
+      ],
+      "trained_on": ["Your weekly route schedule (a sheet or export is enough)", "Your house rules: skips, credits, gate access, dogs", "What you want said about green pools, algae, monsoon, filter cleans", "Your review link", "Which complaints go straight to your phone"],
+      "human_comparison": { "label": "a part-time customer-service hire, Phoenix wage + payroll tax", "usd_month": 1900 }
+    },
+    {
+      "id": "pump",
+      "name": "PUMP",
+      "role": "Keeps the money moving",
+      "tagline": "Open repair quotes chased. Invoices sent. Late payers reminded. Politely, every time.",
+      "price_month": 297,
+      "sku": "pool-pump",
+      "stripe_link_alias": "agent-collect",
+      "page": "pump.html",
+      "color": "#FFB43C",
+      "channels": ["Text message", "Email"],
+      "jobs": [
+        "Chases every open repair quote (pump, filter, heater, salt cell, leak) on day 2, day 5 and day 10 until it is approved or declined.",
+        "Sends the monthly service invoice on the day you pick, with your payment link.",
+        "Reminds late payers at 7, 14 and 21 days in the tone you approve — firm, never rude.",
+        "Tells you who is 30+ days out so you decide whether to pause service.",
+        "Sends the 'we noticed on today's visit' upsell you approve (filter clean, cartridge replacement, acid wash) with your price.",
+        "Keeps a Monday list: quotes approved, invoices paid, who still owes."
+      ],
+      "wont": [
+        "Never changes a price, offers a discount, or waives a fee on its own.",
+        "Never threatens, mentions collections agencies or credit, or contacts anyone but the account holder.",
+        "Does not process payments itself — it sends the link to the processor you already use."
+      ],
+      "trained_on": ["Your repair price list and quote format", "Your invoice day and payment link", "Your late-payment policy and pause rule", "Your approved upsell list with prices", "Your voice: how firm, how friendly"],
+      "human_comparison": { "label": "a part-time bookkeeper / office assistant, Phoenix wage + payroll tax", "usd_month": 1900 }
+    }
+  ],
+  "terms": {
+    "billing": "Month to month. Cancel any time. You own every script, transcript and configuration.",
+    "setup": "Built and trained for your company before it goes live; you approve every script first. Unlimited same-day changes.",
+    "no_bundle": true
+  },
+  "proof": {
+    "engine": "The same lead engine every agent runs on has a public test drive: 4 leads, 5 quotes, 1 held for approval, 0 messages to an unsubscribed address — and the model tried to write $3,200, which the price checker blocked because it was not on the list.",
+    "demo_business": "Saguaro Pool Care (fictional demo company used on this site)"
+  }
+}

@@ -3,181 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenAI Solutions — AI Employees for Phoenix Service Businesses, Answering in 8 Seconds</title>
-  <meta name="description" content="Phoenix service businesses: an AI employee that answers every call, text and form in 8 seconds, books the job and follows up. $497 a month, flat." />
+  <title>AI Employees for Phoenix Pool Companies — GreenAI Solutions</title>
+  <meta name="description" content="Three AI employees built for Phoenix-metro pool service companies. NET catches every lead in 8 seconds ($497/mo), BALANCE keeps every customer ($347/mo), PUMP keeps the money moving ($297/mo). Month to month." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=21" />
   <link rel="stylesheet" href="visuals.css?v=1" />
-  <style>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/" />
 
-    /* ===== 4D cards: perspective tilt + depth layers + light sweep + dust ===== */
-    .roster { perspective: 1400px; }
-    .idc { transform-style: preserve-3d; transform: rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0); transition: transform .18s ease-out, box-shadow .3s; will-change: transform; }
-    .idc:hover { transform: rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px) scale(1.02); box-shadow: 0 40px 80px rgba(0,0,0,.18), 0 0 0 1px rgba(212,175,55,.35); }
-    .idc::after { content:''; position:absolute; inset:0; border-radius:18px; pointer-events:none; background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(212,175,55,.16), transparent 45%); opacity:0; transition:opacity .3s; }
-    .idc:hover::after { opacity:1; }
-    .scene { position:relative; height:118px; margin:-.2rem -.3rem .8rem; border-radius:14px; overflow:hidden; background: radial-gradient(circle at 70% 20%, #1a5c2a 0, #0d2e14 55%, #071a0e 100%); transform-style:preserve-3d; box-shadow: inset 0 0 0 1px rgba(125,227,164,.18), inset 0 -20px 40px rgba(0,0,0,.35); }
-    .scene__l { position:absolute; inset:0; width:100%; height:100%; transition: transform .18s ease-out; }
-    .scene__l--back  { transform: translate3d(calc(var(--px,0)*-4px), calc(var(--py,0)*-4px), 0) scale(1.06); opacity:.85; }
-    .scene__l--mid   { transform: translate3d(calc(var(--px,0)*6px),  calc(var(--py,0)*6px),  0); filter: drop-shadow(0 6px 10px rgba(0,0,0,.45)); }
-    .scene__l--front { transform: translate3d(calc(var(--px,0)*14px), calc(var(--py,0)*14px), 0); filter: drop-shadow(0 10px 14px rgba(0,0,0,.5)); }
-    .scene__sheen { position:absolute; inset:-40%; pointer-events:none; background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%); transform: translateX(-60%) rotate(0deg); animation: sheen 6s ease-in-out infinite; animation-delay: calc(var(--i,0) * .7s); mix-blend-mode: screen; }
-    @keyframes sheen { 0%,55% { transform: translateX(-70%); } 85%,100% { transform: translateX(70%); } }
-    .scene__dust { position:absolute; inset:0; pointer-events:none; }
-    .scene__dust i { position:absolute; width:3px; height:3px; border-radius:50%; background:#7de3a4; box-shadow:0 0 6px #7de3a4; opacity:0; animation: dust 5s linear infinite; }
-    .scene__dust i:nth-child(1){ left:12%; animation-delay:0s } .scene__dust i:nth-child(2){ left:28%; animation-delay:1.1s; background:#D4AF37; box-shadow:0 0 6px #D4AF37 } .scene__dust i:nth-child(3){ left:47%; animation-delay:2.3s } .scene__dust i:nth-child(4){ left:63%; animation-delay:.6s; background:#D4AF37; box-shadow:0 0 6px #D4AF37 } .scene__dust i:nth-child(5){ left:79%; animation-delay:3.1s } .scene__dust i:nth-child(6){ left:91%; animation-delay:1.8s }
-    @keyframes dust { 0% { bottom:-4px; opacity:0 } 15% { opacity:.9 } 85% { opacity:.6 } 100% { bottom:110%; opacity:0 } }
-    /* per-scene micro-motion */
-    .ripple circle { transform-origin:60px 61px; animation: ripple 2.4s ease-out infinite; } .ripple circle:nth-child(2){ animation-delay:.8s }
-    @keyframes ripple { 0% { transform:scale(.4); opacity:.9 } 100% { transform:scale(1.6); opacity:0 } }
-    .chip { animation: bob 3.2s ease-in-out infinite; } .chip.c2 { animation-delay:.9s } .chip.c3 { animation-delay:1.7s }
-    @keyframes bob { 50% { transform: translateY(-3px) } }
-    .bars rect { transform-origin: bottom; animation: grow 2.8s cubic-bezier(.22,1,.36,1) infinite; } .bars rect:nth-child(2){animation-delay:.15s}.bars rect:nth-child(3){animation-delay:.3s}.bars rect:nth-child(4){animation-delay:.45s}.bars rect:nth-child(5){animation-delay:.6s}
-    @keyframes grow { 0% { transform:scaleY(.2) } 40%,100% { transform:scaleY(1) } }
-    .line { stroke-dasharray:140; stroke-dashoffset:140; animation: draw 2.8s ease-out infinite; }
-    @keyframes draw { 30% { stroke-dashoffset:140 } 80%,100% { stroke-dashoffset:0 } }
-    .ticks .t { opacity:0; animation: pop 4s ease-out infinite; } .t2{animation-delay:.5s}.t3{animation-delay:1s}.t4{animation-delay:1.5s}
-    @keyframes pop { 0% { opacity:0; transform:scale(.4) } 12%,90% { opacity:1; transform:scale(1) } 100% { opacity:0 } }
-    .stamp { transform-origin:60px 64px; animation: stamp 3.6s ease-out infinite; }
-    @keyframes stamp { 0%,30% { opacity:0; transform:scale(2) rotate(-8deg) } 40%,95% { opacity:1; transform:scale(1) } 100% { opacity:0 } }
-    .coin { animation: bob 2.6s ease-in-out infinite; } .coin.c2 { animation-delay:.7s } .coin.c3 { animation-delay:1.3s }
-    .idc__wm { position:absolute; right:-28px; bottom:-28px; width:120px; height:120px; opacity:.07; pointer-events:none; transform: rotate(-12deg); transition: opacity .3s, transform .6s; filter: grayscale(1); }
-    .idc:hover .idc__wm { opacity:.16; transform: rotate(0deg) scale(1.05); filter:none; }
-    /* hero watermark: giant, slow-turning ghost of the crest */
-    .page-hero .wm { position:absolute; right:-140px; top:-120px; width:620px; height:620px; opacity:.08; pointer-events:none; animation: wmspin 90s linear infinite; z-index:0; }
-    .page-hero .wm--l { right:auto; left:-220px; top:auto; bottom:-260px; width:520px; height:520px; opacity:.05; animation-direction: reverse; }
-    @keyframes wmspin { to { transform: rotate(360deg) } }
-    @media (prefers-reduced-motion: reduce) { .scene__sheen, .scene__dust i, .ripple circle, .chip, .bars rect, .line, .ticks .t, .stamp, .coin, .page-hero .wm { animation: none !important; } .idc { transition:none } }
-    .roster-hero { padding-bottom:3rem; }
-    .roster-hero h1 em { font-style:italic; color:#D4AF37; }
-    .roster-hero .lede { max-width:660px; }
-    .payroll { display:grid; grid-template-columns:1fr auto 1fr; gap:1rem; align-items:center; max-width:820px; margin:2.5rem auto 0; }
-    .payroll > div { border-radius:14px; padding:1.25rem; text-align:center; }
-    .payroll .h { border:1px dashed rgba(255,255,255,.25); color:rgba(255,255,255,.6); }
-    .payroll .h b { text-decoration:line-through; text-decoration-color:rgba(255,95,95,.8); text-decoration-thickness:3px; color:rgba(255,255,255,.5); }
-    .payroll .a { border:1px solid rgba(125,227,164,.5); background:rgba(125,227,164,.08); color:#fff; box-shadow:0 0 50px rgba(125,227,164,.12); }
-    .payroll .a b { color:#7de3a4; }
-    .payroll b { display:block; font-family:'Playfair Display',serif; font-size:2.8rem; line-height:1; }
-    .payroll b small { font-size:1rem; font-family:Inter,sans-serif; font-weight:500; opacity:.7; }
-    .payroll span { display:block; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.4rem; }
-    .payroll .mid { font:800 .8rem/1 Inter,sans-serif; letter-spacing:.2em; color:rgba(255,255,255,.4); }
-    .roster { display:grid; grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:1.1rem; margin-top:-1rem; }
-    .idc { position:relative; background:#fff; border:1px solid rgba(26,92,42,.14); border-radius:18px; padding:1.25rem 1.1rem 1.2rem; display:flex; flex-direction:column; box-shadow:0 18px 45px rgba(0,0,0,.08); transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; overflow:hidden; }
-    .idc::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#1a5c2a,#4caf6e,#D4AF37); }
-    .idc:hover { transform:translateY(-6px); box-shadow:0 30px 60px rgba(0,0,0,.14); }
-    .idc--pop { padding-top:2.3rem; border-color:rgba(212,175,55,.6); box-shadow:0 18px 45px rgba(212,175,55,.18); }
-    .idc__pop { position:absolute; top:-1px; left:50%; transform:translateX(-50%); background:#D4AF37; color:#0d2e14; font:800 .58rem/1 Inter,sans-serif; letter-spacing:.18em; text-transform:uppercase; padding:.45rem .9rem; border-radius:0 0 8px 8px; z-index:3; box-shadow:0 4px 12px rgba(0,0,0,.2); white-space:nowrap; }
-    .idc__top { display:flex; justify-content:space-between; font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; color:var(--gray-400,#999); margin-bottom:1rem; }
-    .idc__on { display:inline-flex; align-items:center; gap:.35rem; color:#2e7d45; }
-    .idc__on i { width:6px; height:6px; border-radius:50%; background:#4caf6e; box-shadow:0 0 8px #4caf6e; animation:onduty 1.6s ease-in-out infinite; }
-    @keyframes onduty { 50% { opacity:.3; } }
-    .idc__icon { width:58px; height:58px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,#0d2e14,#1a5c2a); color:#7de3a4; margin-bottom:.9rem; }
-    .idc__name { font-family:'Playfair Display',serif; font-size:1.25rem; letter-spacing:.06em; margin:0 0 .15rem; color:var(--green-dark,#0d2e14); }
-    .idc__role { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:#D4AF37; font-weight:700; margin-bottom:.8rem; }
-    .idc__does { font-size:.86rem; color:var(--gray-600,#555); line-height:1.5; flex:1; margin:0 0 1rem; }
-    .idc__does b { color:var(--green-dark,#0d2e14); }
-    .idc__vs { font-size:.8rem; color:var(--gray-600,#555); margin-bottom:.9rem; }
-    .idc__vs s { color:#c0392b; }
-    .idc__vs b { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--green-dark,#0d2e14); }
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/" />
+  <meta property="og:title" content="AI Employees for Phoenix Pool Companies — GreenAI Solutions" />
+  <meta property="og:description" content="NET catches every lead in 8 seconds. BALANCE keeps every customer. PUMP keeps the money moving. Three AI employees built for your pool company. Month to month." />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="GreenAI Solutions — three AI employees for Phoenix pool service companies." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Employees for Phoenix Pool Companies — GreenAI Solutions" />
+  <meta name="twitter:description" content="NET $497 · BALANCE $347 · PUMP $297 a month. Built for your pool company." />
+  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
+
+  <style>
+    /* ==========================================================================
+       POOL-ONLY HOMEPAGE — 2026-09-03. One buyer (Phoenix-metro residential
+       pool service owner), one offer (three AI employees), three prices.
+       Palette: GreenAI night #050b07 + gold CTA, plus pool water —
+       deep-end #072E37 / #0A3F4A, sunlit aqua #3FD0C3, plaster #F5F7F6.
+       Every dark section states its own colour. Nothing here loops forever:
+       trust reads as still.
+       ========================================================================== */
+    :root { --deep:#072E37; --deep-2:#0A3F4A; --aqua:#3FD0C3; --plaster:#F5F7F6; --ac-net:#3FD0C3; --ac-balance:#7DE3A4; --ac-pump:#FFB43C; }
+    [hidden] { display:none !important; }
+    .btn-primary.buy { background:#D4AF37; border-color:#D4AF37; color:#061008; }
+    .btn-primary.buy:hover { background:#e7c85f; border-color:#e7c85f; color:#061008; }
+
+    /* ---- hero: a Phoenix backyard at night, drawn ---------------------------- */
+    .pool-hero { position:relative; min-height:min(92vh,820px); background:#050b07; color:#fff; overflow:hidden; display:flex; align-items:center; padding:6.5rem 0 3rem; }
+    .pool-hero__art { position:absolute; inset:0; width:100%; height:100%; display:block; }
+    .pool-hero__scrim { position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,11,7,.82) 0%, rgba(5,11,7,.55) 42%, rgba(5,11,7,0) 71%), linear-gradient(180deg, rgba(5,11,7,.55), transparent 30%); pointer-events:none; }
+    .pool-hero > .container { position:relative; z-index:1; }
+    .pool-hero__grid { display:grid; grid-template-columns:minmax(0,600px) 1fr; gap:2rem; align-items:end; }
+    .pool-hero__kicker { display:inline-flex; align-items:center; gap:.55rem; margin:0 0 1.3rem; padding:.45rem .9rem; border:1px solid rgba(63,208,195,.35); border-radius:100px; background:rgba(63,208,195,.08); color:var(--aqua); font:700 .66rem/1 Inter,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+    .pool-hero__kicker i { width:7px; height:7px; border-radius:50%; background:var(--aqua); box-shadow:0 0 12px var(--aqua); }
+    .pool-hero h1 { margin:0 0 1.1rem; color:#fff; font-size:clamp(2.4rem,4.8vw,4rem); line-height:1.02; letter-spacing:-.035em; max-width:15ch; }
+    .pool-hero h1 em { font-style:italic; color:#e7c85f; }
+    .pool-hero__sub { margin:0 0 1.9rem; max-width:50ch; color:rgba(255,255,255,.8); font-size:1.08rem; line-height:1.7; }
+    .pool-hero__cta { display:flex; flex-wrap:wrap; gap:.85rem; }
+    .pool-hero__ghost { border:1px solid rgba(255,255,255,.4); background:rgba(3,8,5,.35); color:#fff; }
+    .pool-hero__ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; color:#fff; }
+    .pool-hero__prices { margin:2rem 0 0; padding-top:1.2rem; border-top:1px solid rgba(255,255,255,.14); display:flex; flex-wrap:wrap; gap:1.4rem 2.2rem; }
+    .pool-hero__prices span { display:block; font-size:.74rem; color:rgba(255,255,255,.62); letter-spacing:.06em; text-transform:uppercase; }
+    .pool-hero__prices b { display:block; margin-top:.2rem; color:#fff; font-size:1.05rem; }
+    .pool-hero__prices b small { color:rgba(255,255,255,.6); font-weight:500; font-size:.82rem; }
+    /* the ledger: 8 s */
+    .ledger { justify-self:end; align-self:end; text-align:right; padding:1.2rem 1.4rem 1.1rem; border-radius:18px; background:rgba(3,8,5,.62); border:1px solid rgba(63,208,195,.3); backdrop-filter:blur(8px); max-width:300px; }
+    .ledger b { display:block; font-family:'Playfair Display',serif; font-size:clamp(4rem,8vw,6.4rem); line-height:.85; color:#fff; letter-spacing:-.04em; }
+    .ledger b small { font-size:.4em; color:var(--aqua); font-style:italic; letter-spacing:0; }
+    .ledger span { display:block; margin-top:.6rem; color:rgba(255,255,255,.78); font-size:.86rem; line-height:1.5; }
+    @media (max-width:900px) {
+      .pool-hero { min-height:0; padding:6.5rem 0 0; display:block; }
+      .pool-hero__grid { grid-template-columns:1fr; gap:1.5rem; }
+      .pool-hero__art { position:relative; height:300px; margin-top:1.5rem; }
+      .pool-hero__scrim { display:none; }
+      .ledger { justify-self:start; text-align:left; max-width:none; width:100%; background:rgba(3,8,5,.9); border-radius:18px 18px 0 0; margin-bottom:-1px; }
+    }
+
+    /* ---- crew cards ------------------------------------------------------- */
+    .crew { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .idc { --ac:var(--aqua); position:relative; display:flex; flex-direction:column; background:#fff; border:1px solid rgba(26,92,42,.14); border-radius:20px; overflow:hidden; box-shadow:0 18px 45px rgba(6,31,16,.08); transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; }
+    .idc:hover { transform:translateY(-6px); box-shadow:0 30px 60px rgba(6,31,16,.14); }
+    .idc--net { --ac:var(--ac-net); } .idc--balance { --ac:var(--ac-balance); } .idc--pump { --ac:var(--ac-pump); }
+    .idc__art { position:relative; aspect-ratio:4/3; background:#071a0e; overflow:hidden; }
+    .idc__art img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+    .idc__art::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(4,13,7,.85) 100%); }
+    .idc__tag { position:absolute; left:1rem; top:1rem; z-index:1; display:inline-flex; align-items:center; gap:.45rem; padding:.4rem .7rem; border-radius:100px; background:rgba(3,8,5,.7); border:1px solid rgba(255,255,255,.14); color:#fff; font:700 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; }
+    .idc__tag i { width:6px; height:6px; border-radius:50%; background:var(--ac); box-shadow:0 0 8px var(--ac); }
+    .idc__name { position:absolute; left:1.2rem; bottom:1rem; z-index:1; margin:0; font-family:'Playfair Display',serif; font-size:2rem; letter-spacing:.06em; color:#fff; }
+    .idc__body { display:flex; flex-direction:column; flex:1; padding:1.35rem 1.4rem 1.5rem; border-top:3px solid var(--ac); }
+    .idc__role { font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dark,#1a5c2a); font-weight:800; margin-bottom:.55rem; }
+    .idc__tag2 { margin:0 0 1.1rem; font-size:.95rem; line-height:1.55; color:var(--gray-600,#4b5563); flex:1; }
+    .idc__price { display:flex; align-items:baseline; gap:.4rem; margin-bottom:1rem; }
+    .idc__price b { font-family:'Playfair Display',serif; font-size:2.3rem; line-height:1; color:var(--green-dark,#1a5c2a); }
+    .idc__price span { font-size:.82rem; color:var(--gray-600,#4b5563); }
     .idc__buy { width:100%; justify-content:center; text-align:center; }
-    .idc__more { display:block; text-align:center; font-size:.78rem; margin-top:.7rem; color:var(--green-accent,#2e7d45); text-decoration:none; font-weight:600; }
-    .bundle { position:relative; max-width:900px; margin:0 auto; border-radius:24px; padding:3rem 2.5rem; background:radial-gradient(circle at 80% 20%,#1a5c2a 0,#0d2e14 45%,#071a0e 100%); color:#fff; border:1px solid rgba(212,175,55,.45); box-shadow:0 40px 90px rgba(0,0,0,.4); overflow:hidden; text-align:center; }
-    .bundle::after { content:'FULL STAFF'; position:absolute; right:-1.2rem; top:1.3rem; transform:rotate(12deg); font:800 .62rem/1 Inter,sans-serif; letter-spacing:.25em; color:#0d2e14; background:#D4AF37; padding:.5rem 3rem; }
-    .bundle h2 { color:#fff; font-size:2.4rem; margin:.5rem 0 .75rem; }
-    .bundle h2 em { font-style:italic; color:#D4AF37; }
-    .bundle p { color:rgba(255,255,255,.72); max-width:560px; margin:0 auto; }
-    .bundle__math { display:flex; justify-content:center; align-items:baseline; gap:1.25rem; flex-wrap:wrap; margin:1.75rem 0 1.5rem; }
-    .bundle__math s { font-size:1.4rem; color:rgba(255,255,255,.45); }
-    .bundle__math b { font-family:'Playfair Display',serif; font-size:4.5rem; line-height:1; color:#7de3a4; }
-    .bundle__math b small { font-size:1.1rem; font-family:Inter,sans-serif; font-weight:500; color:rgba(255,255,255,.7); }
-    .bundle__save { display:inline-block; background:rgba(212,175,55,.15); border:1px solid rgba(212,175,55,.45); color:#f0dfa0; border-radius:100px; padding:.45rem 1.1rem; font-size:.85rem; font-weight:600; margin-bottom:1.5rem; }
-    .bundle__names { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem; margin-top:1.5rem; }
-    .bundle__names span { font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.14em; border:1px solid rgba(255,255,255,.2); border-radius:6px; padding:.45rem .7rem; color:rgba(255,255,255,.8); }
-    .why { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:1000px; margin:0 auto; }
-    .why div { padding:1.5rem; border-left:3px solid #D4AF37; background:#fff; border-radius:0 14px 14px 0; box-shadow:0 10px 30px rgba(0,0,0,.05); }
-    .why h3 { font-size:1.05rem; margin:0 0 .4rem; }
-    .why p { font-size:.9rem; color:var(--gray-600,#555); margin:0; }
-        @media (max-width:760px) { .roster, .why { grid-template-columns:1fr; } .payroll { grid-template-columns:1fr; } .payroll .mid { display:none; } .bundle { padding:2.5rem 1.25rem; } .bundle__math b { font-size:3.2rem; } }
-  
-    /* staff strip + watermark on home */
-    .hero .wm, .staff-strip .wm { position:absolute; pointer-events:none; opacity:.07; animation: wmspin 90s linear infinite; z-index:0; }
-    .hero .wm { right:-160px; top:-140px; width:640px; height:640px; }
-    .staff-strip { position:relative; overflow:hidden; }
-    .staff-strip .wm--strip { left:-200px; bottom:-220px; width:520px; height:520px; opacity:.05; animation-direction:reverse; }
-    .staff-strip > .container { position:relative; z-index:1; }
-    @media (prefers-reduced-motion: reduce) { .hero .wm, .staff-strip .wm { animation:none } }
-</style>
-  <style>
-    /* Homepage: restrained agentic system language. */
-    .home-agentic.hero { min-height:760px; background:#050b07; }
-    .home-agentic .hero__orb { display:none; }
-    .home-agentic .hero__bg-pattern { opacity:.16; background-size:52px 52px; }
-    .home-agentic .hero__grid-overlay { opacity:.32; background:radial-gradient(circle at 76% 48%,rgba(76,175,110,.16),transparent 38%),linear-gradient(90deg,transparent 49.9%,rgba(255,255,255,.045) 50%,transparent 50.1%); }
-    .home-agentic .hero__split { gap:clamp(3rem,7vw,7rem); }
-    .home-agentic .hero__badge { border-color:rgba(125,227,164,.22); background:rgba(125,227,164,.055); box-shadow:none; }
-    .home-agentic h1 { max-width:650px; font-size:clamp(3rem,6.2vw,5.45rem); letter-spacing:-.045em; }
-    .home-agentic h1 span { color:#d5b64c; background:none; -webkit-text-fill-color:currentColor; text-shadow:none; }
-    .home-agentic .hero__sub { max-width:610px; color:rgba(255,255,255,.63); font-size:1.05rem; }
-    .home-agentic .btn-white { background:#e7c85f; border-color:#e7c85f; color:#061008; }
-    .home-agentic .hero__trust { margin-top:2.15rem; padding-top:1.35rem; border-top:1px solid rgba(255,255,255,.09); }
-    .home-agentic .hero__trust-item { color:rgba(255,255,255,.48); }
+    .idc__more { display:block; text-align:center; font-size:.82rem; margin-top:.75rem; color:var(--green-dark,#1a5c2a); text-decoration:none; font-weight:600; }
+    .idc__more:hover { text-decoration:underline; }
+    .crew-terms { max-width:640px; margin:2.25rem auto 0; text-align:center; font-size:.9rem; color:var(--gray-600,#4b5563); line-height:1.7; }
+    @media (max-width:960px) { .crew { grid-template-columns:1fr; max-width:460px; margin:0 auto; } }
 
-    .agent-console { position:relative; padding:1.15rem; border:1px solid rgba(255,255,255,.11); border-radius:20px; background:rgba(8,19,12,.64); backdrop-filter:blur(18px); box-shadow:0 30px 100px rgba(0,0,0,.36); overflow:hidden; }
-    .agent-console::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg,transparent 20%,rgba(125,227,164,.055),transparent 68%); }
-    .agent-console__top { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.2rem .2rem 1rem; border-bottom:1px solid rgba(255,255,255,.09); }
-    .agent-console__title { display:flex; align-items:center; gap:.55rem; color:rgba(255,255,255,.72); font-size:.64rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    .agent-console__dot { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 16px #7de3a4; animation:homePulse 2.2s ease-in-out infinite; }
-    .agent-console__mode { color:rgba(255,255,255,.3); font:600 .58rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; }
-    .agent-console .svcmenu { padding:0; }
-    .agent-console .svcmenu__eyebrow { display:none; }
-    .agent-console .svcrow { grid-template-columns:34px 1fr auto; grid-template-areas:'num benefit price' 'num tag state'; column-gap:.8rem; padding:1.06rem .35rem; border-color:rgba(255,255,255,.08); }
-    .agent-console .svcrow:hover { transform:none; background:rgba(125,227,164,.055); }
-    .agent-console .svcrow__num { grid-area:num; width:30px; height:30px; display:grid; place-items:center; align-self:center; border:1px solid rgba(212,175,55,.28); border-radius:9px; color:#d5b64c; font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
-    .agent-console .svcrow__benefit { grid-area:benefit; font-size:1rem; }
-    .agent-console .svcrow__price { grid-area:price; font-size:.84rem; }
-    .agent-console .svcrow__tag { grid-area:tag; margin-top:.3rem; font-size:.57rem; color:rgba(255,255,255,.34); }
-    .agent-console .svcrow__state { grid-area:state; margin-top:.3rem; color:#7de3a4; font:700 .54rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
-    .agent-console .svcmenu__foot { margin:.9rem .2rem .15rem; color:rgba(255,255,255,.28); }
-    @keyframes homePulse { 50% { opacity:.45; box-shadow:0 0 7px #7de3a4; } }
+    /* ---- why pool companies: deep end ------------------------------------- */
+    .why-pool { background:linear-gradient(180deg,var(--deep) 0%,var(--deep-2) 100%); color:#fff; border-top:1px solid rgba(63,208,195,.18); }
+    .why-pool .section-label { color:var(--aqua); }
+    .why-pool h2 { color:#fff; }
+    .why-pool__lede { max-width:56ch; margin:0 auto 2.5rem; color:rgba(255,255,255,.78); }
+    .nums { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:1100px; margin:0 auto; }
+    .num { padding:1.6rem 1.5rem 1.5rem; border:1px solid rgba(255,255,255,.14); border-radius:18px; background:rgba(3,8,5,.28); }
+    .num b { display:block; font-family:'Playfair Display',serif; font-size:clamp(2.4rem,4vw,3.4rem); line-height:.95; color:#fff; letter-spacing:-.03em; }
+    .num b small { display:block; margin-top:.3rem; font-family:Inter,sans-serif; font-size:.82rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--aqua); }
+    .num p { margin:.9rem 0 0; color:rgba(255,255,255,.78); font-size:.92rem; line-height:1.6; }
+    .num p em { font-style:normal; color:rgba(255,255,255,.55); font-size:.8rem; display:block; margin-top:.4rem; }
+    @media (max-width:860px) { .nums { grid-template-columns:1fr; } }
 
-    /* One offer, one price — the hero's right column. */
-    .offercard { padding:.35rem .2rem .1rem; }
-    .offercard__pricerow { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.6rem; padding:1.15rem 0 1.05rem; border-bottom:1px solid rgba(255,255,255,.09); }
-    .offercard__fig { font-family:'Playfair Display',serif; font-size:clamp(3rem,5vw,3.85rem); font-weight:800; color:#e7c85f; line-height:.9; letter-spacing:-.02em; }
-    .offercard__cad { margin-left:.5rem; color:rgba(255,255,255,.42); font-size:.9rem; font-weight:600; }
-    .offercard__flag { color:#7de3a4; font:800 .58rem/1.3 Inter,sans-serif; letter-spacing:.11em; text-transform:uppercase; text-align:right; }
-    .offercard__list { list-style:none; margin:1.15rem 0 0; padding:0; display:grid; gap:.72rem; }
-    .offercard__list li { position:relative; padding-left:1.65rem; color:rgba(255,255,255,.8); font-size:.9rem; line-height:1.45; }
-    .offercard__list li::before { content:''; position:absolute; left:.1rem; top:.42em; width:9px; height:5px; border-left:2px solid #7de3a4; border-bottom:2px solid #7de3a4; transform:rotate(-45deg); }
-    .offercard__foot { margin:1.35rem .1rem .35rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,.07); color:rgba(255,255,255,.34); font-size:.72rem; }
-    @media (max-width:600px) { .offercard__pricerow { flex-direction:column; align-items:flex-start; } .offercard__flag { text-align:left; } }
+    /* ---- one day on the route --------------------------------------------- */
+    .route { position:relative; max-width:1100px; margin:0 auto; }
+    .route__sky { display:block; width:100%; height:auto; }
+    .route__steps { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-top:-.5rem; }
+    .route__step { position:relative; padding:1.1rem 1rem 1rem; border-radius:12px; background:#fff; border:1px solid #e4ebe5; border-top:3px solid var(--ac,#4caf6e); }
+    .route__step--net { --ac:var(--ac-net); } .route__step--balance { --ac:var(--ac-balance); } .route__step--pump { --ac:var(--ac-pump); } .route__step--you { --ac:#D4AF37; }
+    .route__step time { display:block; font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; color:var(--green-dark,#1a5c2a); }
+    .route__step b { display:block; margin:.55rem 0 .3rem; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gray-600,#4b5563); }
+    .route__step p { margin:0; font-size:.88rem; line-height:1.5; color:var(--gray-800,#1f2937); }
+    @media (max-width:960px) { .route__steps { grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px) { .route__steps { grid-template-columns:1fr; } }
 
-    .agentic-strip { position:relative; padding:1px 0; background:#07110b; border-top:1px solid rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07); overflow:hidden; }
-    .agentic-strip__inner { min-height:210px; display:grid; grid-template-columns:.8fr 1.7fr; align-items:center; gap:5rem; }
-    .agentic-strip__intro small { color:#7de3a4; font-size:.62rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
-    .agentic-strip__intro h2 { margin:.65rem 0 .55rem; color:#fff; font-family:Inter,sans-serif; font-size:clamp(1.45rem,2.5vw,2.15rem); letter-spacing:-.035em; }
-    .agentic-strip__intro p { color:rgba(255,255,255,.45); font-size:.86rem; max-width:36ch; }
-    .agentic-loop { position:relative; display:grid; grid-template-columns:repeat(4,1fr); }
-    .agentic-loop::before { content:''; position:absolute; left:10%; right:10%; top:24px; height:1px; background:linear-gradient(90deg,rgba(125,227,164,.12),#7de3a4,rgba(212,175,55,.55)); }
-    .agentic-loop::after { content:''; position:absolute; top:20px; left:10%; width:9px; height:9px; border-radius:50%; background:#e6c552; box-shadow:0 0 18px #e6c552; animation:travel 7s ease-in-out infinite; }
-    .agentic-loop__step { position:relative; z-index:1; text-align:center; }
-    .agentic-loop__step i { width:48px; height:48px; display:grid; place-items:center; margin:0 auto .8rem; border:1px solid rgba(125,227,164,.24); border-radius:50%; background:#07110b; color:#7de3a4; font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
-    .agentic-loop__step b { display:block; color:#fff; font-size:.78rem; letter-spacing:.03em; }
-    .agentic-loop__step span { display:block; margin-top:.28rem; color:rgba(255,255,255,.34); font-size:.65rem; }
-    @keyframes travel { 0%,12%{left:10%} 30%{left:36%} 55%{left:62%} 80%,100%{left:89%} }
+    /* ---- compare table reuses .cmp from style.css --------------------------- */
+    .cmp__ask { display:block; margin-top:1rem; color:var(--gray-600,#4b5563); font-size:.92rem; text-decoration:underline; text-underline-offset:3px; }
 
-    .home-agentic ~ .agentic-strip + .circuit-divider { display:none; }
-    .service-card { border-radius:16px; box-shadow:none; border-color:rgba(26,92,42,.12); }
-    .service-card:hover { transform:translateY(-4px); box-shadow:0 18px 50px rgba(6,31,16,.1); }
-    /* --- Proof: a real run ---------------------------------------------------
-       Dark band. Every element states its own colour — body{color:var(--gray-800)}
-       is white-page ink and would leave this near-black on near-black. */
+    /* ---- how a build works -------------------------------------------------- */
+    .build { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; max-width:1100px; margin:0 auto; }
+    .build__step { padding:1.5rem 1.4rem; border-radius:14px; background:linear-gradient(180deg,#fff,#f6faf7); border:1px solid #e4ebe5; }
+    .build__n { display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--green-dark,#1a5c2a); color:#fff; font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:800; margin-bottom:1rem; }
+    .build__step h3 { font-size:1.05rem; margin:0 0 .4rem; }
+    .build__step p { margin:0; font-size:.9rem; color:var(--gray-600,#4b5563); line-height:1.55; }
+    @media (max-width:960px) { .build { grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px) { .build { grid-template-columns:1fr; } }
+
+    /* ---- proof: a real run -------------------------------------------------- */
     .proof-run { background:#050b07; color:rgba(255,255,255,.76); border-top:1px solid rgba(125,227,164,.12); }
     .proof-run .section-label { color:#7de3a4; }
     .proof-run h2 { color:#fff; }
-    .proof-run__lede { max-width:640px; margin:0 auto 3rem; color:rgba(255,255,255,.62); }
+    .proof-run__lede { max-width:640px; margin:0 auto 3rem; color:rgba(255,255,255,.66); }
     .proof-run__grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; }
     .proof-run__ledger { padding:1.75rem; border:1px solid rgba(255,255,255,.11); border-radius:18px; background:rgba(8,19,12,.72); }
     .proof-run__stamp { display:block; margin-bottom:1.4rem; color:rgba(255,255,255,.62); font:600 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
@@ -188,158 +149,88 @@
     .proof-run__stats span { color:rgba(255,255,255,.72); font-size:.97rem; }
     .proof-run__guard { padding:1.15rem 1.25rem; border:1px solid rgba(125,227,164,.24); border-radius:14px; background:rgba(125,227,164,.06); }
     .proof-run__guard-tag { display:block; margin-bottom:.5rem; color:#7de3a4; font-size:.66rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
-    .proof-run__guard p { margin:0; color:rgba(255,255,255,.8); font-size:.93rem; line-height:1.6; }
-    .proof-run__guard b { color:#fff; }
     .proof-run__mail { margin:0; border:1px solid rgba(255,255,255,.11); border-radius:18px; background:rgba(8,19,12,.72); overflow:hidden; }
     .proof-run__mail-head { display:flex; align-items:center; gap:.6rem; padding:.95rem 1.25rem; border-bottom:1px solid rgba(255,255,255,.09); color:rgba(255,255,255,.6); font:600 .72rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
     .proof-run__mail-dot { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 12px #7de3a4; flex:0 0 auto; }
     .proof-run__pre { margin:0; padding:1.4rem 1.25rem; overflow-x:auto; color:rgba(255,255,255,.86); font:400 .85rem/1.72 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; }
-    /* phones: smaller mono so the quoted email's hard-wrapped lines break less raggedly */
     @media(max-width:560px){ .proof-run__pre { font-size:.72rem; padding:1.1rem .9rem; } }
-    .proof-run__foot { padding:1rem 1.25rem 1.2rem; border-top:1px solid rgba(255,255,255,.09); color:rgba(255,255,255,.5); font-size:.79rem; line-height:1.6; }
+    .proof-run__foot { padding:1rem 1.25rem 1.2rem; border-top:1px solid rgba(255,255,255,.09); color:rgba(255,255,255,.6); font-size:.79rem; line-height:1.6; }
     @media (max-width:900px) { .proof-run__grid { grid-template-columns:1fr; } }
-    /* --- Proof band closer -------------------------------------------------
-       A dark band. body{color:var(--gray-800)} is ink for white pages, so every
-       element here states its own colour — the same trap that made the case
-       studies unreadable in August. Measured: heading 15.9:1, body 7.4:1. */
-    .proof-close { background:#061008; border-top:1px solid rgba(125,227,164,.14); color:rgba(255,255,255,.78); }
-    .proof-close__inner { display:grid; grid-template-columns:1.35fr .65fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
-    .proof-close .section-label { color:#7de3a4; }
-    .proof-close h2 { margin:.6rem 0 1rem; color:#fff; font-size:clamp(1.9rem,3.4vw,2.9rem); line-height:1.14; letter-spacing:-.02em; }
-    .proof-close__hl { color:#e7c85f; }
-    .proof-close p { margin:0; color:rgba(255,255,255,.66); font-size:1.02rem; }
-    .proof-close__actions { display:flex; flex-direction:column; gap:.85rem; }
-    .proof-close__actions .btn { width:100%; justify-content:center; }
-    .proof-close__ghost { border:1px solid rgba(255,255,255,.28); background:transparent; color:#fff; }
-    .proof-close__ghost:hover { background:rgba(255,255,255,.1); border-color:#fff; color:#fff; }
-    .offer-panel__billing { margin:.9rem 0 0; color:rgba(255,255,255,.5); font-size:.76rem; line-height:1.6; }
-    .offer-panel__billing strong { color:rgba(255,255,255,.78); font-weight:700; letter-spacing:.02em; }
-    .cmp__ask { display:block; margin-top:1rem; color:var(--gray-600,#5d6b62); font-size:.92rem; text-decoration:underline; text-underline-offset:3px; }
-    @media (max-width:820px) {
-      .proof-close__inner { grid-template-columns:1fr; gap:2rem; }
-    }
-    @media (max-width:960px) {
-      /* The hero is one column from here. .hero__visual is a centred flex box, so
-         the console sized itself to its content (391px inside a 465px column at
-         500px wide) and left a dead gap beside the price. Stretch it. */
-      .home-agentic .agent-console { width:100%; align-self:stretch; }
-    }
-    @media (max-width:900px) {
-      .home-agentic.hero { min-height:0; }
-      .home-agentic .hero__split { gap:2.5rem; }
-      .agentic-strip__inner { grid-template-columns:1fr; gap:2.25rem; padding:3.5rem 1.5rem; }
-    }
-    @media (max-width:600px) {
-      .agent-console .svcrow { grid-template-columns:32px 1fr; grid-template-areas:'num benefit' 'num tag' 'price state'; }
-      .agent-console .svcrow__price { margin-top:.65rem; }
-      .agentic-loop { grid-template-columns:repeat(2,1fr); gap:1.5rem .5rem; }
-      .agentic-loop::before,.agentic-loop::after { display:none; }
-    }
-    @media (prefers-reduced-motion:reduce) { .agent-console__dot,.agentic-loop::after { animation:none; } }
-    .future-stack{padding:clamp(5rem,8vw,8rem) 0;background:#050b07;color:#fff}.future-stack__head{display:grid;grid-template-columns:1.15fr .85fr;gap:4rem;align-items:end;margin-bottom:3rem}.future-stack__head h2{color:#fff;max-width:720px;margin:.7rem 0 0;font-size:clamp(2.3rem,4.6vw,4.2rem);line-height:1.02;letter-spacing:-.045em}.future-stack__head p{color:rgba(255,255,255,.52);max-width:52ch;line-height:1.8}.future-stack__label{color:#7de3a4;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.future-stack__grid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;background:rgba(255,255,255,.025)}.future-pillar{position:relative;min-height:300px;padding:1.6rem 1.35rem;color:inherit;text-decoration:none;border-right:1px solid rgba(255,255,255,.08);transition:background .3s ease}.future-pillar:last-child{border-right:0}.future-pillar:hover{background:rgba(125,227,164,.065)}.future-pillar__num{color:#d5b64c;font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace}.future-pillar h3{margin:5rem 0 .8rem;color:#fff;font-family:Inter,sans-serif;font-size:1.04rem;line-height:1.25}.future-pillar p{color:rgba(255,255,255,.4);font-size:.76rem;line-height:1.65}.future-pillar__arrow{position:absolute;right:1.3rem;bottom:1.25rem;color:#7de3a4}.future-studio-cta{margin-top:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.35rem 1.5rem;border:1px solid rgba(212,175,55,.22);border-radius:18px;background:linear-gradient(105deg,rgba(212,175,55,.08),rgba(125,227,164,.035))}.future-studio-cta strong{display:block;color:#fff;font-size:1rem}.future-studio-cta span{color:rgba(255,255,255,.4);font-size:.78rem}@media(max-width:1000px){.future-stack__grid{grid-template-columns:repeat(2,1fr)}.future-pillar{border-bottom:1px solid rgba(255,255,255,.08)}.future-pillar:last-child{grid-column:1/-1}.future-stack__head{grid-template-columns:1fr;gap:1.5rem}}@media(max-width:600px){.future-stack__grid{grid-template-columns:1fr}.future-pillar,.future-pillar:last-child{grid-column:auto;min-height:0;border-right:0;padding-right:3rem}.future-pillar h3{margin-top:.9rem}.future-studio-cta{align-items:flex-start;flex-direction:column}}
 
-    /* ===== BRAND AD — the night/day slider ================================
-       Dark full-bleed opener. Every element states its own colour. */
-    .brandad { background:#030805; }
-    .brandad__stage { position:relative; height:min(92vh,860px); min-height:560px; overflow:hidden; cursor:ew-resize; touch-action:pan-y; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
-    .brandad__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; pointer-events:none; -webkit-user-drag:none; }
-    .brandad__night { position:absolute; inset:0; clip-path:inset(0 50% 0 0); will-change:clip-path; }
-    /* the seam */
-    .brandad__seam { position:absolute; top:0; bottom:0; left:50%; width:2px; margin-left:-1px; background:linear-gradient(180deg,rgba(231,200,95,.15),#e7c85f 30%,#e7c85f 70%,rgba(231,200,95,.15)); box-shadow:0 0 22px rgba(231,200,95,.55); pointer-events:none; z-index:3; }
-    .brandad__grip { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#e7c85f; color:#061008; font-size:.8rem; font-weight:800; letter-spacing:.05em; box-shadow:0 6px 26px rgba(0,0,0,.55), 0 0 0 5px rgba(231,200,95,.25); transition:transform .16s ease, box-shadow .16s ease; }
-    .brandad__stage.is-dragging { cursor:grabbing; }
-    .brandad__stage.is-dragging .brandad__grip { transform:translate(-50%,-50%) scale(1.12); box-shadow:0 8px 30px rgba(0,0,0,.6), 0 0 0 9px rgba(231,200,95,.3); }
-    .brandad__range { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; z-index:4; -webkit-appearance:none; appearance:none; pointer-events:none; }
-    .brandad__stage.is-kb .brandad__grip { outline:3px solid #7de3a4; outline-offset:3px; }
-    /* time tags — each clipped to its own world */
-    .brandad__tag { position:absolute; display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .85rem; border-radius:100px; font:600 .74rem/1.3 Inter,sans-serif; z-index:2; backdrop-filter:blur(6px); }
-    .brandad__tag b { font-weight:800; letter-spacing:.06em; }
-    .brandad__tag--night { left:1.4rem; top:5.4rem; background:rgba(3,10,16,.72); color:#bfe0ff; border:1px solid rgba(160,200,255,.3); }
-    .brandad__tag--night b { color:#fff; }
-    .brandad__tag--day { right:1.4rem; top:5.4rem; background:rgba(38,26,4,.55); color:#ffe9b0; border:1px solid rgba(255,215,130,.4); }
-    .brandad__tag--day b { color:#fff; }
-    /* ad chrome: the meta chip sits top-centre between the two time tags;
-       the drag hint rides along under the gold grip. */
-    .brandad__hint { position:absolute; top:calc(50% + 40px); left:50%; transform:translateX(-50%); white-space:nowrap; color:#f7ecc4; font:700 .56rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; background:rgba(3,8,5,.66); border:1px solid rgba(231,200,95,.35); border-radius:100px; padding:.4rem .7rem; }
-    /* copy block */
-    .brandad__copy { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:7rem clamp(1.4rem,5vw,4.5rem) 3.2rem; background:linear-gradient(180deg,transparent 0%,rgba(2,6,4,.45) 38%,rgba(2,6,4,.88) 100%); pointer-events:none; }
-    .brandad__copy .btn, .brandad__fine a { pointer-events:auto; }
-    .brandad__kicker { margin:0 0 .6rem; color:#7de3a4; font-size:.64rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
-    .brandad__h { margin:0 0 .8rem; color:#fff; font-size:clamp(2.4rem,5.6vw,4.4rem); line-height:.98; letter-spacing:-.04em; }
-    .brandad__h em { font-style:italic; color:#e7c85f; }
-    .brandad__sub { margin:0; max-width:56ch; color:rgba(255,255,255,.78); font-size:1.02rem; line-height:1.7; }
-    .brandad__cta { display:flex; flex-wrap:wrap; gap:.85rem; margin-top:1.5rem; }
-    .brandad__ghost { border:1px solid rgba(255,255,255,.4); background:rgba(3,8,5,.35); color:#fff; backdrop-filter:blur(4px); }
-    .brandad__ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; color:#fff; }
-    .brandad__fine { margin:1.1rem 0 0; color:rgba(255,255,255,.48); font-size:.74rem; }
-    .brandad__fine a { color:rgba(255,255,255,.72); text-decoration:underline; text-underline-offset:2px; }
-    /* the film progress line follows the slider */
-    .brandad__prog { position:absolute; left:0; right:0; bottom:0; height:3px; background:rgba(255,255,255,.12); z-index:3; }
-    .brandad__prog i { display:block; height:100%; width:50%; background:linear-gradient(90deg,#e7c85f,#7de3a4); box-shadow:0 0 14px rgba(125,227,164,.5); }
-    @media (max-width:820px) {
-      .brandad__stage { height:88vh; min-height:620px; }
-      /* tags shrink to just the time so they cannot collide */
-      .brandad__tag { font-size:0; gap:0; padding:.45rem .7rem; }
-      .brandad__tag b { font-size:.72rem; }
-      .brandad__tag--night { top:4.9rem; left:.9rem; }
-      .brandad__tag--day { top:4.9rem; right:.9rem; }
-      /* keep the handle off the copy block */
-      .brandad__grip { top:31%; width:64px; height:64px; font-size:1rem; }
-      .brandad__stage.is-dragging .brandad__grip { transform:translate(-50%,-50%) scale(1.08); }
-      .brandad__hint { top:calc(31% + 46px); font-size:.6rem; padding:.45rem .8rem; }
-      .brandad__copy { padding-bottom:3.4rem; }
-      .brandad__img { object-position:62% 30%; }
-    }
+    /* ---- what they won't do: the strip --------------------------------------- */
+    .wont { background:var(--deep); color:#fff; border-top:1px solid rgba(63,208,195,.18); }
+    .wont .section-label { color:var(--aqua); }
+    .wont h2 { color:#fff; }
+    .wont__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:1100px; margin:2rem auto 0; }
+    .wont__col { padding:1.4rem 1.3rem; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:rgba(3,8,5,.28); }
+    .wont__col h3 { margin:0 0 .8rem; font-family:'Playfair Display',serif; font-size:1.3rem; letter-spacing:.06em; color:#fff; }
+    .wont__col h3 i { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:.5rem; vertical-align:middle; background:var(--ac); box-shadow:0 0 10px var(--ac); }
+    .wont__col--net { --ac:var(--ac-net); } .wont__col--balance { --ac:var(--ac-balance); } .wont__col--pump { --ac:var(--ac-pump); }
+    .wont__col ul { list-style:none; margin:0; padding:0; display:grid; gap:.6rem; }
+    .wont__col li { position:relative; padding-left:1.4rem; font-size:.9rem; line-height:1.5; color:rgba(255,255,255,.84); }
+    .wont__col li::before { content:'\2715'; position:absolute; left:0; top:.1em; font-size:.75rem; font-weight:800; color:var(--aqua); }
+    @media (max-width:860px) { .wont__grid { grid-template-columns:1fr; } }
+
+    /* ---- close: three prices again ------------------------------------------ */
+    .close3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:1000px; margin:0 auto; }
+    .close3 a.card { display:block; padding:1.5rem 1.4rem; border-radius:16px; background:#fff; border:1px solid rgba(26,92,42,.14); border-top:4px solid var(--ac); text-decoration:none; color:inherit; transition:transform .25s, box-shadow .25s; }
+    .close3 a.card:hover { transform:translateY(-4px); box-shadow:0 18px 45px rgba(6,31,16,.1); }
+    .close3 a.card b { display:block; font-family:'Playfair Display',serif; font-size:1.3rem; letter-spacing:.06em; color:var(--gray-800,#1f2937); }
+    .close3 a.card span { display:block; font-size:.86rem; color:var(--gray-600,#4b5563); margin:.25rem 0 .8rem; }
+    .close3 a.card strong { font-family:'Playfair Display',serif; font-size:2rem; color:var(--green-dark,#1a5c2a); }
+    .close3 a.card strong small { font-family:Inter,sans-serif; font-size:.8rem; color:var(--gray-600,#4b5563); font-weight:500; }
+    .close3 .card--net { --ac:var(--ac-net); } .close3 .card--balance { --ac:var(--ac-balance); } .close3 .card--pump { --ac:var(--ac-pump); }
+    .close-ask { text-align:center; margin-top:2rem; }
+    .close-ask .cmp__ask { display:inline-block; margin:1rem 0 0; }
+    .close-billing { max-width:60ch; margin:1.5rem auto 0; text-align:center; font-size:.78rem; color:var(--gray-600,#4b5563); line-height:1.6; }
+    @media (max-width:860px) { .close3 { grid-template-columns:1fr; } }
+
+    @media (prefers-reduced-motion:reduce) { .idc, .close3 a.card { transition:none; } }
   </style>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="canonical" href="https://greenaidigital.com/" />
 
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://greenaidigital.com/" />
-  <meta property="og:title" content="Every lead answered in 8 seconds — $497/month" />
-  <meta property="og:description" content="An AI employee for Phoenix service businesses. Answers every call, text and form in 8 seconds. Books the job. Follows up. $497 a month, flat." />
-  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="GreenAI Solutions — one AI employee answers every lead in 8 seconds, $497 a month." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Every lead answered in 8 seconds — $497/month" />
-  <meta name="twitter:description" content="An AI employee for Phoenix service businesses. $497 a month, flat." />
-  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
-
-  <!-- LocalBusiness structured data -->
+  <!-- Business + the three offers -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "GreenAI Solutions Team",
+    "name": "GreenAI Solutions",
+    "alternateName": "Jaden Green, doing business as GreenAI Solutions",
     "image": "https://greenaidigital.com/logo.jpg",
     "url": "https://greenaidigital.com",
     "telephone": "+1-480-798-0753",
     "email": "jaden@greenaidigital.com",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Gilbert",
-      "addressRegion": "AZ",
-      "postalCode": "85296",
-      "addressCountry": "US"
-    },
-    "founder": { "@type": "Person", "name": "Jaden Green", "jobTitle": "Founder & AI Strategist", "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Washington" } },
-    "areaServed": "United States",
-    "sameAs": ["https://instagram.com/GreenAI_solutions"]
+    "priceRange": "$297–$497/month",
+    "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "postalCode": "85296", "addressCountry": "US" },
+    "founder": { "@type": "Person", "name": "Jaden Green" },
+    "areaServed": [
+      { "@type": "City", "name": "Phoenix" }, { "@type": "City", "name": "Mesa" }, { "@type": "City", "name": "Gilbert" },
+      { "@type": "City", "name": "Chandler" }, { "@type": "City", "name": "Scottsdale" }, { "@type": "City", "name": "Tempe" },
+      { "@type": "City", "name": "Glendale" }, { "@type": "City", "name": "Peoria" }
+    ],
+    "audience": { "@type": "BusinessAudience", "name": "Residential pool service companies" },
+    "sameAs": ["https://instagram.com/GreenAI_solutions"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI employees for pool service companies",
+      "itemListElement": [
+        { "@type": "Offer", "name": "NET — catches every lead", "url": "https://greenaidigital.com/net.html", "price": "497", "priceCurrency": "USD",
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "497", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "per month" },
+          "itemOffered": { "@type": "Service", "name": "NET", "serviceType": "Lead response for pool service companies" } },
+        { "@type": "Offer", "name": "BALANCE — keeps every customer", "url": "https://greenaidigital.com/balance.html", "price": "347", "priceCurrency": "USD",
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "347", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "per month" },
+          "itemOffered": { "@type": "Service", "name": "BALANCE", "serviceType": "Customer service for pool service companies" } },
+        { "@type": "Offer", "name": "PUMP — keeps the money moving", "url": "https://greenaidigital.com/pump.html", "price": "297", "priceCurrency": "USD",
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "297", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "per month" },
+          "itemOffered": { "@type": "Service", "name": "PUMP", "serviceType": "Quotes, invoicing and reminders for pool service companies" } }
+      ]
+    }
   }
   </script>
   <script src="analytics.js?v=2"></script>
 </head>
 <body>
-  <a href="#hero-heading" class="skip-link">Skip to main content</a>
+  <a href="#crew" class="skip-link">Skip to main content</a>
 
-  <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -353,9 +244,8 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="staff.html">Hire the Staff &mdash; five employees ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li class="nav__submenu-label">The staff</li><li><a href="phone.html">RING &mdash; answers the phone</a></li><li><a href="leads.html">REPLY &mdash; every lead</a></li><li><a href="ads.html">BOOST &mdash; runs your ads</a></li><li><a href="support.html">ANSWER &mdash; support</a></li><li><a href="billing.html">COLLECT &mdash; gets you paid</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="index.html#crew" class="nav__link" data-page="crew">The Crew <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="net.html">NET &mdash; catches every lead &middot; $497/mo</a></li><li><a href="balance.html">BALANCE &mdash; keeps every customer &middot; $347/mo</a></li><li><a href="pump.html">PUMP &mdash; keeps the money moving &middot; $297/mo</a></li><li class="nav__submenu-label">See it work</li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="call.html">Hear it as your company</a></li><li><a href="faq.html">Questions</a></li></ul></li>
           <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-          <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
         </ul>
 
@@ -369,324 +259,338 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html"    class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="pay.html?sku=employees-front-desk">AI Employee &mdash; $497/mo ✦</a></li><li><a href="staff.html">Hire the Staff &mdash; five employees ✦</a></li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li><li class="nav__submenu-label">The staff</li><li><a href="phone.html">RING &mdash; answers the phone</a></li><li><a href="leads.html">REPLY &mdash; every lead</a></li><li><a href="ads.html">BOOST &mdash; runs your ads</a></li><li><a href="support.html">ANSWER &mdash; support</a></li><li><a href="billing.html">COLLECT &mdash; gets you paid</a></li><li class="nav__submenu-label">Also available</li><li><a href="service-ai-ads.html">AI Ad Creation</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="index.html#crew" class="nav__link" data-page="crew">The Crew</a><ul class="nav__submenu" role="list"><li><a href="net.html">NET &mdash; catches every lead &middot; $497/mo</a></li><li><a href="balance.html">BALANCE &mdash; keeps every customer &middot; $347/mo</a></li><li><a href="pump.html">PUMP &mdash; keeps the money moving &middot; $297/mo</a></li><li class="nav__submenu-label">See it work</li><li><a href="catch.html">Watch it catch a lead</a></li><li><a href="call.html">Hear it as your company</a></li><li><a href="faq.html">Questions</a></li></ul></li>
         <li><a href="about.html"    class="nav__link" data-page="about.html">About</a></li>
-        <li class="nav__dropdown"><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a><ul class="nav__submenu" role="list"><li><a href="testimonials.html#client-work">Client Work</a></li><li><a href="testimonials.html#products">Live Products</a></li><li><a href="testimonials.html#engineering">Engineering</a></li><li><a href="testimonials.html">All Work</a></li></ul></li>
         <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
         <li style="padding:.5rem 1rem"><a href="catch.html" class="btn btn-primary" style="width:100%;justify-content:center">Watch it catch a lead</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===== BRAND AD — night and day, literally =====================
-       The opener. One office, twice: 2:47 AM with the AI employee on the
-       phone, 8:00 AM with the owner collecting a booked schedule. The
-       visitor drags the gold seam between them. Both frames are generated
-       brand illustration, and the caption says so. -->
-  <section class="brandad" aria-label="GreenAI brand film — the difference between night and day">
-    <div class="brandad__stage" data-nd>
-      <img class="brandad__img" src="art/brand-day.webp" alt="Bright morning in a small-business office: the owner, coffee in hand, takes the day's booked schedule from a friendly green robot receptionist" width="1600" height="893" loading="eager" fetchpriority="high" decoding="async"/>
-      <div class="brandad__night" data-nd-night>
-        <img class="brandad__img" src="art/brand-night.webp" alt="The same office at 2:47 AM: the robot receptionist answers the ringing phone and writes the appointment down while the owner's chair sits empty" width="1600" height="893" loading="eager" decoding="async"/>
-        <span class="brandad__tag brandad__tag--night"><b>2:47 AM</b> a lead calls &mdash; your AI employee picks up in 8 seconds</span>
-      </div>
-      <span class="brandad__tag brandad__tag--day"><b>8:00 AM</b> the job is on your calendar</span>
+  <!-- ===== HERO — a Phoenix backyard at night, drawn ============================
+       Pool lit from below, palms, a phone glowing on the patio table. Headline
+       says what the owner gets; the ledger says how fast. Nothing loops. -->
+  <header class="pool-hero" aria-labelledby="hero-heading">
+    <svg class="pool-hero__art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#050b07"/><stop offset=".55" stop-color="#061c22"/><stop offset="1" stop-color="#0A3F4A"/>
+        </linearGradient>
+        <radialGradient id="cityglow" cx="61%" cy="58%" r="45%">
+          <stop offset="0" stop-color="#ffb43c" stop-opacity=".22"/><stop offset=".6" stop-color="#ffb43c" stop-opacity=".05"/><stop offset="1" stop-color="#ffb43c" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="poolwater" cx="48%" cy="61%" r="72%">
+          <stop offset="0" stop-color="#7fe8de"/><stop offset=".35" stop-color="#3FD0C3"/><stop offset=".8" stop-color="#0A3F4A"/><stop offset="1" stop-color="#072E37"/>
+        </radialGradient>
+        <radialGradient id="poollight" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#3FD0C3" stop-opacity=".55"/><stop offset="1" stop-color="#3FD0C3" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="phoneglow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#e7c85f" stop-opacity=".7"/><stop offset="1" stop-color="#e7c85f" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0b1d1f"/><stop offset="1" stop-color="#05110f"/>
+        </linearGradient>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+        <clipPath id="poolclip"><path d="M760 690 Q740 620 830 600 L1240 590 Q1360 596 1380 660 L1390 760 Q1380 820 1300 826 L830 830 Q770 826 760 780 Z"/></clipPath>
+      </defs>
 
-      <div class="brandad__seam" data-nd-seam aria-hidden="true"><span class="brandad__grip">&#9666;&nbsp;&#9656;</span><span class="brandad__hint">night &#8646; day &middot; drag it</span></div>
-      <input type="range" class="brandad__range" data-nd-range min="0" max="100" value="50" step="1" aria-label="Slide between night and day" />
+      <!-- sky -->
+      <rect width="1600" height="900" fill="url(#sky)"/>
+      <g fill="#ffffff" opacity=".8">
+        <circle cx="120" cy="80" r="1.4"/><circle cx="300" cy="140" r="1"/><circle cx="480" cy="60" r="1.2"/><circle cx="640" cy="170" r="1"/>
+        <circle cx="820" cy="90" r="1.5"/><circle cx="960" cy="200" r="1"/><circle cx="1110" cy="70" r="1.2"/><circle cx="1240" cy="150" r="1"/>
+        <circle cx="1400" cy="100" r="1.6"/><circle cx="1520" cy="210" r="1"/><circle cx="1080" cy="260" r="1"/><circle cx="1330" cy="280" r="1.2"/>
+        <circle cx="210" cy="240" r="1"/><circle cx="700" cy="300" r="1"/><circle cx="1470" cy="330" r="1"/><circle cx="900" cy="330" r="1.1"/>
+      </g>
+      <!-- the valley: city glow on the horizon -->
+      <rect x="0" y="330" width="1600" height="300" fill="url(#cityglow)"/>
+      <!-- mountains -->
+      <path d="M0 470 L120 420 L260 450 L400 380 L520 430 L700 400 L860 445 L1000 385 L1160 430 L1300 395 L1440 440 L1600 410 L1600 520 L0 520 Z" fill="#04100f"/>
+      <path d="M0 500 L200 470 L380 490 L560 455 L760 485 L940 460 L1120 490 L1320 462 L1600 488 L1600 560 L0 560 Z" fill="#031012"/>
+      <!-- city lights -->
+      <g fill="#ffd27a" opacity=".55">
+        <rect x="620" y="497" width="3" height="2"/><rect x="690" y="503" width="2" height="2"/><rect x="780" y="500" width="3" height="2"/><rect x="850" y="506" width="2" height="2"/>
+        <rect x="930" y="498" width="3" height="2"/><rect x="1010" y="504" width="2" height="2"/><rect x="1090" y="501" width="3" height="2"/><rect x="1180" y="507" width="2" height="2"/>
+        <rect x="1250" y="499" width="3" height="2"/><rect x="1330" y="505" width="2" height="2"/><rect x="1420" y="502" width="3" height="2"/>
+      </g>
 
-      <div class="brandad__copy">
-        <p class="brandad__kicker">GreenAI Solutions &middot; AI employees for Phoenix service businesses</p>
-        <h2 class="brandad__h">Night and day.<br/><em>Literally.</em></h2>
-        <p class="brandad__sub">One AI employee. Every call, text and form answered in 8 seconds &mdash; 2am, Sundays, holidays. Booked, then chased.</p>
-        <div class="brandad__cta">
-          <a href="call.html" class="btn btn-white btn-lg">&#128222; Call the AI &mdash; live</a>
-          <a href="pay.html?sku=employees-front-desk" class="btn btn-lg brandad__ghost" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
-        </div>
-        <p class="brandad__fine">Brand illustration of the mechanism &mdash; <a href="call.html">talk to it live</a>, <a href="catch.html">watch the demo</a>, or see the <a href="#proof-run-heading">morning&rsquo;s real run</a> below.</p>
-      </div>
+      <!-- block wall + deck -->
+      <rect x="0" y="540" width="1600" height="120" fill="#06171a"/>
+      <rect x="0" y="655" width="1600" height="245" fill="url(#deck)"/>
+      <!-- deck light spill from the pool -->
+      <ellipse cx="1070" cy="720" rx="520" ry="200" fill="url(#poollight)" filter="url(#soft)"/>
 
-      <div class="brandad__prog" aria-hidden="true"><i data-nd-prog></i></div>
-    </div>
-  </section>
+      <!-- the pool, lit from below -->
+      <path d="M748 690 Q726 612 826 590 L1244 580 Q1372 586 1394 656 L1404 764 Q1394 834 1304 840 L826 844 Q760 840 748 786 Z" fill="#c9d7d6" opacity=".18"/>
+      <g clip-path="url(#poolclip)">
+        <rect x="740" y="580" width="680" height="270" fill="url(#poolwater)"/>
+        <!-- caustics -->
+        <g fill="none" stroke="#dffbf7" stroke-width="2" opacity=".35" stroke-linecap="round">
+          <path d="M800 650 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+          <path d="M790 700 q30 14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+          <path d="M810 750 q30 -12 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+          <path d="M840 795 q30 12 60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+        </g>
+        <!-- the underwater light itself -->
+        <circle cx="1060" cy="745" r="14" fill="#ffffff" opacity=".9"/>
+        <circle cx="1060" cy="745" r="40" fill="#ffffff" opacity=".18" filter="url(#soft)"/>
+      </g>
 
-  <!-- ===== HERO ===== -->
-  <section id="main" class="hero hero--split home-agentic" aria-labelledby="hero-heading">
-    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
-    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
-    <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
-    <div class="hero__bg-pattern" aria-hidden="true"></div>
-    <div class="hero__grid-overlay" aria-hidden="true"></div>
-    <img class="wm" src="art/watermark.svg" alt="" aria-hidden="true"/>
+      <!-- palms: left pair, right single -->
+      <g fill="#03100c">
+        <path d="M150 660 Q146 520 118 380" stroke="#03100c" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M118 380 Q40 350 -20 400 Q70 380 118 396 Z"/><path d="M118 380 Q60 300 20 260 Q90 320 124 384 Z"/><path d="M118 380 Q140 290 210 250 Q150 330 126 386 Z"/>
+        <path d="M118 380 Q210 340 290 372 Q200 366 130 392 Z"/><path d="M118 380 Q180 420 240 480 Q160 430 120 396 Z"/><path d="M118 380 Q70 430 40 500 Q80 420 114 394 Z"/>
+        <path d="M250 660 Q270 540 300 430" stroke="#03100c" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M300 430 Q240 400 190 440 Q250 424 300 444 Z"/><path d="M300 430 Q270 360 240 330 Q290 380 304 434 Z"/><path d="M300 430 Q330 360 380 340 Q340 400 306 436 Z"/><path d="M300 430 Q370 420 420 460 Q360 434 306 444 Z"/>
+        <path d="M1500 660 Q1508 520 1470 400" stroke="#03100c" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M1470 400 Q1400 370 1340 410 Q1420 394 1470 416 Z"/><path d="M1470 400 Q1430 320 1390 290 Q1450 350 1476 404 Z"/><path d="M1470 400 Q1500 310 1560 280 Q1500 350 1478 404 Z"/>
+        <path d="M1470 400 Q1550 380 1620 420 Q1540 396 1480 412 Z"/><path d="M1470 400 Q1510 450 1550 520 Q1500 460 1472 416 Z"/>
+      </g>
+
+      <!-- patio table, chair, and the phone glowing -->
+      <ellipse cx="560" cy="740" rx="90" ry="30" fill="#0f2426" stroke="#173b3e" stroke-width="2"/>
+      <path d="M560 770 L560 830" stroke="#0f2426" stroke-width="8"/><path d="M520 840 Q560 826 600 840" stroke="#0f2426" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M420 705 L420 800 M470 705 L470 800 M410 705 Q445 690 480 705 M418 760 Q445 750 472 760" stroke="#0f2426" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <ellipse cx="596" cy="736" rx="60" ry="30" fill="url(#phoneglow)"/>
+      <g transform="rotate(-18 596 736)">
+        <rect x="582" y="720" width="28" height="48" rx="5" fill="#0a0f0e" stroke="#1d2a2a" stroke-width="1.5"/>
+        <rect x="585" y="724" width="22" height="40" rx="3" fill="#e7c85f" opacity=".92"/>
+        <rect x="588" y="729" width="16" height="3" rx="1.5" fill="#061008" opacity=".6"/><rect x="588" y="735" width="12" height="3" rx="1.5" fill="#061008" opacity=".45"/><rect x="588" y="741" width="14" height="3" rx="1.5" fill="#061008" opacity=".45"/>
+      </g>
+    </svg>
+    <div class="pool-hero__scrim" aria-hidden="true"></div>
+
     <div class="container">
-      <div class="hero__split">
-        <div class="hero__content">
-          <div class="hero__badge">
-            <span class="hero__badge-dot" aria-hidden="true"></span>
-            For Phoenix service businesses &middot; Gilbert, AZ
+      <div class="pool-hero__grid">
+        <div>
+          <p class="pool-hero__kicker"><i aria-hidden="true"></i>For Phoenix-metro pool service companies</p>
+          <h1 id="hero-heading">Leads caught. Customers kept. Invoices paid. <em>You stay on the route.</em></h1>
+          <p class="pool-hero__sub">Three AI employees, built for your pool company &mdash; trained on your prices, your routes and your rules, and approved by you before they say a word.</p>
+          <div class="pool-hero__cta">
+            <a href="#crew" class="btn btn-primary btn-lg buy">Meet the crew &darr;</a>
+            <a href="catch.html" class="btn btn-lg pool-hero__ghost">Watch it catch a lead</a>
           </div>
-
-          <h1 id="hero-heading">
-            Every lead answered<br/>
-            in <span>8 seconds.</span>
-          </h1>
-
-          <p class="hero__sub">
-            One AI employee picks up every call, text and web form the moment it lands &mdash; then books it and keeps following up.
-          </p>
-
-          <div class="gv gv-tick" role="img" aria-label="A missed call at 7pm is booked by a competitor at 7:05pm. An AI employee answers it 8 seconds after it lands.">
-            <span class="gv-tag">The five minutes it turns on</span>
-            <div class="gv-tick__bar">
-              <span class="gv-tick__pip gv-tick__pip--a"></span>
-              <span class="gv-tick__pip gv-tick__pip--b"></span>
-            </div>
-            <div class="gv-tick__marks">
-              <span class="gv-tick__m">
-                <b class="gv-tick__time">7:00:08 PM</b>
-                <span class="gv-tick__lbl">answered &middot; booked</span>
-              </span>
-              <span class="gv-tick__m gv-tick__m--lost">
-                <b class="gv-tick__time">7:05 PM</b>
-                <span class="gv-tick__lbl">the other guy books it</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="hero__actions">
-            <a href="catch.html" class="btn btn-white btn-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Watch it catch a lead
-            </a>
-            <a href="pay.html?sku=employees-front-desk" class="btn btn-lg hero__btn-ghost" data-sku="employees-front-desk">
-              Get it running
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-
-          <div class="hero__trust" aria-label="Trust signals">
-            <div class="hero__trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              $497 a month, flat
-            </div>
-            <div class="hero__trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Month to month &mdash; cancel anytime
-            </div>
-            <div class="hero__trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Setup included, no per-call fees
-            </div>
+          <div class="pool-hero__prices" aria-label="Prices">
+            <div><span>NET &middot; leads</span><b>$497<small>/mo</small></b></div>
+            <div><span>BALANCE &middot; customers</span><b>$347<small>/mo</small></b></div>
+            <div><span>PUMP &middot; money</span><b>$297<small>/mo</small></b></div>
+            <div><span>Terms</span><b>Month to month</b></div>
           </div>
         </div>
-
-        <!-- Right column: one offer, one price. A business owner's first two
-             questions are "what does it do for me" and "what does it cost", so
-             those are the only two things set in type here. Cut from a
-             four-service price menu 2026-08-18 — a stranger could not tell what
-             to buy. -->
-        <div class="hero__visual">
-          <div class="agent-console">
-            <div class="agent-console__top"><span class="agent-console__title"><i class="agent-console__dot" aria-hidden="true"></i> Your AI employee</span><span class="agent-console__mode">ON DUTY 24/7</span></div>
-
-            <div class="offercard">
-              <div class="offercard__pricerow">
-                <div>
-                  <span class="offercard__fig">$497</span>
-                  <span class="offercard__cad">per month</span>
-                </div>
-                <span class="offercard__flag">One price &middot; everything below</span>
-              </div>              <ul class="offercard__list" role="list">
-                <li>Answers every call, text and web form</li>
-                <li>Replies in 8 seconds &mdash; 2am, Sunday, holidays</li>
-                <li>Two callers at once &mdash; never a busy signal</li><li>Books straight into your calendar</li>
-                <li>Texts back every missed call</li>
-                <li>Cannot quote a price off your list</li>
-                <li>Transcripts, plus a Monday summary</li>
-                <li>Unlimited leads &mdash; no per-call charge</li>
-              </ul>
-
-              <p class="offercard__foot">Month to month &middot; setup included &middot; you own everything we build</p>
-            </div>
-          </div>
+        <div class="ledger" role="img" aria-label="8 seconds: from a lead landing to it being answered. 9:47 PM on a Tuesday included.">
+          <b>8<small> s</small></b>
+          <span>from a lead landing to it being answered. 9:47&nbsp;PM on a Tuesday included.</span>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ===== AGENTIC OPERATING LOOP ===== -->
-  <section class="agentic-strip" aria-labelledby="agentic-loop-heading">
-    <div class="container agentic-strip__inner">
-      <div class="agentic-strip__intro"><small>Agentic by design</small><h2 id="agentic-loop-heading">Systems that move work forward.</h2><p>Every build follows the same controlled loop—with human rules around every autonomous action.</p></div>
-      <div class="agentic-loop" aria-label="Observe, decide, act and learn operating loop">
-        <div class="agentic-loop__step"><i>01</i><b>Observe</b><span>Calls, leads, signals</span></div>
-        <div class="agentic-loop__step"><i>02</i><b>Decide</b><span>Rules before action</span></div>
-        <div class="agentic-loop__step"><i>03</i><b>Act</b><span>Book, follow up, build</span></div>
-        <div class="agentic-loop__step"><i>04</i><b>Improve</b><span>Measure and refine</span></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== WHAT IT DOES ALL DAY ===== -->
-  <section class="future-stack" aria-labelledby="future-stack-heading">
-    <div class="container">
-      <div class="future-stack__head reveal">
-        <div><span class="future-stack__label">One employee &middot; five jobs</span><h2 id="future-stack-heading">What it does while you are under a truck.</h2></div>
-        <p>Not a chatbot. One employee that works the whole lead, on your rules.</p>
-      </div>
-      <div class="gv gv-rail reveal" role="img" aria-label="A lead moves through five stages: answer, qualify, book, follow up, report.">
-        <span class="gv-tag">One lead, end to end</span>
-        <div class="gv-rail__track">
-        <div class="gv-rail__line"></div>
-        <div class="gv-rail__pulse"></div>
-        <div class="gv-rail__stops">
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">+8 SEC</b><b class="gv-stop__t">Answer</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">+40 SEC</b><b class="gv-stop__t">Qualify</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">SAME CALL</b><b class="gv-stop__t">Book</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">DAY 1 &middot; 3 &middot; 7</b><b class="gv-stop__t">Follow up</b></span>
-          <span class="gv-stop"><i class="gv-stop__dot"></i><b class="gv-stop__n">EVERY ONE</b><b class="gv-stop__t">Report</b></span>
+  <main>
+    <!-- ===== THE CREW — three ID cards, three prices ============================= -->
+    <section class="section" id="crew" aria-labelledby="crew-heading">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:2.5rem">
+          <span class="section-label">The crew</span>
+          <h2 id="crew-heading">Three employees. Three jobs.<br/>Hire the one you need first.</h2>
+          <div class="section-divider"></div>
+          <p style="max-width:600px;margin:0 auto">Each one is built for your company before it goes live. No bundle, no minimum &mdash; one price per employee, month to month.</p>
         </div>
-        </div>
-      </div>
-
-      <div class="future-stack__grid reveal">
-        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">01 / ANSWER</span><h3>Picks Up Every Time</h3><p>Calls, texts, forms. Nothing rings out.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
-        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">02 / QUALIFY</span><h3>Asks The Right Questions</h3><p>Where, what, when &mdash; your questions, your words.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
-        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">03 / BOOK</span><h3>Puts It On Your Calendar</h3><p>Offers real open slots. Books while they care.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
-        <a class="future-pillar" href="catch.html"><span class="future-pillar__num">04 / FOLLOW UP</span><h3>Chases The Quiet Ones</h3><p>A nudge tomorrow, and again after. Most jobs land on the third.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
-        <a class="future-pillar" href="contact.html"><span class="future-pillar__num">05 / REPORT</span><h3>Shows You Everything</h3><p>Every word, in your inbox. It never freelances.</p><span class="future-pillar__arrow" aria-hidden="true">&#8599;</span></a>
-      </div>
-      <div class="future-studio-cta reveal"><div><strong>See it happen before you pay for it.</strong><span>The same lead, twice: what happens today, and what happens with an AI employee on it.</span></div><a href="catch.html" class="btn btn-white">Watch it catch a lead &rarr;</a></div>
-    </div>
-  </section>
-
-  <!-- ===== MEET THE STAFF — five named employees, one flat price each ===== -->
-  <section class="section bg-pale staff-strip" id="staff" aria-labelledby="staff-heading">
-    <img class="wm wm--strip" src="art/watermark.svg" alt="" aria-hidden="true"/>
-    <div class="container">
-      <div class="text-center reveal" style="margin-bottom:2.5rem">
-        <span class="section-label">Meet the staff</span>
-        <h2 id="staff-heading">Five employees. Five names.<br/>Hire the ones you need.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:600px;margin:0 auto">RING answers the phone. REPLY handles every lead. BOOST runs the ads. ANSWER handles support. COLLECT gets you paid. Flat prices, no meters.</p>
-      </div>
-      <div class="roster">
-      <article class="idc reveal tilt idc--pop" style="--i:0">
-        <span class="idc__pop">Most popular</span>
-        <div class="idc__top"><span class="idc__id">ID 01</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
-        <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="8" y="14" width="44" height="30" rx="3" stroke="#2e7d45" stroke-width="1.2"/><line x1="8" y1="24" x2="52" y2="24" stroke="#2e7d45"/><line x1="8" y1="34" x2="52" y2="34" stroke="#2e7d45"/><rect x="70" y="20" width="40" height="26" rx="3" stroke="#2e7d45" stroke-width="1.2"/></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><rect x="30" y="52" width="60" height="18" rx="6" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><path d="M40 52 C40 36 80 36 80 52" stroke="#7de3a4" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="60" cy="61" r="4" fill="#7de3a4"/></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="ripple"><circle cx="60" cy="61" r="12" stroke="#7de3a4" stroke-width="1.2" fill="none"/><circle cx="60" cy="61" r="22" stroke="#7de3a4" stroke-width=".8" fill="none" opacity=".5"/></g><rect x="78" y="30" width="34" height="12" rx="6" fill="#D4AF37"/><text x="95" y="39" font-size="7" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">8 SEC</text></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
-        <h3 class="idc__name">RING</h3>
-        <div class="idc__role">Front-desk agent</div>
-        <p class="idc__does">Answers the phone. <b>62%</b> of calls to small businesses go unanswered.</p>
-        <div class="idc__vs"><s>$3,400</s> a human &rarr; <b>$497</b>/mo</div>
-        <a href="pay.html?sku=employees-front-desk" class="btn btn-primary idc__buy" data-sku="employees-front-desk">Hire RING</a>
-        <a href="phone.html" class="idc__more">See a day in its life &rarr;</a>
-      </article>
-      <article class="idc reveal tilt" style="--i:1">
-        
-        <div class="idc__top"><span class="idc__id">ID 02</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
-        <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="10" y="16" width="100" height="46" rx="4" stroke="#2e7d45" stroke-width="1.2"/><line x1="10" y1="28" x2="110" y2="28" stroke="#2e7d45"/></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><rect x="22" y="34" width="52" height="20" rx="8" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><path d="M30 54 L28 62 L38 54" fill="#1a5c2a" stroke="#7de3a4" stroke-width="1.5"/><rect x="50" y="56" width="46" height="18" rx="8" fill="#D4AF37"/><path d="M88 74 L92 80 L82 74" fill="#D4AF37"/></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="chip c1"><rect x="6" y="6" width="28" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="20" y="13.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">FORM</text></g><g class="chip c2"><rect x="80" y="4" width="32" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="96" y="11.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">GOOGLE</text></g><g class="chip c3"><rect x="44" y="82" width="30" height="10" rx="5" fill="#fff" stroke="#7de3a4"/><text x="59" y="89.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">TEXT</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
-        <h3 class="idc__name">REPLY</h3>
-        <div class="idc__role">Lead-response agent</div>
-        <p class="idc__does">Replies to every lead. <b>78%</b> of customers hire the first business that replies.</p>
-        <div class="idc__vs"><s>$4,200</s> a human &rarr; <b>$397</b>/mo</div>
-        <a href="pay.html?sku=agent-reply" class="btn btn-primary idc__buy" data-sku="agent-reply">Hire REPLY</a>
-        <a href="leads.html" class="idc__more">See a day in its life &rarr;</a>
-      </article>
-      <article class="idc reveal tilt" style="--i:2">
-        
-        <div class="idc__top"><span class="idc__id">ID 03</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
-        <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><g stroke="#2e7d45" stroke-width="1"><line x1="14" y1="64" x2="106" y2="64"/><line x1="14" y1="48" x2="106" y2="48"/><line x1="14" y1="32" x2="106" y2="32"/><line x1="14" y1="16" x2="106" y2="16"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="bars"><rect x="20" y="50" width="12" height="14" rx="2" fill="#1a5c2a"/><rect x="38" y="40" width="12" height="24" rx="2" fill="#1a5c2a"/><rect x="56" y="30" width="12" height="34" rx="2" fill="#2e7d45"/><rect x="74" y="22" width="12" height="42" rx="2" fill="#4caf6e"/><rect x="92" y="12" width="12" height="52" rx="2" fill="#7de3a4"/></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><path class="line" d="M20 56 L44 46 L62 36 L80 26 L98 14" stroke="#D4AF37" stroke-width="2.5" fill="none" stroke-linecap="round"/><g class="chip c1"><circle cx="98" cy="14" r="5" fill="#D4AF37"/><rect x="72" y="0" width="40" height="10" rx="5" fill="#D4AF37"/><text x="92" y="7.5" font-size="6" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">WINNER</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
-        <h3 class="idc__name">BOOST</h3>
-        <div class="idc__role">Media-buying agent</div>
-        <p class="idc__does">Runs your ads. <b>10–60</b> finished ads a month, ready to run.</p>
-        <div class="idc__vs"><s>$2,500</s> a human &rarr; <b>$997</b>/mo</div>
-        <a href="pay.html?sku=agent-boost" class="btn btn-primary idc__buy" data-sku="agent-boost">Hire BOOST</a>
-        <a href="ads.html" class="idc__more">See a day in its life &rarr;</a>
-      </article>
-      <article class="idc reveal tilt" style="--i:3">
-        
-        <div class="idc__top"><span class="idc__id">ID 04</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
-        <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="12" y="12" width="96" height="52" rx="4" stroke="#2e7d45" stroke-width="1.2"/><g stroke="#2e7d45"><line x1="20" y1="26" x2="70" y2="26"/><line x1="20" y1="36" x2="90" y2="36"/><line x1="20" y1="46" x2="60" y2="46"/><line x1="20" y1="56" x2="80" y2="56"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="ticks"><g class="t t1"><circle cx="100" cy="26" r="6" fill="#4caf6e"/><path d="M97 26 L99.5 28.5 L103.5 23.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t2"><circle cx="100" cy="36" r="6" fill="#4caf6e"/><path d="M97 36 L99.5 38.5 L103.5 33.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t3"><circle cx="100" cy="46" r="6" fill="#4caf6e"/><path d="M97 46 L99.5 48.5 L103.5 43.5" stroke="#fff" stroke-width="1.5" fill="none"/></g><g class="t t4"><circle cx="100" cy="56" r="6" fill="#D4AF37"/><text x="100" y="58.5" font-size="7" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">!</text></g></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="chip c2"><rect x="6" y="76" width="72" height="12" rx="6" fill="#fff" stroke="#7de3a4"/><text x="42" y="84.5" font-size="6.2" font-weight="800" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">3 SOLVED · 1 TO YOU</text></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
-        <h3 class="idc__name">ANSWER</h3>
-        <div class="idc__role">Support agent</div>
-        <p class="idc__does">Handles support. <b>70%</b> of tickets are the same 20 questions.</p>
-        <div class="idc__vs"><s>$3,600</s> a human &rarr; <b>$347</b>/mo</div>
-        <a href="pay.html?sku=agent-answer" class="btn btn-primary idc__buy" data-sku="agent-answer">Hire ANSWER</a>
-        <a href="support.html" class="idc__more">See a day in its life &rarr;</a>
-      </article>
-      <article class="idc reveal tilt" style="--i:4">
-        
-        <div class="idc__top"><span class="idc__id">ID 05</span><span class="idc__on"><i></i>ON DUTY 24/7</span></div>
-        <div class="scene" aria-hidden="true"><svg class="scene__l scene__l--back" viewBox="0 0 120 100"><rect x="0" y="70" width="120" height="30" rx="3" fill="#0f3a1d"/><rect x="30" y="8" width="60" height="70" rx="3" fill="#0b2a15" stroke="#2e7d45" stroke-width="1.2"/><g stroke="#2e7d45"><line x1="38" y1="22" x2="82" y2="22"/><line x1="38" y1="32" x2="70" y2="32"/><line x1="38" y1="42" x2="76" y2="42"/><line x1="38" y1="52" x2="64" y2="52"/></g></svg><svg class="scene__l scene__l--mid" viewBox="0 0 120 100"><g class="stamp"><rect x="40" y="56" width="40" height="16" rx="3" stroke="#7de3a4" stroke-width="2" fill="none" transform="rotate(-8 60 64)"/><text x="60" y="67.5" font-size="8" font-weight="900" fill="#7de3a4" text-anchor="middle" font-family="Inter,sans-serif" transform="rotate(-8 60 64)">PAID</text></g></svg><svg class="scene__l scene__l--front" viewBox="0 0 120 100"><g class="coin c1"><circle cx="18" cy="30" r="9" fill="#D4AF37"/><text x="18" y="33" font-size="9" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">$</text></g><g class="coin c2"><circle cx="102" cy="40" r="7" fill="#D4AF37"/><text x="102" y="42.5" font-size="7" font-weight="900" fill="#0d2e14" text-anchor="middle" font-family="Inter,sans-serif">$</text></g><g class="coin c3"><circle cx="14" cy="60" r="5" fill="#F3DF9A"/></g></svg><span class="scene__sheen"></span><span class="scene__dust"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <img class="idc__wm" src="art/watermark.svg" alt="" width="120" height="120" loading="lazy"/>
-        <h3 class="idc__name">COLLECT</h3>
-        <div class="idc__role">Billing & collections agent</div>
-        <p class="idc__does">Sends invoices, chases late ones. <b>45 days</b> average wait to get paid without reminders.</p>
-        <div class="idc__vs"><s>$1,900</s> a human &rarr; <b>$297</b>/mo</div>
-        <a href="pay.html?sku=agent-collect" class="btn btn-primary idc__buy" data-sku="agent-collect">Hire COLLECT</a>
-        <a href="billing.html" class="idc__more">See a day in its life &rarr;</a>
-      </article>
-      </div>
-      <div class="text-center" style="margin-top:2.5rem"><a href="staff.html" class="btn btn-primary btn-lg">See the whole staff &mdash; or hire all five for $1,797/mo &rarr;</a></div>
-    </div>
-  </section>
-
-
-  <!-- ===== PROOF: A REAL RUN OF THE ENGINE =========================================
-       Everything in this section came out of an actual run of the lead engine on
-       2026-08-19 (test drive, example leads — NOT customer data, and the copy says
-       so). The email is the file the system wrote, pasted verbatim. If the engine
-       changes, re-run it and update these numbers; do not edit them by hand. ==== -->
-  <section class="section proof-run" id="proof-run" aria-labelledby="proof-run-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Proof</span>
-        <h2 id="proof-run-heading">We ran it this morning.</h2>
-        <div class="section-divider"></div>
-        <p class="proof-run__lede">Four leads through the engine, against a demo landscaping company. Not customer data. Nothing below is written by us.</p>
-      </div>
-
-      <div class="reveal proof-run__grid">
-        <div class="proof-run__ledger">
-          <span class="proof-run__stamp">Run 19 Aug 2026 &middot; 19:28 UTC</span>
-          <ul class="proof-run__stats" role="list">
-            <li><b>4</b><span>leads in</span></li>
-            <li><b>5</b><span>quotes written and sent</span></li>
-            <li><b>1</b><span>held for your approval</span></li>
-            <li><b>0</b><span>messages to the person who unsubscribed</span></li>
-          </ul>
-          <div class="proof-run__guard">
-            <span class="proof-run__guard-tag">The part that matters</span>
-            <div class="gv gv-guard" role="img" aria-label="The AI wrote the price 'custom'. A second checker compared it to the client price list, did not find it, and blocked the message.">
-              <span class="gv-guard__box">
-                <b class="gv-guard__k">AI WROTE</b>
-                <span class="gv-guard__v gv-guard__v--strike">&ldquo;custom&rdquo;</span>
-              </span>
-              <span class="gv-guard__box">
-                <b class="gv-guard__k">CHECKED AGAINST</b>
-                <span class="gv-guard__v">the client's price list</span>
-              </span>
-              <span class="gv-guard__box">
-                <b class="gv-guard__k">RESULT</b>
-                <span class="gv-guard__v gv-guard__v--stop">Held. Never sent.</span>
-              </span>
+        <div class="crew">
+          <article class="idc idc--net reveal">
+            <div class="idc__art"><span class="idc__tag"><i aria-hidden="true"></i>CREW &middot; 01</span><img src="agents/agent-net.svg" alt="NET, a drawn robot portrait in deep-end teal holding a skimmer net with one glowing lead caught in it" width="432" height="576" loading="eager" decoding="async"/><h3 class="idc__name">NET</h3></div>
+            <div class="idc__body">
+              <div class="idc__role">Catches every lead</div>
+              <p class="idc__tag2">Every lead answered in 8 seconds. Quoted from your price list. Chased until it books.</p>
+              <div class="idc__price"><b>$497</b><span>per month</span></div>
+              <a href="pay.html?sku=pool-net" class="btn btn-primary idc__buy buy" data-sku="pool-net">Hire NET</a>
+              <a href="net.html" class="idc__more">See NET &rarr;</a>
             </div>
-            <p class="gv-cap">A second system reads every price the first one writes. Nothing with a dollar figure leaves unchecked.</p>
+          </article>
+          <article class="idc idc--balance reveal">
+            <div class="idc__art"><span class="idc__tag"><i aria-hidden="true"></i>CREW &middot; 02</span><img src="agents/agent-balance.svg" alt="BALANCE, a drawn robot portrait in plaster green with a spirit level across its crown and a balance scale on its chest" width="432" height="576" loading="lazy" decoding="async"/><h3 class="idc__name">BALANCE</h3></div>
+            <div class="idc__body">
+              <div class="idc__role">Keeps every customer</div>
+              <p class="idc__tag2">Answers your customers, sends the service note, asks for the review. You stay on the route.</p>
+              <div class="idc__price"><b>$347</b><span>per month</span></div>
+              <a href="pay.html?sku=pool-balance" class="btn btn-primary idc__buy buy" data-sku="pool-balance">Hire BALANCE</a>
+              <a href="balance.html" class="idc__more">See BALANCE &rarr;</a>
+            </div>
+          </article>
+          <article class="idc idc--pump reveal">
+            <div class="idc__art"><span class="idc__tag"><i aria-hidden="true"></i>CREW &middot; 03</span><img src="agents/agent-pump.svg" alt="PUMP, a drawn robot portrait in bronze with a pump impeller on its shoulder and a paid ledger on its chest" width="432" height="576" loading="lazy" decoding="async"/><h3 class="idc__name">PUMP</h3></div>
+            <div class="idc__body">
+              <div class="idc__role">Keeps the money moving</div>
+              <p class="idc__tag2">Open repair quotes chased. Invoices sent. Late payers reminded. Politely, every time.</p>
+              <div class="idc__price"><b>$297</b><span>per month</span></div>
+              <a href="pay.html?sku=pool-pump" class="btn btn-primary idc__buy buy" data-sku="pool-pump">Hire PUMP</a>
+              <a href="pump.html" class="idc__more">See PUMP &rarr;</a>
+            </div>
+          </article>
+        </div>
+        <p class="crew-terms">Month to month. Cancel any time. You own every script, transcript and configuration. Setup is included, and you approve every script before it goes live.</p>
+      </div>
+    </section>
+
+    <!-- ===== WHY POOL COMPANIES — big numbers, captions ============================ -->
+    <section class="section why-pool" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">Why pool companies</span>
+          <h2 id="why-heading">Built for one trade on purpose.</h2>
+          <p class="why-pool__lede">Weekly pool service is steady, local and answered from a truck. That is exactly the work an AI employee is good at &mdash; so we build for nobody else.</p>
+        </div>
+        <div class="nums reveal">
+          <div class="num"><b>257,983<small>residential pools</small></b><p>inside Phoenix city limits alone &mdash; 27.6% of properties.<em>Vexcel aerial survey, the only figure that traces to a primary source.</em></p></div>
+          <div class="num"><b>$110&ndash;$150<small>per pool, per month</small></b><p>is what weekly service runs, and customers stay for years.<em>Verified from local companies&rsquo; own price pages.</em></p></div>
+          <div class="num"><b>The truck<small>is the office</small></b><p>The owner answers his own phone between stops, quotes at night and chases invoices on Sunday. Nobody sets automation up for him.<em>Every tool in this trade is do-it-yourself. This one is not.</em></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ONE DAY ON THE ROUTE ================================================ -->
+    <section class="section bg-pale" aria-labelledby="route-heading">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:2rem">
+          <span class="section-label">One day on the route</span>
+          <h2 id="route-heading">The three of them handle the day.<br/>You handle the pools.</h2>
+        </div>
+        <div class="route reveal">
+          <svg class="route__sky" viewBox="0 0 1100 150" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="dayarc" x1="0" x2="1"><stop offset="0" stop-color="#3FD0C3"/><stop offset=".5" stop-color="#FFB43C"/><stop offset="1" stop-color="#072E37"/></linearGradient></defs>
+            <path d="M40 130 Q550 -60 1060 130" fill="none" stroke="url(#dayarc)" stroke-width="2" opacity=".7"/>
+            <g fill="#fff" stroke="#1a5c2a" stroke-width="2">
+              <circle cx="122" cy="100" r="7"/><circle cx="345" cy="46" r="7"/><circle cx="550" cy="35" r="7"/><circle cx="755" cy="46" r="7"/><circle cx="978" cy="100" r="7"/>
+            </g>
+            <circle cx="550" cy="35" r="16" fill="#FFB43C" opacity=".22"/>
+            <text x="550" y="122" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#1a5c2a" letter-spacing="2">6 AM &#8594; 8 PM</text>
+          </svg>
+          <div class="route__steps">
+            <div class="route__step route__step--balance"><time>6:40 AM</time><b>BALANCE</b><p>Today&rsquo;s gate codes, dog notes and one &ldquo;skip this week&rdquo; are already on your sheet.</p></div>
+            <div class="route__step route__step--net"><time>10:15 AM</time><b>NET</b><p>A form lands: &ldquo;pool&rsquo;s green, Gilbert 85296, how much?&rdquo; Answered in 8 seconds, quoted from your list.</p></div>
+            <div class="route__step route__step--balance"><time>12:40 PM</time><b>BALANCE</b><p>&ldquo;Is my tech coming today?&rdquo; &mdash; answered from the route. You never saw it.</p></div>
+            <div class="route__step route__step--pump"><time>3:05 PM</time><b>PUMP</b><p>You flag a bad filter cartridge. The quote you approved goes out, and gets chased on day 2, 5 and 10.</p></div>
+            <div class="route__step route__step--you"><time>8:00 PM</time><b>You</b><p>Home. Invoices went out on the day you picked. Nothing is waiting for you.</p></div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <figure class="proof-run__mail">
-          <figcaption class="proof-run__mail-head">
-            <span class="proof-run__mail-dot" aria-hidden="true"></span>
-            outbox / quote &rarr; pat@example.com
-          </figcaption>
-          <pre class="proof-run__pre">Hi Pat,
+    <!-- ===== TODAY vs WITH THE CREW — reuses .cmp ================================ -->
+    <section class="section bg-gray" aria-labelledby="compare-heading">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">What changes</span>
+          <h2 id="compare-heading">What you do today. <span style="color:var(--gray-400)">What they do instead.</span></h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="reveal cmp">
+          <div class="cmp__panel">
+            <div class="cmp__top">
+              <span class="cmp__title"><i class="cmp__dot" aria-hidden="true"></i>The day, side by side</span>
+              <span class="cmp__mode">6 LINES</span>
+            </div>
+            <table class="cmp__table">
+              <caption class="cmp__cap">How the owner&rsquo;s day changes with NET, BALANCE and PUMP on it</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="cmp__h">The moment</th>
+                  <th scope="col" class="cmp__h cmp__h--us">With the crew<span class="cmp__flag cmp__flag--on">NET &middot; BALANCE &middot; PUMP</span></th>
+                  <th scope="col" class="cmp__h cmp__h--them">Today<span class="cmp__flag">From the truck</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">01</span>A lead at 9:47 PM</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">NET answers in 8 seconds and quotes from your list</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Voicemail. You call back tomorrow, if you remember</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">02</span>Quotes</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Written from your price list, in the same conversation</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Typed at the kitchen table after dinner</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>&ldquo;Is my tech coming today?&rdquo;</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">BALANCE answers from the route sheet</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Answered from the truck between stops</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">04</span>The review</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Asked two days after a visit went well; complaints come to you</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">You mean to ask. You forget</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">05</span>Open repair quotes</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">PUMP chases them on day 2, 5 and 10</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">They sit open until the customer calls someone else</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="cmp__crit"><span class="cmp__num">06</span>Invoices and late payers</th>
+                  <td class="cmp__us"><span class="cmp__who">With the crew</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Sent on the day you pick; reminded at 7, 14 and 21 days</span></td>
+                  <td class="cmp__them"><span class="cmp__who">Today</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Sunday night, and the awkward text you keep putting off</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="cmp__foot">The right-hand column is how a one-to-ten-truck pool company usually runs. If yours already has an office person doing all of this, you may not need us.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW A BUILD WORKS ==================================================== -->
+    <section class="section" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:2.5rem">
+          <span class="section-label">How a build works</span>
+          <h2 id="how-heading">Nothing goes live until you have read it.</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="build reveal">
+          <div class="build__step"><div class="build__n">1</div><h3>We build it</h3><p>From your price list, your route sheet, your service area and your house rules. Most of it you already have.</p></div>
+          <div class="build__step"><div class="build__n">2</div><h3>You approve every script</h3><p>Every reply it can send, every question it asks, in your words. You read it before a customer does.</p></div>
+          <div class="build__step"><div class="build__n">3</div><h3>It goes live</h3><p>On your number, your inbox and your channels. Every conversation lands in your inbox as it happens.</p></div>
+          <div class="build__step"><div class="build__n">4</div><h3>Unlimited same-day changes</h3><p>Month to month. Cancel any time. You own every script, transcript and configuration &mdash; they leave with you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROOF: A REAL RUN OF THE ENGINE =========================================
+         Everything in this section came out of an actual run of the lead engine on
+         2026-08-19 (test drive, example leads — NOT customer data, and the copy says
+         so). The email is the file the system wrote, pasted verbatim. If the engine
+         changes, re-run it and update these numbers; do not edit them by hand. ==== -->
+    <section class="section proof-run" id="proof-run" aria-labelledby="proof-run-heading">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">Proof</span>
+          <h2 id="proof-run-heading">We ran the engine. Here is what it did.</h2>
+          <div class="section-divider"></div>
+          <p class="proof-run__lede">Four example leads through the same engine NET runs on, against a demo landscaping company from before we went pool-only. Not customer data. Nothing below is written by us.</p>
+        </div>
+        <div class="reveal proof-run__grid">
+          <div class="proof-run__ledger">
+            <span class="proof-run__stamp">Run 19 Aug 2026 &middot; 19:28 UTC</span>
+            <ul class="proof-run__stats" role="list">
+              <li><b>4</b><span>leads in</span></li>
+              <li><b>5</b><span>quotes written and sent</span></li>
+              <li><b>1</b><span>held for the owner&rsquo;s approval</span></li>
+              <li><b>0</b><span>messages to the person who unsubscribed</span></li>
+            </ul>
+            <div class="proof-run__guard">
+              <span class="proof-run__guard-tag">The part that matters</span>
+              <div class="gv gv-guard" role="img" aria-label="The AI wrote the price 'custom'. A second checker compared it to the price list, did not find it, and blocked the message.">
+                <span class="gv-guard__box"><b class="gv-guard__k">AI WROTE</b><span class="gv-guard__v gv-guard__v--strike">&ldquo;custom&rdquo;</span></span>
+                <span class="gv-guard__box"><b class="gv-guard__k">CHECKED AGAINST</b><span class="gv-guard__v">the price list</span></span>
+                <span class="gv-guard__box"><b class="gv-guard__k">RESULT</b><span class="gv-guard__v gv-guard__v--stop">Held. Never sent.</span></span>
+              </div>
+              <p class="gv-cap">A second system reads every price the first one writes. Nothing with a dollar figure leaves unchecked &mdash; that is the rule NET quotes your pools under.</p>
+            </div>
+          </div>
+          <figure class="proof-run__mail">
+            <figcaption class="proof-run__mail-head"><span class="proof-run__mail-dot" aria-hidden="true"></span>outbox / quote &rarr; pat@example.com</figcaption>
+            <pre class="proof-run__pre">Hi Pat,
 
 Thanks for reaching out &mdash; here's what you asked about:
 
@@ -702,383 +606,58 @@ that works: [booking link]
 If we're ever late, that visit is free.
 
 &mdash; Alex, Eagle Landscaping</pre>
-          <figcaption class="proof-run__foot">Written by the system, unedited. Eagle Landscaping is the demo business the test drive runs against &mdash; the prices, the hours and the voice come from one config file, which is where yours would go.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- Circuit divider -->
-  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-      <circle class="cd-node" cx="290" cy="12" r="3"/>
-      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-      <circle class="cd-node" cx="850" cy="22" r="3"/>
-      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-    </svg>
-  </div>
-  <!-- ===== VALUE PROPS ===== -->
-  <section class="section bg-gray" aria-labelledby="value-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Why GreenAI</span>
-        <h2 id="value-heading">Why businesses<br/>stay with us.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:560px;margin:0 auto 3rem">You work directly with the person building your systems, on a small roster, with numbers you can check. That is the whole pitch.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1">
-          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <span class="fc-stake">Your trade</span>
-          <h3>Built For Local Businesses</h3>
-          <p>Salons, contractors, pool companies, clinics, restaurants — anywhere a missed call is a lost job.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-          <span class="fc-stake">The proof</span>
-          <h3>ROI You Can Measure</h3>
-          <p>Every service comes with clear metrics. You'll see exactly what's working, what it's generating, and what your return looks like — month over month.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <span class="fc-corner fc-corner--tl" aria-hidden="true"></span><span class="fc-corner fc-corner--tr" aria-hidden="true"></span><span class="fc-corner fc-corner--bl" aria-hidden="true"></span><span class="fc-corner fc-corner--br" aria-hidden="true"></span><span class="fc-grid" aria-hidden="true"></span>
-          <div class="feature-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <span class="fc-stake">Who you actually call</span>
-          <h3>A Real Partner, Not a Vendor</h3>
-          <p>You work directly with Jaden — not an account manager. We keep our client roster small so every business gets the attention and hustle it deserves.</p>
+            <figcaption class="proof-run__foot">Written by the system, unedited. Eagle Landscaping is the demo business the test drive ran against &mdash; the prices, the hours and the voice come from one config file, which is where your pool company&rsquo;s would go.</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Circuit divider -->
-  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-      <circle class="cd-node" cx="290" cy="12" r="3"/>
-      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-      <circle class="cd-node" cx="850" cy="22" r="3"/>
-      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-    </svg>
-  </div>
-  <!-- ===== THE OFFER — one thing, one price ===== -->
-  <section class="section" id="offer" aria-labelledby="offer-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">The Offer</span>
-        <h2 id="offer-heading">Start with RING.<br/>$497, flat.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:540px;margin:0 auto 3rem">The employee most businesses hire first: the phone answered in 8 seconds, every lead booked. $497 a month, flat. Add the rest of the <a href="staff.html">staff</a> whenever you like.</p>
-      </div>
-
-      <div class="reveal offer-panel">
-        <div class="offer-panel__main">
-          <span class="offer-panel__eyebrow">AI Employee &middot; Phoenix service businesses</span>
-          <h3 class="offer-panel__title">Answers every lead in 8 seconds. Books the job. Chases the ones who go quiet.</h3>          <ul class="offer-panel__list" role="list">
-            <li><strong>Every call, text and web form</strong> &mdash; 24 hours a day, weekends and holidays included</li>
-            <li><strong>Answered in 8 seconds</strong> &mdash; and it takes two callers at once, so nobody ever gets a busy signal</li><li><strong>Booked into your calendar</strong> &mdash; only the slots you actually have open, with a confirmation sent to the customer</li>
-            <li><strong>Texts back every missed call</strong> &mdash; then follows up on day 1, 3 and 7, stopping the moment they reply</li>
-            <li><strong>It cannot invent a price</strong> &mdash; a second system checks every number against your price list before anything sends</li>
-            <li><strong>Every word in your inbox</strong> &mdash; full transcripts, plus a Monday summary of what came in and what booked</li>
-            <li><strong>Built around your shop</strong> &mdash; your trade, hours, service area and questions, and you approve the script before it goes live</li>
-          </ul>
+    <!-- ===== WHAT THEY WON'T DO ==================================================== -->
+    <section class="section wont" aria-labelledby="wont-heading">
+      <div class="container">
+        <div class="text-center reveal">
+          <span class="section-label">The rules they work inside</span>
+          <h2 id="wont-heading">What they will not do.</h2>
         </div>
-        <div class="offer-panel__side">
-          <span class="offer-panel__fig">$497</span>
-          <span class="offer-panel__cad">per month</span>
-          <ul class="offer-panel__terms" role="list">
-            <li>Setup and build included</li>
-            <li>Unlimited leads &mdash; no per-call or per-minute fee</li>
-            <li>Unlimited changes, same day, no change fee</li>
-            <li>Month to month, cancel anytime</li>
-            <li>You own the config and every transcript</li>
-          </ul>
-          <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg offer-panel__cta" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
-          <a href="contact.html" class="offer-panel__demo">or ask a question first &#8599;</a>
-          <p class="offer-panel__billing">Card is entered on Stripe, never on this site. Statements show <strong>GREENAI AI EMPLOYEE</strong> &mdash; billed by Jaden Green, doing business as GreenAI Solutions.</p>
-        </div>
-      </div>      <div class="gv gv-spec" style="margin-top:2.5rem" role="img" aria-label="What it does not do: no guaranteed number of bookings, it will not quote outside your price list or commit you outside your service area, it never claims to be a person, and where a direct CRM connection is not possible bookings still land in your calendar and inbox.">
-        <span class="gv-spec__i"><b class="gv-spec__k">WHAT IT WON'T DO</b><span class="gv-spec__v">Promise you a number of bookings</span></span>
-        <span class="gv-spec__i"><b class="gv-spec__k">OR</b><span class="gv-spec__v">Quote outside your price list, or take work outside your area</span></span>
-        <span class="gv-spec__i"><b class="gv-spec__k">OR</b><span class="gv-spec__v">Claim to be a person if anyone asks</span></span>
-      </div>
-
-      <p class="offer-also">
-        Phones covered already? We also make
-          <a href="service-ai-ads.html">finished ad creative</a> &mdash; a month of angles, ready to run.
-      </p>
-    </div>
-  </section>
-
-  <!-- Circuit divider -->
-  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-      <circle class="cd-node" cx="290" cy="12" r="3"/>
-      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-      <circle class="cd-node" cx="850" cy="22" r="3"/>
-      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-    </svg>
-  </div>
-  <!-- ===== HOW IT WORKS ===== -->
-  <section class="section bg-pale" aria-labelledby="how-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">The Process</span>
-        <h2 id="how-heading">Up and Running in 2 Weeks</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:520px;margin:0 auto 3rem">You answer one round of questions. We do the rest &mdash; and nothing goes live until you have tested it.</p>
-      </div>
-
-      <div class="grid-4">
-        <div class="text-center reveal reveal-delay-1" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">1</div>
-          <h4 style="margin-bottom:.5rem">You Tell Us How You Answer</h4>
-          <p style="font-size:.88rem">Trade, hours, service area, prices, your usual questions.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-2" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">2</div>
-          <h4 style="margin-bottom:.5rem">We Build Your Employee</h4>
-          <p style="font-size:.88rem">Trained on how your shop talks. Not a script with your name in it.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-3" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">3</div>
-          <h4 style="margin-bottom:.5rem">You Test It Yourself</h4>
-          <p style="font-size:.88rem">Call your own number. Try to trip it up.</p>
-        </div>
-        <div class="text-center reveal reveal-delay-4" style="padding:1.5rem">
-          <div style="width:56px;height:56px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-family:var(--font-display);font-size:1.3rem;font-weight:800">4</div>
-          <h4 style="margin-bottom:.5rem">It Goes On Duty</h4>
-          <p style="font-size:.88rem">Every conversation lands in your inbox. Say the word, we change it.</p>
+        <div class="wont__grid reveal">
+          <div class="wont__col wont__col--net"><h3><i aria-hidden="true"></i>NET</h3><ul>
+            <li>Never invents a price. If the answer is not on your list, it says the owner will confirm.</li>
+            <li>Never claims to be a person.</li>
+            <li>Does not promise a booking count. It promises the reply and the follow-up.</li></ul></div>
+          <div class="wont__col wont__col--balance"><h3><i aria-hidden="true"></i>BALANCE</h3><ul>
+            <li>Does not diagnose equipment or give chemical dosing over text &mdash; it books a tech visit.</li>
+            <li>Does not send anything a customer has not agreed to receive; one &ldquo;stop&rdquo; ends all messages.</li>
+            <li>Never posts a review or writes one &mdash; it only asks the customer to.</li></ul></div>
+          <div class="wont__col wont__col--pump"><h3><i aria-hidden="true"></i>PUMP</h3><ul>
+            <li>Never changes a price, offers a discount, or waives a fee on its own.</li>
+            <li>Never threatens, mentions collections agencies or credit, or contacts anyone but the account holder.</li>
+            <li>Does not process payments itself &mdash; it sends the link to the processor you already use.</li></ul></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Circuit divider -->
-  <div class="circuit-divider circuit-divider--on-light" aria-hidden="true">
-    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-      <path class="cd-line" d="M0 32 H260 L290 12 H520 L545 50 H820 L850 22 H1200"/>
-      <path class="cd-line cd-line--alt" d="M0 48 H180 L210 28 H440 L470 56 H760 L790 32 H1200"/>
-      <circle class="cd-node" cx="290" cy="12" r="3"/>
-      <circle class="cd-node cd-node--gold" cx="545" cy="50" r="3"/>
-      <circle class="cd-node" cx="850" cy="22" r="3"/>
-      <circle class="cd-node" cx="210" cy="28" r="2.5"/>
-      <circle class="cd-node cd-node--gold" cx="790" cy="32" r="2.5"/>
-    </svg>
-  </div>
-  
-
-  <!-- ===== JULIA CASE STUDY ===== -->
-  <section class="section case-study-section" aria-labelledby="case-study-heading">
-    <div class="container">
-      <div class="cs-inner">
-        <div class="cs-image-wrap reveal">
-          <img src="julia-case-study.jpg" alt="GreenAI Solutions built Julia's Performance Lab website and 30-day campaign" loading="lazy">
-          <div class="cs-badge">&#9733; Real Client. Real Results.</div>
+    <!-- ===== CLOSE — three prices, one ask ========================================== -->
+    <section class="section bg-pale" id="prices" aria-labelledby="close-heading">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:2.5rem">
+          <span class="section-label">What it costs</span>
+          <h2 id="close-heading">One price each. Month to month.</h2>
+          <div class="section-divider"></div>
         </div>
-        <div class="cs-content reveal">
-          <span class="section-label">Example Build</span>
-          <h2 id="case-study-heading">Julia's Performance Lab — <span style="background:linear-gradient(135deg,var(--green,#00e676),var(--gold,#D4AF37));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Built &amp; Live in 2 Hours</span></h2>
-          <p>A fitness brand with zero digital presence. Site and a 30-day content campaign, built and branded in one session.</p>
-          <div class="cs-stats">
-            <div class="cs-stat">
-              <div class="cs-stat-num">2hr</div>
-              <div class="cs-stat-label">Website Delivered</div>
-            </div>
-            
-          </div>
-          <ul class="cs-deliverables">
-            <li><strong>Custom website</strong> — designed, built, and live from the first call through launch</li>
-            <li><strong>content campaign</strong> — daily posts, captions &amp; hashtags across all platforms</li>
-            <li><strong>Full brand identity</strong> — logo, color palette, and voice baked into every asset</li>
-            <li><strong>Powered by GreenAI Creator</strong> — AI content tailored to her fitness niche and audience</li>
-          </ul>
-          <a class="cs-visit" href="testimonials.html#client-work">More on this build &#8599;</a>
+        <div class="close3 reveal">
+          <a class="card card--net" href="net.html"><b>NET</b><span>Catches every lead</span><strong>$497<small>/mo</small></strong></a>
+          <a class="card card--balance" href="balance.html"><b>BALANCE</b><span>Keeps every customer</span><strong>$347<small>/mo</small></strong></a>
+          <a class="card card--pump" href="pump.html"><b>PUMP</b><span>Keeps the money moving</span><strong>$297<small>/mo</small></strong></a>
+        </div>
+        <div class="close-ask reveal">
+          <a href="pay.html?sku=pool-net" class="btn btn-primary btn-lg buy" data-sku="pool-net">Start with NET &mdash; $497/mo &rarr;</a>
+          <br/><a href="contact.html" class="cmp__ask">or ask a question first &#8599;</a>
+          <p class="close-billing">Card is entered on Stripe, never on this site. Billed by Jaden Green, doing business as GreenAI Solutions, Gilbert, AZ &mdash; (480) 798-0753.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ===== HANDMADE BY HALLE CASE STUDY ===== -->
-  <section class="section case-study-section case-study-section--alt" aria-labelledby="halle-case-heading">
-    <div class="container">
-      <div class="cs-inner cs-inner--flip">
-        <div class="cs-image-wrap reveal">
-          <img src="handmade-case-study.webp" alt="Handmade by Halle — the storefront GreenAI Solutions built for a handmade home-decor studio in Arizona" loading="lazy">
-          <div class="cs-badge cs-badge--emerald">&#9733; Live Site. Real Shop.</div>
-        </div>
-        <div class="cs-content reveal">
-          <span class="section-label">Example Build</span>
-          <h2 id="halle-case-heading">Handmade by Halle — <span style="background:linear-gradient(135deg,var(--green,#00e676),var(--gold,#D4AF37));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">A Shop, Not a Template</span></h2>
-          <p>Handmade decor, one of a kind, stuck on a marketplace that makes every seller look identical. So we gave her a door of her own.</p>
-              <div class="gv gv-light gv-spec">
-                <span class="gv-spec__i"><b class="gv-spec__k">BEFORE</b><span class="gv-spec__v">A marketplace listing</span></span>
-                <span class="gv-spec__i"><b class="gv-spec__k">AFTER</b><span class="gv-spec__v">Her name above the door</span></span>
-                <span class="gv-spec__i"><b class="gv-spec__k">PHOTOGRAPHY</b><span class="gv-spec__v">Hers, not stock</span></span>
-                <span class="gv-spec__i"><b class="gv-spec__k">CHECKOUT</b><span class="gv-spec__v">Still hands off to Etsy</span></span>
-              </div>
-          <div class="cs-stats">
-            <div class="cs-stat">
-              <div class="cs-stat-num">Shop</div><div class="cs-stat-label">Catalog Structure</div>
-            </div>
-            <div class="cs-stat">
-              <div class="cs-stat-num">Filters</div><div class="cs-stat-label">Product Browsing</div>
-            </div>
-            <div class="cs-stat">
-              <div class="cs-stat-num">Etsy</div><div class="cs-stat-label">Checkout Hand-Off</div>
-            </div>
-          </div>
-          <ul class="cs-deliverables">
-            <li><strong>Her own storefront</strong> — designed around her pieces, not a theme with her photos dropped into it</li>
-            <li><strong>Seasonal collections</strong> — the Fall &amp; Halloween drop appears and retires without anyone rebuilding the site</li>
-            <li><strong>Product catalog</strong> — photography, price and a short story for every one of them</li>
-            <li><strong>Her own domain</strong> — handmadebyhalle.com, secured with HTTPS, and hers to keep</li>
-          </ul>
-          <a class="cs-visit" href="https://handmadebyhalle.com" target="_blank" rel="noopener">Visit handmadebyhalle.com &#8599;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ATRIUM — IN-HOUSE BUILD ===== -->
-  <section class="section case-study-section case-study-section--studio" aria-labelledby="atrium-case-heading">
-    <div class="container">
-      <div class="cs-inner">
-        <div class="cs-image-wrap reveal">
-          <img src="atrium-case-study.webp" alt="ATRIUM — a 1,564 square foot home drawn in 3D inside a web browser, with a live price estimate in the top corner" loading="lazy">
-          <div class="cs-badge cs-badge--sand">&#9670; Built In-House &#183; Runs In A Browser Tab</div>
-        </div>
-        <div class="cs-content reveal">
-          <span class="section-label">Example Build</span>
-          <h2 id="atrium-case-heading">ATRIUM &#8212; <span style="background:linear-gradient(135deg,var(--green,#00e676),var(--gold,#D4AF37));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Walk Through A House Before It Exists</span></h2>
-          <p>We went looking for the ceiling of what a web page can do, and built a house that draws itself around you as you scroll.</p>
-            <div class="gv gv-spec">
-              <span class="gv-spec__i"><b class="gv-spec__k">GEOMETRY</b><span class="gv-spec__v">Walls, windows, counters &mdash; all measured</span></span>
-              <span class="gv-spec__i"><b class="gv-spec__k">PRICING</b><span class="gv-spec__v">Re-prices the build as you change a finish</span></span>
-              <span class="gv-spec__i"><b class="gv-spec__k">INSTALL</b><span class="gv-spec__v">None. It is a web page.</span></span>
-            </div>
-          <div class="cs-stats">
-            <div class="cs-stat">
-              <div class="cs-stat-num">3D</div><div class="cs-stat-label">Browser Walkthrough</div>
-            </div>
-            <div class="cs-stat">
-              <div class="cs-stat-num">Live</div><div class="cs-stat-label">Finish Preview</div>
-            </div>
-            <div class="cs-stat">
-              <div class="cs-stat-num">Code</div><div class="cs-stat-label">Interactive Estimate</div>
-            </div>
-          </div>
-          <ul class="cs-deliverables">
-            <li><strong>Real 3D in a browser tab</strong> &#8212; a detailed browser-built model assembled in code</li>
-            <li><strong>The number cannot lie to you</strong> &#8212; the price reads its floor area, wall area and cabinet runs off the exact same plan the walls are built from</li>
-            <li><strong>Finishes, one click apart</strong> &#8212; the whole house re-materialises and re-prices instantly, so a client sees the cost of a taste before committing to it</li>
-            <li><strong>This is the bar we build to</strong> &#8212; the same team and the same care go into a small-business site</li>
-          </ul>
-          <p class="cs-note">The estimate shown in the demo is illustrative and is not a quote for a build.</p>
-          <a class="cs-visit" href="testimonials.html#products">See the rest of what we have built &#8599;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===== PROOF BAND CLOSER — the band above is evidence; this is the single ask ===== -->
-  <section class="section proof-close" aria-labelledby="proof-close-heading">
-    <div class="container">
-      <div class="proof-close__inner reveal">
-        <div>
-          <span class="section-label">What it costs to start</span>
-          <h2 id="proof-close-heading">That is the standard we build to.<br/><span class="proof-close__hl">The AI employee is $497 a month.</span></h2>
-          <p>Month to month, setup included, unlimited leads. You own everything we build.</p>
-        </div>
-        <div class="proof-close__actions">
-          <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
-          <a href="catch.html" class="btn btn-lg proof-close__ghost">Watch it catch a lead</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== COMPARISON TABLE ===== -->
-  <section class="section bg-gray" aria-labelledby="compare-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Why GreenAI Fits</span>
-        <h2 id="compare-heading">GreenAI vs. <span style="color:var(--gray-400)">The Big Agencies</span></h2>
-        <div class="section-divider"></div>
-        <p style="max-width:520px;margin:0 auto 2.5rem">Direct access, a clear build, one flat price. That is the whole difference.</p>
-      </div>
-
-      <div class="reveal cmp">
-        <div class="cmp__panel">
-          <div class="cmp__top">
-            <span class="cmp__title"><i class="cmp__dot" aria-hidden="true"></i>Decision layer</span>
-            <span class="cmp__mode">6 LINES &#183; SIDE BY SIDE</span>
-          </div>
-
-          <table class="cmp__table">
-            <caption class="cmp__cap">How working with GreenAI Solutions compares with a typical agency retainer</caption>
-            <thead>
-              <tr>
-                <th scope="col" class="cmp__h">What you're comparing</th>
-                <th scope="col" class="cmp__h cmp__h--us">GreenAI Solutions Team<span class="cmp__flag cmp__flag--on">Our terms</span></th>
-                <th scope="col" class="cmp__h cmp__h--them">Big Agencies<span class="cmp__flag">Typical terms</span></th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">01</span>Who you work with</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Jaden directly — every time</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Whoever got assigned to you this month</span></td>
-            </tr>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">02</span>Minimum contract</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Month-to-month — no lock-in</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Often longer agreements</span></td>
-            </tr>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">03</span>Starting price</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">$497/month, flat &mdash; that is the whole price list</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">custom retainers and minimums</span></td>
-            </tr>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">04</span>Content strategy</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Custom-built for YOUR business</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Template repurposed from last client</span></td>
-            </tr>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">05</span>Response time</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Same day — you have Jaden's number</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Account queues and handoffs</span></td>
-            </tr>
-            <tr>
-              <th scope="row" class="cmp__crit"><span class="cmp__num">06</span>Direct founder access</th>
-              <td class="cmp__us"><span class="cmp__who">GreenAI</span><span class="cmp__mark cmp__mark--yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4.6 10.4l3.5 3.5 7.3-7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="cmp__val">Jaden on every call, every time</span></td>
-              <td class="cmp__them"><span class="cmp__who">Big agencies</span><span class="cmp__mark cmp__mark--no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6.4 6.4l7.2 7.2M13.6 6.4l-7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="cmp__val">Account managers &amp; junior staff</span></td>
-            </tr>
-            </tbody>
-          </table>
-
-          <p class="cmp__foot">The right-hand column describes common agency practice, not any one firm &#8212; ask whoever you are comparing us with to put their own answers in it.</p>
-        </div>
-      </div>
-
-      <div class="text-center" style="margin-top:2.5rem">
-        <a href="pay.html?sku=employees-front-desk" class="btn btn-primary btn-lg" data-sku="employees-front-desk">Start it &mdash; $497/mo &rarr;</a>
-        <a href="contact.html" class="cmp__ask">or ask a question first &#8599;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
@@ -1087,34 +666,31 @@ If we're ever late, that visit is free.
             <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
             <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
           </a>
-          <p class="footer__tagline">An AI employee for Phoenix service businesses. Answers in 8 seconds, books the job, follows up. $497 flat.</p>
-          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Owned &amp; operated by Jaden Green<br/>Gilbert, Arizona</p>
+          <p class="footer__tagline">Three AI employees for Phoenix-metro pool service companies. NET catches every lead, BALANCE keeps every customer, PUMP keeps the money moving. Month to month.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Jaden Green, doing business as GreenAI Solutions<br/>Gilbert, Arizona</p>
         </div>
 
         <div>
           <h5>Navigation</h5>
           <ul class="footer__links" role="list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="index.html#crew">The crew</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="faq.html">Questions &amp; Answers</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="pay.html">Start a plan</a></li>
-            <li><a href="demons/">The Demons at work</a></li>
+            <li><a href="pay.html">Start</a></li>
+            <li><a href="testimonials.html">Past work</a></li>
           </ul>
         </div>
 
         <div>
-          <h5>Services</h5>
+          <h5>The crew</h5>
           <ul class="footer__links" role="list">
-            <li><a href="pay.html?sku=employees-front-desk" style="color:#D4AF37;font-weight:600">AI Employee &mdash; $497/mo &#10022;</a></li>
-            <li><a href="staff.html" style="color:#D4AF37;font-weight:600">Hire the Staff &#10022;</a></li>
-            <li><a href="catch.html">Watch it catch a lead</a></li><li><a href="demo.html">Hear it as your business</a></li><li><a href="faq.html">Questions &amp; answers</a></li>
-            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">Also available</li>
-            
-            <li><a href="service-ai-ads.html">AI Ad Creation</a></li>
-            
+            <li><a href="net.html" style="color:#D4AF37;font-weight:600">NET &mdash; catches every lead &middot; $497/mo</a></li><li><a href="balance.html" style="color:#D4AF37;font-weight:600">BALANCE &mdash; keeps every customer &middot; $347/mo</a></li><li><a href="pump.html" style="color:#D4AF37;font-weight:600">PUMP &mdash; keeps the money moving &middot; $297/mo</a></li>
+            <li style="padding-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)">See it work</li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li><a href="call.html">Hear it as your company</a></li>
+            <li><a href="demo.html">Hear it as your pool company</a></li>
           </ul>
         </div>
 
@@ -1140,7 +716,7 @@ If we're ever late, that visit is free.
             <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
             <div>
               <div class="footer__contact-label" style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:.2rem">Instagram</div>
-              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);transition:color .2s" onmouseover="this.style.color='#4caf6e'" onmouseout="this.style.color='rgba(255,255,255,.65)'">@GreenAI_solutions</a></div>
+              <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65)">@GreenAI_solutions</a></div>
             </div>
           </div>
         </div>
@@ -1156,151 +732,12 @@ If we're ever late, that visit is free.
 
       <div class="footer__bottom">
         <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
-        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+        <span class="footer__bottom-right">Built for pool companies. Gilbert, AZ.</span>
       </div>
     </div>
   </footer>
 
   <script src="script.js?v=14"></script>
-  <script src="checkout.js?v=7"></script>
-  <script>
-  (function(){
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover:hover)').matches) return;
-    document.querySelectorAll('.tilt').forEach(function(card){
-      card.addEventListener('pointermove', function(e){
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-        card.style.setProperty('--ry', (px * 14) + 'deg');
-        card.style.setProperty('--rx', (-py * 14) + 'deg');
-        card.style.setProperty('--px', px.toFixed(3)); card.style.setProperty('--py', py.toFixed(3));
-        card.style.setProperty('--mx', ((px + .5) * 100) + '%'); card.style.setProperty('--my', ((py + .5) * 100) + '%');
-      });
-      card.addEventListener('pointerleave', function(){ ['--rx','--ry','--px','--py'].forEach(function(k){ card.style.setProperty(k, k[2]==='r' ? '0deg' : '0'); }); });
-    });
-  })();
-  </script>
-
-  <script>
-    // Stat counter animation
-    function animateCounter(el) {
-      const target = parseFloat(el.dataset.target);
-      const suffix = el.dataset.suffix || '';
-      const isDecimal = target % 1 !== 0;
-      const duration = 1400;
-      const start = performance.now();
-      function tick(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const val = target * ease;
-        el.textContent = (isDecimal ? val.toFixed(1) : Math.round(val)) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-    // Trigger when stats come into view
-    const counters = document.querySelectorAll('.js-counter');
-    if (counters.length) {
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); obs.unobserve(e.target); } });
-      }, { threshold: 0.6 });
-      counters.forEach(c => obs.observe(c));
-    }
-
-
-    // Auto-update copyright year
-    (function(){
-      const yearEl = document.querySelector('.js-year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-    })();
-
-    /* ===== BRAND AD — night/day slider =====
-       The stage itself is the drag surface. The range input stays in the
-       DOM as the keyboard and screen-reader control, but no longer handles
-       pointers: on iOS a range only responds to a touch that STARTS on its
-       thumb, and that thumb was invisible and vertically centred while the
-       gold grip sits at 31% — so on a phone there was nothing to grab.
-       touch-action:pan-y on the stage lets the browser keep vertical page
-       scrolling while every horizontal gesture comes to us.
-       Without JS the page still shows a clean 50/50 split. */
-    (function () {
-      var stage = document.querySelector('[data-nd]');
-      if (!stage) return;
-      var range = stage.querySelector('[data-nd-range]');
-      var night = stage.querySelector('[data-nd-night]');
-      var seam  = stage.querySelector('[data-nd-seam]');
-      var prog  = stage.querySelector('[data-nd-prog]');
-      var hint  = stage.querySelector('.brandad__hint');
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var dragging = false, introId = null;
-
-      function setP(p) {
-        p = p < 0 ? 0 : p > 100 ? 100 : p;
-        night.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
-        seam.style.left = p + '%';
-        if (prog) prog.style.width = p + '%';
-        return p;
-      }
-      function commit(p) { range.value = Math.round(setP(p)); }
-      function hideHint() { if (hint) { hint.style.display = 'none'; hint = null; } }
-      function pctFromX(x) {
-        var r = stage.getBoundingClientRect();
-        return r.width ? ((x - r.left) / r.width) * 100 : 50;
-      }
-      function stopIntro() {
-        if (introId) { cancelAnimationFrame(introId); introId = null; }
-      }
-
-      /* keyboard and assistive tech still drive the range */
-      range.addEventListener('input', function () { setP(+range.value); hideHint(); });
-      range.addEventListener('focus', function () { stage.classList.add('is-kb'); stopIntro(); });
-      range.addEventListener('blur',  function () { stage.classList.remove('is-kb'); });
-
-      if (window.PointerEvent) {
-        stage.addEventListener('pointerdown', function (e) {
-          if (e.button > 0) return;
-          if (e.target && e.target.closest && e.target.closest('a,button')) return; // CTAs stay CTAs
-          stopIntro();
-          dragging = true;
-          stage.classList.add('is-dragging');
-          try { stage.setPointerCapture(e.pointerId); } catch (err) {}
-          commit(pctFromX(e.clientX));
-          hideHint();
-        });
-        stage.addEventListener('pointermove', function (e) {
-          if (!dragging) return;
-          if (e.cancelable) e.preventDefault();
-          commit(pctFromX(e.clientX));
-        }, { passive: false });
-        ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (evt) {
-          stage.addEventListener(evt, function () {
-            if (!dragging) return;
-            dragging = false;
-            stage.classList.remove('is-dragging');
-          });
-        });
-      } else {
-        /* no Pointer Events (very old browser): give the native range back */
-        range.style.pointerEvents = 'auto';
-        range.style.touchAction = 'pan-y';
-      }
-
-      /* Intro sweep: night washes across once, then settles at half —
-         shows there are two worlds here and that the seam moves. */
-      if (!reduce) {
-        var from = 82, to = 50, t0 = null;
-        commit(from);
-        function ease(x) { return 1 - Math.pow(1 - x, 3); }
-        function tick(t) {
-          if (!t0) t0 = t;
-          var k = Math.min(1, (t - t0) / 1300);
-          commit(from + (to - from) * ease(k));
-          introId = k < 1 ? requestAnimationFrame(tick) : null;
-        }
-        setTimeout(function () { if (!dragging) introId = requestAnimationFrame(tick); }, 500);
-      } else {
-        setP(50);
-      }
-    })();
-  </script>
+  <script src="checkout.js?v=8"></script>
 </body>
 </html>

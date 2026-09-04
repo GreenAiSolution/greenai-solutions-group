@@ -8,9 +8,11 @@ Disallow: /onboarding.html
 # Employee and AI Ad Creation only. Copies live in ~/greenai-archive-pages/.
 Disallow: /create.html
 Disallow: /elite.html
-# Retired the same day — now noindex redirect stubs to services.html. They are
-# deliberately NOT disallowed: a blocked URL is never crawled, so Google would
-# never read the noindex and the dead URLs would linger in the index.
+# Retired the same day — now noindex redirect stubs. They are deliberately NOT
+# disallowed: a blocked URL is never crawled, so Google would never read the
+# noindex and the dead URLs would linger in the index. Same for the 2026-09-03
+# pool-only stubs: phone, leads, support, billing, ads, staff, services,
+# service-ai-ads all redirect to net/balance/pump/index and carry noindex.
 
 # Post-submission and error pages. Nothing to index.
 Disallow: /thankyou.html
