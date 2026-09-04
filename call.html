@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Call the AI — Talk to the Employee Before You Hire It</title>
-  <meta name="description" content="Talk to a GreenAI AI employee right now, live in your browser. It rings, it answers in 8 seconds, it books the job. No phone bill, nothing recorded." />
+  <title>Call the AI — Hear It Answer as Saguaro Pool Care</title>
+  <meta name="description" content="Call a fictional pool company, Saguaro Pool Care, live in your browser. The AI answers in 8 seconds, asks about the pool and books the visit. No phone bill, nothing recorded." />
   <link rel="canonical" href="https://greenaidigital.com/call.html" />
-  <meta property="og:title" content="Call the AI — talk to it before you hire it" />
-  <meta property="og:description" content="A live call in your browser. It answers in 8 seconds and books the job. No phone bill, nothing recorded." />
+  <meta property="og:title" content="Call the AI — hear it answer as a pool company" />
+  <meta property="og:description" content="A live call to Saguaro Pool Care, a fictional demo company, in your browser. It answers in 8 seconds and books the visit." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="visuals.css?v=1" />
   <style>
     .callpage { position:relative; min-height:100vh; padding:120px 0 80px; background:#050b07; color:#eef6f0; overflow:hidden; }
-    .callpage::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 22% 30%,rgba(76,175,110,.13),transparent 40%),radial-gradient(circle at 85% 75%,rgba(212,175,55,.07),transparent 45%),linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px); background-size:auto,auto,56px 56px,56px 56px; pointer-events:none; }
+    .callpage::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 22% 30%,rgba(76,175,110,.13),transparent 40%),radial-gradient(circle at 84% 75%,rgba(212,175,55,.07),transparent 45%),linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px); background-size:auto,auto,56px 56px,56px 56px; pointer-events:none; }
     .call-grid { position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:3.5rem; align-items:start; }
 
     .call-chip { display:inline-flex; align-items:center; gap:.55rem; padding:.5rem 1.1rem; border:1px solid rgba(125,227,164,.32); border-radius:100px; background:rgba(125,227,164,.08); color:#7de3a4; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
@@ -174,7 +174,7 @@
         <div class="call-copy">
           <span class="call-chip"><i aria-hidden="true"></i> Live in your browser &middot; no phone bill</span>
           <h1>Go ahead.<br/><em>Call us.</em></h1>
-          <p class="lede">Don't take the site's word for it. This page is a phone &mdash; tap call, talk, and try to trip it up.</p>
+          <p class="lede">Don't take the site's word for it. This page is a phone. It answers as Saguaro Pool Care, a fictional pool company &mdash; tap call, talk, and try to trip it up. On your company it is NET, answering as you.</p>
 
           <div class="call-trades">
             <b>Pick the business it answers as</b>
@@ -214,7 +214,7 @@
                   <img src="agents/agent-maven.svg" alt="MAVEN, the AI front desk employee" width="96" height="96"/>
                   <div class="who">MAVEN</div>
                   <div class="role">AI Employee &middot; On duty 24/7</div>
-                  <p class="as">Answering as <b id="idle-biz">Eagle Landscaping</b></p>
+                  <p class="as">Answering as <b id="idle-biz">Saguaro Pool Care</b> <span style="opacity:.6">(fictional)</span></p>
                   <p class="nb" id="idle-note">It's late somewhere. That's the point.</p>
                 </div>
 
@@ -222,7 +222,7 @@
                   <div class="clockbig"><span id="ring-clock">0.0</span><small>s</small></div>
                   <div class="ringlabel" id="ring-label">Calling&hellip;</div>
                   <div class="pulsering"><svg viewBox="0 0 24 24" fill="none" stroke="#7de3a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                  <p class="vs">Most shops tonight: four rings, voicemail.<br/>This one picks up at <strong style="color:#e7c85f">0:08</strong>.</p>
+                  <p class="vs">Most pool companies tonight: four rings, voicemail.<br/>This one picks up at <strong style="color:#e7c85f">0:08</strong>.</p>
                 </div>
 
                 <div id="view-talk" style="display:none"></div>
@@ -422,6 +422,11 @@
       { key:'salon',       label:'Salon / spa',  biz:'Solstice Salon',
         em:'Can I still get in this week?' }
     ];
+    /* POOL-ONLY since 2026-09-03: Saguaro Pool Care is the only company in
+       the demo. The other trades stay in TRADES and their voice clips stay in
+       voice/ (voice/gen_voice.py regenerates every clip from the LINES block
+       if a line ever changes), but the picker is hidden. */
+    TRADES = TRADES.filter(function (t) { return t.key === 'pool'; });
     var trade = TRADES[0];
 
     /* ---------- els ---------- */
@@ -445,6 +450,7 @@
       });
       tradesRow.appendChild(b);
     });
+    if (TRADES.length < 2) tradesRow.hidden = true;
 
     /* time-of-day flavor */
     var hr = new Date().getHours();
