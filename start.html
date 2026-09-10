@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome Aboard — Start Your AI Employee | GreenAI Solutions Team</title>
+  <title>Start — Hire NET, BALANCE or PUMP | GreenAI Solutions</title>
   <meta name="description" content="Board in four short steps — mostly clicks, barely any typing. Tell us about your pool company and which of NET, BALANCE and PUMP you want. No payment details collected here." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
   <link rel="canonical" href="https://greenaidigital.com/start.html" />
   <style>
     /* ==========================================================================
-       BOARDING — the onboarding as stepping onto a night yacht.
+       START — the four-step start request, with a live summary card.
        Dark page: every element states its own colour (body ink is white-page ink).
        ======================================================================= */
     .yb-page { position:relative; overflow:hidden; min-height:100vh; padding:7.25rem 0 6.5rem;
@@ -60,14 +60,10 @@
       animation: ybGlint 4.5s ease-in-out infinite; }
     @keyframes ybGlint { 50% { opacity:.25; transform: translateX(5px); } }
 
-    /* The yacht — gold line art, riding the swell. */
-    .yb-yacht { position:absolute; bottom:96px; left:7%; width:min(300px,30vw); pointer-events:none; opacity:.9;
-      animation: ybRide 7s ease-in-out infinite; transform-origin: 50% 100%; }
-    .yb-yacht path, .yb-yacht line, .yb-yacht polyline { fill:none; stroke:#d9bc57; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-    .yb-yacht .hullfill { fill:rgba(217,188,87,.1); stroke:#d9bc57; }
-    .yb-yacht .cabin { stroke:rgba(217,188,87,.75); }
-    .yb-yacht .light { fill:#7de3a4; stroke:none; }
-    @keyframes ybRide { 0%,100% { transform: rotate(-1.1deg) translateY(0); } 50% { transform: rotate(1.1deg) translateY(-5px); } }
+    /* The pool ladder — gold line art, standing in the water. */
+    .yb-ladder { position:absolute; bottom:96px; left:7%; width:min(300px,30vw); pointer-events:none; opacity:.9; }
+    .yb-ladder path, .yb-ladder line, .yb-ladder polyline { fill:none; stroke:#d9bc57; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .yb-ladder .light { fill:#7de3a4; stroke:none; }
 
     /* ---- layout ---- */
     .yb-shell { position:relative; z-index:2; max-width:71rem; margin:0 auto; display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(2rem,4.5vw,4rem); align-items:start; }
@@ -76,7 +72,7 @@
     .yb-head h1 em { font-style:italic; color:#e7c85f; }
     .yb-lede { max-width:52ch; color:rgba(255,255,255,.6); font-size:.99rem; line-height:1.75; }
 
-    /* Gangway progress — four portholes on a railing. */
+    /* Step progress — four dots on a rail. */
     .yb-gang { display:flex; align-items:center; gap:0; margin:1.8rem 0 1.4rem; }
     .yb-port { position:relative; width:34px; height:34px; border-radius:50%; flex:0 0 auto;
       border:2px solid rgba(255,255,255,.2); background:rgba(8,19,12,.8); display:grid; place-items:center;
@@ -164,7 +160,7 @@
     .yb-fail.is-on { display:block; }
     .yb-fail a { color:#fff; }
 
-    /* ---- THE BOARDING PASS — fills in live as they click. ---- */
+    /* ---- THE SUMMARY CARD — fills in live as they click. ---- */
     .yb-pass { position:sticky; top:96px; border-radius:18px; overflow:hidden;
       background:linear-gradient(160deg,#10190f 0%, #0b130b 55%, #131a0e 100%);
       border:1px solid rgba(231,200,95,.4); box-shadow:0 34px 90px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
@@ -180,15 +176,9 @@
     .yb-pass__row b:empty::before, .yb-pass__row b.is-empty::before { content:'———'; color:rgba(255,255,255,.16); letter-spacing:.2em; }
     .yb-pass__duo { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
     .yb-pass__fare b { color:#e7c85f; font-family:'Playfair Display',serif; font-size:1.35rem; }
-    .yb-pass__crew { display:flex; gap:.45rem; padding:.75rem 1.25rem; border-top:1px dashed rgba(255,255,255,.16); align-items:center; }
+    .yb-pass__crew { display:flex; gap:.45rem; padding:.9rem 1.25rem 1.1rem; border-top:1px solid rgba(255,255,255,.1); align-items:center; }
     .yb-pass__crew img { width:30px; height:30px; object-fit:contain; opacity:.85; }
     .yb-pass__crew small { margin-left:auto; color:rgba(255,255,255,.35); font:600 .56rem/1.4 ui-monospace,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; text-align:right; }
-    .yb-pass__strip { height:34px; margin:0 1.25rem 1.1rem; border-radius:5px; opacity:.55;
-      background: repeating-linear-gradient(90deg, rgba(255,255,255,.75) 0 2px, transparent 2px 5px, rgba(255,255,255,.75) 5px 6px, transparent 6px 11px); }
-    /* punched notches on the perforation line */
-    .yb-pass__crew { position:relative; }
-    .yb-pass__crew::before, .yb-pass__crew::after { content:''; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%; background:#071710; border:1px solid rgba(231,200,95,.35); }
-    .yb-pass__crew::before { left:-10px; } .yb-pass__crew::after { right:-10px; }
     /* the stamp */
     .yb-stamp { position:absolute; top:38%; left:50%; z-index:3; padding:.5rem 1.3rem; border:3px solid #7de3a4; border-radius:10px;
       color:#7de3a4; font:800 1.5rem/1 Inter,sans-serif; letter-spacing:.22em; text-transform:uppercase;
@@ -218,7 +208,7 @@
       .yb-shell { grid-template-columns:1fr; }
       .yb-pass { position:relative; top:0; order:2; max-width:420px; }
       .yb-trades { grid-template-columns:repeat(3,1fr); }
-      .yb-yacht { opacity:.45; }
+      .yb-ladder { opacity:.45; }
     }
     @media (max-width:560px) {
       .yb-trades { grid-template-columns:repeat(2,1fr); }
@@ -226,7 +216,7 @@
       .yb-moon { right:6%; width:48px; height:48px; }
     }
     @media (prefers-reduced-motion:reduce) {
-      .yb-stars i, .yb-stars--far i, .yb-swell, .yb-glint, .yb-yacht { animation:none; }
+      .yb-stars i, .yb-stars--far i, .yb-swell, .yb-glint, .yb-ladder { animation:none; }
       .yb-deck.is-in, .yb-done.is-on { animation:none; opacity:1; transform:none; }
       .yb-done.is-on .yb-done__ticker span { animation:none; opacity:1; transform:none; }
       .yb-pass.is-stamped .yb-stamp { animation:none; opacity:1; transform:translate(-50%,-50%) rotate(-14deg) scale(1); }
@@ -235,7 +225,7 @@
   </style>
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/start.html" />
-  <meta property="og:title" content="Welcome Aboard — Start Your AI Employee | GreenAI Solutions Team" />
+  <meta property="og:title" content="Start — Hire NET, BALANCE or PUMP | GreenAI Solutions" />
   <meta property="og:description" content="Board in four short steps — mostly clicks, barely any typing. No payment details collected here." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -249,11 +239,11 @@
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions Team home">
-          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions Team crest" width="40" height="40" loading="eager" decoding="async"/></div>
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions crest" width="40" height="40" loading="eager" decoding="async"/></div>
           <div class="nav__logo-text">
             <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
-            <span class="nav__logo-sub">Solutions Team</span>
+            <span class="nav__logo-sub">Solutions</span>
           </div>
         </a>
 
@@ -287,24 +277,21 @@
     <div class="yb-stars--far" aria-hidden="true"><i></i></div>
     <div class="yb-moon" aria-hidden="true"></div>
 
-    <!-- The yacht -->
-    <svg class="yb-yacht" viewBox="0 0 300 150" aria-hidden="true">
-      <!-- hull -->
-      <path class="hullfill" d="M18 108 L282 108 L258 132 Q254 136 246 136 L60 136 Q46 136 38 128 Z"/>
-      <!-- deck + cabin -->
-      <path class="cabin" d="M74 108 L74 94 Q74 88 82 88 L170 88 Q178 88 178 94 L178 108"/>
-      <path class="cabin" d="M92 88 L92 76 Q92 71 99 71 L145 71 Q152 71 152 76 L152 88"/>
-      <!-- mast + rigging -->
-      <line x1="120" y1="71" x2="120" y2="14"/>
-      <polyline points="120 14 208 100"/>
-      <polyline points="120 14 44 100"/>
-      <!-- bow rail -->
-      <line x1="18" y1="108" x2="46" y2="96"/>
-      <!-- masthead + cabin lights -->
-      <circle class="light" cx="120" cy="12" r="3"/>
-      <circle class="light" cx="104" cy="80" r="2"/>
-      <circle class="light" cx="126" cy="80" r="2"/>
-      <circle class="light" cx="146" cy="80" r="2"/>
+    <!-- A pool ladder coming up out of the water -->
+    <svg class="yb-ladder" viewBox="0 0 300 150" aria-hidden="true">
+      <!-- rails: up out of the water, curved over the deck edge -->
+      <path d="M96 146 L96 74 Q96 54 118 54 L164 54"/>
+      <path d="M140 146 L140 74 Q140 54 162 54 L208 54"/>
+      <!-- rungs -->
+      <line x1="96" y1="92" x2="140" y2="92"/>
+      <line x1="96" y1="112" x2="140" y2="112"/>
+      <line x1="96" y1="132" x2="140" y2="132"/>
+      <!-- handrail caps -->
+      <circle class="light" cx="164" cy="54" r="2.5"/>
+      <circle class="light" cx="208" cy="54" r="2.5"/>
+      <!-- waterline glints -->
+      <circle class="light" cx="74" cy="126" r="1.8"/>
+      <circle class="light" cx="176" cy="134" r="1.8"/>
     </svg>
 
     <div class="yb-sea" aria-hidden="true">
@@ -316,9 +303,9 @@
 
     <div class="container">
       <div class="yb-shell">
-        <section aria-label="Boarding">
-          <p class="yb-kicker">GreenAI Line &middot; First-class boarding</p>
-          <div class="yb-head"><h1>Welcome <em>aboard.</em></h1></div>
+        <section aria-label="Start request">
+          <p class="yb-kicker">Start request &middot; nothing is charged today</p>
+          <div class="yb-head"><h1>Hire your <em>first one.</em></h1></div>
           <p class="yb-lede">Four short steps, mostly clicks. No payment details are collected here &mdash; Jaden replies the same business day.</p>
       <div class="gv gv-rail" role="img" aria-label="You send the request, Jaden confirms fit the same business day, the invoice and agreement follow, and it goes on duty in about two weeks.">
         <span class="gv-tag">What happens next</span>
@@ -336,22 +323,22 @@
 
 
           <div class="yb-gang" aria-hidden="true">
-            <div class="yb-port is-now" data-port="1">I</div><div class="yb-rail" data-rail="1"></div>
-            <div class="yb-port" data-port="2">II</div><div class="yb-rail" data-rail="2"></div>
-            <div class="yb-port" data-port="3">III</div><div class="yb-rail" data-rail="3"></div>
-            <div class="yb-port" data-port="4">IV</div>
+            <div class="yb-port is-now" data-port="1">1</div><div class="yb-rail" data-rail="1"></div>
+            <div class="yb-port" data-port="2">2</div><div class="yb-rail" data-rail="2"></div>
+            <div class="yb-port" data-port="3">3</div><div class="yb-rail" data-rail="3"></div>
+            <div class="yb-port" data-port="4">4</div>
           </div>
 
           <form id="ybForm" novalidate>
             <input type="checkbox" name="botcheck" tabindex="-1" style="display:none" aria-hidden="true" />
 
-            <!-- DECK I — which employees (pool crew) -->
+            <!-- STEP 1 — which employees -->
             <fieldset class="yb-deck is-in" data-deck="1" style="border:0;margin:0;padding:0">
               <div class="yb-greet">
                 <img src="agents/agent-net.svg" alt="" width="58" height="58" loading="eager" decoding="async"/>
                 <div class="yb-greet__bubble"><b>NET</b>, catches every lead. Which of us are you hiring? Tap one or more &mdash; nothing is charged today.</div>
               </div>
-              <legend>Deck I &middot; Your crew</legend>
+              <legend>Step 1 &middot; Who you are hiring</legend>
               <p class="yb-deck__sub">Tap the employees you want. One is fine.</p>
               <div class="yb-chips" data-need="agents">
                 <label class="yb-chip yb-chip--gold"><input type="checkbox" name="agents" value="NET — catches every lead, $497/mo" data-agent-sku="pool-net" /><span>NET &middot; leads &middot; $497</span></label>
@@ -361,19 +348,19 @@
               <span class="yb-err" style="display:none;color:#ff9d9d;font-size:.72rem" data-err="agents">Tap at least one.</span>
             </fieldset>
 
-            <!-- DECK II — the vessel's registry -->
+            <!-- STEP 2 — the company -->
             <fieldset class="yb-deck" data-deck="2" hidden style="border:0;margin:0;padding:0">
               <div class="yb-greet">
                 <img src="agents/agent-balance.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
                 <div class="yb-greet__bubble"><b>BALANCE</b>, keeps every customer. A few lines about the company and you're through.</div>
               </div>
-              <legend>Deck II &middot; The registry</legend>
-              <p class="yb-deck__sub">The only real typing on board.</p>
+              <legend>Step 2 &middot; Your pool company</legend>
+              <p class="yb-deck__sub">The only real typing here.</p>
               <div class="yb-grid">
                 <div class="yb-field yb-field--wide">
                   <label for="ybBiz">Pool company name</label>
                   <input id="ybBiz" name="business_name" type="text" autocomplete="organization" required placeholder="e.g. Saguaro Pool Care" />
-                  <span class="yb-err">The registry needs a name.</span>
+                  <span class="yb-err">We need your company name.</span>
                 </div>
                 <div class="yb-field">
                   <label for="ybArea">City <small>&mdash; and the area you route</small></label>
@@ -396,14 +383,14 @@
               </div>
             </fieldset>
 
-            <!-- DECK III — how you run the ship (clicks) -->
+            <!-- STEP 3 — how they run the route -->
             <fieldset class="yb-deck" data-deck="3" hidden style="border:0;margin:0;padding:0">
               <div class="yb-greet">
                 <img src="agents/agent-pump.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
-                <div class="yb-greet__bubble"><b>PUMP</b>, keeps the money moving. Tap how you run the route &mdash; no essays.</div>
+                <div class="yb-greet__bubble"><b>PUMP</b>, keeps the money moving. Tap how you run the route.</div>
               </div>
-              <legend>Deck III &middot; How you run it</legend>
-              <p class="yb-deck__sub">All clicks. The anchor at the bottom is optional.</p>
+              <legend>Step 3 &middot; How you run the route</legend>
+              <p class="yb-deck__sub">All clicks. The last box is optional.</p>
 
               <div class="yb-group">
                 <label>What runs the route today?</label>
@@ -441,7 +428,7 @@
               </div>
 
               <details class="yb-more">
-                <summary>Ship's log — add prices by pool size &amp; house rules now (optional, or we take it on the welcome call)</summary>
+                <summary>Your prices and house rules — add them now (optional, or we take them on the welcome call)</summary>
                 <div class="yb-more__body">
                   <div class="yb-field">
                     <label for="ybServices">Weekly / bi-weekly prices by pool size, and repair prices</label>
@@ -463,19 +450,19 @@
               </details>
             </fieldset>
 
-            <!-- DECK IV — the captain -->
+            <!-- STEP 4 — contact -->
             <fieldset class="yb-deck" data-deck="4" hidden style="border:0;margin:0;padding:0">
               <div class="yb-greet">
                 <img src="agents/agent-net.svg" alt="" width="58" height="58" loading="lazy" decoding="async"/>
-                <div class="yb-greet__bubble"><b>NET</b> again. Last deck, captain &mdash; where do we send your welcome and the first invoice?</div>
+                <div class="yb-greet__bubble"><b>NET</b> again. Last step &mdash; where do we send the welcome and the first invoice?</div>
               </div>
-              <legend>Deck IV &middot; The captain</legend>
+              <legend>Step 4 &middot; Where to reach you</legend>
               <p class="yb-deck__sub">Nothing is charged today.</p>
               <div class="yb-grid">
                 <div class="yb-field">
                   <label for="ybName">Your name</label>
                   <input id="ybName" name="name" type="text" autocomplete="name" required placeholder="First and last" />
-                  <span class="yb-err">Every ship has a captain.</span>
+                  <span class="yb-err">We need a name.</span>
                 </div>
                 <div class="yb-field">
                   <label for="ybEmail">Email</label>
@@ -504,41 +491,40 @@
             <div class="yb-nav">
               <button type="button" class="yb-back" data-back hidden>&larr; Back a deck</button>
               <span></span>
-              <button type="button" class="yb-next" data-next hidden>Next deck &rarr;</button>
-              <button type="submit" class="yb-send" data-send hidden>Come aboard &rarr;</button>
+              <button type="button" class="yb-next" data-next hidden>Next step &rarr;</button>
+              <button type="submit" class="yb-send" data-send hidden>Send it &rarr;</button>
             </div>
           </form>
 
           <!-- SUCCESS -->
           <div class="yb-done" data-done aria-live="polite">
-            <h2>You&rsquo;re <em>aboard.</em></h2>
-            <p>Your boarding pass is stamped and your request is in Jaden&rsquo;s inbox. You&rsquo;ll hear back the same business day.</p>
+            <h2>That&rsquo;s <em>sent.</em></h2>
+            <p>Your request is in Jaden&rsquo;s inbox. You&rsquo;ll hear back the same business day &mdash; by phone or text, on the number you left.</p>
             <div class="yb-done__ticker" aria-hidden="true">
-              <span>&gt; BOARDING LOGGED &middot; <span data-ref-tick></span></span>
+              <span>&gt; REQUEST LOGGED &middot; <span data-ref-tick></span></span>
               <span>&gt; ROUTED &rarr; JADEN &middot; SAME BUSINESS DAY</span>
-              <span>&gt; STATUS: CREW ASSIGNED &middot; WELCOME ABOARD ✓</span>
+              <span>&gt; STATUS: WITH JADEN &middot; AWAITING HIS CALL</span>
             </div>
           </div>
         </section>
 
-        <!-- THE BOARDING PASS -->
-        <aside class="yb-pass" data-pass aria-label="Your boarding pass — fills in as you go">
-          <div class="yb-stamp" aria-hidden="true">Aboard</div>
+        <!-- THE LIVE SUMMARY — fills in as they go -->
+        <aside class="yb-pass" data-pass aria-label="Your start request — fills in as you go">
+          <div class="yb-stamp" aria-hidden="true">Ready</div>
           <div class="yb-pass__head">
-            <div class="yb-pass__line">GreenAI Line<small>FIRST-CLASS BOARDING PASS</small></div>
+            <div class="yb-pass__line">GreenAI Solutions<small>START REQUEST</small></div>
             <img src="logo-mark.png" alt="" width="34" height="34" loading="eager" decoding="async"/>
           </div>
           <div class="yb-pass__body">
-            <div class="yb-pass__row"><small>Passenger &middot; business</small><b class="is-empty" data-bp="business"></b></div>
+            <div class="yb-pass__row"><small>Pool company</small><b class="is-empty" data-bp="business"></b></div>
             <div class="yb-pass__duo">
-              <div class="yb-pass__row"><small>Crew</small><b class="is-empty" data-bp="trade"></b></div>
+              <div class="yb-pass__row"><small>Hiring</small><b class="is-empty" data-bp="trade" data-plan-name></b></div>
               <div class="yb-pass__row"><small>City</small><b class="is-empty" data-bp="area"></b></div>
             </div>
             <div class="yb-pass__duo">
-              <div class="yb-pass__row"><small>Class</small><b data-plan-name>NET</b></div>
-              <div class="yb-pass__row yb-pass__fare"><small>Fare</small><b><span data-plan-price>$497</span><span style="font-size:.55em;color:rgba(255,255,255,.45)">/mo</span></b></div>
+              <div class="yb-pass__row"><small>Reference</small><b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:.08em;font-size:.8em" data-ref>GA-&hellip;</b></div>
+              <div class="yb-pass__row yb-pass__fare"><small>Per month</small><b><span data-plan-price>$497</span><span style="font-size:.55em;color:rgba(255,255,255,.45)">/mo</span></b></div>
             </div>
-            <div class="yb-pass__row"><small>Boarding ref</small><b style="font-family:ui-monospace,Menlo,monospace;letter-spacing:.08em" data-ref>GA-&hellip;</b></div>
           </div>
           <div class="yb-pass__crew">
             <img src="agents/agent-net.svg" alt="NET" loading="lazy" decoding="async"/>
@@ -546,7 +532,6 @@
             <img src="agents/agent-pump.svg" alt="PUMP" loading="lazy" decoding="async"/>
             <small>The pool crew<br/>on duty 24/7</small>
           </div>
-          <div class="yb-pass__strip" aria-hidden="true"></div>
         </aside>
       </div>
     </div>
@@ -556,14 +541,14 @@
   <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__bottom">
-        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions Team. All rights reserved.</span>
-        <span class="footer__bottom-right">Built with AI. Powered by results.</span>
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions. All rights reserved.</span>
+        <span class="footer__bottom-right">Built for pool companies. Gilbert, AZ.</span>
       </div>
     </div>
   </footer>
 
   <script>
-  /* Which employee is boarding. pay.html?sku=… hands the SKU here; Stripe's
+  /* Which employee is being hired. pay.html?sku=… hands the SKU here; Stripe's
      thankyou redirect does too. Unknown/missing SKU = NET. Prices must match
      data/catalog.json + checkout.js. */
   window.GreenAIPlan = (function () {
@@ -580,7 +565,6 @@
     var sku = PLANS[raw] ? raw : 'pool-net';
     var p = PLANS[sku];
     document.addEventListener('DOMContentLoaded', function () {
-      var n = document.querySelector('[data-plan-name]'); if (n) n.textContent = p.name;
       var f = document.querySelector('[data-plan-price]'); if (f) f.textContent = p.price;
     });
     return { sku: sku, name: p.name, price: p.price, plan: p.plan };
@@ -610,7 +594,7 @@
               '-' + String(Math.floor(1000 + Math.random()*9000));
     Array.prototype.forEach.call(document.querySelectorAll('[data-ref],[data-ref-tick]'), function (el) { el.textContent = REF; });
 
-    /* ---- live boarding pass ---- */
+    /* ---- live summary card ---- */
     function bp(key, val) {
       var el = document.querySelector('[data-bp="' + key + '"]');
       if (!el) return;
@@ -644,16 +628,27 @@
     }
 
     /* Deck I — tick the employees you want. The SKU that brought you here is
-       pre-ticked. The old "trade" slot on the boarding pass now lists the crew. */
+       pre-ticked. The old "trade" slot on the summary card now lists the crew. */
     var trade = 'Pool service';
     function agentsPicked() {
       return Array.prototype.map.call(form.querySelectorAll('input[name="agents"]:checked'), function (i) { return i.value.split(' \u2014 ')[0]; });
     }
+    /* The summary card shows what is ticked right now, and what those add up to. */
+    var AGENT_PRICE = { 'pool-net': 497, 'pool-balance': 347, 'pool-pump': 297 };
+    function syncSummary() {
+      bp('trade', agentsPicked().join(' + '));
+      var total = 0;
+      Array.prototype.forEach.call(form.querySelectorAll('input[name="agents"]:checked'), function (i) {
+        total += AGENT_PRICE[i.getAttribute('data-agent-sku')] || 0;
+      });
+      var f = document.querySelector('[data-plan-price]');
+      if (f) f.textContent = '$' + (total || AGENT_PRICE[window.GreenAIPlan.sku] || 497).toLocaleString('en-US');
+    }
     Array.prototype.forEach.call(form.querySelectorAll('input[name="agents"]'), function (i) {
       if (i.getAttribute("data-agent-sku") === window.GreenAIPlan.sku) i.checked = true;
-      i.addEventListener('change', function () { bp('trade', agentsPicked().join(' + ')); document.querySelector('[data-err="agents"]').style.display = 'none'; });
+      i.addEventListener('change', function () { syncSummary(); document.querySelector('[data-err="agents"]').style.display = 'none'; });
     });
-    bp('trade', agentsPicked().join(' + '));
+    syncSummary();
 
     function validDeck(n) {
       var ok = true;
@@ -729,7 +724,7 @@
       if (!validDeck(4)) return;
       fail.classList.remove('is-on');
       send.disabled = true;
-      send.textContent = 'Boarding…';
+      send.textContent = 'Sending…';
 
       var fd = new FormData(form);
       var channels = fd.getAll('lead_channels').join(', ');
@@ -807,7 +802,7 @@
         }, reduce ? 900 : 3600);
       }).catch(function () {
         send.disabled = false;
-        send.innerHTML = 'Come aboard &rarr;';
+        send.innerHTML = 'Send it &rarr;';
         fail.classList.add('is-on');
       });
     });
