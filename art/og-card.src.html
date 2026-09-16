@@ -1,60 +1,51 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
 <title>OG card source — render at 1200x630</title>
-<!-- Source for og-card.jpg. Render with: sh art/render-og.sh (from the repo root). Not linked from the site. -->
+<!-- Source for og-card.jpg. Render with: sh art/render-og.sh (from the repo root). Not linked from the site.
+     Same datasheet system as the homepage (tech.css): white ground, IBM Plex, a title block, no decoration. -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:100vw;height:100vh;overflow:hidden}
-  .card{position:relative;width:100vw;height:100vh;background:#FBFAF6;font-family:Inter,sans-serif;overflow:hidden;color:#12211A}
-  .inner{position:absolute;inset:0;padding:56px 64px;display:flex;flex-direction:column;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:14px}
-  .brand img{width:46px;height:46px;border-radius:10px}
-  .brand .name{font:800 22px/1 Inter;color:#12211A}
-  .brand .name i{font-style:normal;color:#C9A227}
-  .brand .sub{font:600 12px/1 Inter;letter-spacing:.08em;color:#6E7B74;margin-top:5px}
-  h1{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:62px;line-height:1.02;letter-spacing:-.03em;color:#12211A;max-width:13ch}
-  .sub2{margin-top:18px;font:400 20px/1.5 Inter;color:#3F4F46;max-width:34ch}
-  .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:22px}
-  .prices{display:flex;gap:28px}
-  .prices div{font:400 14px/1.4 Inter;color:#6E7B74}
-  .prices b{display:block;font:700 22px/1.2 Inter;color:#12211A;letter-spacing:-.01em}
-  .meta{font:600 15px/1.5 Inter;color:#6E7B74;text-align:right}
-  .meta b{display:block;color:#12211A}
-  .shelf{position:absolute;right:56px;top:92px;width:400px;height:300px}
-  .print{position:absolute;background:#fff;padding:6px 6px 0;border-radius:6px;box-shadow:0 1px 2px rgba(18,33,26,.08),0 22px 44px -18px rgba(18,33,26,.32);width:250px}
-  .print img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:3px;background:#e9ece9}
-  .print span{display:block;padding:8px 4px 9px;font:600 11px/1.2 Inter;color:#12211A}
-  .p1{left:0;top:26px;transform:rotate(-3deg)}
-  .p2{right:0;top:0;transform:rotate(2deg)}
-  .p3{left:70px;top:150px;transform:rotate(-1deg);width:260px}
-  .rule{position:absolute;left:0;right:0;bottom:0;height:6px;background:#C9A227}
+  .card{position:relative;width:100vw;height:100vh;background:#fff;font-family:'IBM Plex Sans',sans-serif;overflow:hidden;color:#111815;display:grid;grid-template-columns:1fr 430px;gap:48px;align-items:center;padding:40px 64px 40px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .brand img{width:40px;height:40px;border-radius:4px}
+  .brand .name{font:600 20px/1 'IBM Plex Sans';color:#111815}
+  .brand .name i{font-style:normal;color:#D4AF37}
+  .brand .sub{font:500 11px/1 'IBM Plex Sans';letter-spacing:.08em;color:#6F7B75;margin-top:5px}
+  h1{font-weight:600;font-size:46px;line-height:1.06;letter-spacing:-.028em;color:#111815;max-width:14ch}
+  .sub2{margin-top:14px;font:400 17px/1.5 'IBM Plex Sans';color:#48534E;max-width:32ch}
+  .left{display:flex;flex-direction:column}
+  .foot{margin-top:30px;font:500 15px/1.4 'IBM Plex Sans';color:#6F7B75}
+  .foot b{color:#111815;font-weight:600;margin-right:14px}
+  .tb{border:1px solid #111815;align-self:center;background:#fff;font-size:15px}
+  .tb .top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #111815;font-weight:600;font-size:16px}
+  .tb .top span{font:400 12px/1 'IBM Plex Mono';color:#6F7B75}
+  .row{display:grid;grid-template-columns:132px 1fr;border-bottom:1px solid #D6DDD9}
+  .row:last-child{border-bottom:0}
+  .row span{padding:12px 16px;color:#6F7B75;border-right:1px solid #D6DDD9;font-size:13px}
+  .row div{padding:12px 16px;font:400 14px/1.55 'IBM Plex Mono';color:#111815}
+  .edge{position:absolute;left:0;right:0;bottom:0;height:5px;background:#1A5C2A}
 </style></head>
 <body><div class="card">
-  <div class="shelf" aria-hidden="true">
-    <div class="print p1"><img src="../previews/work-perflab.webp" alt=""><span>performancelab.fitness</span></div>
-    <div class="print p2"><img src="../previews/work-halle.webp" alt=""><span>handmadebyhalle.com</span></div>
-    <div class="print p3"><img src="../previews/work-blackbox.webp" alt=""><span>An AI employee, recorded</span></div>
-  </div>
-  <div class="inner">
+  <div class="left">
     <div class="brand">
       <img src="../logo-mark.png" alt="">
       <div><div class="name">Green<i>AI</i></div><div class="sub">SOLUTIONS</div></div>
     </div>
-    <div>
-      <h1>Everything a small company would hire for, if it could.</h1>
-      <p class="sub2">AI employees. Websites built by hand. A month of finished ads. Custom systems. One person builds it, and you can call him.</p>
-    </div>
-    <div class="foot">
-      <div class="prices">
-        <div><b>from $297/mo</b>AI employees</div>
-        <div><b>from $500</b>Websites</div>
-        <div><b>from $697/mo</b>Ad creation</div>
-        <div><b>Quoted</b>Custom systems</div>
-      </div>
-      <div class="meta"><b>greenaidigital.com</b>Gilbert, Arizona</div>
-    </div>
+    <h1>AI employees, websites, ads and custom systems, built for small companies.</h1>
+    <p class="sub2">Scoped in one conversation, priced in writing, built by the person who answers the phone.</p>
+    <div class="foot"><b>greenaidigital.com</b>Gilbert, Arizona</div>
   </div>
-  <div class="rule"></div>
-</div></body></html>
+  <div class="tb">
+    <div class="top">GreenAI Solutions<span>Rev. September 2026</span></div>
+    <div class="row"><span>Builder</span><div>Jaden Green</div></div>
+    <div class="row"><span>AI employees</span><div>from $297 a month</div></div>
+    <div class="row"><span>Websites</span><div>from $500</div></div>
+    <div class="row"><span>Ad creation</span><div>from $697 a month</div></div>
+    <div class="row"><span>Custom systems</span><div>Quoted</div></div>
+    <div class="row"><span>Terms</span><div>Month to month<br>You own the files</div></div>
+    <div class="row"><span>Phone</span><div>(480) 798-0753</div></div>
+  </div>
+<div class="edge"></div></div></body></html>

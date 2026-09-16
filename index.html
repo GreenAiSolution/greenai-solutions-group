@@ -7,8 +7,9 @@
   <meta name="description" content="AI employees that answer the phone and chase invoices from $297/mo, hand-built websites from $500, a month of finished ads from $697/mo, and custom systems when nothing off the shelf fits. Built in Gilbert, Arizona by one person you can call." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=2" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -49,123 +50,60 @@
   </script>
 
   <style>
-    /* Homepage. Warm paper ground, deep green ink, one gold button. Real work
-       stands in for decoration: the hero is a shelf of things that are live. */
-    :root { --paper:#FBFAF6; --ink:#12211A; --ink-2:#3F4F46; --ink-3:#6E7B74; --rule:rgba(18,33,26,.14); --sage:#EAF0EA; --deep:#143D26; --deep-2:#0E2C1B; --gold:#C9A227; --gold-2:#E2BC3F; }
-    [hidden] { display:none !important; }
-    body.home { background:var(--paper); color:var(--ink); }
-    body.home .nav.transparent { background:transparent; }
-    .hp-btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.95rem 1.5rem; border-radius:10px; font:600 .98rem/1 Inter,sans-serif; text-decoration:none; border:1px solid transparent; transition:background .2s, border-color .2s, transform .2s; }
-    .hp-btn:hover { transform:translateY(-1px); }
-    .hp-btn--gold { background:var(--gold); border-color:var(--gold); color:#14210C; }
-    .hp-btn--gold:hover { background:var(--gold-2); border-color:var(--gold-2); color:#14210C; }
-    .hp-btn--ink { background:transparent; border-color:rgba(18,33,26,.32); color:var(--ink); }
-    .hp-btn--ink:hover { border-color:var(--ink); color:var(--ink); }
-    .hp-btn--paper { background:transparent; border-color:rgba(255,255,255,.4); color:#fff; }
-    .hp-btn--paper:hover { border-color:#fff; color:#fff; }
-    .hp-h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(1.9rem,3.4vw,2.7rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink); margin:0 0 .6rem; max-width:22ch; }
-    .hp-lede { margin:0; max-width:56ch; color:var(--ink-2); font-size:1.05rem; line-height:1.65; }
-    .hp-section { padding:5.5rem 0; }
-    .hp-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1rem 2rem; margin-bottom:2.6rem; }
-    .hp-head a.more { color:var(--ink); font-weight:600; font-size:.95rem; text-decoration:underline; text-underline-offset:4px; text-decoration-color:rgba(18,33,26,.35); }
-    .hp-head a.more:hover { text-decoration-color:var(--ink); }
-
-    /* ---- hero ------------------------------------------------------------ */
-    .hp-hero { padding:8.5rem 0 3.5rem; }
-    .hp-hero__grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:3rem 4rem; align-items:center; }
-    .hp-hero h1 { margin:0 0 1.3rem; font-family:'Playfair Display',serif; font-weight:800; font-size:clamp(2.5rem,5vw,4.4rem); line-height:1.02; letter-spacing:-.03em; color:var(--ink); max-width:13ch; }
-    .hp-hero__sub { margin:0 0 1.9rem; max-width:50ch; font-size:1.12rem; line-height:1.65; color:var(--ink-2); }
-    .hp-hero__cta { display:flex; flex-wrap:wrap; gap:.8rem 1rem; align-items:center; }
-    .hp-hero__phone { color:var(--ink); font-weight:600; text-decoration:none; padding:.95rem .25rem; border-bottom:1px solid rgba(18,33,26,.3); }
-    .hp-hero__phone:hover { border-bottom-color:var(--ink); }
-    .hp-hero__facts { display:flex; flex-wrap:wrap; gap:.5rem 2rem; margin:2.4rem 0 0; padding-top:1.2rem; border-top:1px solid var(--rule); font-size:.9rem; color:var(--ink-3); }
-    .hp-hero__facts b { color:var(--ink); font-weight:600; }
-
-    /* the shelf: three real sites, pinned like prints */
-    .shelf { position:relative; width:100%; aspect-ratio:10/9; max-width:560px; justify-self:end; }
-    .print { position:absolute; width:62%; background:#fff; padding:6px 6px 0; border-radius:6px; box-shadow:0 1px 2px rgba(18,33,26,.08), 0 22px 44px -18px rgba(18,33,26,.32); text-decoration:none; color:var(--ink); }
-    .print img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:3px; background:#e9ece9; }
-    .print span { display:block; padding:.55rem .35rem .6rem; font-size:.74rem; line-height:1.3; color:var(--ink-3); }
-    .print span b { color:var(--ink); font-weight:600; display:block; font-size:.8rem; }
-    .print--1 { left:0; top:6%; transform:rotate(-3deg); z-index:1; }
-    .print--2 { right:0; top:0; transform:rotate(2deg); z-index:2; }
-    .print--3 { left:18%; bottom:2%; transform:rotate(-1deg); z-index:3; width:64%; }
-    .print:hover { z-index:5; }
-    @media (prefers-reduced-motion:no-preference) {
-      .print { opacity:0; animation:settle .9s cubic-bezier(.2,.7,.2,1) forwards; }
-      .print--1 { animation-delay:.05s; } .print--2 { animation-delay:.2s; } .print--3 { animation-delay:.38s; }
-      @keyframes settle { from { opacity:0; translate:0 22px; } to { opacity:1; translate:0 0; } }
+    /* Homepage as a datasheet. The title block is the one object on the page;
+       everything else is rules, a spec table and figures. See tech.css. */
+    .hp-hero { padding: 8rem 0 4rem; }
+    .hp-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3rem 5rem; align-items: start; }
+    .hp-hero__sub { margin: 0 0 1.8rem; max-width: 50ch; font-size: 1.12rem; line-height: 1.6; color: var(--ink-2); }
+    .hp-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; }
+    .hp-hero__phone { color: var(--ink); font-weight: 500; text-decoration: none; padding: .8rem .25rem; border-bottom: 1px solid var(--line-2); }
+    .hp-hero__phone:hover { border-bottom-color: var(--ink); }
+    .hp-hero .tk-tb { margin-top: .35rem; }
+    @media (max-width: 900px) {
+      .hp-hero { padding: 6.5rem 0 3rem; }
+      .hp-hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hp-hero .tk-tb { max-width: 560px; }
     }
-    @media (max-width:900px) {
-      .hp-hero { padding:6.5rem 0 3rem; }
-      .hp-hero__grid { grid-template-columns:1fr; gap:2.5rem; }
-      .hp-hero h1 { max-width:none; }
-      .shelf { justify-self:center; max-width:520px; }
+    /* the one motion on the page: the title block fills in, top to bottom */
+    @media (prefers-reduced-motion: no-preference) {
+      .hp-hero .tk-tb__top, .hp-hero .tk-tb__row { opacity: 0; animation: hp-fill .45s ease-out forwards; }
+      .hp-hero .tk-tb__top { animation-delay: .1s; }
+      .hp-hero .tk-tb__row:nth-child(2) { animation-delay: .18s; }
+      .hp-hero .tk-tb__row:nth-child(3) { animation-delay: .26s; }
+      .hp-hero .tk-tb__row:nth-child(4) { animation-delay: .34s; }
+      .hp-hero .tk-tb__row:nth-child(5) { animation-delay: .42s; }
+      .hp-hero .tk-tb__row:nth-child(6) { animation-delay: .5s; }
+      .hp-hero .tk-tb__row:nth-child(7) { animation-delay: .58s; }
+      .hp-hero .tk-tb__row:nth-child(8) { animation-delay: .66s; }
+      @keyframes hp-fill { from { opacity: 0; } to { opacity: 1; } }
     }
 
-    /* ---- the price list --------------------------------------------------- */
-    .menu { border-top:1px solid var(--ink); }
-    .menu__row { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.9fr) auto; gap:1rem 2.5rem; align-items:baseline; padding:1.7rem 0; border-bottom:1px solid var(--rule); text-decoration:none; color:inherit; }
-    .menu__row:hover .menu__name { text-decoration:underline; text-underline-offset:6px; text-decoration-thickness:2px; text-decoration-color:var(--gold); }
-    .menu__name { margin:0; font-family:'Playfair Display',serif; font-weight:700; font-size:1.55rem; line-height:1.15; letter-spacing:-.01em; color:var(--ink); }
-    .menu__name small { display:block; margin-top:.35rem; font-family:Inter,sans-serif; font-size:.82rem; font-weight:500; color:var(--ink-3); letter-spacing:0; }
-    .menu__desc { margin:0; color:var(--ink-2); line-height:1.6; font-size:.98rem; max-width:52ch; }
-    .menu__price { text-align:right; white-space:nowrap; font-weight:600; color:var(--ink); font-size:1.05rem; }
-    .menu__price small { display:block; font-weight:400; font-size:.8rem; color:var(--ink-3); margin-top:.2rem; }
-    .menu__note { margin:1.4rem 0 0; font-size:.9rem; color:var(--ink-3); max-width:70ch; line-height:1.6; }
-    @media (max-width:760px) {
-      .menu__row { grid-template-columns:1fr; gap:.5rem; padding:1.4rem 0; }
-      .menu__price { text-align:left; }
-      .menu__price small { display:inline; margin-left:.4rem; }
-    }
+    .hp-way { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line-ink); }
+    .hp-way div { padding: 1.2rem 1.5rem 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .hp-way b { display: block; margin-bottom: .35rem; color: var(--ink); font-size: 1rem; }
+    .hp-way p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--ink-2); }
+    @media (max-width: 720px) { .hp-way { grid-template-columns: 1fr; } .hp-way div { padding-right: 0; } }
 
-    /* ---- how it works with one person ------------------------------------ */
-    .way { background:var(--sage); }
-    .way__grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:2.5rem 5rem; align-items:start; }
-    .way__grid .hp-h2 { max-width:14ch; }
-    .way__list { margin:0; padding:0; list-style:none; display:grid; gap:1.6rem; }
-    .way__list li { padding-left:1.4rem; border-left:2px solid var(--deep); }
-    .way__list b { display:block; font-size:1.08rem; margin-bottom:.3rem; color:var(--ink); }
-    .way__list p { margin:0; color:var(--ink-2); line-height:1.6; max-width:52ch; }
-    @media (max-width:820px) { .way__grid { grid-template-columns:1fr; gap:2rem; } }
+    .hp-pool { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
+    .hp-pool__cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.4rem; }
+    .hp-crew { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
+    .hp-crew li { display: grid; grid-template-columns: 6rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; color: var(--ink-2); line-height: 1.5; }
+    .hp-crew a { color: var(--ink); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+    .hp-crew a:hover { color: var(--green); }
+    .hp-crew b { font-family: var(--mono); font-weight: 500; color: var(--ink); white-space: nowrap; }
+    @media (max-width: 860px) { .hp-pool { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .hp-crew li { grid-template-columns: 1fr auto; } .hp-crew li span { grid-column: 1 / -1; } }
 
-    /* ---- recent work ------------------------------------------------------ */
-    .work { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem 1.75rem; }
-    .work a { text-decoration:none; color:inherit; display:block; }
-    .work img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:6px; border:1px solid var(--rule); background:#e9ece9; transition:transform .25s cubic-bezier(.2,.7,.2,1); }
-    .work a:hover img { transform:translateY(-3px); }
-    .work b { display:block; margin:.85rem 0 .15rem; font-size:1rem; color:var(--ink); }
-    .work span { display:block; font-size:.9rem; color:var(--ink-3); line-height:1.5; }
-    @media (max-width:900px) { .work { grid-template-columns:1fr 1fr; } }
-    @media (max-width:560px) { .work { grid-template-columns:1fr; } }
-
-    /* ---- built for one trade --------------------------------------------- */
-    .trade { background:linear-gradient(180deg,var(--deep) 0%,var(--deep-2) 100%); color:#fff; }
-    .trade .hp-h2 { color:#fff; }
-    .trade .hp-lede { color:rgba(255,255,255,.78); }
-    .trade__grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:2.5rem 5rem; align-items:center; }
-    .crew { margin:0; padding:0; list-style:none; border-top:1px solid rgba(255,255,255,.18); }
-    .crew li { display:grid; grid-template-columns:auto 1fr auto; gap:1.25rem; align-items:baseline; padding:1rem 0; border-bottom:1px solid rgba(255,255,255,.14); }
-    .crew a { color:#fff; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.3rem; letter-spacing:.04em; }
-    .crew a:hover { text-decoration:underline; text-underline-offset:5px; }
-    .crew span { color:rgba(255,255,255,.72); font-size:.95rem; }
-    .crew b { color:#fff; font-weight:600; white-space:nowrap; }
-    .trade__cta { margin-top:1.8rem; display:flex; flex-wrap:wrap; gap:.8rem; }
-    @media (max-width:820px) { .trade__grid { grid-template-columns:1fr; gap:2rem; } }
-
-    /* ---- talk ------------------------------------------------------------- */
-    .talk { padding:6rem 0; }
-    .talk__grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:2.5rem 5rem; align-items:center; }
-    .talk__phone { display:block; margin:1.4rem 0 .5rem; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(2.2rem,5vw,3.6rem); letter-spacing:-.02em; color:var(--ink); text-decoration:none; line-height:1; }
-    .talk__phone:hover { color:var(--deep); }
-    .talk__mail { display:inline-block; font-size:1.05rem; color:var(--ink); text-decoration:underline; text-underline-offset:4px; text-decoration-color:rgba(18,33,26,.35); }
-    .talk__aside { padding:1.8rem 1.9rem; border:1px solid var(--rule); border-radius:12px; background:#fff; }
-    .talk__aside p { margin:0 0 1.1rem; color:var(--ink-2); line-height:1.6; }
-    .talk__aside p:last-of-type { margin-bottom:1.5rem; }
-    @media (max-width:820px) { .talk__grid { grid-template-columns:1fr; gap:2rem; } }
+    .hp-talk__phone { display: block; margin: 1.2rem 0 .4rem; font-weight: 600; font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; line-height: 1.1; }
+    .hp-talk__phone:hover { color: var(--green); }
+    .hp-talk__mail { display: inline-block; color: var(--ink); font-size: 1rem; }
+    .hp-talk__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
+    .hp-talk__aside p { margin: 0 0 1rem; color: var(--ink-2); line-height: 1.6; font-size: .95rem; }
+    .hp-talk__aside p:last-of-type { margin-bottom: 1.4rem; }
+    @media (max-width: 860px) { .hp-talk__grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body class="home light-top">
+<body class="tk home light-top">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -206,186 +144,194 @@
       </ul>
     </div>
   </nav>
-
   <main id="main">
     <header class="hp-hero" aria-labelledby="hero-heading">
       <div class="container">
         <div class="hp-hero__grid">
           <div>
-            <h1 id="hero-heading">Everything a small company would hire for, if it could.</h1>
-            <p class="hp-hero__sub">AI employees that answer the phone and chase the invoices. Websites built by hand. A month of finished ads. Custom systems when nothing off the shelf fits. One person builds it, and you can call him.</p>
+            <h1 class="tk-h1" id="hero-heading">AI employees, websites, ads and custom systems, built for small companies.</h1>
+            <p class="hp-hero__sub">Scoped in one conversation, priced in writing before the work starts, and built by the person who answers the phone. Everything recurring is month to month, and you own what gets built.</p>
             <div class="hp-hero__cta">
-              <a href="#services" class="hp-btn hp-btn--gold">See the services</a>
+              <a href="#services" class="tk-btn tk-btn--solid">See the services and prices</a>
               <a href="tel:4807980753" class="hp-hero__phone">Call (480) 798-0753</a>
-            </div>
-            <div class="hp-hero__facts" aria-label="The basics">
-              <div><b>Gilbert, Arizona.</b> Working with companies anywhere.</div>
-              <div><b>Month to month</b> on everything recurring.</div>
-              <div><b>You own</b> what gets built.</div>
             </div>
           </div>
 
-          <div class="shelf" aria-label="Three things that are live right now">
-            <a class="print print--1" href="https://performancelab.fitness" target="_blank" rel="noopener">
-              <img src="previews/work-perflab.webp" alt="performancelab.fitness homepage" width="1100" height="687" loading="eager" decoding="async" />
-              <span><b>performancelab.fitness</b>A personal trainer's site, brand and booking links</span>
-            </a>
-            <a class="print print--2" href="https://handmadebyhalle.com" target="_blank" rel="noopener">
-              <img src="previews/work-halle.webp" alt="handmadebyhalle.com homepage" width="1100" height="687" loading="eager" decoding="async" />
-              <span><b>handmadebyhalle.com</b>A home-decor studio, fourteen pieces, her own domain</span>
-            </a>
-            <a class="print print--3" href="catch.html">
-              <img src="previews/work-blackbox.webp" alt="A flight recorder for AI agents, live on this site" width="1100" height="687" loading="eager" decoding="async" />
-              <span><b>An AI employee, recorded</b>Every call it takes is logged and checked, and you can watch one</span>
-            </a>
+          <div class="tk-tb" aria-label="Who builds this and on what terms">
+            <div class="tk-tb__top">
+              <b><img src="logo-mark.png" alt="" width="26" height="26" loading="eager" decoding="async" />GreenAI Solutions</b>
+              <span>Rev. September 2026</span>
+            </div>
+            <div class="tk-tb__row"><span>Builder</span><div>Jaden Green<small>Sole proprietor. The person who scopes the work builds it.</small></div></div>
+            <div class="tk-tb__row"><span>Location</span><div>Gilbert, Arizona 85296<small>Working with companies anywhere.</small></div></div>
+            <div class="tk-tb__row"><span>Builds</span><div>AI employees<br/>Websites<br/>Ad creation<br/>Custom systems</div></div>
+            <div class="tk-tb__row"><span>Terms</span><div>Month to month<br/>No setup fees<br/>You own the files</div></div>
+            <div class="tk-tb__row"><span>Payments</span><div>Stripe, on their page<small>Your card never touches this site.</small></div></div>
+            <div class="tk-tb__row"><span>Phone</span><div><a href="tel:4807980753">(480) 798-0753</a></div></div>
+            <div class="tk-tb__row"><span>Email</span><div><a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div></div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- ===== the price list ==================================================== -->
-    <section class="hp-section" id="services" aria-labelledby="services-heading">
+    <!-- ===== services: the spec table ========================================= -->
+    <section class="tk-sec" id="services" aria-labelledby="services-heading">
       <div class="container">
-        <div class="hp-head">
-          <div>
-            <h2 class="hp-h2" id="services-heading">Four things I build. One price list.</h2>
-            <p class="hp-lede">Every price on this site is the whole price. Nothing is quoted behind a curtain, and the service agreement is public before we ever speak.</p>
+        <div class="tk-sec__grid">
+          <div class="tk-sec__head">
+            <h2 class="tk-h2" id="services-heading">Services and prices</h2>
+            <p class="tk-lede">Every price here is the whole price. The service agreement is public before we speak.</p>
+            <a class="more" href="services.html">Compare them in detail</a>
           </div>
-          <a class="more" href="services.html">Compare them side by side</a>
-        </div>
-
-        <div class="menu">
-          <a class="menu__row" href="staff.html">
-            <h3 class="menu__name">AI employees<small>Five roles. Hire one, or the whole staff.</small></h3>
-            <p class="menu__desc">RING answers the phone in about eight seconds. REPLY answers every web lead. ANSWER handles support. COLLECT sends invoices and reminds late payers. BOOST runs the ads. Each one is trained on your prices, your hours and your way of saying things, and you approve every script before a customer hears one.</p>
-            <div class="menu__price">from $297<small>a month, each. Full staff $1,797</small></div>
-          </a>
-          <a class="menu__row" href="service-web-design.html">
-            <h3 class="menu__name">Websites<small>Designed around what you sell. Coded by hand.</small></h3>
-            <p class="menu__desc">No themes and no page builders. A site that says what you do in the first five seconds, loads fast on a phone, and hands the visitor an obvious next step. Delivered in about seven business days, and the files are yours the day it launches.</p>
-            <div class="menu__price">from $500<small>one time. Up to ten pages, $1,500</small></div>
-          </a>
-          <a class="menu__row" href="service-ai-ads.html">
-            <h3 class="menu__name">Ad creation<small>A month of finished ads from one idea.</small></h3>
-            <p class="menu__desc">Ten, twenty-five or sixty ready-to-run ads a month, cut every way the platforms need: vertical, square, fifteen seconds, thirty. Seven angles on the same idea, because nobody can tell you in advance which one your market clicks on. You own every file.</p>
-            <div class="menu__price">from $697<small>a month. Cancel any month</small></div>
-          </a>
-          <a class="menu__row" href="service-ai-consulting.html">
-            <h3 class="menu__name">Custom systems<small>When nothing off the shelf fits.</small></h3>
-            <p class="menu__desc">An intake line, a quoting tool, a test bench for the automation you already run, a dashboard for the numbers nobody is watching. Scoped in a conversation, priced before a line of code, built by the person you talked to.</p>
-            <div class="menu__price">Quoted<small>after one conversation</small></div>
-          </a>
-        </div>
-        <p class="menu__note">Card payments run through Stripe on their page, never on this one. No setup fees, no per-call or per-minute charges, and anything recurring cancels at the end of the month you already paid for.</p>
-      </div>
-    </section>
-
-    <!-- ===== how it works with one person ====================================== -->
-    <section class="hp-section way" aria-labelledby="way-heading">
-      <div class="container">
-        <div class="way__grid">
           <div>
-            <h2 class="hp-h2" id="way-heading">You deal with the builder, start to finish.</h2>
-            <p class="hp-lede">There is no account manager and no support queue. The person who scopes the work is the person who builds it, and the number on this page rings his phone.</p>
+            <table class="tk-spec">
+              <colgroup><col/><col/><col/><col/></colgroup>
+              <thead>
+                <tr><th scope="col">Service</th><th scope="col">What it is</th><th scope="col">Terms</th><th scope="col">Price</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="staff.html">AI employees</a><small>RING, REPLY, ANSWER, COLLECT, BOOST</small></td>
+                  <td data-l="What it is">Five roles a small company pays a person to do, or does not do at all. RING answers the phone in about eight seconds. REPLY answers every web lead. ANSWER handles support. COLLECT sends invoices and reminds late payers. BOOST runs the ads. Each is trained on your prices, hours and wording.</td>
+                  <td data-l="Terms">Month to month. You approve every script before a customer hears one. No per-call or per-minute charges.</td>
+                  <td>from $297<small>a month, each. All five $1,797</small></td>
+                </tr>
+                <tr>
+                  <td><a href="service-web-design.html">Websites</a><small>Coded by hand, no themes</small></td>
+                  <td data-l="What it is">A site that says what you do in the first five seconds, loads fast on a phone and hands the visitor an obvious next step. Titles, descriptions and structure for Google go in during the build.</td>
+                  <td data-l="Terms">One-time. Delivered in about seven business days. The files are yours the day it launches. Maintenance is optional, $150 a month.</td>
+                  <td>from $500<small>up to five pages. Ten pages $1,500</small></td>
+                </tr>
+                <tr>
+                  <td><a href="service-ai-ads.html">Ad creation</a><small>Finished, ready-to-run</small></td>
+                  <td data-l="What it is">Ten, twenty-five or sixty finished ads a month from one idea, cut every way the platforms need: vertical, square, fifteen seconds, thirty. Seven angles on the same idea, because nobody knows in advance which one your market clicks on.</td>
+                  <td data-l="Terms">Month to month, cancel any month. You see the scripts before anything is produced and own every file, including after you cancel.</td>
+                  <td>from $697<small>a month, ten ads</small></td>
+                </tr>
+                <tr>
+                  <td><a href="service-ai-consulting.html">Custom systems</a><small>When nothing off the shelf fits</small></td>
+                  <td data-l="What it is">An intake line, a quoting tool, a test bench for the automations you already run, a dashboard for the numbers nobody is watching. Anything where the honest answer is that it has to be built.</td>
+                  <td data-l="Terms">A written scope and a fixed price before a line of code. Source, credentials and a runbook are handed over at the end.</td>
+                  <td>Quoted<small>after one conversation</small></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="tk-note" style="margin-top:1.2rem">Anything recurring cancels at the end of the month you already paid for. Anything paid to someone else on your behalf, like a phone number or ad spend, is passed through at cost.</p>
           </div>
-          <ul class="way__list">
-            <li>
-              <b>You approve it before anyone else sees it.</b>
-              <p>Every script an AI employee can say, every page of a site, every ad in a batch goes past you first. Nothing goes live while something still bothers you.</p>
-            </li>
-            <li>
-              <b>Changes are same-day, at no charge.</b>
-              <p>Want it to say something differently, or a section moved? Tell me and it changes that day. No change fees and no ticket numbers.</p>
-            </li>
-            <li>
-              <b>You own everything.</b>
-              <p>Site files, ad files, scripts and transcripts are yours, permanently. If you ever leave, you take all of it with you and nothing stops working.</p>
-            </li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== recent work ======================================================= -->
-    <section class="hp-section" aria-labelledby="work-heading">
+    <!-- ===== how a build runs (a real sequence) ================================ -->
+    <section class="tk-sec" aria-labelledby="way-heading">
       <div class="container">
-        <div class="hp-head">
-          <div>
-            <h2 class="hp-h2" id="work-heading">Recent work</h2>
-            <p class="hp-lede">Everything here is live. Click through and use it.</p>
+        <div class="tk-sec__grid">
+          <div class="tk-sec__head">
+            <h2 class="tk-h2" id="way-heading">How a build runs</h2>
+            <p class="tk-lede">The same four steps whether it is a five-page site or a phone line.</p>
           </div>
-          <a class="more" href="testimonials.html">See all the work</a>
-        </div>
-        <div class="work">
-          <a href="https://performancelab.fitness" target="_blank" rel="noopener">
-            <img src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>Julia's Performance Lab</b>
-            <span>A Seattle personal trainer. Site, brand, booking links and an events page she updates herself.</span>
-          </a>
-          <a href="https://handmadebyhalle.com" target="_blank" rel="noopener">
-            <img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>Handmade by Halle</b>
-            <span>A one-woman home-decor studio. Fourteen pieces, seasonal collections, buying handed to her Etsy shop.</span>
-          </a>
-          <a href="blackbox/">
-            <img src="previews/work-blackbox.webp" alt="BLACKBOX, a flight recorder for AI agents" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>BLACKBOX</b>
-            <span>A flight recorder for AI agents. Every call logged, hash-chained and replayable, so you can see exactly what an agent did.</span>
-          </a>
-          <a href="gauntlet/">
-            <img src="previews/work-gauntlet.webp" alt="THE GAUNTLET, a live prompt-injection lab" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>THE GAUNTLET</b>
-            <span>A live lab where you play the attacker against an AI assistant and see which of eight filters stops you.</span>
-          </a>
-          <a href="friction/">
-            <img src="previews/work-friction.webp" alt="FRICTION, a live UX experiment" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>FRICTION</b>
-            <span>What bad design costs, measured on you. A sign-up form the way most sites ship it, and the same form done right.</span>
-          </a>
-          <a href="tesseract/">
-            <img src="previews/work-tesseract.webp" alt="TESSERACT, a benchmark replayed in four dimensions" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>TESSERACT</b>
-            <span>Five hundred attacks on an AI agent, replayed in 4D. A benchmark you can scrub through instead of reading about.</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== built for one trade =============================================== -->
-    <section class="hp-section trade" aria-labelledby="trade-heading">
-      <div class="container">
-        <div class="trade__grid">
           <div>
-            <h2 class="hp-h2" id="trade-heading">Built for one trade, so you can see what a build looks like.</h2>
-            <p class="hp-lede">For pool service companies I went all the way: three employees named for the trade, trained on price lists and routes, with a demo you can watch and a call you can listen to. Whatever your trade, this is the standard yours gets built to.</p>
-            <div class="trade__cta">
-              <a href="catch.html" class="hp-btn hp-btn--gold">Watch it catch a lead</a>
-              <a href="call.html" class="hp-btn hp-btn--paper">Hear it answer a call</a>
+            <ol class="tk-steps">
+              <li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes, by phone or email.</p></li>
+              <li><b>A price in writing</b><p>What gets built, what it will not do, and the number. Nothing is signed until you have read it.</p></li>
+              <li><b>Built in the open</b><p>You see it working on real examples as it comes together. Every script, page and ad goes past you before anyone else sees it.</p></li>
+              <li><b>Live, and still answered</b><p>Changes are same-day at no charge. The number on this page rings the person who built it.</p></li>
+            </ol>
+            <div class="hp-way" style="margin-top:2.5rem">
+              <div><b>No account manager</b><p>The person who scopes the work is the person who builds it and the person who picks up.</p></div>
+              <div><b>Nothing goes live over your objection</b><p>If something still bothers you, it waits. Same-day changes, no change fees, no ticket numbers.</p></div>
+              <div><b>You own everything</b><p>Site files, ad files, scripts and transcripts are yours permanently. If you leave, you take all of it and nothing stops working.</p></div>
             </div>
           </div>
-          <ul class="crew">
-            <li><a href="net.html">NET</a><span>Catches every lead, quotes from the price list, follows up until it books</span><b>$497/mo</b></li>
-            <li><a href="balance.html">BALANCE</a><span>Keeps every customer: schedule questions, service notes, review asks</span><b>$347/mo</b></li>
-            <li><a href="pump.html">PUMP</a><span>Keeps the money moving: quotes chased, invoices sent, late payers reminded</span><b>$297/mo</b></li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== talk ============================================================== -->
-    <section class="talk" aria-labelledby="talk-heading">
+    <!-- ===== work: figures ====================================================== -->
+    <section class="tk-sec" aria-labelledby="work-heading">
       <div class="container">
-        <div class="talk__grid">
-          <div>
-            <h2 class="hp-h2" id="talk-heading">Start with a conversation.</h2>
-            <p class="hp-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p>
-            <a class="talk__phone" href="tel:4807980753">(480) 798-0753</a>
-            <a class="talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>
+        <div class="tk-sec__grid">
+          <div class="tk-sec__head">
+            <h2 class="tk-h2" id="work-heading">Work</h2>
+            <p class="tk-lede">Everything here is live. Open it and use it.</p>
+            <a class="more" href="testimonials.html">All the work</a>
           </div>
-          <div class="talk__aside">
-            <p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p>
-            <p>Rather write it down? The contact form goes to the same place.</p>
-            <a href="contact.html" class="hp-btn hp-btn--ink">Send a message</a>
+          <div class="tk-work">
+            <a href="https://performancelab.fitness" target="_blank" rel="noopener"><figure>
+              <img src="previews/work-perflab.webp" alt="performancelab.fitness homepage" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>Julia's Performance Lab</b><i>Website</i><span>A Seattle personal trainer. Site, brand, booking links and an events page she updates herself.</span></figcaption>
+            </figure></a>
+            <a href="https://handmadebyhalle.com" target="_blank" rel="noopener"><figure>
+              <img src="previews/work-halle.webp" alt="handmadebyhalle.com homepage" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>Handmade by Halle</b><i>Website</i><span>A one-woman home-decor studio. Fourteen pieces, seasonal collections, buying handed to her Etsy shop.</span></figcaption>
+            </figure></a>
+            <a href="blackbox/"><figure>
+              <img src="previews/work-blackbox.webp" alt="BLACKBOX, a flight recorder for AI agents" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>BLACKBOX</b><i>Tool</i><span>A flight recorder for AI agents. Every call logged, hash-chained and replayable, so you can see exactly what an agent did.</span></figcaption>
+            </figure></a>
+            <a href="gauntlet/"><figure>
+              <img src="previews/work-gauntlet.webp" alt="THE GAUNTLET, a live prompt-injection lab" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>THE GAUNTLET</b><i>Lab</i><span>You play the attacker against an AI assistant and see which of eight filters stops you.</span></figcaption>
+            </figure></a>
+            <a href="friction/"><figure>
+              <img src="previews/work-friction.webp" alt="FRICTION, a live UX experiment" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>FRICTION</b><i>Lab</i><span>What bad design costs, measured on you. The same sign-up form built two ways, with a timer on both.</span></figcaption>
+            </figure></a>
+            <a href="tesseract/"><figure>
+              <img src="previews/work-tesseract.webp" alt="TESSERACT, a benchmark replayed in four dimensions" width="1100" height="687" loading="lazy" decoding="async" />
+              <figcaption><b>TESSERACT</b><i>Benchmark</i><span>Five hundred attacks on an AI agent, replayed in 4D with a time scrubber.</span></figcaption>
+            </figure></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== built for one trade ================================================ -->
+    <section class="tk-sec" aria-labelledby="trade-heading">
+      <div class="container">
+        <div class="tk-sec__grid">
+          <div class="tk-sec__head">
+            <h2 class="tk-h2" id="trade-heading">Built for one trade</h2>
+            <p class="tk-lede">The pool-company edition shows what a finished build looks like.</p>
+          </div>
+          <div class="tk-panel">
+            <div class="hp-pool">
+              <div>
+                <p class="tk-lede" style="font-size:.97rem">For pool service companies the build went all the way: three employees named for the trade, trained on price lists and routes, with a demo you can watch and a call you can listen to. Whatever your trade, this is the standard yours is built to.</p>
+                <div class="hp-pool__cta">
+                  <a href="catch.html" class="tk-btn tk-btn--solid">Watch it catch a lead</a>
+                  <a href="call.html" class="tk-btn tk-btn--line">Hear it answer a call</a>
+                </div>
+              </div>
+              <ul class="hp-crew">
+                <li><a href="net.html">NET</a><span>Catches every lead, quotes from the price list, follows up until it books</span><b>$497/mo</b></li>
+                <li><a href="balance.html">BALANCE</a><span>Keeps every customer: schedule questions, service notes, review asks</span><b>$347/mo</b></li>
+                <li><a href="pump.html">PUMP</a><span>Keeps the money moving: quotes chased, invoices sent, late payers reminded</span><b>$297/mo</b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== contact ============================================================ -->
+    <section class="tk-sec" aria-labelledby="talk-heading" style="padding-bottom:5rem">
+      <div class="container">
+        <div class="tk-sec__grid">
+          <div class="tk-sec__head">
+            <h2 class="tk-h2" id="talk-heading">Start with a conversation</h2>
+          </div>
+          <div class="hp-talk__grid">
+            <div>
+              <p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p>
+              <a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a>
+              <a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>
+            </div>
+            <div class="hp-talk__aside">
+              <p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p>
+              <p>Rather write it down? The contact form goes to the same place.</p>
+              <a href="contact.html" class="tk-btn tk-btn--line">Send a message</a>
+            </div>
           </div>
         </div>
       </div>
@@ -463,7 +409,6 @@
       </div>
     </div>
   </footer>
-
   <script src="script.js?v=14"></script>
   <script src="checkout.js?v=8"></script>
 </body>

@@ -7,8 +7,9 @@
   <meta name="description" content="Sites built for real businesses and live today, four working systems you can open on this site, and three open-source projects you can verify from a fresh clone." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=2" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -20,35 +21,34 @@
   <meta property="og:description" content="Sites live for real businesses, working systems you can open, and open-source projects you can verify." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <style>
-    :root { --paper:#FBFAF6; --ink:#12211A; --ink-2:#3F4F46; --ink-3:#6E7B74; --rule:rgba(18,33,26,.14); --sage:#EAF0EA; --deep:#143D26; --deep-2:#0E2C1B; --gold:#C9A227; --gold-2:#E2BC3F; }
     body.wk { background:var(--paper); color:var(--ink); }
-    .wk-btn { display:inline-flex; align-items:center; justify-content:center; padding:.9rem 1.4rem; border-radius:10px; font:600 .95rem/1 Inter,sans-serif; text-decoration:none; border:1px solid transparent; }
-    .wk-btn--gold { background:var(--gold); border-color:var(--gold); color:#14210C; }
-    .wk-btn--gold:hover { background:var(--gold-2); border-color:var(--gold-2); color:#14210C; }
-    .wk-btn--ink { border-color:rgba(18,33,26,.32); color:var(--ink); }
+    .wk-btn { display:inline-flex; align-items:center; justify-content:center; padding:.9rem 1.4rem; border-radius:4px; font:500 .95rem/1 var(--font-body); text-decoration:none; border:1px solid transparent; }
+    .wk-btn--gold { background:var(--gold); border-color:var(--gold); color:#fff; }
+    .wk-btn--gold:hover { background:var(--gold-2); border-color:var(--gold-2); color:#fff; }
+    .wk-btn--ink { border-color:var(--line-2); color:var(--ink); }
     .wk-btn--ink:hover { border-color:var(--ink); color:var(--ink); }
-    .wk-h2 { margin:0 0 .5rem; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(1.8rem,3.2vw,2.5rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink); max-width:22ch; }
+    .wk-h2 { margin:0 0 .5rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink); max-width:22ch; }
     .wk-lede { margin:0 0 2.4rem; color:var(--ink-2); max-width:58ch; line-height:1.65; font-size:1.02rem; }
 
     .wk-hero { padding:8.5rem 0 3rem; }
-    .wk-hero h1 { margin:0 0 1rem; font-family:'Playfair Display',serif; font-weight:800; font-size:clamp(2.3rem,4.6vw,3.8rem); line-height:1.04; letter-spacing:-.03em; max-width:16ch; color:var(--ink); }
+    .wk-hero h1 { margin:0 0 1rem; font-weight:600; font-size:clamp(2.3rem,4.6vw,3.8rem); line-height:1.04; letter-spacing:-.028em; max-width:16ch; color:var(--ink); }
     .wk-hero p { margin:0; max-width:56ch; font-size:1.1rem; line-height:1.65; color:var(--ink-2); }
 
     .wk-sec { padding:4rem 0; border-top:1px solid var(--rule); }
     .site { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:2rem 4rem; align-items:center; padding:1.5rem 0 3rem; }
     .site + .site { border-top:1px solid var(--rule); padding-top:3rem; }
-    .site img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:8px; border:1px solid var(--rule); background:#e9ece9; }
-    .site h3 { margin:0 0 .3rem; font-family:'Playfair Display',serif; font-weight:700; font-size:1.7rem; letter-spacing:-.01em; color:var(--ink); }
+    .site img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:0; border:1px solid var(--rule); background:#e9ece9; }
+    .site h3 { margin:0 0 .3rem; font-weight:600; font-size:1.7rem; letter-spacing:-.01em; color:var(--ink); }
     .site .url { display:inline-block; margin-bottom:1rem; font-size:.92rem; color:var(--ink-3); }
     .site p { margin:0 0 1rem; color:var(--ink-2); line-height:1.65; }
-    .site ul { margin:0 0 1.4rem; padding-left:1.1rem; color:var(--ink-2); line-height:1.6; font-size:.95rem; }
+    .site ul { margin:0 0 1.4rem; padding-left:1.1rem; list-style:disc; color:var(--ink-2); line-height:1.6; font-size:.95rem; }
     .site blockquote { margin:0 0 1.4rem; padding:1rem 1.2rem; border-left:3px solid var(--gold); background:#fff; color:var(--ink-2); line-height:1.6; font-size:.97rem; }
     .site blockquote cite { display:block; margin-top:.5rem; font-style:normal; font-size:.85rem; color:var(--ink-3); }
     @media (max-width:820px) { .site { grid-template-columns:1fr; gap:1.4rem; } }
 
     .labs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
     .labs a { text-decoration:none; color:inherit; display:block; }
-    .labs img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:6px; border:1px solid var(--rule); background:#e9ece9; transition:transform .25s cubic-bezier(.2,.7,.2,1); }
+    .labs img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:0; border:1px solid var(--rule); background:#e9ece9; transition:transform .25s cubic-bezier(.2,.7,.2,1); }
     .labs a:hover img { transform:translateY(-3px); }
     .labs b { display:block; margin:.85rem 0 .15rem; font-size:1.05rem; color:var(--ink); }
     .labs span { display:block; font-size:.93rem; color:var(--ink-2); line-height:1.55; }
@@ -57,21 +57,21 @@
     .oss { background:var(--sage); }
     .oss-list { margin:0; padding:0; list-style:none; border-top:1px solid var(--ink); }
     .oss-list li { display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.6fr) auto; gap:1rem 2.5rem; align-items:baseline; padding:1.4rem 0; border-bottom:1px solid var(--rule); }
-    .oss-list b { font-family:'Playfair Display',serif; font-weight:700; font-size:1.35rem; color:var(--ink); }
-    .oss-list b small { display:block; font-family:Inter,sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-3); margin-top:.25rem; }
+    .oss-list b { font-weight:600; font-size:1.35rem; color:var(--ink); }
+    .oss-list b small { display:block;  font-weight:500; font-size:.8rem; color:var(--ink-3); margin-top:.25rem; }
     .oss-list p { margin:0; color:var(--ink-2); line-height:1.6; font-size:.97rem; }
-    .oss-list a { white-space:nowrap; color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:4px; text-decoration-color:rgba(18,33,26,.35); }
+    .oss-list a { white-space:nowrap; color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--line-2); }
     .oss-list a:hover { text-decoration-color:var(--ink); }
     @media (max-width:720px) { .oss-list li { grid-template-columns:1fr; gap:.5rem; } }
 
-    .wk-cta { padding:5rem 0; background:linear-gradient(180deg,var(--deep),var(--deep-2)); color:#fff; }
-    .wk-cta h2 { margin:0 0 .6rem; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.02em; color:#fff; max-width:22ch; }
+    .wk-cta { padding:5rem 0; background:var(--deep); color:#fff; }
+    .wk-cta h2 { margin:0 0 .6rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.02em; color:#fff; max-width:22ch; }
     .wk-cta p { margin:0 0 1.6rem; color:rgba(255,255,255,.78); max-width:56ch; line-height:1.65; }
     .wk-cta .wk-btn--ink { border-color:rgba(255,255,255,.4); color:#fff; }
     .wk-cta .wk-btn--ink:hover { border-color:#fff; }
   </style>
 </head>
-<body class="wk light-top">
+<body class="tk wk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
