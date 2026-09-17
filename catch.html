@@ -7,12 +7,13 @@
   <meta name="description" content="See what happens to a lead today versus what happens with an AI employee answering. Side-by-side timeline illustration." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <style>
     .catch-cta { margin:3.25rem auto 0; max-width:900px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.75rem; padding:1.85rem 2.1rem; border:1px solid rgba(212,175,55,.24); border-radius:20px; background:linear-gradient(105deg,rgba(212,175,55,.09),rgba(125,227,164,.04)); }
-    .catch-cta__fig { display:block; font-family:'Playfair Display',serif; font-size:2.9rem; font-weight:800; color:#e7c85f; line-height:.95; }
+    .catch-cta__fig { display:block; font-family:var(--mono); font-size:2.6rem; font-weight:500; color:#7de3a4; line-height:.95; }
     .catch-cta__cad { display:block; margin-top:.4rem; color:rgba(255,255,255,.5); font-size:.8rem; }
     .catch-cta__actions { display:flex; flex-direction:column; align-items:flex-start; gap:.7rem; }
     .catch-cta__alt { color:rgba(255,255,255,.5); font-size:.79rem; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18); }
@@ -67,7 +68,7 @@
     }
     .catch-hero { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
     .catch-hero h1 { font-size:clamp(2rem,4vw,3rem); line-height:1.1; letter-spacing:-.03em; color:#fff; margin-bottom:.75rem; }
-    .catch-hero h1 span { color:#e7c85f; }
+    .catch-hero h1 span { color:#fff; }
     .catch-hero p { color:rgba(255,255,255,.55); font-size:1rem; max-width:580px; margin:0 auto; }
     @media (max-width:900px) { .catch-page{min-height:0;padding:80px 0 50px}.catch-grid{grid-template-columns:1fr;gap:1.5rem} }
 
@@ -127,7 +128,7 @@
        story shown above, not new claims. */
     .catch-verdict { max-width:900px; margin:2.25rem auto 0; padding:1.5rem 2rem; display:flex; align-items:center; justify-content:center; gap:clamp(1rem,3.5vw,2.4rem); flex-wrap:wrap; border:1px solid rgba(125,227,164,.3); border-radius:18px; background:rgba(125,227,164,.05); position:relative; z-index:1; opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease; }
     .catch-verdict.is-on { opacity:1; transform:none; }
-    .catch-verdict b { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,5vw,3.2rem); line-height:.95; color:#7de3a4; text-shadow:0 0 26px rgba(125,227,164,.4); }
+    .catch-verdict b { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.2rem); line-height:.95; color:#7de3a4; text-shadow:0 0 26px rgba(125,227,164,.4); }
     .catch-verdict i { font-style:normal; color:rgba(255,255,255,.4); font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; }
     .catch-verdict b + i + b { color:rgba(255,150,150,.85); text-shadow:none; font-size:clamp(1.5rem,3.4vw,2.1rem); }
     .catch-verdict small { flex-basis:100%; text-align:center; color:rgba(255,255,255,.5); font-size:.82rem; }
@@ -162,7 +163,7 @@
   <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
   <script src="analytics.js?v=2"></script>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION ===== -->

@@ -7,8 +7,9 @@
   <meta name="description" content="RING answers the phone. REPLY handles leads. BOOST runs ads. ANSWER handles support. COLLECT gets you paid. One from $297/mo, all five for $1,797." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -67,7 +68,7 @@
     .payroll .h b { text-decoration:line-through; text-decoration-color:rgba(255,95,95,.8); text-decoration-thickness:3px; color:rgba(255,255,255,.5); }
     .payroll .a { border:1px solid rgba(125,227,164,.5); background:rgba(125,227,164,.08); color:#fff; box-shadow:0 0 50px rgba(125,227,164,.12); }
     .payroll .a b { color:#7de3a4; }
-    .payroll b { display:block; font-family:'Playfair Display',serif; font-size:2.8rem; line-height:1; }
+    .payroll b { display:block; font-family:var(--font-display); font-size:2.8rem; line-height:1; }
     .payroll b small { font-size:1rem; font-family:Inter,sans-serif; font-weight:500; opacity:.7; }
     .payroll span { display:block; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.4rem; }
     .payroll .mid { font:800 .8rem/1 Inter,sans-serif; letter-spacing:.2em; color:rgba(255,255,255,.4); }
@@ -82,13 +83,13 @@
     .idc__on i { width:6px; height:6px; border-radius:50%; background:#4caf6e; box-shadow:0 0 8px #4caf6e; animation:onduty 1.6s ease-in-out infinite; }
     @keyframes onduty { 50% { opacity:.3; } }
     .idc__icon { width:58px; height:58px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,#0d2e14,#1a5c2a); color:#7de3a4; margin-bottom:.9rem; }
-    .idc__name { font-family:'Playfair Display',serif; font-size:1.25rem; letter-spacing:.06em; margin:0 0 .15rem; color:var(--green-dark,#0d2e14); }
+    .idc__name { font-family:var(--font-display); font-size:1.25rem; letter-spacing:.06em; margin:0 0 .15rem; color:var(--green-dark,#0d2e14); }
     .idc__role { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:#D4AF37; font-weight:700; margin-bottom:.8rem; }
     .idc__does { font-size:.86rem; color:var(--gray-600,#555); line-height:1.5; flex:1; margin:0 0 1rem; }
     .idc__does b { color:var(--green-dark,#0d2e14); }
     .idc__vs { font-size:.8rem; color:var(--gray-600,#555); margin-bottom:.9rem; }
     .idc__vs s { color:#c0392b; }
-    .idc__vs b { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--green-dark,#0d2e14); }
+    .idc__vs b { font-family:var(--font-display); font-size:1.5rem; color:var(--green-dark,#0d2e14); }
     .idc__buy { width:100%; justify-content:center; text-align:center; }
     .idc__more { display:block; text-align:center; font-size:.78rem; margin-top:.7rem; color:var(--green-accent,#2e7d45); text-decoration:none; font-weight:600; }
     .bundle { position:relative; max-width:900px; margin:0 auto; border-radius:24px; padding:3rem 2.5rem; background:radial-gradient(circle at 80% 20%,#1a5c2a 0,#0d2e14 45%,#071a0e 100%); color:#fff; border:1px solid rgba(212,175,55,.45); box-shadow:0 40px 90px rgba(0,0,0,.4); overflow:hidden; text-align:center; }
@@ -98,7 +99,7 @@
     .bundle p { color:rgba(255,255,255,.72); max-width:560px; margin:0 auto; }
     .bundle__math { display:flex; justify-content:center; align-items:baseline; gap:1.25rem; flex-wrap:wrap; margin:1.75rem 0 1.5rem; }
     .bundle__math s { font-size:1.4rem; color:rgba(255,255,255,.45); }
-    .bundle__math b { font-family:'Playfair Display',serif; font-size:4.5rem; line-height:1; color:#7de3a4; }
+    .bundle__math b { font-family:var(--font-display); font-size:4.5rem; line-height:1; color:#7de3a4; }
     .bundle__math b small { font-size:1.1rem; font-family:Inter,sans-serif; font-weight:500; color:rgba(255,255,255,.7); }
     .bundle__save { display:inline-block; background:rgba(212,175,55,.15); border:1px solid rgba(212,175,55,.45); color:#f0dfa0; border-radius:100px; padding:.45rem 1.1rem; font-size:.85rem; font-weight:600; margin-bottom:1.5rem; }
     .bundle__names { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem; margin-top:1.5rem; }
@@ -180,7 +181,7 @@
 }
   </script>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">

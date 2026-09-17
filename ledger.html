@@ -7,8 +7,9 @@
   <meta name="description" content="Put your own numbers in: pools on route, what you charge, leads a week, repairs quoted. The Route Ledger shows what the route earns, what a slow callback costs, and what the three AI employees cost against it. Your numbers, nothing invented." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -45,7 +46,7 @@
     .lh > .container { position:relative; z-index:1; }
     .lh .section-label { color:var(--aqua); }
     .lh h1 { margin:.7rem 0 1rem; color:#fff; font-size:clamp(2.3rem,4.6vw,3.9rem); line-height:1.03; letter-spacing:-.035em; max-width:16ch; }
-    .lh h1 em { font-style:italic; color:#e7c85f; }
+    .lh h1 em { font-style:normal; color:#fff; }
     .lh p.lede { max-width:56ch; color:rgba(255,255,255,.82); font-size:1.06rem; line-height:1.7; margin:0; }
 
     /* ---- the desk: inputs left, ledger right ------------------------------- */
@@ -71,7 +72,7 @@
     @media (max-width:940px) { .sheet { position:static; } }
     .sheet__top { padding:1.5rem 1.7rem 1.3rem; border-bottom:1px solid rgba(255,255,255,.1); }
     .sheet__top span { display:block; font:700 .68rem/1 Inter,sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--aqua); }
-    .sheet__big { display:block; margin:.65rem 0 .2rem; font-family:'Playfair Display',serif; font-size:clamp(2.9rem,6.5vw,4.3rem); line-height:.9; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+    .sheet__big { display:block; margin:.65rem 0 .2rem; font-family:var(--font-display); font-size:clamp(2.9rem,6.5vw,4.3rem); line-height:.9; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
     /* must out-specify `.sheet__top span` above, which sets the uppercase kicker style */
     .sheet__top .sheet__cap { display:block; margin-top:.75rem; font:400 .86rem/1.55 Inter,sans-serif; letter-spacing:0; text-transform:none; color:rgba(255,255,255,.72); }
     .rows { list-style:none; margin:0; padding:.5rem 1.7rem 1.2rem; }
@@ -103,7 +104,7 @@
     .honest p:last-child { margin-bottom:0; }
   </style>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#desk" class="skip-link">Skip to main content</a>
   <a href="#crew" class="skip-link">Skip to main content</a>
 

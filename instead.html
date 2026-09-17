@@ -7,8 +7,9 @@
   <meta name="description" content="Voicemail, yourself from the truck, an answering service, a part-time office person, or NET at $497 a month. What each one really costs, what it actually does, and where each one breaks — including ours." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -42,7 +43,7 @@
     .ih > .container { position:relative; z-index:1; }
     .ih .section-label { color:var(--aqua); }
     .ih h1 { margin:.7rem 0 1rem; color:#fff; font-size:clamp(2.3rem,4.6vw,3.9rem); line-height:1.03; letter-spacing:-.035em; max-width:17ch; }
-    .ih h1 em { font-style:italic; color:#e7c85f; }
+    .ih h1 em { font-style:normal; color:#fff; }
     .ih p.lede { max-width:58ch; color:rgba(255,255,255,.82); font-size:1.06rem; line-height:1.7; margin:0; }
 
     /* ---- the five options -------------------------------------------------- */
@@ -61,7 +62,7 @@
     .opt__break b { color:var(--deep); }
     .opt__right { text-align:right; }
     @media (max-width:820px) { .opt__right { text-align:left; } }
-    .opt__cost { display:block; font-family:'Playfair Display',serif; font-size:clamp(1.9rem,4vw,2.5rem); line-height:1; letter-spacing:-.035em; color:var(--deep); font-variant-numeric:tabular-nums; }
+    .opt__cost { display:block; font-family:var(--font-display); font-size:clamp(1.9rem,4vw,2.5rem); line-height:1; letter-spacing:-.035em; color:var(--deep); font-variant-numeric:tabular-nums; }
     .opt__per { display:block; margin-top:.35rem; font-size:.78rem; color:#6b7a73; line-height:1.5; }
     .opt__src { display:block; margin-top:.55rem; font-size:.72rem; color:#8a9791; line-height:1.5; }
     .opt__src a { color:#0d7a6f; }
@@ -94,7 +95,7 @@
     .srcs a { color:#0d7a6f; }
   </style>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#five" class="skip-link">Skip to main content</a>
   <a href="#crew" class="skip-link">Skip to main content</a>
 

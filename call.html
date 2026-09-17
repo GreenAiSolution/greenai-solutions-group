@@ -11,8 +11,9 @@
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <style>
     .callpage { position:relative; min-height:100vh; padding:120px 0 80px; background:#050b07; color:#eef6f0; overflow:hidden; }
@@ -22,7 +23,7 @@
     .call-chip { display:inline-flex; align-items:center; gap:.55rem; padding:.5rem 1.1rem; border:1px solid rgba(125,227,164,.32); border-radius:100px; background:rgba(125,227,164,.08); color:#7de3a4; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
     .call-chip i { width:8px; height:8px; border-radius:50%; background:#7de3a4; box-shadow:0 0 10px #7de3a4; }
     .call-copy h1 { margin:.9rem 0 1.1rem; font-size:clamp(2.4rem,4.6vw,3.9rem); line-height:1.04; letter-spacing:-.035em; color:#fff; }
-    .call-copy h1 em { font-style:italic; color:#e7c85f; }
+    .call-copy h1 em { font-style:normal; color:#fff; }
     .call-copy .lede { color:rgba(255,255,255,.72); max-width:46ch; line-height:1.8; }
     .call-trylist { margin:1.9rem 0 0; padding:1.2rem 1.4rem; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(7,18,11,.6); }
     .call-trylist b { display:block; font-size:.66rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#d5b64c; margin-bottom:.6rem; }
@@ -52,7 +53,7 @@
     /* idle view */
     .hs-idle { text-align:center; padding-top:1.6rem; }
     .hs-idle img { width:96px; height:96px; object-fit:contain; border-radius:20px; filter:drop-shadow(0 10px 24px rgba(0,0,0,.5)); }
-    .hs-idle .who { margin:.8rem 0 .15rem; font-family:'Playfair Display',serif; font-size:1.35rem; color:#fff; }
+    .hs-idle .who { margin:.8rem 0 .15rem; font-family:var(--font-display); font-size:1.35rem; color:#fff; }
     .hs-idle .role { font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.18em; text-transform:uppercase; color:#7de3a4; }
     .hs-idle .as { margin-top:1rem; font-size:.8rem; color:rgba(255,255,255,.55); }
     .hs-idle .as b { color:#e7c85f; font-weight:700; }
@@ -104,7 +105,7 @@
     .smscard pre { margin:0; padding:1.15rem 1.2rem; font:500 .84rem/1.8 ui-monospace,SFMono-Regular,Menlo,monospace; color:rgba(255,255,255,.88); white-space:pre-wrap; }
     .smscard pre b { color:#e7c85f; font-weight:700; }
     .verdict { display:flex; flex-direction:column; justify-content:center; padding:1.6rem 1.8rem; border-radius:18px; border:1px solid rgba(212,175,55,.24); background:linear-gradient(120deg,rgba(212,175,55,.09),rgba(125,227,164,.04)); }
-    .verdict .big { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.2rem); color:#fff; line-height:1.2; }
+    .verdict .big { font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.2rem); color:#fff; line-height:1.2; }
     .verdict .big b { color:#e7c85f; }
     .verdict p { margin:.9rem 0 1.4rem; color:rgba(255,255,255,.65); font-size:.94rem; line-height:1.7; }
     .verdict .row { display:flex; flex-wrap:wrap; gap:.8rem; align-items:center; }
@@ -128,7 +129,7 @@
   </style>
   <script src="analytics.js?v=2"></script>
 </head>
-<body>
+<body class="tk light-top">
 
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">

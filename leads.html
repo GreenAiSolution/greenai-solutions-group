@@ -7,8 +7,9 @@
   <meta name="description" content="REPLY — Lead-response agent, $397/mo flat. Web forms, texts, Google, Yelp, Facebook messages. It replies in under a minute, asks the right questions, and f" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -30,19 +31,19 @@
     .cap-hero .page-hero-lede { max-width: 640px; }
     .cap-big { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; max-width:900px; margin:2.5rem auto 0; }
     .cap-big div { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:1.4rem 1rem; }
-    .cap-big b { display:block; font-family:'Playfair Display',serif; font-size:2.6rem; line-height:1; color:#7de3a4; margin-bottom:.45rem; }
+    .cap-big b { display:block; font-family:var(--font-display); font-size:2.6rem; line-height:1; color:#7de3a4; margin-bottom:.45rem; }
     .cap-big span { font-size:.85rem; color:rgba(255,255,255,.7); line-height:1.4; display:block; }
     .cap-ghost { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.35); color:#fff; }
     .cap-ghost:hover { background:rgba(125,227,164,.15); border-color:#7de3a4; color:#fff; }
     .cap-hero .features-grid, .cap-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:1000px; margin:0 auto; }
     .badge { display:inline-flex; flex-direction:column; align-items:center; gap:.2rem; padding:.9rem 1.6rem; margin-bottom:1.5rem; border:1px solid rgba(212,175,55,.45); border-radius:12px; background:linear-gradient(180deg,rgba(212,175,55,.12),rgba(212,175,55,.03)); box-shadow:0 0 0 4px rgba(212,175,55,.06), 0 20px 40px rgba(0,0,0,.3); }
     .badge__id { font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.22em; color:rgba(212,175,55,.8); }
-    .badge b { font-family:'Playfair Display',serif; font-size:1.7rem; letter-spacing:.08em; color:#fff; }
+    .badge b { font-family:var(--font-display); font-size:1.7rem; letter-spacing:.08em; color:#fff; }
     .badge__role { font-size:.78rem; color:rgba(255,255,255,.65); letter-spacing:.04em; }
     .vs { display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:1rem; max-width:760px; margin:2.5rem auto 0; }
     .vs__col { border-radius:14px; padding:1.25rem 1rem; text-align:center; }
     .vs__col span { display:block; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.4rem; }
-    .vs__col b { display:block; font-family:'Playfair Display',serif; font-size:2.6rem; line-height:1; }
+    .vs__col b { display:block; font-family:var(--font-display); font-size:2.6rem; line-height:1; }
     .vs__col b small { font-size:1rem; font-family:Inter,sans-serif; font-weight:500; opacity:.7; }
     .vs__col em { display:block; font-style:normal; font-size:.8rem; margin-top:.5rem; color:#7de3a4; }
     .vs__col--human { background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.25); color:rgba(255,255,255,.6); }
@@ -64,7 +65,7 @@
     .cap-demo__row.ai .cap-demo__who { color:#7de3a4; }
     .cap-demo__txt { color:rgba(255,255,255,.88); font-size:.95rem; line-height:1.55; }
     .cap-price { text-align:center; max-width:640px; margin:0 auto; }
-    .cap-price .n { font-family:'Playfair Display',serif; font-size:4rem; line-height:1; color:var(--green-dark,#0d2e14); }
+    .cap-price .n { font-family:var(--font-display); font-size:4rem; line-height:1; color:var(--green-dark,#0d2e14); }
     .cap-price .n small { font-size:1.2rem; color:var(--gray-600,#555); font-family:Inter,sans-serif; font-weight:500; }
     .cap-price p { color:var(--gray-600,#555); margin:.75rem auto 1.5rem; }
     .cap-others { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; max-width:1000px; margin:0 auto; }
@@ -149,7 +150,7 @@
 }
   </script>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">

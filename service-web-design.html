@@ -7,8 +7,9 @@
   <meta name="description" content="Custom-built, conversion-focused websites. Mobile-first, SEO foundation included, delivered in about 7 business days, and you own the files. From $500 one-time." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -55,7 +56,7 @@
     }
     .svc-step::before {
       content: counter(s, decimal-leading-zero); position: absolute; left: 1.6rem; top: 1.45rem;
-      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
       color: var(--green-light);
     }
     .svc-step h3 { font-size: 1.08rem; margin-bottom: .4rem; color: var(--gray-800); }
@@ -85,7 +86,7 @@
     .buyrow--star { background: #f4fbf6; }
     .buyrow__name { font-weight: 700; color: var(--gray-800); font-size: 1.02rem; }
     .buyrow__sub { font-size: .87rem; color: var(--gray-500); margin-top: .2rem; line-height: 1.5; }
-    .buyrow__price { font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    .buyrow__price { font-family: var(--font-display); font-size: 1.6rem;
       color: var(--green-dark); white-space: nowrap; }
     .buyrow__price small { font-family: Inter, sans-serif; font-size: .72rem; color: var(--gray-400);
       font-weight: 600; display: block; text-align: right; }
@@ -116,7 +117,7 @@
     }
   </style>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#svc-main" class="skip-link">Skip to main content</a>
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">

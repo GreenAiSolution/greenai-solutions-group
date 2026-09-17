@@ -7,8 +7,9 @@
   <meta name="description" content="Board in four short steps — mostly clicks, barely any typing. Tell us about your company and which employees you want. No payment details collected here." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=5" />
   <link rel="stylesheet" href="visuals.css?v=1" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -69,7 +70,7 @@
     .yb-shell { position:relative; z-index:2; max-width:71rem; margin:0 auto; display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(2rem,4.5vw,4rem); align-items:start; }
     .yb-kicker { color:#e7c85f; font-size:.66rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
     .yb-head h1 { margin:.6rem 0 .8rem; color:#fff; font-size:clamp(2.4rem,5.4vw,3.9rem); line-height:1; letter-spacing:-.04em; }
-    .yb-head h1 em { font-style:italic; color:#e7c85f; }
+    .yb-head h1 em { font-style:normal; color:#fff; }
     .yb-lede { max-width:52ch; color:rgba(255,255,255,.6); font-size:.99rem; line-height:1.75; }
 
     /* Step progress — four dots on a rail. */
@@ -93,7 +94,7 @@
     .yb-deck[hidden] { display:none; }
     .yb-deck.is-in { animation: deckIn .55s cubic-bezier(.2,.75,.25,1) both; }
     @keyframes deckIn { from { opacity:0; transform: translateX(46px); } to { opacity:1; transform:none; } }
-    .yb-deck legend, .yb-deck .yb-deck__title { color:#fff; font-family:'Playfair Display',serif; font-size:1.45rem; margin:0 0 .3rem; }
+    .yb-deck legend, .yb-deck .yb-deck__title { color:#fff; font-family:var(--font-display); font-size:1.45rem; margin:0 0 .3rem; }
     .yb-deck__sub { margin:0 0 1.3rem; color:rgba(255,255,255,.48); font-size:.86rem; }
 
     /* Trade picker — one click, big art cards. */
@@ -175,7 +176,7 @@
     .yb-pass__row b { display:block; color:#fff; font:700 .95rem/1.3 Inter,sans-serif; min-height:1.2em; overflow-wrap:anywhere; }
     .yb-pass__row b:empty::before, .yb-pass__row b.is-empty::before { content:'———'; color:rgba(255,255,255,.16); letter-spacing:.2em; }
     .yb-pass__duo { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
-    .yb-pass__fare b { color:#e7c85f; font-family:'Playfair Display',serif; font-size:1.35rem; }
+    .yb-pass__fare b { color:#e7c85f; font-family:var(--font-display); font-size:1.35rem; }
     .yb-pass__crew { display:flex; gap:.45rem; padding:.9rem 1.25rem 1.1rem; border-top:1px solid rgba(255,255,255,.1); align-items:center; }
     .yb-pass__crew img { width:30px; height:30px; object-fit:contain; opacity:.85; }
     .yb-pass__crew small { margin-left:auto; color:rgba(255,255,255,.35); font:600 .56rem/1.4 ui-monospace,Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; text-align:right; }
@@ -191,7 +192,7 @@
     /* ---- success state ---- */
     .yb-done { display:none; text-align:center; padding:1.4rem 0 0; }
     .yb-done.is-on { display:block; animation: deckIn .5s ease both; }
-    .yb-done h2 { margin:.4rem 0 .6rem; color:#fff; font-family:'Playfair Display',serif; font-size:clamp(1.7rem,3.6vw,2.4rem); }
+    .yb-done h2 { margin:.4rem 0 .6rem; color:#fff; font-family:var(--font-display); font-size:clamp(1.7rem,3.6vw,2.4rem); }
     .yb-done h2 em { font-style:italic; color:#e7c85f; }
     .yb-done p { margin:0 auto; max-width:46ch; color:rgba(255,255,255,.62); font-size:.95rem; line-height:1.7; }
     .yb-done__ticker { margin:1.4rem auto 0; max-width:360px; text-align:left; display:grid; gap:.45rem; }
@@ -233,7 +234,7 @@
   <meta property="og:image:alt" content="GreenAI Solutions — AI employees for small companies." />
   <script src="analytics.js?v=2"></script>
 </head>
-<body>
+<body class="tk light-top">
   <a href="#main" class="skip-link">Skip to main content</a>
 
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">

@@ -190,3 +190,125 @@ body.tk .btn-primary:hover, body.tk .nav__cta:hover { background: var(--green-2)
 @media (max-width: 560px) { .tk-panel { padding: 1.25rem; } }
 
 /* --- reduced motion is the default; the one reveal lives in index.html ------- */
+
+/* =============================================================================
+   Site-wide overrides. Every page now carries body.tk, so the old style.css
+   components (page-hero, section, feature-card, pricing-card, btn, faq) are
+   flattened here to the datasheet: no gradients, orbs, shimmers, corner marks,
+   hover lifts or rounded cards. Layouts keep working; the costume goes.
+   ============================================================================= */
+body.tk h1, body.tk h2, body.tk h3, body.tk h4 { font-family: var(--font-body); font-weight: 600; color: var(--ink); }
+body.tk h1 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); line-height: 1.06; letter-spacing: -.028em; }
+body.tk h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15; letter-spacing: -.02em; }
+body.tk h3 { font-size: 1.15rem; line-height: 1.3; letter-spacing: -.01em; }
+body.tk p { color: var(--ink-2); }
+
+/* page hero: white, left-aligned, one rule underneath */
+body.tk .page-hero, body.tk .page-hero--night {
+  background: var(--bg); color: var(--ink); text-align: left;
+  padding: 8rem 0 3.5rem; border-bottom: 1px solid var(--line); box-shadow: none;
+}
+body.tk .page-hero::before, body.tk .page-hero::after { display: none; }
+body.tk .page-hero h1 { color: var(--ink); max-width: 18ch; margin-bottom: 1.2rem; }
+body.tk .page-hero p, body.tk .page-hero-lede { color: var(--ink-2); font-size: 1.1rem; max-width: 56ch; margin: 0 0 1.5rem; }
+body.tk .page-hero .section-label, body.tk .page-hero .section-label::before, body.tk .page-hero .section-label::after { color: var(--ink-3) !important; background: none; }
+body.tk .page-hero__chip { border: 1px solid var(--line-2); color: var(--ink-2); background: transparent; border-radius: 3px; }
+body.tk .page-hero__chip-dot { background: var(--green); box-shadow: none; }
+body.tk .page-hero .btn-white, body.tk .page-hero .hero__btn-ghost { background: transparent !important; color: var(--ink) !important; border-color: var(--line-2) !important; }
+
+/* sections */
+body.tk .section { padding: 4rem 0; }
+body.tk .section + .section:not(.bg-gray):not(.bg-pale) { border-top: 1px solid var(--line); }
+body.tk .section.bg-pale, body.tk .section.bg-gray, body.tk .bg-pale { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+body.tk .section.bg-pale::before, body.tk .section.bg-gray::before, body.tk .section.bg-gray::after { display: none; }
+body.tk .section-label { position: static; padding: 0; font-size: .82rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink-3); margin-bottom: .6rem; }
+body.tk .section-label::before, body.tk .section-label::after { display: none; }
+body.tk .text-center { text-align: left; }
+body.tk .text-center > p, body.tk .text-center .section-lede { margin-left: 0 !important; margin-right: 0 !important; }
+body.tk .section-divider { display: none; }
+body.tk .elite-section { background: var(--deep); }
+body.tk .elite-section::before { display: none; }
+body.tk .elite-section-title { color: rgba(255,255,255,.6); letter-spacing: 0; text-transform: none; font-size: .85rem; }
+
+/* cards */
+body.tk .feature-card, body.tk .pricing-card {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 0; box-shadow: none; backdrop-filter: none; transform: none; padding: 1.6rem;
+}
+body.tk .feature-card::before, body.tk .feature-card::after, body.tk .feature-card > .fc-corner, body.tk .feature-card > .fc-grid { display: none; }
+body.tk .feature-card:hover, body.tk .pricing-card:hover { transform: none; box-shadow: none; border-color: var(--ink); }
+body.tk .feature-card .feature-icon { box-shadow: none; transform: none; background: var(--bg-2); border-radius: 3px; }
+body.tk .feature-card .feature-icon::after { display: none; }
+body.tk .pricing-card--featured { border: 1px solid var(--ink); box-shadow: none; transform: none; }
+body.tk .pricing-card--featured:hover { transform: none; }
+body.tk .pricing-badge { border-radius: 3px; letter-spacing: 0; text-transform: none; font-size: .78rem; padding: .3rem .7rem; }
+body.tk .pricing-tier { letter-spacing: 0; text-transform: none; color: var(--ink-3); font-weight: 500; }
+body.tk .pricing-price .amount { font-family: var(--mono); font-weight: 500; font-size: 2.4rem; letter-spacing: -.02em; }
+body.tk .grid-2, body.tk .grid-3, body.tk .grid-4 { gap: 1rem; }
+
+/* buttons */
+body.tk .btn { border-radius: 4px; font-weight: 500; box-shadow: none; }
+body.tk .btn::before, body.tk .btn-primary::after { display: none; }
+body.tk .btn:hover, body.tk .btn:active { transform: none; box-shadow: none; }
+body.tk .btn-primary { background: var(--green); border-color: var(--green); color: #fff; }
+body.tk .btn-primary:hover { background: var(--green-2); border-color: var(--green-2); }
+body.tk .btn-secondary { background: transparent; border-color: var(--line-2); color: var(--ink); }
+body.tk .btn-secondary:hover { background: transparent; border-color: var(--ink); }
+body.tk .btn-white { background: transparent; border-color: rgba(255,255,255,.5); color: #fff; }
+body.tk .btn-white:hover { background: transparent; border-color: #fff; }
+body.tk .btn-lg { padding: .95rem 1.6rem; font-size: 1rem; border-radius: 4px; }
+
+/* faq */
+body.tk .faq-group__head { letter-spacing: 0; text-transform: none; }
+body.tk .faq-q { font-weight: 600; color: var(--ink); }
+
+/* forms */
+body.tk input, body.tk select, body.tk textarea { border-radius: 3px; border: 1px solid var(--line-2); font-family: var(--font-body); }
+body.tk input:focus, body.tk select:focus, body.tk textarea:focus { border-color: var(--green); box-shadow: none; outline: 2px solid var(--green); outline-offset: 0; }
+
+/* --- page-specific leftovers, flattened ------------------------------------- */
+body.tk .page-hero .wm, body.tk .wm { display: none !important; }
+body.tk .page-hero h1 em, body.tk .crew-hero h1 em, body.tk .cap-hero h1 em { font-style: normal; color: var(--green); }
+body.tk .page-hero .badge, body.tk .crew-hero .badge { background: transparent; border: 1px solid var(--line-2); border-radius: 3px; box-shadow: none; padding: .5rem .8rem; }
+body.tk .badge__id { color: var(--ink-3); letter-spacing: .08em; }
+body.tk .badge b { color: var(--ink); font-family: var(--font-body); }
+body.tk .badge__role { color: var(--ink-2); }
+body.tk .cap-big { margin-left: 0; max-width: 900px; }
+body.tk .cap-big div { background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 1.1rem 1rem; }
+body.tk .cap-big b { font-family: var(--mono); font-weight: 500; color: var(--ink); font-size: 2rem; }
+body.tk .cap-big span { color: var(--ink-2); }
+body.tk .cap-cta .cap-ghost, body.tk .cap-ghost { background: transparent; border: 1px solid var(--line-2); color: var(--ink); }
+body.tk .cap-ghost:hover { background: transparent; border-color: var(--ink); color: var(--ink); }
+
+/* pool crew heroes: white sheet, ink type, no mascot */
+body.tk .crew-hero { color: var(--ink); padding: 8rem 0 3.5rem; }
+body.tk .crew-hero__grid { grid-template-columns: 1fr; }
+body.tk .crew-portrait { display: none; }
+body.tk .crew-hero .page-hero-lede { color: var(--ink-2); }
+body.tk .crew-price b { font-family: var(--mono); font-weight: 500; color: var(--ink); font-size: clamp(2.2rem, 4vw, 3rem); }
+body.tk .crew-price span, body.tk .crew-terms { color: var(--ink-3); }
+body.tk .btn-primary.buy { background: var(--green); border-color: var(--green); color: #fff; }
+body.tk .btn-primary.buy:hover { background: var(--green-2); border-color: var(--green-2); color: #fff; }
+body.tk .page-hero .gv-spec { --gv-line: var(--line); --gv-dim: var(--ink-3); --gv-ink: var(--ink); }
+body.tk .page-hero .gv-spec__k { color: var(--ink-3); }
+body.tk .page-hero .gv-spec__v { color: var(--ink); }
+
+/* interactive demos keep a dark stage, but a flat one: no glows, no gold */
+body.tk .callpage, body.tk .catch-page, body.tk .start-page, body.tk .ih, body.tk .lh, body.tk .cadence, body.tk .wont, body.tk .errorpage, body.tk .about-agentic, body.tk .dont {
+  background: var(--deep); background-image: none;
+}
+body.tk .callpage::before, body.tk .catch-page::before, body.tk .ih::before, body.tk .lh::before, body.tk .lh::after, body.tk .errorpage::before, body.tk .about-agentic::before { display: none; }
+body.tk .errorpage__code { background: none; -webkit-text-fill-color: #fff; color: #fff; font-family: var(--mono); font-weight: 500; }
+body.tk .errorpage__btn { border-radius: 4px; }
+body.tk .yb-chip--gold { border-color: rgba(255,255,255,.4); }
+body.tk .sheet, body.tk .opt--us { box-shadow: none; }
+
+/* on the dark stages the type stays white; the global ink rule must not win there */
+body.tk :is(.callpage, .catch-page, .start-page, .ih, .lh, .cadence, .wont, .errorpage, .dont, .elite-section, .trade, .cx-cta, .wk-cta) :is(h1, h2, h3, h4) { color: #fff; }
+body.tk :is(.callpage, .catch-page, .start-page, .ih, .lh, .cadence, .wont, .errorpage, .dont, .elite-section, .cx-cta, .wk-cta) p { color: rgba(255,255,255,.78); }
+body.tk :is(.callpage, .catch-page, .start-page, .ih, .lh) h1 em { color: #fff; font-style: normal; }
+/* about: white sheet like every other page; the dark principle panel stays as a panel */
+body.tk .about-agentic { background: var(--bg); padding: 8rem 0 3.5rem; min-height: 0; border-bottom: 1px solid var(--line); }
+body.tk .about-agentic h1 { color: var(--ink); }
+body.tk .about-agentic h1 em { color: var(--green); font-style: normal; }
+body.tk .about-agentic p { color: var(--ink-2); }
+body.tk .principle-stack { border-radius: 0; backdrop-filter: none; background: var(--deep); border-color: var(--deep); }
