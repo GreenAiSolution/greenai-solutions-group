@@ -7,9 +7,9 @@
   <meta name="description" content="AI employees that answer the phone and chase invoices from $297/mo, hand-built websites from $500, a month of finished ads from $697/mo, and custom systems when nothing off the shelf fits. Built in Gilbert, Arizona by one person you can call." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,640;1,9..144,500;1,9..144,640&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=5" />
+  <link rel="stylesheet" href="tech.css?v=6" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -50,53 +50,120 @@
   </script>
 
   <style>
-    /* Homepage as a datasheet. The title block is the one object on the page;
-       everything else is rules, a spec table and figures. See tech.css. */
-    .hp-hero { padding: 8rem 0 4rem; }
-    .hp-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3rem 5rem; align-items: start; }
-    .hp-hero__sub { margin: 0 0 1.8rem; max-width: 50ch; font-size: 1.12rem; line-height: 1.6; color: var(--ink-2); }
-    .hp-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; }
-    .hp-hero__phone { color: var(--ink); font-weight: 500; text-decoration: none; padding: .8rem .25rem; border-bottom: 1px solid var(--line-2); }
-    .hp-hero__phone:hover { border-bottom-color: var(--ink); }
-    .hp-hero .tk-tb { margin-top: .35rem; }
-    @media (max-width: 900px) {
+    /* Homepage on the stage. The hero's right half is a machine, not a picture:
+       a simulated shift running through a day, sped up. See tech.css. */
+    .hp-hero { padding: 8.5rem 0 4.5rem; }
+    .hp-hero__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 3rem 4rem; align-items: center; }
+    .hp-hero__sub { margin: 0 0 1.8rem; max-width: 46ch; font-size: 1.12rem; line-height: 1.6; color: var(--ink-2); }
+    .hp-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .hp-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin: 2.6rem 0 0; padding: 1.4rem 0 0; list-style: none; border-top: 1px solid var(--line); }
+    .hp-facts b { display: block; font-family: var(--font-display); font-weight: 500; font-size: 1.7rem; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+    .hp-facts span { display: block; margin-top: .4rem; font-size: .82rem; color: var(--ink-3); line-height: 1.4; }
+    @media (max-width: 960px) {
       .hp-hero { padding: 6.5rem 0 3rem; }
       .hp-hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hp-hero .tk-tb { max-width: 560px; }
     }
-    /* the one motion on the page: the title block fills in, top to bottom */
-    @media (prefers-reduced-motion: no-preference) {
-      .hp-hero .tk-tb__top, .hp-hero .tk-tb__row { opacity: 0; animation: hp-fill .45s ease-out forwards; }
-      .hp-hero .tk-tb__top { animation-delay: .1s; }
-      .hp-hero .tk-tb__row:nth-child(2) { animation-delay: .18s; }
-      .hp-hero .tk-tb__row:nth-child(3) { animation-delay: .26s; }
-      .hp-hero .tk-tb__row:nth-child(4) { animation-delay: .34s; }
-      .hp-hero .tk-tb__row:nth-child(5) { animation-delay: .42s; }
-      .hp-hero .tk-tb__row:nth-child(6) { animation-delay: .5s; }
-      .hp-hero .tk-tb__row:nth-child(7) { animation-delay: .58s; }
-      .hp-hero .tk-tb__row:nth-child(8) { animation-delay: .66s; }
-      @keyframes hp-fill { from { opacity: 0; } to { opacity: 1; } }
-    }
+    @media (max-width: 480px) { .hp-facts { grid-template-columns: 1fr 1fr; } }
 
-    .hp-way { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line-ink); }
-    .hp-way div { padding: 1.2rem 1.5rem 1.2rem 0; border-bottom: 1px solid var(--line); }
+    /* the shift board */
+    .hp-shift { padding: 1.3rem 1.4rem 1.2rem; }
+    .hp-shift__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+    .hp-shift__live { display: inline-flex; align-items: center; gap: .5rem; }
+    .hp-shift__live i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); animation: hp-pulse 1.6s ease-in-out infinite; }
+    @keyframes hp-pulse { 50% { box-shadow: 0 0 0 7px rgba(125,227,164,.06); } }
+    .hp-shift__clock { font-size: .95rem; letter-spacing: .08em; color: var(--ink); }
+    .hp-shift__stage { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 1.2rem; align-items: center; margin: 1.2rem 0 1rem; }
+    .hp-dial { width: 150px; height: 150px; display: block; }
+    .hp-dial .tick { stroke: var(--line-2); stroke-width: 1.5; }
+    .hp-dial .tick.on { stroke: var(--green); }
+    .hp-dial .arc { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset .9s cubic-bezier(.2,.7,.2,1); }
+    .hp-dial .track { fill: none; stroke: var(--line); stroke-width: 3; }
+    .hp-dial .needle { stroke: var(--ember); stroke-width: 2; stroke-linecap: round; transition: transform .9s cubic-bezier(.2,.7,.2,1); transform-origin: 120px 120px; }
+    .hp-dial .hub { fill: var(--ember); }
+    .hp-dial text { font-family: var(--mono); font-size: 9px; fill: var(--ink-3); letter-spacing: .1em; }
+    .hp-shift__label { display: inline-block; font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--green); padding: .3rem .6rem; border: 1px solid var(--line-2); border-radius: 999px; }
+    .hp-shift__num { display: block; margin: .7rem 0 .3rem; font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 144; font-size: clamp(3rem, 6vw, 4.4rem); line-height: .9; letter-spacing: -.03em; color: var(--ember); }
+    .hp-shift__cap { display: block; font-size: .95rem; color: var(--ink-2); line-height: 1.45; max-width: 26ch; }
+    .hp-shift__log { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); min-height: 9.6rem; }
+    .hp-shift__log li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: .8rem; padding: .5rem 0; border-bottom: 1px solid var(--line); font-size: .86rem; line-height: 1.4; color: var(--ink-2); animation: hp-in .4s ease-out both; }
+    .hp-shift__log li time { font-family: var(--mono); font-size: .78rem; color: var(--ink-3); padding-top: .1rem; }
+    .hp-shift__log li b { color: var(--ink); font-weight: 600; }
+    .hp-shift__log li.owner b { color: var(--ember); }
+    @keyframes hp-in { from { opacity: 0; transform: translateY(6px); } }
+    .hp-shift__foot { display: flex; justify-content: space-between; gap: 1rem; margin-top: .9rem; font-size: .8rem; color: var(--ink-3); }
+    .hp-shift__foot b { font-family: var(--mono); color: var(--ink); margin-left: .3rem; }
+    .hp-shift__foot b.owner { color: var(--ember); }
+    @media (max-width: 480px) { .hp-shift__stage { grid-template-columns: 1fr; } .hp-dial { width: 120px; height: 120px; } }
+
+    /* four plates */
+    .hp-plates { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .hp-plate { display: flex; flex-direction: column; min-height: 100%; }
+    .hp-plate__vis { margin: 1.2rem 0 1.3rem; }
+    .hp-plate h3 { margin: 0 0 .5rem; font-family: var(--font-display); font-weight: 640; font-size: 1.55rem; line-height: 1.12; letter-spacing: -.015em; color: var(--ink); }
+    .hp-plate p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--ink-2); }
+    .hp-plate__foot { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-top: auto; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .hp-plate__price b { display: block; font-family: var(--font-display); font-weight: 500; font-size: 1.9rem; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+    .hp-plate__price span { display: block; margin-top: .3rem; font-size: .8rem; color: var(--ink-3); }
+    .hp-plate__go { white-space: nowrap; font-weight: 600; font-size: .92rem; color: var(--green); text-decoration: none; border-bottom: 1px solid currentColor; }
+    @media (max-width: 860px) { .hp-plates { grid-template-columns: 1fr; } }
+
+    /* plate 1: a phone conversation, typed */
+    .hp-chat { display: flex; flex-direction: column; gap: .55rem; }
+    .hp-chat li { list-style: none; max-width: 86%; padding: .6rem .85rem; border-radius: 12px; font-size: .9rem; line-height: 1.45; }
+    .hp-chat li.them { align-self: flex-start; background: rgba(255,255,255,.06); color: var(--ink); border-bottom-left-radius: 4px; }
+    .hp-chat li.us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 4px; }
+    .hp-chat li.us::before { content: attr(data-who); display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; opacity: .7; margin-bottom: .15rem; }
+    .hp-chat li.typing { min-width: 3.2rem; }
+    .hp-chat .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; margin-left: 1px; animation: hp-blink 1s steps(1) infinite; }
+    @keyframes hp-blink { 50% { opacity: 0; } }
+
+    /* plate 2: a browser frame that changes site */
+    .hp-browser { border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: #000; }
+    .hp-browser__bar { display: flex; align-items: center; gap: .5rem; padding: .5rem .7rem; background: var(--bg-3); border-bottom: 1px solid var(--line); }
+    .hp-browser__bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.14); }
+    .hp-browser__url { flex: 1; margin-left: .4rem; padding: .25rem .6rem; font-family: var(--mono); font-size: .7rem; color: var(--ink-2); background: rgba(255,255,255,.05); border-radius: 5px; }
+    .hp-browser__shots { position: relative; aspect-ratio: 16/10; }
+    .hp-browser__shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .6s ease; }
+    .hp-browser__shots img.on { opacity: 1; }
+    .hp-browser__stamp { position: absolute; right: .7rem; bottom: .7rem; z-index: 2; font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--green-ink); background: var(--green); padding: .3rem .55rem; border-radius: 4px; }
+
+    /* plate 3: real ad output */
+    .hp-ads { display: grid; grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: .5rem; aspect-ratio: 16/10; }
+    .hp-ads > * { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid var(--line); background: var(--bg-3); }
+    .hp-ads img, .hp-ads video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .hp-ads .tall { grid-row: 1 / 3; }
+    .hp-ads .wide { grid-column: 2 / 4; }
+    .hp-ads span { position: absolute; left: .5rem; bottom: .45rem; font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.55); padding: .2rem .45rem; border-radius: 3px; }
+
+    /* plate 4: a schematic */
+    .hp-schem { display: block; width: 100%; height: auto; aspect-ratio: 16/10; }
+    .hp-schem .box { fill: var(--bg-3); stroke: var(--line-2); }
+    .hp-schem .box.hot { stroke: var(--green); }
+    .hp-schem .wire { fill: none; stroke: var(--line-2); stroke-width: 1.5; }
+    .hp-schem .pulse { fill: none; stroke: var(--green); stroke-width: 2; stroke-dasharray: 14 400; animation: hp-run 3.4s linear infinite; }
+    @keyframes hp-run { to { stroke-dashoffset: -414; } }
+    .hp-schem .t { font-family: var(--mono); font-size: 12px; fill: var(--ink); letter-spacing: .06em; }
+    .hp-schem .s { font-family: var(--mono); font-size: 9px; fill: var(--ink-3); }
+    .hp-schem .h { font-family: var(--mono); font-size: 8.5px; fill: var(--green); }
+
+    /* the rest */
+    .hp-way { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .hp-way .tk-plate { padding: 1.3rem 1.4rem; }
     .hp-way b { display: block; margin-bottom: .35rem; color: var(--ink); font-size: 1rem; }
-    .hp-way p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--ink-2); }
-    @media (max-width: 720px) { .hp-way { grid-template-columns: 1fr; } .hp-way div { padding-right: 0; } }
-
+    .hp-way p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--ink-2); }
+    @media (max-width: 720px) { .hp-way { grid-template-columns: 1fr; } }
     .hp-pool { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
     .hp-pool__cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.4rem; }
     .hp-crew { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .hp-crew li { display: grid; grid-template-columns: 6rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; color: var(--ink-2); line-height: 1.5; }
-    .hp-crew a { color: var(--ink); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+    .hp-crew li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .95rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; color: var(--ink-2); line-height: 1.5; }
+    .hp-crew a { color: var(--ink); font-family: var(--font-display); font-weight: 640; font-size: 1.15rem; text-decoration: none; }
     .hp-crew a:hover { color: var(--green); }
     .hp-crew b { font-family: var(--mono); font-weight: 500; color: var(--ink); white-space: nowrap; }
     @media (max-width: 860px) { .hp-pool { grid-template-columns: 1fr; } }
     @media (max-width: 480px) { .hp-crew li { grid-template-columns: 1fr auto; } .hp-crew li span { grid-column: 1 / -1; } }
-
-    .hp-talk__phone { display: block; margin: 1.2rem 0 .4rem; font-weight: 600; font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; line-height: 1.1; }
+    .hp-talk__phone { display: block; white-space: nowrap; margin: 1.2rem 0 .4rem; font-family: var(--font-display); font-weight: 500; font-size: clamp(2rem, 4.2vw, 3.4rem); letter-spacing: -.03em; color: var(--ink); text-decoration: none; line-height: 1; }
     .hp-talk__phone:hover { color: var(--green); }
-    .hp-talk__mail { display: inline-block; color: var(--ink); font-size: 1rem; }
+    .hp-talk__mail { display: inline-block; color: var(--green); font-size: 1rem; }
     .hp-talk__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
     .hp-talk__aside p { margin: 0 0 1rem; color: var(--ink-2); line-height: 1.6; font-size: .95rem; }
     .hp-talk__aside p:last-of-type { margin-bottom: 1.4rem; }
@@ -149,84 +216,157 @@
       <div class="container">
         <div class="hp-hero__grid">
           <div>
-            <h1 class="tk-h1" id="hero-heading">AI employees, websites, ads and custom systems, built for small companies.</h1>
-            <p class="hp-hero__sub">Scoped in one conversation, priced in writing before the work starts, and built by the person who answers the phone. Everything recurring is month to month, and you own what gets built.</p>
+            <p class="tk-eyebrow"><b>GreenAI Solutions</b> · Gilbert, Arizona</p>
+            <h1 class="tk-h1" id="hero-heading">AI employees, websites, ads and custom systems. Built by <em>one person you can call.</em></h1>
+            <p class="hp-hero__sub">Scoped in one conversation, priced in writing before the work starts, month to month, and you own what gets built.</p>
             <div class="hp-hero__cta">
-              <a href="#services" class="tk-btn tk-btn--solid">See the services and prices</a>
-              <a href="tel:4807980753" class="hp-hero__phone">Call (480) 798-0753</a>
+              <a href="#services" class="tk-btn tk-btn--solid">See the four services</a>
+              <a href="tel:4807980753" class="tk-btn tk-btn--line">Call (480) 798-0753</a>
             </div>
+            <ul class="hp-facts" aria-label="Three numbers">
+              <li><b>from $297</b><span>a month for an AI employee</span></li>
+              <li><b>from $500</b><span>for a website coded by hand</span></li>
+              <li><b>~8 sec</b><span>for a call to be answered</span></li>
+            </ul>
           </div>
 
-          <div class="tk-tb" aria-label="Who builds this and on what terms">
-            <div class="tk-tb__top">
-              <b><img src="logo-mark.png" alt="" width="26" height="26" loading="eager" decoding="async" />GreenAI Solutions</b>
-              <span>Rev. September 2026</span>
+          <div class="hp-shift tk-plate" role="img" aria-label="A simulated shift: an AI employee answering calls, leads, texts and invoices through one day, sped up.">
+            <div class="hp-shift__top">
+              <span class="hp-shift__live"><i aria-hidden="true"></i>Simulated shift · sped up</span>
+              <span class="hp-shift__clock" id="shift-clock">02:14</span>
             </div>
-            <div class="tk-tb__row"><span>Builder</span><div>Jaden Green<small>Sole proprietor. The person who scopes the work builds it.</small></div></div>
-            <div class="tk-tb__row"><span>Location</span><div>Gilbert, Arizona 85296<small>Working with companies anywhere.</small></div></div>
-            <div class="tk-tb__row"><span>Builds</span><div>AI employees<br/>Websites<br/>Ad creation<br/>Custom systems</div></div>
-            <div class="tk-tb__row"><span>Terms</span><div>Month to month<br/>No setup fees<br/>You own the files</div></div>
-            <div class="tk-tb__row"><span>Payments</span><div>Stripe, on their page<small>Your card never touches this site.</small></div></div>
-            <div class="tk-tb__row"><span>Phone</span><div><a href="tel:4807980753">(480) 798-0753</a></div></div>
-            <div class="tk-tb__row"><span>Email</span><div><a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div></div>
+            <div class="hp-shift__stage">
+              <svg class="hp-dial" viewBox="0 0 240 240" aria-hidden="true">
+                <g id="dial-ticks"></g>
+                <circle class="track" cx="120" cy="120" r="92"/>
+                <circle class="arc" id="dial-arc" cx="120" cy="120" r="92" transform="rotate(-90 120 120)" stroke-dasharray="578" stroke-dashoffset="578"/>
+                <line class="needle" id="dial-needle" x1="120" y1="120" x2="120" y2="42"/>
+                <circle class="hub" cx="120" cy="120" r="4"/>
+                <text x="120" y="22" text-anchor="middle">00</text>
+                <text x="222" y="124" text-anchor="middle">06</text>
+                <text x="120" y="228" text-anchor="middle">12</text>
+                <text x="18" y="124" text-anchor="middle">18</text>
+              </svg>
+              <div class="hp-shift__now">
+                <span class="hp-shift__label" id="shift-role">RING</span>
+                <b class="hp-shift__num" id="shift-num">0:08</b>
+                <span class="hp-shift__cap" id="shift-cap">to pick up a call at two in the morning</span>
+              </div>
+            </div>
+            <ol class="hp-shift__log" id="shift-log" aria-live="off"></ol>
+            <div class="hp-shift__foot">
+              <span>Handled without you<b id="shift-count">0</b></span>
+              <span>Handed to you<b class="owner" id="shift-owner">0</b></span>
+            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- ===== services: the spec table ========================================= -->
+    <!-- ===== four services, four working objects =============================== -->
     <section class="tk-sec" id="services" aria-labelledby="services-heading">
       <div class="container">
         <div class="tk-sec__grid">
           <div class="tk-sec__head">
-            <h2 class="tk-h2" id="services-heading">Services and prices</h2>
-            <p class="tk-lede">Every price here is the whole price. The service agreement is public before we speak.</p>
+            <p class="tk-eyebrow"><b>Services</b></p>
+            <h2 class="tk-h2" id="services-heading">Four things a small company would hire for, <em>if it could.</em></h2>
+            <p class="tk-lede">Every price is the whole price. The service agreement is public before we speak.</p>
             <a class="more" href="services.html">Compare them in detail</a>
           </div>
-          <div>
-            <table class="tk-spec">
-              <colgroup><col/><col/><col/><col/></colgroup>
-              <thead>
-                <tr><th scope="col">Service</th><th scope="col">What it is</th><th scope="col">Terms</th><th scope="col">Price</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="staff.html">AI employees</a><small>RING, REPLY, ANSWER, COLLECT, BOOST</small></td>
-                  <td data-l="What it is">Five roles a small company pays a person to do, or does not do at all. RING answers the phone in about eight seconds. REPLY answers every web lead. ANSWER handles support. COLLECT sends invoices and reminds late payers. BOOST runs the ads. Each is trained on your prices, hours and wording.</td>
-                  <td data-l="Terms">Month to month. You approve every script before a customer hears one. No per-call or per-minute charges.</td>
-                  <td>from $297<small>a month, each. All five $1,797</small></td>
-                </tr>
-                <tr>
-                  <td><a href="service-web-design.html">Websites</a><small>Coded by hand, no themes</small></td>
-                  <td data-l="What it is">A site that says what you do in the first five seconds, loads fast on a phone and hands the visitor an obvious next step. Titles, descriptions and structure for Google go in during the build.</td>
-                  <td data-l="Terms">One-time. Delivered in about seven business days. The files are yours the day it launches. Maintenance is optional, $150 a month.</td>
-                  <td>from $500<small>up to five pages. Ten pages $1,500</small></td>
-                </tr>
-                <tr>
-                  <td><a href="service-ai-ads.html">Ad creation</a><small>Finished, ready-to-run</small></td>
-                  <td data-l="What it is">Ten, twenty-five or sixty finished ads a month from one idea, cut every way the platforms need: vertical, square, fifteen seconds, thirty. Seven angles on the same idea, because nobody knows in advance which one your market clicks on.</td>
-                  <td data-l="Terms">Month to month, cancel any month. You see the scripts before anything is produced and own every file, including after you cancel.</td>
-                  <td>from $697<small>a month, ten ads</small></td>
-                </tr>
-                <tr>
-                  <td><a href="service-ai-consulting.html">Custom systems</a><small>When nothing off the shelf fits</small></td>
-                  <td data-l="What it is">An intake line, a quoting tool, a test bench for the automations you already run, a dashboard for the numbers nobody is watching. Anything where the honest answer is that it has to be built.</td>
-                  <td data-l="Terms">A written scope and a fixed price before a line of code. Source, credentials and a runbook are handed over at the end.</td>
-                  <td>Quoted<small>after one conversation</small></td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="tk-note" style="margin-top:1.2rem">Anything recurring cancels at the end of the month you already paid for. Anything paid to someone else on your behalf, like a phone number or ad spend, is passed through at cost.</p>
+          <div class="hp-plates">
+
+            <article class="tk-plate hp-plate">
+              <p class="tk-eyebrow"><b>01</b> AI employees</p>
+              <h3>Five roles, trained on your prices, hours and wording.</h3>
+              <p>RING answers the phone. REPLY answers every web lead. ANSWER handles support. COLLECT chases invoices. BOOST runs the ads. You approve every script before a customer hears one.</p>
+              <div class="hp-plate__vis">
+                <ul class="hp-chat" id="hp-chat" aria-label="A text conversation handled by RING">
+                  <li class="them">Hey, do you do one-time cleanups or only weekly?</li>
+                  <li class="us" data-who="RING · 8 sec">Both. I can book a one-time visit or set you up weekly. Which works better?</li>
+                  <li class="them">Weekly. Can someone come Thursday?</li>
+                  <li class="us typing" data-who="RING"><span class="caret"></span></li>
+                </ul>
+              </div>
+              <div class="hp-plate__foot">
+                <div class="hp-plate__price"><b>from $297</b><span>a month, each · all five $1,797</span></div>
+                <a class="hp-plate__go" href="staff.html">Meet the staff</a>
+              </div>
+            </article>
+
+            <article class="tk-plate hp-plate">
+              <p class="tk-eyebrow"><b>02</b> Websites</p>
+              <h3>Coded by hand. Says what you do in five seconds.</h3>
+              <p>No themes, no page builder. Fast on a phone, an obvious next step on every page, and the titles and structure Google reads go in during the build. The files are yours the day it launches.</p>
+              <div class="hp-plate__vis">
+                <div class="hp-browser" aria-label="Three live sites, cycling">
+                  <div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div>
+                  <div class="hp-browser__shots" id="hp-shots">
+                    <img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" />
+                    <img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" />
+                    <img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" decoding="async" data-url="greenaidigital.com/blackbox" />
+                    <span class="hp-browser__stamp">Live · built here</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hp-plate__foot">
+                <div class="hp-plate__price"><b>from $500</b><span>up to five pages · about seven business days</span></div>
+                <a class="hp-plate__go" href="service-web-design.html">See the website service</a>
+              </div>
+            </article>
+
+            <article class="tk-plate hp-plate">
+              <p class="tk-eyebrow"><b>03</b> Ad creation</p>
+              <h3>One idea, seven angles, every size the platforms need.</h3>
+              <p>Ten, twenty-five or sixty finished ads a month: vertical, square, fifteen seconds, thirty. Nobody knows in advance which angle your market clicks on, so you run them all and keep what works.</p>
+              <div class="hp-plate__vis">
+                <div class="hp-ads" aria-label="Finished ad output">
+                  <div class="tall"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>9:16 · 15s</span></div>
+                  <div><img src="art/ad-angle-question.webp" alt="A square ad, the question angle" width="720" height="720" loading="lazy" decoding="async" /><span>1:1</span></div>
+                  <div><img src="art/ad-angle-split.webp" alt="A portrait ad, the split angle" width="720" height="893" loading="lazy" decoding="async" /><span>4:5</span></div>
+                  <div class="wide"><img src="art/ad-campaign-wide.webp" alt="A wide ad for the feed" width="1000" height="558" loading="lazy" decoding="async" /><span>16:9</span></div>
+                </div>
+              </div>
+              <div class="hp-plate__foot">
+                <div class="hp-plate__price"><b>from $697</b><span>a month, ten ads · you own every file</span></div>
+                <a class="hp-plate__go" href="service-ai-ads.html">See the ad desk</a>
+              </div>
+            </article>
+
+            <article class="tk-plate hp-plate">
+              <p class="tk-eyebrow"><b>04</b> Custom systems</p>
+              <h3>When the honest answer is that it has to be built.</h3>
+              <p>An intake line, a quoting tool, a test bench for the automations you already run, a flight recorder for an AI agent. A written scope and a fixed price before a line of code; source, credentials and a runbook at the end.</p>
+              <div class="hp-plate__vis">
+                <svg class="hp-schem" viewBox="0 0 480 300" aria-label="A schematic: intake, qualify, quote, record, replay">
+                  <path class="wire" d="M92 70 H150 M242 70 H300 M346 116 V150 H260 M212 150 H120 M74 150 V188 M74 236 H150 M242 236 H300"/>
+                  <path class="pulse" d="M92 70 H150 M150 70 H242 M242 70 H300 M300 70 H346 V150 H120 V188 M120 188 V236 H150 M150 236 H242 M242 236 H300"/>
+                  <rect class="box" x="26" y="46" width="66" height="48" rx="8"/><text class="t" x="59" y="66" text-anchor="middle">CALL IN</text><text class="s" x="59" y="80" text-anchor="middle">02:14:07</text>
+                  <rect class="box hot" x="150" y="46" width="92" height="48" rx="8"/><text class="t" x="196" y="66" text-anchor="middle">QUALIFY</text><text class="s" x="196" y="80" text-anchor="middle">service · zip · urgency</text>
+                  <rect class="box" x="300" y="46" width="92" height="48" rx="8"/><text class="t" x="346" y="66" text-anchor="middle">QUOTE</text><text class="s" x="346" y="80" text-anchor="middle">from your price list</text>
+                  <rect class="box hot" x="120" y="126" width="140" height="48" rx="8"/><text class="t" x="190" y="146" text-anchor="middle">RECORD</text><text class="h" x="190" y="160" text-anchor="middle">sha256 · 9f3a…c41e → chained</text>
+                  <rect class="box" x="26" y="188" width="96" height="48" rx="8" transform="translate(26 0)"/><text class="t" x="100" y="208" text-anchor="middle">OWNER</text><text class="s" x="100" y="222" text-anchor="middle">texted the summary</text>
+                  <rect class="box" x="150" y="212" width="92" height="48" rx="8"/><text class="t" x="196" y="232" text-anchor="middle">CRM</text><text class="s" x="196" y="246" text-anchor="middle">lead written</text>
+                  <rect class="box hot" x="300" y="212" width="92" height="48" rx="8"/><text class="t" x="346" y="232" text-anchor="middle">REPLAY</text><text class="s" x="346" y="246" text-anchor="middle">every step, later</text>
+                  <text class="s" x="26" y="288">Drawn from BLACKBOX, a real build on this site.</text>
+                </svg>
+              </div>
+              <div class="hp-plate__foot">
+                <div class="hp-plate__price"><b>Quoted</b><span>after one conversation · fixed price in writing</span></div>
+                <a class="hp-plate__go" href="service-ai-consulting.html">See what has been built</a>
+              </div>
+            </article>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== how a build runs (a real sequence) ================================ -->
+    <!-- ===== how a build runs ================================================= -->
     <section class="tk-sec" aria-labelledby="way-heading">
       <div class="container">
         <div class="tk-sec__grid">
           <div class="tk-sec__head">
+            <p class="tk-eyebrow"><b>Process</b></p>
             <h2 class="tk-h2" id="way-heading">How a build runs</h2>
             <p class="tk-lede">The same four steps whether it is a five-page site or a phone line.</p>
           </div>
@@ -234,26 +374,27 @@
             <ol class="tk-steps">
               <li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes, by phone or email.</p></li>
               <li><b>A price in writing</b><p>What gets built, what it will not do, and the number. Nothing is signed until you have read it.</p></li>
-              <li><b>Built in the open</b><p>You see it working on real examples as it comes together. Every script, page and ad goes past you before anyone else sees it.</p></li>
+              <li><b>Built in the open</b><p>You see it working on real examples as it comes together. Every script, page and ad goes past you first.</p></li>
               <li><b>Live, and still answered</b><p>Changes are same-day at no charge. The number on this page rings the person who built it.</p></li>
             </ol>
-            <div class="hp-way" style="margin-top:2.5rem">
-              <div><b>No account manager</b><p>The person who scopes the work is the person who builds it and the person who picks up.</p></div>
-              <div><b>Nothing goes live over your objection</b><p>If something still bothers you, it waits. Same-day changes, no change fees, no ticket numbers.</p></div>
-              <div><b>You own everything</b><p>Site files, ad files, scripts and transcripts are yours permanently. If you leave, you take all of it and nothing stops working.</p></div>
+            <div class="hp-way">
+              <div class="tk-plate"><b>No account manager</b><p>The person who scopes the work builds it and picks up the phone.</p></div>
+              <div class="tk-plate"><b>Nothing goes live over your objection</b><p>If something still bothers you, it waits. No change fees, no ticket numbers.</p></div>
+              <div class="tk-plate"><b>You own everything</b><p>Site files, ad files, scripts and transcripts are yours for good. If you leave, nothing stops working.</p></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== work: figures ====================================================== -->
+    <!-- ===== work =============================================================== -->
     <section class="tk-sec" aria-labelledby="work-heading">
       <div class="container">
         <div class="tk-sec__grid">
           <div class="tk-sec__head">
-            <h2 class="tk-h2" id="work-heading">Work</h2>
-            <p class="tk-lede">Everything here is live. Open it and use it.</p>
+            <p class="tk-eyebrow"><b>Work</b></p>
+            <h2 class="tk-h2" id="work-heading">Everything here is live. <em>Open it.</em></h2>
+            <p class="tk-lede">Two client sites and four things built to prove a point.</p>
             <a class="more" href="testimonials.html">All the work</a>
           </div>
           <div class="tk-work">
@@ -267,7 +408,7 @@
             </figure></a>
             <a href="blackbox/"><figure>
               <img src="previews/work-blackbox.webp" alt="BLACKBOX, a flight recorder for AI agents" width="1100" height="687" loading="lazy" decoding="async" />
-              <figcaption><b>BLACKBOX</b><i>Tool</i><span>A flight recorder for AI agents. Every call logged, hash-chained and replayable, so you can see exactly what an agent did.</span></figcaption>
+              <figcaption><b>BLACKBOX</b><i>Tool</i><span>A flight recorder for AI agents. Every call logged, hash-chained and replayable.</span></figcaption>
             </figure></a>
             <a href="gauntlet/"><figure>
               <img src="previews/work-gauntlet.webp" alt="THE GAUNTLET, a live prompt-injection lab" width="1100" height="687" loading="lazy" decoding="async" />
@@ -291,10 +432,11 @@
       <div class="container">
         <div class="tk-sec__grid">
           <div class="tk-sec__head">
-            <h2 class="tk-h2" id="trade-heading">Built for one trade</h2>
-            <p class="tk-lede">The pool-company edition shows what a finished build looks like.</p>
+            <p class="tk-eyebrow"><b>One trade, all the way</b></p>
+            <h2 class="tk-h2" id="trade-heading">The pool-company edition</h2>
+            <p class="tk-lede">What a finished build looks like when it goes the whole distance.</p>
           </div>
-          <div class="tk-panel">
+          <div class="tk-plate">
             <div class="hp-pool">
               <div>
                 <p class="tk-lede" style="font-size:.97rem">For pool service companies the build went all the way: three employees named for the trade, trained on price lists and routes, with a demo you can watch and a call you can listen to. Whatever your trade, this is the standard yours is built to.</p>
@@ -315,11 +457,12 @@
     </section>
 
     <!-- ===== contact ============================================================ -->
-    <section class="tk-sec" aria-labelledby="talk-heading" style="padding-bottom:5rem">
+    <section class="tk-sec" aria-labelledby="talk-heading" style="padding-bottom:6rem">
       <div class="container">
         <div class="tk-sec__grid">
           <div class="tk-sec__head">
-            <h2 class="tk-h2" id="talk-heading">Start with a conversation</h2>
+            <p class="tk-eyebrow"><b>Contact</b></p>
+            <h2 class="tk-h2" id="talk-heading">Start with a <em>conversation.</em></h2>
           </div>
           <div class="hp-talk__grid">
             <div>
@@ -411,5 +554,78 @@
   </footer>
   <script src="script.js?v=14"></script>
   <script src="checkout.js?v=8"></script>
+  <script>
+  /* THE SHIFT: one simulated day, sped up. Nothing here is a customer or a
+     statistic; it is the product's own targets, acted out. */
+  (function () {
+    var clock = document.getElementById('shift-clock'), role = document.getElementById('shift-role'),
+        num = document.getElementById('shift-num'), cap = document.getElementById('shift-cap'),
+        log = document.getElementById('shift-log'), count = document.getElementById('shift-count'),
+        owner = document.getElementById('shift-owner'), arc = document.getElementById('dial-arc'),
+        needle = document.getElementById('dial-needle'), ticks = document.getElementById('dial-ticks');
+    if (!clock || !arc) return;
+    for (var i = 0; i < 24; i++) {
+      var a = (i / 24) * Math.PI * 2, r1 = i % 6 === 0 ? 100 : 104, r2 = 110;
+      var l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', 120 + Math.sin(a) * r1); l.setAttribute('y1', 120 - Math.cos(a) * r1);
+      l.setAttribute('x2', 120 + Math.sin(a) * r2); l.setAttribute('y2', 120 - Math.cos(a) * r2);
+      l.setAttribute('class', 'tick'); l.dataset.h = i; ticks.appendChild(l);
+    }
+    var EV = [
+      { t: '02:14', role: 'RING',    num: '0:08',  cap: 'to pick up a call at two in the morning',            log: '<b>Missed after-hours call</b> answered. Estimate booked for Tuesday.' },
+      { t: '06:40', role: 'REPLY',   num: '0:41',  cap: 'to answer a web lead from your price list',           log: '<b>Web form:</b> “how much for weekly service?” Quoted, follow-up set.' },
+      { t: '09:02', role: 'COLLECT', num: '14d',   cap: 'late. A polite reminder went out, you were copied',   log: '<b>Invoice fourteen days late.</b> Reminder sent, owner copied.' },
+      { t: '11:25', role: 'ANSWER',  num: '0:12',  cap: 'to answer “are you open Saturday?”',                  log: '<b>Text:</b> “open Saturday?” Hours sent. Nobody interrupted.' },
+      { t: '13:50', role: 'BOOST',   num: '7',     cap: 'angles of one ad running, results in the morning report', log: '<b>Ad set live:</b> seven angles, one idea. Results tomorrow.' },
+      { t: '16:05', role: 'WEBSITE', num: '3 min', cap: 'from a page edit to live on your site',               log: '<b>Site change</b> pushed. Live in three minutes, no ticket.' },
+      { t: '19:30', role: 'RING',    num: '0:08',  cap: 'to hear “it’s an emergency” and get you the details', log: '<b>“It’s an emergency.”</b> Answered, then you were texted the details.', owner: true },
+      { t: '23:58', role: 'REPORT',  num: '7 / 1', cap: 'handled without you / handed to you. Then it starts again', log: '<b>Shift report:</b> seven handled, one waited for you.' }
+    ];
+    var i = 0, handled = 0, toOwner = 0;
+    function setTime(t) {
+      var h = +t.slice(0, 2), m = +t.slice(3), f = (h + m / 60) / 24;
+      clock.textContent = t;
+      arc.setAttribute('stroke-dashoffset', String(578 - 578 * f));
+      needle.style.transform = 'rotate(' + (f * 360) + 'deg)';
+      var ts = ticks.children; for (var k = 0; k < ts.length; k++) ts[k].classList.toggle('on', k <= h);
+    }
+    function step() {
+      var e = EV[i];
+      if (i === 0) { log.innerHTML = ''; handled = 0; toOwner = 0; }
+      setTime(e.t); role.textContent = e.role; num.textContent = e.num; cap.textContent = e.cap;
+      var li = document.createElement('li'); li.innerHTML = '<time>' + e.t + '</time><span>' + e.log + '</span>';
+      if (e.owner) li.className = 'owner';
+      log.prepend(li); while (log.children.length > 4) log.removeChild(log.lastChild);
+      if (i < 7) { if (e.owner) toOwner++; else handled++; }
+      count.textContent = handled; owner.textContent = toOwner;
+      i = (i + 1) % EV.length;
+    }
+    step(); setInterval(step, 3400);
+  })();
+  /* plate 1: RING types its last line */
+  (function () {
+    var chat = document.getElementById('hp-chat'); if (!chat) return;
+    var li = chat.querySelector('.typing'), text = 'Thursday works. What’s the address, and is there a gate code?';
+    function run() {
+      li.className = 'us typing'; li.innerHTML = '<span class="caret"></span>';
+      setTimeout(function () {
+        var n = 0; li.className = 'us'; li.textContent = '';
+        var tm = setInterval(function () {
+          n++; li.textContent = text.slice(0, n);
+          if (n >= text.length) { clearInterval(tm); setTimeout(run, 5200); }
+        }, 28);
+      }, 1400);
+    }
+    run();
+  })();
+  /* plate 2: the browser changes site */
+  (function () {
+    var shots = document.getElementById('hp-shots'), url = document.getElementById('hp-url'); if (!shots) return;
+    var imgs = shots.querySelectorAll('img'), i = 0;
+    setInterval(function () {
+      imgs[i].classList.remove('on'); i = (i + 1) % imgs.length; imgs[i].classList.add('on'); url.textContent = imgs[i].dataset.url;
+    }, 3400);
+  })();
+  </script>
 </body>
 </html>
