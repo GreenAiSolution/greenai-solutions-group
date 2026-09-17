@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RING — the AI employee inside your phone line, $497/mo | GreenAI Solutions</title>
+  <meta name="description" content="Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,640;1,9..144,500;1,9..144,640&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=6" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/ring.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/ring.html" />
+  <meta property="og:title" content="RING works inside your phone line" />
+  <meta property="og:description" content="Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts b" />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <style>
+    .ag-hero { padding: 8.5rem 0 4.5rem; }
+    .ag-hero__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 3rem 4rem; align-items: center; }
+    .ag-hero__sub { margin: 0 0 1.6rem; max-width: 48ch; font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); }
+    .ag-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .ag-price { display: flex; align-items: baseline; gap: .6rem; margin: 0 0 1.4rem; }
+    .ag-price b { font-family: var(--font-display); font-weight: 500; font-size: 2.6rem; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
+    .ag-price span { color: var(--ink-3); font-size: .95rem; }
+    @media (max-width: 960px) { .ag-hero { padding: 6.5rem 0 3rem; } .ag-hero__grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
+    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
+    @keyframes ag-blink { 50% { opacity: 0; } }
+    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 12px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: rgba(255,255,255,.06); color: var(--ink); border-bottom-left-radius: 4px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 4px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; opacity: .7; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-size: 1.1rem; color: var(--ember); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-job__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); font-size: .9rem; }
+    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--line-2); }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 4px rgba(240,207,107,.18); }
+    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
+    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: var(--ember); }
+    .ag-mail__draft { margin-top: .9rem; padding: .8rem .9rem; border-radius: 10px; background: rgba(255,255,255,.05); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-family: var(--mono); font-size: .8rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 600; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; padding: .1rem .3rem; border: 1px solid var(--line-2); border-radius: 3px; color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-family: var(--mono); font-size: .66rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; }
+    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; }
+    .ag-msg.draft { background: rgba(240,207,107,.06); border-radius: 8px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .8rem .9rem; border: 1px solid var(--line-2); border-radius: 10px; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); }
+    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: var(--ember); }
+    .ag-does { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ag-does .tk-plate { padding: 1.2rem 1.3rem; } .ag-does b { display: block; margin-bottom: .3rem; color: var(--ink); font-size: 1rem; } .ag-does p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--ink-2); }
+    @media (max-width: 720px) { .ag-does { grid-template-columns: 1fr; } }
+    .ag-connect { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
+    .ag-connect li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: 1rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .ag-connect b { color: var(--ink); } .ag-connect p { margin: 0; color: var(--ink-2); line-height: 1.55; font-size: .95rem; }
+    @media (max-width: 640px) { .ag-connect li { grid-template-columns: 1fr; gap: .3rem; } }
+    .ag-roster { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
+    .ag-roster li { display: grid; grid-template-columns: 7rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .85rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: .92rem; }
+    .ag-roster a { color: var(--ink); font-family: var(--font-display); font-weight: 640; font-size: 1.15rem; text-decoration: none; } .ag-roster a:hover { color: var(--green); } .ag-roster li.me a { color: var(--green); }
+    .ag-roster b { font-family: var(--mono); font-weight: 500; color: var(--ink); white-space: nowrap; }
+    @media (max-width: 480px) { .ag-roster li { grid-template-columns: 1fr auto; } .ag-roster li span { grid-column: 1 / -1; } }
+    .ag-faq { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
+    .ag-faq li { padding: 1rem 0; border-bottom: 1px solid var(--line); } .ag-faq b { display: block; color: var(--ink); margin-bottom: .3rem; } .ag-faq p { margin: 0; color: var(--ink-2); line-height: 1.55; }
+    .ag-tm { margin: 2rem 0 0; font-size: .74rem; color: var(--ink-3); line-height: 1.5; max-width: 80ch; }
+    .ag-buy { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+</style>
+</head>
+<body class="tk light-top">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li class="nav__submenu-label">Built for one trade</li><li><a href="net.html">Pool companies: NET, BALANCE, PUMP</a></li><li><a href="catch.html">Watch it catch a lead</a></li></ul></li>
+          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="contact.html" class="btn btn-primary nav__cta">Talk to Jaden</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li class="nav__submenu-label">Built for one trade</li><li><a href="net.html">Pool companies: NET, BALANCE, PUMP</a></li><li><a href="catch.html">Watch it catch a lead</a></li></ul></li>
+        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        <li><a href="tel:4807980753" class="nav__link">(480) 798-0753</a></li>
+        <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Talk to Jaden</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main id="main">
+    <header class="ag-hero" aria-labelledby="h1">
+      <div class="container">
+        <div class="ag-hero__grid">
+          <div>
+            <p class="tk-eyebrow"><b>AI employee 01 of 06</b> · inside your phone line</p>
+            <h1 class="tk-h1" id="h1">RING answers <em>your phone.</em></h1>
+            <p class="ag-hero__sub">Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts back anyone who hung up.</p>
+            <div class="ag-price"><b>$497</b><span>a month · month to month · no setup fee</span></div>
+            <div class="ag-hero__cta">
+              <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid" data-sku="agent-ring">Hire RING</a>
+              <a href="contact.html?want=agent-ring" class="tk-btn tk-btn--line">Ask a question first</a>
+            </div>
+          </div>
+          <div class="tk-plate ag-mock" role="img" aria-label="What RING looks like at work inside your phone line, a mock-up with fictional names.">
+            <div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
+<ul class="ag-lines"><li class="them">Hi, uh, is this Saguaro Pool Care? My pump is making a grinding noise and it's Sunday.</li>
+<li class="us" data-who="RING · answered in 0:08">It is. Sorry about the noise, that usually means the pump should be switched off until someone looks at it. Can I get the address? I can book the first visit tomorrow morning.</li>
+<li class="them">Yeah, 1412 E Palo Verde, Gilbert.</li>
+<li class="us typing" data-who="RING"><span class="caret"></span></li></ul>
+<div class="ag-call__foot">Owner texted: "Pump noise, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="tk-sec" aria-labelledby="h-does">
+      <div class="container"><div class="tk-sec__grid">
+        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The job</b></p><h2 class="tk-h2" id="h-does">What RING does inside your phone line</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>
+        <div class="ag-does"><div class="tk-plate"><b>Picks up in about eight seconds</b><p>Any hour. It never puts a caller in a queue and never says "our office is closed".</p></div>
+<div class="tk-plate"><b>Books into your calendar</b><p>Asks the questions you always ask, offers the slots you gave it, confirms by text.</p></div>
+<div class="tk-plate"><b>Texts back the ones who hung up</b><p>A missed call gets a text within a minute, so the lead does not call the next company.</p></div>
+<div class="tk-plate"><b>Takes a message when it does not know</b><p>It will not invent a price or a promise. It says so and gets you the details.</p></div>
+<div class="tk-plate"><b>Flags a real emergency to you</b><p>A burst pipe at 2am reaches your phone as a text with the address, not as a voicemail.</p></div>
+<div class="tk-plate"><b>Every call in writing</b><p>Transcript and summary in your inbox, or in Slack or Teams if you run those.</p></div></div>
+      </div></div>
+    </section>
+
+    <section class="tk-sec" aria-labelledby="h-connect">
+      <div class="container"><div class="tk-sec__grid">
+        <div class="tk-sec__head"><p class="tk-eyebrow"><b>How it connects</b></p><h2 class="tk-h2" id="h-connect">Your account. <em>Your rules.</em></h2></div>
+        <ul class="ag-connect"><li><b>Your number stays yours</b><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></li>
+<li><b>Trained on your business</b><p>Services, prices, hours, service area and the way you say things. You read every script before a caller hears it.</p></li>
+<li><b>Off in one call</b><p>Cancel at the end of the month and the forwarding is removed the same day.</p></li></ul>
+      </div></div>
+    </section>
+
+    <section class="tk-sec" aria-labelledby="h-price">
+      <div class="container"><div class="tk-sec__grid">
+        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Price</b></p><h2 class="tk-h2" id="h-price">$497 a month. <em>That is the whole price.</em></h2></div>
+        <div class="tk-plate">
+          <p class="tk-lede" style="margin-bottom:1.2rem">Month to month. No setup fee, no per-call or per-message charges. Anything paid to RingCentral, Nextiva, Zoom Phone, or the number you already have on your behalf is your own subscription, at their price, not marked up. Cancel at the end of any month you have paid for and you keep every script, transcript and document.</p>
+          <div class="ag-buy">
+            <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid" data-sku="agent-ring">Hire RING, $497/mo</a>
+            <a href="agreement.html">Read the service agreement first</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="tk-sec" aria-labelledby="h-rest">
+      <div class="container"><div class="tk-sec__grid">
+        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The rest of the staff</b></p><h2 class="tk-h2" id="h-rest">One employee for each app you already run.</h2><a class="more" href="staff.html">The whole roster</a></div>
+        <div><ul class="ag-roster">
+<li class="me"><a href="ring.html">RING</a><span>Works inside your phone line</span><b>$497/mo</b></li>
+<li><a href="dispatch.html">DISPATCH</a><span>Works inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li>
+<li><a href="inbox.html">INBOX</a><span>Works inside Google Workspace</span><b>$397/mo</b></li>
+<li><a href="thread.html">THREAD</a><span>Works inside Slack</span><b>$347/mo</b></li>
+<li><a href="huddle.html">HUDDLE</a><span>Works inside Microsoft Teams</span><b>$347/mo</b></li>
+<li><a href="books.html">BOOKS</a><span>Works inside QuickBooks Online</span><b>$297/mo</b></li>
+<li><a href="staff.html">THE FULL STAFF</a><span>All six, one invoice, one Monday report</span><b>$1,797/mo</b></li></ul></div>
+      </div></div>
+    </section>
+
+    <section class="tk-sec" aria-labelledby="h-faq" style="padding-bottom:6rem">
+      <div class="container"><div class="tk-sec__grid">
+        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Questions</b></p><h2 class="tk-h2" id="h-faq">Asked before hiring RING</h2><a class="more" href="faq.html">All the questions</a></div>
+        <div><ul class="ag-faq"><li><b>Will callers know it is not a person?</b><p>If they ask, it tells the truth. It does not pretend to be human and does not use a fake name.</p></li>
+<li><b>What about calls it cannot handle?</b><p>It takes a message with the details and texts you. Nothing is invented to fill the gap.</p></li>
+<li><b>Do I need a new phone system?</b><p>No. Forwarding your current number is enough. If you want a proper business line, RingCentral, Nextiva or Zoom Phone all work.</p></li></ul><p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p></div>
+      </div></div>
+    </section>
+  </main>
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions</span>
+          </a>
+          <p class="footer__tagline">AI employees, websites, ad creation and custom systems for small companies in any trade. Built one at a time in Gilbert, Arizona, by the person who answers the phone.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Jaden Green, doing business as GreenAI Solutions<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="staff.html">AI employees, six apps</a></li>
+            <li><a href="service-web-design.html">Websites</a></li>
+            <li><a href="service-ai-ads.html">Ad creation</a></li>
+            <li><a href="service-ai-consulting.html">Custom systems</a></li>
+            <li><a href="net.html">Pool company edition</a></li>
+            <li><a href="catch.html">Watch it catch a lead</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Company</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Questions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start</a></li>
+            <li><a href="agreement.html">Service agreement</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296<br/><span style="color:rgba(255,255,255,.5);font-size:.85rem">Working with companies anywhere</span></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div><a href="https://instagram.com/GreenAI_solutions" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65)">@GreenAI_solutions</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions. All rights reserved.</span>
+        <span class="footer__bottom-right">Gilbert, Arizona</span>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js?v=14"></script>
+  <script src="checkout.js?v=9"></script>
+  <script>
+  (function () {
+    var li = document.querySelector('.ag-lines .typing'), t = document.querySelector('.ag-t'); if (!li) return;
+    var text = 'Got it. You are booked for Monday at 8:00, and I have texted the owner the details. Keep the pump off until then.';
+    if (t) { var s = 0; setInterval(function () { s = (s + 1) % 60; t.textContent = '0:' + (s < 10 ? '0' : '') + s; }, 1000); }
+    function run() { li.className = 'us typing'; li.innerHTML = '<span class="caret"></span>';
+      setTimeout(function () { var n = 0; li.className = 'us'; li.textContent = '';
+        var tm = setInterval(function () { n++; li.textContent = text.slice(0, n); if (n >= text.length) { clearInterval(tm); setTimeout(run, 6000); } }, 26); }, 1600); }
+    run();
+  })();
+  </script>
+</body>
+</html>

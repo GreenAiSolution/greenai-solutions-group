@@ -79,6 +79,16 @@
     'agent-answer':  'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',
     'agent-collect': 'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09',
     'full-staff':    'https://buy.stripe.com/8x28wR3N166UaX5bT65EY0a',
+    /* PLATFORM AGENTS, 2026-09-17. The staff is now one employee per app a
+       small company already runs on. Each reuses a live Payment Link at the
+       SAME price, so nothing new had to be created in Stripe. The checkout
+       page still shows the old product name until Jaden renames it. */
+    'agent-ring':     'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
+    'agent-dispatch': 'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
+    'agent-inbox':    'https://buy.stripe.com/3cIaEZ1ETeDq9T15uI5EY06',  /* = agent-reply, $397 */
+    'agent-thread':   'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',  /* = agent-answer, $347 */
+    'agent-huddle':   'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',  /* = agent-answer, $347 */
+    'agent-books':    'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09',  /* = agent-collect, $297 */
     /* POOL-ONLY, 2026-09-03. The site now sells three AI employees to pool
        service companies: NET $497, BALANCE $347, PUMP $297. Each reuses the
        live Payment Link of the retired product at the SAME price, so no new
@@ -126,6 +136,7 @@
     'agent-answer': true,
     'agent-collect': true,
     'full-staff': true,
+    'agent-ring': true, 'agent-dispatch': true, 'agent-inbox': true, 'agent-thread': true, 'agent-huddle': true, 'agent-books': true,
     'pool-net': true,
     'pool-balance': true,
     'pool-pump': true
