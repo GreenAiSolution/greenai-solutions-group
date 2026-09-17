@@ -7,9 +7,9 @@
   <meta name="description" content="Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,640;1,9..144,500;1,9..144,640&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=6" />
+  <link rel="stylesheet" href="tech.css?v=7" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -20,70 +20,51 @@
   <meta property="og:title" content="RING works inside your phone line" />
   <meta property="og:description" content="Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts b" />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
-    .ag-hero { padding: 8.5rem 0 4.5rem; }
-    .ag-hero__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 3rem 4rem; align-items: center; }
-    .ag-hero__sub { margin: 0 0 1.6rem; max-width: 48ch; font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); }
-    .ag-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-    .ag-price { display: flex; align-items: baseline; gap: .6rem; margin: 0 0 1.4rem; }
-    .ag-price b { font-family: var(--font-display); font-weight: 500; font-size: 2.6rem; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
-    .ag-price span { color: var(--ink-3); font-size: .95rem; }
-    @media (max-width: 960px) { .ag-hero { padding: 6.5rem 0 3rem; } .ag-hero__grid { grid-template-columns: 1fr; gap: 2.5rem; } }
     .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
     .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
     @keyframes ag-blink { 50% { opacity: 0; } }
     .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
-    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 12px; line-height: 1.45; }
-    .ag-lines .them { align-self: flex-start; background: rgba(255,255,255,.06); color: var(--ink); border-bottom-left-radius: 4px; }
-    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 4px; }
-    .ag-lines .us::before { content: attr(data-who); display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; opacity: .7; margin-bottom: .15rem; }
-    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
-    .ag-call__top b { font-size: 1.1rem; color: var(--ember); letter-spacing: .04em; }
-    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-3); }
-    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-job__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); font-size: .9rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
     .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
     .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
-    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--line-2); }
-    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 4px rgba(240,207,107,.18); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
     .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
     .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
-    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green); }
-    .ag-mail__row.warn em { color: var(--ember); }
-    .ag-mail__draft { margin-top: .9rem; padding: .8rem .9rem; border-radius: 10px; background: rgba(255,255,255,.05); line-height: 1.5; color: var(--ink); }
-    .ag-mail__draft span { display: block; font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
-    .ag-slack__ch, .ag-teams__ch { font-family: var(--mono); font-size: .8rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
     .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
-    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line); padding-left: .8rem; }
-    .ag-msg b { color: var(--ink); font-weight: 600; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; padding: .1rem .3rem; border: 1px solid var(--line-2); border-radius: 3px; color: var(--ink-3); vertical-align: middle; }
-    .ag-msg time { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
-    .ag-msg .src { display: block; margin-top: .2rem; font-family: var(--mono); font-size: .66rem; color: var(--ink-3); }
-    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
     .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
-    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; }
-    .ag-msg.draft { background: rgba(240,207,107,.06); border-radius: 8px; padding: .5rem .7rem; margin-top: .3rem; }
-    .ag-card { margin-top: .7rem; padding: .8rem .9rem; border: 1px solid var(--line-2); border-radius: 10px; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
-    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
     .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
-    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
-    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: var(--ember); }
-    .ag-does { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .ag-does .tk-plate { padding: 1.2rem 1.3rem; } .ag-does b { display: block; margin-bottom: .3rem; color: var(--ink); font-size: 1rem; } .ag-does p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--ink-2); }
-    @media (max-width: 720px) { .ag-does { grid-template-columns: 1fr; } }
-    .ag-connect { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-connect li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: 1rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
-    .ag-connect b { color: var(--ink); } .ag-connect p { margin: 0; color: var(--ink-2); line-height: 1.55; font-size: .95rem; }
-    @media (max-width: 640px) { .ag-connect li { grid-template-columns: 1fr; gap: .3rem; } }
-    .ag-roster { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-roster li { display: grid; grid-template-columns: 7rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .85rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: .92rem; }
-    .ag-roster a { color: var(--ink); font-family: var(--font-display); font-weight: 640; font-size: 1.15rem; text-decoration: none; } .ag-roster a:hover { color: var(--green); } .ag-roster li.me a { color: var(--green); }
-    .ag-roster b { font-family: var(--mono); font-weight: 500; color: var(--ink); white-space: nowrap; }
-    @media (max-width: 480px) { .ag-roster li { grid-template-columns: 1fr auto; } .ag-roster li span { grid-column: 1 / -1; } }
-    .ag-faq { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-faq li { padding: 1rem 0; border-bottom: 1px solid var(--line); } .ag-faq b { display: block; color: var(--ink); margin-bottom: .3rem; } .ag-faq p { margin: 0; color: var(--ink-2); line-height: 1.55; }
-    .ag-tm { margin: 2rem 0 0; font-size: .74rem; color: var(--ink-3); line-height: 1.5; max-width: 80ch; }
-    .ag-buy { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-</style>
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
+
+  </style>
 </head>
 <body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -125,90 +106,151 @@
       </ul>
     </div>
   </nav>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "RING — AI employee inside your phone line",
+  "serviceType": "AI employee",
+  "description": "Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts back anyone who hung up.",
+  "url": "https://greenaidigital.com/ring.html",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "GreenAI Solutions",
+    "url": "https://greenaidigital.com",
+    "telephone": "+1-480-798-0753",
+    "email": "jaden@greenaidigital.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gilbert",
+      "addressRegion": "AZ",
+      "postalCode": "85296",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": "US",
+  "offers": {
+    "@type": "Offer",
+    "name": "RING, month to month",
+    "price": "497",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "497",
+      "priceCurrency": "USD",
+      "billingDuration": "P1M",
+      "unitText": "per month"
+    },
+    "url": "https://greenaidigital.com/pay.html?sku=agent-ring",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
   <main id="main">
-    <header class="ag-hero" aria-labelledby="h1">
-      <div class="container">
-        <div class="ag-hero__grid">
-          <div>
-            <p class="tk-eyebrow"><b>AI employee 01 of 06</b> · inside your phone line</p>
-            <h1 class="tk-h1" id="h1">RING answers <em>your phone.</em></h1>
-            <p class="ag-hero__sub">Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts back anyone who hung up.</p>
-            <div class="ag-price"><b>$497</b><span>a month · month to month · no setup fee</span></div>
-            <div class="ag-hero__cta">
-              <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid" data-sku="agent-ring">Hire RING</a>
-              <a href="contact.html?want=agent-ring" class="tk-btn tk-btn--line">Ask a question first</a>
-            </div>
-          </div>
-          <div class="tk-plate ag-mock" role="img" aria-label="What RING looks like at work inside your phone line, a mock-up with fictional names.">
-            <div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
+
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
+      <div class="sn-hero__inner">
+        <p class="tk-eyebrow"><b>AI employee 01 of 06</b> · inside your phone line</p>
+        <h1 class="tk-h1" id="h1">RING answers <em>your phone.</em></h1>
+        <p class="sn-hero__sub">Nights, weekends, the second caller while you are on a job. It picks up in about eight seconds, sounds like your company, books the appointment and texts back anyone who hung up.</p>
+        <div class="sn-hero__price"><b>$497</b><span>a month · month to month · no setup fee</span></div>
+        <div class="sn-hero__cta">
+          <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--inverse tk-btn--arrow" data-sku="agent-ring">Hire RING</a>
+          <a href="contact.html?want=agent-ring" class="tk-btn tk-btn--ghost">Ask a question first</a>
+        </div>
+      </div>
+      <div class="sn-hero__stage"><div class="tk-plate ag-mock" role="img" aria-label="What RING looks like at work inside your phone line, a mock-up with fictional names.">
+<div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
 <ul class="ag-lines"><li class="them">Hi, uh, is this Saguaro Pool Care? My pump is making a grinding noise and it's Sunday.</li>
 <li class="us" data-who="RING · answered in 0:08">It is. Sorry about the noise, that usually means the pump should be switched off until someone looks at it. Can I get the address? I can book the first visit tomorrow morning.</li>
 <li class="them">Yeah, 1412 E Palo Verde, Gilbert.</li>
 <li class="us typing" data-who="RING"><span class="caret"></span></li></ul>
 <div class="ag-call__foot">Owner texted: "Pump noise, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div>
-          </div>
+      </div></div>
+    </header></div>
+
+    <section class="sn-sec" aria-labelledby="h-does">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-does">What RING does inside your phone line</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>
+        <div class="sn-cards sn-cards--3"><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><h3>Picks up in about eight seconds</h3><p>Any hour. It never puts a caller in a queue and never says "our office is closed".</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div><h3>Books into your calendar</h3><p>Asks the questions you always ask, offers the slots you gave it, confirms by text.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Texts back the ones who hung up</h3><p>A missed call gets a text within a minute, so the lead does not call the next company.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div><h3>Takes a message when it does not know</h3><p>It will not invent a price or a promise. It says so and gets you the details.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><h3>Flags a real emergency to you</h3><p>A burst pipe at 2am reaches your phone as a text with the address, not as a voicemail.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div><h3>Every call in writing</h3><p>Transcript and summary in your inbox, or in Slack or Teams if you run those.</p></article></div>
+      </div>
+    </section>
+
+    <div class="sn-state" aria-label="Why RING exists"><p>Most small companies do not lose the job to a competitor. They lose it to a phone that rang out at 6:40 on a Tuesday while you were under a sink.</p><p>The caller does not leave a voicemail. They call the next name on the list.</p><p><span class="who">RING</span> picks up in about eight seconds, every time, and books it into the calendar you already keep.</p></div>
+
+    <section class="sn-sec" aria-labelledby="h-how">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-how">Hiring RING is <em>five steps.</em></h2><p class="tk-lede">The same five whether it is the phone line or the books. Tap a step, or scroll.</p></div>
+        <div class="sn-steps">
+          <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">One conversation</p><p class="sn-phone__sub">Twenty minutes, by phone or email.</p>
+<ul class="sn-lines"><li class="them">We miss calls after 5 and every weekend. What would RING actually do?</li><li class="us" data-who="Jaden">Here is what it does inside your phone line, and what it will not do. If it is not a fit I will say so.</li><li class="them">What does it cost?</li><li class="us" data-who="Jaden">$497 a month, month to month. That is the whole price.</li></ul></div><div class="sn-phone__view"><p class="sn-phone__title">Your account</p><p class="sn-phone__sub">Your number stays yours</p>
+<div class="sn-file"><i>YOU</i><span>your phone line<small>connected · your own account</small></span><em>OK</em></div>
+<div class="sn-file"><i>KEY</i><span>Permissions listed in writing<small>revoke any time</small></span><em>OK</em></div>
+<div class="sn-file"><i>YOU</i><span>Owner: you<small>nothing lives anywhere else</small></span><em>OK</em></div></div><div class="sn-phone__view"><p class="sn-phone__title">Trained on your business</p><p class="sn-phone__sub">Only what you hand it. Nothing invented.</p>
+<div class="sn-file"><i>PDF</i><span>price-list.pdf<small>every number it may quote</small></span><em>READ</em></div>
+<div class="sn-file"><i>HRS</i><span>Hours &amp; service area<small>Gilbert, Mesa, Chandler, Queen Creek</small></span><em>READ</em></div>
+<div class="sn-file"><i>DOC</i><span>House rules<small>what to say, what to hand to you</small></span><em>READ</em></div>
+<div class="sn-file"><i>TXT</i><span>The way you say things<small>your wording, not a template</small></span><em>READ</em></div></div><div class="sn-phone__view"><p class="sn-phone__title">You read every word first</p><p class="sn-phone__sub">Nothing reaches a customer over your objection.</p>
+<ul class="sn-lines"><li class="us" data-who="RING · draft">Thanks Dana, Thursday is open. Is there a gate code? I can hold 9:00 for you.</li><li class="them">Change "hold" to "book". Otherwise good.</li><li class="us" data-who="RING · v2">Thanks Dana, Thursday is open. Is there a gate code? I can book 9:00 for you.</li><li class="them">Approved.</li></ul></div><div class="sn-phone__view"><p class="sn-phone__title">Live, and still answered</p><p class="sn-phone__sub">Changes are same-day at no charge.</p>
+<div class="sn-file"><i>ON</i><span>RING is live inside your phone line<small>month to month, cancel at month end</small></span><em>LIVE</em></div>
+<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>JADEN</em></div>
+<div class="sn-file"><i>MON</i><span>Monday report<small>what it handled, what it handed to you</small></span><em>WEEKLY</em></div></div></div></div></div>
+          <ol class="sn-steps__list"><li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes, by phone or email. You hear the price in writing before anything starts.</p></li><li><b>Your number stays yours</b><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></li><li><b>Trained on your business</b><p>Your prices, hours, service area and the way you say things. RING quotes from your list and nothing else; a price that is not on it cannot go out.</p></li><li><b>You read every word first</b><p>Cancel at the end of the month and the forwarding is removed the same day.</p></li><li><b>Live, and still answered</b><p>Changes are same-day at no charge. Cancel at the end of any month and you keep every script and transcript. The number on this page rings the person who built RING.</p></li></ol>
         </div>
       </div>
-    </header>
-
-    <section class="tk-sec" aria-labelledby="h-does">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The job</b></p><h2 class="tk-h2" id="h-does">What RING does inside your phone line</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>
-        <div class="ag-does"><div class="tk-plate"><b>Picks up in about eight seconds</b><p>Any hour. It never puts a caller in a queue and never says "our office is closed".</p></div>
-<div class="tk-plate"><b>Books into your calendar</b><p>Asks the questions you always ask, offers the slots you gave it, confirms by text.</p></div>
-<div class="tk-plate"><b>Texts back the ones who hung up</b><p>A missed call gets a text within a minute, so the lead does not call the next company.</p></div>
-<div class="tk-plate"><b>Takes a message when it does not know</b><p>It will not invent a price or a promise. It says so and gets you the details.</p></div>
-<div class="tk-plate"><b>Flags a real emergency to you</b><p>A burst pipe at 2am reaches your phone as a text with the address, not as a voicemail.</p></div>
-<div class="tk-plate"><b>Every call in writing</b><p>Transcript and summary in your inbox, or in Slack or Teams if you run those.</p></div></div>
-      </div></div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-connect">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>How it connects</b></p><h2 class="tk-h2" id="h-connect">Your account. <em>Your rules.</em></h2></div>
-        <ul class="ag-connect"><li><b>Your number stays yours</b><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></li>
-<li><b>Trained on your business</b><p>Services, prices, hours, service area and the way you say things. You read every script before a caller hears it.</p></li>
-<li><b>Off in one call</b><p>Cancel at the end of the month and the forwarding is removed the same day.</p></li></ul>
-      </div></div>
+    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-week">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-week">A week with RING, <em>as you would see it.</em></h2><p class="tk-lede">Three messages you would actually get. Fictional customers, real behaviour.</p></div>
+        <div class="sn-bubbles">
+          <div><div class="sn-bubble"><b>RING · 9:47 PM</b>Booked Mon 8:00 for 1412 E Palo Verde. Pump noise, told them to switch it off tonight. Transcript in your inbox.</div></div>
+          <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">RING</p><p class="sn-phone__sub">inside your phone line</p><ul class="sn-lines"><li class="us" data-who="RING">Burst pipe on Ray Rd. Texted you the address and the caller's number. Nothing booked; this one is yours.</li><li class="them">Good. Anything else?</li><li class="us" data-who="RING">Nothing that needs you. Monday report at 7.</li></ul></div></div></div>
+          <div><div class="sn-bubble"><b>RING · 11:05 AM</b>Missed call from (480) 555-0177 while you were on the line. Texted them back at 11:06; they want a quote Thursday.</div></div>
+        </div>
+        <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track"><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><b>Picks up in about eight seconds</b><p>Any hour. It never puts a caller in a queue and never says "our office is closed".</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg><b>Books into your calendar</b><p>Asks the questions you always ask, offers the slots you gave it, confirms by text.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Texts back the ones who hung up</b><p>A missed call gets a text within a minute, so the lead does not call the next company.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><b>Takes a message when it does not know</b><p>It will not invent a price or a promise. It says so and gets you the details.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><b>Flags a real emergency to you</b><p>A burst pipe at 2am reaches your phone as a text with the address, not as a voicemail.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg><b>Every call in writing</b><p>Transcript and summary in your inbox, or in Slack or Teams if you run those.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><b>Picks up in about eight seconds</b><p>Any hour. It never puts a caller in a queue and never says "our office is closed".</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg><b>Books into your calendar</b><p>Asks the questions you always ask, offers the slots you gave it, confirms by text.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Texts back the ones who hung up</b><p>A missed call gets a text within a minute, so the lead does not call the next company.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><b>Takes a message when it does not know</b><p>It will not invent a price or a promise. It says so and gets you the details.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><b>Flags a real emergency to you</b><p>A burst pipe at 2am reaches your phone as a text with the address, not as a voicemail.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg><b>Every call in writing</b><p>Transcript and summary in your inbox, or in Slack or Teams if you run those.</p></div></div></div>
+        <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track"><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg><b>Your number stays yours</b><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><b>Trained on your business</b><p>Services, prices, hours, service area and the way you say things. You read every script before a caller hears it.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/><path d="M12 2v10"/></svg><b>Off in one call</b><p>Cancel at the end of the month and the forwarding is removed the same day.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Will callers know it is not a person?</b><p>If they ask, it tells the truth. It does not pretend to be human and does not use a fake name.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>What about calls it cannot handle?</b><p>It takes a message with the details and texts you. Nothing is invented to fill the gap.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Do I need a new phone system?</b><p>No. Forwarding your current number is enough. If you want a proper business line, RingCentral, Nextiva or Zoom Phone all work.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg><b>Your number stays yours</b><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><b>Trained on your business</b><p>Services, prices, hours, service area and the way you say things. You read every script before a caller hears it.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/><path d="M12 2v10"/></svg><b>Off in one call</b><p>Cancel at the end of the month and the forwarding is removed the same day.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Will callers know it is not a person?</b><p>If they ask, it tells the truth. It does not pretend to be human and does not use a fake name.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>What about calls it cannot handle?</b><p>It takes a message with the details and texts you. Nothing is invented to fill the gap.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Do I need a new phone system?</b><p>No. Forwarding your current number is enough. If you want a proper business line, RingCentral, Nextiva or Zoom Phone all work.</p></div></div></div>
+      </div>
+    </section></div>
+
+    <section class="sn-sec" aria-labelledby="h-connect">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-connect">Your account. <em>Your rules.</em></h2></div>
+        <div class="sn-trio"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg><h3>Your number stays yours</h3><p>Forward your existing line to RING, or it takes a line on RingCentral, Nextiva or Zoom Phone. You keep the number either way.</p></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><h3>Trained on your business</h3><p>Services, prices, hours, service area and the way you say things. You read every script before a caller hears it.</p></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/><path d="M12 2v10"/></svg><h3>Off in one call</h3><p>Cancel at the end of the month and the forwarding is removed the same day.</p></div></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-price">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Price</b></p><h2 class="tk-h2" id="h-price">$497 a month. <em>That is the whole price.</em></h2></div>
-        <div class="tk-plate">
-          <p class="tk-lede" style="margin-bottom:1.2rem">Month to month. No setup fee, no per-call or per-message charges. Anything paid to RingCentral, Nextiva, Zoom Phone, or the number you already have on your behalf is your own subscription, at their price, not marked up. Cancel at the end of any month you have paid for and you keep every script, transcript and document.</p>
-          <div class="ag-buy">
-            <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid" data-sku="agent-ring">Hire RING, $497/mo</a>
+    <section class="sn-sec" aria-labelledby="h-price" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-price">
+          <p class="tk-eyebrow" style="margin-bottom:1.4rem"><b>Price</b> · that is the whole price</p>
+          <div class="tk-big" id="h-price">$497<small>a month, month to month</small></div>
+          <p class="sn-price__terms">No setup fee, no per-call or per-message charges. Anything paid to RingCentral, Nextiva, Zoom Phone, or the number you already have on your behalf is your own subscription, at their price, not marked up. Cancel at the end of any month you have paid for and you keep every script, transcript and document.</p>
+          <div class="sn-price__cta">
+            <a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid tk-btn--arrow" data-sku="agent-ring">Hire RING, $497/mo</a>
             <a href="agreement.html">Read the service agreement first</a>
           </div>
         </div>
-      </div></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-rest">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The rest of the staff</b></p><h2 class="tk-h2" id="h-rest">One employee for each app you already run.</h2><a class="more" href="staff.html">The whole roster</a></div>
-        <div><ul class="ag-roster">
-<li class="me"><a href="ring.html">RING</a><span>Works inside your phone line</span><b>$497/mo</b></li>
-<li><a href="dispatch.html">DISPATCH</a><span>Works inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li>
-<li><a href="inbox.html">INBOX</a><span>Works inside Google Workspace</span><b>$397/mo</b></li>
-<li><a href="thread.html">THREAD</a><span>Works inside Slack</span><b>$347/mo</b></li>
-<li><a href="huddle.html">HUDDLE</a><span>Works inside Microsoft Teams</span><b>$347/mo</b></li>
-<li><a href="books.html">BOOKS</a><span>Works inside QuickBooks Online</span><b>$297/mo</b></li>
-<li><a href="staff.html">THE FULL STAFF</a><span>All six, one invoice, one Monday report</span><b>$1,797/mo</b></li></ul></div>
-      </div></div>
+    <section class="sn-sec" aria-labelledby="h-faq" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-faq">Asked before hiring RING</h2><p class="tk-lede"><a href="faq.html">All the questions</a></p></div>
+        <div class="sn-faq"><details><summary>Will callers know it is not a person?</summary><p>If they ask, it tells the truth. It does not pretend to be human and does not use a fake name.</p></details><details><summary>What about calls it cannot handle?</summary><p>It takes a message with the details and texts you. Nothing is invented to fill the gap.</p></details><details><summary>Do I need a new phone system?</summary><p>No. Forwarding your current number is enough. If you want a proper business line, RingCentral, Nextiva or Zoom Phone all work.</p></details></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-faq" style="padding-bottom:6rem">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Questions</b></p><h2 class="tk-h2" id="h-faq">Asked before hiring RING</h2><a class="more" href="faq.html">All the questions</a></div>
-        <div><ul class="ag-faq"><li><b>Will callers know it is not a person?</b><p>If they ask, it tells the truth. It does not pretend to be human and does not use a fake name.</p></li>
-<li><b>What about calls it cannot handle?</b><p>It takes a message with the details and texts you. Nothing is invented to fill the gap.</p></li>
-<li><b>Do I need a new phone system?</b><p>No. Forwarding your current number is enough. If you want a proper business line, RingCentral, Nextiva or Zoom Phone all work.</p></li></ul><p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p></div>
-      </div></div>
+    <section class="sn-sec" aria-labelledby="h-rest" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-rest">RING is one of <em>six.</em></h2><p class="tk-lede">One employee for each app you already run. Hire one, or the whole staff.</p></div>
+        <div class="sn-more"><a href="dispatch.html"><b>DISPATCH</b><span>Works inside Jobber, Housecall Pro or ServiceTitan. $497 a month.</span><i>See DISPATCH →</i></a><a href="inbox.html"><b>INBOX</b><span>Works inside Google Workspace. $397 a month.</span><i>See INBOX →</i></a><a href="thread.html"><b>THREAD</b><span>Works inside Slack. $347 a month.</span><i>See THREAD →</i></a><a href="huddle.html"><b>HUDDLE</b><span>Works inside Microsoft Teams. $347 a month.</span><i>See HUDDLE →</i></a><a href="books.html"><b>BOOKS</b><span>Works inside QuickBooks Online. $297 a month.</span><i>See BOOKS →</i></a><a href="staff.html"><b>The full staff</b><span>All six, one invoice, one Monday report. $1,797 a month.</span><i>See all six →</i></a></div>
+        <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
+      </div>
     </section>
   </main>
-  <footer class="footer" aria-label="Site footer">
+  <div class="sn-sticky"><a href="pay.html?sku=agent-ring" class="tk-btn tk-btn--solid tk-btn--arrow" data-sku="agent-ring">Hire RING, $497/mo</a></div>
+    <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
@@ -279,17 +321,40 @@
       </div>
     </div>
   </footer>
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
   <script src="script.js?v=14"></script>
-  <script src="checkout.js?v=9"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
   <script>
-  (function () {
-    var li = document.querySelector('.ag-lines .typing'), t = document.querySelector('.ag-t'); if (!li) return;
-    var text = 'Got it. You are booked for Monday at 8:00, and I have texted the owner the details. Keep the pump off until then.';
-    if (t) { var s = 0; setInterval(function () { s = (s + 1) % 60; t.textContent = '0:' + (s < 10 ? '0' : '') + s; }, 1000); }
-    function run() { li.className = 'us typing'; li.innerHTML = '<span class="caret"></span>';
-      setTimeout(function () { var n = 0; li.className = 'us'; li.textContent = '';
-        var tm = setInterval(function () { n++; li.textContent = text.slice(0, n); if (n >= text.length) { clearInterval(tm); setTimeout(run, 6000); } }, 26); }, 1600); }
-    run();
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
   })();
   </script>
 </body>

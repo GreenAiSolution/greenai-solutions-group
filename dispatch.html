@@ -7,9 +7,9 @@
   <meta name="description" content="The tool you already run the day out of becomes the place every lead lands, every quote goes out from and every visit gets confirmed, without you typing an" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,640;1,9..144,500;1,9..144,640&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=6" />
+  <link rel="stylesheet" href="tech.css?v=7" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -20,70 +20,51 @@
   <meta property="og:title" content="DISPATCH works inside Jobber, Housecall Pro or ServiceTitan" />
   <meta property="og:description" content="The tool you already run the day out of becomes the place every lead lands, every quote goes out from and every visit gets confirmed, without you typing an" />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
-    .ag-hero { padding: 8.5rem 0 4.5rem; }
-    .ag-hero__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 3rem 4rem; align-items: center; }
-    .ag-hero__sub { margin: 0 0 1.6rem; max-width: 48ch; font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); }
-    .ag-hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-    .ag-price { display: flex; align-items: baseline; gap: .6rem; margin: 0 0 1.4rem; }
-    .ag-price b { font-family: var(--font-display); font-weight: 500; font-size: 2.6rem; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
-    .ag-price span { color: var(--ink-3); font-size: .95rem; }
-    @media (max-width: 960px) { .ag-hero { padding: 6.5rem 0 3rem; } .ag-hero__grid { grid-template-columns: 1fr; gap: 2.5rem; } }
     .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
     .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
     @keyframes ag-blink { 50% { opacity: 0; } }
     .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
-    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 12px; line-height: 1.45; }
-    .ag-lines .them { align-self: flex-start; background: rgba(255,255,255,.06); color: var(--ink); border-bottom-left-radius: 4px; }
-    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 4px; }
-    .ag-lines .us::before { content: attr(data-who); display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .16em; opacity: .7; margin-bottom: .15rem; }
-    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
-    .ag-call__top b { font-size: 1.1rem; color: var(--ember); letter-spacing: .04em; }
-    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-3); }
-    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-job__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); font-size: .9rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
     .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
     .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
-    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--line-2); }
-    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 4px rgba(240,207,107,.18); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
     .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
     .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
-    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green); }
-    .ag-mail__row.warn em { color: var(--ember); }
-    .ag-mail__draft { margin-top: .9rem; padding: .8rem .9rem; border-radius: 10px; background: rgba(255,255,255,.05); line-height: 1.5; color: var(--ink); }
-    .ag-mail__draft span { display: block; font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
-    .ag-slack__ch, .ag-teams__ch { font-family: var(--mono); font-size: .8rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
     .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
-    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line); padding-left: .8rem; }
-    .ag-msg b { color: var(--ink); font-weight: 600; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; padding: .1rem .3rem; border: 1px solid var(--line-2); border-radius: 3px; color: var(--ink-3); vertical-align: middle; }
-    .ag-msg time { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
-    .ag-msg .src { display: block; margin-top: .2rem; font-family: var(--mono); font-size: .66rem; color: var(--ink-3); }
-    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
     .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
-    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; }
-    .ag-msg.draft { background: rgba(240,207,107,.06); border-radius: 8px; padding: .5rem .7rem; margin-top: .3rem; }
-    .ag-card { margin-top: .7rem; padding: .8rem .9rem; border: 1px solid var(--line-2); border-radius: 10px; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
-    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); letter-spacing: 0; text-transform: none; font-family: var(--font-body); }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
     .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
-    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
-    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: var(--ember); }
-    .ag-does { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .ag-does .tk-plate { padding: 1.2rem 1.3rem; } .ag-does b { display: block; margin-bottom: .3rem; color: var(--ink); font-size: 1rem; } .ag-does p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--ink-2); }
-    @media (max-width: 720px) { .ag-does { grid-template-columns: 1fr; } }
-    .ag-connect { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-connect li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: 1rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
-    .ag-connect b { color: var(--ink); } .ag-connect p { margin: 0; color: var(--ink-2); line-height: 1.55; font-size: .95rem; }
-    @media (max-width: 640px) { .ag-connect li { grid-template-columns: 1fr; gap: .3rem; } }
-    .ag-roster { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-roster li { display: grid; grid-template-columns: 7rem minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .85rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: .92rem; }
-    .ag-roster a { color: var(--ink); font-family: var(--font-display); font-weight: 640; font-size: 1.15rem; text-decoration: none; } .ag-roster a:hover { color: var(--green); } .ag-roster li.me a { color: var(--green); }
-    .ag-roster b { font-family: var(--mono); font-weight: 500; color: var(--ink); white-space: nowrap; }
-    @media (max-width: 480px) { .ag-roster li { grid-template-columns: 1fr auto; } .ag-roster li span { grid-column: 1 / -1; } }
-    .ag-faq { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-ink); }
-    .ag-faq li { padding: 1rem 0; border-bottom: 1px solid var(--line); } .ag-faq b { display: block; color: var(--ink); margin-bottom: .3rem; } .ag-faq p { margin: 0; color: var(--ink-2); line-height: 1.55; }
-    .ag-tm { margin: 2rem 0 0; font-size: .74rem; color: var(--ink-3); line-height: 1.5; max-width: 80ch; }
-    .ag-buy { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-</style>
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
+
+  </style>
 </head>
 <body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -125,87 +106,148 @@
       </ul>
     </div>
   </nav>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "DISPATCH — AI employee inside Jobber, Housecall Pro or ServiceTitan",
+  "serviceType": "AI employee",
+  "description": "The tool you already run the day out of becomes the place every lead lands, every quote goes out from and every visit gets confirmed, without you typing any of it.",
+  "url": "https://greenaidigital.com/dispatch.html",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "GreenAI Solutions",
+    "url": "https://greenaidigital.com",
+    "telephone": "+1-480-798-0753",
+    "email": "jaden@greenaidigital.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gilbert",
+      "addressRegion": "AZ",
+      "postalCode": "85296",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": "US",
+  "offers": {
+    "@type": "Offer",
+    "name": "DISPATCH, month to month",
+    "price": "497",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "497",
+      "priceCurrency": "USD",
+      "billingDuration": "P1M",
+      "unitText": "per month"
+    },
+    "url": "https://greenaidigital.com/pay.html?sku=agent-dispatch",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
   <main id="main">
-    <header class="ag-hero" aria-labelledby="h1">
-      <div class="container">
-        <div class="ag-hero__grid">
-          <div>
-            <p class="tk-eyebrow"><b>AI employee 02 of 06</b> · inside Jobber, Housecall Pro or ServiceTitan</p>
-            <h1 class="tk-h1" id="h1">DISPATCH works inside <em>Jobber.</em> Or Housecall Pro. Or ServiceTitan.</h1>
-            <p class="ag-hero__sub">The tool you already run the day out of becomes the place every lead lands, every quote goes out from and every visit gets confirmed, without you typing any of it.</p>
-            <div class="ag-price"><b>$497</b><span>a month · month to month · no setup fee</span></div>
-            <div class="ag-hero__cta">
-              <a href="pay.html?sku=agent-dispatch" class="tk-btn tk-btn--solid" data-sku="agent-dispatch">Hire DISPATCH</a>
-              <a href="contact.html?want=agent-dispatch" class="tk-btn tk-btn--line">Ask a question first</a>
-            </div>
-          </div>
-          <div class="tk-plate ag-mock" role="img" aria-label="What DISPATCH looks like at work inside Jobber, Housecall Pro or ServiceTitan, a mock-up with fictional names.">
-            <div class="ag-job"><div class="ag-job__head"><span>Request #1187</span><b>Palo Verde · pump repair</b></div>
-<ol class="ag-flow"><li class="done"><b>Lead in</b><span>Website form, 9:47 PM</span></li><li class="done"><b>Client created</b><span>M. Ortega · Gilbert 85296</span></li><li class="done"><b>Quote sent</b><span>From your price list · $285</span></li><li class="on"><b>Scheduled</b><span>Thu 9:00 · Route B</span></li><li><b>Reminder</b><span>Wed 6:00 PM, automatic</span></li></ol>
-<div class="ag-job__foot">Written into your account. Nothing to copy over.</div></div>
-          </div>
+
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
+      <div class="sn-hero__inner">
+        <p class="tk-eyebrow"><b>AI employee 02 of 06</b> · inside Jobber, Housecall Pro or ServiceTitan</p>
+        <h1 class="tk-h1" id="h1">DISPATCH works inside <em>Jobber.</em> Or Housecall Pro. Or ServiceTitan.</h1>
+        <p class="sn-hero__sub">The tool you already run the day out of becomes the place every lead lands, every quote goes out from and every visit gets confirmed, without you typing any of it.</p>
+        <div class="sn-hero__price"><b>$497</b><span>a month · month to month · no setup fee</span></div>
+        <div class="sn-hero__cta">
+          <a href="pay.html?sku=agent-dispatch" class="tk-btn tk-btn--inverse tk-btn--arrow" data-sku="agent-dispatch">Hire DISPATCH</a>
+          <a href="contact.html?want=agent-dispatch" class="tk-btn tk-btn--ghost">Ask a question first</a>
         </div>
       </div>
-    </header>
-
-    <section class="tk-sec" aria-labelledby="h-does">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The job</b></p><h2 class="tk-h2" id="h-does">What DISPATCH does inside Jobber, Housecall Pro or ServiceTitan</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>
-        <div class="ag-does"><div class="tk-plate"><b>Turns a lead into a client and a request</b><p>Web form, text, call or Google message: the client and the request exist in your tool within a minute.</p></div>
-<div class="tk-plate"><b>Sends the quote from your price list</b><p>For the jobs you have priced, it quotes and sends. For the rest it gathers the photos and details and hands it to you.</p></div>
-<div class="tk-plate"><b>Confirms and reminds every visit</b><p>Booking confirmation, day-before reminder, on-my-way text, all from the schedule in your tool.</p></div>
-<div class="tk-plate"><b>Chases quotes that went quiet</b><p>Day two, five and ten, politely, until they accept or say no.</p></div>
-<div class="tk-plate"><b>Answers "when is my tech coming"</b><p>From the live schedule, so nobody has to stop driving to check.</p></div>
-<div class="tk-plate"><b>Asks for the review after the visit</b><p>Once the job is marked complete and the customer is happy.</p></div></div>
+      <div class="sn-hero__stage"><div class="tk-plate ag-mock" role="img" aria-label="What DISPATCH looks like at work inside Jobber, Housecall Pro or ServiceTitan, a mock-up with fictional names.">
+<div class="ag-job"><div class="ag-job__head"><span>Request #1187</span><b>Palo Verde · pump repair</b></div>
+<ol class="ag-flow"><li class="done"><b>Lead in</b><span>Website form, 9:47 PM</span></li><li class="done"><b>Client created</b><span>M. Ortega · Gilbert 85296</span></li><li class="done"><b>Quote sent</b><span>From your price list · $285</span></li><li class="on"><b>Scheduled</b><span>Thu 9:00 · Route B</span></li><li><b>Reminder</b><span>Wed 6:00 PM, automatic</span></li></ol>
+<div class="ag-job__foot">Written into your account. Nothing to copy over.</div></div>
       </div></div>
+    </header></div>
+
+    <section class="sn-sec" aria-labelledby="h-does">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-does">What DISPATCH does inside Jobber, Housecall Pro or ServiceTitan</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>
+        <div class="sn-cards sn-cards--3"><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><h3>Turns a lead into a client and a request</h3><p>Web form, text, call or Google message: the client and the request exist in your tool within a minute.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></div><h3>Sends the quote from your price list</h3><p>For the jobs you have priced, it quotes and sends. For the rest it gathers the photos and details and hands it to you.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div><h3>Confirms and reminds every visit</h3><p>Booking confirmation, day-before reminder, on-my-way text, all from the schedule in your tool.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div><h3>Chases quotes that went quiet</h3><p>Day two, five and ten, politely, until they accept or say no.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Answers "when is my tech coming"</h3><p>From the live schedule, so nobody has to stop driving to check.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><h3>Asks for the review after the visit</h3><p>Once the job is marked complete and the customer is happy.</p></article></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-connect">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>How it connects</b></p><h2 class="tk-h2" id="h-connect">Your account. <em>Your rules.</em></h2></div>
-        <ul class="ag-connect"><li><b>Through the platform's own API</b><p>Jobber and Housecall Pro expose an API on their higher plans; ServiceTitan grants access through its developer program. I check what your account allows before you pay anything.</p></li>
-<li><b>Your data stays in your tool</b><p>DISPATCH writes clients, requests, quotes and notes into your account. Nothing lives somewhere else.</p></li>
-<li><b>You approve every message</b><p>Confirmations, reminders and quote follow-ups are read by you before a customer sees one.</p></li></ul>
-      </div></div>
+    <div class="sn-state" aria-label="Why DISPATCH exists"><p>The lead came in at 9:47 on a Friday night. By Monday it was a client, a request, a quote and a Thursday slot, and nobody in the office typed a word of it.</p><p>The same tool you already open every morning. Nothing to copy over, nothing to log into.</p><p><span class="who">DISPATCH</span> does the typing you have been doing at the kitchen table.</p></div>
+
+    <section class="sn-sec" aria-labelledby="h-how">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-how">Hiring DISPATCH is <em>five steps.</em></h2><p class="tk-lede">The same five whether it is the phone line or the books. Tap a step, or scroll.</p></div>
+        <div class="sn-steps">
+          <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">One conversation</p><p class="sn-phone__sub">Twenty minutes, by phone or email.</p>
+<ul class="sn-lines"><li class="them">We miss calls after 5 and every weekend. What would DISPATCH actually do?</li><li class="us" data-who="Jaden">Here is what it does inside Jobber, Housecall Pro or ServiceTitan, and what it will not do. If it is not a fit I will say so.</li><li class="them">What does it cost?</li><li class="us" data-who="Jaden">$497 a month, month to month. That is the whole price.</li></ul></div><div class="sn-phone__view"><p class="sn-phone__title">Your account</p><p class="sn-phone__sub">Through the platform's own API</p>
+<div class="sn-file"><i>JOB</i><span>Jobber, Housecall Pro or ServiceTitan<small>connected · your own account</small></span><em>OK</em></div>
+<div class="sn-file"><i>KEY</i><span>Permissions listed in writing<small>revoke any time</small></span><em>OK</em></div>
+<div class="sn-file"><i>YOU</i><span>Owner: you<small>nothing lives anywhere else</small></span><em>OK</em></div></div><div class="sn-phone__view"><p class="sn-phone__title">Trained on your business</p><p class="sn-phone__sub">Only what you hand it. Nothing invented.</p>
+<div class="sn-file"><i>PDF</i><span>price-list.pdf<small>every number it may quote</small></span><em>READ</em></div>
+<div class="sn-file"><i>HRS</i><span>Hours &amp; service area<small>Gilbert, Mesa, Chandler, Queen Creek</small></span><em>READ</em></div>
+<div class="sn-file"><i>DOC</i><span>House rules<small>what to say, what to hand to you</small></span><em>READ</em></div>
+<div class="sn-file"><i>TXT</i><span>The way you say things<small>your wording, not a template</small></span><em>READ</em></div></div><div class="sn-phone__view"><p class="sn-phone__title">You read every word first</p><p class="sn-phone__sub">Nothing reaches a customer over your objection.</p>
+<ul class="sn-lines"><li class="us" data-who="DISPATCH · draft">Thanks Dana, Thursday is open. Is there a gate code? I can hold 9:00 for you.</li><li class="them">Change "hold" to "book". Otherwise good.</li><li class="us" data-who="DISPATCH · v2">Thanks Dana, Thursday is open. Is there a gate code? I can book 9:00 for you.</li><li class="them">Approved.</li></ul></div><div class="sn-phone__view"><p class="sn-phone__title">Live, and still answered</p><p class="sn-phone__sub">Changes are same-day at no charge.</p>
+<div class="sn-file"><i>ON</i><span>DISPATCH is live inside Jobber, Housecall Pro or ServiceTitan<small>month to month, cancel at month end</small></span><em>LIVE</em></div>
+<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>JADEN</em></div>
+<div class="sn-file"><i>MON</i><span>Monday report<small>what it handled, what it handed to you</small></span><em>WEEKLY</em></div></div></div></div></div>
+          <ol class="sn-steps__list"><li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes, by phone or email. You hear the price in writing before anything starts.</p></li><li><b>Through the platform's own API</b><p>Jobber and Housecall Pro expose an API on their higher plans; ServiceTitan grants access through its developer program. I check what your account allows before you pay anything.</p></li><li><b>Trained on your business</b><p>Your prices, hours, service area and the way you say things. DISPATCH quotes from your list and nothing else; a price that is not on it cannot go out.</p></li><li><b>You read every word first</b><p>Confirmations, reminders and quote follow-ups are read by you before a customer sees one.</p></li><li><b>Live, and still answered</b><p>Changes are same-day at no charge. Cancel at the end of any month and you keep every script and transcript. The number on this page rings the person who built DISPATCH.</p></li></ol>
+        </div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-price">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Price</b></p><h2 class="tk-h2" id="h-price">$497 a month. <em>That is the whole price.</em></h2></div>
-        <div class="tk-plate">
-          <p class="tk-lede" style="margin-bottom:1.2rem">Month to month. No setup fee, no per-call or per-message charges. Anything paid to Jobber, Housecall Pro and ServiceTitan on your behalf is your own subscription, at their price, not marked up. Cancel at the end of any month you have paid for and you keep every script, transcript and document.</p>
-          <div class="ag-buy">
-            <a href="pay.html?sku=agent-dispatch" class="tk-btn tk-btn--solid" data-sku="agent-dispatch">Hire DISPATCH, $497/mo</a>
+    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-week">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-week">A week with DISPATCH, <em>as you would see it.</em></h2><p class="tk-lede">Three messages you would actually get. Fictional customers, real behaviour.</p></div>
+        <div class="sn-bubbles">
+          <div><div class="sn-bubble"><b>DISPATCH · 9:48 PM</b>New request #1187 from the website. Client created, quoted $285 from your price list, holding Thursday 9:00 on Route B.</div></div>
+          <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">DISPATCH</p><p class="sn-phone__sub">inside Jobber, Housecall Pro or ServiceTitan</p><ul class="sn-lines"><li class="us" data-who="DISPATCH">Reminder sent to M. Ortega for tomorrow's 9:00. On-my-way text queued for when the job before it closes.</li><li class="them">Good. Anything else?</li><li class="us" data-who="DISPATCH">Nothing that needs you. Monday report at 7.</li></ul></div></div></div>
+          <div><div class="sn-bubble"><b>DISPATCH · Day 5</b>Henderson quote still open. Second nudge sent in your wording. Stops after day ten unless they answer.</div></div>
+        </div>
+        <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track"><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg><b>Turns a lead into a client and a request</b><p>Web form, text, call or Google message: the client and the request exist in your tool within a minute.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg><b>Sends the quote from your price list</b><p>For the jobs you have priced, it quotes and sends. For the rest it gathers the photos and details and hands it to you.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><b>Confirms and reminds every visit</b><p>Booking confirmation, day-before reminder, on-my-way text, all from the schedule in your tool.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg><b>Chases quotes that went quiet</b><p>Day two, five and ten, politely, until they accept or say no.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Answers "when is my tech coming"</b><p>From the live schedule, so nobody has to stop driving to check.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><b>Asks for the review after the visit</b><p>Once the job is marked complete and the customer is happy.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg><b>Turns a lead into a client and a request</b><p>Web form, text, call or Google message: the client and the request exist in your tool within a minute.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg><b>Sends the quote from your price list</b><p>For the jobs you have priced, it quotes and sends. For the rest it gathers the photos and details and hands it to you.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><b>Confirms and reminds every visit</b><p>Booking confirmation, day-before reminder, on-my-way text, all from the schedule in your tool.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg><b>Chases quotes that went quiet</b><p>Day two, five and ten, politely, until they accept or say no.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Answers "when is my tech coming"</b><p>From the live schedule, so nobody has to stop driving to check.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><b>Asks for the review after the visit</b><p>Once the job is marked complete and the customer is happy.</p></div></div></div>
+        <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track"><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"/></svg><b>Through the platform's own API</b><p>Jobber and Housecall Pro expose an API on their higher plans; ServiceTitan grants access through its developer program. I check what your account allows before you pay anything.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><b>Your data stays in your tool</b><p>DISPATCH writes clients, requests, quotes and notes into your account. Nothing lives somewhere else.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>You approve every message</b><p>Confirmations, reminders and quote follow-ups are read by you before a customer sees one.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Which plan of Jobber or Housecall Pro do I need?</b><p>The one that exposes their API; both gate it to higher tiers. I check your account before you pay anything, and if it will not work you hear that first.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Does it replace Jobber, Housecall Pro or ServiceTitan?</b><p>No. It works inside them. Your schedule, clients and invoices stay exactly where they are.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>What if a customer asks for a job I have not priced?</b><p>It gathers the details and photos and hands the quote to you. It never guesses a number.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"/></svg><b>Through the platform's own API</b><p>Jobber and Housecall Pro expose an API on their higher plans; ServiceTitan grants access through its developer program. I check what your account allows before you pay anything.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><b>Your data stays in your tool</b><p>DISPATCH writes clients, requests, quotes and notes into your account. Nothing lives somewhere else.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>You approve every message</b><p>Confirmations, reminders and quote follow-ups are read by you before a customer sees one.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Which plan of Jobber or Housecall Pro do I need?</b><p>The one that exposes their API; both gate it to higher tiers. I check your account before you pay anything, and if it will not work you hear that first.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>Does it replace Jobber, Housecall Pro or ServiceTitan?</b><p>No. It works inside them. Your schedule, clients and invoices stay exactly where they are.</p></div><div class="sn-mcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><b>What if a customer asks for a job I have not priced?</b><p>It gathers the details and photos and hands the quote to you. It never guesses a number.</p></div></div></div>
+      </div>
+    </section></div>
+
+    <section class="sn-sec" aria-labelledby="h-connect">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-connect">Your account. <em>Your rules.</em></h2></div>
+        <div class="sn-trio"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"/></svg><h3>Through the platform's own API</h3><p>Jobber and Housecall Pro expose an API on their higher plans; ServiceTitan grants access through its developer program. I check what your account allows before you pay anything.</p></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg><h3>Your data stays in your tool</h3><p>DISPATCH writes clients, requests, quotes and notes into your account. Nothing lives somewhere else.</p></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></svg><h3>You approve every message</h3><p>Confirmations, reminders and quote follow-ups are read by you before a customer sees one.</p></div></div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-price" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-price">
+          <p class="tk-eyebrow" style="margin-bottom:1.4rem"><b>Price</b> · that is the whole price</p>
+          <div class="tk-big" id="h-price">$497<small>a month, month to month</small></div>
+          <p class="sn-price__terms">No setup fee, no per-call or per-message charges. Anything paid to Jobber, Housecall Pro and ServiceTitan on your behalf is your own subscription, at their price, not marked up. Cancel at the end of any month you have paid for and you keep every script, transcript and document.</p>
+          <div class="sn-price__cta">
+            <a href="pay.html?sku=agent-dispatch" class="tk-btn tk-btn--solid tk-btn--arrow" data-sku="agent-dispatch">Hire DISPATCH, $497/mo</a>
             <a href="agreement.html">Read the service agreement first</a>
           </div>
         </div>
-      </div></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-rest">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>The rest of the staff</b></p><h2 class="tk-h2" id="h-rest">One employee for each app you already run.</h2><a class="more" href="staff.html">The whole roster</a></div>
-        <div><ul class="ag-roster">
-<li><a href="ring.html">RING</a><span>Works inside your phone line</span><b>$497/mo</b></li>
-<li class="me"><a href="dispatch.html">DISPATCH</a><span>Works inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li>
-<li><a href="inbox.html">INBOX</a><span>Works inside Google Workspace</span><b>$397/mo</b></li>
-<li><a href="thread.html">THREAD</a><span>Works inside Slack</span><b>$347/mo</b></li>
-<li><a href="huddle.html">HUDDLE</a><span>Works inside Microsoft Teams</span><b>$347/mo</b></li>
-<li><a href="books.html">BOOKS</a><span>Works inside QuickBooks Online</span><b>$297/mo</b></li>
-<li><a href="staff.html">THE FULL STAFF</a><span>All six, one invoice, one Monday report</span><b>$1,797/mo</b></li></ul></div>
-      </div></div>
+    <section class="sn-sec" aria-labelledby="h-faq" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-faq">Asked before hiring DISPATCH</h2><p class="tk-lede"><a href="faq.html">All the questions</a></p></div>
+        <div class="sn-faq"><details><summary>Which plan of Jobber or Housecall Pro do I need?</summary><p>The one that exposes their API; both gate it to higher tiers. I check your account before you pay anything, and if it will not work you hear that first.</p></details><details><summary>Does it replace Jobber, Housecall Pro or ServiceTitan?</summary><p>No. It works inside them. Your schedule, clients and invoices stay exactly where they are.</p></details><details><summary>What if a customer asks for a job I have not priced?</summary><p>It gathers the details and photos and hands the quote to you. It never guesses a number.</p></details></div>
+      </div>
     </section>
 
-    <section class="tk-sec" aria-labelledby="h-faq" style="padding-bottom:6rem">
-      <div class="container"><div class="tk-sec__grid">
-        <div class="tk-sec__head"><p class="tk-eyebrow"><b>Questions</b></p><h2 class="tk-h2" id="h-faq">Asked before hiring DISPATCH</h2><a class="more" href="faq.html">All the questions</a></div>
-        <div><ul class="ag-faq"><li><b>Which of the three do you support?</b><p>All three, with the honest caveat above about API access. If your plan does not allow it, you hear that before any money moves.</p></li>
-<li><b>Does it change my schedule on its own?</b><p>Only into the slots and routes you gave it. Anything unusual is handed to you.</p></li>
-<li><b>Can it quote everything?</b><p>No. It quotes the jobs you have priced. Anything else gets the details gathered and comes to you.</p></li></ul><p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p></div>
-      </div></div>
+    <section class="sn-sec" aria-labelledby="h-rest" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-rest">DISPATCH is one of <em>six.</em></h2><p class="tk-lede">One employee for each app you already run. Hire one, or the whole staff.</p></div>
+        <div class="sn-more"><a href="ring.html"><b>RING</b><span>Works inside your phone line. $497 a month.</span><i>See RING →</i></a><a href="inbox.html"><b>INBOX</b><span>Works inside Google Workspace. $397 a month.</span><i>See INBOX →</i></a><a href="thread.html"><b>THREAD</b><span>Works inside Slack. $347 a month.</span><i>See THREAD →</i></a><a href="huddle.html"><b>HUDDLE</b><span>Works inside Microsoft Teams. $347 a month.</span><i>See HUDDLE →</i></a><a href="books.html"><b>BOOKS</b><span>Works inside QuickBooks Online. $297 a month.</span><i>See BOOKS →</i></a><a href="staff.html"><b>The full staff</b><span>All six, one invoice, one Monday report. $1,797 a month.</span><i>See all six →</i></a></div>
+        <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
+      </div>
     </section>
   </main>
-  <footer class="footer" aria-label="Site footer">
+  <div class="sn-sticky"><a href="pay.html?sku=agent-dispatch" class="tk-btn tk-btn--solid tk-btn--arrow" data-sku="agent-dispatch">Hire DISPATCH, $497/mo</a></div>
+    <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
@@ -276,7 +318,41 @@
       </div>
     </div>
   </footer>
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
   <script src="script.js?v=14"></script>
-  <script src="checkout.js?v=9"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
+  <script>
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
+  })();
+  </script>
 </body>
 </html>
