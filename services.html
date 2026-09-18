@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services and prices — GreenAI Solutions</title>
-  <meta name="description" content="AI employees from $297/mo, websites from $500, a month of finished ads from $697/mo, and custom systems quoted after one conversation. Every price is the whole price." />
+  <title>Services — AI employees, websites, ad creation and custom systems | GreenAI Solutions</title>
+  <meta name="description" content="Four services, every price the whole price. AI employees from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -17,57 +17,167 @@
   <link rel="canonical" href="https://greenaidigital.com/services.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/services.html" />
-  <meta property="og:title" content="Services and prices — GreenAI Solutions" />
-  <meta property="og:description" content="AI employees, websites, ad creation and custom systems. Every price is the whole price." />
+  <meta property="og:title" content="Four services. Every price is the whole price." />
+  <meta property="og:description" content="Four services, every price the whole price. AI employees from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />
   <style>
-    body.svc { background:var(--paper); color:var(--ink); }
-    .sv-btn { display:inline-flex; align-items:center; justify-content:center; padding:.85rem 1.3rem; border-radius:4px; font:500 .95rem/1 var(--font-body); text-decoration:none; border:1px solid transparent; }
-    .sv-btn--gold { background:var(--gold); border-color:var(--gold); color:#fff; }
-    .sv-btn--gold:hover { background:var(--gold-2); border-color:var(--gold-2); color:#fff; }
-    .sv-btn--ink { border-color:var(--line-2); color:var(--ink); }
-    .sv-btn--ink:hover { border-color:var(--ink); color:var(--ink); }
+    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
+    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
+    @keyframes ag-blink { 50% { opacity: 0; } }
+    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
+    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
+    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
+    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
+    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
 
-    .sv-hero { padding:8.5rem 0 3rem; }
-    .sv-hero h1 { margin:0 0 1rem; font-weight:600; font-size:clamp(2.3rem,4.6vw,3.8rem); line-height:1.04; letter-spacing:-.028em; max-width:16ch; color:var(--ink); }
-    .sv-hero p { margin:0; max-width:58ch; font-size:1.1rem; line-height:1.65; color:var(--ink-2); }
-    .sv-jump { display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; margin:2rem 0 0; padding-top:1.2rem; border-top:1px solid var(--rule); font-size:.92rem; }
-    .sv-jump a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-2); padding-bottom:2px; }
-    .sv-jump a:hover { border-bottom-color:var(--ink); }
+    /* ---- the cinema: this page runs dark end to end ---- */
+    body.tk.sv-cinema, body.tk.sv-cinema::before { background: #06100A; }
+    body.tk.sv-cinema::before { background-image: radial-gradient(60% 40% at 50% 0%, rgba(232,196,106,.10), transparent 60%); }
+    body.tk.sv-cinema .nav.transparent, body.tk.sv-cinema .nav.scrolled { background: rgba(6,16,10,.7); }
+    body.tk.sv-cinema .nav .nav__logo-name, body.tk.sv-cinema .nav .nav__logo-sub, body.tk.sv-cinema .nav .nav__link { color: rgba(255,255,255,.85); }
+    body.tk.sv-cinema .nav .nav__hamburger span { background: #fff; }
+    body.tk.sv-cinema .nav__cta { background: #E8C46A; border-color: #E8C46A; color: #06100A; }
+    .sv-grain { position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: .07; mix-blend-mode: screen; }
+    .sv-vig { position: fixed; inset: 0; z-index: 4; pointer-events: none; background: radial-gradient(80% 70% at 50% 40%, transparent 55%, rgba(0,0,0,.55)); }
+    .sv { color: #fff; }
+    .sv h1, .sv h2, .sv h3 { color: #fff; }
+    .sv h1 em, .sv h2 em, .sv h3 em { color: #E8C46A; font-style: italic; font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+    .sv p { color: rgba(255,255,255,.72); }
+    .sv-slate { display: inline-flex; align-items: center; gap: .8rem; margin: 0 0 1.4rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: #E8C46A; }
+    .sv-slate::before, .sv-slate::after { content: ""; width: 2.4rem; height: 1px; background: #E8C46A; opacity: .7; }
+    .sv-hero { position: relative; padding: 9rem 1.5rem 3rem; text-align: center; overflow: hidden; }
+    .sv-hero h1 { margin: 0 auto 1.2rem; max-width: 14ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(3rem, 7.6vw, 6.4rem); line-height: .98; letter-spacing: -.03em; }
+    .sv-hero p { max-width: 58ch; margin: 0 auto 1.8rem; font-size: 1.12rem; line-height: 1.6; }
+    .sv-bars { height: 44px; background: #000; margin: 0 -16px; }
+    .sv-cast { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem 2rem; margin: 3.2rem auto 0; max-width: 1000px; }
+    .sv-cast a { display: grid; justify-items: center; gap: .5rem; text-decoration: none; color: rgba(255,255,255,.75); font-family: var(--mono); font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; }
+    .sv-cast span { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; border: 1px solid rgba(232,196,106,.55); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); box-shadow: 0 0 0 6px rgba(232,196,106,.06), 0 30px 60px -30px rgba(0,0,0,.8); overflow: hidden; transition: transform .25s, border-color .25s; }
+    .sv-cast span svg { width: 84px; height: auto; }
+    .sv-cast a:hover span { transform: translateY(-6px) scale(1.05); border-color: #E8C46A; }
+    .sv-cast a:hover { color: #fff; }
+    .sv-scene { position: relative; margin: 0 16px 16px; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(180deg, #0A1A11, #06100A); border: 1px solid rgba(232,196,106,.14); }
+    .sv-scene::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at var(--x, 70%) 30%, color-mix(in srgb, var(--ac, #E8C46A) 22%, transparent), transparent 60%); pointer-events: none; }
+    .sv-scene__in { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem 4rem; align-items: center; max-width: 1240px; margin: 0 auto; padding: clamp(3.5rem, 7vw, 6rem) 1.5rem; }
+    .sv-scene--flip .sv-scene__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .sv-scene--flip .sv-scene__copy { order: 2; }
+    .sv-scene__num { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; font-size: clamp(4rem, 9vw, 7rem); line-height: .8; color: #E8C46A; opacity: .35; margin-bottom: .6rem; }
+    .sv-scene h2 { margin: 0 0 .9rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 4.4vw, 3.6rem); line-height: 1.02; letter-spacing: -.025em; }
+    .sv-scene .lede { font-size: 1.08rem; line-height: 1.6; max-width: 46ch; margin: 0 0 1.4rem; }
+    .sv-price { display: flex; align-items: baseline; gap: .6rem; margin: 0 0 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(232,196,106,.35); }
+    .sv-price b { font-family: var(--font-display); font-weight: 600; font-size: 2.4rem; letter-spacing: -.03em; color: #fff; line-height: 1; }
+    .sv-price span { color: rgba(255,255,255,.6); font-size: .95rem; }
+    .sv-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .sv-cta .tk-btn--solid { background: #E8C46A; border-color: #E8C46A; color: #06100A; box-shadow: 0 16px 40px -14px rgba(232,196,106,.7); }
+    .sv-cta .tk-btn--solid:hover { background: #F2D68A; border-color: #F2D68A; color: #06100A; }
+    .sv-cta .tk-btn--ghost { border-color: rgba(255,255,255,.35); color: #fff; }
+    .sv-stage { position: relative; }
+    .sv-stage .rb-float { position: absolute; width: 190px; z-index: 2; }
+    .sv-spot { position: absolute; width: 260px; height: 90px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--ac, #E8C46A) 40%, transparent), transparent); filter: blur(6px); z-index: 1; }
+    .sv-screen { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(232,196,106,.3); box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 60px 120px -40px rgba(0,0,0,.9), 0 0 80px -20px color-mix(in srgb, var(--ac, #E8C46A) 45%, transparent); background: #0B1B12; }
+    .sv-screen .tk-plate { border-radius: 0; border: 0; box-shadow: none; background: #0B1B12; color: #fff; }
+    .sv-screen .ag-lines .them { background: rgba(255,255,255,.08); color: #fff; }
+    .sv-screen .ag-lines .us { background: #E8C46A; color: #06100A; }
+    .sv-screen .ag-call__top, .sv-screen .ag-call__foot { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.1); }
+    .sv-screen .ag-call__top b { color: #E8C46A; }
+    .sv-screen .ag-call__top i { background: #E8C46A; box-shadow: 0 0 0 4px rgba(232,196,106,.2); }
+    .sv-roster { margin: 0; padding: 0; list-style: none; }
+    .sv-roster li { display: grid; grid-template-columns: 2.6rem 6.5rem minmax(0, 1fr) auto; gap: .8rem; align-items: center; padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .92rem; color: rgba(255,255,255,.7); }
+    .sv-roster li svg { width: 2.6rem; height: auto; }
+    .sv-roster a { color: #fff; font-family: var(--font-display); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+    .sv-roster a:hover { color: #E8C46A; }
+    .sv-roster b { color: #E8C46A; font-family: var(--font-display); font-weight: 600; white-space: nowrap; }
+    .sv-theatre { position: relative; padding: 2.2rem 2rem 2.6rem; border-radius: 22px; background: linear-gradient(180deg, #000 0, #000 100%); border: 1px solid rgba(232,196,106,.25); }
+    .sv-theatre::before { content: ""; position: absolute; left: 10%; right: 10%; top: 0; height: 60%; background: radial-gradient(60% 100% at 50% 0%, rgba(232,196,106,.22), transparent 70%); pointer-events: none; }
+    .sv-theatre .hp-browser { position: relative; border-color: rgba(232,196,106,.3); background: #000; box-shadow: 0 40px 80px -30px rgba(0,0,0,.9); }
+    .sv-theatre .hp-browser__bar { background: #111; border-color: #222; }
+    .sv-theatre .hp-browser__url { color: rgba(255,255,255,.6); }
+    .sv-theatre__cap { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-family: var(--mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: #E8C46A; }
+    .sv-tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin-top: 1.4rem; }
+    .sv-tiers div { padding: 1rem 1rem .9rem; border-radius: 16px; border: 1px solid rgba(232,196,106,.25); background: rgba(255,255,255,.03); }
+    .sv-tiers small { display: block; font-family: var(--mono); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: #E8C46A; margin-bottom: .35rem; }
+    .sv-tiers b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; letter-spacing: -.02em; color: #fff; }
+    .sv-tiers span { font-size: .82rem; color: rgba(255,255,255,.6); }
+    .sv-film { position: relative; margin: 0 -1.5rem; padding: 1.4rem 0; background: #000; overflow: hidden; border-top: 1px solid rgba(232,196,106,.25); border-bottom: 1px solid rgba(232,196,106,.25); }
+    .sv-film::before, .sv-film::after { content: ""; position: absolute; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,.25) 14px 24px, transparent 24px 36px); }
+    .sv-film::before { top: 5px; } .sv-film::after { bottom: 5px; }
+    .sv-film__track { display: flex; gap: 12px; width: max-content; padding: 6px 0; animation: sn-march 40s linear infinite; }
+    .sv-film:hover .sv-film__track { animation-play-state: paused; }
+    .sv-film__track > div { position: relative; width: 150px; aspect-ratio: 9/16; border-radius: 6px; overflow: hidden; background: #111; border: 1px solid rgba(255,255,255,.12); }
+    .sv-film__track video, .sv-film__track img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .sv-film__track span { position: absolute; left: 6px; bottom: 6px; padding: .12rem .4rem; border-radius: 999px; background: rgba(0,0,0,.7); color: #E8C46A; font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; }
+    @media (prefers-reduced-motion: reduce) { .sv-film__track { animation: none; flex-wrap: wrap; width: auto; } }
+    .sv-schem { position: relative; padding: 1.6rem; border-radius: 22px; background: #000; border: 1px solid rgba(232,196,106,.25); }
+    .sv-schem svg { display: block; width: 100%; height: auto; }
+    .sv-credits { position: relative; max-width: 900px; margin: 0 auto; padding: clamp(4rem, 8vw, 7rem) 1.5rem 3rem; text-align: center; }
+    .sv-credits h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.02em; margin: 0 0 2rem; }
+    .sv-credits ol { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+    .sv-credits li { counter-increment: c; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem 0; border-bottom: 1px solid rgba(232,196,106,.18); text-align: right; }
+    .sv-credits li b { font-family: var(--mono); font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: #E8C46A; align-self: center; }
+    .sv-credits li p { margin: 0; text-align: left; font-size: .98rem; line-height: 1.55; }
+    .sv-menu { width: 100%; border-collapse: collapse; margin: 2.5rem 0 0; text-align: left; }
+    .sv-menu td { padding: .85rem 0; border-bottom: 1px solid rgba(232,196,106,.18); color: rgba(255,255,255,.72); font-size: .95rem; }
+    .sv-menu td:first-child { font-family: var(--font-display); font-weight: 600; color: #fff; font-size: 1.1rem; }
+    .sv-menu td:last-child { text-align: right; color: #E8C46A; font-family: var(--font-display); font-weight: 600; white-space: nowrap; }
+    .sv-end { text-align: center; padding: 3rem 1.5rem 2rem; }
+    .sv-end .num { display: block; margin: 1rem 0 .4rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.03em; color: #fff; text-decoration: none; }
+    .sv-end .num:hover { color: #E8C46A; }
+    body.tk.sv-cinema .footer { background: #000; }
+    body.tk.sv-cinema .sn-sticky .tk-btn { background: #E8C46A; border-color: #E8C46A; color: #06100A; box-shadow: 0 20px 50px -14px rgba(232,196,106,.7); }
+    body.tk.sv-cinema .ag-tm { color: rgba(255,255,255,.4); }
+    body.tk.sv-cinema .sv h1, body.tk.sv-cinema .sv h2, body.tk.sv-cinema .sv h3, body.tk.sv-cinema .sv-price b, body.tk.sv-cinema .sv-tiers b, body.tk.sv-cinema .sv-menu td:first-child, body.tk.sv-cinema .sv-end .num, body.tk.sv-cinema .sv-roster a { color: #fff; }
+    body.tk.sv-cinema .sv h1 em, body.tk.sv-cinema .sv h2 em, body.tk.sv-cinema .sv-roster b, body.tk.sv-cinema .sv-menu td:last-child, body.tk.sv-cinema .sv-credits li b, body.tk.sv-cinema .sv-tiers small { color: #E8C46A; }
+    body.tk.sv-cinema .sv p, body.tk.sv-cinema .sv-menu td, body.tk.sv-cinema .sv-roster li { color: rgba(255,255,255,.72); }
+    body.tk.sv-cinema .sv-slate { color: #E8C46A; }
+    @media (max-width: 900px) { .sv-scene__in, .sv-scene--flip .sv-scene__in { grid-template-columns: 1fr; } .sv-scene--flip .sv-scene__copy { order: 0; } .sv-stage .rb-float { display: none; } .sv-tiers { grid-template-columns: 1fr; } .sv-credits li { grid-template-columns: 1fr; text-align: left; gap: .3rem; } }
+    @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { .sv-scene__in > * { animation: tk-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 30%; } } }
 
-    .sv { padding:4.5rem 0; border-top:1px solid var(--rule); }
-    .sv__grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:2rem 5rem; align-items:start; }
-    .sv h2 { margin:0 0 .5rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink); }
-    .sv__one { margin:0 0 1.2rem; font-size:1.05rem; color:var(--ink-2); line-height:1.6; max-width:40ch; }
-    .sv__from { font-size:.95rem; color:var(--ink-3); }
-    .sv__from b { color:var(--ink); font-weight:600; font-size:1.15rem; }
-    .sv__body p { margin:0 0 1rem; color:var(--ink-2); line-height:1.65; max-width:62ch; }
-    .sv__tiers { margin:1.4rem 0 1.6rem; padding:0; list-style:none; border-top:1px solid var(--ink); }
-    .sv__tiers li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1rem; padding:.85rem 0; border-bottom:1px solid var(--rule); font-size:.97rem; color:var(--ink-2); }
-    .sv__tiers li b { color:var(--ink); font-weight:600; }
-    .sv__tiers li span { white-space:nowrap; color:var(--ink); font-weight:600; }
-    .sv__tiers li span small { display:block; font-weight:400; color:var(--ink-3); font-size:.8rem; text-align:right; }
-    .sv__cta { display:flex; flex-wrap:wrap; gap:.75rem; }
-    @media (max-width:820px) { .sv__grid { grid-template-columns:1fr; gap:1.5rem; } }
-
-    .sv-which { background:var(--sage); padding:4.5rem 0; }
-    .sv-which h2 { margin:0 0 1.6rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.4rem); letter-spacing:-.02em; color:var(--ink); max-width:20ch; }
-    .sv-which dl { margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.6rem 3rem; }
-    .sv-which dt { font-weight:600; color:var(--ink); margin-bottom:.3rem; }
-    .sv-which dd { margin:0; color:var(--ink-2); line-height:1.6; }
-    .sv-which dd a { color:var(--ink); font-weight:600; }
-    @media (max-width:720px) { .sv-which dl { grid-template-columns:1fr; } }
-
-    .sv-terms { padding:4.5rem 0; }
-    .sv-terms h2 { margin:0 0 1rem; font-weight:600; font-size:1.8rem; letter-spacing:-.02em; color:var(--ink); }
-    .sv-terms ul { margin:0; padding-left:1.2rem; color:var(--ink-2); line-height:1.7; max-width:66ch; }
-    .sv-terms li { margin-bottom:.4rem; }
-    .sv-terms a { color:var(--ink); }
+  
+    .hp-browser { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; }
+    .hp-browser__bar { display: flex; align-items: center; gap: .4rem; padding: .55rem .8rem; background: var(--bg-3); border-bottom: 1px solid var(--line); }
+    .hp-browser__bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.25); }
+    .hp-browser__url { margin-left: .5rem; font-family: var(--mono); font-size: .72rem; }
+    .hp-browser__shots { position: relative; aspect-ratio: 16 / 10; }
+    .hp-browser__shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .6s; }
+    .hp-browser__shots img.on { opacity: 1; }
   </style>
 </head>
-<body class="tk svc light-top">
+<body class="tk sv-cinema">
   <a href="#main" class="skip-link">Skip to content</a>
-
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -106,149 +216,427 @@
       </ul>
     </div>
   </nav>
+  <svg class="sv-grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg><div class="sv-vig" aria-hidden="true"></div>
+  <main id="main" class="sv">
 
-  <main id="main">
-    <header class="sv-hero">
-      <div class="container">
-        <h1>Four services. Every price is the whole price.</h1>
-        <p>Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
-        <nav class="sv-jump" aria-label="Jump to a service">
-          <a href="#employees">AI employees</a>
-          <a href="#websites">Websites</a>
-          <a href="#ads">Ad creation</a>
-          <a href="#custom">Custom systems</a>
-          <a href="#which">Which one first</a>
-        </nav>
-      </div>
+    <header class="sv-hero" aria-labelledby="h1">
+      <p class="sv-slate">GreenAI Solutions presents</p>
+      <h1 id="h1">Four services. <em>One person you can call.</em></h1>
+      <p>Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
+      <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the four</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
+      <div class="sv-cast" aria-label="The cast"><a href="ring.html"><span><svg class="rb-bust rb-ring" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-bring"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bring)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bring)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/></svg></span>RING</a><a href="dispatch.html"><span><svg class="rb-bust rb-dispatch" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bdispatch" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B"/></linearGradient>
+<radialGradient id="gl-bdispatch"><stop offset="0" stop-color="#F0CF6B" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bdispatch)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bdispatch)"/><circle cx="120" cy="8" r="5" fill="#F0CF6B"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bdispatch)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bdispatch)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F0CF6B" stroke-width="3" stroke-linecap="round"/>
+<path d="M50 62 q70-44 140 0 l6 10 q-76-30-152 0z" fill="#F0CF6B" stroke="#B9C6BE"/><rect x="108" y="30" width="24" height="14" rx="6" fill="#F0CF6B" stroke="#B9C6BE"/><circle cx="120" cy="37" r="4" fill="#fff"/></svg></span>DISPATCH</a><a href="inbox.html"><span><svg class="rb-bust rb-inbox" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-binbox" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-binbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-binbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0"/></linearGradient>
+<radialGradient id="gl-binbox"><stop offset="0" stop-color="#7CC4F0" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-binbox)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-binbox)"/><circle cx="120" cy="8" r="5" fill="#7CC4F0"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-binbox)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-binbox)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7CC4F0" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 62 q62-40 124 0 v10 q-62-28-124 0z" fill="#7CC4F0" stroke="#B9C6BE"/><rect x="52" y="70" width="60" height="9" rx="4" fill="#1E4A33"/><path d="M160 140 l-70 96" stroke="#7CC4F0" stroke-width="10" stroke-linecap="round" opacity=".9"/></svg></span>INBOX</a><a href="thread.html"><span><svg class="rb-bust rb-thread" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bthread" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7"/></linearGradient>
+<radialGradient id="gl-bthread"><stop offset="0" stop-color="#C9A9F7" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bthread)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bthread)"/><circle cx="120" cy="8" r="5" fill="#C9A9F7"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bthread)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bthread)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#C9A9F7" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(120,30)"><path d="M-26 -22 h52 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-30 l-10 8 v-8 h-12 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z" transform="translate(0,-22)" fill="#C9A9F7" stroke="#B9C6BE"/><circle cx="-12" cy="-28" r="3" fill="#0F1A14"/><circle cx="0" cy="-28" r="3" fill="#0F1A14"/><circle cx="12" cy="-28" r="3" fill="#0F1A14"/></g></svg></span>THREAD</a><a href="huddle.html"><span><svg class="rb-bust rb-huddle" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bhuddle" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bhuddle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bhuddle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E"/></linearGradient>
+<radialGradient id="gl-bhuddle"><stop offset="0" stop-color="#F5A38E" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bhuddle)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bhuddle)"/><circle cx="120" cy="8" r="5" fill="#F5A38E"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bhuddle)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bhuddle)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F5A38E"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F5A38E"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F5A38E" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 60 q62-36 124 0 l-4 12 q-58-30-116 0z" fill="#1E4A33"/><path d="M96 54 h48" stroke="#F5A38E" stroke-width="4" stroke-linecap="round"/><path d="M120 150 l0 40" stroke="#1E4A33" stroke-width="3"/><path d="M110 190 h20 v12 h-8 l-6 8 h-6z" fill="#F5A38E" stroke="#B9C6BE"/></svg></span>HUDDLE</a><a href="books.html"><span><svg class="rb-bust rb-books" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bbooks" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+<radialGradient id="gl-bbooks"><stop offset="0" stop-color="#E8C46A" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bbooks)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bbooks)"/><circle cx="120" cy="8" r="5" fill="#E8C46A"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bbooks)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bbooks)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#E8C46A"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#E8C46A"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 66 q68-30 136 0 l-6 12 q-62-26-124 0z" fill="#E8C46A" opacity=".85" stroke="#B9C6BE"/><path d="M62 74 q58-22 116 0" fill="none" stroke="#1E4A33" stroke-width="3"/></svg></span>BOOKS</a></div>
     </header>
 
-    <section class="sv" id="employees" aria-labelledby="h-employees">
-      <div class="container">
-        <div class="sv__grid">
-          <div>
-            <h2 id="h-employees">AI employees</h2>
-            <p class="sv__one">Six employees, one inside each app your company already runs on. Hire one, or the staff.</p>
-            <p class="sv__from"><b>from $297 a month</b> each, or $1,797 for all six</p>
-          </div>
-          <div class="sv__body">
-            <p>Each one is built for your company: your prices, your hours, your service area, your way of saying things. You read every reply it can send before it goes live and change any wording you do not like. It never claims to be a person, and when it does not know an answer it says so and takes a message instead of guessing.</p>
-            <ul class="sv__tiers">
-              <li><div><b><a href="ring.html">RING</a></b>, your phone line. Answers in about eight seconds, books into your calendar, texts back anyone who hung up. RingCentral, Nextiva, Zoom Phone or the number you have.</div><span>$497<small>a month</small></span></li>
-              <li><div><b><a href="dispatch.html">DISPATCH</a></b>, inside Jobber, Housecall Pro or ServiceTitan. Every lead becomes a client and a request, quoted from your price list, confirmed and chased by text.</div><span>$497<small>a month</small></span></li>
-              <li><div><b><a href="inbox.html">INBOX</a></b>, inside Google Workspace. Every Gmail lead answered in under a minute, booked into Calendar, followed up on day one, three and seven.</div><span>$397<small>a month</small></span></li>
-              <li><div><b><a href="thread.html">THREAD</a></b>, inside Slack. Answers the team from your documents, posts every lead live, drafts the reply for one-emoji approval.</div><span>$347<small>a month</small></span></li>
-              <li><div><b><a href="huddle.html">HUDDLE</a></b>, inside Microsoft Teams. The same teammate for companies on Microsoft 365.</div><span>$347<small>a month</small></span></li>
-              <li><div><b><a href="books.html">BOOKS</a></b>, inside QuickBooks Online. Invoice out the day the job closes, reminders on day seven, fourteen and twenty-one, a cash sheet every Monday.</div><span>$297<small>a month</small></span></li>
-              <li><div><b>The full staff</b>, all six working together and reporting to you every Monday.</div><span>$1,797<small>a month, $2,382 separately</small></span></li>
-            </ul>
-            <div class="sv__cta">
-              <a href="staff.html" class="sv-btn sv-btn--gold">Meet the staff</a>
-              <a href="catch.html" class="sv-btn sv-btn--ink">Watch one catch a lead</a>
-            </div>
-          </div>
+    <section class="sv-scene" id="s1" style="--ac:#7DE3A4;--x:75%" aria-labelledby="h-s1">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">01</div><p class="sv-slate">Scene one</p><h2 id="h-s1">AI <em>employees.</em></h2>
+          <p class="lede">Six employees, one inside each app your company already runs on. Built for your company: your prices, your hours, your service area, your way of saying things. You read every reply before it goes live. It never claims to be a person, and when it does not know it says so.</p>
+          <div class="sv-price"><b>from $297</b><span>a month each · all six $1,797</span></div>
+          <div class="sv-cta"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">Meet the staff</a><a href="catch.html" class="tk-btn tk-btn--ghost">Watch one catch a lead</a></div></div>
+        <div class="sv-stage">
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><svg class="rb rb-ring rb--wave" viewBox="0 0 240 300" role="img" aria-label="RING" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-ringw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-ringw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-ringw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-ringw"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#7DE3A4" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#7DE3A4" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#7DE3A4" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#7DE3A4" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#7DE3A4" opacity=".8"/><g fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M214 76 q10 -8 12 -20"/><path d="M226 92 q12 -2 20 -10"/></g>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#7DE3A4"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#7DE3A4"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-ringw)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#7DE3A4" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-ringw)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+<circle cx="80" cy="212" r="4" fill="#7DE3A4"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-ringw)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q44 -6 40 -52" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q44 -6 40 -52" fill="none" stroke="url(#sh-ringw)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="200" cy="104" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"></g><g transform="translate(200,104)"></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-ringw)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-ringw)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/></svg></div>
+          <div class="sv-screen" style="margin-right:80px"><div class="tk-plate ag-mock"><div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
+<ul class="ag-lines"><li class="them">Hi, uh, is this Saguaro Pool Care? My pump is making a grinding noise and it's Sunday.</li>
+<li class="us" data-who="RING · answered in 0:08">It is. Sorry about the noise, that usually means the pump should be switched off until someone looks at it. Can I get the address? I can book the first visit tomorrow morning.</li>
+<li class="them">Yeah, 1412 E Palo Verde, Gilbert.</li>
+<li class="us typing" data-who="RING"><span class="caret"></span></li></ul>
+<div class="ag-call__foot">Owner texted: "Pump noise, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div></div></div>
+          <ul class="sv-roster" style="margin-top:1.4rem"><li><svg class="rb-bust rb-ring" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-bring"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bring)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bring)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/></svg><a href="ring.html">RING</a><span>inside your phone line</span><b>$497/mo</b></li><li><svg class="rb-bust rb-dispatch" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bdispatch" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B"/></linearGradient>
+<radialGradient id="gl-bdispatch"><stop offset="0" stop-color="#F0CF6B" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bdispatch)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bdispatch)"/><circle cx="120" cy="8" r="5" fill="#F0CF6B"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bdispatch)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bdispatch)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F0CF6B" stroke-width="3" stroke-linecap="round"/>
+<path d="M50 62 q70-44 140 0 l6 10 q-76-30-152 0z" fill="#F0CF6B" stroke="#B9C6BE"/><rect x="108" y="30" width="24" height="14" rx="6" fill="#F0CF6B" stroke="#B9C6BE"/><circle cx="120" cy="37" r="4" fill="#fff"/></svg><a href="dispatch.html">DISPATCH</a><span>inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li><li><svg class="rb-bust rb-inbox" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-binbox" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-binbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-binbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0"/></linearGradient>
+<radialGradient id="gl-binbox"><stop offset="0" stop-color="#7CC4F0" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-binbox)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-binbox)"/><circle cx="120" cy="8" r="5" fill="#7CC4F0"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-binbox)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-binbox)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7CC4F0" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 62 q62-40 124 0 v10 q-62-28-124 0z" fill="#7CC4F0" stroke="#B9C6BE"/><rect x="52" y="70" width="60" height="9" rx="4" fill="#1E4A33"/><path d="M160 140 l-70 96" stroke="#7CC4F0" stroke-width="10" stroke-linecap="round" opacity=".9"/></svg><a href="inbox.html">INBOX</a><span>inside Google Workspace</span><b>$397/mo</b></li><li><svg class="rb-bust rb-thread" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bthread" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7"/></linearGradient>
+<radialGradient id="gl-bthread"><stop offset="0" stop-color="#C9A9F7" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bthread)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bthread)"/><circle cx="120" cy="8" r="5" fill="#C9A9F7"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bthread)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bthread)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#C9A9F7" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(120,30)"><path d="M-26 -22 h52 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-30 l-10 8 v-8 h-12 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z" transform="translate(0,-22)" fill="#C9A9F7" stroke="#B9C6BE"/><circle cx="-12" cy="-28" r="3" fill="#0F1A14"/><circle cx="0" cy="-28" r="3" fill="#0F1A14"/><circle cx="12" cy="-28" r="3" fill="#0F1A14"/></g></svg><a href="thread.html">THREAD</a><span>inside Slack</span><b>$347/mo</b></li><li><svg class="rb-bust rb-huddle" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bhuddle" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bhuddle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bhuddle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E"/></linearGradient>
+<radialGradient id="gl-bhuddle"><stop offset="0" stop-color="#F5A38E" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bhuddle)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bhuddle)"/><circle cx="120" cy="8" r="5" fill="#F5A38E"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bhuddle)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bhuddle)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F5A38E"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F5A38E"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F5A38E" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 60 q62-36 124 0 l-4 12 q-58-30-116 0z" fill="#1E4A33"/><path d="M96 54 h48" stroke="#F5A38E" stroke-width="4" stroke-linecap="round"/><path d="M120 150 l0 40" stroke="#1E4A33" stroke-width="3"/><path d="M110 190 h20 v12 h-8 l-6 8 h-6z" fill="#F5A38E" stroke="#B9C6BE"/></svg><a href="huddle.html">HUDDLE</a><span>inside Microsoft Teams</span><b>$347/mo</b></li><li><svg class="rb-bust rb-books" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bbooks" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+<radialGradient id="gl-bbooks"><stop offset="0" stop-color="#E8C46A" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bbooks)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bbooks)"/><circle cx="120" cy="8" r="5" fill="#E8C46A"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bbooks)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bbooks)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#E8C46A"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#E8C46A"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 66 q68-30 136 0 l-6 12 q-62-26-124 0z" fill="#E8C46A" opacity=".85" stroke="#B9C6BE"/><path d="M62 74 q58-22 116 0" fill="none" stroke="#1E4A33" stroke-width="3"/></svg><a href="books.html">BOOKS</a><span>inside QuickBooks Online</span><b>$297/mo</b></li></ul>
         </div>
       </div>
     </section>
 
-    <section class="sv" id="websites" aria-labelledby="h-websites">
-      <div class="container">
-        <div class="sv__grid">
-          <div>
-            <h2 id="h-websites">Websites</h2>
-            <p class="sv__one">Designed around what you sell and who buys it. Coded by hand, not assembled from a theme.</p>
-            <p class="sv__from"><b>from $500</b>, one time</p>
-          </div>
-          <div class="sv__body">
-            <p>A website has one job: someone lands on it, understands within five seconds what you do and whether it is for them, and then has an obvious next step. So the build starts with the argument, not the look. Mobile first, because most of your visitors are holding a phone. The page titles, descriptions and structure Google reads go in during the build, not as an afterthought.</p>
-            <p>Delivered in about seven business days from the brief. The files are yours the day it launches, with no platform fee to keep your own site online.</p>
-            <ul class="sv__tiers">
-              <li><div><b>Starter</b>, up to five pages. The right size for a service business that needs to be found and called.</div><span>$500<small>one time</small></span></li>
-              <li><div><b>Business</b>, up to ten pages. Room for individual service pages, which is what actually ranks.</div><span>$1,500<small>one time</small></span></li>
-              <li><div><b>Premium</b>, custom scope. Stores, bookings, logins, anything bespoke. Quoted after a conversation.</div><span>$2,500 and up<small>quoted</small></span></li>
-              <li><div><b>Maintenance</b>, optional. Updates, changes and fixes handled for you. Never required.</div><span>$150<small>a month</small></span></li>
-            </ul>
-            <div class="sv__cta">
-              <a href="service-web-design.html" class="sv-btn sv-btn--gold">See the website service</a>
-              <a href="testimonials.html" class="sv-btn sv-btn--ink">See sites that are live</a>
-            </div>
-          </div>
+    <section class="sv-scene sv-scene--flip" id="s2" style="--ac:#7CC4F0;--x:25%" aria-labelledby="h-s2">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">02</div><p class="sv-slate">Scene two</p><h2 id="h-s2">Websites, <em>coded by hand.</em></h2>
+          <p class="lede">A website has one job: someone lands on it, understands within five seconds what you do and whether it is for them, and then has an obvious next step. The build starts with the argument, not the look. Mobile first. The titles and structure Google reads go in during the build. Delivered in about seven business days, and the files are yours the day it launches.</p>
+          <div class="sv-price"><b>from $500</b><span>one time · maintenance $150/mo, never required</span></div>
+          <div class="sv-tiers"><div><small>Starter</small><b>$500</b><span>up to five pages</span></div><div><small>Business</small><b>$1,500</b><span>up to ten pages</span></div><div><small>Premium</small><b>$2,500+</b><span>custom scope, quoted</span></div></div>
+          <div class="sv-cta" style="margin-top:1.4rem"><a href="service-web-design.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the website service</a><a href="testimonials.html" class="tk-btn tk-btn--ghost">See sites that are live</a></div></div>
+        <div class="sv-stage">
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><svg class="rb rb-inbox rb--point" viewBox="0 0 240 300" role="img" aria-label="INBOX" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-inboxp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-inboxp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-inboxp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0"/></linearGradient>
+<radialGradient id="gl-inboxp"><stop offset="0" stop-color="#7CC4F0" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#7CC4F0" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#7CC4F0" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#7CC4F0" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#7CC4F0" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#7CC4F0" opacity=".8"/><g fill="#7CC4F0"><path d="M228 96 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g><path d="M226 134 q10 -14 6 -28" fill="none" stroke="#7CC4F0" stroke-width="2" stroke-dasharray="3 3"/>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#7CC4F0"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#7CC4F0"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxp)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxp)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-inboxp)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#7CC4F0" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-inboxp)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/></g>
+<circle cx="80" cy="212" r="4" fill="#7CC4F0"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-inboxp)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q40 -4 60 -22" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q40 -4 60 -22" fill="none" stroke="url(#sh-inboxp)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="226" cy="134" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"><rect x="-34" y="-26" width="52" height="36" rx="5" fill="#fff" stroke="#B9C6BE"/><path d="M-34 -26 l26 18 l26 -18" fill="none" stroke="#7CC4F0" stroke-width="3"/></g><g transform="translate(226,134)"></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-inboxp)"/><circle cx="120" cy="8" r="5" fill="#7CC4F0"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-inboxp)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-inboxp)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7CC4F0" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 62 q62-40 124 0 v10 q-62-28-124 0z" fill="#7CC4F0" stroke="#B9C6BE"/><rect x="52" y="70" width="60" height="9" rx="4" fill="#1E4A33"/><path d="M160 140 l-70 96" stroke="#7CC4F0" stroke-width="10" stroke-linecap="round" opacity=".9"/></svg></div>
+          <div class="sv-theatre" style="margin-right:70px"><div class="hp-browser"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" data-url="performancelab.fitness"/><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" data-url="handmadebyhalle.com"/><img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" data-url="greenaidigital.com/blackbox"/></div></div><div class="sv-theatre__cap"><span>Now showing · three live sites</span><span>built here</span></div></div>
         </div>
       </div>
     </section>
 
-    <section class="sv" id="ads" aria-labelledby="h-ads">
-      <div class="container">
-        <div class="sv__grid">
-          <div>
-            <h2 id="h-ads">Ad creation</h2>
-            <p class="sv__one">A month of finished, ready-to-run ads from one idea, cut every way the platforms need.</p>
-            <p class="sv__from"><b>from $697 a month</b>, cancel any month</p>
-          </div>
-          <div class="sv__body">
-            <p>Targeting, bidding and placement are automated by the platforms now. Creative is the last lever left, and most businesses make exactly one ad. Here one idea gets seven angles, because nobody can tell you in advance which one your market responds to, and you find out faster with twenty-five shots than with one.</p>
-            <p>Scripts and hooks come first and you see them before anything is produced. Every batch arrives captioned, in vertical, square, fifteen-second and thirty-second cuts, as files you could upload the same afternoon. You own them permanently, including after you cancel.</p>
-            <ul class="sv__tiers">
-              <li><div><b>Starter</b>, ten finished ads a month. For testing the water before you commit volume.</div><span>$697<small>a month</small></span></li>
-              <li><div><b>Growth</b>, twenty-five finished ads a month. The whole seven-angle spread, every month.</div><span>$1,297<small>a month</small></span></li>
-              <li><div><b>Scale</b>, sixty finished ads a month. For heavy spend across several platforms.</div><span>$2,497<small>a month</small></span></li>
-            </ul>
-            <div class="sv__cta">
-              <a href="service-ai-ads.html" class="sv-btn sv-btn--gold">See the ad desk</a>
-            </div>
-          </div>
+    <section class="sv-scene" id="s3" style="--ac:#F5A38E;--x:70%" aria-labelledby="h-s3">
+      <div class="sv-scene__in" style="grid-template-columns:1fr">
+        <div class="sv-scene__copy" style="max-width:60ch"><div class="sv-scene__num">03</div><p class="sv-slate">Scene three</p><h2 id="h-s3">Ad creation. <em>One idea, seven angles.</em></h2>
+          <p class="lede">Targeting, bidding and placement are automated by the platforms now. Creative is the last lever left, and most businesses make exactly one ad. Here one idea gets seven angles, because nobody can tell you in advance which one your market responds to. Every batch arrives captioned, in vertical, square, fifteen-second and thirty-second cuts. You own them permanently, including after you cancel.</p>
+          <div class="sv-price"><b>from $697</b><span>a month · cancel any month</span></div></div>
+        <div class="sv-film" aria-label="A month of finished ads, as a film strip"><div class="sv-film__track"><div><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp"></video><span>9:16 · 15s</span></div><div><video src="art/ad-vid-reel.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp"></video><span>REEL</span></div><div><video src="art/ad-vid-problem.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-problem.webp"></video><span>THE PROBLEM</span></div><div><video src="art/ad-vid-founder.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-founder.webp"></video><span>THE FOUNDER</span></div><div><video src="art/ad-vid-question.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp"></video><span>THE QUESTION</span></div><div><video src="art/ad-vid-feed.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-split.webp"></video><span>FEED</span></div><div><video src="art/ad-vid-wide.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-quote.webp"></video><span>16:9 · 30s</span></div><div><img src="art/ad-angle-quote.webp" alt="" loading="lazy"/><span>THE QUOTE</span></div><div><img src="art/ad-angle-split.webp" alt="" loading="lazy"/><span>BEFORE · AFTER</span></div><div><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp"></video><span>9:16 · 15s</span></div><div><video src="art/ad-vid-reel.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp"></video><span>REEL</span></div><div><video src="art/ad-vid-problem.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-problem.webp"></video><span>THE PROBLEM</span></div><div><video src="art/ad-vid-founder.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-founder.webp"></video><span>THE FOUNDER</span></div><div><video src="art/ad-vid-question.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp"></video><span>THE QUESTION</span></div><div><video src="art/ad-vid-feed.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-split.webp"></video><span>FEED</span></div><div><video src="art/ad-vid-wide.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-quote.webp"></video><span>16:9 · 30s</span></div><div><img src="art/ad-angle-quote.webp" alt="" loading="lazy"/><span>THE QUOTE</span></div><div><img src="art/ad-angle-split.webp" alt="" loading="lazy"/><span>BEFORE · AFTER</span></div></div></div>
+        <div>
+          <div class="sv-tiers" style="max-width:820px"><div><small>Starter</small><b>$697/mo</b><span>ten finished ads a month</span></div><div><small>Growth · most popular</small><b>$1,297/mo</b><span>twenty-five, the whole seven-angle spread</span></div><div><small>Scale</small><b>$2,497/mo</b><span>sixty, for heavy spend across platforms</span></div></div>
+          <div class="sv-cta" style="margin-top:1.4rem"><a href="service-ai-ads.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the ad desk</a></div>
         </div>
       </div>
     </section>
 
-    <section class="sv" id="custom" aria-labelledby="h-custom">
-      <div class="container">
-        <div class="sv__grid">
-          <div>
-            <h2 id="h-custom">Custom systems</h2>
-            <p class="sv__one">When nothing off the shelf fits, or the thing you need does not exist yet.</p>
-            <p class="sv__from"><b>Quoted</b> after one conversation</p>
-          </div>
-          <div class="sv__body">
-            <p>An intake line for a care agency. A quoting tool that reads a set of plans. A test bench for the automations you already run, so you find out they broke before a customer does. A dashboard for the numbers nobody is watching. Anything where the honest answer is "that has to be built".</p>
-            <p>Scoped in a conversation, priced in writing before a line of code, built by the person you talked to. Whoever does the work does not grade it: a second system checks the first, and you approve before it acts.</p>
-            <div class="sv__cta">
-              <a href="service-ai-consulting.html" class="sv-btn sv-btn--gold">See what has been built</a>
-              <a href="contact.html?want=custom" class="sv-btn sv-btn--ink">Describe what you need</a>
-            </div>
-          </div>
+    <section class="sv-scene sv-scene--flip" id="s4" style="--ac:#E8C46A;--x:30%" aria-labelledby="h-s4">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">04</div><p class="sv-slate">Scene four</p><h2 id="h-s4">Custom systems, <em>when it has to be built.</em></h2>
+          <p class="lede">An intake line for a care agency. A quoting tool that reads a set of plans. A test bench for the automations you already run, so you find out they broke before a customer does. A dashboard for the numbers nobody is watching. Scoped in a conversation, priced in writing before a line of code, built by the person you talked to. Whoever does the work does not grade it.</p>
+          <div class="sv-price"><b>Quoted</b><span>after one conversation · fixed price in writing</span></div>
+          <div class="sv-cta"><a href="service-ai-consulting.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what has been built</a><a href="contact.html?want=custom" class="tk-btn tk-btn--ghost">Describe what you need</a></div></div>
+        <div class="sv-stage">
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><svg class="rb rb-books rb--think" viewBox="0 0 240 300" role="img" aria-label="BOOKS" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bookst" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bookst" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bookst" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+<radialGradient id="gl-bookst"><stop offset="0" stop-color="#E8C46A" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#E8C46A" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#E8C46A" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#E8C46A" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#E8C46A" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#E8C46A" opacity=".8"/><g transform="translate(176,42)"><path d="M-22 -18 h44 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-26 l-10 8 v-8 h-8 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8z" fill="#fff" stroke="#B9C6BE"/><text x="0" y="8" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="22" fill="#E8C46A">?</text></g>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#E8C46A"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#E8C46A"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-bookst)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-bookst)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-bookst)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#E8C46A" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-bookst)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 17.5v-11"/></g>
+<circle cx="80" cy="212" r="4" fill="#E8C46A"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-26 -14 8 -42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-26 -14 8 -42" fill="none" stroke="url(#sh-bookst)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="90" cy="118" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q30 10 26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q30 10 26 42" fill="none" stroke="url(#sh-bookst)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="188" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(90,118)"></g><g transform="translate(188,204)"><circle cx="4" cy="-40" r="16" fill="#E8C46A" stroke="#B9C6BE"/><circle cx="4" cy="-40" r="11" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/><text x="4" y="-34" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="16" fill="#0F1A14">$</text><circle cx="30" cy="-66" r="8" fill="#E8C46A" opacity=".7"/></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bookst)"/><circle cx="120" cy="8" r="5" fill="#E8C46A"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bookst)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bookst)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#E8C46A"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#E8C46A"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 66 q68-30 136 0 l-6 12 q-62-26-124 0z" fill="#E8C46A" opacity=".85" stroke="#B9C6BE"/><path d="M62 74 q58-22 116 0" fill="none" stroke="#1E4A33" stroke-width="3"/></svg></div>
+          <div class="sv-schem" style="margin-right:70px"><svg viewBox="0 0 640 300" aria-label="A custom system drawn as a schematic: intake, checker, approval, log"><defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g fill="none" stroke="#E8C46A" stroke-width="1.5" filter="url(#glow)">
+<rect x="30" y="110" width="130" height="70" rx="14"/><rect x="255" y="110" width="130" height="70" rx="14"/><rect x="480" y="110" width="130" height="70" rx="14"/>
+<path d="M160 145 h95 M385 145 h95" stroke-dasharray="6 6"/><path d="M320 180 v50 h-200 v-50" stroke-dasharray="3 5" opacity=".7"/>
+<rect x="255" y="20" width="130" height="50" rx="12" opacity=".8"/><path d="M320 70 v40" stroke-dasharray="3 5" opacity=".7"/>
+<circle cx="245" cy="145" r="5" fill="#E8C46A"><animate attributeName="cx" values="160;255" dur="2.4s" repeatCount="indefinite"/></circle>
+<circle cx="470" cy="145" r="5" fill="#E8C46A"><animate attributeName="cx" values="385;480" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
+</g>
+<g font-family="Outfit, sans-serif" font-weight="600" font-size="15" fill="#fff" text-anchor="middle"><text x="95" y="140">INTAKE</text><text x="320" y="140">CHECKER</text><text x="545" y="140">APPROVAL</text><text x="320" y="50">YOUR RULES</text></g>
+<g font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle"><text x="95" y="162">call · form · file</text><text x="320" y="162">blocks what is not on the list</text><text x="545" y="162">a person, before it acts</text><text x="320" y="252">every step logged, hash-chained, replayable</text></g></svg></div>
         </div>
       </div>
     </section>
 
-    <section class="sv-which" id="which" aria-labelledby="h-which">
-      <div class="container">
-        <h2 id="h-which">Not sure which one first?</h2>
-        <dl>
-          <div><dt>Calls go unanswered when you are working.</dt><dd>Start with <a href="ring.html">RING</a>. It picks up in about eight seconds and books the job while you finish the one you are on.</dd></div>
-          <div><dt>Web leads come in and you reply hours later.</dt><dd>Start with <a href="inbox.html">INBOX</a> if you run on Gmail, or <a href="dispatch.html">DISPATCH</a> if you run on Jobber. The first reply lands in under a minute, and the follow-up happens whether or not you remember.</dd></div>
-          <div><dt>Your site is a theme with your logo dropped in.</dt><dd>Start with a <a href="service-web-design.html">Starter site</a>. Five pages that say what you do and make the phone ring.</dd></div>
-          <div><dt>You are spending on ads and running the same one.</dt><dd>Start with <a href="service-ai-ads.html">ten ads a month</a>. Seven angles on one idea finds the winner faster than guessing.</dd></div>
-          <div><dt>Invoices go out late and get paid later.</dt><dd>Start with <a href="books.html">BOOKS</a>. Invoices on time and reminders on a schedule, politely.</dd></div>
-          <div><dt>None of the above describes it.</dt><dd>That is what <a href="service-ai-consulting.html">custom systems</a> are for. Describe it in a sentence and I will tell you whether it should be built.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="sv-terms" aria-labelledby="h-terms">
-      <div class="container">
-        <h2 id="h-terms">The terms, in plain words</h2>
-        <ul>
-          <li>Card payments run through Stripe on their page. Your card number never touches this site. Prefer an invoice? Say so.</li>
-          <li>No setup fees on anything recurring, and no per-call, per-minute or per-lead charges. A busy month costs the same as a quiet one.</li>
-          <li>Anything recurring cancels at the end of the month you already paid for. Email or call, no cancellation fee.</li>
-          <li>Anything paid to someone else on your behalf, like a phone number or ad spend, is passed through at cost and you hear about it first.</li>
-          <li>You own the site files, the ad files, the scripts and the transcripts. Read the <a href="agreement.html">service agreement</a> before you buy anything.</li>
-        </ul>
-      </div>
+    <section class="sv-credits" aria-labelledby="h-credits">
+      <p class="sv-slate">How a build runs</p>
+      <h2 id="h-credits">The same four steps, <em>every time.</em></h2>
+      <ol>
+        <li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes.</p></li>
+        <li><b>A price in writing</b><p>What gets built, what it will not do, and the number. Nothing is signed until you have read it.</p></li>
+        <li><b>Built in the open</b><p>You see it working on real examples as it comes together. Every script, page and ad goes past you first.</p></li>
+        <li><b>Live, and still answered</b><p>Changes are same-day at no charge. The number on this page rings the person who built it.</p></li>
+      </ol>
+      <table class="sv-menu" aria-label="Every price"><tbody>
+        <tr><td>AI employees</td><td>one inside each app, six of them</td><td>from $297/mo · all six $1,797</td></tr>
+        <tr><td>Websites</td><td>coded by hand, yours the day it launches</td><td>$500 · $1,500 · $2,500+</td></tr>
+        <tr><td>Ad creation</td><td>ten, twenty-five or sixty finished ads a month</td><td>$697 · $1,297 · $2,497 /mo</td></tr>
+        <tr><td>Custom systems</td><td>scoped in one conversation, priced in writing</td><td>quoted</td></tr>
+      </tbody></table>
+      <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go unanswered when you are working: start with RING. Web leads sit for hours: INBOX on Gmail, DISPATCH on Jobber. Your site is a theme with your logo dropped in: a Starter site. Running the same ad for months: Growth, twenty-five a month. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:#E8C46A">jaden@greenaidigital.com</a></div>
+      <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
     </section>
   </main>
-
-  <footer class="footer" aria-label="Site footer">
+  <div class="sn-sticky"><a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to Jaden</a></div>
+    <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
@@ -319,8 +707,48 @@
       </div>
     </div>
   </footer>
-
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
   <script src="script.js?v=14"></script>
-  <script src="checkout.js?v=9"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
+  <script>
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
+  })();
+  </script>
+  <script>
+  (function(){
+    var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i=0; setInterval(function(){ imgs[i].classList.remove('on'); i=(i+1)%imgs.length; imgs[i].classList.add('on'); url.textContent=imgs[i].getAttribute('data-url'); }, 3200);
+  })();
+  </script>
 </body>
 </html>
