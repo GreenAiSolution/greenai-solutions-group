@@ -4,135 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Jaden Green and GreenAI Solutions — Gilbert, AZ</title>
-  <meta name="description" content="Jaden Green, Gilbert AZ — builds AI employees, websites, ad campaigns and custom systems for small companies. You get his number, not an account manager." />
+  <meta name="description" content="One person builds the six AI employees, the websites, the ads and the custom systems, and answers the phone. Jaden Green, Gilbert, Arizona. B.S. Real Estate and Business, University of Washington. Seven years building systems for small companies." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
   <link rel="stylesheet" href="tech.css?v=7" />
-  <link rel="stylesheet" href="visuals.css?v=1" />
-  <style>
-    .about-agentic { min-height:650px; display:flex; align-items:center; padding:145px 0 78px; background:#050b07; }
-    .about-agentic::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 75% 48%,rgba(76,175,110,.15),transparent 36%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:auto,56px 56px,56px 56px; }
-    .about-hero-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(3rem,8vw,7rem); align-items:center; text-align:left; }
-    .about-agentic h1 { font-size:clamp(3rem,6vw,5rem); line-height:.98; letter-spacing:-.045em; max-width:760px; }
-    .about-agentic h1 em { color:#d8b94f; font-style:normal; }
-    .about-agentic p { max-width:650px; margin:1.3rem 0 0; color:rgba(255,255,255,.58); font-size:1.05rem; }
-    .principle-stack { padding:1rem; border:1px solid rgba(255,255,255,.11); border-radius:20px; background:rgba(7,18,11,.72); backdrop-filter:blur(16px); }
-    .principle-stack__top { display:flex; align-items:center; justify-content:space-between; padding:.3rem .25rem 1rem; border-bottom:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.65); font-size:.62rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    .principle-stack__top i { width:7px; height:7px; border-radius:50%; background:#7de3a4; box-shadow:0 0 15px #7de3a4; }
-    .principle { display:grid; grid-template-columns:34px 1fr; gap:.85rem; padding:1rem .25rem; border-bottom:1px solid rgba(255,255,255,.075); }
-    .principle:last-child { border-bottom:0; }
-    .principle b { width:30px; height:30px; display:grid; place-items:center; border:1px solid rgba(212,175,55,.3); border-radius:9px; color:#d8b94f; font:700 .6rem/1 ui-monospace,SFMono-Regular,Menlo,monospace; }
-    .principle strong { display:block; color:#fff; font-size:.84rem; }
-    .principle span { display:block; margin-top:.25rem; color:rgba(255,255,255,.36); font-size:.7rem; line-height:1.45; }
-    .about-founder { background:#fff; }
-    /* the founder bio runs several paragraphs -- without this they close up
-       into one block of text and nobody reads past the first line */
-    .about-founder .about-intro p { margin:0 0 1.15rem; line-height:1.75; }
-    .about-founder .about-intro p:last-of-type { margin-bottom:0; }
-    .about-founder .about-intro p strong { color:var(--green-dark, #1a5c2a); font-weight:700; }
-    .about-founder .about-visual > div[role="img"] { border-radius:16px !important; box-shadow:none !important; border:1px solid rgba(26,92,42,.14); }
-    /* the real founder photo — fills the 4:5 slot the design always had.
-       aspect-ratio lives on the wrapper, img is absolute (the flex/aspect
-       trap from the work-page cards). */
-    .founder-photo { margin:0 0 1.25rem; position:relative; border-radius:var(--radius-xl,20px); overflow:hidden; border:1px solid rgba(26,92,42,.14); aspect-ratio:4/5; box-shadow:0 18px 50px rgba(6,31,16,.12); }
-    .founder-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
-    .founder-photo figcaption { position:absolute; left:.9rem; bottom:.9rem; z-index:1; background:rgba(6,16,8,.78); color:#fff; font-size:.72rem; font-weight:600; letter-spacing:.04em; padding:.42rem .8rem; border-radius:100px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
-    /* quiet operating-principles strip under the founder bio — every claim
-       links to the public thing that backs it, which is the whole point */
-    .founder-principles { margin-top:3.25rem; padding-top:2.1rem; border-top:1px solid rgba(26,92,42,.12); display:grid; grid-template-columns:1fr 1fr; gap:2.75rem; }
-    .founder-principles .fp-k { display:inline-flex; align-items:center; gap:.55rem; font-size:.64rem; font-weight:800; letter-spacing:.17em; text-transform:uppercase; color:var(--green-dark,#1a5c2a); }
-    .founder-principles .fp-k::before { content:''; width:7px; height:7px; border-radius:50%; background:#d4af37; flex:0 0 auto; }
-    .founder-principles p { margin:.55rem 0 0; font-size:.88rem; line-height:1.75; color:var(--gray-600,#5b6660); }
-    .founder-principles a { color:var(--green-dark,#1a5c2a); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(26,92,42,.3); transition:border-color .2s; }
-    .founder-principles a:hover { border-bottom-color:var(--green-dark,#1a5c2a); }
-    @media (max-width:760px){ .founder-principles { grid-template-columns:1fr; gap:1.7rem; margin-top:2.5rem; } }
-    .about-founder .about-stat-badge { box-shadow:none; border:1px solid rgba(26,92,42,.14); }
-    .mission-card,.feature-card { border-radius:14px; box-shadow:none; border:1px solid rgba(26,92,42,.12); }
-    .mission-card:hover,.feature-card:hover { transform:translateY(-3px); box-shadow:0 18px 45px rgba(6,31,16,.08); }
-    .about-signal { display:flex; gap:.55rem; flex-wrap:wrap; margin-top:1.5rem; }
-    .about-signal span { padding:.45rem .7rem; border:1px solid rgba(255,255,255,.11); border-radius:999px; color:rgba(255,255,255,.48); font-size:.66rem; font-weight:700; letter-spacing:.05em; }
-    @media (max-width:900px) { .about-agentic{min-height:0}.about-hero-grid{grid-template-columns:1fr}.principle-stack{max-width:620px} }
-  </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="canonical" href="https://greenaidigital.com/about.html" />
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/about.html" />
-  <meta property="og:title" content="About Jaden Green & GreenAI Solutions" />
-  <meta property="og:description" content="Meet Jaden Green — he builds everything GreenAI sells, and you get his direct number. Gilbert, AZ." />
+  <meta property="og:title" content="About Jaden Green, the one person you can call" />
+  <meta property="og:description" content="One person builds the six AI employees, the websites, the ads and the custom systems, and answers the phone. Jaden Green, Gilbert, Arizona. B.S. Real Estate and Business, University of Washington. Seven years building systems for small companies." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="GreenAI Solutions — AI employees, websites, ad creation and custom systems for small companies." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About Jaden Green & GreenAI Solutions" />
-  <meta name="twitter:description" content="Meet Jaden Green — he builds everything GreenAI sells, and you get his direct number. Gilbert, AZ." />
-  <meta name="twitter:image" content="https://greenaidigital.com/og-card.jpg" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://greenaidigital.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "About",
-      "item": "https://greenaidigital.com/about.html"
-    }
-  ]
-}
-  </script>
+  <style>
+    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
+    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
+    @keyframes ag-blink { 50% { opacity: 0; } }
+    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
+    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
+    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
+    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
+    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
 
-  <!-- Person schema: when a business owner asks an AI assistant "who is Jaden
-       Green", this is what it reads. Same facts as the bio, machine-readable. -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Jaden Green",
-  "jobTitle": "Founder & AI Strategist",
-  "description": "Founder of GreenAI Solutions in Gilbert, Arizona. Builds AI employees, websites, ad campaigns and custom systems for small companies in any trade. Holds a B.S. in Real Estate and Business from the University of Washington.",
-  "url": "https://greenaidigital.com/about.html",
-  "email": "jaden@greenaidigital.com",
-  "telephone": "+1-480-798-0753",
-  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Washington" },
-  "hasCredential": {
-    "@type": "EducationalOccupationalCredential",
-    "credentialCategory": "Bachelor's Degree",
-    "educationalLevel": "Bachelor of Science",
-    "about": "Real Estate and Business"
-  },
-  "knowsAbout": [
-    "AI automation for small business",
-    "Lead response and follow-up systems",
-    "AI advertising",
-    "AI employees and workflow design"
-  ],
-  "worksFor": { "@type": "Organization", "name": "GreenAI Solutions", "url": "https://greenaidigital.com/" },
-  "homeLocation": {
-    "@type": "Place",
-    "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "addressCountry": "US" }
-  }
-}
-  </script>
-  <script src="analytics.js?v=2"></script>
+    .ab-control { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; max-width: 1040px; margin: 2.6rem auto 0; }
+    .ab-control__side { display: flex; justify-content: space-around; align-items: flex-end; }
+    .ab-control__side a { display: block; width: var(--w, 140px); transform: translateY(var(--dy, 0)); }
+    .ab-line { position: relative; width: 340px; padding: 1.6rem 1.5rem; border-radius: 24px; background: #fff; color: var(--ink); text-align: center; box-shadow: 0 40px 90px -30px rgba(0,0,0,.65); }
+    .ab-line small { display: block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+    .ab-line a.num { display: block; margin: .4rem 0 .2rem; font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+    .ab-line a.num:hover { color: var(--green); }
+    .ab-line p { margin: .3rem 0 0; font-size: .86rem; line-height: 1.5; color: var(--ink-2); }
+    .ab-line .mail { display: inline-block; margin-top: .6rem; font-size: .9rem; font-weight: 600; color: var(--green); text-decoration: none; }
+    .ab-line .live { position: absolute; top: -.8rem; left: 50%; transform: translateX(-50%); padding: .3rem .7rem; border-radius: 999px; background: var(--green); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .06em; white-space: nowrap; }
+    .ab-line .live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #fff; margin-right: .4rem; animation: hp-pulse 1.6s infinite; }
+    @keyframes hp-pulse { 50% { opacity: .35; } }
+    @media (max-width: 900px) { .ab-control { grid-template-columns: 1fr; } .ab-control__side a { --dy: 0px; width: 30%; } .ab-line { width: min(100%, 340px); margin: 0 auto; } }
+    .ab-rule { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+    .ab-rule > div { position: relative; padding: 1.8rem 1.6rem 1.6rem; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .ab-rule i { display: block; font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: 2.2rem; color: var(--ember); line-height: 1; margin-bottom: .6rem; }
+    .ab-rule b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--ink); margin-bottom: .4rem; }
+    .ab-rule p { margin: 0; color: var(--ink-2); font-size: .95rem; line-height: 1.55; }
+    .ab-rule .rb-peek { position: absolute; top: -40px; right: 8px; width: 88px; }
+    @media (max-width: 800px) { .ab-rule { grid-template-columns: 1fr; } }
+    .hp-talk { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; max-width: 960px; margin: 0 auto; }
+    .hp-talk__phone { display: block; margin: 1.2rem 0 .3rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+    .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
+    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
+
+  </style>
 </head>
 <body class="tk light-top">
-  <a href="#main" class="skip-link">Skip to main content</a>
-
-  <!-- ===== NAVIGATION ===== -->
+  <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -171,199 +131,503 @@
       </ul>
     </div>
   </nav>
+  <main id="main">
 
-  <!-- ===== PAGE HERO ===== -->
-  <div class="page-hero about-agentic" style="position:relative;overflow:hidden">
-    <div class="container" style="position:relative;z-index:1"><div class="about-hero-grid">
-      <div><div class="page-hero__chip"><span class="page-hero__chip-dot"></span> GreenAI · Gilbert, Arizona</div><span class="section-label" style="color:var(--green-accent)">Who you would be buying from</span><h1>One trade.<br/><em>One builder you can call.</em></h1><p>GreenAI builds four things for small companies: AI employees, websites, a month of finished ads, and custom systems when nothing off the shelf fits. Every one is built for your company, by the person whose number is on this page.</p><div class="about-signal"><span>Gilbert, Arizona</span><span>Any trade</span><span>AI employees, websites, ads, custom systems</span><span>You approve every script</span><span>Month to month</span><span>Direct line to Jaden</span></div></div>
-      <aside class="principle-stack" aria-label="How a build works"><div class="principle-stack__top"><span>How a build works</span><i aria-hidden="true"></i></div><div class="principle"><b>01</b><div><strong>Built from your price list</strong><span>Your prices, your service area, your hours, your house rules.</span></div></div><div class="principle"><b>02</b><div><strong>You read every script first</strong><span>Every reply it can send, in your words, before a customer sees one.</span></div></div><div class="principle"><b>03</b><div><strong>Live in about two weeks</strong><span>On your number and your inbox. Changes are same-day, at no charge.</span></div></div></aside>
-    </div></div>
-  </div>
-
-  <!-- ===== ABOUT JADEN ===== -->
-  <section id="main" class="section about-founder" aria-labelledby="jaden-heading">
-    <div class="container">
-      <div class="about-intro">
-        <div class="about-visual reveal">
-          <figure class="founder-photo" style="background:#050b07">
-            <svg viewBox="0 0 880 1100" width="880" height="1100" role="img" aria-label="A drawn card: a phone glowing on a patio table in a backyard at night, with the line (480) 798-0753 — reachability is the trust signal, not a photo" style="display:block;width:100%;height:auto">
-              <defs>
-                <linearGradient id="abSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050b07"/><stop offset="1" stop-color="#0A3F4A"/></linearGradient>
-                <radialGradient id="abPool" cx="50%" cy="60%" r="65%"><stop offset="0" stop-color="#7fe8de"/><stop offset=".45" stop-color="#3FD0C3"/><stop offset="1" stop-color="#072E37"/></radialGradient>
-                <radialGradient id="abGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e7c85f" stop-opacity=".7"/><stop offset="1" stop-color="#e7c85f" stop-opacity="0"/></radialGradient>
-                <filter id="abSoft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
-              </defs>
-              <rect width="880" height="1100" fill="url(#abSky)"/>
-              <g fill="#fff" opacity=".7"><circle cx="90" cy="120" r="1.6"/><circle cx="300" cy="70" r="1.2"/><circle cx="520" cy="150" r="1.4"/><circle cx="760" cy="90" r="1.2"/><circle cx="640" cy="260" r="1"/><circle cx="180" cy="300" r="1"/></g>
-              <path d="M0 560 L140 500 L300 540 L460 470 L620 520 L780 480 L880 510 L880 640 L0 640 Z" fill="#04100f"/>
-              <rect x="0" y="630" width="880" height="470" fill="#05110f"/>
-              <ellipse cx="560" cy="860" rx="360" ry="150" fill="#3FD0C3" opacity=".35" filter="url(#abSoft)"/>
-              <path d="M330 760 Q320 700 400 692 L780 684 Q860 690 866 750 L870 900 Q862 950 800 954 L400 958 Q336 954 330 900 Z" fill="#c9d7d6" opacity=".18"/>
-              <path d="M340 766 Q332 710 404 702 L776 694 Q848 700 854 754 L858 896 Q852 940 796 944 L404 948 Q346 944 340 896 Z" fill="url(#abPool)"/>
-              <g fill="none" stroke="#dffbf7" stroke-width="2" opacity=".35" stroke-linecap="round"><path d="M380 760 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/><path d="M370 820 q30 14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/><path d="M390 880 q30 -12 60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/></g>
-              <circle cx="600" cy="840" r="12" fill="#fff" opacity=".9"/>
-              <g fill="#03100c"><path d="M110 640 Q108 520 80 400" stroke="#03100c" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M80 400 Q10 370 -30 420 Q40 400 82 416 Z"/><path d="M80 400 Q30 320 0 280 Q60 350 86 404 Z"/><path d="M80 400 Q110 310 180 270 Q120 350 88 406 Z"/><path d="M80 400 Q170 360 250 400 Q160 390 90 412 Z"/></g>
-              <ellipse cx="200" cy="800" rx="96" ry="32" fill="#0f2426" stroke="#173b3e" stroke-width="2"/>
-              <path d="M200 832 L200 900" stroke="#0f2426" stroke-width="9"/>
-              <ellipse cx="236" cy="792" rx="70" ry="34" fill="url(#abGlow)"/>
-              <g transform="rotate(-16 236 792)"><rect x="220" y="770" width="32" height="54" rx="6" fill="#0a0f0e" stroke="#1d2a2a" stroke-width="1.5"/><rect x="224" y="775" width="24" height="44" rx="3" fill="#e7c85f" opacity=".92"/></g>
-              <text x="64" y="250" text-anchor="start" font-family="Playfair Display,Georgia,serif" font-size="58" font-weight="700" fill="#fff">(480) 798-0753</text>
-              <text x="64" y="296" text-anchor="start" font-family="Inter,sans-serif" font-size="22" font-weight="600" letter-spacing="3" fill="#3FD0C3">RINGS JADEN'S PHONE · GILBERT, AZ</text>
-            </svg>
-            <figcaption>Jaden Green &middot; Builder &mdash; Gilbert, AZ. No photo, on purpose: the number is the trust signal.</figcaption>
-          </figure>
-          <div class="founder-card">
-            <div>
-              <div class="founder-card__label">Direct line</div>
-              <a href="tel:4807980753" class="founder-card__num" aria-label="Call Jaden Green at (480) 798-0753">(480)<br/>798-0753</a>
-              <p class="founder-card__note">Rings my phone. Not a call centre, not a rep &mdash; you get the person who builds the system, every time.</p>
-            </div>
-            <div class="founder-card__foot">
-              <a href="mailto:jaden@greenaidigital.com" class="founder-card__mail">jaden@greenaidigital.com</a>
-              <div class="founder-card__name">Jaden Green</div>
-              <div class="founder-card__role">Builds everything GreenAI sells &middot; Gilbert, AZ</div>
-            </div>
-          </div>
-
-          <div class="about-stat-badge about-stat-badge--2" aria-label="Seven years building AI and business systems">
-            <div>
-              <div class="num">7</div>
-              <div class="label">Years Building AI<br/>&amp; Business Systems</div>
-            </div>
-          </div>
-
-          <div class="about-stat-badge about-stat-badge--1" aria-label="Gilbert Arizona based">
-            <div style="display:flex;align-items:center;justify-content:center" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div>
-              <div class="num" style="font-size:1rem">Gilbert, AZ</div>
-              <div class="label">Phoenix based<br/>remote anywhere</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal">
-          <span class="section-label">Meet the Founder</span>
-          <h2 id="jaden-heading">Hi, I'm Jaden Green.</h2>
-          <div class="section-divider section-divider--left"></div>
-          <p>I'm Jaden Green. I hold a <strong>B.S. in Real Estate and Business from the University of Washington</strong>, and I've spent <strong>seven years building systems that let a small company run like a much bigger one</strong>. GreenAI is where all of that work now lives.</p>
-          <p>I learned to read a P&amp;L before I ever automated anything. So what I sell isn't technology &mdash; it's a job that gets done faster, cheaper, or at an hour when nobody is awake.</p>
-          <p>I build the systems myself, and I don't break one rule: <strong>whoever does the work doesn't grade it.</strong></p>
-          <div class="gv gv-light gv-guard" role="img" aria-label="One system does the work, a second grades it, and a person approves anything that acts on your behalf.">
-            <span class="gv-guard__box"><b class="gv-guard__k">01 &middot; DOES</b><span class="gv-guard__v">The system does the work</span></span>
-            <span class="gv-guard__box"><b class="gv-guard__k">02 &middot; GRADES</b><span class="gv-guard__v">A second system checks it</span></span>
-            <span class="gv-guard__box"><b class="gv-guard__k">03 &middot; APPROVES</b><span class="gv-guard__v gv-guard__v--stop">A person, before it acts</span></span>
-          </div>
-          <p class="gv-cap">Built to say &ldquo;I'm not sure&rdquo; rather than invent an answer &mdash; the difference between AI you put in front of customers and AI you apologise for.</p>
-          <p>On your side of the desk, it looks like this. You stay the owner &mdash; you just stop being the bottleneck.</p>
-          <div class="gv gv-light gv-spec">
-            <span class="gv-spec__i"><b class="gv-spec__k">RING</b><span class="gv-spec__v">Your phone line answered in about 8 seconds, booked into your calendar</span></span>
-            <span class="gv-spec__i"><b class="gv-spec__k">INBOX</b><span class="gv-spec__v">Every Gmail lead answered in under a minute, followed up on day 1, 3 and 7</span></span>
-            <span class="gv-spec__i"><b class="gv-spec__k">BOOKS</b><span class="gv-spec__v">Invoices out of QuickBooks the day the job closes, late payers reminded politely</span></span>
-          </div>
-
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
-            <a href="contact.html" class="btn btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Talk to Jaden Directly
-            </a>
-            <a href="index.html#crew" class="btn btn-secondary">Meet the crew</a>
-          </div>
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1"><svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" aria-hidden="true"><g fill="#fff"><circle cx="80" cy="60" r="1.5" opacity="0.7"/><circle cx="200" cy="140" r="1" opacity="0.5"/><circle cx="330" cy="40" r="2" opacity="0.6"/><circle cx="520" cy="90" r="1" opacity="0.4"/><circle cx="700" cy="30" r="1.5" opacity="0.7"/><circle cx="880" cy="120" r="1" opacity="0.5"/><circle cx="1040" cy="50" r="2" opacity="0.6"/><circle cx="1180" cy="160" r="1" opacity="0.4"/><circle cx="1320" cy="70" r="1.5" opacity="0.7"/><circle cx="150" cy="300" r="1" opacity="0.35"/><circle cx="1250" cy="320" r="1" opacity="0.35"/><circle cx="60" cy="520" r="1.5" opacity="0.4"/><circle cx="1350" cy="560" r="1.5" opacity="0.4"/><circle cx="640" cy="600" r="1" opacity="0.3"/></g><circle cx="1240" cy="120" r="46" fill="none" stroke="#7DE3A4" stroke-opacity=".25" stroke-width="1.5"/><ellipse cx="1240" cy="120" rx="78" ry="22" fill="none" stroke="#7DE3A4" stroke-opacity=".3" stroke-width="1.5" transform="rotate(-18 1240 120)"/><circle cx="150" cy="150" r="24" fill="#7DE3A4" fill-opacity=".14"/><circle cx="142" cy="142" r="6" fill="#7DE3A4" fill-opacity=".25"/></svg>
+      <div class="sn-hero__inner">
+        <p class="tk-eyebrow"><b>About</b> · Gilbert, Arizona</p>
+        <h1 class="tk-h1" id="h1">Six employees. One builder. <em>One number.</em></h1>
+        <p class="sn-hero__sub">Jaden Green builds every AI employee, website, ad and custom system GreenAI sells, and answers the phone himself. No photo, on purpose. The number is the trust signal.</p>
+        <div class="sn-hero__cta">
+          <a href="tel:4807980753" class="tk-btn tk-btn--inverse tk-btn--arrow">Call (480) 798-0753</a>
+          <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
         </div>
       </div>
+      <div class="ab-control" aria-label="The six robots around the direct line">
+        <div class="ab-control__side"><a href="ring.html" class="rb-float" style="--w:150px;--dy:0px;animation-delay:0.0s" title="RING"><svg class="rb rb-ring rb--wave" viewBox="0 0 240 300" role="img" aria-label="RING" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-ringw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-ringw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-ringw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-ringw"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#7DE3A4" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#7DE3A4" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#7DE3A4" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#7DE3A4" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#7DE3A4" opacity=".8"/><g fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M214 76 q10 -8 12 -20"/><path d="M226 92 q12 -2 20 -10"/></g>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#7DE3A4"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#7DE3A4"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-ringw)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#7DE3A4" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-ringw)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+<circle cx="80" cy="212" r="4" fill="#7DE3A4"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
 
-      <div class="founder-principles reveal" aria-label="How we operate">
-        <div>
-          <span class="fp-k">Transparent by default</span>
-          <p>Nothing here is quoted behind a curtain. The <a href="pay.html">price</a>, the <a href="agreement.html">service agreement</a>, and a <a href="index.html#proof-run">real run of the system</a> are already public on this site &mdash; you can read all three before we ever speak.</p>
-        </div>
-        <div>
-          <span class="fp-k">One person, start to finish</span>
-          <p>Jaden builds it, Jaden answers the phone, Jaden makes the change you asked for. There is no account manager, no ticket queue and no hand-off.</p>
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-ringw)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q44 -6 40 -52" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q44 -6 40 -52" fill="none" stroke="url(#sh-ringw)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="200" cy="104" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"></g><g transform="translate(200,104)"></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-ringw)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-ringw)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-ringw)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/></svg></a><a href="dispatch.html" class="rb-float" style="--w:135px;--dy:-24px;animation-delay:0.4s" title="DISPATCH"><svg class="rb rb-dispatch rb--point" viewBox="0 0 240 300" role="img" aria-label="DISPATCH" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-dispatchp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-dispatchp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-dispatchp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B"/></linearGradient>
+<radialGradient id="gl-dispatchp"><stop offset="0" stop-color="#F0CF6B" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#F0CF6B" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#F0CF6B" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#F0CF6B" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#F0CF6B" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#F0CF6B" opacity=".8"/><g fill="#F0CF6B"><path d="M228 96 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g><path d="M226 134 q10 -14 6 -28" fill="none" stroke="#F0CF6B" stroke-width="2" stroke-dasharray="3 3"/>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#F0CF6B"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#F0CF6B"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-dispatchp)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-dispatchp)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-dispatchp)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#F0CF6B" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-dispatchp)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></g>
+<circle cx="80" cy="212" r="4" fill="#F0CF6B"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-dispatchp)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q40 -4 60 -22" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q40 -4 60 -22" fill="none" stroke="url(#sh-dispatchp)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="226" cy="134" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"><rect x="-30" y="-40" width="46" height="56" rx="6" fill="#fff" stroke="#B9C6BE"/><rect x="-16" y="-46" width="18" height="10" rx="4" fill="#1E4A33"/><path d="M-20 -14 q10-16 20 0 t20 0" fill="none" stroke="#1E4A33" stroke-width="2.5" stroke-dasharray="4 3"/><path d="M8 -28 a5 5 0 1 1 .1 0 M8 -23 l0 8" fill="none" stroke="#F0CF6B" stroke-width="3"/><path d="M-20 0 h30 M-20 6 h20" stroke="#B9C6BE" stroke-width="2"/></g><g transform="translate(226,134)"></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-dispatchp)"/><circle cx="120" cy="8" r="5" fill="#F0CF6B"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-dispatchp)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-dispatchp)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F0CF6B" stroke-width="3" stroke-linecap="round"/>
+<path d="M50 62 q70-44 140 0 l6 10 q-76-30-152 0z" fill="#F0CF6B" stroke="#B9C6BE"/><rect x="108" y="30" width="24" height="14" rx="6" fill="#F0CF6B" stroke="#B9C6BE"/><circle cx="120" cy="37" r="4" fill="#fff"/></svg></a><a href="inbox.html" class="rb-float" style="--w:165px;--dy:-48px;animation-delay:0.8s" title="INBOX"><svg class="rb rb-inbox rb--fly" viewBox="0 0 240 300" role="img" aria-label="INBOX" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-inboxf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-inboxf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-inboxf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0"/></linearGradient>
+<radialGradient id="gl-inboxf"><stop offset="0" stop-color="#7CC4F0" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#7CC4F0" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#7CC4F0" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#7CC4F0" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#7CC4F0" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#7CC4F0" opacity=".8"/><g stroke="#7CC4F0" stroke-width="3" stroke-linecap="round" opacity=".55"><path d="M14 236 h44"/><path d="M6 254 h30"/><path d="M22 272 h52"/></g><g transform="rotate(-16 120 170)">
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 48.400000000000006 5 48.400000000000006 q5-48.400000000000006 5-48.400000000000006z" fill="#7CC4F0"/><path d="M142 231 q5 48.400000000000006 5 48.400000000000006 q5-48.400000000000006 5-48.400000000000006z" fill="#7CC4F0"/>
+<path d="M90 231 q3 26.400000000000002 3 26.400000000000002 q3-26.400000000000002 3-26.400000000000002z" fill="#fff" opacity=".8"/><path d="M144 231 q3 26.400000000000002 3 26.400000000000002 q3-26.400000000000002 3-26.400000000000002z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxf)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#7CC4F0" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-inboxf)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/></g>
+<circle cx="80" cy="212" r="4" fill="#7CC4F0"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-34 18-22 58" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-34 18-22 58" fill="none" stroke="url(#sh-inboxf)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="58" cy="220" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q34 18 22 58" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q34 18 22 58" fill="none" stroke="url(#sh-inboxf)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="182" cy="220" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(58,220)"><rect x="-34" y="-26" width="52" height="36" rx="5" fill="#fff" stroke="#B9C6BE"/><path d="M-34 -26 l26 18 l26 -18" fill="none" stroke="#7CC4F0" stroke-width="3"/></g><g transform="translate(182,220)"><g transform="translate(6,-58) rotate(-15)"><rect x="-16" y="-11" width="32" height="22" rx="4" fill="#fff" stroke="#B9C6BE"/><path d="M-16 -11 l16 11 l16 -11" fill="none" stroke="#7CC4F0" stroke-width="2.5"/></g><g transform="translate(26,-88) rotate(-25)" opacity=".7"><rect x="-12" y="-8" width="24" height="16" rx="3" fill="#fff" stroke="#B9C6BE"/><path d="M-12 -8 l12 8 l12 -8" fill="none" stroke="#7CC4F0" stroke-width="2"/></g></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-inboxf)"/><circle cx="120" cy="8" r="5" fill="#7CC4F0"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-inboxf)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7CC4F0" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 62 q62-40 124 0 v10 q-62-28-124 0z" fill="#7CC4F0" stroke="#B9C6BE"/><rect x="52" y="70" width="60" height="9" rx="4" fill="#1E4A33"/><path d="M160 140 l-70 96" stroke="#7CC4F0" stroke-width="10" stroke-linecap="round" opacity=".9"/></g></svg></a></div>
+        <div class="ab-line"><span class="live">Direct line</span><small>Rings the builder</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>Not a call centre, not a rep. You get the person who builds the system, every time.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>Jaden Green</b> · Gilbert, AZ · works with companies anywhere</p></div>
+        <div class="ab-control__side"><a href="thread.html" class="rb-float" style="--w:140px;--dy:-36px;animation-delay:0.0s" title="THREAD"><svg class="rb rb-thread rb--think" viewBox="0 0 240 300" role="img" aria-label="THREAD" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-threadt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-threadt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-threadt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7"/></linearGradient>
+<radialGradient id="gl-threadt"><stop offset="0" stop-color="#C9A9F7" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#C9A9F7" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#C9A9F7" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#C9A9F7" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#C9A9F7" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#C9A9F7" opacity=".8"/><g transform="translate(176,42)"><path d="M-22 -18 h44 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-26 l-10 8 v-8 h-8 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8z" fill="#fff" stroke="#B9C6BE"/><text x="0" y="8" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="22" fill="#C9A9F7">?</text></g>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#C9A9F7"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#C9A9F7"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-threadt)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-threadt)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-threadt)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#C9A9F7" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-threadt)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></g>
+<circle cx="80" cy="212" r="4" fill="#C9A9F7"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-26 -14 8 -42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-26 -14 8 -42" fill="none" stroke="url(#sh-threadt)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="90" cy="118" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q30 10 26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q30 10 26 42" fill="none" stroke="url(#sh-threadt)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="188" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(90,118)"></g><g transform="translate(188,204)"><path d="M-136 -20 q-40 -60 20 -90 t100 -10 q60 20 12 60" fill="none" stroke="#C9A9F7" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/><circle cx="0" cy="-8" r="8" fill="#C9A9F7" stroke="#B9C6BE"/></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-threadt)"/><circle cx="120" cy="8" r="5" fill="#C9A9F7"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-threadt)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-threadt)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#C9A9F7" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(120,30)"><path d="M-26 -22 h52 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-30 l-10 8 v-8 h-12 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z" transform="translate(0,-22)" fill="#C9A9F7" stroke="#B9C6BE"/><circle cx="-12" cy="-28" r="3" fill="#0F1A14"/><circle cx="0" cy="-28" r="3" fill="#0F1A14"/><circle cx="12" cy="-28" r="3" fill="#0F1A14"/></g></svg></a><a href="huddle.html" class="rb-float" style="--w:150px;--dy:-18px;animation-delay:0.4s" title="HUDDLE"><svg class="rb rb-huddle rb--stand" viewBox="0 0 240 300" role="img" aria-label="HUDDLE" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-huddles" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-huddles" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-huddles" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E"/></linearGradient>
+<radialGradient id="gl-huddles"><stop offset="0" stop-color="#F5A38E" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#F5A38E" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#F5A38E" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#F5A38E" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#F5A38E" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#F5A38E" opacity=".8"/>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#F5A38E"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#F5A38E"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-huddles)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-huddles)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-huddles)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#F5A38E" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-huddles)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g>
+<circle cx="80" cy="212" r="4" fill="#F5A38E"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-huddles)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q30 10 26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q30 10 26 42" fill="none" stroke="url(#sh-huddles)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="188" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"><rect x="-34" y="-40" width="52" height="60" rx="8" fill="#fff" stroke="#B9C6BE"/><circle cx="-8" cy="-10" r="17" fill="none" stroke="#B9C6BE" stroke-dasharray="3 3"/><circle cx="-8" cy="-27" r="5" fill="#F5A38E"/><circle cx="7" cy="-2" r="5" fill="#F5A38E"/><circle cx="-23" cy="-2" r="5" fill="#F5A38E"/><circle cx="-8" cy="-10" r="4" fill="#1E4A33"/></g><g transform="translate(188,204)"><path d="M-8 -6 l8 -10 l8 10" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><rect x="-6" y="-46" width="12" height="36" rx="6" fill="#1E4A33"/></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-huddles)"/><circle cx="120" cy="8" r="5" fill="#F5A38E"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-huddles)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-huddles)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F5A38E"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F5A38E"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F5A38E" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 60 q62-36 124 0 l-4 12 q-58-30-116 0z" fill="#1E4A33"/><path d="M96 54 h48" stroke="#F5A38E" stroke-width="4" stroke-linecap="round"/><path d="M120 150 l0 40" stroke="#1E4A33" stroke-width="3"/><path d="M110 190 h20 v12 h-8 l-6 8 h-6z" fill="#F5A38E" stroke="#B9C6BE"/></svg></a><a href="books.html" class="rb-float" style="--w:160px;--dy:6px;animation-delay:0.8s" title="BOOKS"><svg class="rb rb-books rb--sit" viewBox="0 0 240 300" role="img" aria-label="BOOKS" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bookss" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bookss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bookss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+<radialGradient id="gl-bookss"><stop offset="0" stop-color="#E8C46A" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#E8C46A" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#E8C46A" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#E8C46A" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#E8C46A" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#E8C46A" opacity=".8"/>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 13.2 5 13.2 q5-13.2 5-13.2z" fill="#E8C46A"/><path d="M142 231 q5 13.2 5 13.2 q5-13.2 5-13.2z" fill="#E8C46A"/>
+<path d="M90 231 q3 7.199999999999999 3 7.199999999999999 q3-7.199999999999999 3-7.199999999999999z" fill="#fff" opacity=".8"/><path d="M144 231 q3 7.199999999999999 3 7.199999999999999 q3-7.199999999999999 3-7.199999999999999z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="60" y="262" width="120" height="14" rx="7" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="230" width="44" height="24" rx="12" fill="url(#sh-bookss)" stroke="#B9C6BE"/><rect x="118" y="230" width="44" height="24" rx="12" fill="url(#sh-bookss)" stroke="#B9C6BE"/>
+<ellipse cx="72" cy="244" rx="9" ry="14" fill="#1E4A33"/><ellipse cx="170" cy="244" rx="9" ry="14" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-bookss)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#E8C46A" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-bookss)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 17.5v-11"/></g>
+<circle cx="80" cy="212" r="4" fill="#E8C46A"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
+
+<path d="M78 160 q-6 30 20 48" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-6 30 20 48" fill="none" stroke="url(#sh-bookss)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="100" cy="210" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q6 30 -20 48" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q6 30 -20 48" fill="none" stroke="url(#sh-bookss)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="140" cy="210" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(100,210)"><path d="M-36 -34 h30 q6 0 6 6 v40 q0 -4 -6 -4 h-30 q-6 0 -6 4 v-40 q0-6 6-6z" fill="#fff" stroke="#B9C6BE"/><path d="M0 -28 h30 q6 0 6 6 v40 q0-4-6-4 h-30 q-6 0-6 4 v-40 q0-6 6-6z" transform="translate(0,-6)" fill="#fff" stroke="#B9C6BE"/><path d="M-30 -22 h20 M-30 -14 h20 M-30 -6 h14 M8 -28 h20 M8 -20 h20 M8 -12 h14" stroke="#E8C46A" stroke-width="2"/><rect x="-42" y="8" width="84" height="6" rx="3" fill="#1E4A33"/></g><g transform="translate(140,210)"><circle cx="4" cy="-40" r="16" fill="#E8C46A" stroke="#B9C6BE"/><circle cx="4" cy="-40" r="11" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/><text x="4" y="-34" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="16" fill="#0F1A14">$</text><circle cx="30" cy="-66" r="8" fill="#E8C46A" opacity=".7"/></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bookss)"/><circle cx="120" cy="8" r="5" fill="#E8C46A"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bookss)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bookss)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#E8C46A"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#E8C46A"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 66 q68-30 136 0 l-6 12 q-62-26-124 0z" fill="#E8C46A" opacity=".85" stroke="#B9C6BE"/><path d="M62 74 q58-22 116 0" fill="none" stroke="#1E4A33" stroke-width="3"/></svg></a></div>
+      </div>
+    </header></div>
+
+    <section class="sn-sec" aria-labelledby="h-who">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-who">Who you would be <em>buying from.</em></h2></div>
+        <div class="sn-cards">
+          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek"><svg class="rb-peek rb-books" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-pbooks" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-pbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-pbooks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+<radialGradient id="gl-pbooks"><stop offset="0" stop-color="#E8C46A" stop-opacity=".9"/><stop offset="1" stop-color="#E8C46A" stop-opacity="0"/></radialGradient>
+</defs>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-pbooks)"/><circle cx="120" cy="8" r="5" fill="#E8C46A"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-pbooks)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-pbooks)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#E8C46A"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#E8C46A"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 66 q68-30 136 0 l-6 12 q-62-26-124 0z" fill="#E8C46A" opacity=".85" stroke="#B9C6BE"/><path d="M62 74 q58-22 116 0" fill="none" stroke="#1E4A33" stroke-width="3"/><circle cx="62" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="178" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/></svg></div><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>Read a P&amp;L before automating anything</h3><p>B.S. in Real Estate and Business, University of Washington. What is sold here is not technology. It is a job that gets done faster, cheaper, or at an hour when nobody is awake.</p></article>
+          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek"><svg class="rb-peek rb-dispatch" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-pdispatch" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-pdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-pdispatch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B"/></linearGradient>
+<radialGradient id="gl-pdispatch"><stop offset="0" stop-color="#F0CF6B" stop-opacity=".9"/><stop offset="1" stop-color="#F0CF6B" stop-opacity="0"/></radialGradient>
+</defs>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-pdispatch)"/><circle cx="120" cy="8" r="5" fill="#F0CF6B"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-pdispatch)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-pdispatch)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F0CF6B"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F0CF6B" stroke-width="3" stroke-linecap="round"/>
+<path d="M50 62 q70-44 140 0 l6 10 q-76-30-152 0z" fill="#F0CF6B" stroke="#B9C6BE"/><rect x="108" y="30" width="24" height="14" rx="6" fill="#F0CF6B" stroke="#B9C6BE"/><circle cx="120" cy="37" r="4" fill="#fff"/><circle cx="62" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="178" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/></svg></div><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Seven years building systems</h3><p>Systems that let a small company run like a much bigger one. GreenAI is where all of that work now lives.</p></article>
+          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek"><svg class="rb-peek rb-ring" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-pring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-pring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-pring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-pring"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-pring)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-pring)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-pring)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/><circle cx="62" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="178" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/></svg></div><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><h3>One person, start to finish</h3><p>Jaden scopes it, builds it, answers the phone and makes the change you asked for. No account manager, no ticket queue, no hand-off.</p></article>
+          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek"><svg class="rb-peek rb-thread" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-pthread" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-pthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-pthread" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7"/></linearGradient>
+<radialGradient id="gl-pthread"><stop offset="0" stop-color="#C9A9F7" stop-opacity=".9"/><stop offset="1" stop-color="#C9A9F7" stop-opacity="0"/></radialGradient>
+</defs>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-pthread)"/><circle cx="120" cy="8" r="5" fill="#C9A9F7"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-pthread)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-pthread)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#C9A9F7"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#C9A9F7" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(120,30)"><path d="M-26 -22 h52 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-30 l-10 8 v-8 h-12 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z" transform="translate(0,-22)" fill="#C9A9F7" stroke="#B9C6BE"/><circle cx="-12" cy="-28" r="3" fill="#0F1A14"/><circle cx="0" cy="-28" r="3" fill="#0F1A14"/><circle cx="12" cy="-28" r="3" fill="#0F1A14"/></g><circle cx="62" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="178" cy="138" r="14" fill="#D9E2DB" stroke="#B9C6BE"/></svg></div><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Transparent by default</h3><p>The <a href="staff.html">price</a>, the <a href="agreement.html">service agreement</a> and a <a href="catch.html">real run of the system</a> are public on this site. Read all three before we ever speak.</p></article>
         </div>
       </div>
+    </section>
+
+    <div class="sn-state" aria-label="The one rule">
+      <p>I build the systems myself, and I do not break one rule: whoever does the work does not grade it.</p>
+      <p>The system does the job. A second system checks it. A person approves it before it acts.</p>
+      <p><span class="who"><svg class="who__bust rb-ring" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-bring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-bring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4"/></linearGradient>
+<radialGradient id="gl-bring"><stop offset="0" stop-color="#7DE3A4" stop-opacity=".9"/><stop offset="1" stop-color="#7DE3A4" stop-opacity="0"/></radialGradient>
+</defs><rect x="70" y="128" width="100" height="40" rx="30" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-bring)"/><circle cx="120" cy="8" r="5" fill="#7DE3A4"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-bring)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-bring)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7DE3A4"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7DE3A4" stroke-width="3" stroke-linecap="round"/>
+<path d="M62 78 q58-58 116 0" fill="none" stroke="#1E4A33" stroke-width="7" stroke-linecap="round"/><rect x="48" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><rect x="170" y="80" width="22" height="30" rx="9" fill="#1E4A33"/><path d="M60 110 q0 22 36 20" fill="none" stroke="#1E4A33" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="131" r="5" fill="#1E4A33"/></svg>RING</span> is built to say "I'm not sure" rather than invent an answer. That is the difference between AI you put in front of customers and AI you apologise for.</p>
     </div>
-  </section>
 
-  <!-- ===== MISSION ===== -->
-  <section class="section bg-gray" aria-labelledby="mission-heading">
-    <div class="container">
-      <div class="text-center reveal">
-        <span class="section-label">Who this is for</span>
-        <h2 id="mission-heading">The small company that never had an office.</h2>
-        <div class="section-divider"></div>
-        <p style="max-width:580px;margin:0 auto 3rem">The one-truck owner who answers from the driver&rsquo;s seat, and the ten-truck company where the owner still does the invoices on Sunday.</p>
-      </div>
-
-      <div class="mission-grid">
-        <div class="mission-card reveal reveal-delay-1">
-          <div class="mission-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <h3>A front office, without hiring one</h3>
-          <p>A two-truck company gets the same coverage as the outfit with a call centre &mdash; AI employees built for your area and your prices, answering while you are on a job.</p>
-        </div>
-        <div class="mission-card reveal reveal-delay-2">
-          <div class="mission-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-          <h3>Your evenings back</h3>
-          <p>Quoting at the kitchen table, answering &ldquo;is my tech coming?&rdquo; from the truck, chasing invoices on Sunday &mdash; the work that fills your evenings without paying for them. We hand that back.</p>
-        </div>
-        <div class="mission-card reveal reveal-delay-3">
-          <div class="mission-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>We have to earn next month</h3>
-          <p>We don't sell software and disappear. You approve every script before it goes live, changes are same-day and unlimited, and you have the builder's number. Month to month, so we have to earn next month.</p>
+    <section class="sn-sec" aria-labelledby="h-rule">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-rule">Does. Grades. <em>Approves.</em></h2><p class="tk-lede">How every GreenAI system is built, on the phone as you would see it. Tap a step, or scroll.</p></div>
+        <div class="sn-steps">
+          <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div>
+<div class="sn-phone__view is-on"><p class="sn-phone__title">Does</p><p class="sn-phone__sub">RING, 9:47 PM</p><ul class="sn-lines"><li class="them">My pump is grinding and it's Sunday.</li><li class="us" data-who="RING · 0:08">Switch it off tonight. Can I get the address? I can book tomorrow at 8.</li></ul></div>
+<div class="sn-phone__view"><p class="sn-phone__title">Grades</p><p class="sn-phone__sub">the checker, same second</p><div class="sn-file"><i>$</i><span>"first visit is $285"<small>on your price list</small></span><em>PASS</em></div><div class="sn-file"><i>$</i><span>"I can do it for $3,200"<small>not on your list</small></span><em style="color:#c8102e">BLOCKED</em></div><div class="sn-file"><i>HR</i><span>"tomorrow at 8"<small>inside your hours</small></span><em>PASS</em></div></div>
+<div class="sn-phone__view"><p class="sn-phone__title">Approves</p><p class="sn-phone__sub">you, before it goes live</p><ul class="sn-lines"><li class="us" data-who="RING · draft">I can hold tomorrow at 8.</li><li class="them">Say "book", not "hold".</li><li class="us" data-who="RING · v2">I can book tomorrow at 8.</li><li class="them">Approved.</li></ul></div>
+<div class="sn-phone__view"><p class="sn-phone__title">"I'm not sure"</p><p class="sn-phone__sub">what it says when it does not know</p><ul class="sn-lines"><li class="them">Can you match the other guy's price?</li><li class="us" data-who="RING">I'm not sure, and I won't guess. Jaden will call you back today with an answer.</li></ul><div class="sn-file"><i>YOU</i><span>Texted to you<small>caller, number, the question</small></span><em>NOW</em></div></div>
+<div class="sn-phone__view"><p class="sn-phone__title">You stay the owner</p><p class="sn-phone__sub">Monday, 7:00 AM</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 handed to you</small></span><em>RING</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div><div class="sn-file"><i>480</i><span>Anything wrong?<small>(480) 798-0753 rings Jaden</small></span><em>CALL</em></div></div></div></div></div>
+          <ol class="sn-steps__list"><li><b>The system does the work</b><p>RING answers, INBOX replies, BOOKS sends the invoice. Built from your price list, your hours, your house rules and the way you say things.</p></li><li><b>A second system grades it</b><p>Every dollar figure is read by a checker before it sends. A price that is not on your list is blocked, not sent. Whoever does the work does not grade it.</p></li><li><b>A person approves it</b><p>You read every script before a customer hears one. Anything unusual, a complaint, a refund, a legal question, is drafted and waits for you.</p></li><li><b>Built to say "I'm not sure"</b><p>Rather than invent an answer. That is the difference between AI you put in front of customers and AI you apologise for.</p></li><li><b>You stay the owner</b><p>You just stop being the bottleneck. Month to month, so this company has to earn next month.</p></li></ol>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== WHY AI FOR REAL ESTATE ===== -->
-  <section class="section" aria-labelledby="why-ai-heading">
-    <div class="container">
-      <div class="grid-2" style="gap:5rem;align-items:center">
-        <div class="reveal">
-          <span class="section-label">The Opportunity</span>
-          <h2 id="why-ai-heading">Why this matters<br/>for a small company</h2>
-          <div class="section-divider section-divider--left"></div>
-          <p>The last shift moved <em>getting found</em> from the phone book to Google. This one moves something else.</p>
+    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-for">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-for">Built for the small company that <em>never had an office.</em></h2><p class="tk-lede">The one-truck owner who answers from the driver's seat, and the ten-truck company where the owner still does the invoices on Sunday.</p></div>
+        <div class="sn-bubbles">
+          <div><div class="sn-grad__bot rb-float"><svg class="rb rb-huddle rb--point" viewBox="0 0 240 300" role="img" aria-label="HUDDLE" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-huddlep" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-huddlep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-huddlep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E"/></linearGradient>
+<radialGradient id="gl-huddlep"><stop offset="0" stop-color="#F5A38E" stop-opacity=".9"/><stop offset="1" stop-color="#F5A38E" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#F5A38E" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#F5A38E" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#F5A38E" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#F5A38E" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#F5A38E" opacity=".8"/><g fill="#F5A38E"><path d="M228 96 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g><path d="M226 134 q10 -14 6 -28" fill="none" stroke="#F5A38E" stroke-width="2" stroke-dasharray="3 3"/>
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="#F5A38E"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="#F5A38E"/>
+<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-huddlep)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-huddlep)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-huddlep)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#F5A38E" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-huddlep)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g>
+<circle cx="80" cy="212" r="4" fill="#F5A38E"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
 
-          <div class="gv gv-light gv-spec" role="img" aria-label="The internet changed how customers find you. AI changes what happens in the minutes after they do.">
-            <span class="gv-spec__i">
-              <b class="gv-spec__k">THE INTERNET SHIFT</b>
-              <span class="gv-spec__v">Changed <em>how they find you</em></span>
-            </span>
-            <span class="gv-spec__i">
-              <b class="gv-spec__k">THE AI SHIFT</b>
-              <span class="gv-spec__v">Changes <em>the minutes after they do</em></span>
-            </span>
-          </div>
+<path d="M78 160 q-30 10-26 42" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-huddlep)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="52" cy="204" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q40 -4 60 -22" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q40 -4 60 -22" fill="none" stroke="url(#sh-huddlep)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="226" cy="134" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(52,204)"><rect x="-34" y="-40" width="52" height="60" rx="8" fill="#fff" stroke="#B9C6BE"/><circle cx="-8" cy="-10" r="17" fill="none" stroke="#B9C6BE" stroke-dasharray="3 3"/><circle cx="-8" cy="-27" r="5" fill="#F5A38E"/><circle cx="7" cy="-2" r="5" fill="#F5A38E"/><circle cx="-23" cy="-2" r="5" fill="#F5A38E"/><circle cx="-8" cy="-10" r="4" fill="#1E4A33"/></g><g transform="translate(226,134)"></g>
 
-          <p>Who answers. How fast. Whether anyone follows up at 9:47 PM. That gap is where the money leaks out &mdash; not in marketing spend, but in the form that sat unread while you were on a job in Chandler.</p>
-          <p>That gap is the whole reason this company exists. Close it, and the marketing you already pay for starts working harder.</p>
-        </div>
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-huddlep)"/><circle cx="120" cy="8" r="5" fill="#F5A38E"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-huddlep)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-huddlep)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#F5A38E"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#F5A38E"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#F5A38E" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 60 q62-36 124 0 l-4 12 q-58-30-116 0z" fill="#1E4A33"/><path d="M96 54 h48" stroke="#F5A38E" stroke-width="4" stroke-linecap="round"/><path d="M120 150 l0 40" stroke="#1E4A33" stroke-width="3"/><path d="M110 190 h20 v12 h-8 l-6 8 h-6z" fill="#F5A38E" stroke="#B9C6BE"/></svg></div><div class="sn-bubble"><b>A front office, without hiring one</b>A two-truck company gets the same coverage as the outfit with a call centre. AI employees built for your area and your prices, answering while you are on a job.</div></div>
+          <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Sunday, 9:47 PM</p><p class="sn-phone__sub">the evening you get back</p><div class="sn-file"><i>RNG</i><span>Call answered, booked Mon 8:00<small>you were at dinner</small></span><em>RING</em></div><div class="sn-file"><i>INB</i><span>Quote request replied to<small>0:41 after it landed</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>Invoice #1051 sent<small>the day the job closed</small></span><em>BOOKS</em></div><div class="sn-file"><i>YOU</i><span>Nothing needs you tonight<small>Monday report at 7</small></span><em>REST</em></div></div></div></div>
+          <div><div class="sn-bubble"><b>Your evenings back</b>Quoting at the kitchen table, answering "is my tech coming?" from the truck, chasing invoices on Sunday. The work that fills your evenings without paying for them. We hand that back.</div><div class="sn-bubble"><b>We have to earn next month</b>You approve every script before it goes live, changes are same-day and unlimited, and you have the builder's number. Month to month.</div><div class="sn-grad__bot rb-float" style="animation-delay:.6s"><svg class="rb rb-inbox rb--fly" viewBox="0 0 240 300" role="img" aria-label="INBOX" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="sh-inboxf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D9E2DB"/></linearGradient>
+<linearGradient id="vi-inboxf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A33"/><stop offset="1" stop-color="#0F1A14"/></linearGradient>
+<linearGradient id="ac-inboxf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0"/></linearGradient>
+<radialGradient id="gl-inboxf"><stop offset="0" stop-color="#7CC4F0" stop-opacity=".9"/><stop offset="1" stop-color="#7CC4F0" stop-opacity="0"/></radialGradient>
+</defs><path d="M28 33 L30.45 37.55 L35 40 L30.45 42.45 L28 47 L25.55 42.45 L21 40 L25.55 37.55Z" fill="#7CC4F0" opacity=".8"/><path d="M212 25 L213.75 28.25 L217 30 L213.75 31.75 L212 35 L210.25 31.75 L207 30 L210.25 28.25Z" fill="#7CC4F0" opacity=".8"/><path d="M200 144 L202.1 147.9 L206 150 L202.1 152.1 L200 156 L197.9 152.1 L194 150 L197.9 147.9Z" fill="#7CC4F0" opacity=".8"/><path d="M24 186 L25.4 188.6 L28 190 L25.4 191.4 L24 194 L22.6 191.4 L20 190 L22.6 188.6Z" fill="#7CC4F0" opacity=".8"/><path d="M222 226 L223.4 228.6 L226 230 L223.4 231.4 L222 234 L220.6 231.4 L218 230 L220.6 228.6Z" fill="#7CC4F0" opacity=".8"/><g stroke="#7CC4F0" stroke-width="3" stroke-linecap="round" opacity=".55"><path d="M14 236 h44"/><path d="M6 254 h30"/><path d="M22 272 h52"/></g><g transform="rotate(-16 120 170)">
+<ellipse cx="120" cy="290" rx="58" ry="7" fill="#0F1A14" opacity=".12"/>
+<!-- jetpack -->
+<rect x="66" y="146" width="108" height="76" rx="24" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="84" y="214" width="18" height="16" rx="6" fill="#1E4A33"/><rect x="138" y="214" width="18" height="16" rx="6" fill="#1E4A33"/>
+<path d="M88 231 q5 48.400000000000006 5 48.400000000000006 q5-48.400000000000006 5-48.400000000000006z" fill="#7CC4F0"/><path d="M142 231 q5 48.400000000000006 5 48.400000000000006 q5-48.400000000000006 5-48.400000000000006z" fill="#7CC4F0"/>
+<path d="M90 231 q3 26.400000000000002 3 26.400000000000002 q3-26.400000000000002 3-26.400000000000002z" fill="#fff" opacity=".8"/><path d="M144 231 q3 26.400000000000002 3 26.400000000000002 q3-26.400000000000002 3-26.400000000000002z" fill="#fff" opacity=".8"/>
+<!-- legs -->
+<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxf)" stroke="#B9C6BE"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="#1E4A33"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="#1E4A33"/>
+<!-- torso -->
+<rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<rect x="70" y="196" width="100" height="10" fill="#7CC4F0" opacity=".55"/>
+<rect x="94" y="156" width="52" height="46" rx="14" fill="url(#ac-inboxf)" stroke="#B9C6BE"/>
+<g transform="translate(106,167) scale(1.2)" fill="none" stroke="#0F1A14" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/></g>
+<circle cx="80" cy="212" r="4" fill="#7CC4F0"/><circle cx="92" cy="212" r="4" fill="#1E4A33" opacity=".5"/>
 
-        <div class="reveal">
-          <div style="display:flex;flex-direction:column;gap:1.5rem">
-            <div style="background:var(--green-pale);border-radius:var(--radius-lg);padding:1.75rem">
-              <div style="font-size:2rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display);margin-bottom:.3rem">24/7</div>
-              <div style="font-size:.9rem;font-weight:600;color:var(--gray-800);margin-bottom:.4rem">Every lead answered, every hour</div>
-              <p style="font-size:.85rem;margin:0">Nights, weekends, the middle of a job. RING picks it up, asks what a quote needs, quotes from your list and books the first visit.</p>
-            </div>
-            <div style="background:var(--green-pale);border-radius:var(--radius-lg);padding:1.75rem">
-              <div style="font-size:2rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display);margin-bottom:.3rem">Minutes</div>
-              <div style="font-size:.9rem;font-weight:600;color:var(--gray-800);margin-bottom:.4rem">Not "I'll get back to you tomorrow"</div>
-              <p style="font-size:.85rem;margin:0">A customer with a problem sends more than one form. The company that replies first usually gets the job — that is the whole race, and it is winnable with software.</p>
-            </div>
-            <div style="background:var(--green-pale);border-radius:var(--radius-lg);padding:1.75rem">
-              <div style="font-size:2rem;font-weight:800;color:var(--green-dark);font-family:var(--font-display);margin-bottom:.3rem">From $297 a month</div>
-              <div style="font-size:.9rem;font-weight:600;color:var(--gray-800);margin-bottom:.4rem">AI employees from $297 a month, cancel whenever</div>
-              <p style="font-size:.85rem;margin:0">One price per employee, month to month, no contract, and you keep every script and transcript. Sites from $500, ads from $697 a month, custom systems quoted.</p>
-            </div>
-          </div>
+<path d="M78 160 q-34 18-22 58" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-34 18-22 58" fill="none" stroke="url(#sh-inboxf)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="58" cy="220" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<path d="M162 160 q34 18 22 58" fill="none" stroke="#B9C6BE" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q34 18 22 58" fill="none" stroke="url(#sh-inboxf)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="182" cy="220" r="13" fill="#D9E2DB" stroke="#B9C6BE"/>
+<g transform="translate(58,220)"><rect x="-34" y="-26" width="52" height="36" rx="5" fill="#fff" stroke="#B9C6BE"/><path d="M-34 -26 l26 18 l26 -18" fill="none" stroke="#7CC4F0" stroke-width="3"/></g><g transform="translate(182,220)"><g transform="translate(6,-58) rotate(-15)"><rect x="-16" y="-11" width="32" height="22" rx="4" fill="#fff" stroke="#B9C6BE"/><path d="M-16 -11 l16 11 l16 -11" fill="none" stroke="#7CC4F0" stroke-width="2.5"/></g><g transform="translate(26,-88) rotate(-25)" opacity=".7"><rect x="-12" y="-8" width="24" height="16" rx="3" fill="#fff" stroke="#B9C6BE"/><path d="M-12 -8 l12 8 l12 -8" fill="none" stroke="#7CC4F0" stroke-width="2"/></g></g>
+
+<!-- antenna -->
+<line x1="120" y1="26" x2="120" y2="10" stroke="#B9C6BE" stroke-width="3"/>
+<circle cx="120" cy="8" r="12" fill="url(#gl-inboxf)"/><circle cx="120" cy="8" r="5" fill="#7CC4F0"/>
+<!-- helmet -->
+<circle cx="120" cy="86" r="62" fill="url(#sh-inboxf)" stroke="#B9C6BE"/>
+<circle cx="58" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/><circle cx="182" cy="90" r="11" fill="#D9E2DB" stroke="#B9C6BE"/>
+<rect x="72" y="52" width="96" height="72" rx="36" fill="url(#vi-inboxf)"/>
+<path d="M84 66 q36-26 72-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+<rect x="98" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/><rect x="127" y="78" width="15" height="20" rx="7" fill="#7CC4F0"/>
+<rect x="101" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/><rect x="130" y="81" width="5" height="6" rx="2" fill="#fff" opacity=".85"/>
+<path d="M108 108 q12 8 24 0" fill="none" stroke="#7CC4F0" stroke-width="3" stroke-linecap="round"/>
+<path d="M58 62 q62-40 124 0 v10 q-62-28-124 0z" fill="#7CC4F0" stroke="#B9C6BE"/><rect x="52" y="70" width="60" height="9" rx="4" fill="#1E4A33"/><path d="M160 140 l-70 96" stroke="#7CC4F0" stroke-width="10" stroke-linecap="round" opacity=".9"/></g></svg></div></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section></div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" aria-label="Site footer">
+    <section class="sn-easy" aria-labelledby="h-shift">
+      <div class="sn-inner">
+        <h2 id="h-shift">The internet changed how they find you. AI changes the <span class="sn-toggle" aria-hidden="true"></span> <em>minutes after.</em></h2>
+        <div class="sn-benefits">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><p><b>Who answers, and how fast.</b> A customer with a problem sends more than one form. The company that replies first usually gets the job. That is the whole race, and it is winnable with software.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><p><b>Where the money leaks.</b> Not in marketing spend. In the form that sat unread while you were on a job in Chandler, and the call that rang out at 9:47 PM.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg><p><b>Whether anyone follows up.</b> Day one, three and seven, in your words, until they answer or say stop.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><p><b>Close the gap</b> and the marketing you already pay for starts working harder. That gap is the whole reason this company exists.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-rows" style="padding-top:2rem">
+      <div class="sn-inner">
+        <div class="sn-price">
+          <p class="tk-eyebrow" style="margin-bottom:1.4rem"><b>Everything on the menu</b> · every price is the whole price</p>
+          <div class="tk-big" id="h-rows">From $297<small>a month for an AI employee · all six $1,797</small></div>
+          <p class="sn-price__terms">Websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Month to month, no contract, and you keep every script, transcript, page and file.</p>
+          <div class="sn-price__cta"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">Meet the six</a><a href="services.html">Compare all four services</a></div>
+          <ul class="sn-price__rows"><li><a href="ring.html">RING</a><span>inside your phone line</span><b>$497/mo</b></li><li><a href="dispatch.html">DISPATCH</a><span>inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li><li><a href="inbox.html">INBOX</a><span>inside Google Workspace</span><b>$397/mo</b></li><li><a href="thread.html">THREAD</a><span>inside Slack</span><b>$347/mo</b></li><li><a href="huddle.html">HUDDLE</a><span>inside Microsoft Teams</span><b>$347/mo</b></li><li><a href="books.html">BOOKS</a><span>inside QuickBooks Online</span><b>$297/mo</b></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-talk" style="padding-top:0;padding-bottom:2rem">
+      <div class="sn-inner">
+        <div class="hp-talk">
+          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
+          <div class="tk-plate"><p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
+        </div>
+        <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
+      </div>
+    </section>
+  </main>
+  <div class="sn-sticky"><a href="tel:4807980753" class="tk-btn tk-btn--solid tk-btn--arrow">Call Jaden, (480) 798-0753</a></div>
+    <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
@@ -434,7 +698,41 @@
       </div>
     </div>
   </footer>
-
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
   <script src="script.js?v=14"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
+  <script>
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
+  })();
+  </script>
 </body>
 </html>
