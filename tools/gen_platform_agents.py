@@ -12,7 +12,11 @@ customer names, counts or results anywhere: the mocks use fictional people and
 say so. After running, re-inject the shared chrome if nav.html changed:
     python3 tools/shared-nav/inject.py ring.html dispatch.html inbox.html thread.html huddle.html books.html staff.html
 """
-import html, json, os, re
+import html, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from robots import robot, bust
+ICON_OF={"ring":"phone","dispatch":"user","inbox":"inbox","thread":"message","huddle":"sun","books":"receipt"}
+STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" aria-hidden="true"><g fill="#fff">' + "".join(f'<circle cx="{x}" cy="{y}" r="{r}" opacity="{o}"/>' for x,y,r,o in [(80,60,1.5,.7),(200,140,1,.5),(330,40,2,.6),(520,90,1,.4),(700,30,1.5,.7),(880,120,1,.5),(1040,50,2,.6),(1180,160,1,.4),(1320,70,1.5,.7),(150,300,1,.35),(1250,320,1,.35),(60,520,1.5,.4),(1350,560,1.5,.4),(640,600,1,.3)]) + '</g><circle cx="1240" cy="120" r="46" fill="none" stroke="#7DE3A4" stroke-opacity=".25" stroke-width="1.5"/><ellipse cx="1240" cy="120" rx="78" ry="22" fill="none" stroke="#7DE3A4" stroke-opacity=".3" stroke-width="1.5" transform="rotate(-18 1240 120)"/><circle cx="150" cy="150" r="24" fill="#7DE3A4" fill-opacity=".14"/><circle cx="142" cy="142" r="6" fill="#7DE3A4" fill-opacity=".25"/></svg>'
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = open(os.path.join(ROOT, "tools/shared-nav/nav.html")).read().rstrip("\n")
@@ -385,7 +389,7 @@ def build_agent(a):
     others=[o for o in AGENTS if o["id"]!=a["id"]]
     title=f"{n} — the AI employee {a['inside']}, {price}/mo | GreenAI Solutions"
     desc=a["sub"][:155]
-    who=f'<span class="who">{n}</span>'
+    who=f'<span class="who">{bust(a["id"], cls="who__bust")}{n}</span>'
     state="".join(f"<p>{esc(s).replace('{who}', who)}</p>" for s in a["state"])
     does="".join(f'<article class="sn-card"><div class="sn-card__ico">{I[ic]}</div><h3>{esc(t)}</h3><p>{esc(p)}</p></article>' for ic,t,p in a["does"])
     connect="".join(f'<div>{I[ic]}<h3>{esc(t)}</h3><p>{esc(p)}</p></div>' for ic,t,p in a["connect"])
@@ -393,7 +397,7 @@ def build_agent(a):
     bubbles=a["bubbles"]
     marquee1="".join(f'<div class="sn-mcard">{I[ic]}<b>{esc(t)}</b><p>{esc(p)}</p></div>' for ic,t,p in a["does"])
     marquee2="".join(f'<div class="sn-mcard">{I[ic]}<b>{esc(t)}</b><p>{esc(p)}</p></div>' for ic,t,p in a["connect"]) + "".join(f'<div class="sn-mcard">{I["check"]}<b>{esc(q)}</b><p>{esc(ans)}</p></div>' for q,ans in a["faq"])
-    more="".join(f'<a href="{o["id"]}.html"><b>{o["name"]}</b><span>Works {esc(o["inside"])}. ${o["price"]:,} a month.</span><i>See {o["name"]} →</i></a>' for o in others)
+    more="".join(f'<a href="{o["id"]}.html">{bust(o["id"], cls="sn-more__bot")}<b>{o["name"]}</b><span>Works {esc(o["inside"])}. ${o["price"]:,} a month.</span><i>See {o["name"]} →</i></a>' for o in others)
     more+=f'<a href="staff.html"><b>The full staff</b><span>All six, one invoice, one Monday report. ${FULL:,} a month.</span><i>See all six →</i></a>'
     return head(title, desc, f"{a['id']}.html", og_title=f"{n} works {a['inside']}") + f'''
 <body class="tk light-top">
@@ -406,7 +410,7 @@ def build_agent(a):
   </script>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">{STARS}
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>AI employee {a['n']} of 06</b> · {esc(a['inside'])}</p>
         <h1 class="tk-h1" id="h1">{a['h1']}</h1>
@@ -417,7 +421,7 @@ def build_agent(a):
           <a href="contact.html?want={a['sku']}" class="tk-btn tk-btn--ghost">Ask a question first</a>
         </div>
       </div>
-      <div class="sn-hero__stage"><div class="tk-plate ag-mock" role="img" aria-label="What {n} looks like at work {esc(a['inside'])}, a mock-up with fictional names.">
+      <div class="sn-hero__stage ag-stage"><div class="ag-stage__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=n+", the "+a['inside']+" robot")}</div><div class="tk-plate ag-mock" role="img" aria-label="What {n} looks like at work {esc(a['inside'])}, a mock-up with fictional names.">
 {a['mock']}
       </div></div>
     </header></div>
@@ -445,7 +449,7 @@ def build_agent(a):
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-week">A week with {n}, <em>as you would see it.</em></h2><p class="tk-lede">Three messages you would actually get. Fictional customers, real behaviour.</p></div>
         <div class="sn-bubbles">
-          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div></div>
+          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div><div class="sn-grad__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], cls="rb rb--wave")}</div></div>
           <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">{n}</p><p class="sn-phone__sub">{esc(a['inside'])}</p><ul class="sn-lines"><li class="us" data-who="{n}">{esc(bubbles[1][1])}</li><li class="them">Good. Anything else?</li><li class="us" data-who="{n}">Nothing that needs you. Monday report at 7.</li></ul></div></div></div>
           <div><div class="sn-bubble"><b>{esc(bubbles[2][0])}</b>{esc(bubbles[2][1])}</div></div>
         </div>
@@ -495,7 +499,8 @@ def build_agent(a):
 def build_staff():
     title=f"AI employees for the apps you already use, from $297/mo | GreenAI Solutions"
     desc=f"Six AI employees, one inside each app you already run: your phone line, Jobber, Gmail, Slack, Teams, QuickBooks. From $297 a month, or all six for ${FULL:,}. Month to month."
-    cards="".join(f'''<article class="sn-card" style="text-align:left">
+    cards="".join(f'''<article class="sn-card st-card" style="text-align:left">
+  <div class="st-card__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=a['name'])}</div>
   <p class="tk-eyebrow" style="margin-bottom:.9rem"><b>{a['n']}</b> {esc(a['inside'])}</p>
   <h3 style="font-size:1.6rem"><a href="{a['id']}.html" style="color:inherit;text-decoration:none">{a['name']}</a></h3>
   <p>{esc(a['does'][0][2])} {esc(a['does'][1][2])}</p>
@@ -518,7 +523,7 @@ def build_staff():
 {NAV}
   </nav>
   <main id="main">
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">{STARS}
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>AI employees</b> · six of them</p>
         <h1 class="tk-h1" id="h1">One employee inside each app <em>you already use.</em></h1>
@@ -528,6 +533,7 @@ def build_staff():
           <a href="pay.html?sku=full-staff" class="tk-btn tk-btn--ghost" data-sku="full-staff">Hire all six, ${FULL:,}/mo</a>
         </div>
       </div>
+      <div class="sn-hero__crew" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.35}s" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"])}</a>' for i,x in enumerate(AGENTS))}</div>
       <div class="sn-hero__stage"><div class="sn-desk" id="sn-desk">
         <div class="sn-chip"><div class="sn-chip__ico">{I['phone']}</div><div><b>RING booked Mon 8:00</b><span>Pump noise, 1412 E Palo Verde</span><i>0:08 to pick up</i></div></div>
         <div class="sn-chip"><div class="sn-chip__ico">{I['send']}</div><div><b>INBOX replied to Dana R.</b><span>Weekly service quote, holding Thursday</span><i>0:41 after it landed</i></div></div>

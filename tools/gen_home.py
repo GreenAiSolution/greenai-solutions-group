@@ -2,7 +2,8 @@
 """gen_home.py — writes index.html in the showroom layout. Run after gen_platform_agents.py."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT
+from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT, STARS, ICON_OF
+from robots import robot, bust
 
 JSONLD = '''{
     "@context": "https://schema.org",
@@ -66,13 +67,13 @@ desk = "".join([
 ])
 
 four = f'''
-<article class="sn-card"><div class="sn-card__ico">{I['phone']}</div><h3>Answers the phone in about eight seconds.</h3><p>Nights, weekends, the second caller. Books it and texts you.</p>
+<article class="sn-card sn-card--bot"><div class="sn-card__bot">{robot("ring", I["phone"], label="RING")}</div><div class="sn-card__ico">{I['phone']}</div><h3>Answers the phone in about eight seconds.</h3><p>Nights, weekends, the second caller. Books it and texts you.</p>
   <div class="sn-card__vis">{chip("phone","Incoming · (480) 555-0142","“Is this Saguaro Pool Care? My pump is grinding.”","RING · 0:08")}{chip("calendar","Booked Mon 8:00","1412 E Palo Verde · transcript sent","done")}</div></article>
-<article class="sn-card"><div class="sn-card__ico">{I['user']}</div><h3>Writes the job into Jobber, Housecall Pro or ServiceTitan.</h3><p>Client, request, quote and reminder, in your account.</p>
+<article class="sn-card sn-card--bot"><div class="sn-card__bot">{robot("dispatch", I["user"], label="DISPATCH")}</div><div class="sn-card__ico">{I['user']}</div><h3>Writes the job into Jobber, Housecall Pro or ServiceTitan.</h3><p>Client, request, quote and reminder, in your account.</p>
   <div class="sn-card__vis">{chip("user","Request #1187 created","M. Ortega · Gilbert 85296","DISPATCH")}{chip("send","Quote sent · $285","from your price list · Thu 9:00 held","done")}</div></article>
-<article class="sn-card"><div class="sn-card__ico">{I['inbox']}</div><h3>Replies from your own Gmail in under a minute.</h3><p>Follows up on day one, three and seven. Drafts anything unusual for you.</p>
+<article class="sn-card sn-card--bot"><div class="sn-card__bot">{robot("inbox", I["inbox"], label="INBOX")}</div><div class="sn-card__ico">{I['inbox']}</div><h3>Replies from your own Gmail in under a minute.</h3><p>Follows up on day one, three and seven. Drafts anything unusual for you.</p>
   <div class="sn-card__vis">{chip("send","Replied to Dana R.","Weekly service quote · holding Thursday","INBOX · 0:41")}{chip("pen","Refund request drafted","K. Alvarez · waiting in Drafts","needs you")}</div></article>
-<article class="sn-card"><div class="sn-card__ico">{I['receipt']}</div><h3>Sends the invoice the day the job closes.</h3><p>Reminds politely on seven, fourteen and twenty-one. Never collections.</p>
+<article class="sn-card sn-card--bot"><div class="sn-card__bot">{robot("books", I["receipt"], label="BOOKS")}</div><div class="sn-card__ico">{I['receipt']}</div><h3>Sends the invoice the day the job closes.</h3><p>Reminds politely on seven, fourteen and twenty-one. Never collections.</p>
   <div class="sn-card__vis">{chip("receipt","Invoice #1051 sent","job closed 3:10 · out 3:12","BOOKS")}{chip("check","#1042 paid · matched","J. Whitfield · $285","Monday sheet")}</div></article>'''
 
 phone_views = '''
@@ -104,7 +105,7 @@ steps = "".join(f'<li><b>{t}</b><p>{p}</p></li>' for t,p in [
 marquee1 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][:2])
 marquee2 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][2:5])
 
-roster = "".join(f'<a href="{a["id"]}.html"><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
+roster = "".join(f'<a href="{a["id"]}.html">{bust(a["id"], cls="sn-more__bot")}<b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
 
 faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in [
     ("What is an AI employee, in plain English?","A program that does one job inside a tool you already use: answers the phone, replies to leads in Gmail, writes jobs into Jobber, answers the team in Slack or Teams, sends the invoices in QuickBooks. It is trained on your prices, hours and wording, and it never invents a number."),
@@ -127,7 +128,7 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
   </script>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">{STARS}
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>GreenAI Solutions</b> · Gilbert, Arizona</p>
         <h1 class="tk-h1" id="hero-heading">AI employees for the apps <em>you already use.</em></h1>
@@ -137,6 +138,7 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
+      <div class="sn-hero__crew" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.35}s" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"])}</a>' for i,x in enumerate(AGENTS))}</div>
       <div class="sn-hero__stage"><div class="sn-desk" id="sn-desk" role="img" aria-label="Six AI employees working through one day: a call answered, an email replied to, an invoice sent, a job written into Jobber, a question answered in Slack, a morning summary in Teams. Fictional customers.">{desk}</div></div>
     </header></div>
 
@@ -167,9 +169,9 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-staff">Your always-on <em>front office.</em></h2><p class="tk-lede">Six employees, thirty-six jobs, none of them in a new dashboard. This is what they do, in the words the pages use.</p></div>
         <div class="sn-bubbles">
-          <div><div class="sn-bubble"><b>RING · 9:47 PM</b>Booked Mon 8:00 for 1412 E Palo Verde. Pump noise, told them to switch it off tonight. Transcript in your inbox.</div><div class="sn-bubble"><b>THREAD · #leads</b>Henderson quote: sent Tuesday, $285, not accepted yet. Follow-up goes out tomorrow unless you want to call first.</div></div>
+          <div><div class="sn-grad__bot rb-float">{robot("thread", I["message"], label="THREAD")}</div><div class="sn-bubble"><b>RING · 9:47 PM</b>Booked Mon 8:00 for 1412 E Palo Verde. Pump noise, told them to switch it off tonight. Transcript in your inbox.</div><div class="sn-bubble"><b>THREAD · #leads</b>Henderson quote: sent Tuesday, $285, not accepted yet. Follow-up goes out tomorrow unless you want to call first.</div></div>
           <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Monday report</p><p class="sn-phone__sub">all six, one page</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 emergency to you</small></span><em>RING</em></div><div class="sn-file"><i>DSP</i><span>4 requests created<small>3 quoted from your list</small></span><em>DISPATCH</em></div><div class="sn-file"><i>INB</i><span>9 leads replied to<small>day 1·3·7 follow-ups running</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div></div></div></div>
-          <div><div class="sn-bubble"><b>INBOX · 7 min ago</b>Replied to Dana R. about weekly service in 0:41. Asked which day works and whether there is a gate code.</div><div class="sn-bubble"><b>BOOKS · Monday 7:00 AM</b>Cash sheet: $2,760 came in last week, 2 invoices late, 0 disputes. One page, in your inbox.</div></div>
+          <div><div class="sn-bubble"><b>INBOX · 7 min ago</b>Replied to Dana R. about weekly service in 0:41. Asked which day works and whether there is a gate code.</div><div class="sn-bubble"><b>BOOKS · Monday 7:00 AM</b>Cash sheet: $2,760 came in last week, 2 invoices late, 0 disputes. One page, in your inbox.</div><div class="sn-grad__bot rb-float" style="animation-delay:.6s">{robot("huddle", I["sun"], label="HUDDLE")}</div></div>
         </div>
         <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track">{marquee1}{marquee1}</div></div>
         <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track">{marquee2}{marquee2}</div></div>
