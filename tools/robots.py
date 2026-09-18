@@ -22,17 +22,45 @@ def _sparkles(a):
         out+=f'<path d="M{x} {y-r} L{x+r*.35} {y-r*.35} L{x+r} {y} L{x+r*.35} {y+r*.35} L{x} {y+r} L{x-r*.35} {y+r*.35} L{x-r} {y} L{x-r*.35} {y-r*.35}Z" fill="{a}" opacity=".8"/>'
     return out
 
-def _body(k, a, chest_icon):
+POSES = {
+ # name: (left arm path, left hand xy, right arm path, right hand xy, figure transform, flame scale, legs)
+ "stand": ("M78 160 q-30 10-26 42", (52,204), "M162 160 q30 10 26 42", (188,204), "", 1, "stand"),
+ "wave":  ("M78 160 q-30 10-26 42", (52,204), "M162 160 q44 -6 40 -52", (200,104), "", 1, "stand"),
+ "point": ("M78 160 q-30 10-26 42", (52,204), "M162 160 q40 -4 60 -22", (226,134), "", 1, "stand"),
+ "fly":   ("M78 160 q-34 18-22 58", (58,220), "M162 160 q34 18 22 58", (182,220), "rotate(-16 120 170)", 2.2, "trail"),
+ "sit":   ("M78 160 q-6 30 20 48", (100,210), "M162 160 q6 30 -20 48", (140,210), "", .6, "sit"),
+ "think": ("M78 160 q-26 -14 8 -42", (90,118), "M162 160 q30 10 26 42", (188,204), "", 1, "stand"),
+}
+
+def _legs(k, mode):
+    if mode == "sit":
+        return f'''<rect x="60" y="262" width="120" height="14" rx="7" fill="{SHELL2}" stroke="{LINE}"/>
+<rect x="84" y="230" width="44" height="24" rx="12" fill="url(#sh-{k})" stroke="{LINE}"/><rect x="118" y="230" width="44" height="24" rx="12" fill="url(#sh-{k})" stroke="{LINE}"/>
+<ellipse cx="72" cy="244" rx="9" ry="14" fill="{DEEP2}"/><ellipse cx="170" cy="244" rx="9" ry="14" fill="{DEEP2}"/>'''
+    return f'''<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-{k})" stroke="{LINE}"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-{k})" stroke="{LINE}"/>
+<ellipse cx="102" cy="270" rx="17" ry="9" fill="{DEEP2}"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="{DEEP2}"/>'''
+
+def _extras(pose, a):
+    if pose == "fly":
+        return f'<g stroke="{a}" stroke-width="3" stroke-linecap="round" opacity=".55"><path d="M14 236 h44"/><path d="M6 254 h30"/><path d="M22 272 h52"/></g>'
+    if pose == "wave":
+        return f'<g fill="none" stroke="{a}" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M214 76 q10 -8 12 -20"/><path d="M226 92 q12 -2 20 -10"/></g>'
+    if pose == "think":
+        return f'<g transform="translate(176,42)"><path d="M-22 -18 h44 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-26 l-10 8 v-8 h-8 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8z" fill="#fff" stroke="{LINE}"/><text x="0" y="8" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="22" fill="{a}">?</text></g>'
+    if pose == "point":
+        return f'<g fill="{a}"><path d="M228 96 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g><path d="M226 134 q10 -14 6 -28" fill="none" stroke="{a}" stroke-width="2" stroke-dasharray="3 3"/>'
+    return ""
+
+def _body(k, a, chest_icon, flame=1, legs="stand"):
     return f'''
 <ellipse cx="120" cy="290" rx="58" ry="7" fill="{DEEP}" opacity=".12"/>
 <!-- jetpack -->
 <rect x="66" y="146" width="108" height="76" rx="24" fill="{SHELL2}" stroke="{LINE}"/>
 <rect x="84" y="214" width="18" height="16" rx="6" fill="{DEEP2}"/><rect x="138" y="214" width="18" height="16" rx="6" fill="{DEEP2}"/>
-<path d="M88 231 q5 22 5 22 q5-22 5-22z" fill="{a}"/><path d="M142 231 q5 22 5 22 q5-22 5-22z" fill="{a}"/>
-<path d="M90 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/><path d="M144 231 q3 12 3 12 q3-12 3-12z" fill="#fff" opacity=".8"/>
+<path d="M88 231 q5 {22*flame} 5 {22*flame} q5-{22*flame} 5-{22*flame}z" fill="{a}"/><path d="M142 231 q5 {22*flame} 5 {22*flame} q5-{22*flame} 5-{22*flame}z" fill="{a}"/>
+<path d="M90 231 q3 {12*flame} 3 {12*flame} q3-{12*flame} 3-{12*flame}z" fill="#fff" opacity=".8"/><path d="M144 231 q3 {12*flame} 3 {12*flame} q3-{12*flame} 3-{12*flame}z" fill="#fff" opacity=".8"/>
 <!-- legs -->
-<rect x="90" y="226" width="24" height="42" rx="11" fill="url(#sh-{k})" stroke="{LINE}"/><rect x="126" y="226" width="24" height="42" rx="11" fill="url(#sh-{k})" stroke="{LINE}"/>
-<ellipse cx="102" cy="270" rx="17" ry="9" fill="{DEEP2}"/><ellipse cx="138" cy="270" rx="17" ry="9" fill="{DEEP2}"/>
+{_legs(k, legs)}
 <!-- torso -->
 <rect x="70" y="136" width="100" height="104" rx="42" fill="url(#sh-{k})" stroke="{LINE}"/>
 <rect x="70" y="196" width="100" height="10" fill="{a}" opacity=".55"/>
@@ -56,14 +84,14 @@ def _head(k, a):
 <path d="M108 108 q12 8 24 0" fill="none" stroke="{a}" stroke-width="3" stroke-linecap="round"/>
 '''
 
-def _arms(k, a, left, right):
-    """left/right: extra svg drawn in the hand's local frame. Left hand at (56,190), right at (184,190)."""
+def _arms(k, a, left, right, pose="stand"):
+    lp,(lx,ly),rp,(rx,ry),_,_,_ = POSES[pose]
     return f'''
-<path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-{k})" stroke-width="18" stroke-linecap="round"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="{LINE}" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M78 160 q-30 10-26 42" fill="none" stroke="url(#sh-{k})" stroke-width="16" stroke-linecap="round"/>
-<circle cx="52" cy="204" r="13" fill="{SHELL2}" stroke="{LINE}"/>
-<path d="M162 160 q30 10 26 42" fill="none" stroke="{LINE}" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="M162 160 q30 10 26 42" fill="none" stroke="url(#sh-{k})" stroke-width="16" stroke-linecap="round"/>
-<circle cx="188" cy="204" r="13" fill="{SHELL2}" stroke="{LINE}"/>
-<g transform="translate(52,204)">{left}</g><g transform="translate(188,204)">{right}</g>
+<path d="{lp}" fill="none" stroke="{LINE}" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="{lp}" fill="none" stroke="url(#sh-{k})" stroke-width="16" stroke-linecap="round"/>
+<circle cx="{lx}" cy="{ly}" r="13" fill="{SHELL2}" stroke="{LINE}"/>
+<path d="{rp}" fill="none" stroke="{LINE}" stroke-width="20" stroke-linecap="round" opacity=".35"/><path d="{rp}" fill="none" stroke="url(#sh-{k})" stroke-width="16" stroke-linecap="round"/>
+<circle cx="{rx}" cy="{ry}" r="13" fill="{SHELL2}" stroke="{LINE}"/>
+<g transform="translate({lx},{ly})">{left}</g><g transform="translate({rx},{ry})">{right}</g>
 '''
 
 KIT = {
@@ -95,12 +123,25 @@ KIT = {
 def _icon_inner(svg):
     return re.sub(r'^<svg[^>]*>|</svg>$','',svg.strip())
 
-def robot(key, icon_svg, cls="rb", label=None):
+def robot(key, icon_svg, cls="rb", label=None, pose="stand"):
     a=ACCENT[key]; kit=KIT[key]
     l=kit["left"](a) if callable(kit["left"]) else kit["left"]
     r=kit["right"](a) if callable(kit["right"]) else kit["right"]
-    return (f'<svg class="{cls} rb-{key}" viewBox="0 0 240 300" role="img" aria-label="{label or key.upper()+", the robot"}" xmlns="http://www.w3.org/2000/svg">'
-            + _defs(key,a) + _sparkles(a) + _body(key,a,_icon_inner(icon_svg)) + _arms(key,a,l,r) + _head(key,a) + kit["hat"] + '</svg>')
+    if pose in ("wave","point"): r=""          # the raised hand is empty
+    if pose == "think": l=""
+    _,_,_,_,tf,flame,legs = POSES[pose]
+    k=f"{key}{pose[0]}"
+    fig = _body(k,a,_icon_inner(icon_svg),flame,legs) + _arms(k,a,l,r,pose) + _head(k,a) + kit["hat"]
+    if tf: fig = f'<g transform="{tf}">{fig}</g>'
+    return (f'<svg class="{cls} rb-{key} rb--{pose}" viewBox="0 0 240 300" role="img" aria-label="{label or key.upper()+", the robot"}" xmlns="http://www.w3.org/2000/svg">'
+            + _defs(k,a) + _sparkles(a) + _extras(pose,a) + fig + '</svg>')
+
+def peek(key, cls="rb-peek"):
+    """helmet and one hand coming up over an edge"""
+    a=ACCENT[key]; k="p"+key
+    return (f'<svg class="{cls} rb-{key}" viewBox="40 0 160 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
+            + _defs(k,a) + _head(k,a) + KIT[key]["hat"]
+            + f'<circle cx="62" cy="138" r="14" fill="{SHELL2}" stroke="{LINE}"/><circle cx="178" cy="138" r="14" fill="{SHELL2}" stroke="{LINE}"/></svg>')
 
 def bust(key, cls="rb-bust"):
     a=ACCENT[key]; k="b"+key

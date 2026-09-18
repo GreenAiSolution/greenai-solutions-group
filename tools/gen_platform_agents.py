@@ -14,7 +14,14 @@ say so. After running, re-inject the shared chrome if nav.html changed:
 """
 import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from robots import robot, bust
+from robots import robot, bust, peek, ACCENT
+HERO_POSE={"ring":"wave","dispatch":"point","inbox":"fly","thread":"think","huddle":"stand","books":"sit"}
+BAND_POSE={"ring":"fly","dispatch":"sit","inbox":"wave","thread":"point","huddle":"fly","books":"wave"}
+STAFF_POSE={"ring":"stand","dispatch":"fly","inbox":"wave","thread":"sit","huddle":"point","books":"think"}
+CARD_POSE={"ring":"think","dispatch":"wave","inbox":"point","thread":"fly","huddle":"sit","books":"stand"}
+STAFF_W=[150,190,165,175,160,185]
+WIN={"ring":"Phone · incoming call","dispatch":"Jobber · request #1187","inbox":"Gmail · inbox","thread":"Slack · #leads","huddle":"Teams · Ops · General","books":"QuickBooks · invoices"}
+ORBIT='<svg class="ag-orbit" viewBox="0 0 300 300" aria-hidden="true"><ellipse cx="150" cy="170" rx="140" ry="44" fill="none" stroke="var(--ac,#7DE3A4)" stroke-opacity=".35" stroke-width="1.5" transform="rotate(-14 150 170)"/><circle r="6" fill="var(--ac,#7DE3A4)"><animateMotion dur="9s" repeatCount="indefinite" path="M290 135 A140 44 -14 1 1 10 205 A140 44 -14 1 1 290 135z"/></circle><circle cx="150" cy="170" r="118" fill="var(--ac,#7DE3A4)" fill-opacity=".08"/></svg>'
 ICON_OF={"ring":"phone","dispatch":"user","inbox":"inbox","thread":"message","huddle":"sun","books":"receipt"}
 STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" aria-hidden="true"><g fill="#fff">' + "".join(f'<circle cx="{x}" cy="{y}" r="{r}" opacity="{o}"/>' for x,y,r,o in [(80,60,1.5,.7),(200,140,1,.5),(330,40,2,.6),(520,90,1,.4),(700,30,1.5,.7),(880,120,1,.5),(1040,50,2,.6),(1180,160,1,.4),(1320,70,1.5,.7),(150,300,1,.35),(1250,320,1,.35),(60,520,1.5,.4),(1350,560,1.5,.4),(640,600,1,.3)]) + '</g><circle cx="1240" cy="120" r="46" fill="none" stroke="#7DE3A4" stroke-opacity=".25" stroke-width="1.5"/><ellipse cx="1240" cy="120" rx="78" ry="22" fill="none" stroke="#7DE3A4" stroke-opacity=".3" stroke-width="1.5" transform="rotate(-18 1240 120)"/><circle cx="150" cy="150" r="24" fill="#7DE3A4" fill-opacity=".14"/><circle cx="142" cy="142" r="6" fill="#7DE3A4" fill-opacity=".25"/></svg>'
 
@@ -410,7 +417,7 @@ def build_agent(a):
   </script>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">{STARS}
+    <div class="sn-wrap"><header class="sn-panel sn-hero sn-hero--tint" style="--ac:{ACCENT[a['id']]}" aria-labelledby="h1">{STARS}
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>AI employee {a['n']} of 06</b> · {esc(a['inside'])}</p>
         <h1 class="tk-h1" id="h1">{a['h1']}</h1>
@@ -421,9 +428,16 @@ def build_agent(a):
           <a href="contact.html?want={a['sku']}" class="tk-btn tk-btn--ghost">Ask a question first</a>
         </div>
       </div>
-      <div class="sn-hero__stage ag-stage"><div class="ag-stage__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=n+", the "+a['inside']+" robot")}</div><div class="tk-plate ag-mock" role="img" aria-label="What {n} looks like at work {esc(a['inside'])}, a mock-up with fictional names.">
+      <div class="sn-hero__stage ag-scene">
+        <div class="ag-scene__bot">{ORBIT}<div class="rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=n+", the "+a['inside']+" robot", pose=HERO_POSE[a['id']])}</div></div>
+        <div class="ag-scene__win">
+          <div class="ag-win"><div class="ag-win__bar"><i></i><i></i><i></i><span>{esc(WIN[a['id']])}</span><b>{n} · live</b></div><div class="tk-plate ag-mock" role="img" aria-label="What {n} looks like at work {esc(a['inside'])}, a mock-up with fictional names.">
 {a['mock']}
-      </div></div>
+          </div></div>
+          <div class="ag-scene__chip ag-scene__chip--a sn-chip"><div class="sn-chip__ico">{I[a['does'][0][0]]}</div><div><b>{esc(a['does'][0][1])}</b><i>{n}</i></div></div>
+          <div class="ag-scene__chip ag-scene__chip--b sn-chip"><div class="sn-chip__ico">{I[a['does'][2][0]]}</div><div><b>{esc(a['does'][2][1])}</b><i>{n}</i></div></div>
+        </div>
+      </div>
     </header></div>
 
     <section class="sn-sec" aria-labelledby="h-does">
@@ -449,7 +463,7 @@ def build_agent(a):
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-week">A week with {n}, <em>as you would see it.</em></h2><p class="tk-lede">Three messages you would actually get. Fictional customers, real behaviour.</p></div>
         <div class="sn-bubbles">
-          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div><div class="sn-grad__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], cls="rb rb--wave")}</div></div>
+          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div><div class="sn-grad__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], pose=BAND_POSE[a['id']])}</div></div>
           <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">{n}</p><p class="sn-phone__sub">{esc(a['inside'])}</p><ul class="sn-lines"><li class="us" data-who="{n}">{esc(bubbles[1][1])}</li><li class="them">Good. Anything else?</li><li class="us" data-who="{n}">Nothing that needs you. Monday report at 7.</li></ul></div></div></div>
           <div><div class="sn-bubble"><b>{esc(bubbles[2][0])}</b>{esc(bubbles[2][1])}</div></div>
         </div>
@@ -500,7 +514,7 @@ def build_staff():
     title=f"AI employees for the apps you already use, from $297/mo | GreenAI Solutions"
     desc=f"Six AI employees, one inside each app you already run: your phone line, Jobber, Gmail, Slack, Teams, QuickBooks. From $297 a month, or all six for ${FULL:,}. Month to month."
     cards="".join(f'''<article class="sn-card st-card" style="text-align:left">
-  <div class="st-card__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=a['name'])}</div>
+  <div class="st-card__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=a['name'], pose=CARD_POSE[a['id']])}</div>
   <p class="tk-eyebrow" style="margin-bottom:.9rem"><b>{a['n']}</b> {esc(a['inside'])}</p>
   <h3 style="font-size:1.6rem"><a href="{a['id']}.html" style="color:inherit;text-decoration:none">{a['name']}</a></h3>
   <p>{esc(a['does'][0][2])} {esc(a['does'][1][2])}</p>
@@ -533,7 +547,7 @@ def build_staff():
           <a href="pay.html?sku=full-staff" class="tk-btn tk-btn--ghost" data-sku="full-staff">Hire all six, ${FULL:,}/mo</a>
         </div>
       </div>
-      <div class="sn-hero__crew" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.35}s" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"])}</a>' for i,x in enumerate(AGENTS))}</div>
+      <div class="sn-hero__crew sn-hero__crew--photo" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.35}s;--w:{STAFF_W[i]}px" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"], pose=STAFF_POSE[x["id"]])}</a>' for i,x in enumerate(AGENTS))}</div>
       <div class="sn-hero__stage"><div class="sn-desk" id="sn-desk">
         <div class="sn-chip"><div class="sn-chip__ico">{I['phone']}</div><div><b>RING booked Mon 8:00</b><span>Pump noise, 1412 E Palo Verde</span><i>0:08 to pick up</i></div></div>
         <div class="sn-chip"><div class="sn-chip__ico">{I['send']}</div><div><b>INBOX replied to Dana R.</b><span>Weekly service quote, holding Thursday</span><i>0:41 after it landed</i></div></div>
