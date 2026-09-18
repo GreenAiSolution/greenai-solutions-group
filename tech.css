@@ -699,3 +699,101 @@ body.tk #main:is(.callpage, .catch-page, .start-page, .errorpage, .ih, .lh, .don
 .sn-card__bot--peek { top: -46px; right: 10px; width: 96px; }
 .sn-card--bot .sn-card__bot--peek svg { display: block; width: 100%; height: auto; }
 .sn-grad__bot .rb--fly { transform: scaleX(-1); }
+
+/* =============================================================================
+   THE CINEMA, site-wide (2026-09-17, late). Jaden: "match every other page to
+   the design and look of the service page." Dark ground, gold for anything
+   pressable and for the one italic phrase, grain and a vignette over
+   everything. Appended last so it outranks the light showroom above; the
+   layouts stay, only the light changes. White UI pieces (chips, phone
+   screens, bubbles) keep their own light tokens so the mocks still read as
+   paper on a dark stage.
+   ============================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap');
+body.tk {
+  --bg: #06100A; --bg-2: #0A1A11; --bg-3: #10241A; --night: #000;
+  --ink: #FFFFFF; --ink-2: rgba(255,255,255,.72); --ink-3: rgba(255,255,255,.5);
+  --line: rgba(232,196,106,.16); --line-2: rgba(232,196,106,.34); --line-ink: rgba(232,196,106,.6);
+  --green: #E8C46A; --green-2: #F2D68A; --green-ink: #06100A; --green-tint: rgba(232,196,106,.12);
+  --mint: #F2D68A; --ember: #E8C46A;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 30px 60px -30px rgba(0,0,0,.8);
+  --shadow-2: 0 2px 6px rgba(0,0,0,.5), 0 50px 100px -40px rgba(0,0,0,.9);
+  --off-white: var(--bg); --gray-100: var(--bg-3); --gray-200: var(--line-2); --gray-400: var(--ink-3); --gray-600: var(--ink-2); --gray-800: var(--ink); --green-pale: var(--green-tint); --black: #000;
+  --font-serif: 'Fraunces', Georgia, serif;
+  background: var(--bg); color: var(--ink);
+}
+body.tk::before { background: radial-gradient(60% 40% at 50% 0%, rgba(232,196,106,.10), transparent 60%), var(--bg); }
+body.tk::after { content: ""; position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: .07; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>"); }
+body.tk .sn-vig, body.tk main::after { content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(80% 70% at 50% 40%, transparent 55%, rgba(0,0,0,.55)); }
+body.tk .nav.transparent, body.tk .nav.scrolled { background: rgba(6,16,10,.72); box-shadow: 0 1px 0 var(--line); }
+body.tk .nav .nav__logo-name, body.tk .nav .nav__logo-sub { color: #fff; }
+body.tk .nav .nav__link { color: rgba(255,255,255,.82); }
+body.tk .nav .nav__link:hover { color: #fff; background: rgba(255,255,255,.07); }
+body.tk .nav .nav__hamburger span { background: #fff; }
+body.tk .nav__mobile { background: rgba(6,16,10,.98); }
+body.tk .nav .nav__submenu { background: var(--bg-2); border-color: var(--line-2); }
+body.tk .nav .nav__submenu a { color: var(--ink-2); }
+body.tk .nav .nav__submenu a:hover { color: #fff; background: var(--bg-3); }
+body.tk .btn-primary, body.tk .nav__cta, body.tk .btn-primary.buy { background: var(--green); border-color: var(--green); color: var(--green-ink); }
+body.tk .btn-primary:hover, body.tk .nav__cta:hover, body.tk .btn-primary.buy:hover { background: var(--green-2); border-color: var(--green-2); color: var(--green-ink); }
+.tk-btn--solid { box-shadow: 0 16px 40px -14px rgba(232,196,106,.7); }
+.tk-btn--line, body.tk .btn-secondary, body.tk .btn-white, body.tk .cap-ghost, body.tk .page-hero .btn-white { background: transparent; border-color: rgba(255,255,255,.35); color: #fff; }
+.tk-btn--line:hover, body.tk .btn-secondary:hover, body.tk .btn-white:hover { background: transparent; border-color: #fff; color: #fff; }
+.tk-h1 em, .tk-h2 em, body.tk h1 em, body.tk h2 em, body.tk h3 em, .sn-hero .tk-h1 em, .sn-hero h1 em, .sn-grad .tk-h2 em, .sn-easy h2 em, body.tk .page-hero h1 em, body.tk .crew-hero h1 em, body.tk :is(.callpage, .catch-page, .start-page, .ih, .lh, .crew-hero, .about-agentic) h1 em { color: var(--green); font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+.tk-eyebrow, .sn-hero .tk-eyebrow { background: rgba(255,255,255,.04); border-color: var(--line-2); color: var(--ink-2); }
+.tk-eyebrow b, .sn-hero .tk-eyebrow b, .sn-hero--tint .tk-eyebrow b { color: var(--green); }
+.tk-eyebrow::before, .sn-hero .tk-eyebrow::before { background: var(--green); }
+.tk-plate, .tk-panel, .sn-card, .sn-trio > *, .sn-more a, .sn-price, .sn-faq details, .tk-steps li, .tk-tb, body.tk .feature-card, body.tk .pricing-card, body.tk .about-founder, body.tk .demo-card, body.tk .svc-step, body.tk .buytable, body.tk .opt, body.tk .tbl-wrap, body.tk .pad, body.tk .three a, body.tk .cx-hero__aside, body.tk .faq-group, body.tk .faq-item, body.tk .form-card, body.tk .contact-card, body.tk .card, body.tk .service-card, body.tk .testimonial-card, body.tk .about-stat-badge, body.tk .mission-card, body.tk .contact-form-card, body.tk .offer-panel, body.tk .cap-big div, body.tk .page-hero__chip, body.tk .page-hero .badge, body.tk details, body.tk .faq-item { background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border-color: var(--line); color: var(--ink-2); }
+.sn-hero, .sn-hero--tint { background: radial-gradient(70% 55% at 50% 0%, color-mix(in srgb, var(--ac, #E8C46A) 26%, transparent), transparent 62%), radial-gradient(45% 45% at 92% 100%, color-mix(in srgb, var(--ac, #E8C46A) 22%, transparent), transparent 60%), linear-gradient(180deg, #0A1A11 0%, #06100A 100%); border: 1px solid var(--line); }
+.sn-hero--tint .tk-h1 em { color: var(--ac); }
+.sn-grad { background: radial-gradient(55% 45% at 50% 18%, rgba(232,196,106,.28), transparent 62%), radial-gradient(40% 40% at 10% 90%, rgba(232,196,106,.18), transparent 60%), linear-gradient(180deg, #0A1A11 0%, #000 100%); border: 1px solid var(--line); }
+.sn-mcard { background: rgba(255,255,255,.05); border-color: var(--line-2); }
+body.tk .sn-state p { color: var(--green); font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+body.tk .sn-state .who { background: var(--green-tint); color: var(--green); font-family: var(--font-body); font-style: normal; }
+.sn-toggle { background: var(--green); }
+.sn-steps__list li { border-color: var(--line-2); }
+.sn-steps__list li.is-on::before { color: var(--green); }
+.sn-cards .sn-card__ico, .sn-chip__ico { background: var(--green-tint); color: var(--green); }
+.sn-trio svg, .sn-benefits svg { color: var(--green); }
+.sn-price__rows a:hover, .sn-more a:hover { border-color: var(--green); }
+body.tk .sn-price__rows b, body.tk .sn-more a i, .sn-price s { color: var(--green); }
+.sn-faq details[open] summary::after { background: var(--green); color: var(--green-ink); }
+.sn-faq summary::after { background: var(--bg-3); color: #fff; }
+.sn-sticky .tk-btn { box-shadow: 0 20px 50px -14px rgba(232,196,106,.75); }
+body.tk .footer { background: #000; }
+body.tk input, body.tk select, body.tk textarea { background: var(--bg-2); color: #fff; border-color: var(--line-2); }
+body.tk select option { background: var(--bg-2); color: #fff; }
+body.tk .section.bg-pale, body.tk .section.bg-gray, body.tk .bg-pale, body.tk .elite-section { background: var(--bg-2); }
+body.tk .demo-card input, body.tk .demo-card select, body.tk .demo-card textarea { background: var(--bg-3); color: #fff; }
+body.tk .demo-card .form-submit { background: var(--green); color: var(--green-ink); }
+body.tk table.five thead th, body.tk table.five thead th:last-child { background: var(--bg-3); color: #fff; }
+body.tk .opt--us { background: var(--green-tint); }
+body.tk .ag-tm { color: var(--ink-3); }
+.ag-win__bar { background: #000; }
+.ag-flow li::before { background: var(--bg-2); }
+.ag-msg .react, .ag-card .react, .ag-card { background: var(--bg-3); color: #fff; }
+.ag-lines .them { background: rgba(255,255,255,.08); color: #fff; }
+.ag-lines .us, .sn-phone .sn-lines .us { background: var(--green); color: var(--green-ink); }
+.ag-mail__draft { background: rgba(255,255,255,.06); color: #fff; }
+.ag-mail__row.warn em, .ag-inv__row.late em { color: #F5A38E; }
+.hp-browser, .hp-schem div { background: var(--bg-2); border-color: var(--line); color: #fff; }
+.hp-browser__bar { background: #000; border-color: var(--line); }
+.hp-browser__url { color: var(--ink-3); }
+.hp-schem i { background: var(--green); }
+.hp-talk__phone:hover { color: var(--green); }
+/* paper: the white UI pieces keep light tokens */
+.sn-chip, .sn-phone__screen, .sn-bubble, .ab-line, .sv-tiers.paper { --ink: #0F1A14; --ink-2: #4B5A52; --ink-3: #74837B; --line: rgba(15,26,20,.08); --line-2: rgba(15,26,20,.16); --bg: #F6F7F5; --bg-3: #EDF1EC; color: #0F1A14; }
+body.tk .sn-chip b, body.tk .sn-phone__title, body.tk .sn-file, body.tk .sn-file span, body.tk .sn-bubble, body.tk .ab-line a.num { color: #0F1A14; }
+body.tk .sn-chip span, body.tk .sn-phone__sub, body.tk .sn-file small, body.tk .ab-line p, body.tk .ab-line small { color: #74837B; }
+body.tk .sn-chip i, body.tk .sn-file em, body.tk .sn-bubble b, body.tk .ab-line .mail { color: #128A4A; }
+.sn-chip__ico { background: rgba(18,138,74,.12); color: #128A4A; }
+.sn-phone .sn-lines .them { background: #EDF1EC; color: #0F1A14; }
+.sn-file { background: #F6F7F5; border-color: rgba(15,26,20,.08); }
+.sn-file i { background: rgba(18,138,74,.12); color: #128A4A; }
+.ab-line .live { background: #128A4A; }
+.sn-card__vis .sn-chip { border-color: rgba(15,26,20,.08); }
+.ag-scene__chip i { color: #74837B; }
+/* the robots' spot on dark ground */
+.sv-spot, .ag-orbit circle:last-child { opacity: .8; }
+.tk-btn--inverse, .tk-btn--inverse:hover, .sn-hero--tint .tk-btn--inverse:hover { color: #06100A; }

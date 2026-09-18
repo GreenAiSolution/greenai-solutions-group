@@ -236,7 +236,7 @@ MOCK_CSS = """
     .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
     .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
     .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
-    .ag-lines .us { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 5px; }
     .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
     .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
     .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
