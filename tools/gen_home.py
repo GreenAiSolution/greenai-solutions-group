@@ -53,15 +53,8 @@ CSS = """
     @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
     /* the hero: one spotlight, the six on one stage, nothing else */
     .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
-    .hp-six { position: relative; max-width: 1240px; margin: 2.6rem auto 0; }
-    .hp-six__in { position: relative; }
-    .hp-six img { display: block; width: 100%; height: auto; }
-    .hp-six a { position: absolute; top: 4%; bottom: 30%; width: 11%; transform: translateX(-50%); text-decoration: none; }
-    .hp-six a span { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 1.1rem); font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .2em; color: var(--c); white-space: nowrap; opacity: .85; transition: opacity .2s, letter-spacing .2s; }
-    .hp-six a:hover span, .hp-six a:focus-visible span { opacity: 1; letter-spacing: .28em; }
     .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
     .hp-face { position: absolute; right: -.4rem; bottom: 0; width: 8.2rem; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
-    @media (max-width: 720px) { .hp-six { margin-top: 5.2rem; } .hp-six__in { transform: scale(1.5); transform-origin: 50% 100%; } .hp-six a span { font-size: .36rem; letter-spacing: .1em; transform: translate(-50%, .35rem); } }
 """
 
 SIX_X = [24.2, 33.6, 44.0, 55.9, 66.5, 76.0]
@@ -283,6 +276,5 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
 
 # the homepage canonical is the bare domain
 PAGE = PAGE.replace('href="https://greenaidigital.com/index.html"', 'href="https://greenaidigital.com/"').replace('content="https://greenaidigital.com/index.html"', 'content="https://greenaidigital.com/"')
-PAGE = PAGE.replace('tech.css?v=7', 'tech.css?v=9')
 open(os.path.join(ROOT, "index.html"), "w").write(PAGE)
 print("wrote index.html", len(PAGE))

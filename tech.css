@@ -832,3 +832,22 @@ body.tk::before {
 }
 @keyframes tk-ground { from { transform: translate3d(-3%, -2%, 0); } to { transform: translate3d(3%, 2%, 0); } }
 @media (prefers-reduced-motion: reduce) { body.tk::before { animation: none; } }
+
+/* the 3D cast (2026-09-19): robots are <img> renders now, not inline SVG */
+.rb3 { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 22px rgba(0,0,0,.55)); }
+.rb3-head { display: block; width: 100%; height: auto; }
+.sn-card__bot--peek { width: 72px; top: -54px; right: 16px; }
+.sn-card--bot .sn-card__bot--peek img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 78%); mask-image: linear-gradient(180deg, #000 70%, transparent 78%); }
+.ag-scene__bot .rb-float { width: 240px; }
+.sn-state .who img.who__bust { display: inline-block; width: 1.5em; height: 1.5em; vertical-align: -.35em; }
+.sn-more a img.sn-more__bot { width: 5.2rem; right: .2rem; top: .4rem; }
+
+/* the six on one stage: homepage + staff hero */
+.sn-hero:has(.hp-six) { padding-bottom: 0; }
+.hp-six { position: relative; max-width: 1240px; margin: 2.6rem auto 0; }
+.hp-six__in { position: relative; }
+.hp-six img { display: block; width: 100%; height: auto; }
+.hp-six a { position: absolute; top: 4%; bottom: 30%; width: 11%; transform: translateX(-50%); text-decoration: none; }
+.hp-six a span { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 1.1rem); font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .2em; color: var(--c); white-space: nowrap; opacity: .85; transition: opacity .2s, letter-spacing .2s; }
+.hp-six a:hover span, .hp-six a:focus-visible span { opacity: 1; letter-spacing: .28em; }
+@media (max-width: 720px) { .hp-six { margin-top: 5.2rem; } .hp-six__in { transform: scale(1.5); transform-origin: 50% 100%; } .hp-six a span { font-size: .36rem; letter-spacing: .1em; transform: translate(-50%, .35rem); } }

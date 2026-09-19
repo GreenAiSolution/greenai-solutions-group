@@ -29,7 +29,7 @@ CSS = f"""
     .sv-cast {{ display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem 2rem; margin: 3.2rem auto 0; max-width: 1000px; }}
     .sv-cast a {{ display: grid; justify-items: center; gap: .5rem; text-decoration: none; color: rgba(255,255,255,.75); font-family: var(--mono); font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; }}
     .sv-cast span {{ display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; border: 1px solid rgba(232,196,106,.55); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); box-shadow: 0 0 0 6px rgba(232,196,106,.06), 0 30px 60px -30px rgba(0,0,0,.8); overflow: hidden; transition: transform .25s, border-color .25s; }}
-    .sv-cast span svg {{ width: 84px; height: auto; }}
+    .sv-cast span img {{ width: 88px; height: 88px; border-radius: 50%; object-fit: cover; }}
     .sv-cast a:hover span {{ transform: translateY(-6px) scale(1.05); border-color: {GOLD}; }}
     .sv-cast a:hover {{ color: #fff; }}
     .sv-scene {{ position: relative; margin: 0 16px 16px; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(180deg, #0A1A11, #06100A); border: 1px solid rgba(232,196,106,.14); }}
@@ -59,7 +59,7 @@ CSS = f"""
     .sv-screen .ag-call__top i {{ background: {GOLD}; box-shadow: 0 0 0 4px rgba(232,196,106,.2); }}
     .sv-roster {{ margin: 0; padding: 0; list-style: none; }}
     .sv-roster li {{ display: grid; grid-template-columns: 2.6rem 6.5rem minmax(0, 1fr) auto; gap: .8rem; align-items: center; padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .92rem; color: rgba(255,255,255,.7); }}
-    .sv-roster li svg {{ width: 2.6rem; height: auto; }}
+    .sv-roster li img {{ width: 2.6rem; height: 2.6rem; border-radius: 50%; object-fit: cover; }}
     .sv-roster a {{ color: #fff; font-family: var(--font-display); font-weight: 600; text-decoration: none; letter-spacing: .02em; }}
     .sv-roster a:hover {{ color: {GOLD}; }}
     .sv-roster b {{ color: {GOLD}; font-family: var(--font-display); font-weight: 600; white-space: nowrap; }}

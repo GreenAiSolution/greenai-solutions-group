@@ -160,3 +160,22 @@ def peek(key, cls="rb-peek"):
     return (f'<svg class="{cls} rb-{key}" viewBox="34 0 172 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
             + _defs(k,a) + _head(k,a) + hat
             + f'<rect x="44" y="118" width="26" height="30" rx="8" fill="url(#dk-{k})" stroke="{LINE}"/><rect x="170" y="118" width="26" height="30" rx="8" fill="url(#dk-{k})" stroke="{LINE}"/><path d="M50 128 v14 M57 126 v16 M64 128 v14 M176 128 v14 M183 126 v16 M190 128 v14" stroke="{SHELL3}" stroke-width="2" stroke-linecap="round"/></svg>')
+
+
+# ---------------------------------------------------------------- 2026-09-19: the 3D cast
+# Jaden: "make the agents look like this on every other page as well" (the armoured 3D
+# figures from the homepage hero). robot()/bust()/peek() now return <img> tags pointing at
+# renders made by tools/robots3d/fig.html (art/bots/<key>-<pose3d>.webp, 480x720, alpha).
+# The SVG builders above are kept as _svg_* in case a page ever needs them again.
+_svg_robot, _svg_bust, _svg_peek = robot, bust, peek
+POSE3D = {"stand": "power", "think": "hips", "wave": "raise", "point": "guard", "sit": "stride", "fly": "fly"}
+
+def robot(key, icon_svg=None, cls="rb", label=None, pose="stand"):
+    alt = label or key.upper() + ", the robot"
+    return f'<img class="rb3 rb3-{key}" src="art/bots/{key}-{POSE3D.get(pose, "power")}.webp" alt="{alt}" width="480" height="720" loading="lazy" decoding="async" />'
+
+def bust(key, cls="rb-bust"):
+    return f'<img class="{cls} rb3-head" src="art/bots/{key}-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" />'
+
+def peek(key, cls="rb-peek"):
+    return f'<img class="{cls} rb3-head" src="art/bots/{key}-peek.webp" alt="" width="160" height="160" loading="lazy" decoding="async" />'

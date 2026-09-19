@@ -28,7 +28,7 @@ STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" a
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = open(os.path.join(ROOT, "tools/shared-nav/nav.html")).read().rstrip("\n")
 FOOT = open(os.path.join(ROOT, "tools/shared-nav/footer.html")).read().rstrip("\n")
-TECH_V = 7; STYLE_V = 22; SCRIPT_V = 14; CHECKOUT_V = 8
+TECH_V = 10; STYLE_V = 22; SCRIPT_V = 14; CHECKOUT_V = 8
 
 def esc(s): return html.escape(s, quote=False)
 
@@ -547,15 +547,7 @@ def build_staff():
           <a href="pay.html?sku=full-staff" class="tk-btn tk-btn--ghost" data-sku="full-staff">Hire all six, ${FULL:,}/mo</a>
         </div>
       </div>
-      <div class="sn-hero__crew sn-hero__crew--photo" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.35}s;--w:{STAFF_W[i]}px" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"], pose=STAFF_POSE[x["id"]])}</a>' for i,x in enumerate(AGENTS))}</div>
-      <div class="sn-hero__stage"><div class="sn-desk" id="sn-desk">
-        <div class="sn-chip"><div class="sn-chip__ico">{I['phone']}</div><div><b>RING booked Mon 8:00</b><span>Pump noise, 1412 E Palo Verde</span><i>0:08 to pick up</i></div></div>
-        <div class="sn-chip"><div class="sn-chip__ico">{I['send']}</div><div><b>INBOX replied to Dana R.</b><span>Weekly service quote, holding Thursday</span><i>0:41 after it landed</i></div></div>
-        <div class="sn-chip"><div class="sn-chip__ico">{I['receipt']}</div><div><b>BOOKS sent #1051</b><span>Job closed 3:10, invoice out 3:12</span><i>your payment link</i></div></div>
-        <div class="sn-chip"><div class="sn-chip__ico">{I['user']}</div><div><b>DISPATCH created request #1187</b><span>Client, quote and Thursday slot in Jobber</span><i>nothing to copy over</i></div></div>
-        <div class="sn-chip"><div class="sn-chip__ico">{I['message']}</div><div><b>THREAD answered Marcus</b><span>Henderson quote: sent Tuesday, $285, open</span><i>source: job notes</i></div></div>
-        <div class="sn-chip"><div class="sn-chip__ico">{I['sun']}</div><div><b>HUDDLE posted the morning summary</b><span>3 leads overnight, 2 quoted, 1 waiting on photos</span><i>7:02 AM</i></div></div>
-      </div></div>
+      <div class="hp-six"><div class="hp-six__in"><img src="art/hero-six-1400.webp" srcset="art/hero-six-1400.webp 1400w, art/hero-six.webp 2400w" sizes="(max-width: 720px) 150vw, 1240px" width="2400" height="759" alt="The six AI employees standing on one stage: RING, DISPATCH, INBOX, THREAD, HUDDLE and BOOKS." fetchpriority="high" decoding="async" />{"".join(f'<a href="{x["id"]}.html" style="left:{px}%;--c:{ACCENT[x["id"]]}" aria-label="{x["name"]}"><span>{x["name"]}</span></a>' for x,px in zip(AGENTS,[24.2, 33.6, 44.0, 55.9, 66.5, 76.0]))}</div></div>
     </header></div>
 
     <section class="sn-sec" id="roster" aria-labelledby="h-roster">

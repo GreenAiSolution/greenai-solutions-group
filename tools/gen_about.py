@@ -32,8 +32,8 @@ CSS = """
     @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
 """
 
-left = list(zip(AGENTS[:3], ["wave","point","fly"], [150,135,165], [0,-24,-48]))
-right = list(zip(AGENTS[3:], ["think","stand","sit"], [140,150,160], [-36,-18,6]))
+left = list(zip(AGENTS[:3], ["stand","think","wave"], [120,120,120], [0,-14,-28]))
+right = list(zip(AGENTS[3:], ["point","think","stand"], [120,120,120], [-28,-14,0]))
 def side(items):
     return "".join(f'<a href="{a["id"]}.html" class="rb-float" style="--w:{w}px;--dy:{dy}px;animation-delay:{i*.4}s" title="{a["name"]}">{robot(a["id"], I[ICON_OF[a["id"]]], label=a["name"], pose=p)}</a>' for i,(a,p,w,dy) in enumerate(items))
 
@@ -84,10 +84,10 @@ PAGE = head("About Jaden Green and GreenAI Solutions — Gilbert, AZ",
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-who">Who you would be <em>buying from.</em></h2></div>
         <div class="sn-cards">
-          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("books")}</div><div class="sn-card__ico">{I['book']}</div><h3>Read a P&amp;L before automating anything</h3><p>B.S. in Real Estate and Business, University of Washington. What is sold here is not technology. It is a job that gets done faster, cheaper, or at an hour when nobody is awake.</p></article>
-          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("dispatch")}</div><div class="sn-card__ico">{I['clock']}</div><h3>Seven years building systems</h3><p>Systems that let a small company run like a much bigger one. GreenAI is where all of that work now lives.</p></article>
-          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("ring")}</div><div class="sn-card__ico">{I['user']}</div><h3>One person, start to finish</h3><p>Jaden scopes it, builds it, answers the phone and makes the change you asked for. No account manager, no ticket queue, no hand-off.</p></article>
-          <article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("thread")}</div><div class="sn-card__ico">{I['shield']}</div><h3>Transparent by default</h3><p>The <a href="staff.html">price</a>, the <a href="agreement.html">service agreement</a> and a <a href="catch.html">real run of the system</a> are public on this site. Read all three before we ever speak.</p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['book']}</div><h3>Read a P&amp;L before automating anything</h3><p>B.S. in Real Estate and Business, University of Washington. What is sold here is not technology. It is a job that gets done faster, cheaper, or at an hour when nobody is awake.</p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['clock']}</div><h3>Seven years building systems</h3><p>Systems that let a small company run like a much bigger one. GreenAI is where all of that work now lives.</p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['user']}</div><h3>One person, start to finish</h3><p>Jaden scopes it, builds it, answers the phone and makes the change you asked for. No account manager, no ticket queue, no hand-off.</p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['shield']}</div><h3>Transparent by default</h3><p>The <a href="staff.html">price</a>, the <a href="agreement.html">service agreement</a> and a <a href="catch.html">real run of the system</a> are public on this site. Read all three before we ever speak.</p></article>
         </div>
       </div>
     </section>
