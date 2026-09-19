@@ -1,0 +1,11 @@
+{
+  "brand": "ATRIUM",
+  "tagline": "Design your home in real time. Priced as you go.",
+  "contact": "jaden@greenaidigital.com",
+  "payment_links": {
+    "sketch": "https://greenaidigital.com/contact.html?want=atrium-sketch",
+    "studio": "https://greenaidigital.com/contact.html?want=atrium-studio",
+    "atelier": "https://greenaidigital.com/contact.html?want=atrium-atelier"
+  },
+  "note": "Showcase copy on greenaidigital.com. Plan buttons go to the contact page, not Stripe. The live Stripe links are in ~/greenai-atrium/engine/config.json."
+}

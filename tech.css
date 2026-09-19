@@ -810,3 +810,25 @@ body.tk .sn-chip i, body.tk .sn-file em, body.tk .sn-bubble b, body.tk .ab-line 
 .rb-bust, .who__bust { display: inline-block; }
 @media (max-width: 720px) { .sn-hero__crew a { --w: 34% !important; width: 30%; flex-basis: 30%; } }
 .ab-control__side a { width: calc(var(--w, 140px) * .68); }
+
+/* =====================================================================
+   THE GROUND (2026-09-19). Jaden: "make the background of the site itself
+   more creative as well with a sleek look." One fixed layer behind every
+   page: a fine gold drafting grid, one diagonal seam of light, and three
+   slow glows (gold, emerald, gold). It drifts; the content does not.
+   ===================================================================== */
+body.tk::before {
+  inset: -8%;
+  background:
+    radial-gradient(38% 30% at 14% 10%, rgba(232,196,106,.13), transparent 70%),
+    radial-gradient(34% 32% at 88% 40%, rgba(24,120,78,.24), transparent 70%),
+    radial-gradient(40% 34% at 28% 94%, rgba(232,196,106,.08), transparent 70%),
+    linear-gradient(115deg, transparent 0 46%, rgba(232,196,106,.05) 49.8%, rgba(255,255,255,.05) 50%, rgba(232,196,106,.05) 50.2%, transparent 54%),
+    repeating-linear-gradient(0deg, rgba(232,196,106,.045) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, rgba(232,196,106,.045) 0 1px, transparent 1px 72px),
+    linear-gradient(180deg, #07130C 0%, #040A07 60%, #030705 100%);
+  animation: tk-ground 46s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes tk-ground { from { transform: translate3d(-3%, -2%, 0); } to { transform: translate3d(3%, 2%, 0); } }
+@media (prefers-reduced-motion: reduce) { body.tk::before { animation: none; } }

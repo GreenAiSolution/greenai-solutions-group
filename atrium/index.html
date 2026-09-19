@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ATRIUM — design your home in real time, priced as you go</title>
+<meta name="description" content="Walk a real house in 3D, change every surface, and watch the estimate move with you. A subscription design desk for people who are actually going to build it." />
+<style>
+  :root{
+    --ink:#08080A;
+    --ink-2:#101014;
+    --paper:#F4EFE7;
+    --mute:rgba(244,239,231,.52);
+    --faint:rgba(244,239,231,.30);
+    --line:rgba(244,239,231,.13);
+    --line-2:rgba(244,239,231,.24);
+    --accent:#D8A657;
+    --accent-ink:#1A1206;
+    --serif:"Didot","Bodoni 72","Playfair Display","Hoefler Text",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Inter,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:auto}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  canvas#gl{
+    position:fixed; inset:0; width:100vw; height:100vh; display:block;
+    z-index:0;
+    /* nothing is clicked on the canvas — letting touches through keeps a phone scrollable */
+    pointer-events:none;
+  }
+
+  /* ============================================================ loading */
+  #boot{
+    position:fixed; inset:0; z-index:100; background:var(--ink);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:28px; transition:opacity .9s var(--ease); font-family:var(--sans);
+  }
+  #boot.gone{opacity:0; pointer-events:none}
+  #boot .mark{
+    font-family:var(--serif); font-size:clamp(2.4rem,7vw,4.4rem);
+    letter-spacing:.34em; text-indent:.34em; font-weight:400;
+  }
+  #boot .bar{width:min(320px,60vw); height:1px; background:var(--line); position:relative; overflow:hidden}
+  #boot .bar i{position:absolute; inset:0 100% 0 0; background:var(--accent); transition:right .3s linear}
+  #boot .msg{font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; color:var(--faint)}
+
+  /* ============================================================== chrome */
+  .chrome{position:fixed; z-index:20; pointer-events:none}
+  .chrome > *{pointer-events:auto}
+
+  /* once the offer scrolls up, the walkthrough chrome gets out of its way */
+  body.in-offer #caption,
+  body.in-offer #rail,
+  body.in-offer #surfbtn,
+  body.in-offer #prog,
+  body.in-offer #hint,
+  body.in-offer #tags{opacity:0 !important; pointer-events:none !important}
+  #caption,#rail,#surfbtn,#prog,#hint{transition:opacity .45s var(--ease)}
+
+  #topbar{
+    top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between;
+    padding:22px clamp(18px,3vw,40px); mix-blend-mode:normal;
+    background:linear-gradient(to bottom, rgba(8,8,10,.72), rgba(8,8,10,0));
+    transition:background .4s var(--ease), border-color .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  body.in-offer #topbar{
+    background:rgba(8,8,10,.93); border-bottom-color:var(--line);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  }
+  .wordmark{
+    font-family:var(--serif); font-size:1.05rem; letter-spacing:.42em; text-indent:.42em;
+    text-transform:uppercase; white-space:nowrap;
+  }
+  .wordmark b{font-weight:400}
+  #plate{
+    font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--mute);
+    text-align:center; line-height:1.7; display:none;
+  }
+  @media(min-width:860px){ #plate{display:block} }
+
+  #totalchip{
+    display:flex; align-items:center; gap:12px; cursor:pointer;
+    border:1px solid var(--line-2); border-radius:999px;
+    padding:11px 18px 13px 20px; background:rgba(9,9,11,.88);
+    backdrop-filter:blur(14px) saturate(1.3); -webkit-backdrop-filter:blur(14px) saturate(1.3);
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  #totalchip:hover{border-color:var(--accent); background:rgba(216,166,87,.10)}
+  #totalchip .stack{display:flex; flex-direction:column; align-items:flex-start; gap:3px}
+  #totalchip .lab{font-size:.56rem; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); line-height:1}
+  #totalchip .val{font-family:var(--serif); font-size:1.32rem; letter-spacing:.02em;
+                  font-variant-numeric:tabular-nums; line-height:1.2; display:block}
+  #totalchip .car{width:6px;height:6px;border-right:1px solid var(--mute);border-bottom:1px solid var(--mute);transform:rotate(45deg) translateY(-2px)}
+
+  /* ============================================================= caption */
+  #caption{
+    left:clamp(18px,3vw,44px); bottom:clamp(72px,9vh,110px); max-width:min(430px,46vw);
+  }
+  /* a soft scrim so the type survives a bright floor */
+  #caption::before{
+    content:""; position:absolute; left:-70px; right:-120px; top:-80px; bottom:-120px;
+    background:radial-gradient(115% 105% at 18% 62%, rgba(5,5,7,.80), rgba(5,5,7,.42) 46%, rgba(5,5,7,0) 74%);
+    z-index:-1; pointer-events:none;
+  }
+  #caption .idx{
+    font-family:var(--mono); font-size:.6rem; letter-spacing:.3em; color:var(--accent);
+    display:block; margin-bottom:14px;
+  }
+  #caption h2{
+    font-family:var(--serif); font-weight:400; line-height:.94;
+    font-size:clamp(2.1rem,5.4vw,4.1rem); letter-spacing:-.012em; margin-bottom:14px;
+  }
+  #caption p{
+    font-size:.85rem; line-height:1.72; color:var(--mute); max-width:34ch;
+  }
+  #caption .stats{display:flex; gap:26px; margin-top:20px; flex-wrap:wrap}
+  #caption .stats div{border-left:1px solid var(--line-2); padding-left:12px}
+  #caption .stats .n{font-family:var(--serif); font-size:1.5rem; line-height:1; font-variant-numeric:tabular-nums}
+  #caption .stats .k{font-size:.55rem; letter-spacing:.22em; text-transform:uppercase; color:var(--faint); margin-top:6px}
+  .fadeblock{transition:opacity .55s var(--ease), transform .55s var(--ease)}
+  .fadeblock.out{opacity:0; transform:translateY(14px)}
+
+  /* ======================================================== palette rail */
+  #rail{
+    right:clamp(16px,2.4vw,34px); top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:14px; align-items:flex-end;
+    transition:opacity .6s var(--ease), transform .6s var(--ease);
+  }
+  #rail.hidden{opacity:0; pointer-events:none; transform:translateY(-50%) translateX(18px)}
+  .swatch{
+    display:flex; align-items:center; gap:12px; cursor:pointer; background:none; border:0;
+    color:var(--paper); font-family:var(--sans); padding:0;
+  }
+  .swatch .nm{
+    font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--faint);
+    opacity:0; transform:translateX(8px); transition:all .35s var(--ease); white-space:nowrap;
+  }
+  .swatch:hover .nm, .swatch.on .nm{opacity:1; transform:translateX(0); color:var(--paper)}
+  .swatch .dot{
+    width:26px; height:26px; border-radius:50%; position:relative; flex:none;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.16), 0 6px 18px rgba(0,0,0,.5);
+    transition:transform .4s var(--ease);
+  }
+  .swatch:hover .dot{transform:scale(1.14)}
+  .swatch.on .dot{transform:scale(1.2)}
+  .swatch.on .dot::after{
+    content:""; position:absolute; inset:-6px; border-radius:50%;
+    border:1px solid var(--accent);
+  }
+
+  /* ============================================================== drawer */
+  #surfbtn{
+    left:clamp(18px,3vw,44px); bottom:clamp(20px,3.2vh,34px);
+    display:flex; align-items:center; gap:11px; cursor:pointer;
+    border:1px solid var(--line-2); border-radius:999px; padding:10px 18px;
+    background:rgba(9,9,11,.88); color:var(--paper);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    font-size:.6rem; letter-spacing:.24em; text-transform:uppercase;
+    transition:all .3s var(--ease); font-family:var(--sans);
+  }
+  #surfbtn:hover{border-color:var(--accent); color:var(--accent)}
+  #surfbtn.hidden{opacity:0; pointer-events:none; transform:translateY(10px)}
+  #surfbtn .sq{width:9px;height:9px;background:var(--accent);border-radius:2px}
+
+  #drawer{
+    position:fixed; z-index:40; left:0; top:0; bottom:0; width:min(430px,92vw);
+    background:rgba(9,9,11,.90); backdrop-filter:blur(26px) saturate(1.4);
+    -webkit-backdrop-filter:blur(26px) saturate(1.4);
+    border-right:1px solid var(--line); transform:translateX(-102%);
+    transition:transform .62s var(--ease); overflow-y:auto; overscroll-behavior:contain;
+    padding:26px clamp(20px,2.4vw,30px) 40px;
+  }
+  #drawer.open{transform:none}
+  .dhead{display:flex; align-items:center; justify-content:space-between; margin-bottom:26px}
+  .dhead h3{font-family:var(--serif); font-weight:400; font-size:1.35rem; letter-spacing:.02em}
+  .xbtn{background:none;border:1px solid var(--line-2);color:var(--mute);width:30px;height:30px;
+        border-radius:50%;cursor:pointer;font-size:.9rem;line-height:1;transition:all .3s var(--ease)}
+  .xbtn:hover{border-color:var(--accent);color:var(--accent)}
+
+  .group{margin-bottom:24px}
+  .group > h4{
+    font-size:.55rem; letter-spacing:.26em; text-transform:uppercase; color:var(--faint);
+    margin-bottom:10px; display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .group > h4 em{font-style:normal; font-family:var(--mono); color:var(--accent); letter-spacing:.08em}
+  .opts{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .opt{
+    display:flex; align-items:center; gap:12px; padding:11px 13px; cursor:pointer;
+    background:rgba(16,16,20,.94); border:0; color:var(--paper); text-align:left; width:100%;
+    font-family:var(--sans); transition:background .25s var(--ease);
+  }
+  .opt:hover{background:rgba(30,28,26,.96)}
+  .opt.on{background:rgba(216,166,87,.13)}
+  .opt .chip{width:22px;height:22px;border-radius:4px;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .opt .t{flex:1; font-size:.78rem; letter-spacing:.005em}
+  .opt .p{font-family:var(--mono); font-size:.66rem; color:var(--mute); font-variant-numeric:tabular-nums}
+  .opt.on .p{color:var(--accent)}
+
+  /* ============================================================== ledger */
+  #ledger{
+    position:fixed; z-index:45; right:0; top:0; bottom:0; width:min(520px,96vw);
+    background:rgba(9,9,11,.93); backdrop-filter:blur(26px) saturate(1.4);
+    -webkit-backdrop-filter:blur(26px) saturate(1.4);
+    border-left:1px solid var(--line); transform:translateX(102%);
+    transition:transform .62s var(--ease); overflow-y:auto; overscroll-behavior:contain;
+    padding:26px clamp(20px,2.4vw,30px) 46px;
+  }
+  #ledger.open{transform:none}
+  .lgrand{border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:22px}
+  .lgrand .big{font-family:var(--serif); font-size:clamp(2.6rem,7vw,3.5rem); line-height:1; font-variant-numeric:tabular-nums}
+  .lgrand .sub{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:10px}
+  .lrow{display:flex; justify-content:space-between; gap:16px; padding:9px 0; font-size:.78rem}
+  .lrow.hd{border-top:1px solid var(--line); margin-top:8px; padding-top:14px}
+  .lrow .k{color:var(--mute)}
+  .lrow .v{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .lroom{border-top:1px solid var(--line); padding:14px 0}
+  .lroom summary{
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    cursor:pointer; list-style:none;
+  }
+  .lroom summary::-webkit-details-marker{display:none}
+  .lroom .rn{font-family:var(--serif); font-size:1.06rem}
+  .lroom .rq{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+  .lroom .rv{font-family:var(--mono);font-size:.9rem;font-variant-numeric:tabular-nums;color:var(--accent)}
+  .lines{margin-top:12px; border-left:1px solid var(--line); padding-left:13px}
+  .line{display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:14px; align-items:baseline;
+        padding:5px 0; font-size:.7rem; color:var(--mute)}
+  .line > span:first-child{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .line .q{font-family:var(--mono); font-size:.6rem; color:var(--faint); text-align:right; white-space:nowrap}
+  .line .a{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--paper);
+           text-align:right; min-width:66px; white-space:nowrap}
+  .note{font-size:.65rem; line-height:1.75; color:var(--faint); margin-top:22px; border-top:1px solid var(--line); padding-top:16px}
+  .btnrow{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap}
+  .btn{
+    border:1px solid var(--line-2); background:none; color:var(--paper); cursor:pointer;
+    padding:11px 18px; border-radius:999px; font-family:var(--sans);
+    font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+    transition:all .3s var(--ease); text-decoration:none; display:inline-block;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .btn.solid{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn.solid:hover{filter:brightness(1.12); color:var(--accent-ink)}
+
+  /* ======================================================== room tags 3D */
+  #tags{position:fixed; inset:0; z-index:15; pointer-events:none; opacity:0; transition:opacity .7s var(--ease)}
+  #tags.on{opacity:1}
+  .tag{
+    position:absolute; transform:translate(-50%,-50%); text-align:center; white-space:nowrap;
+  }
+  .tag{padding:9px 14px 10px; border-radius:10px;
+       background:rgba(8,8,11,.52); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+       box-shadow:inset 0 0 0 1px rgba(244,239,231,.11), 0 10px 30px rgba(0,0,0,.42)}
+  .tag .tn{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(244,239,231,.78);
+           margin-bottom:3px}
+  .tag .tv{font-family:var(--serif); font-size:1.7rem; line-height:1.05; font-variant-numeric:tabular-nums;
+           text-shadow:0 2px 18px rgba(0,0,0,.9)}
+  .tag .ts{font-family:var(--mono); font-size:.58rem; color:var(--accent); letter-spacing:.04em; margin-top:4px}
+
+  /* ============================================================ progress */
+  #prog{
+    left:50%; transform:translateX(-50%); bottom:clamp(20px,3.2vh,34px);
+    display:flex; align-items:center; gap:0; width:min(420px,46vw);
+  }
+  @media(max-width:900px){ #prog{display:none} }
+  #prog .track{position:relative; height:1px; background:var(--line-2); flex:1}
+  #prog .fill{position:absolute; left:0; top:0; height:1px; background:var(--accent); width:0}
+  #prog .tick{position:absolute; top:-3px; width:1px; height:7px; background:var(--line-2)}
+  #prog .tick.on{background:var(--accent)}
+  #prog .pct{font-family:var(--mono); font-size:.58rem; color:var(--faint); margin-left:14px; width:34px}
+
+  /* ============================================================== scroll */
+  #journey{height:820vh; position:relative; z-index:1; pointer-events:none}
+  #hint{
+    position:fixed; left:50%; bottom:clamp(52px,7vh,80px); transform:translateX(-50%);
+    z-index:22; text-align:center; transition:opacity .6s var(--ease);
+  }
+  #hint .l{font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;color:var(--faint)}
+  #hint .a{width:1px;height:34px;background:linear-gradient(var(--accent),transparent);margin:12px auto 0;
+           animation:drop 2.1s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
+                  55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ============================================================== offer */
+  #offer{
+    position:relative; z-index:10; background:linear-gradient(to bottom, rgba(8,8,10,.55) 0%, var(--ink) 22%, var(--ink) 100%);
+    padding:clamp(80px,14vh,170px) clamp(20px,5vw,80px) clamp(60px,9vh,110px);
+  }
+  .oh{max-width:1180px; margin:0 auto 62px; text-align:center}
+  .oh .eyebrow{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  .oh h2{font-family:var(--serif); font-weight:400; font-size:clamp(2.3rem,6vw,4.4rem);
+         line-height:1.02; letter-spacing:-.015em; margin-bottom:22px}
+  .oh p{color:var(--mute); font-size:.94rem; line-height:1.8; max-width:56ch; margin:0 auto}
+  .tiers{
+    max-width:1180px; margin:0 auto; display:grid; gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  }
+  .tier{
+    border:1px solid var(--line); border-radius:14px; padding:32px 28px 30px;
+    background:linear-gradient(160deg, rgba(24,22,26,.75), rgba(12,12,15,.6));
+    display:flex; flex-direction:column; position:relative; overflow:hidden;
+    transition:border-color .4s var(--ease), transform .4s var(--ease);
+  }
+  .tier:hover{border-color:var(--line-2); transform:translateY(-4px)}
+  .tier.feat{border-color:var(--accent)}
+  .tier.feat::before{
+    content:"Most chosen"; position:absolute; top:16px; right:-34px; transform:rotate(38deg);
+    background:var(--accent); color:var(--accent-ink); font-size:.5rem; letter-spacing:.18em;
+    text-transform:uppercase; padding:5px 40px; font-weight:700;
+  }
+  .tier h3{font-family:var(--serif); font-weight:400; font-size:1.75rem; margin-bottom:8px}
+  .tier .line{font-size:.78rem; color:var(--mute); line-height:1.65; min-height:3.4em; margin-bottom:22px; display:block}
+  .tier .price{display:flex; align-items:baseline; gap:5px; margin-bottom:24px}
+  .tier .price .n{font-family:var(--serif); font-size:3.1rem; line-height:1; font-variant-numeric:tabular-nums}
+  .tier .price .c{font-size:.68rem; color:var(--faint); letter-spacing:.12em}
+  .tier ul{list-style:none; margin-bottom:28px; flex:1}
+  .tier li{font-size:.78rem; color:var(--mute); padding:8px 0 8px 20px; position:relative; line-height:1.5}
+  .tier li::before{content:""; position:absolute; left:0; top:14px; width:7px; height:1px; background:var(--accent)}
+  .tier .cta{width:100%; text-align:center; padding:14px}
+
+  .assure{max-width:1180px; margin:56px auto 0; display:grid; gap:14px;
+          grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .assure div{border-top:1px solid var(--line); padding-top:16px}
+  .assure .h{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .assure .b{font-size:.76rem;color:var(--mute);line-height:1.7}
+
+  footer{
+    border-top:1px solid var(--line); margin-top:clamp(60px,9vh,110px); padding-top:30px;
+    max-width:1180px; margin-left:auto; margin-right:auto;
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    font-size:.62rem; color:var(--faint); letter-spacing:.1em;
+  }
+
+  /* ============================================================== mobile */
+  @media(max-width:760px){
+    .wordmark{font-size:.82rem; letter-spacing:.30em; text-indent:.30em}
+    #topbar{padding:16px 16px}
+    #totalchip{padding:8px 13px 10px 15px; gap:8px}
+    #totalchip .val{font-size:1.05rem}
+    #caption{max-width:calc(100vw - 96px); bottom:96px; left:18px}
+    #caption p{max-width:none; font-size:.8rem}
+    #caption h2{font-size:clamp(2rem,10vw,2.9rem)}
+    #caption .stats{gap:18px; margin-top:16px}
+    #caption .stats .n{font-size:1.25rem}
+    #rail{gap:11px; right:12px}
+    .swatch .nm{display:none}
+    .swatch .dot{width:22px;height:22px}
+    #surfbtn{bottom:20px; left:18px; padding:9px 15px}
+    .tag{padding:7px 11px 8px}
+    .tag .tv{font-size:1.15rem}
+    .tag .ts{font-size:.52rem}
+    #drawer,#ledger{padding:20px 18px 36px}
+    .line{grid-template-columns:minmax(0,1fr) auto; gap:10px}
+    .line .q{display:none}
+    #offer{padding:70px 18px 60px}
+  }
+  @media(max-height:620px){
+    #caption .stats{display:none}
+    #caption p{display:none}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    #hint .a{animation:none}
+    .fadeblock,#caption,#rail,#surfbtn,#prog,#hint{transition-duration:.01ms}
+  }
+
+  #fallback{
+    position:fixed; inset:0; z-index:200; background:var(--ink); display:none;
+    align-items:center; justify-content:center; padding:40px; text-align:center;
+  }
+  #fallback div{max-width:44ch}
+  #fallback h1{font-family:var(--serif);font-weight:400;font-size:2rem;margin-bottom:16px}
+  #fallback p{color:var(--mute);font-size:.86rem;line-height:1.8}
+</style>
+</head>
+<body>
+
+<canvas id="gl"></canvas>
+
+<div id="boot">
+  <div class="mark">ATRIUM</div>
+  <div class="bar"><i id="bootbar"></i></div>
+  <div class="msg" id="bootmsg">drawing the house</div>
+</div>
+
+<div id="fallback"><div>
+  <h1>This one needs WebGL2.</h1>
+  <p>ATRIUM builds the house live on your graphics card. Open it in a current Chrome, Safari or Edge — or turn hardware acceleration back on — and it will run.</p>
+</div></div>
+
+<!-- ================= fixed chrome ================= -->
+<div class="chrome" id="topbar">
+  <div class="wordmark"><b>Atrium</b></div>
+  <div id="plate">The Ocotillo &nbsp;·&nbsp; <span id="plate-sqft">—</span> sq ft &nbsp;·&nbsp; <span id="plate-pal">—</span></div>
+  <button id="totalchip">
+    <span class="stack">
+      <span class="lab">Estimate</span>
+      <span class="val" id="totalval">—</span>
+    </span>
+    <span class="car"></span>
+  </button>
+</div>
+
+<div class="chrome fadeblock" id="caption">
+  <span class="idx" id="cap-idx">01 / 09</span>
+  <h2 id="cap-title">Atrium</h2>
+  <p id="cap-body"></p>
+  <div class="stats" id="cap-stats"></div>
+</div>
+
+<div class="chrome" id="rail"></div>
+
+<button class="chrome" id="surfbtn"><span class="sq"></span> Surfaces</button>
+
+<div class="chrome" id="prog">
+  <div class="track"><div class="fill" id="progfill"></div></div>
+  <div class="pct" id="progpct">0%</div>
+</div>
+
+<div id="hint"><div class="l">Scroll to walk in</div><div class="a"></div></div>
+
+<div id="tags"></div>
+
+<!-- ================= drawer ================= -->
+<div id="drawer">
+  <div class="dhead">
+    <h3>Surfaces</h3>
+    <button class="xbtn" id="drawerclose">✕</button>
+  </div>
+  <div id="groups"></div>
+  <div class="note" id="drawernote"></div>
+</div>
+
+<!-- ================= ledger ================= -->
+<div id="ledger">
+  <div class="dhead">
+    <h3>The Ledger</h3>
+    <button class="xbtn" id="ledgerclose">✕</button>
+  </div>
+  <div class="lgrand">
+    <div class="big" id="lg-grand">—</div>
+    <div class="sub" id="lg-sub">—</div>
+  </div>
+  <div id="lg-rooms"></div>
+  <div id="lg-totals"></div>
+  <div class="btnrow">
+    <button class="btn solid" id="lg-spec">Download spec sheet</button>
+    <button class="btn" id="lg-print">Print</button>
+  </div>
+  <div class="note" id="lg-note"></div>
+</div>
+
+<!-- ================= scroll runway ================= -->
+<div id="journey"></div>
+
+<!-- ================= the offer ================= -->
+<section id="offer">
+  <div class="oh">
+    <div class="eyebrow">Subscription</div>
+    <h2>Keep the house.<br>Keep changing your mind.</h2>
+    <p>A design is not a document, it is a decision you keep making. ATRIUM keeps your home on file, keeps every surface swappable, and re-prices the whole build the moment you change one. Cancel whenever the house is finished.</p>
+  </div>
+  <div class="tiers" id="tiers"></div>
+  <div class="assure">
+    <div><div class="h">Priced from your plan</div><div class="b">Every quantity is measured off your drawing — square feet of floor, linear feet of counter, wall area minus the openings. No allowances, no round numbers.</div></div>
+    <div><div class="h">Your price book</div><div class="b">Rates live in one editable file. Put your own supplier pricing in and every estimate in your account moves to it.</div></div>
+    <div><div class="h">Built to hand over</div><div class="b">The spec sheet exports the exact material list, room by room, in the format a contractor will actually bid from.</div></div>
+    <div><div class="h">Cancel any time</div><div class="b">Month to month. Your homes and spec sheets export on the way out.</div></div>
+  </div>
+  <footer>
+    <div>ATRIUM — a GreenAI Solutions product</div>
+    <div id="foot-basis">Estimate basis: list-price assumptions, Phoenix metro</div>
+  </footer>
+</section>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

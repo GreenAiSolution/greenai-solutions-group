@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "name": "The Ocotillo",
+    "description": "Single-level 3BR reference home. Every dimension here drives BOTH the 3D geometry and the priced estimate — there is no second set of numbers.",
+    "units": "feet",
+    "ceiling_height": 10.0,
+    "wall_thickness": 0.5,
+    "footprint": { "width_x": 46.0, "depth_z": 34.0 }
+  },
+
+  "rooms": [
+    {
+      "id": "living",
+      "name": "Living Room",
+      "x0": 0.0, "z0": 0.0, "x1": 18.0, "z1": 20.0,
+      "priced": true,
+      "counter_lf": 0.0,
+      "cabinet_lf": 6.0,
+      "fixtures": ["sofa_3seat", "lounge_chair", "coffee_table", "rug_9x12", "floor_lamp", "shelf_unit", "art_large", "media_console", "plant_large"]
+    },
+    {
+      "id": "entry",
+      "name": "Entry",
+      "x0": 18.0, "z0": 0.0, "x1": 28.0, "z1": 8.0,
+      "priced": true,
+      "counter_lf": 0.0,
+      "cabinet_lf": 4.0,
+      "fixtures": ["console_table", "pendant_small", "art_small", "bench_entry"]
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "x0": 28.0, "z0": 0.0, "x1": 46.0, "z1": 20.0,
+      "priced": true,
+      "counter_lf": 26.0,
+      "cabinet_lf": 32.0,
+      "fixtures": ["range_48", "hood_vent", "fridge_counter_depth", "sink_farmhouse", "faucet_bridge", "island_pendant", "island_pendant", "bar_stool", "bar_stool", "bar_stool", "dish_open_shelf"]
+    },
+    {
+      "id": "hall",
+      "name": "Hall",
+      "x0": 18.0, "z0": 8.0, "x1": 28.0, "z1": 20.0,
+      "priced": true,
+      "counter_lf": 0.0,
+      "cabinet_lf": 0.0,
+      "fixtures": ["sconce", "sconce", "runner_rug", "art_small"]
+    },
+    {
+      "id": "bath",
+      "name": "Primary Bath",
+      "x0": 0.0, "z0": 20.0, "x1": 10.0, "z1": 34.0,
+      "priced": true,
+      "counter_lf": 7.0,
+      "cabinet_lf": 7.0,
+      "fixtures": ["tub_freestanding", "tub_filler", "vanity_double", "mirror_round", "mirror_round", "sconce", "sconce", "toilet", "shower_glass"]
+    },
+    {
+      "id": "closet",
+      "name": "Dressing",
+      "x0": 10.0, "z0": 20.0, "x1": 20.0, "z1": 34.0,
+      "priced": true,
+      "counter_lf": 0.0,
+      "cabinet_lf": 22.0,
+      "fixtures": ["wardrobe_run", "island_dresser", "pendant_small", "mirror_full"]
+    },
+    {
+      "id": "bedroom",
+      "name": "Primary Bedroom",
+      "x0": 20.0, "z0": 20.0, "x1": 46.0, "z1": 34.0,
+      "priced": true,
+      "counter_lf": 0.0,
+      "cabinet_lf": 0.0,
+      "fixtures": ["bed_king", "nightstand", "nightstand", "pendant_small", "pendant_small", "bench_bed", "rug_9x12", "art_large", "reading_chair", "plant_large"]
+    }
+  ],
+
+  "openings": [
+    { "room": "entry",   "wall": "south", "type": "door_front", "offset": 3.0, "width": 4.0, "height": 8.0, "sill": 0.0 },
+    { "room": "living",  "wall": "south", "type": "window",     "offset": 3.0, "width": 12.0, "height": 7.0, "sill": 1.5 },
+    { "room": "living",  "wall": "west",  "type": "window",     "offset": 5.0, "width": 10.0, "height": 7.0, "sill": 1.5 },
+    { "room": "living",  "wall": "east",  "type": "cased",      "offset": 4.0, "width": 9.0,  "height": 9.0, "sill": 0.0 },
+    { "room": "kitchen", "wall": "south", "type": "window",     "offset": 4.0, "width": 10.0, "height": 6.0, "sill": 3.5 },
+    { "room": "kitchen", "wall": "east",  "type": "window",     "offset": 4.0, "width": 12.0, "height": 7.0, "sill": 1.5 },
+    { "room": "kitchen", "wall": "west",  "type": "cased",      "offset": 4.0, "width": 9.0,  "height": 9.0, "sill": 0.0 },
+    { "room": "hall",    "wall": "north", "type": "cased",      "offset": 3.0, "width": 5.0,  "height": 9.0, "sill": 0.0 },
+    { "room": "bath",    "wall": "north", "type": "window",     "offset": 2.0, "width": 6.0,  "height": 5.0, "sill": 4.0 },
+    { "room": "bath",    "wall": "east",  "type": "door",       "offset": 5.0, "width": 3.0,  "height": 8.0, "sill": 0.0 },
+    { "room": "closet",  "wall": "east",  "type": "cased",      "offset": 4.0, "width": 6.0,  "height": 9.0, "sill": 0.0 },
+    { "room": "bedroom", "wall": "north", "type": "window",     "offset": 6.0, "width": 16.0, "height": 7.0, "sill": 1.5 },
+    { "room": "bedroom", "wall": "east",  "type": "window",     "offset": 3.0, "width": 8.0,  "height": 7.0, "sill": 1.5 }
+  ],
+
+  "sun": { "azimuth_deg": 208.0, "altitude_deg": 21.0, "note": "Late-afternoon Phoenix sun, low and off the southwest — the light this house was drawn for." },
+
+  "journey": [
+    { "id": "threshold", "at": 0.00, "room": null,      "eye": [23.0, 68.0, -74.0],"look": [23.0, 4.0, 17.0],  "fov": 34, "title": "ATRIUM" },
+    { "id": "approach",  "at": 0.09, "room": null,      "eye": [23.0, 47.0, -41.0],"look": [23.0, 1.5, 16.0],  "fov": 43, "title": "The Ocotillo" },
+    { "id": "entry",     "at": 0.19, "room": "entry",   "eye": [23.0, 5.4, -7.5],  "look": [22.0, 4.8, 8.0],   "fov": 55, "title": "Entry" },
+    { "id": "living_in", "at": 0.30, "room": "living",  "eye": [14.5, 5.4, 8.0],   "look": [6.0, 4.4, 12.0],   "fov": 58, "title": "Living Room" },
+    { "id": "living_sit","at": 0.40, "room": "living",  "eye": [7.0, 4.2, 15.5],   "look": [12.0, 3.4, 4.0],   "fov": 52, "title": "Living Room" },
+    { "id": "kitchen_in","at": 0.52, "room": "kitchen", "eye": [30.2, 5.6, 5.5],   "look": [40.5, 4.3, 14.0],  "fov": 58, "title": "Kitchen" },
+    { "id": "kitchen_is","at": 0.61, "room": "kitchen", "eye": [44.8, 6.0, 17.8],  "look": [34.0, 3.5, 6.5],   "fov": 56, "title": "Kitchen" },
+    { "id": "bath",      "at": 0.72, "room": "bath",    "eye": [8.0, 4.6, 24.0],   "look": [3.0, 3.2, 31.0],   "fov": 56, "title": "Primary Bath" },
+    { "id": "bedroom",   "at": 0.83, "room": "bedroom", "eye": [21.8, 5.5, 30.8],  "look": [38.0, 3.2, 25.0],  "fov": 56, "title": "Primary Bedroom" },
+    { "id": "ledger",    "at": 0.93, "room": null,      "eye": [23.0, 62.0, -6.0], "look": [23.0, 0.0, 17.0],  "fov": 40, "title": "The Ledger" },
+    { "id": "close",     "at": 1.00, "room": null,      "eye": [23.0, 44.0, -30.0],"look": [23.0, 2.0, 17.0],  "fov": 44, "title": "Subscribe" }
+  ]
+}

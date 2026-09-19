@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "currency": "USD",
+    "updated": "2026-08-14",
+    "basis": "Operator-entered list-price assumptions for the Phoenix metro. These are NOT vendor quotes and NOT measured invoices. Edit this file and every number in the app and the estimate moves with it.",
+    "editable": true
+  },
+
+  "labor": {
+    "floor_per_sqft": 6.50,
+    "wall_finish_per_sqft": 3.25,
+    "ceiling_per_sqft": 2.75,
+    "counter_per_lf": 42.00,
+    "cabinet_install_per_lf": 95.00,
+    "fixture_set_each": 165.00,
+    "note": "Installed labor only. Demo, structural, mechanical and permits are excluded and called out as such in the ledger."
+  },
+
+  "fees": {
+    "design_pct": 0.12,
+    "contingency_pct": 0.10,
+    "note": "Design fee is ATRIUM's own line. Contingency is held, not spent."
+  },
+
+  "surfaces": {
+    "floor": [
+      { "id": "oak_wide",     "name": "White Oak, 9\" Wide Plank", "unit": "sqft", "cost": 18.40, "albedo": [0.52, 0.38, 0.24], "roughness": 0.42, "metallic": 0.0, "sheen": 0.35 },
+      { "id": "concrete_pol", "name": "Polished Concrete",         "unit": "sqft", "cost": 11.75, "albedo": [0.40, 0.40, 0.41], "roughness": 0.24, "metallic": 0.0, "sheen": 0.65 },
+      { "id": "travertine",   "name": "Silver Travertine, Honed",  "unit": "sqft", "cost": 22.90, "albedo": [0.63, 0.60, 0.55], "roughness": 0.48, "metallic": 0.0, "sheen": 0.28 },
+      { "id": "terracotta",   "name": "Saltillo Terracotta",       "unit": "sqft", "cost": 14.20, "albedo": [0.62, 0.33, 0.21], "roughness": 0.55, "metallic": 0.0, "sheen": 0.22 },
+      { "id": "walnut_herr",  "name": "Walnut Herringbone",        "unit": "sqft", "cost": 27.60, "albedo": [0.29, 0.19, 0.13], "roughness": 0.36, "metallic": 0.0, "sheen": 0.44 }
+    ],
+    "wall": [
+      { "id": "limewash",     "name": "Limewash Plaster",          "unit": "sqft", "cost": 8.90,  "albedo": [0.86, 0.83, 0.77], "roughness": 0.92, "metallic": 0.0, "sheen": 0.02 },
+      { "id": "flat_paint",   "name": "Flat Matte Paint",          "unit": "sqft", "cost": 2.40,  "albedo": [0.89, 0.88, 0.86], "roughness": 0.96, "metallic": 0.0, "sheen": 0.01 },
+      { "id": "venetian",     "name": "Venetian Plaster, Burnished","unit": "sqft","cost": 16.50, "albedo": [0.78, 0.72, 0.64], "roughness": 0.40, "metallic": 0.0, "sheen": 0.30 },
+      { "id": "oak_panel",    "name": "Rift Oak Slat Paneling",    "unit": "sqft", "cost": 24.00, "albedo": [0.46, 0.33, 0.21], "roughness": 0.50, "metallic": 0.0, "sheen": 0.20 },
+      { "id": "clay_plaster", "name": "Pigmented Clay Plaster",    "unit": "sqft", "cost": 12.30, "albedo": [0.72, 0.58, 0.46], "roughness": 0.88, "metallic": 0.0, "sheen": 0.03 }
+    ],
+    "counter": [
+      { "id": "quartz",       "name": "Engineered Quartz",         "unit": "lf",   "cost": 128.00, "albedo": [0.82, 0.81, 0.79], "roughness": 0.22, "metallic": 0.0, "sheen": 0.55 },
+      { "id": "marble_cala",  "name": "Calacatta Marble",          "unit": "lf",   "cost": 268.00, "albedo": [0.87, 0.86, 0.84], "roughness": 0.14, "metallic": 0.0, "sheen": 0.72 },
+      { "id": "soapstone",    "name": "Soapstone, Oiled",          "unit": "lf",   "cost": 185.00, "albedo": [0.16, 0.17, 0.17], "roughness": 0.30, "metallic": 0.0, "sheen": 0.48 },
+      { "id": "butcher",      "name": "End-Grain Butcher Block",   "unit": "lf",   "cost": 96.00,  "albedo": [0.55, 0.38, 0.22], "roughness": 0.52, "metallic": 0.0, "sheen": 0.18 }
+    ],
+    "cabinet": [
+      { "id": "rift_oak",     "name": "Rift-Sawn Oak, Slab",       "unit": "lf",   "cost": 620.00, "albedo": [0.50, 0.37, 0.24], "roughness": 0.46, "metallic": 0.0, "sheen": 0.26 },
+      { "id": "shaker_paint", "name": "Painted Shaker",            "unit": "lf",   "cost": 385.00, "albedo": [0.30, 0.34, 0.33], "roughness": 0.60, "metallic": 0.0, "sheen": 0.14 },
+      { "id": "walnut_slab",  "name": "Walnut Slab, Book-Matched", "unit": "lf",   "cost": 940.00, "albedo": [0.26, 0.17, 0.11], "roughness": 0.38, "metallic": 0.0, "sheen": 0.40 },
+      { "id": "lacquer_bone", "name": "Bone Lacquer, High Gloss",  "unit": "lf",   "cost": 715.00, "albedo": [0.84, 0.80, 0.72], "roughness": 0.12, "metallic": 0.0, "sheen": 0.80 }
+    ],
+    "metal": [
+      { "id": "brass_unlac",  "name": "Unlacquered Brass",         "unit": "pct",  "cost": 0.24, "albedo": [0.76, 0.58, 0.27], "roughness": 0.26, "metallic": 1.0, "sheen": 1.0 },
+      { "id": "matte_black",  "name": "Matte Black",               "unit": "pct",  "cost": 0.00, "albedo": [0.05, 0.05, 0.06], "roughness": 0.55, "metallic": 0.3, "sheen": 0.3 },
+      { "id": "nickel",       "name": "Brushed Nickel",            "unit": "pct",  "cost": 0.08, "albedo": [0.68, 0.69, 0.70], "roughness": 0.32, "metallic": 1.0, "sheen": 0.9 },
+      { "id": "bronze",       "name": "Antique Bronze",            "unit": "pct",  "cost": 0.16, "albedo": [0.31, 0.22, 0.14], "roughness": 0.40, "metallic": 1.0, "sheen": 0.7 }
+    ],
+    "textile": [
+      { "id": "linen_oat",    "name": "Belgian Linen, Oat",        "unit": "pct",  "cost": 0.00, "albedo": [0.70, 0.65, 0.55], "roughness": 0.94, "metallic": 0.0, "sheen": 0.02 },
+      { "id": "boucle_cream", "name": "Bouclé, Cream",             "unit": "pct",  "cost": 0.18, "albedo": [0.80, 0.77, 0.70], "roughness": 0.98, "metallic": 0.0, "sheen": 0.01 },
+      { "id": "leather_tan",  "name": "Aniline Leather, Tan",      "unit": "pct",  "cost": 0.42, "albedo": [0.45, 0.28, 0.17], "roughness": 0.45, "metallic": 0.0, "sheen": 0.35 },
+      { "id": "velvet_moss",  "name": "Cotton Velvet, Moss",       "unit": "pct",  "cost": 0.26, "albedo": [0.18, 0.24, 0.17], "roughness": 0.75, "metallic": 0.0, "sheen": 0.22 }
+    ]
+  },
+
+  "fixtures": [
+    { "id": "sofa_3seat",          "name": "3-Seat Sofa",              "cost": 4200 },
+    { "id": "lounge_chair",        "name": "Lounge Chair",             "cost": 1850 },
+    { "id": "reading_chair",       "name": "Reading Chair",            "cost": 1450 },
+    { "id": "coffee_table",        "name": "Stone Coffee Table",       "cost": 1650 },
+    { "id": "rug_9x12",            "name": "Hand-Knotted Rug 9x12",    "cost": 3800 },
+    { "id": "runner_rug",          "name": "Hall Runner",              "cost": 900 },
+    { "id": "floor_lamp",          "name": "Floor Lamp",               "cost": 780 },
+    { "id": "shelf_unit",          "name": "Built-In Shelving",        "cost": 2400 },
+    { "id": "media_console",       "name": "Media Console",            "cost": 1900 },
+    { "id": "art_large",           "name": "Large Framed Work",        "cost": 2200 },
+    { "id": "art_small",           "name": "Small Framed Work",        "cost": 650 },
+    { "id": "plant_large",         "name": "Specimen Plant + Vessel",  "cost": 520 },
+    { "id": "console_table",       "name": "Entry Console",            "cost": 1400 },
+    { "id": "bench_entry",         "name": "Entry Bench",              "cost": 850 },
+    { "id": "bench_bed",           "name": "Bed Bench",                "cost": 1100 },
+    { "id": "pendant_small",       "name": "Pendant Light",            "cost": 690 },
+    { "id": "island_pendant",      "name": "Island Pendant, Large",    "cost": 1250 },
+    { "id": "sconce",              "name": "Wall Sconce",              "cost": 420 },
+    { "id": "range_48",            "name": "48\" Dual-Fuel Range",     "cost": 9800 },
+    { "id": "hood_vent",           "name": "Plaster Vent Hood",        "cost": 3100 },
+    { "id": "fridge_counter_depth","name": "Panel-Ready Refrigerator", "cost": 8400 },
+    { "id": "sink_farmhouse",      "name": "Fireclay Farmhouse Sink",  "cost": 1600 },
+    { "id": "faucet_bridge",       "name": "Bridge Faucet",            "cost": 1350 },
+    { "id": "bar_stool",           "name": "Counter Stool",            "cost": 640 },
+    { "id": "dish_open_shelf",     "name": "Open Shelf Run",           "cost": 1150 },
+    { "id": "tub_freestanding",    "name": "Freestanding Tub",         "cost": 5600 },
+    { "id": "tub_filler",          "name": "Floor-Mount Tub Filler",   "cost": 1900 },
+    { "id": "vanity_double",       "name": "Double Vanity, Custom",    "cost": 7200 },
+    { "id": "mirror_round",        "name": "Round Mirror",             "cost": 580 },
+    { "id": "mirror_full",         "name": "Full-Length Mirror",       "cost": 780 },
+    { "id": "toilet",              "name": "Wall-Hung Toilet + Carrier","cost": 2450 },
+    { "id": "shower_glass",        "name": "Frameless Shower Enclosure","cost": 4300 },
+    { "id": "bed_king",            "name": "Upholstered King Bed",     "cost": 5200 },
+    { "id": "nightstand",          "name": "Nightstand",               "cost": 1250 },
+    { "id": "wardrobe_run",        "name": "Wardrobe Run, Fitted",     "cost": 6800 },
+    { "id": "island_dresser",      "name": "Dressing Island",          "cost": 2900 }
+  ],
+
+  "palettes": [
+    {
+      "id": "desert_modern",
+      "name": "Desert Modern",
+      "line": "Warm plaster, low sun, unlacquered brass that ages.",
+      "floor": "oak_wide", "wall": "clay_plaster", "counter": "quartz",
+      "cabinet": "rift_oak", "metal": "brass_unlac", "textile": "linen_oat",
+      "sky": [0.98, 0.72, 0.48], "ground": [0.36, 0.26, 0.20], "sun": [1.00, 0.78, 0.52], "sun_energy": 4.2, "lamp": [1.00, 0.72, 0.42]
+    },
+    {
+      "id": "nordic_quiet",
+      "name": "Nordic Quiet",
+      "line": "Pale oak, cold north light, almost nothing on the walls.",
+      "floor": "oak_wide", "wall": "limewash", "counter": "marble_cala",
+      "cabinet": "shaker_paint", "metal": "nickel", "textile": "boucle_cream",
+      "sky": [0.72, 0.82, 0.95], "ground": [0.42, 0.44, 0.46], "sun": [0.90, 0.94, 1.00], "sun_energy": 3.4, "lamp": [1.00, 0.90, 0.78]
+    },
+    {
+      "id": "noir_atelier",
+      "name": "Noir Atelier",
+      "line": "Soapstone, walnut, black metal. A room that keeps secrets.",
+      "floor": "walnut_herr", "wall": "venetian", "counter": "soapstone",
+      "cabinet": "walnut_slab", "metal": "matte_black", "textile": "leather_tan",
+      "sky": [0.30, 0.33, 0.40], "ground": [0.12, 0.11, 0.12], "sun": [1.00, 0.86, 0.68], "sun_energy": 3.9, "lamp": [1.00, 0.68, 0.36]
+    },
+    {
+      "id": "terracotta_sun",
+      "name": "Terracotta Sun",
+      "line": "Saltillo underfoot, bronze at the hand, green in the corners.",
+      "floor": "terracotta", "wall": "limewash", "counter": "butcher",
+      "cabinet": "lacquer_bone", "metal": "bronze", "textile": "velvet_moss",
+      "sky": [1.00, 0.80, 0.60], "ground": [0.40, 0.24, 0.16], "sun": [1.00, 0.72, 0.42], "sun_energy": 4.6, "lamp": [1.00, 0.76, 0.48]
+    },
+    {
+      "id": "concrete_bloom",
+      "name": "Concrete Bloom",
+      "line": "Polished slab, bone lacquer, one loud plant. Gallery rules.",
+      "floor": "concrete_pol", "wall": "flat_paint", "counter": "quartz",
+      "cabinet": "lacquer_bone", "metal": "nickel", "textile": "boucle_cream",
+      "sky": [0.80, 0.84, 0.90], "ground": [0.30, 0.31, 0.33], "sun": [1.00, 0.97, 0.92], "sun_energy": 3.6, "lamp": [1.00, 0.94, 0.86]
+    }
+  ],
+
+  "plans": [
+    { "id": "sketch",  "name": "Sketch",  "price": 39,  "cadence": "mo",
+      "line": "One home. Every palette. A priced spec you can hand to anyone.",
+      "features": ["1 home on file", "All 5 palettes, unlimited swaps", "Live priced ledger", "PDF spec sheet", "Material list export"] },
+    { "id": "studio",  "name": "Studio",  "price": 129, "cadence": "mo",
+      "line": "Five homes, contractor-ready output, and a quarterly re-price.",
+      "features": ["5 homes on file", "Everything in Sketch", "Contractor-ready scope sheet", "Quarterly price refresh", "Custom palette builder", "Client share links"] },
+    { "id": "atelier", "name": "Atelier", "price": 349, "cadence": "mo",
+      "line": "For designers and brokers who put their own name on it.",
+      "features": ["Unlimited homes", "Everything in Studio", "White-label — your logo, your domain", "Your own price book", "Unlimited client seats", "Priority support"] }
+  ]
+}

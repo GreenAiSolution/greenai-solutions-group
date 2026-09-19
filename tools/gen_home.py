@@ -2,8 +2,7 @@
 """gen_home.py — writes index.html in the showroom layout. Run after gen_platform_agents.py."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT, STARS, ICON_OF
-from robots import robot, bust, peek
+from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT
 
 JSONLD = '''{
     "@context": "https://schema.org",
@@ -52,29 +51,28 @@ CSS = """
     .hp-talk__phone:hover { color: var(--green); }
     .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
     @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
+    /* the hero: one spotlight, the six on one stage, nothing else */
+    .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
+    .hp-six { position: relative; max-width: 1240px; margin: 2.6rem auto 0; }
+    .hp-six__in { position: relative; }
+    .hp-six img { display: block; width: 100%; height: auto; }
+    .hp-six a { position: absolute; top: 4%; bottom: 30%; width: 11%; transform: translateX(-50%); text-decoration: none; }
+    .hp-six a span { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 1.1rem); font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .2em; color: var(--c); white-space: nowrap; opacity: .85; transition: opacity .2s, letter-spacing .2s; }
+    .hp-six a:hover span, .hp-six a:focus-visible span { opacity: 1; letter-spacing: .28em; }
+    .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
+    .hp-face { position: absolute; right: -.4rem; bottom: 0; width: 8.2rem; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+    @media (max-width: 720px) { .hp-six { margin-top: 5.2rem; } .hp-six__in { transform: scale(1.5); transform-origin: 50% 100%; } .hp-six a span { font-size: .36rem; letter-spacing: .1em; transform: translate(-50%, .35rem); } }
 """
 
-def chip(ico, b, s, i):
-    return f'<div class="sn-chip"><div class="sn-chip__ico">{I[ico]}</div><div><b>{b}</b><span>{s}</span><i>{i}</i></div></div>'
-
-desk = "".join([
-    chip("phone", "RING picked up in 0:08", "Sunday 9:47 PM · pump noise, Gilbert", "booked Mon 8:00"),
-    chip("send", "INBOX replied to Dana R.", "Weekly service quote · from your Gmail", "0:41 after it landed"),
-    chip("receipt", "BOOKS sent invoice #1051", "Job closed 3:10 · invoice out 3:12", "your payment link"),
-    chip("user", "DISPATCH created request #1187", "Client, quote and Thursday slot, in Jobber", "nothing to copy over"),
-    chip("message", "THREAD answered Marcus in #leads", "Henderson quote: sent Tuesday, $285, open", "source: job notes"),
-    chip("sun", "HUDDLE posted the morning summary", "3 leads overnight, 2 quoted, 1 needs photos", "7:02 AM · Teams"),
-])
+SIX_X = [24.2, 33.6, 44.0, 55.9, 66.5, 76.0]
+SIX_C = {"ring":"#7DE3A4","dispatch":"#F0CF6B","inbox":"#7CC4F0","thread":"#C9A9F7","huddle":"#F5A38E","books":"#E8C46A"}
+six_links = "".join(f'<a href="{a["id"]}.html" style="left:{x}%;--c:{SIX_C[a["id"]]}" aria-label="{a["name"]}"><span>{a["name"]}</span></a>' for a, x in zip(AGENTS, SIX_X))
 
 four = f'''
-<article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("ring")}</div><div class="sn-card__ico">{I['phone']}</div><h3>Answers the phone in about eight seconds.</h3><p>Nights, weekends, the second caller. Books it and texts you.</p>
-  <div class="sn-card__vis">{chip("phone","Incoming · (480) 555-0142","“Is this Saguaro Pool Care? My pump is grinding.”","RING · 0:08")}{chip("calendar","Booked Mon 8:00","1412 E Palo Verde · transcript sent","done")}</div></article>
-<article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("dispatch")}</div><div class="sn-card__ico">{I['user']}</div><h3>Writes the job into Jobber, Housecall Pro or ServiceTitan.</h3><p>Client, request, quote and reminder, in your account.</p>
-  <div class="sn-card__vis">{chip("user","Request #1187 created","M. Ortega · Gilbert 85296","DISPATCH")}{chip("send","Quote sent · $285","from your price list · Thu 9:00 held","done")}</div></article>
-<article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("inbox")}</div><div class="sn-card__ico">{I['inbox']}</div><h3>Replies from your own Gmail in under a minute.</h3><p>Follows up on day one, three and seven. Drafts anything unusual for you.</p>
-  <div class="sn-card__vis">{chip("send","Replied to Dana R.","Weekly service quote · holding Thursday","INBOX · 0:41")}{chip("pen","Refund request drafted","K. Alvarez · waiting in Drafts","needs you")}</div></article>
-<article class="sn-card sn-card--bot"><div class="sn-card__bot sn-card__bot--peek">{peek("books")}</div><div class="sn-card__ico">{I['receipt']}</div><h3>Sends the invoice the day the job closes.</h3><p>Reminds politely on seven, fourteen and twenty-one. Never collections.</p>
-  <div class="sn-card__vis">{chip("receipt","Invoice #1051 sent","job closed 3:10 · out 3:12","BOOKS")}{chip("check","#1042 paid · matched","J. Whitfield · $285","Monday sheet")}</div></article>'''
+<article class="sn-card"><div class="sn-card__ico">{I['phone']}</div><h3>Answers the phone in about eight seconds.</h3><p>Nights, weekends, the second caller. Books it and texts you.</p></article>
+<article class="sn-card"><div class="sn-card__ico">{I['user']}</div><h3>Writes the job into Jobber, Housecall Pro or ServiceTitan.</h3><p>Client, request, quote and reminder, in your account.</p></article>
+<article class="sn-card"><div class="sn-card__ico">{I['inbox']}</div><h3>Replies from your own Gmail in under a minute.</h3><p>Follows up on day one, three and seven. Drafts anything unusual for you.</p></article>
+<article class="sn-card"><div class="sn-card__ico">{I['receipt']}</div><h3>Sends the invoice the day the job closes.</h3><p>Reminds politely on seven, fourteen and twenty-one. Never collections.</p></article>'''
 
 phone_views = '''
 <div class="sn-phone__view is-on"><p class="sn-phone__title">One conversation</p><p class="sn-phone__sub">Twenty minutes, by phone or email.</p>
@@ -105,7 +103,7 @@ steps = "".join(f'<li><b>{t}</b><p>{p}</p></li>' for t,p in [
 marquee1 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][:2])
 marquee2 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][2:5])
 
-roster = "".join(f'<a href="{a["id"]}.html">{bust(a["id"], cls="sn-more__bot")}<b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
+roster = "".join(f'<a href="{a["id"]}.html"><img class="hp-face" src="art/six-{a["id"]}.webp" alt="" width="280" height="280" loading="lazy" decoding="async" /><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
 
 faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in [
     ("What is an AI employee, in plain English?","A program that does one job inside a tool you already use: answers the phone, replies to leads in Gmail, writes jobs into Jobber, answers the team in Slack or Teams, sends the invoices in QuickBooks. It is trained on your prices, hours and wording, and it never invents a number."),
@@ -128,7 +126,7 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
   </script>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">{STARS}
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>GreenAI Solutions</b> · Gilbert, Arizona</p>
         <h1 class="tk-h1" id="hero-heading">AI employees for the apps <em>you already use.</em></h1>
@@ -138,13 +136,32 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
-      <div class="sn-hero__crew sn-hero__crew--sky" aria-label="The six robots">{"".join(f'<a href="{x["id"]}.html" class="rb-float" style="animation-delay:{i*.4}s;--w:{w}px;--dy:{dy}px" title="{x["name"]}">{robot(x["id"], I[ICON_OF[x["id"]]], label=x["name"], pose=p)}</a>' for i,(x,p,w,dy) in enumerate(zip(AGENTS,["wave","point","fly","think","stand","sit"],[170,150,190,150,160,175],[0,-18,-38,-10,-26,8])))}</div>
-      <div class="sn-hero__stage"><div class="sn-desk" id="sn-desk" role="img" aria-label="Six AI employees working through one day: a call answered, an email replied to, an invoice sent, a job written into Jobber, a question answered in Slack, a morning summary in Teams. Fictional customers.">{desk}</div></div>
+      <div class="hp-six"><div class="hp-six__in"><img src="art/hero-six-1400.webp" srcset="art/hero-six-1400.webp 1400w, art/hero-six.webp 2400w" sizes="(max-width: 720px) 150vw, 1240px" width="2400" height="759" alt="The six AI employees standing on one stage: RING, DISPATCH, INBOX, THREAD, HUDDLE and BOOKS." fetchpriority="high" decoding="async" />{six_links}</div></div>
     </header></div>
+
+    <section class="sn-sec" aria-labelledby="h-roster">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-roster">Six names. <em>Six apps.</em></h2><p class="tk-lede">Hire one, or the whole staff for ${FULL:,} a month.</p></div>
+        <div class="sn-more sn-more--3">{roster}</div>
+        <p style="text-align:center;margin:1.5rem 0 0"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">See all six at work</a></p>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-film" style="padding-bottom:1rem">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-film">You closed at six. <em>They didn't.</em></h2><p class="tk-lede">Thirty seconds on what the six do after you lock up. Sound on.</p></div>
+        <div style="max-width:340px;margin:0 auto;border-radius:28px;overflow:hidden;border:1px solid rgba(232,196,106,.45);box-shadow:0 30px 80px rgba(0,0,0,.55);background:#060706">
+          <video controls playsinline preload="none" poster="film/night-shift-poster.jpg" width="720" height="1280" style="display:block;width:100%;height:auto" aria-label="Short film: six robots switch on in a closed shop, answer the phone, book jobs and send invoices through the night.">
+            <source src="film/night-shift.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="tk-lede" style="text-align:center;margin-top:1.25rem">More like this on Instagram: <a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener" style="color:#E8C46A">@greenaidigitals</a></p>
+      </div>
+    </section>
 
     <section class="sn-sec" aria-labelledby="h-four">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-four">Four things that stop falling through <em>the cracks.</em></h2><p class="tk-lede">Fictional customers, real behaviour. Every message you see here is the kind you would actually get.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-four">Four things that stop falling through <em>the cracks.</em></h2><p class="tk-lede">The four jobs that cost a small company the most when nobody gets to them.</p></div>
         <div class="sn-cards">{four}</div>
       </div>
     </section>
@@ -168,11 +185,7 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
     <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-staff">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-staff">Your always-on <em>front office.</em></h2><p class="tk-lede">Six employees, thirty-six jobs, none of them in a new dashboard. This is what they do, in the words the pages use.</p></div>
-        <div class="sn-bubbles">
-          <div><div class="sn-grad__bot rb-float">{robot("thread", I["message"], label="THREAD", pose="fly")}</div><div class="sn-bubble"><b>RING · 9:47 PM</b>Booked Mon 8:00 for 1412 E Palo Verde. Pump noise, told them to switch it off tonight. Transcript in your inbox.</div><div class="sn-bubble"><b>THREAD · #leads</b>Henderson quote: sent Tuesday, $285, not accepted yet. Follow-up goes out tomorrow unless you want to call first.</div></div>
-          <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Monday report</p><p class="sn-phone__sub">all six, one page</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 emergency to you</small></span><em>RING</em></div><div class="sn-file"><i>DSP</i><span>4 requests created<small>3 quoted from your list</small></span><em>DISPATCH</em></div><div class="sn-file"><i>INB</i><span>9 leads replied to<small>day 1·3·7 follow-ups running</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div></div></div></div>
-          <div><div class="sn-bubble"><b>INBOX · 7 min ago</b>Replied to Dana R. about weekly service in 0:41. Asked which day works and whether there is a gate code.</div><div class="sn-bubble"><b>BOOKS · Monday 7:00 AM</b>Cash sheet: $2,760 came in last week, 2 invoices late, 0 disputes. One page, in your inbox.</div><div class="sn-grad__bot rb-float" style="animation-delay:.6s">{robot("huddle", I["sun"], label="HUDDLE", pose="wave")}</div></div>
-        </div>
+        <div style="display:flex;justify-content:center;margin-bottom:2.5rem"><div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Monday report</p><p class="sn-phone__sub">all six, one page</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 emergency to you</small></span><em>RING</em></div><div class="sn-file"><i>DSP</i><span>4 requests created<small>3 quoted from your list</small></span><em>DISPATCH</em></div><div class="sn-file"><i>INB</i><span>9 leads replied to<small>day 1·3·7 follow-ups running</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div></div></div></div></div>
         <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track">{marquee1}{marquee1}</div></div>
         <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track">{marquee2}{marquee2}</div></div>
       </div>
@@ -190,20 +203,12 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-roster" style="padding-top:2rem">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-roster">Six names. <em>Six apps.</em></h2><p class="tk-lede">Hire one, or the whole staff for ${FULL:,} a month.</p></div>
-        <div class="sn-more sn-more--3">{roster}</div>
-        <p style="text-align:center;margin:1.5rem 0 0"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">See all six at work</a></p>
-      </div>
-    </section>
-
     <section class="sn-sec" aria-labelledby="h-also">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-also">Also built here, <em>by the same person.</em></h2><p class="tk-lede">Websites coded by hand, a month of finished ads, and custom systems when the honest answer is that it has to be built.</p></div>
         <div class="sn-cards sn-cards--3 hp-services">
           <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>Websites</h3><p>No themes, no page builder. Fast on a phone, an obvious next step on every page. The files are yours the day it launches.</p>
-            <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" decoding="async" data-url="greenaidigital.com/blackbox" /></div></div></div>
+            <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-bakr.webp" alt="bakrjewelry.co" width="1100" height="687" loading="lazy" decoding="async" data-url="bakrjewelry.co" /></div></div></div>
             <div class="sn-card__price"><b>from $500</b><a href="service-web-design.html">See the website service →</a></div></article>
           <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Ad creation</h3><p>Ten, twenty-five or sixty finished ads a month, in every size the platforms need. Run them all and keep what works.</p>
             <div class="sn-card__vis"><div class="hp-ads" aria-label="Finished ad output"><div class="tall"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>9:16</span></div><div><img src="art/ad-angle-question.webp" alt="A square ad" width="720" height="720" loading="lazy" decoding="async" /><span>1:1</span></div><div><img src="art/ad-angle-split.webp" alt="A portrait ad" width="720" height="893" loading="lazy" decoding="async" /><span>4:5</span></div></div></div>
@@ -217,25 +222,13 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
 
     <section class="sn-sec" aria-labelledby="h-work" style="padding-top:0">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-work">Everything here is live. <em>Open it.</em></h2><p class="tk-lede">Two client sites and four things built to prove a point. <a href="testimonials.html">All the work</a></p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-work">Everything here is live. <em>Open it.</em></h2><p class="tk-lede">Three sites for real owners and two 3D concept sites built in-house. <a href="testimonials.html">All the work</a></p></div>
         <div class="tk-work">
           <a href="https://performancelab.fitness" target="_blank" rel="noopener"><figure><img src="previews/work-perflab.webp" alt="performancelab.fitness homepage" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>Julia's Performance Lab</b><i>Website</i><span>A Seattle personal trainer. Site, brand, booking links and an events page she updates herself.</span></figcaption></figure></a>
           <a href="https://handmadebyhalle.com" target="_blank" rel="noopener"><figure><img src="previews/work-halle.webp" alt="handmadebyhalle.com homepage" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>Handmade by Halle</b><i>Website</i><span>A one-woman home-decor studio. Fourteen pieces, seasonal collections, buying handed to her Etsy shop.</span></figcaption></figure></a>
-          <a href="blackbox/"><figure><img src="previews/work-blackbox.webp" alt="BLACKBOX, a flight recorder for AI agents" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>BLACKBOX</b><i>Tool</i><span>A flight recorder for AI agents. Every call logged, hash-chained and replayable.</span></figcaption></figure></a>
-          <a href="gauntlet/"><figure><img src="previews/work-gauntlet.webp" alt="THE GAUNTLET, a live prompt-injection lab" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>THE GAUNTLET</b><i>Lab</i><span>You play the attacker against an AI assistant and see which of eight filters stops you.</span></figcaption></figure></a>
-          <a href="friction/"><figure><img src="previews/work-friction.webp" alt="FRICTION, a live UX experiment" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>FRICTION</b><i>Lab</i><span>What bad design costs, measured on you. The same sign-up form built two ways, with a timer on both.</span></figcaption></figure></a>
-          <a href="tesseract/"><figure><img src="previews/work-tesseract.webp" alt="TESSERACT, a benchmark replayed in four dimensions" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>TESSERACT</b><i>Benchmark</i><span>Five hundred attacks on an AI agent, replayed in 4D with a time scrubber.</span></figcaption></figure></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="sn-sec" aria-labelledby="h-rules" style="padding-top:0">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-rules">Your account. <em>Your rules.</em></h2></div>
-        <div class="sn-trio">
-          <div>{I['key']}<h3>You own everything</h3><p>Site files, ad files, scripts and transcripts are yours for good. If you leave, nothing stops working.</p><a class="more" href="agreement.html">Read the service agreement →</a></div>
-          <div>{I['shield']}<h3>Nothing goes live over your objection</h3><p>Every script, page and ad goes past you first. If something still bothers you, it waits. No change fees, no ticket numbers.</p></div>
-          <div>{I['user']}<h3>No account manager</h3><p>The person who scopes the work builds it and picks up the phone. Changes are same-day at no charge.</p><a class="more" href="about.html">About Jaden →</a></div>
+          <a href="https://bakrjewelry.co" target="_blank" rel="noopener"><figure><img src="previews/work-bakr.webp" alt="bakrjewelry.co homepage: the BAKR wordmark with a diamond ring lying across it" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>BAKR Jewelry</b><i>Website</i><span>A made-to-order jeweler. Paper and ink, a diamond you can recut with a click, and a gallery for every kind of piece.</span></figcaption></figure></a>
+          <a href="aether/"><figure><img src="previews/work-aether.webp" alt="AETHER, a 3D site you scroll through" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>AETHER</b><i>3D site</i><span>A concept site for AI agents. Scroll and the camera flies through a living 3D scene, or press Auto Tour and watch.</span></figcaption></figure></a>
+          <a href="atrium/"><figure><img src="previews/work-atrium.webp" alt="ATRIUM, a house that builds itself in 3D as you scroll" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>ATRIUM</b><i>3D site</i><span>A concept home-design site. The house builds itself around you as you scroll, and the estimate moves with every finish you pick.</span></figcaption></figure></a>
         </div>
       </div>
     </section>
@@ -282,12 +275,6 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
   <div class="sn-sticky"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">Meet the six AI employees</a></div>''' + tail("""
   <script>
   (function(){
-    var chips=[].slice.call(document.querySelectorAll('#sn-desk .sn-chip')); if(!chips.length) return;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; document.getElementById('sn-desk').classList.add('js');
-    var i=0; function step(){ if(i<chips.length){ chips[i].classList.add('is-in'); i++; setTimeout(step, 520); } }
-    setTimeout(step, 350);
-  })();
-  (function(){
     var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var i=0; setInterval(function(){ imgs[i].classList.remove('on'); i=(i+1)%imgs.length; imgs[i].classList.add('on'); url.textContent=imgs[i].getAttribute('data-url'); }, 3200);
@@ -296,5 +283,6 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
 
 # the homepage canonical is the bare domain
 PAGE = PAGE.replace('href="https://greenaidigital.com/index.html"', 'href="https://greenaidigital.com/"').replace('content="https://greenaidigital.com/index.html"', 'content="https://greenaidigital.com/"')
+PAGE = PAGE.replace('tech.css?v=7', 'tech.css?v=9')
 open(os.path.join(ROOT, "index.html"), "w").write(PAGE)
 print("wrote index.html", len(PAGE))
