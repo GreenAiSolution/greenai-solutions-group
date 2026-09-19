@@ -130,9 +130,9 @@ schem = f'''<svg viewBox="0 0 640 300" aria-label="A custom system drawn as a sc
 <g font-family="Outfit, sans-serif" font-weight="600" font-size="15" fill="#fff" text-anchor="middle"><text x="95" y="140">INTAKE</text><text x="320" y="140">CHECKER</text><text x="545" y="140">APPROVAL</text><text x="320" y="50">YOUR RULES</text></g>
 <g font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle"><text x="95" y="162">call · form · file</text><text x="320" y="162">blocks what is not on the list</text><text x="545" y="162">a person, before it acts</text><text x="320" y="252">every step logged, hash-chained, replayable</text></g></svg>'''
 
-PAGE = head("Services — AI employees, websites, ad creation and custom systems | GreenAI Solutions",
-            "Eight services, every price the whole price. AI employees from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona.",
-            "services.html", CSS, og_title="Eight services. Every price is the whole price.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
+PAGE = head("Services — eight services from one AI workforce | GreenAI Solutions",
+            "Eight services from one AI services workforce, every price the whole price. AI staff from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona.",
+            "services.html", CSS, og_title="Eight services. One workforce.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
 <body class="tk sv-cinema">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -143,8 +143,8 @@ PAGE = head("Services — AI employees, websites, ad creation and custom systems
 
     <header class="sv-hero" aria-labelledby="h1">
       <p class="sv-slate">GreenAI Solutions presents</p>
-      <h1 id="h1">Eight services. <em>One number to call.</em></h1>
-      <p>Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
+      <h1 id="h1">Eight services. <em>One workforce.</em></h1>
+      <p>GreenAI is an AI services workforce: you hand over a job, and it gets done inside the tools you already use. Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
       <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the eight</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
       <div class="sv-cast" aria-label="The cast">{cast}</div>
     </header>

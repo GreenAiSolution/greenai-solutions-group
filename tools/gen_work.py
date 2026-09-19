@@ -134,7 +134,7 @@ PAGE = head("Work — GreenAI Solutions",
 
     <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner" style="text-align:center">
-        <div class="sn-head"><h2 class="tk-h2" id="h-cta">That is the standard. <em>Now it points at your company.</em></h2><p class="tk-lede">Websites from $500, AI employees from $297 a month, a month of finished ads from $697, and custom systems quoted after one conversation. Month to month, and everything built is yours.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-cta">That is the standard. <em>Now it points at your company.</em></h2><p class="tk-lede">One AI services workforce: websites from $500, AI staff from $297 a month, a month of finished ads from $697, and custom systems quoted after one conversation. Month to month, and everything built is yours.</p></div>
         <div class="sn-hero__cta"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the services and prices</a><a href="contact.html" class="tk-btn tk-btn--line">Talk to Jaden</a></div>
       </div>
     </section>

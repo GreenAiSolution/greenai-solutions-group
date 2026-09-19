@@ -113,7 +113,7 @@ PAGE = head("About Jaden Green — GreenAI Solutions, Gilbert, AZ",
           <li><i>2020 – 2025</i><div><b>University of Washington</b><p>Five years on a full football scholarship in Seattle. 5 a.m. lifts, film graded every week, performance judged in public. I finished a degree in art with a minor in real estate, which is why the sites look the way they do and why I read the numbers before I automate anything.</p></div></li>
           <li><i>Early 2025</i><div><b>The ramp at Sky Harbor</b><p>Ground crew on aircraft turns. A clock that does not move and a checklist that does not bend. I started GreenAI the same winter.</p></div></li>
           <li><i>2025 – 2026</i><div><b>A service route, and a lot of doors</b><p>A year inside a small Phoenix service company: a weekly route of homes, and door-to-door sales through a full Arizona summer. I saw from the inside what a small company's day looks like, and how much of it is the phone, the follow-up and the invoice.</p></div></li>
-          <li><i>Now</i><div><b>GreenAI Solutions</b><p>Six AI employees that work inside the apps a company already uses, websites coded by hand, finished ads and custom systems. We are a team of 12 now, and my number is still the one on the site.</p></div></li>
+          <li><i>Now</i><div><b>GreenAI Solutions</b><p>An AI services workforce for small companies: AI staff inside the apps they already use, websites coded by hand, finished ads, SEO and custom systems. We are a team of 12 now, and my number is still the one on the site.</p></div></li>
         </ol>
       </div>
     </section>
