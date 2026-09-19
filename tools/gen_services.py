@@ -131,8 +131,8 @@ schem = f'''<svg viewBox="0 0 640 300" aria-label="A custom system drawn as a sc
 <g font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle"><text x="95" y="162">call · form · file</text><text x="320" y="162">blocks what is not on the list</text><text x="545" y="162">a person, before it acts</text><text x="320" y="252">every step logged, hash-chained, replayable</text></g></svg>'''
 
 PAGE = head("Services — AI employees, websites, ad creation and custom systems | GreenAI Solutions",
-            "Four services, every price the whole price. AI employees from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona.",
-            "services.html", CSS, og_title="Four services. Every price is the whole price.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
+            "Six services, every price the whole price. AI employees from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona.",
+            "services.html", CSS, og_title="Six services. Every price is the whole price.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
 <body class="tk sv-cinema">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -143,9 +143,9 @@ PAGE = head("Services — AI employees, websites, ad creation and custom systems
 
     <header class="sv-hero" aria-labelledby="h1">
       <p class="sv-slate">GreenAI Solutions presents</p>
-      <h1 id="h1">Four services. <em>One person you can call.</em></h1>
+      <h1 id="h1">Six services. <em>One number to call.</em></h1>
       <p>Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
-      <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the four</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
+      <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the six</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
       <div class="sv-cast" aria-label="The cast">{cast}</div>
     </header>
 
@@ -203,6 +203,32 @@ PAGE = head("Services — AI employees, websites, ad creation and custom systems
       </div>
     </section>
 
+    <section class="sv-scene" id="s5" style="--ac:#7CC4F0;--x:70%" aria-labelledby="h-s5">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">05</div><p class="sv-slate">Scene five</p><h2 id="h-s5">AI SEO, <em>done for you.</em></h2>
+          <p class="lede">One AI agent does the SEO work end to end. It crawls the site every week, fixes what it finds, writes the service and city pages you are missing, keeps your Google Business Profile alive and reports what changed in plain English. No new tools to learn, no new hire. Nothing goes live until you have read it, and nobody here will promise you page one.</p>
+          <div class="sv-price"><b>Quoted</b><span>after a free first audit · month to month</span></div>
+          <div class="sv-cta"><a href="service-ai-seo.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how AI SEO works</a><a href="contact.html?want=seo" class="tk-btn tk-btn--ghost">Ask for the free audit</a></div></div>
+        <div class="sv-stage">
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("inbox", I["inbox"], label="The SEO agent", pose="point")}</div>
+          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Weekly crawl of every page</span><b>audit</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Titles, links, speed, markup</span><b>fixed</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Service and city pages</span><b>written</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Google Business Profile</span><b>kept alive</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly report, Google's numbers</span><b>plain English</b></li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sv-scene sv-scene--flip" id="s6" style="--ac:#E8C46A;--x:30%" aria-labelledby="h-s6">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">06</div><p class="sv-slate">Scene six</p><h2 id="h-s6">CRM and dashboards, <em>made to work.</em></h2>
+          <p class="lede">Most small companies pay for a CRM and run the business from memory. The one you already have gets cleaned up: duplicates merged, stages that match how you sell, follow-ups that send themselves, your tools connected. Then the numbers that matter go on one screen you can read in a minute, with a summary every Monday.</p>
+          <div class="sv-price"><b>Quoted</b><span>after a read-only look · fixed price in writing</span></div>
+          <div class="sv-cta"><a href="service-crm-dashboards.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what gets fixed</a><a href="contact.html?want=crm" class="tk-btn tk-btn--ghost">Tell us which CRM you use</a></div></div>
+        <div class="sv-stage">
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("huddle", I["sun"], label="HUDDLE", pose="stand")}</div>
+          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">New leads this week</span><b>23</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Answered in, median</span><b>0:52</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Quotes out</span><b>$18,400</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Owed to you</span><b>$4,120</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span>Example numbers, not a client's</span><b></b></li></ul></div>
+        </div>
+      </div>
+    </section>
+
     <section class="sv-credits" aria-labelledby="h-credits">
       <p class="sv-slate">How a build runs</p>
       <h2 id="h-credits">The same four steps, <em>every time.</em></h2>
@@ -216,6 +242,8 @@ PAGE = head("Services — AI employees, websites, ad creation and custom systems
         <tr><td>AI employees</td><td>one inside each app, six of them</td><td>from $297/mo · all six ${FULL:,}</td></tr>
         <tr><td>Websites</td><td>coded by hand, yours the day it launches</td><td>$500 · $1,500 · $2,500+</td></tr>
         <tr><td>Ad creation</td><td>ten, twenty-five or sixty finished ads a month</td><td>$697 · $1,297 · $2,497 /mo</td></tr>
+        <tr><td>AI SEO</td><td>one agent does it end to end, you approve it</td><td>quoted</td></tr>
+        <tr><td>CRM and dashboards</td><td>your CRM cleaned up, your numbers on one screen</td><td>quoted</td></tr>
         <tr><td>Custom systems</td><td>scoped in one conversation, priced in writing</td><td>quoted</td></tr>
       </tbody></table>
       <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go unanswered when you are working: start with RING. Web leads sit for hours: INBOX on Gmail, DISPATCH on Jobber. Your site is a theme with your logo dropped in: a Starter site. Running the same ad for months: Growth, twenty-five a month. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:{GOLD}">jaden@greenaidigital.com</a></div>

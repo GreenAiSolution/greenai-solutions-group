@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Jaden Green — GreenAI Solutions, Gilbert, AZ</title>
-  <meta name="description" content="Jaden Green: five years as a scholarship long snapper at the University of Washington, a year working a service route through a Phoenix summer, and seven years building software. He started GreenAI Solutions in 2025." />
+  <title>CRM and business dashboard optimization | GreenAI Solutions</title>
+  <meta name="description" content="Your CRM cleaned up and made to work: duplicates merged, stages that match how you sell, follow-ups that send themselves, and one dashboard with the numbers you actually run the company on. Quoted after one conversation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -14,11 +14,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="canonical" href="https://greenaidigital.com/about.html" />
+  <link rel="canonical" href="https://greenaidigital.com/service-crm-dashboards.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://greenaidigital.com/about.html" />
-  <meta property="og:title" content="About Jaden Green, founder of GreenAI Solutions" />
-  <meta property="og:description" content="Jaden Green: five years as a scholarship long snapper at the University of Washington, a year working a service route through a Phoenix summer, and seven years building software. He started GreenAI Solutions in 2025." />
+  <meta property="og:url" content="https://greenaidigital.com/service-crm-dashboards.html" />
+  <meta property="og:title" content="A CRM you trust, and one screen that runs the company." />
+  <meta property="og:description" content="Your CRM cleaned up and made to work: duplicates merged, stages that match how you sell, follow-ups that send themselves, and one dashboard with the numbers you actually run the company on. Quoted after one conversation." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -64,37 +64,39 @@
     .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
     .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
 
-    .ab-control { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; max-width: 1040px; margin: 2.6rem auto 0; }
-    .ab-control__side { display: flex; justify-content: space-around; align-items: flex-end; }
-    .ab-control__side a { display: block; width: var(--w, 140px); transform: translateY(var(--dy, 0)); }
-    .ab-line { position: relative; width: 340px; padding: 1.6rem 1.5rem; border-radius: 24px; background: #fff; color: var(--ink); text-align: center; box-shadow: 0 40px 90px -30px rgba(0,0,0,.65); }
-    .ab-line small { display: block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
-    .ab-line a.num { display: block; margin: .4rem 0 .2rem; font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
-    .ab-line a.num:hover { color: var(--green); }
-    .ab-line p { margin: .3rem 0 0; font-size: .86rem; line-height: 1.5; color: var(--ink-2); }
-    .ab-line .mail { display: inline-block; margin-top: .6rem; font-size: .9rem; font-weight: 600; color: var(--green); text-decoration: none; }
-    .ab-line .live { position: absolute; top: -.8rem; left: 50%; transform: translateX(-50%); padding: .3rem .7rem; border-radius: 999px; background: var(--green); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .06em; white-space: nowrap; }
-    .ab-line .live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #fff; margin-right: .4rem; animation: hp-pulse 1.6s infinite; }
-    @keyframes hp-pulse { 50% { opacity: .35; } }
-    @media (max-width: 900px) { .ab-control { grid-template-columns: 1fr; } .ab-control__side a { --dy: 0px; width: 30%; } .ab-line { width: min(100%, 340px); margin: 0 auto; } }
+    /* new service pages (ns-) */
+    .ns-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 2rem; align-items: end; max-width: 1040px; margin: 2.8rem auto 0; text-align: left; }
+    .ns-panel { border: 1px solid var(--line-2); border-radius: 22px; background: rgba(0,0,0,.45); overflow: hidden; box-shadow: var(--shadow-2); }
+    .ns-panel__bar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1.2rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+    .ns-panel__bar b { color: var(--green); font-weight: 500; }
+    .ns-log { list-style: none; margin: 0; padding: .4rem 1.2rem 1rem; }
+    .ns-log li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr) auto; gap: .8rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid rgba(232,196,106,.1); font-size: .93rem; color: var(--ink); }
+    .ns-log li:last-child { border-bottom: 0; }
+    .ns-log li::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); transform: translateY(-.05rem); }
+    .ns-log small { display: block; margin-top: .15rem; font-size: .8rem; color: var(--ink-3); }
+    .ns-log em { font-style: normal; font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: var(--green); white-space: nowrap; }
+    .ns-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+    .ns-tiles div { padding: 1.1rem 1.2rem 1.2rem; background: #050B08; }
+    .ns-tiles span { display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+    .ns-tiles b { display: block; margin: .45rem 0 .2rem; font-family: var(--font-display); font-weight: 600; font-size: 1.7rem; letter-spacing: -.02em; color: var(--ink); }
+    .ns-tiles small { font-size: .76rem; color: var(--green); }
+    .ns-bars { display: flex; align-items: flex-end; gap: .55rem; height: 120px; padding: 1.2rem 1.2rem 0; }
+    .ns-bars i { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--green), rgba(232,196,106,.15)); }
+    .ns-note { margin: 0; padding: .7rem 1.2rem 1rem; font-size: .76rem; color: var(--ink-3); }
+    .ns-bot { filter: drop-shadow(0 0 40px rgba(232,196,106,.18)); }
+    .ns-not { max-width: 860px; margin: 0 auto; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .ns-not li { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+    body.tk .ns-not b { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: var(--ink); }
+    body.tk .ns-not p { margin: 0; font-size: .98rem; line-height: 1.6; color: var(--ink-2); }
+    @media (max-width: 860px) { .ns-hero-grid { grid-template-columns: 1fr; } .ns-bot { display: none; } .ns-tiles { grid-template-columns: 1fr 1fr; } .ns-not li { grid-template-columns: 1fr; gap: .4rem; } }
+
     .ab-path { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; }
     .ab-path li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
     .ab-path li:last-child { border-bottom: 1px solid var(--line); }
     .ab-path i { font-style: normal; font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--green); padding-top: .4rem; }
-    body.tk .ab-path b { display: block; margin-bottom: .45rem; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; letter-spacing: -.01em; color: var(--ink); }
+    body.tk .ab-path b { display: block; margin-bottom: .45rem; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--ink); }
     body.tk .ab-path p { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--ink-2); }
     @media (max-width: 640px) { .ab-path li { grid-template-columns: 1fr; gap: .4rem; } }
-    .ab-rule { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
-    .ab-rule > div { position: relative; padding: 1.8rem 1.6rem 1.6rem; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
-    .ab-rule i { display: block; font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: 2.2rem; color: var(--ember); line-height: 1; margin-bottom: .6rem; }
-    .ab-rule b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--ink); margin-bottom: .4rem; }
-    .ab-rule p { margin: 0; color: var(--ink-2); font-size: .95rem; line-height: 1.55; }
-    .ab-rule .rb-peek { position: absolute; top: -40px; right: 8px; width: 88px; }
-    @media (max-width: 800px) { .ab-rule { grid-template-columns: 1fr; } }
-    .hp-talk { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; max-width: 960px; margin: 0 auto; }
-    .hp-talk__phone { display: block; margin: 1.2rem 0 .3rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
-    .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
-    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
 
   </style>
 </head>
@@ -140,87 +142,66 @@
   </nav>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading" style="padding-bottom:0">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>About</b> · Jaden Green, founder</p>
-        <h1 class="tk-h1" id="h1">Five years of college football. <em>Then I built this.</em></h1>
-        <p class="sn-hero__sub">I'm Jaden Green. I was a long snapper at the University of Washington, I've knocked doors through a Phoenix summer, and I've been building software since I was seventeen. GreenAI Solutions is where all of that ended up.</p>
+        <p class="tk-eyebrow"><b>CRM &amp; dashboards</b> · optimization</p>
+        <h1 class="tk-h1" id="hero-heading">A CRM you trust. <em>One screen that runs the company.</em></h1>
+        <p class="sn-hero__sub">Most small companies pay for a CRM and run the business from memory. We clean up the one you already have, make it do the follow-up on its own, and put the numbers that matter on one screen you can read in a minute.</p>
+        <div class="sn-hero__price"><b>Quoted</b><span>after one conversation · price in writing · month to month</span></div>
         <div class="sn-hero__cta">
-          <a href="tel:4807980753" class="tk-btn tk-btn--inverse tk-btn--arrow">Call (480) 798-0753</a>
-          <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
+          <a href="contact.html?want=crm" class="tk-btn tk-btn--inverse tk-btn--arrow">Ask for a quote</a>
+          <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
-      <div class="ab-control" aria-label="The six robots around the direct line">
-        <div class="ab-control__side"><a href="ring.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.0s" title="RING"><img class="rb3 rb3-ring" src="art/bots/ring-power.webp" alt="RING" width="480" height="720" loading="lazy" decoding="async" /></a><a href="dispatch.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="DISPATCH"><img class="rb3 rb3-dispatch" src="art/bots/dispatch-hips.webp" alt="DISPATCH" width="480" height="720" loading="lazy" decoding="async" /></a><a href="inbox.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.8s" title="INBOX"><img class="rb3 rb3-inbox" src="art/bots/inbox-raise.webp" alt="INBOX" width="480" height="720" loading="lazy" decoding="async" /></a></div>
-        <div class="ab-line"><span class="live">Direct line</span><small>Rings Jaden</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>Jaden Green</b> · Gilbert, AZ · works with companies anywhere</p></div>
-        <div class="ab-control__side"><a href="thread.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.0s" title="THREAD"><img class="rb3 rb3-thread" src="art/bots/thread-guard.webp" alt="THREAD" width="480" height="720" loading="lazy" decoding="async" /></a><a href="huddle.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="HUDDLE"><img class="rb3 rb3-huddle" src="art/bots/huddle-hips.webp" alt="HUDDLE" width="480" height="720" loading="lazy" decoding="async" /></a><a href="books.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.8s" title="BOOKS"><img class="rb3 rb3-books" src="art/bots/books-power.webp" alt="BOOKS" width="480" height="720" loading="lazy" decoding="async" /></a></div>
-      </div>
+      <div class="ns-hero-grid"><div class="ns-panel" style="margin-bottom:2.5rem"><div class="ns-panel__bar"><span>Monday, 7:00 AM · example dashboard</span><b>One screen</b></div>
+<div class="ns-tiles">
+  <div><span>New leads</span><b>23</b><small>this week</small></div>
+  <div><span>Answered in</span><b>0:52</b><small>median</small></div>
+  <div><span>Quotes out</span><b>$18,400</b><small>11 open</small></div>
+  <div><span>Owed to you</span><b>$4,120</b><small>2 late</small></div>
+</div>
+<div class="ns-bars" aria-hidden="true"><i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:67%"></i><i style="height:58%"></i><i style="height:81%"></i><i style="height:72%"></i><i style="height:94%"></i></div>
+<p class="ns-note">Example numbers, not a client's. Yours come from your own CRM and books.</p></div><div class="ns-bot"><img class="rb3 rb3-books" src="art/bots/books-hips.webp" alt="BOOKS" width="480" height="720" loading="lazy" decoding="async" /></div></div>
     </header></div>
 
-    <section class="sn-sec" aria-labelledby="h-who">
+    <section class="sn-sec" aria-labelledby="h-does">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-who">The short <em>version.</em></h2></div>
-        <div class="sn-stats">
-          <div class="sn-stat"><span>Washington football</span><b>#89</b><small>long snapper, 2020 to 2025, on a full scholarship</small></div>
-          <div class="sn-stat"><span>Building software</span><b>7 yrs</b><small>since I was seventeen, mostly for small companies</small></div>
-          <div class="sn-stat"><span>GreenAI Solutions</span><b>2025</b><small>started that February, in the Valley</small></div>
-          <div class="sn-stat"><span>Home</span><b>Gilbert</b><small>Arizona, working with companies anywhere</small></div>
-        </div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-does">What gets <em>fixed.</em></h2><p class="tk-lede">In the CRM you already pay for. Nothing is migrated unless you ask for it.</p></div>
+        <div class="sn-cards sn-cards--3"><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><h3>The mess gets cleaned</h3><p>Duplicate contacts merged, dead leads archived, missing phone numbers and emails flagged, and every contact tagged by where it came from.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div><h3>The pipeline matches how you sell</h3><p>Stages renamed to the steps you actually take, with a rule for when a deal moves. No more forty deals sitting in &quot;New&quot; since March.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></div><h3>Follow-up sends itself</h3><p>Day one, three and seven after a quote. A reminder before an appointment. A nudge on an invoice. In your wording, stopped the moment they reply.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"/></svg></div><h3>The tools talk to each other</h3><p>Website form to CRM, CRM to calendar, job closed to invoice. The copy-and-paste between apps is where leads get lost.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div><h3>One dashboard, the numbers that matter</h3><p>New leads, how fast they were answered, quotes out, close rate, revenue, money owed. One screen, updated on its own, readable on your phone.</p></article><article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div><h3>A Monday summary</h3><p>The same numbers as a short message every Monday morning, with the three things that need you this week.</p></article></div>
       </div>
     </section>
 
-    <div class="sn-state" aria-label="Why a long snapper builds this">
-      <p>A long snapper has one job. Put the ball in the same place, at the same speed, every time, with someone running at you. Nobody knows your name unless you miss.</p>
-      <p>I did that for five years at Washington: a Pac-12 championship, a Sugar Bowl, a national championship game. What it taught me was not football. It was how to be automatic when it matters.</p>
-      <p>That is what I build now. <span class="who"><img class="who__bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" />RING</span> answers the phone the same way at 9:47 on a Sunday night as it does on Monday morning. Nobody notices it. That is the point.</p>
-    </div>
+    <div class="sn-state"><p>Ask most owners how many leads came in last month and what happened to them, and the honest answer is a guess.</p><p>The data exists. It is spread across a CRM nobody trusts, an inbox, a calendar and the accounting software.</p><p>This puts it in <span class="who">ONE PLACE</span> and keeps it clean, so the number on the screen is one you would bet on.</p></div>
 
-    <section class="sn-sec" aria-labelledby="h-path">
+    <section class="sn-sec" aria-labelledby="h-how">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-path">How I <em>got here.</em></h2></div>
-        <ol class="ab-path">
-          <li><i>Age 17</i><div><b>Started building</b><p>I started at seventeen and never stopped. Seven years on, it is systems that let a small company run like a much bigger one.</p></div></li>
-          <li><i>2020 – 2025</i><div><b>University of Washington</b><p>Five years on a full football scholarship in Seattle. 5 a.m. lifts, film graded every week, performance judged in public. I finished a degree in art with a minor in real estate, which is why the sites look the way they do and why I read the numbers before I automate anything.</p></div></li>
-          <li><i>Early 2025</i><div><b>The ramp at Sky Harbor</b><p>Ground crew on aircraft turns. A clock that does not move and a checklist that does not bend. I started GreenAI the same winter.</p></div></li>
-          <li><i>2025 – 2026</i><div><b>A service route, and a lot of doors</b><p>A year inside a small Phoenix service company: a weekly route of homes, and door-to-door sales through a full Arizona summer. I saw from the inside what a small company's day looks like, and how much of it is the phone, the follow-up and the invoice.</p></div></li>
-          <li><i>Now</i><div><b>GreenAI Solutions</b><p>Six AI employees that work inside the apps a company already uses, websites coded by hand, finished ads and custom systems. We are a team of 12 now, and my number is still the one on the site.</p></div></li>
-        </ol>
+        <div class="sn-head"><h2 class="tk-h2" id="h-how">How it <em>runs.</em></h2></div>
+        <ol class="ab-path"><li><i>Step 1</i><div><b>One conversation</b><p>What you use today, what you wish you knew every Monday, and where leads fall out. About twenty minutes.</p></div></li><li><i>Step 2</i><div><b>A read-only look</b><p>We look at the CRM as it is and write down what is broken, what is unused and what is costing you, in plain English.</p></div></li><li><i>Step 3</i><div><b>A price in writing</b><p>A fixed price for the clean-up and the dashboard, and an optional monthly price to keep it tuned. Nothing is signed until you have read it.</p></div></li><li><i>Step 4</i><div><b>Built in the open</b><p>You see the new stages, the automations and the dashboard on your real data before anything is switched on.</p></div></li><li><i>Step 5</i><div><b>Handed over, and still answered</b><p>A short walkthrough for you and your team, a one-page guide, and same-day changes while you settle in.</p></div></li></ol>
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-rules" style="padding-top:0">
+    <section class="sn-sec" aria-labelledby="h-not" style="padding-top:0">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-rules">Three rules <em>I don't break.</em></h2></div>
-        <div class="sn-trio">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><h3>Whoever does the work does not grade it</h3><p>The system does the job, a second system checks it, and a person approves it before it acts. A price that is not on your list gets blocked, not sent.</p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg><h3>"I'm not sure" beats a good guess</h3><p>Everything I build is made to say so and hand it to you, rather than invent an answer in front of your customer.</p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg><h3>You can read it all first</h3><p>The <a class="more" style="display:inline;margin:0" href="staff.html">prices</a>, the <a class="more" style="display:inline;margin:0" href="agreement.html">service agreement</a> and <a class="more" style="display:inline;margin:0" href="testimonials.html">the work</a> are public. Month to month, and everything built is yours if you leave.</p></div>
-        </div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-not">What you will <em>not get.</em></h2></div>
+        <ul class="ns-not"><li><b>No forced migration</b><p>If your CRM can do the job, it stays. You will only hear &quot;switch&quot; when there is a reason, and you will hear the reason.</p></li><li><b>No dashboard of forty charts</b><p>If a number does not change a decision you make, it is not on the screen.</p></li><li><b>No messages you have not read</b><p>Every automated text and email is written with you and approved by you before it is switched on.</p></li><li><b>No lock-in</b><p>It is your CRM, your account and your data. Everything built lives in your own tools and keeps working if you leave.</p></li></ul>
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-off" style="padding-top:0">
+    <section class="sn-sec" aria-labelledby="h-faq" style="padding-top:0">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-off">Off the <em>clock.</em></h2></div>
-        <div class="sn-cards sn-cards--3">
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><h3>Still snapping</h3><p>I coach long snappers, from high school to pro prep, in Phoenix and Seattle and over film. Same idea as the day job: reps until it is automatic.</p></article>
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div><h3>The art degree shows</h3><p>I care how things look. Every site here is drawn and coded by hand, with no themes and no page builder.</p><p style="margin-top:.8rem"><a href="testimonials.html" style="color:var(--green);font-weight:600;text-decoration:none">See the work →</a></p></article>
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div><h3>Arizona, by choice</h3><p>After five years in Seattle I live and work in the Valley. Most of what I build is for small service companies like the ones down the street.</p></article>
-        </div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-faq">Asked before <em>starting</em></h2></div>
+        <div class="sn-faq"><details><summary>Which CRMs do you work with?</summary><p>HubSpot, Jobber, Housecall Pro, ServiceTitan, GoHighLevel, Salesforce, Zoho, Pipedrive, monday.com and most others with an open connection. If yours is a spreadsheet, that works too, and it may be time for something better.</p></details><details><summary>Where does the dashboard live?</summary><p>Wherever you will actually look at it. Inside your CRM when it can do the job, otherwise a simple private page you open on your phone. The numbers update on their own.</p></details><details><summary>Will my team have to change how they work?</summary><p>A little, and on purpose: fewer fields, clearer stages, less typing. The walkthrough takes under an hour.</p></details><details><summary>Is my customer data safe?</summary><p>The work is done inside your own accounts with the access you grant, and the access is removed when you say so. Your customer list is never exported for any other use.</p></details><details><summary>What does it cost?</summary><p>It depends on the CRM, how many contacts are in it and how many tools need connecting, so it is quoted after one conversation and a read-only look. Fixed price in writing before anything starts.</p></details></div>
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-talk" style="padding-top:0;padding-bottom:2rem">
-      <div class="sn-inner">
-        <div class="hp-talk">
-          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
-          <div class="tk-plate"><p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
-        </div>
-        <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
+    <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
+      <div class="sn-inner" style="text-align:center">
+        <div class="sn-head"><h2 class="tk-h2" id="h-cta">Know your numbers <em>by Monday.</em></h2><p class="tk-lede">Start with one conversation and a read-only look. You keep the write-up whether or not you go ahead.</p></div>
+        <div class="sn-hero__cta"><a href="contact.html?want=crm" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a><a href="services.html" class="tk-btn tk-btn--line">See every service</a></div>
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="tel:4807980753" class="tk-btn tk-btn--solid tk-btn--arrow">Call Jaden, (480) 798-0753</a></div>
+  <div class="sn-sticky"><a href="contact.html?want=crm" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a></div>
     <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">

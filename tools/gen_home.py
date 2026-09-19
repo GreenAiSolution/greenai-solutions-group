@@ -50,7 +50,7 @@ CSS = """
     .hp-talk__phone { display: block; margin: 1.2rem 0 .3rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
     .hp-talk__phone:hover { color: var(--green); }
     .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
-    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } .hp-services[style] { grid-template-columns: 1fr !important; } }
     /* the hero: one spotlight, the six on one stage, nothing else */
     .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
     .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
@@ -198,7 +198,7 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
 
     <section class="sn-sec" aria-labelledby="h-also">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-also">Also built here, <em>by the same person.</em></h2><p class="tk-lede">Websites coded by hand, a month of finished ads, and custom systems when the honest answer is that it has to be built.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-also">Also built here, <em>by the same person.</em></h2><p class="tk-lede">Websites coded by hand, a month of finished ads, SEO that gets done, a CRM you can trust, and custom systems when the honest answer is that it has to be built.</p></div>
         <div class="sn-cards sn-cards--3 hp-services">
           <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>Websites</h3><p>No themes, no page builder. Fast on a phone, an obvious next step on every page. The files are yours the day it launches.</p>
             <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-bakr.webp" alt="bakrjewelry.co" width="1100" height="687" loading="lazy" decoding="async" data-url="bakrjewelry.co" /></div></div></div>
@@ -209,6 +209,12 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
           <article class="sn-card"><div class="sn-card__ico">{I['plug']}</div><h3>Custom systems</h3><p>An intake line, a quoting tool, a flight recorder for an AI agent. A written scope and a fixed price before a line of code.</p>
             <div class="sn-card__vis"><div class="hp-schem" aria-label="A custom system, drawn from BLACKBOX"><div><i></i>Every call logged<em>append-only</em></div><div><i></i>Hash-chained<em>tamper-evident</em></div><div><i></i>Replayable<em>step by step</em></div><div><i></i>Runbook and source handed over<em>yours</em></div></div></div>
             <div class="sn-card__price"><b>Quoted</b><a href="service-ai-consulting.html">See what has been built →</a></div></article>
+        </div>
+        <div class="sn-cards hp-services" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.5rem">
+          <article class="sn-card"><div class="sn-card__ico">{I['search']}</div><h3>AI SEO</h3><p>One AI agent does your SEO end to end: finds what is wrong, fixes it on your site, writes the pages you are missing and reports what changed. No new tools, no new hire. Nothing goes live until you have read it.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-seo.html">See how AI SEO works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>CRM and dashboard optimization</h3><p>The CRM you already pay for, cleaned up and made to follow up on its own, plus one screen with the numbers you run the company on: leads, speed, quotes, revenue, money owed.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-crm-dashboards.html">See what gets fixed →</a></div></article>
         </div>
       </div>
     </section>
@@ -241,17 +247,6 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-faq">Asked before hiring</h2><p class="tk-lede"><a href="faq.html">All the questions</a></p></div>
         <div class="sn-faq">{faq}</div>
-      </div>
-    </section>
-
-    <section class="sn-sec" aria-labelledby="h-pool" style="padding-top:0">
-      <div class="sn-inner">
-        <div class="sn-trio" style="grid-template-columns:1fr">
-          <div class="sn-pool">
-            <div><p class="tk-eyebrow"><b>One trade, all the way</b></p><h3 id="h-pool" style="font-size:1.6rem">The pool-company edition</h3><p>For pool service companies the build went the whole distance: three employees named for the trade, trained on price lists and routes, with a demo you can watch and a call you can listen to. Whatever your trade, this is the standard yours is built to.</p></div>
-            <div class="sn-pool__cta"><a href="catch.html" class="tk-btn tk-btn--solid">Watch it catch a lead</a><a href="call.html" class="tk-btn tk-btn--line">Hear it answer a call</a><a href="net.html" class="tk-btn tk-btn--line">NET, BALANCE, PUMP</a></div>
-          </div>
-        </div>
       </div>
     </section>
 

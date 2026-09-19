@@ -91,7 +91,7 @@
     .hp-talk__phone { display: block; margin: 1.2rem 0 .3rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
     .hp-talk__phone:hover { color: var(--green); }
     .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
-    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } .hp-services[style] { grid-template-columns: 1fr !important; } }
     /* the hero: one spotlight, the six on one stage, nothing else */
     .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
     .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
@@ -114,7 +114,7 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li class="nav__submenu-label">Built for one trade</li><li><a href="net.html">Pool companies: NET, BALANCE, PUMP</a></li><li><a href="catch.html">Watch it catch a lead</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li><a href="service-ai-seo.html">AI SEO: one agent does it end to end</a></li><li><a href="service-crm-dashboards.html">CRM and dashboard optimization</a></li></ul></li>
           <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
           <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -130,7 +130,7 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li class="nav__submenu-label">Built for one trade</li><li><a href="net.html">Pool companies: NET, BALANCE, PUMP</a></li><li><a href="catch.html">Watch it catch a lead</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li><a href="service-ai-seo.html">AI SEO: one agent does it end to end</a></li><li><a href="service-crm-dashboards.html">CRM and dashboard optimization</a></li></ul></li>
         <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
         <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
         <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
@@ -259,7 +259,7 @@
 
     <section class="sn-sec" aria-labelledby="h-also">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-also">Also built here, <em>by the same person.</em></h2><p class="tk-lede">Websites coded by hand, a month of finished ads, and custom systems when the honest answer is that it has to be built.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-also">Also built here, <em>by the same person.</em></h2><p class="tk-lede">Websites coded by hand, a month of finished ads, SEO that gets done, a CRM you can trust, and custom systems when the honest answer is that it has to be built.</p></div>
         <div class="sn-cards sn-cards--3 hp-services">
           <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div><h3>Websites</h3><p>No themes, no page builder. Fast on a phone, an obvious next step on every page. The files are yours the day it launches.</p>
             <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-bakr.webp" alt="bakrjewelry.co" width="1100" height="687" loading="lazy" decoding="async" data-url="bakrjewelry.co" /></div></div></div>
@@ -270,6 +270,12 @@
           <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"/></svg></div><h3>Custom systems</h3><p>An intake line, a quoting tool, a flight recorder for an AI agent. A written scope and a fixed price before a line of code.</p>
             <div class="sn-card__vis"><div class="hp-schem" aria-label="A custom system, drawn from BLACKBOX"><div><i></i>Every call logged<em>append-only</em></div><div><i></i>Hash-chained<em>tamper-evident</em></div><div><i></i>Replayable<em>step by step</em></div><div><i></i>Runbook and source handed over<em>yours</em></div></div></div>
             <div class="sn-card__price"><b>Quoted</b><a href="service-ai-consulting.html">See what has been built →</a></div></article>
+        </div>
+        <div class="sn-cards hp-services" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.5rem">
+          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>AI SEO</h3><p>One AI agent does your SEO end to end: finds what is wrong, fixes it on your site, writes the pages you are missing and reports what changed. No new tools, no new hire. Nothing goes live until you have read it.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-seo.html">See how AI SEO works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div><h3>CRM and dashboard optimization</h3><p>The CRM you already pay for, cleaned up and made to follow up on its own, plus one screen with the numbers you run the company on: leads, speed, quotes, revenue, money owed.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-crm-dashboards.html">See what gets fixed →</a></div></article>
         </div>
       </div>
     </section>
@@ -305,17 +311,6 @@
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-pool" style="padding-top:0">
-      <div class="sn-inner">
-        <div class="sn-trio" style="grid-template-columns:1fr">
-          <div class="sn-pool">
-            <div><p class="tk-eyebrow"><b>One trade, all the way</b></p><h3 id="h-pool" style="font-size:1.6rem">The pool-company edition</h3><p>For pool service companies the build went the whole distance: three employees named for the trade, trained on price lists and routes, with a demo you can watch and a call you can listen to. Whatever your trade, this is the standard yours is built to.</p></div>
-            <div class="sn-pool__cta"><a href="catch.html" class="tk-btn tk-btn--solid">Watch it catch a lead</a><a href="call.html" class="tk-btn tk-btn--line">Hear it answer a call</a><a href="net.html" class="tk-btn tk-btn--line">NET, BALANCE, PUMP</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="sn-sec" aria-labelledby="h-talk" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner">
         <div class="hp-talk">
@@ -346,8 +341,8 @@
             <li><a href="service-web-design.html">Websites</a></li>
             <li><a href="service-ai-ads.html">Ad creation</a></li>
             <li><a href="service-ai-consulting.html">Custom systems</a></li>
-            <li><a href="net.html">Pool company edition</a></li>
-            <li><a href="catch.html">Watch it catch a lead</a></li>
+            <li><a href="service-ai-seo.html">AI SEO</a></li>
+            <li><a href="service-crm-dashboards.html">CRM and dashboards</a></li>
           </ul>
         </div>
 
