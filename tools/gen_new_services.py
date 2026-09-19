@@ -210,3 +210,97 @@ page("service-crm-dashboards.html",
       ("What does it cost?", "It depends on the CRM, how many contacts are in it and how many tools need connecting, so it is quoted after one conversation and a read-only look. Fixed price in writing before anything starts.")],
      "Know your numbers <em>by Monday.</em>",
      "Start with one conversation and a read-only look. You keep the write-up whether or not you go ahead.")
+
+# ------------------------------------------------------------------ Google reviews (added 2026-09-19)
+rev_visual = '''<div class="ns-panel__bar"><span>This week · example work log</span><b>Review desk</b></div>
+<ul class="ns-log">
+  <li><span>Asked 18 customers for a review<small>every finished job, the same message, two days after</small></span><em>sent</em></li>
+  <li><span>One reminder to the 11 who had not answered<small>one, then it stops</small></span><em>sent</em></li>
+  <li><span>Drafted replies to 5 new Google reviews<small>four happy, one not. All five get an answer.</small></span><em>waiting for you</em></li>
+  <li><span>Flagged 1 complaint sent to your private line<small>so you can call them today</small></span><em>to you</em></li>
+  <li><span>Monthly count<small>asked, answered, new reviews, average</small></span><em>report</em></li>
+</ul>'''
+
+page("service-reviews.html",
+     "Google review engine — every customer asked, every review answered | GreenAI Solutions",
+     "Every finished job gets a review request, every Google review gets a reply in your wording, and you get the count every month. Every customer is asked the same way, which is what Google's rules require. Quoted after one conversation.",
+     "Every customer asked. Every review answered.",
+     "<b>Google reviews</b> · done for you",
+     "Every customer asked. <em>Every review answered.</em>",
+     "Most happy customers would leave a review if somebody asked at the right moment. Nobody asks. This does: a short message after every finished job, one reminder, a drafted reply to every review, and the count on your desk each month.",
+     "reviews", rev_visual, robot("ring", label="RING", pose="wave"),
+     "What it does, <em>after every job.</em>",
+     "It plugs into the tool where your jobs already close: Jobber, Housecall Pro, ServiceTitan, QuickBooks or a simple list.",
+     [("send", "Asks at the right moment", "A short text or email a day or two after the job closes, in your wording, with one tap to your Google review page."),
+      ("repeat", "One reminder, then it stops", "People mean to and forget. One polite nudge a few days later. Never a third."),
+      ("message", "Drafts a reply to every review", "Good and bad. A thank-you that sounds like you, and a calm answer to the unhappy one. You approve before anything posts."),
+      ("alert", "Gives unhappy customers a direct line", "Every message also carries a private way to reach you. It is offered to everyone, so a problem can reach you first."),
+      ("user", "Asks everyone, the same way", "No sorting happy from unhappy before the ask. Google and the FTC both forbid that, and it is how profiles get penalised."),
+      ("receipt", "Counts it for you", "Once a month: how many were asked, how many answered, new reviews and your average. Google's numbers.")],
+     ["When someone needs a plumber tonight, they look at two things: the stars and the number next to them.",
+      "The company with 212 reviews gets the call over the company with 19, even when the 19 does better work.",
+      "The difference is almost never the work. It is that <span class=\"who\">SOMEBODY ASKED</span>, after every job, every time."],
+     "How it <em>starts.</em>",
+     [("Step 1", "One conversation", "Where your jobs close today and how your customers like to hear from you. About twenty minutes."),
+      ("Step 2", "You write the ask", "We draft the message and the reminder. You change any word you do not like."),
+      ("Step 3", "A price in writing", "Month to month, no contract."),
+      ("Step 4", "Connected and tested", "Hooked to the tool where jobs close, tested on your own phone first."),
+      ("Step 5", "A monthly count", "Asked, answered, new reviews, average. If it is not earning its keep, cancel at the end of the month.")],
+     [("No fake reviews", "Never bought, never written by us, never from staff or family. That is illegal and it gets profiles removed."),
+      ("No review gating", "Every customer gets the same ask. Nobody is screened out for being unhappy."),
+      ("No gifts for stars", "No discounts or prizes in exchange for a review. Google forbids it."),
+      ("No texts without permission", "Texts go only to customers who gave you their number for updates. Everyone else gets an email. Anyone can say stop.")],
+     [("Will this work with how I close jobs now?", "If the job is marked done somewhere, in Jobber, Housecall Pro, ServiceTitan, QuickBooks or a spreadsheet, that is the trigger. If it lives in your head, we set up a one-tap way to mark it."),
+      ("What about a bad review?", "It gets a calm, short reply drafted for you within the day, and you get told so you can call the customer. A fair answer to a bad review often does more for you than another five-star."),
+      ("Can you remove a bad review?", "No. Only Google can, and only when the review breaks its rules. If one does, we show you how to report it."),
+      ("How many more reviews will I get?", "It depends on how many jobs you finish and how your customers feel, so nobody honest can give you a number up front. What is promised is that every customer gets asked."),
+      ("What does it cost?", "Quoted after one conversation, in writing, month to month.")],
+     "How many jobs did you finish <em>last month?</em>",
+     "That is how many people could have been asked. Start with one conversation.")
+
+# ------------------------------------------------------------------ win-back (added 2026-09-19)
+wb_visual = '''<div class="ns-panel__bar"><span>Example campaign · before anything sends</span><b>Win-back</b></div>
+<ul class="ns-log">
+  <li><span>1,140 past customers found in your records<small>QuickBooks, Jobber and an old spreadsheet, merged</small></span><em>cleaned</em></li>
+  <li><span>312 not heard from in over a year<small>duplicates, bad addresses and do-not-contact removed</small></span><em>the list</em></li>
+  <li><span>Three short messages written in your voice<small>a hello, a reason to come back, a last note</small></span><em>waiting for you</em></li>
+  <li><span>Replies go straight to your phone<small>or to RING or INBOX if you have them</small></span><em>to you</em></li>
+  <li><span>Example numbers, not a client's<small>yours come from your own records</small></span><em></em></li>
+</ul>'''
+
+page("service-winback.html",
+     "Win back past customers — GreenAI Solutions",
+     "The customers you already served and never contacted again: the list cleaned up, a short series of messages written in your voice, replies sent to you, and a report of who came back. Quoted after one conversation.",
+     "The customers you already won, asked back.",
+     "<b>Win-back</b> · past customers",
+     "You already won them once. <em>Ask them back.</em>",
+     "Most small companies have hundreds of past customers they have not spoken to in a year. They already know you, they already paid you, and nobody has asked them back. We clean up the list, write the messages in your voice and send the replies to you.",
+     "winback", wb_visual, robot("inbox", label="INBOX", pose="wave"),
+     "What gets <em>done.</em>",
+     "From the records you already have. Nothing is bought, nothing is scraped.",
+     [("user", "Finds your past customers", "Pulled from your invoices, your job tool and old spreadsheets, merged into one clean list with duplicates and dead addresses removed."),
+      ("clock", "Sorts by how long it has been", "Six months, a year, two years. Each group gets a different message, because they need one."),
+      ("pen", "Writes it in your voice", "Short, plain and from you. A hello, a reason to come back, and a last note. You approve every word."),
+      ("send", "Sends it at a human pace", "Small batches over days, not a blast, so the replies arrive at a rate you can actually answer."),
+      ("message", "Routes every reply to you", "To your phone or inbox, or to RING and INBOX if you have them, so nobody who says yes waits until Thursday."),
+      ("receipt", "Reports who came back", "Sent, replied, booked. Matched to your own invoices, so the number is real.")],
+     ["The cheapest customer you will ever get is the one you already had.",
+      "No ad, no bidding against the company down the street, no explaining who you are. They have your number somewhere and have simply not thought about you since.",
+      "One short message from <span class=\"who\">YOU</span> is usually all it takes to find out who is ready."],
+     "How it <em>runs.</em>",
+     [("Step 1", "One conversation", "What you sell, how often people need it, and where your customer records live. About twenty minutes."),
+      ("Step 2", "A read-only look at the list", "You hear how many past customers are really in there and how many are worth writing to, before you pay for anything."),
+      ("Step 3", "A price in writing", "A fixed price for the first campaign. A monthly price only if you want it kept running."),
+      ("Step 4", "You approve the messages", "Every word, and the offer if there is one. Nothing sends until you say so."),
+      ("Step 5", "Sent, answered, counted", "Replies come to you as they land, and you get the report at the end: sent, replied, booked.")],
+     [("No bought lists", "Only people who were actually your customers. Never a purchased or scraped list."),
+      ("No texts without permission", "Texts go only to customers who gave you their number for that. Everyone else gets an email, and every message has a way to say stop."),
+      ("No fake urgency", "No countdown timers, no last-chance tricks. A plain note from a company they already know."),
+      ("No promises about the number", "How many come back depends on your trade and how they felt the first time. You will see the real count, good or bad.")],
+     [("My records are a mess. Is that a problem?", "That is normal and it is half the job. Invoices, a job tool, an old spreadsheet and a phone full of contacts can all be merged into one clean list."),
+      ("Do I have to offer a discount?", "No. Often the best message is simply a hello and a reminder that you are still here. If you want an offer in it, it is yours to set."),
+      ("Is it legal to message old customers?", "Emailing your own past customers is allowed when every message says who you are and lets them opt out, and we build that in. Texts are stricter, so they only go to people who agreed to get texts from you."),
+      ("What happens when they reply?", "It comes straight to you, or to RING and INBOX if you have them. Speed matters here, so you decide who answers before anything is sent."),
+      ("What does it cost?", "Quoted after one conversation and a read-only look at your list. Fixed price in writing for the first campaign.")],
+     "How many customers have you served <em>since you opened?</em>",
+     "Most of them have not heard from you since. Start with one conversation and a read-only look at the list.")

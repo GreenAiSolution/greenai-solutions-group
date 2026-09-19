@@ -215,6 +215,10 @@ PAGE = head("GreenAI Solutions — AI employees for the apps you already use, fr
             <div class="sn-card__price"><b>Quoted</b><a href="service-ai-seo.html">See how AI SEO works →</a></div></article>
           <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>CRM and dashboard optimization</h3><p>The CRM you already pay for, cleaned up and made to follow up on its own, plus one screen with the numbers you run the company on: leads, speed, quotes, revenue, money owed.</p>
             <div class="sn-card__price"><b>Quoted</b><a href="service-crm-dashboards.html">See what gets fixed →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Google reviews</h3><p>Every finished job gets a review request, every review gets a reply in your wording, and you get the count each month. Every customer is asked the same way, the way Google requires.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See the review engine →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['repeat']}</div><h3>Win back past customers</h3><p>The people you already served and never wrote to again. The list cleaned up, a short series of messages in your voice, and every reply sent straight to you.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-winback.html">See how win-back runs →</a></div></article>
         </div>
       </div>
     </section>
