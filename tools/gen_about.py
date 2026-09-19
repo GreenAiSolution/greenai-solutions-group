@@ -19,6 +19,13 @@ CSS = """
     .ab-line .live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #fff; margin-right: .4rem; animation: hp-pulse 1.6s infinite; }
     @keyframes hp-pulse { 50% { opacity: .35; } }
     @media (max-width: 900px) { .ab-control { grid-template-columns: 1fr; } .ab-control__side a { --dy: 0px; width: 30%; } .ab-line { width: min(100%, 340px); margin: 0 auto; } }
+    .ab-path { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; }
+    .ab-path li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
+    .ab-path li:last-child { border-bottom: 1px solid var(--line); }
+    .ab-path i { font-style: normal; font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--green); padding-top: .4rem; }
+    body.tk .ab-path b { display: block; margin-bottom: .45rem; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; letter-spacing: -.01em; color: var(--ink); }
+    body.tk .ab-path p { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--ink-2); }
+    @media (max-width: 640px) { .ab-path li { grid-template-columns: 1fr; gap: .4rem; } }
     .ab-rule { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
     .ab-rule > div { position: relative; padding: 1.8rem 1.6rem 1.6rem; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
     .ab-rule i { display: block; font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: 2.2rem; color: var(--ember); line-height: 1; margin-bottom: .6rem; }
@@ -53,9 +60,9 @@ phone = '''
 
 roster = "".join(f'<li><a href="{a["id"]}.html">{a["name"]}</a><span>{esc(a["inside"])}</span><b>${a["price"]:,}/mo</b></li>' for a in AGENTS)
 
-PAGE = head("About Jaden Green and GreenAI Solutions — Gilbert, AZ",
-            "One person builds the six AI employees, the websites, the ads and the custom systems, and answers the phone. Jaden Green, Gilbert, Arizona. B.S. Real Estate and Business, University of Washington. Seven years building systems for small companies.",
-            "about.html", CSS, og_title="About Jaden Green, the one person you can call") + f'''
+PAGE = head("About Jaden Green — GreenAI Solutions, Gilbert, AZ",
+            "Jaden Green: five years as a scholarship long snapper at the University of Washington, a year working a service route through a Phoenix summer, and seven years building software. He started GreenAI Solutions in 2025.",
+            "about.html", CSS, og_title="About Jaden Green, founder of GreenAI Solutions") + f'''
 <body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -63,11 +70,11 @@ PAGE = head("About Jaden Green and GreenAI Solutions — Gilbert, AZ",
   </nav>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">{STARS}
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>About</b> · Gilbert, Arizona</p>
-        <h1 class="tk-h1" id="h1">Six employees. One builder. <em>One number.</em></h1>
-        <p class="sn-hero__sub">Jaden Green builds every AI employee, website, ad and custom system GreenAI sells, and answers the phone himself. No photo, on purpose. The number is the trust signal.</p>
+        <p class="tk-eyebrow"><b>About</b> · Jaden Green, founder</p>
+        <h1 class="tk-h1" id="h1">Five years of college football. <em>Then I built this.</em></h1>
+        <p class="sn-hero__sub">I'm Jaden Green. I was a long snapper at the University of Washington, I've knocked doors through a Phoenix summer, and I've been building software since I was seventeen. GreenAI Solutions is where all of that ended up.</p>
         <div class="sn-hero__cta">
           <a href="tel:4807980753" class="tk-btn tk-btn--inverse tk-btn--arrow">Call (480) 798-0753</a>
           <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
@@ -75,70 +82,60 @@ PAGE = head("About Jaden Green and GreenAI Solutions — Gilbert, AZ",
       </div>
       <div class="ab-control" aria-label="The six robots around the direct line">
         <div class="ab-control__side">{side(left)}</div>
-        <div class="ab-line"><span class="live">Direct line</span><small>Rings the builder</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>Not a call centre, not a rep. You get the person who builds the system, every time.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>Jaden Green</b> · Gilbert, AZ · works with companies anywhere</p></div>
+        <div class="ab-line"><span class="live">Direct line</span><small>Rings Jaden</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>Jaden Green</b> · Gilbert, AZ · works with companies anywhere</p></div>
         <div class="ab-control__side">{side(right)}</div>
       </div>
     </header></div>
 
     <section class="sn-sec" aria-labelledby="h-who">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-who">Who you would be <em>buying from.</em></h2></div>
-        <div class="sn-cards">
-          <article class="sn-card"><div class="sn-card__ico">{I['book']}</div><h3>Read a P&amp;L before automating anything</h3><p>B.S. in Real Estate and Business, University of Washington. What is sold here is not technology. It is a job that gets done faster, cheaper, or at an hour when nobody is awake.</p></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['clock']}</div><h3>Seven years building systems</h3><p>Systems that let a small company run like a much bigger one. GreenAI is where all of that work now lives.</p></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['user']}</div><h3>One person, start to finish</h3><p>Jaden scopes it, builds it, answers the phone and makes the change you asked for. No account manager, no ticket queue, no hand-off.</p></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['shield']}</div><h3>Transparent by default</h3><p>The <a href="staff.html">price</a>, the <a href="agreement.html">service agreement</a> and a <a href="catch.html">real run of the system</a> are public on this site. Read all three before we ever speak.</p></article>
+        <div class="sn-head"><h2 class="tk-h2" id="h-who">The short <em>version.</em></h2></div>
+        <div class="sn-stats">
+          <div class="sn-stat"><span>Washington football</span><b>#89</b><small>long snapper, 2020 to 2025, on a full scholarship</small></div>
+          <div class="sn-stat"><span>Building software</span><b>7 yrs</b><small>since I was seventeen, mostly for small companies</small></div>
+          <div class="sn-stat"><span>GreenAI Solutions</span><b>2025</b><small>started that February, in the Valley</small></div>
+          <div class="sn-stat"><span>Home</span><b>Gilbert</b><small>Arizona, working with companies anywhere</small></div>
         </div>
       </div>
     </section>
 
-    <div class="sn-state" aria-label="The one rule">
-      <p>I build the systems myself, and I do not break one rule: whoever does the work does not grade it.</p>
-      <p>The system does the job. A second system checks it. A person approves it before it acts.</p>
-      <p><span class="who">{bust("ring", cls="who__bust")}RING</span> is built to say "I'm not sure" rather than invent an answer. That is the difference between AI you put in front of customers and AI you apologise for.</p>
+    <div class="sn-state" aria-label="Why a long snapper builds this">
+      <p>A long snapper has one job. Put the ball in the same place, at the same speed, every time, with someone running at you. Nobody knows your name unless you miss.</p>
+      <p>I did that for five years at Washington: a Pac-12 championship, a Sugar Bowl, a national championship game. What it taught me was not football. It was how to be automatic when it matters.</p>
+      <p>That is what I build now. <span class="who">{bust("ring", cls="who__bust")}RING</span> answers the phone the same way at 9:47 on a Sunday night as it does on Monday morning. Nobody notices it. That is the point.</p>
     </div>
 
-    <section class="sn-sec" aria-labelledby="h-rule">
+    <section class="sn-sec" aria-labelledby="h-path">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-rule">Does. Grades. <em>Approves.</em></h2><p class="tk-lede">How every GreenAI system is built, on the phone as you would see it. Tap a step, or scroll.</p></div>
-        <div class="sn-steps">
-          <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div>{phone}</div></div></div>
-          <ol class="sn-steps__list">{steps}</ol>
+        <div class="sn-head"><h2 class="tk-h2" id="h-path">How I <em>got here.</em></h2></div>
+        <ol class="ab-path">
+          <li><i>Age 17</i><div><b>Started building</b><p>I started at seventeen and never stopped. Seven years on, it is systems that let a small company run like a much bigger one.</p></div></li>
+          <li><i>2020 – 2025</i><div><b>University of Washington</b><p>Five years on a full football scholarship in Seattle. 5 a.m. lifts, film graded every week, performance judged in public. I finished a degree in art with a minor in real estate, which is why the sites look the way they do and why I read the numbers before I automate anything.</p></div></li>
+          <li><i>Early 2025</i><div><b>The ramp at Sky Harbor</b><p>Ground crew on aircraft turns. A clock that does not move and a checklist that does not bend. I started GreenAI the same winter.</p></div></li>
+          <li><i>2025 – 2026</i><div><b>A service route, and a lot of doors</b><p>A year inside a small Phoenix service company: a weekly route of homes, and door-to-door sales through a full Arizona summer. I saw from the inside what a small company's day looks like, and how much of it is the phone, the follow-up and the invoice.</p></div></li>
+          <li><i>Now</i><div><b>GreenAI Solutions</b><p>Six AI employees that work inside the apps a company already uses, websites coded by hand, finished ads and custom systems. We are a team of 12 now, and my number is still the one on the site.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-rules" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-rules">Three rules <em>I don't break.</em></h2></div>
+        <div class="sn-trio">
+          <div>{I['shield']}<h3>Whoever does the work does not grade it</h3><p>The system does the job, a second system checks it, and a person approves it before it acts. A price that is not on your list gets blocked, not sent.</p></div>
+          <div>{I['hand']}<h3>"I'm not sure" beats a good guess</h3><p>Everything I build is made to say so and hand it to you, rather than invent an answer in front of your customer.</p></div>
+          <div>{I['key']}<h3>You can read it all first</h3><p>The <a class="more" style="display:inline;margin:0" href="staff.html">prices</a>, the <a class="more" style="display:inline;margin:0" href="agreement.html">service agreement</a> and <a class="more" style="display:inline;margin:0" href="testimonials.html">the work</a> are public. Month to month, and everything built is yours if you leave.</p></div>
         </div>
       </div>
     </section>
 
-    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-for">
+    <section class="sn-sec" aria-labelledby="h-off" style="padding-top:0">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-for">Built for the small company that <em>never had an office.</em></h2><p class="tk-lede">The one-truck owner who answers from the driver's seat, and the ten-truck company where the owner still does the invoices on Sunday.</p></div>
-        <div class="sn-bubbles">
-          <div><div class="sn-grad__bot rb-float">{robot("huddle", I["sun"], label="HUDDLE", pose="point")}</div><div class="sn-bubble"><b>A front office, without hiring one</b>A two-truck company gets the same coverage as the outfit with a call centre. AI employees built for your area and your prices, answering while you are on a job.</div></div>
-          <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Sunday, 9:47 PM</p><p class="sn-phone__sub">the evening you get back</p><div class="sn-file"><i>RNG</i><span>Call answered, booked Mon 8:00<small>you were at dinner</small></span><em>RING</em></div><div class="sn-file"><i>INB</i><span>Quote request replied to<small>0:41 after it landed</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>Invoice #1051 sent<small>the day the job closed</small></span><em>BOOKS</em></div><div class="sn-file"><i>YOU</i><span>Nothing needs you tonight<small>Monday report at 7</small></span><em>REST</em></div></div></div></div>
-          <div><div class="sn-bubble"><b>Your evenings back</b>Quoting at the kitchen table, answering "is my tech coming?" from the truck, chasing invoices on Sunday. The work that fills your evenings without paying for them. We hand that back.</div><div class="sn-bubble"><b>We have to earn next month</b>You approve every script before it goes live, changes are same-day and unlimited, and you have the builder's number. Month to month.</div><div class="sn-grad__bot rb-float" style="animation-delay:.6s">{robot("inbox", I["inbox"], label="INBOX", pose="fly")}</div></div>
-        </div>
-      </div>
-    </section></div>
-
-    <section class="sn-easy" aria-labelledby="h-shift">
-      <div class="sn-inner">
-        <h2 id="h-shift">The internet changed how they find you. AI changes the <span class="sn-toggle" aria-hidden="true"></span> <em>minutes after.</em></h2>
-        <div class="sn-benefits">
-          <div>{I['clock']}<p><b>Who answers, and how fast.</b> A customer with a problem sends more than one form. The company that replies first usually gets the job. That is the whole race, and it is winnable with software.</p></div>
-          <div>{I['alert']}<p><b>Where the money leaks.</b> Not in marketing spend. In the form that sat unread while you were on a job in Chandler, and the call that rang out at 9:47 PM.</p></div>
-          <div>{I['repeat']}<p><b>Whether anyone follows up.</b> Day one, three and seven, in your words, until they answer or say stop.</p></div>
-          <div>{I['star']}<p><b>Close the gap</b> and the marketing you already pay for starts working harder. That gap is the whole reason this company exists.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sn-sec" aria-labelledby="h-rows" style="padding-top:2rem">
-      <div class="sn-inner">
-        <div class="sn-price">
-          <p class="tk-eyebrow" style="margin-bottom:1.4rem"><b>Everything on the menu</b> · every price is the whole price</p>
-          <div class="tk-big" id="h-rows">From $297<small>a month for an AI employee · all six ${FULL:,}</small></div>
-          <p class="sn-price__terms">Websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Month to month, no contract, and you keep every script, transcript, page and file.</p>
-          <div class="sn-price__cta"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">Meet the six</a><a href="services.html">Compare all four services</a></div>
-          <ul class="sn-price__rows">{roster}</ul>
+        <div class="sn-head"><h2 class="tk-h2" id="h-off">Off the <em>clock.</em></h2></div>
+        <div class="sn-cards sn-cards--3">
+          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Still snapping</h3><p>I coach long snappers, from high school to pro prep, in Phoenix and Seattle and over film. Same idea as the day job: reps until it is automatic.</p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['pen']}</div><h3>The art degree shows</h3><p>I care how things look. Every site here is drawn and coded by hand, with no themes and no page builder.</p><p style="margin-top:.8rem"><a href="testimonials.html" style="color:var(--green);font-weight:600;text-decoration:none">See the work →</a></p></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['sun']}</div><h3>Arizona, by choice</h3><p>After five years in Seattle I live and work in the Valley. Most of what I build is for small service companies like the ones down the street.</p></article>
         </div>
       </div>
     </section>

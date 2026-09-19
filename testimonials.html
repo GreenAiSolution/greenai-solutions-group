@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work — GreenAI Solutions</title>
-  <meta name="description" content="Sites built for real businesses and live today, four working systems you can open on this site, and three open-source projects you can verify from a fresh clone." />
+  <meta name="description" content="Everything here is live: three websites built for real owners, two 3D sites built in-house, four working systems you can open on this site, and three open-source projects you can verify from a fresh clone." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=9" />
+  <link rel="stylesheet" href="tech.css?v=10" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -18,62 +18,87 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/testimonials.html" />
   <meta property="og:title" content="Work — GreenAI Solutions" />
-  <meta property="og:description" content="Sites live for real businesses, working systems you can open, and open-source projects you can verify." />
+  <meta property="og:description" content="Everything here is live: three websites built for real owners, two 3D sites built in-house, four working systems you can open on this site, and three open-source projects you can verify from a fresh clone." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
-    body.wk { background:var(--paper); color:var(--ink); }
-    .wk-btn { display:inline-flex; align-items:center; justify-content:center; padding:.9rem 1.4rem; border-radius:4px; font:500 .95rem/1 var(--font-body); text-decoration:none; border:1px solid transparent; }
-    .wk-btn--gold { background:var(--gold); border-color:var(--gold); color:#fff; }
-    .wk-btn--gold:hover { background:var(--gold-2); border-color:var(--gold-2); color:#fff; }
-    .wk-btn--ink { border-color:var(--line-2); color:var(--ink); }
-    .wk-btn--ink:hover { border-color:var(--ink); color:var(--ink); }
-    .wk-h2 { margin:0 0 .5rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink); max-width:22ch; }
-    .wk-lede { margin:0 0 2.4rem; color:var(--ink-2); max-width:58ch; line-height:1.65; font-size:1.02rem; }
+    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
+    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
+    @keyframes ag-blink { 50% { opacity: 0; } }
+    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
+    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
+    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
+    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
+    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
 
-    .wk-hero { padding:8.5rem 0 3rem; }
-    .wk-hero h1 { margin:0 0 1rem; font-weight:600; font-size:clamp(2.3rem,4.6vw,3.8rem); line-height:1.04; letter-spacing:-.028em; max-width:16ch; color:var(--ink); }
-    .wk-hero p { margin:0; max-width:56ch; font-size:1.1rem; line-height:1.65; color:var(--ink-2); }
+    /* work page only (wk-) */
+    .wk-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: clamp(2rem, 4vw, 3.5rem) 0; border-top: 1px solid var(--line); }
+    .sn-head + .wk-row { border-top: 0; padding-top: 0; }
+    .wk-row--flip .wk-shot { order: 2; }
+    .wk-shot { display: block; border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden; background: #0A1A11; box-shadow: var(--shadow-2); transition: transform .3s, border-color .2s; text-decoration: none; }
+    .wk-shot:hover { transform: translateY(-5px); border-color: var(--green); }
+    .wk-shot__bar { display: flex; align-items: center; gap: .4rem; padding: .6rem .9rem; background: rgba(255,255,255,.04); border-bottom: 1px solid var(--line); }
+    .wk-shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(232,196,106,.35); }
+    .wk-shot__bar span { margin-left: .5rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; color: var(--ink-3); }
+    .wk-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+    body.tk .wk-kind { margin: 0 0 .9rem; font-family: var(--mono); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--green); }
+    body.tk .wk-row h3 { margin: 0 0 .8rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -.02em; line-height: 1.1; color: var(--ink); }
+    body.tk .wk-row p { margin: 0 0 1.1rem; font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
+    .wk-row ul { margin: 0 0 1.5rem; padding: 0; list-style: none; display: grid; gap: .55rem; }
+    .wk-row li { position: relative; padding-left: 1.3rem; font-size: .95rem; line-height: 1.5; color: var(--ink-2); }
+    .wk-row li::before { content: ""; position: absolute; left: 0; top: .6em; width: .55rem; height: 1px; background: var(--green); }
+    .wk-two { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .wk-two .wk-shot img { aspect-ratio: 16 / 9.4; }
+    .wk-two figure { margin: 0; }
+    .wk-two figcaption { margin-top: 1.1rem; }
+    .wk-two figcaption b { display: block; margin-bottom: .35rem; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--ink); }
+    .wk-two figcaption span { display: block; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
+    .wk-two figcaption a { display: inline-block; margin-top: .8rem; font-weight: 600; font-size: .92rem; color: var(--green); text-decoration: none; }
+    .wk-oss { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .wk-oss li { display: grid; grid-template-columns: 12rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+    .wk-oss b { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+    .wk-oss small { display: block; margin-top: .3rem; font-family: var(--mono); font-weight: 400; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+    .wk-oss p { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
+    .wk-oss a { font-weight: 600; font-size: .92rem; color: var(--green); text-decoration: none; white-space: nowrap; }
+    @media (max-width: 860px) { .wk-row, .wk-two { grid-template-columns: 1fr; } .wk-row--flip .wk-shot { order: 0; } .wk-oss li { grid-template-columns: 1fr; gap: .6rem; } }
 
-    .wk-sec { padding:4rem 0; border-top:1px solid var(--rule); }
-    .site { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:2rem 4rem; align-items:center; padding:1.5rem 0 3rem; }
-    .site + .site { border-top:1px solid var(--rule); padding-top:3rem; }
-    .site img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:0; border:1px solid var(--rule); background:#e9ece9; }
-    .site h3 { margin:0 0 .3rem; font-weight:600; font-size:1.7rem; letter-spacing:-.01em; color:var(--ink); }
-    .site .url { display:inline-block; margin-bottom:1rem; font-size:.92rem; color:var(--ink-3); }
-    .site p { margin:0 0 1rem; color:var(--ink-2); line-height:1.65; }
-    .site ul { margin:0 0 1.4rem; padding-left:1.1rem; list-style:disc; color:var(--ink-2); line-height:1.6; font-size:.95rem; }
-    .site blockquote { margin:0 0 1.4rem; padding:1rem 1.2rem; border-left:3px solid var(--gold); background:#fff; color:var(--ink-2); line-height:1.6; font-size:.97rem; }
-    .site blockquote cite { display:block; margin-top:.5rem; font-style:normal; font-size:.85rem; color:var(--ink-3); }
-    @media (max-width:820px) { .site { grid-template-columns:1fr; gap:1.4rem; } }
-
-    .labs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
-    .labs a { text-decoration:none; color:inherit; display:block; }
-    .labs img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:0; border:1px solid var(--rule); background:#e9ece9; transition:transform .25s cubic-bezier(.2,.7,.2,1); }
-    .labs a:hover img { transform:translateY(-3px); }
-    .labs b { display:block; margin:.85rem 0 .15rem; font-size:1.05rem; color:var(--ink); }
-    .labs span { display:block; font-size:.93rem; color:var(--ink-2); line-height:1.55; }
-    @media (max-width:640px) { .labs { grid-template-columns:1fr; } }
-
-    .oss { background:var(--sage); }
-    .oss-list { margin:0; padding:0; list-style:none; border-top:1px solid var(--ink); }
-    .oss-list li { display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.6fr) auto; gap:1rem 2.5rem; align-items:baseline; padding:1.4rem 0; border-bottom:1px solid var(--rule); }
-    .oss-list b { font-weight:600; font-size:1.35rem; color:var(--ink); }
-    .oss-list b small { display:block;  font-weight:500; font-size:.8rem; color:var(--ink-3); margin-top:.25rem; }
-    .oss-list p { margin:0; color:var(--ink-2); line-height:1.6; font-size:.97rem; }
-    .oss-list a { white-space:nowrap; color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--line-2); }
-    .oss-list a:hover { text-decoration-color:var(--ink); }
-    @media (max-width:720px) { .oss-list li { grid-template-columns:1fr; gap:.5rem; } }
-
-    .wk-cta { padding:5rem 0; background:var(--deep); color:#fff; }
-    .wk-cta h2 { margin:0 0 .6rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.02em; color:#fff; max-width:22ch; }
-    .wk-cta p { margin:0 0 1.6rem; color:rgba(255,255,255,.78); max-width:56ch; line-height:1.65; }
-    .wk-cta .wk-btn--ink { border-color:rgba(255,255,255,.4); color:#fff; }
-    .wk-cta .wk-btn--ink:hover { border-color:#fff; }
   </style>
 </head>
-<body class="tk wk light-top">
+<body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
-
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
@@ -112,103 +137,72 @@
       </ul>
     </div>
   </nav>
-
   <main id="main">
-    <header class="wk-hero">
-      <div class="container">
-        <h1>Work you can open, not work you have to take my word for.</h1>
-        <p>Two sites built for real businesses and live today. Four working systems running on this site. Three open-source projects where every number reproduces from a fresh clone.</p>
+
+    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
+      <div class="sn-hero__inner">
+        <p class="tk-eyebrow"><b>Work</b> · nothing here is a mock-up</p>
+        <h1 class="tk-h1" id="hero-heading">Everything here is live. <em>Open it.</em></h1>
+        <p class="sn-hero__sub">Three websites for real owners, two 3D sites built in-house, four working systems running on this site and three open-source projects. Every one has a link. Click before you call.</p>
+        <div class="sn-hero__cta">
+          <a href="#sites" class="tk-btn tk-btn--inverse tk-btn--arrow">Start with the sites</a>
+          <a href="service-web-design.html" class="tk-btn tk-btn--ghost">Websites from $500</a>
+        </div>
       </div>
-    </header>
+    </header></div>
 
-    <section class="wk-sec" aria-labelledby="h-sites">
-      <div class="container">
-        <h2 class="wk-h2" id="h-sites">Sites built for real businesses</h2>
-        <p class="wk-lede">Both are live right now. The screenshots are captures of the real homepages, taken this month.</p>
-
-        <article class="site">
-          <a href="https://performancelab.fitness" target="_blank" rel="noopener"><img src="previews/work-perflab.webp" alt="performancelab.fitness homepage" width="1100" height="687" loading="lazy" decoding="async" /></a>
-          <div>
-            <h3>Julia's Performance Lab</h3>
-            <a class="url" href="https://performancelab.fitness" target="_blank" rel="noopener">performancelab.fitness</a>
-            <p>A Seattle personal trainer. A link page laid out like the ones athletes actually use, hand-measured against the original, with an about page, an events page she updates herself from a template, and her brand carried through all of it.</p>
-            <blockquote>“Working with GreenAI completely changed how my business shows up online. They built me a website I'm genuinely proud of, fast, clean, and exactly the energy of my brand. It finally feels real.”<cite>Julia, founder, Julia's Performance Lab</cite></blockquote>
-            <a href="https://performancelab.fitness" target="_blank" rel="noopener" class="wk-btn wk-btn--ink">Visit performancelab.fitness</a>
-          </div>
-        </article>
-
-        <article class="site">
-          <a href="https://handmadebyhalle.com" target="_blank" rel="noopener"><img src="previews/work-halle.webp" alt="handmadebyhalle.com homepage" width="1100" height="687" loading="lazy" decoding="async" /></a>
-          <div>
-            <h3>Handmade by Halle</h3>
-            <a class="url" href="https://handmadebyhalle.com" target="_blank" rel="noopener">handmadebyhalle.com</a>
-            <p>A one-woman home-decor studio in Arizona. Every piece is made by hand, so the site was built by hand too.</p>
-            <ul>
-              <li>Fourteen pieces listed, each with its own photography and description</li>
-              <li>Seasonal collections that change with the calendar, not with a rebuild</li>
-              <li>Her own domain and brand, running on her own terms</li>
-              <li>Buying hands off to her established Etsy shop, so there is no new account to trust</li>
-            </ul>
-            <a href="https://handmadebyhalle.com" target="_blank" rel="noopener" class="wk-btn wk-btn--ink">Visit handmadebyhalle.com</a>
-          </div>
+    <section class="sn-sec" id="sites" aria-labelledby="h-sites">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-sites">Built for real owners, <em>live today.</em></h2><p class="tk-lede">Coded by hand, no themes and no page builder. The screenshots are captures of the real homepages.</p></div>
+        <article class="wk-row">
+          <a class="wk-shot" href="https://bakrjewelry.co" target="_blank" rel="noopener" aria-label="Open bakrjewelry.co"><div class="wk-shot__bar"><i></i><i></i><i></i><span>bakrjewelry.co</span></div><img src="previews/work-bakr.webp" alt="bakrjewelry.co homepage: the BAKR wordmark with a diamond ring lying across it" width="1100" height="687" loading="lazy" decoding="async" /></a>
+          <div><p class="wk-kind">Website · made-to-order jeweler</p><h3>BAKR Jewelry</h3><p>Boston makes rings, and everything else you would wear, one piece at a time. The site is paper and ink like his logo, with a diamond lying across the wordmark that you can recut with a click.</p><ul><li>A gallery page for rings, chains, pendants, earrings and bracelets</li><li>A shop carousel where every piece opens its own page</li><li>A design-with-me form that goes straight to his inbox</li><li>An about page in his own words</li></ul><a href="https://bakrjewelry.co" target="_blank" rel="noopener" class="tk-btn tk-btn--solid tk-btn--arrow">Open bakrjewelry.co</a></div>
+        </article><article class="wk-row wk-row--flip">
+          <a class="wk-shot" href="https://performancelab.fitness" target="_blank" rel="noopener" aria-label="Open performancelab.fitness"><div class="wk-shot__bar"><i></i><i></i><i></i><span>performancelab.fitness</span></div><img src="previews/work-perflab.webp" alt="performancelab.fitness homepage" width="1100" height="687" loading="lazy" decoding="async" /></a>
+          <div><p class="wk-kind">Website · personal trainer</p><h3>Julia's Performance Lab</h3><p>A Seattle personal trainer. Her clients find her on their phones, so the site is laid out like the link pages athletes already use, with her brand carried through all of it.</p><ul><li>Programs, booking and socials one tap from the top</li><li>An events page she updates herself from a template</li><li>An about page and her own domain</li></ul><a href="https://performancelab.fitness" target="_blank" rel="noopener" class="tk-btn tk-btn--solid tk-btn--arrow">Open performancelab.fitness</a></div>
+        </article><article class="wk-row">
+          <a class="wk-shot" href="https://handmadebyhalle.com" target="_blank" rel="noopener" aria-label="Open handmadebyhalle.com"><div class="wk-shot__bar"><i></i><i></i><i></i><span>handmadebyhalle.com</span></div><img src="previews/work-halle.webp" alt="handmadebyhalle.com homepage" width="1100" height="687" loading="lazy" decoding="async" /></a>
+          <div><p class="wk-kind">Website · home-decor studio</p><h3>Handmade by Halle</h3><p>A one-woman home-decor studio in Arizona. Every piece is made by hand, so the site was built by hand too.</p><ul><li>Fourteen pieces, each with its own photography and description</li><li>Seasonal collections that change with the calendar, not with a rebuild</li><li>Buying hands off to her established Etsy shop, so there is no new account to trust</li></ul><a href="https://handmadebyhalle.com" target="_blank" rel="noopener" class="tk-btn tk-btn--solid tk-btn--arrow">Open handmadebyhalle.com</a></div>
         </article>
       </div>
     </section>
 
-    <section class="wk-sec" aria-labelledby="h-labs">
-      <div class="container">
-        <h2 class="wk-h2" id="h-labs">Working systems, running on this site</h2>
-        <p class="wk-lede">Each one opens in this browser and does something. None is a mock-up.</p>
-        <div class="labs">
-          <a href="blackbox/">
-            <img src="previews/work-blackbox.webp" alt="BLACKBOX" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>BLACKBOX</b>
-            <span>A flight recorder for AI agents. Every call is logged and hash-chained, and the page replays a real agent taking 150 attacks so you can scrub through what it did.</span>
-          </a>
-          <a href="gauntlet/">
-            <img src="previews/work-gauntlet.webp" alt="THE GAUNTLET" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>THE GAUNTLET</b>
-            <span>A live prompt-injection lab. You write the attack, an AI assistant reads it, and you see which of eight filters caught you.</span>
-          </a>
-          <a href="friction/">
-            <img src="previews/work-friction.webp" alt="FRICTION" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>FRICTION</b>
-            <span>What bad design costs, measured on you. The same sign-up form the way most sites ship it and the way it should be, with a timer on both.</span>
-          </a>
-          <a href="tesseract/">
-            <img src="previews/work-tesseract.webp" alt="TESSERACT" width="1100" height="687" loading="lazy" decoding="async" />
-            <b>TESSERACT</b>
-            <span>Five hundred attacks on an AI agent, replayed in four dimensions with a time scrubber. A benchmark you move through instead of reading.</span>
-          </a>
+    <section class="sn-sec" aria-labelledby="h-3d" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-3d">3D sites, <em>built in-house.</em></h2><p class="tk-lede">Two concept sites made to show how far a web page can go. No client is claimed for either. Best on a laptop or desktop.</p></div>
+        <div class="wk-two">
+          <figure><a class="wk-shot" href="aether/" aria-label="Open greenaidigital.com/aether"><div class="wk-shot__bar"><i></i><i></i><i></i><span>greenaidigital.com/aether</span></div><img src="previews/work-aether.webp" alt="AETHER, a 3D site you scroll through" width="1100" height="687" loading="lazy" decoding="async" /></a><figcaption><b>AETHER</b><span>A concept site for AI agents. Scroll and the camera flies through a living 3D scene: a reasoning core, an orbiting swarm, rings of data. Or press Auto Tour and watch.</span><a href="aether/">Open AETHER →</a></figcaption></figure>
+          <figure><a class="wk-shot" href="atrium/" aria-label="Open greenaidigital.com/atrium"><div class="wk-shot__bar"><i></i><i></i><i></i><span>greenaidigital.com/atrium</span></div><img src="previews/work-atrium.webp" alt="ATRIUM, a house that builds itself in 3D as you scroll" width="1100" height="687" loading="lazy" decoding="async" /></a><figcaption><b>ATRIUM</b><span>A concept home-design site. A 1,564 square foot house builds itself around you as you scroll, and the estimate moves with every finish you pick. The dollar figures are list-price assumptions for Phoenix, not a quote.</span><a href="atrium/">Open ATRIUM →</a></figcaption></figure>
         </div>
       </div>
     </section>
 
-    <section class="wk-sec oss" aria-labelledby="h-oss">
-      <div class="container">
-        <h2 class="wk-h2" id="h-oss">Open source, independently verifiable</h2>
-        <p class="wk-lede">Three engineering projects published in full. Every number reproduces from a fresh clone, and the write-ups say plainly where each one loses.</p>
-        <ul class="oss-list">
-          <li><b>KILN<small>Tensor compiler, MIT licence</small></b><p>A tensor compiler that generates its own ARM64 machine code. 491 of 491 instructions byte-identical to Apple's own assembler, and Apple's Accelerate still beats it at large matrix multiplies, which the write-up says first.</p><a href="https://greenaisolution.github.io/kiln/" target="_blank" rel="noopener">Read the write-up</a></li>
-          <li><b>STRATA<small>Search and retrieval</small></b><p>Hybrid search written from scratch in numpy: keyword, vector, fusion and re-ranking. Measured against five public datasets, with the gap to published baselines reported to four decimal places.</p><a href="https://github.com/GreenAiSolution/greenai-strata" target="_blank" rel="noopener">View the source</a></li>
-          <li><b>CRUCIBLE<small>Agent evaluation</small></b><p>Thirty tasks where obvious automation breaks a rule that matters. An agent works one shift and ordinary Python checks what it did. No model grading another model.</p><a href="https://github.com/GreenAiSolution/crucible" target="_blank" rel="noopener">View the source</a></li>
+    <section class="sn-sec" aria-labelledby="h-labs" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-labs">Working systems, <em>running on this site.</em></h2><p class="tk-lede">Each one opens in this browser and does something.</p></div>
+        <div class="tk-work" style="grid-template-columns:repeat(2,minmax(0,1fr))"><a href="blackbox/"><figure><img src="previews/work-blackbox.webp" alt="BLACKBOX" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>BLACKBOX</b><i>Open</i><span>A flight recorder for AI agents. Every call is logged and hash-chained, and the page replays a real agent taking 150 attacks so you can scrub through what it did.</span></figcaption></figure></a><a href="gauntlet/"><figure><img src="previews/work-gauntlet.webp" alt="THE GAUNTLET" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>THE GAUNTLET</b><i>Open</i><span>A live prompt-injection lab. You write the attack, an AI assistant reads it, and you see which of eight filters caught you.</span></figcaption></figure></a><a href="friction/"><figure><img src="previews/work-friction.webp" alt="FRICTION" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>FRICTION</b><i>Open</i><span>What bad design costs, measured on you. The same sign-up form built two ways, with a timer on both.</span></figcaption></figure></a><a href="tesseract/"><figure><img src="previews/work-tesseract.webp" alt="TESSERACT" width="1100" height="687" loading="lazy" decoding="async" /><figcaption><b>TESSERACT</b><i>Open</i><span>Five hundred attacks on an AI agent, replayed in four dimensions with a time scrubber.</span></figcaption></figure></a></div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-oss" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-oss">Open source, <em>independently verifiable.</em></h2><p class="tk-lede">Three engineering projects published in full. Every number reproduces from a fresh clone, and the write-ups say plainly where each one loses.</p></div>
+        <ul class="wk-oss">
+          <li><b>KILN<small>Tensor compiler · MIT licence</small></b><p>A tensor compiler that generates its own ARM64 machine code. 491 of 491 instructions byte-identical to Apple's own assembler. Apple's Accelerate still beats it at large matrix multiplies, and the write-up says that first.</p><a href="https://greenaisolution.github.io/kiln/" target="_blank" rel="noopener">Read the write-up →</a></li>
+          <li><b>STRATA<small>Search and retrieval</small></b><p>Hybrid search written from scratch in numpy: keyword, vector, fusion and re-ranking. Measured against five public datasets, with the gap to published baselines reported to four decimal places.</p><a href="https://github.com/GreenAiSolution/greenai-strata" target="_blank" rel="noopener">View the source →</a></li>
+          <li><b>CRUCIBLE<small>Agent evaluation</small></b><p>Thirty tasks where obvious automation breaks a rule that matters. An agent works one shift and ordinary Python checks what it did. No model grading another model.</p><a href="https://github.com/GreenAiSolution/crucible" target="_blank" rel="noopener">View the source →</a></li>
         </ul>
       </div>
     </section>
 
-    <section class="wk-cta" aria-labelledby="h-cta">
-      <div class="container">
-        <h2 id="h-cta">That is the standard. Now it points at your company.</h2>
-        <p>Sites from $500, AI employees from $297 a month, a month of finished ads from $697, and custom systems quoted after one conversation. Everything month to month, everything yours.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.8rem">
-          <a href="services.html" class="wk-btn wk-btn--gold">See the services and prices</a>
-          <a href="contact.html" class="wk-btn wk-btn--ink">Talk to Jaden</a>
-        </div>
+    <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
+      <div class="sn-inner" style="text-align:center">
+        <div class="sn-head"><h2 class="tk-h2" id="h-cta">That is the standard. <em>Now it points at your company.</em></h2><p class="tk-lede">Websites from $500, AI employees from $297 a month, a month of finished ads from $697, and custom systems quoted after one conversation. Month to month, and everything built is yours.</p></div>
+        <div class="sn-hero__cta"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the services and prices</a><a href="contact.html" class="tk-btn tk-btn--line">Talk to Jaden</a></div>
       </div>
     </section>
   </main>
-
-  <footer class="footer" aria-label="Site footer">
+    <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
@@ -279,8 +273,41 @@
       </div>
     </div>
   </footer>
-
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
   <script src="script.js?v=14"></script>
-  <script src="checkout.js?v=9"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
+  <script>
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
+  })();
+  </script>
 </body>
 </html>
