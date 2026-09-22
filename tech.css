@@ -851,3 +851,10 @@ body.tk::before {
 .hp-six a span { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 1.1rem); font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .2em; color: var(--c); white-space: nowrap; opacity: .85; transition: opacity .2s, letter-spacing .2s; }
 .hp-six a:hover span, .hp-six a:focus-visible span { opacity: 1; letter-spacing: .28em; }
 @media (max-width: 720px) { .hp-six { margin-top: 5.2rem; } .hp-six__in { transform: scale(1.5); transform-origin: 50% 100%; } .hp-six a span { font-size: .36rem; letter-spacing: .1em; transform: translate(-50%, .35rem); } }
+
+/* 2026-09-21: the cast is six engraved slabs, not robots. The names are on the glass,
+   so the hero link labels stay for screen readers only. */
+.hp-six a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hp-six a { top: 8%; bottom: 22%; width: 10%; }
+/* no planets, moons or orbits around the slabs: a spotlight behind each one instead */
+body.tk .sn-stars, body.tk .ag-orbit { display: none; }

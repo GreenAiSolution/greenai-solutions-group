@@ -171,7 +171,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-tiers"><div><small>Starter</small><b>$500</b><span>up to five pages</span></div><div><small>Business</small><b>$1,500</b><span>up to ten pages</span></div><div><small>Premium</small><b>$2,500+</b><span>custom scope, quoted</span></div></div>
           <div class="sv-cta" style="margin-top:1.4rem"><a href="service-web-design.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the website service</a><a href="testimonials.html" class="tk-btn tk-btn--ghost">See sites that are live</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("inbox", I["inbox"], label="INBOX", pose="point")}</div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("web", I["inbox"], label="Websites", pose="point")}</div>
           <div class="sv-theatre" style="margin-right:70px"><div class="hp-browser"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" data-url="performancelab.fitness"/><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" data-url="handmadebyhalle.com"/><img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" data-url="greenaidigital.com/blackbox"/></div></div><div class="sv-theatre__cap"><span>Now showing · three live sites</span><span>built here</span></div></div>
         </div>
       </div>
@@ -197,7 +197,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-price"><b>Quoted</b><span>after one conversation · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-ai-consulting.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what has been built</a><a href="contact.html?want=custom" class="tk-btn tk-btn--ghost">Describe what you need</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("books", I["receipt"], label="BOOKS", pose="think")}</div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("custom", I["receipt"], label="Custom systems", pose="think")}</div>
           <div class="sv-schem" style="margin-right:70px">{schem}</div>
         </div>
       </div>
@@ -210,7 +210,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-price"><b>Quoted</b><span>after a free first audit · month to month</span></div>
           <div class="sv-cta"><a href="service-ai-seo.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how AI SEO works</a><a href="contact.html?want=seo" class="tk-btn tk-btn--ghost">Ask for the free audit</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("inbox", I["inbox"], label="The SEO agent", pose="point")}</div>
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("seo", I["inbox"], label="AI SEO", pose="point")}</div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Weekly crawl of every page</span><b>audit</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Titles, links, speed, markup</span><b>fixed</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Service and city pages</span><b>written</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Google Business Profile</span><b>kept alive</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly report, Google's numbers</span><b>plain English</b></li></ul></div>
         </div>
       </div>
@@ -223,7 +223,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-price"><b>Quoted</b><span>after a read-only look · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-crm-dashboards.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what gets fixed</a><a href="contact.html?want=crm" class="tk-btn tk-btn--ghost">Tell us which CRM you use</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("huddle", I["sun"], label="HUDDLE", pose="stand")}</div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("crm", I["sun"], label="CRM and dashboards", pose="stand")}</div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">New leads this week</span><b>23</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Answered in, median</span><b>0:52</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Quotes out</span><b>$18,400</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Owed to you</span><b>$4,120</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span>Example numbers, not a client's</span><b></b></li></ul></div>
         </div>
       </div>
@@ -236,7 +236,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-price"><b>Quoted</b><span>after one conversation · month to month</span></div>
           <div class="sv-cta"><a href="service-reviews.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the review engine</a><a href="contact.html?want=reviews" class="tk-btn tk-btn--ghost">Ask about reviews</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("ring", I["phone"], label="RING", pose="wave")}</div>
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("reviews", I["phone"], label="Reviews", pose="wave")}</div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Ask after every finished job</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">One reminder, then it stops</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A reply to every review</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A private line for complaints</span><b>to you</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly count, Google's numbers</span><b>report</b></li></ul></div>
         </div>
       </div>
@@ -249,7 +249,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
           <div class="sv-price"><b>Quoted</b><span>after a read-only look at your list · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-winback.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how win-back runs</a><a href="contact.html?want=winback" class="tk-btn tk-btn--ghost">Ask about win-back</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("inbox", I["inbox"], label="INBOX", pose="wave")}</div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("winback", I["inbox"], label="Win-back", pose="wave")}</div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Past customers found and merged</span><b>cleaned</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sorted by how long it has been</span><b>grouped</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Three messages, your voice</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Small batches, not a blast</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sent, replied, booked</span><b>report</b></li></ul></div>
         </div>
       </div>

@@ -57,7 +57,7 @@ CSS = """
     .hp-face { position: absolute; right: -.4rem; bottom: 0; width: 8.2rem; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
 """
 
-SIX_X = [24.2, 33.6, 44.0, 55.9, 66.5, 76.0]
+SIX_X = [22.0, 31.9, 43.5, 56.5, 68.0, 77.9]
 SIX_C = {"ring":"#7DE3A4","dispatch":"#F0CF6B","inbox":"#7CC4F0","thread":"#C9A9F7","huddle":"#F5A38E","books":"#E8C46A"}
 six_links = "".join(f'<a href="{a["id"]}.html" style="left:{x}%;--c:{SIX_C[a["id"]]}" aria-label="{a["name"]}"><span>{a["name"]}</span></a>' for a, x in zip(AGENTS, SIX_X))
 

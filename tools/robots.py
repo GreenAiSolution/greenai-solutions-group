@@ -171,7 +171,7 @@ _svg_robot, _svg_bust, _svg_peek = robot, bust, peek
 POSE3D = {"stand": "power", "think": "hips", "wave": "raise", "point": "guard", "sit": "stride", "fly": "fly"}
 
 def robot(key, icon_svg=None, cls="rb", label=None, pose="stand"):
-    alt = label or key.upper() + ", the robot"
+    alt = label or key.upper()
     return f'<img class="rb3 rb3-{key}" src="art/bots/{key}-{POSE3D.get(pose, "power")}.webp" alt="{alt}" width="480" height="720" loading="lazy" decoding="async" />'
 
 def bust(key, cls="rb-bust"):

@@ -28,7 +28,7 @@ STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" a
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = open(os.path.join(ROOT, "tools/shared-nav/nav.html")).read().rstrip("\n")
 FOOT = open(os.path.join(ROOT, "tools/shared-nav/footer.html")).read().rstrip("\n")
-TECH_V = 10; STYLE_V = 22; SCRIPT_V = 14; CHECKOUT_V = 8
+TECH_V = 11; STYLE_V = 22; SCRIPT_V = 14; CHECKOUT_V = 8
 
 def esc(s): return html.escape(s, quote=False)
 
