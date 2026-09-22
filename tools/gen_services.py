@@ -278,7 +278,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
       <p class="ag-tm">{esc(TM)}</p>
     </section>
   </main>
-  <div class="sn-sticky"><a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to Jaden</a></div>''' + tail("""
+  <div class="sn-sticky"><a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to us</a></div>''' + tail("""
   <script>
   (function(){
     var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;

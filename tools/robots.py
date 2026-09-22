@@ -1,5 +1,5 @@
 """robots.py — the six GreenAI robots, drawn as inline SVG. v2 (2026-09-17 night):
-Jaden wanted them "more realistic and equipped and ready to go instead of little
+The owner wanted them "more realistic and equipped and ready to go instead of little
 cartoon robots". So: seven-head proportions, armour plates with panel lines,
 visible joints, a utility belt, twin-thruster pack, a narrow visor with two
 light bars, and job kit bolted on. robot(key, icon, pose=) = full figure,
@@ -163,7 +163,7 @@ def peek(key, cls="rb-peek"):
 
 
 # ---------------------------------------------------------------- 2026-09-19: the 3D cast
-# Jaden: "make the agents look like this on every other page as well" (the armoured 3D
+# Owner: "make the agents look like this on every other page as well" (the armoured 3D
 # figures from the homepage hero). robot()/bust()/peek() now return <img> tags pointing at
 # renders made by tools/robots3d/fig.html (art/bots/<key>-<pose3d>.webp, 480x720, alpha).
 # The SVG builders above are kept as _svg_* in case a page ever needs them again.

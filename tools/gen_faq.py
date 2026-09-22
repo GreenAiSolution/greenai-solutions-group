@@ -69,7 +69,7 @@ GROUPS = [
     ]),
     ("Risk, control and who you are dealing with", [
         ("Who am I actually dealing with?",
-         "Jaden Green, doing business as GreenAI Solutions, in Gilbert, Arizona. You have his number — (480) 798-0753 — and his email, jaden@greenaidigital.com. There is no account manager between you and the person who built it."),
+         "GreenAI Solutions, in Gilbert, Arizona. You have his number — (480) 798-0753 — and his email, jaden@greenaidigital.com. There is no account manager between you and the person who built it."),
         ("Can it send something my customer did not agree to?",
          "No. BALANCE and PUMP only message people who are already your customers, about their own service and their own account, and one “stop” ends every message to that person. NET follows up a lead three times, then stops."),
         ("Can PUMP threaten a late payer or send them to collections?",

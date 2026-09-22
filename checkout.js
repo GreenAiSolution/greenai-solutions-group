@@ -26,15 +26,15 @@
 
   /* ---- THE CARD RAIL SWITCH ------------------------------------------
      ON since 2026-08-22: every SKU below is a live Payment Link in Stripe
-     account acct_1U7U3XQKwkBwdEjz — Jaden's own, verified and taking charges.
+     account acct_1U7U3XQKwkBwdEjz — the owner's own, verified and taking charges.
 
      THE SELLER IS A SOLE PROPRIETOR, NOT A CORPORATION (confirmed 2026-08-25).
      Stripe has this account as business_type "individual": no company name, no
-     EIN, verified personally as Jaden Green. The account's display name had
+     EIN, verified personally by the owner. The account's display name had
      been typed as "Green AI Solutions Inc." and that wording had spread to the
      billing lines and to every Payment Link's agreement text, so the site was
      telling customers they were buying from a corporation that was never
-     filed. All of it now reads "Jaden Green, doing business as GreenAI
+     filed. All of it now reads "GreenAI
      Solutions". Do not reintroduce "Inc." unless a real filing exists.
 
      Set it back to false to park the card rail: every SKU then falls
@@ -64,7 +64,7 @@
 
      GOTCHA: Managed Payments is ON by default in this account, which would
      make Stripe the merchant of record and silently drops custom_text.
-     All the links were created with managed_payments[enabled]=false so Jaden
+     All the links were created with managed_payments[enabled]=false so the owner
      stays the seller. Any link rebuilt by hand in the dashboard has to match,
      or the agreement line disappears. */
   var CARD_LINKS = {
@@ -82,7 +82,7 @@
     /* PLATFORM AGENTS, 2026-09-17. The staff is now one employee per app a
        small company already runs on. Each reuses a live Payment Link at the
        SAME price, so nothing new had to be created in Stripe. The checkout
-       page still shows the old product name until Jaden renames it. */
+       page still shows the old product name until the owner renames it. */
     'agent-ring':     'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
     'agent-dispatch': 'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
     'agent-inbox':    'https://buy.stripe.com/3cIaEZ1ETeDq9T15uI5EY06',  /* = agent-reply, $397 */
@@ -94,7 +94,7 @@
        live Payment Link of the retired product at the SAME price, so no new
        link had to be created in Stripe. The Stripe checkout page still shows
        the old product names (AI Employee – Front Desk / ANSWER / COLLECT)
-       until Jaden renames them in the dashboard or new links are created —
+       until the owner renames them in the dashboard or new links are created —
        the price is correct. Source of truth: data/catalog.json. */
     'pool-net':     'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
     'pool-balance': 'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',  /* = agent-answer, $347 */

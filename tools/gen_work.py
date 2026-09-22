@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """gen_work.py — writes testimonials.html (the Work page) in the cinema system.
-Order set by Jaden 2026-09-19: the sites under "Everything here is live. Open it." lead the page."""
+Order set by the owner 2026-09-19: the sites under "Everything here is live. Open it." lead the page."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, head, tail, esc, ROOT
@@ -135,7 +135,7 @@ PAGE = head("Work — GreenAI Solutions",
     <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner" style="text-align:center">
         <div class="sn-head"><h2 class="tk-h2" id="h-cta">That is the standard. <em>Now it points at your company.</em></h2><p class="tk-lede">One AI services workforce: websites from $500, AI staff from $297 a month, a month of finished ads from $697, and custom systems quoted after one conversation. Month to month, and everything built is yours.</p></div>
-        <div class="sn-hero__cta"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the services and prices</a><a href="contact.html" class="tk-btn tk-btn--line">Talk to Jaden</a></div>
+        <div class="sn-hero__cta"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the services and prices</a><a href="contact.html" class="tk-btn tk-btn--line">Talk to us</a></div>
       </div>
     </section>
   </main>''' + tail()

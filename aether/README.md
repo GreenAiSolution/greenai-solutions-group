@@ -8,7 +8,7 @@ GreenAI's flagship product site — a fully 3D, immersive sales experience for o
 
 ## What you need to do once before going live
 
-The site is fully built. To make it sell real orders to real customers, you (Jaden) need to do **three small setup steps**. None requires code; each takes a few minutes.
+The site is fully built. To make it sell real orders to real customers, you need to do **three small setup steps**. None requires code; each takes a few minutes.
 
 ### 1. Turn on form submissions (5 minutes)
 

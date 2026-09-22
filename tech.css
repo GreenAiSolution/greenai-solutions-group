@@ -1,7 +1,7 @@
 /* =============================================================================
    GreenAI Solutions — THE SHOWROOM (2026-09-17, v7)
 
-   Jaden sent sintra.ai/ai-employees/sales-agent and said "design my site like
+   The owner sent sintra.ai/ai-employees/sales-agent and said "design my site like
    this but with a greenaisolutions niche." So: an off-white ground, big soft
    rounded cards, centred headlines, a full-bleed rounded hero panel, four
    feature cards with the product working inside them, one big coloured
@@ -701,7 +701,7 @@ body.tk #main:is(.callpage, .catch-page, .start-page, .errorpage, .ih, .lh, .don
 .sn-grad__bot .rb--fly { transform: scaleX(-1); }
 
 /* =============================================================================
-   THE CINEMA, site-wide (2026-09-17, late). Jaden: "match every other page to
+   THE CINEMA, site-wide (2026-09-17, late). Owner: "match every other page to
    the design and look of the service page." Dark ground, gold for anything
    pressable and for the one italic phrase, grain and a vignette over
    everything. Appended last so it outranks the light showroom above; the
@@ -812,7 +812,7 @@ body.tk .sn-chip i, body.tk .sn-file em, body.tk .sn-bubble b, body.tk .ab-line 
 .ab-control__side a { width: calc(var(--w, 140px) * .68); }
 
 /* =====================================================================
-   THE GROUND (2026-09-19). Jaden: "make the background of the site itself
+   THE GROUND (2026-09-19). Owner: "make the background of the site itself
    more creative as well with a sleek look." One fixed layer behind every
    page: a fine gold drafting grid, one diagonal seam of light, and three
    slow glows (gold, emerald, gold). It drifts; the content does not.
