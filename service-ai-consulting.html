@@ -50,7 +50,8 @@
     .cx-built { padding:4.5rem 0; background:var(--sage); }
     .cx-built h2 { margin:0 0 .5rem; font-weight:600; font-size:clamp(1.8rem,3.2vw,2.5rem); letter-spacing:-.02em; color:var(--ink); }
     .cx-built > .container > p { margin:0 0 2.2rem; color:var(--ink-2); max-width:58ch; line-height:1.65; }
-    .cx-work { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
+    .cx-work { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2rem; }
+    .cx-work a { grid-template-columns:1fr !important; align-items:start !important; }
     .cx-work a { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:1.2rem; align-items:center; text-decoration:none; color:inherit; }
     .cx-work img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:0; border:1px solid var(--rule); background:#dfe6df; }
     .cx-work b { display:block; color:var(--ink); font-size:1.05rem; margin-bottom:.3rem; }
@@ -152,15 +153,11 @@
     <section class="cx-built" id="built" aria-labelledby="h-built">
       <div class="container">
         <h2 id="h-built">Built, and running on this site</h2>
-        <p>Four working systems you can open right now. None is a mock-up, and each one shows the standard a custom build gets held to.</p>
+        <p>Three working systems you can open right now. None is a mock-up, and each one shows the standard a custom build gets held to.</p>
         <div class="cx-work">
           <a href="blackbox/">
             <img src="previews/work-blackbox.webp" alt="BLACKBOX" width="1100" height="687" loading="lazy" decoding="async" />
             <div><b>BLACKBOX</b><span>A flight recorder for AI agents. Every call hash-chained and replayable, with a live replay of a real agent taking 150 attacks.</span></div>
-          </a>
-          <a href="gauntlet/">
-            <img src="previews/work-gauntlet.webp" alt="THE GAUNTLET" width="1100" height="687" loading="lazy" decoding="async" />
-            <div><b>THE GAUNTLET</b><span>A live lab where you play the attacker against an AI assistant and see which of eight filters stops you.</span></div>
           </a>
           <a href="friction/">
             <img src="previews/work-friction.webp" alt="FRICTION" width="1100" height="687" loading="lazy" decoding="async" />

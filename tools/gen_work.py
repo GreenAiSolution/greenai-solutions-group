@@ -70,13 +70,12 @@ def lab(href, img, name, text):
 
 labs = "".join([
     lab("blackbox/", "previews/work-blackbox.webp", "BLACKBOX", "A flight recorder for AI agents. Every call is logged and hash-chained, and the page replays a real agent taking 150 attacks so you can scrub through what it did."),
-    lab("gauntlet/", "previews/work-gauntlet.webp", "THE GAUNTLET", "A live prompt-injection lab. You write the attack, an AI assistant reads it, and you see which of eight filters caught you."),
     lab("friction/", "previews/work-friction.webp", "FRICTION", "What bad design costs, measured on you. The same sign-up form built two ways, with a timer on both."),
     lab("tesseract/", "previews/work-tesseract.webp", "TESSERACT", "Five hundred attacks on an AI agent, replayed in four dimensions with a time scrubber."),
 ])
 
 PAGE = head("Work — GreenAI Solutions",
-            "Everything here is live: three websites built for real owners, two 3D sites built in-house, four working systems you can open on this site, and three open-source projects you can verify from a fresh clone.",
+            "Everything here is live: three websites built for real owners, two 3D sites built in-house, three working systems you can open on this site, and three open-source projects you can verify from a fresh clone.",
             "testimonials.html", CSS) + f'''
 <body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -89,7 +88,7 @@ PAGE = head("Work — GreenAI Solutions",
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>Work</b> · nothing here is a mock-up</p>
         <h1 class="tk-h1" id="hero-heading">Everything here is live. <em>Open it.</em></h1>
-        <p class="sn-hero__sub">Three websites for real owners, two 3D sites built in-house, four working systems running on this site and three open-source projects. Every one has a link. Click before you call.</p>
+        <p class="sn-hero__sub">Three websites for real owners, two 3D sites built in-house, three working systems running on this site and three open-source projects. Every one has a link. Click before you call.</p>
         <div class="sn-hero__cta">
           <a href="#sites" class="tk-btn tk-btn--inverse tk-btn--arrow">Start with the sites</a>
           <a href="service-web-design.html" class="tk-btn tk-btn--ghost">Websites from $500</a>
@@ -117,7 +116,7 @@ PAGE = head("Work — GreenAI Solutions",
     <section class="sn-sec" aria-labelledby="h-labs" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-labs">Working systems, <em>running on this site.</em></h2><p class="tk-lede">Each one opens in this browser and does something.</p></div>
-        <div class="tk-work" style="grid-template-columns:repeat(2,minmax(0,1fr))">{labs}</div>
+        <div class="tk-work">{labs}</div>
       </div>
     </section>
 
