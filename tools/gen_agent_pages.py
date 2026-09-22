@@ -254,7 +254,7 @@ def footer_html():
             <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions Team</span>
           </a>
           <p class="footer__tagline">Three AI employees for Phoenix-metro pool service companies. NET catches every lead, BALANCE keeps every customer, PUMP keeps the money moving. Month to month.</p>
-          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">Jaden Green, doing business as GreenAI Solutions<br/>Gilbert, Arizona</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">GreenAI Solutions<br/>Gilbert, Arizona</p>
         </div>
 
         <div>

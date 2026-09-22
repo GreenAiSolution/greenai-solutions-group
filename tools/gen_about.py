@@ -55,14 +55,14 @@ phone = '''
 <div class="sn-phone__view is-on"><p class="sn-phone__title">Does</p><p class="sn-phone__sub">RING, 9:47 PM</p><ul class="sn-lines"><li class="them">My pump is grinding and it's Sunday.</li><li class="us" data-who="RING · 0:08">Switch it off tonight. Can I get the address? I can book tomorrow at 8.</li></ul></div>
 <div class="sn-phone__view"><p class="sn-phone__title">Grades</p><p class="sn-phone__sub">the checker, same second</p><div class="sn-file"><i>$</i><span>"first visit is $285"<small>on your price list</small></span><em>PASS</em></div><div class="sn-file"><i>$</i><span>"I can do it for $3,200"<small>not on your list</small></span><em style="color:#c8102e">BLOCKED</em></div><div class="sn-file"><i>HR</i><span>"tomorrow at 8"<small>inside your hours</small></span><em>PASS</em></div></div>
 <div class="sn-phone__view"><p class="sn-phone__title">Approves</p><p class="sn-phone__sub">you, before it goes live</p><ul class="sn-lines"><li class="us" data-who="RING · draft">I can hold tomorrow at 8.</li><li class="them">Say "book", not "hold".</li><li class="us" data-who="RING · v2">I can book tomorrow at 8.</li><li class="them">Approved.</li></ul></div>
-<div class="sn-phone__view"><p class="sn-phone__title">"I'm not sure"</p><p class="sn-phone__sub">what it says when it does not know</p><ul class="sn-lines"><li class="them">Can you match the other guy's price?</li><li class="us" data-who="RING">I'm not sure, and I won't guess. Jaden will call you back today with an answer.</li></ul><div class="sn-file"><i>YOU</i><span>Texted to you<small>caller, number, the question</small></span><em>NOW</em></div></div>
-<div class="sn-phone__view"><p class="sn-phone__title">You stay the owner</p><p class="sn-phone__sub">Monday, 7:00 AM</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 handed to you</small></span><em>RING</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div><div class="sn-file"><i>480</i><span>Anything wrong?<small>(480) 798-0753 rings Jaden</small></span><em>CALL</em></div></div>'''
+<div class="sn-phone__view"><p class="sn-phone__title">"I'm not sure"</p><p class="sn-phone__sub">what it says when it does not know</p><ul class="sn-lines"><li class="them">Can you match the other guy's price?</li><li class="us" data-who="RING">I'm not sure, and I won't guess. The founder will call you back today with an answer.</li></ul><div class="sn-file"><i>YOU</i><span>Texted to you<small>caller, number, the question</small></span><em>NOW</em></div></div>
+<div class="sn-phone__view"><p class="sn-phone__title">You stay the owner</p><p class="sn-phone__sub">Monday, 7:00 AM</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 handed to you</small></span><em>RING</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div><div class="sn-file"><i>480</i><span>Anything wrong?<small>(480) 798-0753 rings the founder</small></span><em>CALL</em></div></div>'''
 
 roster = "".join(f'<li><a href="{a["id"]}.html">{a["name"]}</a><span>{esc(a["inside"])}</span><b>${a["price"]:,}/mo</b></li>' for a in AGENTS)
 
-PAGE = head("About Jaden Green — GreenAI Solutions, Gilbert, AZ",
-            "Jaden Green: five years as a scholarship long snapper at the University of Washington, a year working a service route through a Phoenix summer, and seven years building software. He started GreenAI Solutions in 2025.",
-            "about.html", CSS, og_title="About Jaden Green, founder of GreenAI Solutions") + f'''
+PAGE = head("About — GreenAI Solutions, Gilbert, AZ",
+            "Founder of GreenAI Solutions: five years as a scholarship long snapper at the University of Washington, a year working a service route through a Phoenix summer, and seven years building software. He started GreenAI Solutions in 2025.",
+            "about.html", CSS, og_title="About GreenAI Solutions") + f'''
 <body class="tk light-top">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -72,17 +72,17 @@ PAGE = head("About Jaden Green — GreenAI Solutions, Gilbert, AZ",
 
     <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="h1">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>About</b> · Jaden Green, founder</p>
+        <p class="tk-eyebrow"><b>About</b> · The founder</p>
         <h1 class="tk-h1" id="h1">Five years of college football. <em>Then I built this.</em></h1>
-        <p class="sn-hero__sub">I'm Jaden Green. I was a long snapper at the University of Washington, I've knocked doors through a Phoenix summer, and I've been building software since I was seventeen. GreenAI Solutions is where all of that ended up.</p>
+        <p class="sn-hero__sub">I was a long snapper at the University of Washington, I've knocked doors through a Phoenix summer, and I've been building software since I was seventeen. GreenAI Solutions is where all of that ended up.</p>
         <div class="sn-hero__cta">
           <a href="tel:4807980753" class="tk-btn tk-btn--inverse tk-btn--arrow">Call (480) 798-0753</a>
-          <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
+          <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">Email us</a>
         </div>
       </div>
       <div class="ab-control" aria-label="The six robots around the direct line">
         <div class="ab-control__side">{side(left)}</div>
-        <div class="ab-line"><span class="live">Direct line</span><small>Rings Jaden</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>Jaden Green</b> · Gilbert, AZ · works with companies anywhere</p></div>
+        <div class="ab-line"><span class="live">Direct line</span><small>Rings the founder</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">Email us</a><p style="margin-top:.6rem"><b>GreenAI Solutions</b> · Gilbert, AZ · works with companies anywhere</p></div>
         <div class="ab-control__side">{side(right)}</div>
       </div>
     </header></div>
@@ -143,14 +143,14 @@ PAGE = head("About Jaden Green — GreenAI Solutions, Gilbert, AZ",
     <section class="sn-sec" aria-labelledby="h-talk" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner">
         <div class="hp-talk">
-          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
-          <div class="tk-plate"><p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
+          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">Email us</a></div>
+          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
         </div>
         <p class="ag-tm">{esc(TM)}</p>
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="tel:4807980753" class="tk-btn tk-btn--solid tk-btn--arrow">Call Jaden, (480) 798-0753</a></div>''' + tail()
+  <div class="sn-sticky"><a href="tel:4807980753" class="tk-btn tk-btn--solid tk-btn--arrow">Call us, (480) 798-0753</a></div>''' + tail()
 
 open(os.path.join(ROOT, "about.html"), "w").write(PAGE)
 print("wrote about.html", len(PAGE))

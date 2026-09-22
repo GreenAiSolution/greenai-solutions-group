@@ -546,7 +546,7 @@ document.querySelectorAll('#tour-btn, #tour-btn-2').forEach(b => b.addEventListe
 /* ============================================================
    Onboarding modal — 4-step post-checkout flow
    Submissions POST to Formsubmit.co which forwards to jaden@greenaidigital.com.
-   First-time only: Jaden must click the confirmation email Formsubmit sends.
+   First-time only: the owner must click the confirmation email Formsubmit sends.
 ============================================================ */
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jaden@greenaidigital.com';
 

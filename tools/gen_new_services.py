@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """gen_new_services.py — writes service-ai-seo.html and service-crm-dashboards.html.
 Added 2026-09-19 in place of the "Built for one trade" pool links. No prices on purpose:
-pricing is Jaden's call, so both are 'quoted' until he sets a number. No ranking or traffic promises."""
+pricing is the owner's call, so both are 'quoted' until he sets a number. No ranking or traffic promises."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, head, tail, esc, ROOT

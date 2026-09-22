@@ -11,7 +11,6 @@ JSONLD = '''{
     "url": "https://greenaidigital.com/",
     "telephone": "+1-480-798-0753",
     "email": "jaden@greenaidigital.com",
-    "founder": { "@type": "Person", "name": "Jaden Green" },
     "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "postalCode": "85296", "addressCountry": "US" },
     "areaServed": "US",
     "description": "An AI services workforce for small companies: AI staff inside the apps you already use, websites, ad creation, SEO, CRM and dashboards, Google reviews, win-back campaigns and custom systems.",
@@ -69,7 +68,7 @@ four = f'''
 
 phone_views = '''
 <div class="sn-phone__view is-on"><p class="sn-phone__title">One conversation</p><p class="sn-phone__sub">Twenty minutes, by phone or email.</p>
-<ul class="sn-lines"><li class="them">We miss calls after 5 and the inbox is a mess. Where would you start?</li><li class="us" data-who="Jaden">Where it costs you most. Usually the phone. Here is what RING does and what it will not do.</li><li class="them">And if it is not a fit?</li><li class="us" data-who="Jaden">Then I say so, and you have lost twenty minutes.</li></ul></div>
+<ul class="sn-lines"><li class="them">We miss calls after 5 and the inbox is a mess. Where would you start?</li><li class="us" data-who="Founder">Where it costs you most. Usually the phone. Here is what RING does and what it will not do.</li><li class="them">And if it is not a fit?</li><li class="us" data-who="Founder">Then I say so, and you have lost twenty minutes.</li></ul></div>
 <div class="sn-phone__view"><p class="sn-phone__title">A price in writing</p><p class="sn-phone__sub">Before anything is signed.</p>
 <div class="sn-file"><i>RNG</i><span>RING · your phone line<small>$497 a month, month to month</small></span><em>QUOTED</em></div>
 <div class="sn-file"><i>WEB</i><span>Five-page website<small>$500 once, about seven business days</small></span><em>QUOTED</em></div>
@@ -82,7 +81,7 @@ phone_views = '''
 <div class="sn-file"><i>TXT</i><span>Your wording<small>not a template</small></span><em>READ</em></div></div>
 <div class="sn-phone__view"><p class="sn-phone__title">Live, and still answered</p><p class="sn-phone__sub">Changes are same-day at no charge.</p>
 <div class="sn-file"><i>ON</i><span>RING is live on your line<small>cancel at the end of any month</small></span><em>LIVE</em></div>
-<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>JADEN</em></div>
+<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>FOUNDER</em></div>
 <div class="sn-file"><i>MON</i><span>Monday report<small>handled · handed to you</small></span><em>WEEKLY</em></div></div>'''
 
 steps = "".join(f'<li><b>{t}</b><p>{p}</p></li>' for t,p in [
@@ -259,8 +258,8 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
     <section class="sn-sec" aria-labelledby="h-talk" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner">
         <div class="hp-talk">
-          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
-          <div class="tk-plate"><p><b>Jaden Green</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
+          <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">Email us</a></div>
+          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
         </div>
         <p class="ag-tm">{esc(TM)}</p>
       </div>

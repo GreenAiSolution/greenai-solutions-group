@@ -274,11 +274,11 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
         <tr><td>Win-back</td><td>past customers, asked back in your voice</td><td>quoted</td></tr>
         <tr><td>Custom systems</td><td>scoped in one conversation, priced in writing</td><td>quoted</td></tr>
       </tbody></table>
-      <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go unanswered when you are working: start with RING. Web leads sit for hours: INBOX on Gmail, DISPATCH on Jobber. Your site is a theme with your logo dropped in: a Starter site. Running the same ad for months: Growth, twenty-five a month. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:{GOLD}">jaden@greenaidigital.com</a></div>
+      <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go unanswered when you are working: start with RING. Web leads sit for hours: INBOX on Gmail, DISPATCH on Jobber. Your site is a theme with your logo dropped in: a Starter site. Running the same ad for months: Growth, twenty-five a month. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:{GOLD}">Email us</a></div>
       <p class="ag-tm">{esc(TM)}</p>
     </section>
   </main>
-  <div class="sn-sticky"><a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to Jaden</a></div>''' + tail("""
+  <div class="sn-sticky"><a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to us</a></div>''' + tail("""
   <script>
   (function(){
     var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;

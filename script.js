@@ -165,7 +165,7 @@
         .catch(() => {
           if (btn) { btn.innerHTML = original; btn.disabled = false; }
           showError('That did not go through. Call <a href="tel:4807980753" style="color:inherit">(480) 798-0753</a> ' +
-                    'or email <a href="mailto:jaden@greenaidigital.com" style="color:inherit">jaden@greenaidigital.com</a> ' +
+                    'or <a href="mailto:jaden@greenaidigital.com" style="color:inherit">email us</a> ' +
                     'and you will get a person.');
         });
     });

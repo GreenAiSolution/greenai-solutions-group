@@ -54,7 +54,7 @@
    "seat": "Copy",
    "loaded": true,
    "squad": "marketing",
-   "owns": "SIREN owns every customer-facing word: page copy, emails, ad text, the staff pages, FAQ answers. Writes in Jaden's plain voice \u2014 one owner talking to another."
+   "owns": "SIREN owns every customer-facing word: page copy, emails, ad text, the staff pages, FAQ answers. Writes in the owner's plain voice \u2014 one owner talking to another."
   },
   {
    "name": "BEACON",
@@ -62,7 +62,7 @@
    "seat": "Paid media",
    "loaded": true,
    "squad": "marketing",
-   "owns": "BEACON owns paid acquisition for greenaidigital.com: ad angles, creative briefs, budgets proposed (never spent without Jaden), landing-page pairing, and the Windsor/ADSCORE attribution loop."
+   "owns": "BEACON owns paid acquisition for greenaidigital.com: ad angles, creative briefs, budgets proposed (never spent without the owner), landing-page pairing, and the Windsor/ADSCORE attribution loop."
   },
   {
    "name": "ORACLE",
@@ -151,7 +151,7 @@
    "demon": "ALL",
    "task": "ten more summoned, hangar grows a lab and a studio",
    "lines": [
-    "Jaden summoned ten directly: Marketing Squad (HERALD, SIREN, BEACON, ORACLE,",
+    "The owner summoned ten directly: Marketing Squad (HERALD, SIREN, BEACON, ORACLE,",
     "Hangar One widened to 176 m: Marketing Studio (west), Drone & Robotics Lab",
     "Lesson: pkill + immediate restart of server.py races the old listener; check"
    ]

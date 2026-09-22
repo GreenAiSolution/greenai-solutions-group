@@ -49,7 +49,7 @@ GROUPS = [
         ("How do I pay, and when am I charged?",
          "Card through Stripe — your details go on Stripe’s own checkout page, never on this site. First payment on order, then the same day each month. Prefer an invoice? Say so on the start form."),
         ("Can I cancel?",
-         "Any time. No minimum term, no lock-in, no cancellation fee — email jaden@greenaidigital.com or call (480) 798-0753. It stops at the end of the month you have paid for, and you keep every script, transcript and configuration."),
+         "Any time. No minimum term, no lock-in, no cancellation fee — email or call us at (480) 798-0753. It stops at the end of the month you have paid for, and you keep every script, transcript and configuration."),
         ("Do you guarantee I will get more pools on the route?",
          "No, and be wary of anyone who does. How many leads become customers depends on your prices, your area and the season. What we stand behind is the reply and the follow-up happening every time, the way you approved."),
         ("Is there a setup fee or a contract?",
@@ -69,7 +69,7 @@ GROUPS = [
     ]),
     ("Risk, control and who you are dealing with", [
         ("Who am I actually dealing with?",
-         "Jaden Green, doing business as GreenAI Solutions, in Gilbert, Arizona. You have his number — (480) 798-0753 — and his email, jaden@greenaidigital.com. There is no account manager between you and the person who built it."),
+         "GreenAI Solutions, in Gilbert, Arizona. You have the direct number — (480) 798-0753 — and a direct email line. There is no account manager between you and the person who built it."),
         ("Can it send something my customer did not agree to?",
          "No. BALANCE and PUMP only message people who are already your customers, about their own service and their own account, and one “stop” ends every message to that person. NET follows up a lead three times, then stops."),
         ("Can PUMP threaten a late payer or send them to collections?",

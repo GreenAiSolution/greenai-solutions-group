@@ -2,7 +2,7 @@
 """
 gen_platform_agents.py — writes the six platform-agent pages (ring, dispatch,
 inbox, thread, huddle, books) and staff.html in the showroom layout
-(2026-09-17: Jaden asked for the site to look like sintra.ai's AI-employee
+(2026-09-17: the owner asked for the site to look like sintra.ai's AI-employee
 pages, in GreenAI's niche).
 
     python3 tools/gen_platform_agents.py
@@ -365,7 +365,7 @@ def phone_views(a):
     """Five screens, one per step, inside the sticky phone."""
     n = a["name"]; app = a["app"]
     v1 = f'''<div class="sn-phone__view is-on"><p class="sn-phone__title">One conversation</p><p class="sn-phone__sub">Twenty minutes, by phone or email.</p>
-<ul class="sn-lines"><li class="them">We miss calls after 5 and every weekend. What would {n} actually do?</li><li class="us" data-who="Jaden">Here is what it does {a['inside']}, and what it will not do. If it is not a fit I will say so.</li><li class="them">What does it cost?</li><li class="us" data-who="Jaden">${a['price']:,} a month, month to month. That is the whole price.</li></ul></div>'''
+<ul class="sn-lines"><li class="them">We miss calls after 5 and every weekend. What would {n} actually do?</li><li class="us" data-who="Founder">Here is what it does {a['inside']}, and what it will not do. If it is not a fit I will say so.</li><li class="them">What does it cost?</li><li class="us" data-who="Founder">${a['price']:,} a month, month to month. That is the whole price.</li></ul></div>'''
     v2 = f'''<div class="sn-phone__view"><p class="sn-phone__title">Your account</p><p class="sn-phone__sub">{esc(a['connect'][0][1])}</p>
 <div class="sn-file"><i>{esc(app.split(',')[0].split(' or ')[0][:3].upper())}</i><span>{esc(app)}<small>connected · your own account</small></span><em>OK</em></div>
 <div class="sn-file"><i>KEY</i><span>Permissions listed in writing<small>revoke any time</small></span><em>OK</em></div>
@@ -379,7 +379,7 @@ def phone_views(a):
 <ul class="sn-lines"><li class="us" data-who="{n} · draft">Thanks Dana, Thursday is open. Is there a gate code? I can hold 9:00 for you.</li><li class="them">Change "hold" to "book". Otherwise good.</li><li class="us" data-who="{n} · v2">Thanks Dana, Thursday is open. Is there a gate code? I can book 9:00 for you.</li><li class="them">Approved.</li></ul></div>'''
     v5 = f'''<div class="sn-phone__view"><p class="sn-phone__title">Live, and still answered</p><p class="sn-phone__sub">Changes are same-day at no charge.</p>
 <div class="sn-file"><i>ON</i><span>{n} is live {esc(a['inside'])}<small>month to month, cancel at month end</small></span><em>LIVE</em></div>
-<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>JADEN</em></div>
+<div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>FOUNDER</em></div>
 <div class="sn-file"><i>MON</i><span>Monday report<small>what it handled, what it handed to you</small></span><em>WEEKLY</em></div></div>'''
     return v1+v2+v3+v4+v5
 
@@ -529,7 +529,7 @@ def build_staff():
          ("Do my customers know they are talking to an AI?","If they ask, it tells the truth. It does not pretend to be a person and does not use a fake name."),
          ("Is there a setup fee or a per-call charge?","No. The monthly price is the whole price. Anything you pay Slack, Google, Jobber or QuickBooks is your own subscription, at their price."),
          ("Can I cancel?","At the end of any month you have paid for. You keep every script, transcript and document."),
-         ("Who builds and answers for them?","Jaden Green, in Gilbert, Arizona. The number on this page rings him.")]
+         ("Who builds and answers for them?","The founder, in Gilbert, Arizona. The number on this page rings him.")]
     faqh="".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in faq)
     return head(title, desc, "staff.html", og_title="Six AI employees, one inside each app you already use") + f'''
 <body class="tk light-top">
