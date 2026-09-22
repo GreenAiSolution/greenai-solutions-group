@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hiring Desk — build your AI staff | GreenAI Solutions</title>
+  <meta name="description" content="Pick the AI employees who start Monday. Six of them, one inside each app you already run, from $297 a month each or all six for $1,797. See their first day and the whole price before you talk to anyone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="tech.css?v=11" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://greenaidigital.com/hire.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenaidigital.com/hire.html" />
+  <meta property="og:title" content="The Hiring Desk. Pick who starts Monday." />
+  <meta property="og:description" content="Pick the AI employees who start Monday. Six of them, one inside each app you already run, from $297 a month each or all six for $1,797. See their first day and the whole price before you talk to anyone." />
+  <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />
+  <style>
+    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
+    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
+    @keyframes ag-blink { 50% { opacity: 0; } }
+    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
+    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
+    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 5px; }
+    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
+    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
+    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
+    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
+    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
+    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
+    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
+    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+    .ag-mail__row.warn em { color: #B7791F; }
+    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
+    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
+    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
+    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
+    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
+    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
+    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
+    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
+    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
+    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
+    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
+    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
+    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
+    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
+    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
+    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
+
+    body.tk.hd-page, body.tk.hd-page::before { background: #06100A; }
+    body.tk.hd-page::before { background-image: radial-gradient(60% 40% at 50% 0%, rgba(232,196,106,.10), transparent 60%); }
+    body.tk.hd-page .nav.transparent, body.tk.hd-page .nav.scrolled { background: rgba(6,16,10,.72); }
+    body.tk.hd-page .nav .nav__logo-name, body.tk.hd-page .nav .nav__logo-sub, body.tk.hd-page .nav .nav__link { color: rgba(255,255,255,.85); }
+    body.tk.hd-page .nav .nav__hamburger span { background: #fff; }
+    body.tk.hd-page .nav__cta { background: #E8C46A; border-color: #E8C46A; color: #06100A; }
+    body.tk.hd-page .footer { background: #000; }
+    .sv-grain { position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: .07; mix-blend-mode: screen; }
+    .sv-vig { position: fixed; inset: 0; z-index: 4; pointer-events: none; background: radial-gradient(80% 70% at 50% 40%, transparent 55%, rgba(0,0,0,.55)); }
+    .hd { color: #fff; }
+    .hd h1, .hd h2, .hd h3 { color: #fff; margin: 0; }
+    .hd em { color: #E8C46A; font-style: italic; font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+    .hd p { color: rgba(255,255,255,.72); }
+    .hd-slate { display: inline-flex; align-items: center; gap: .8rem; margin: 0 0 1.4rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: #E8C46A; }
+    .hd-slate::before, .hd-slate::after { content: ""; width: 2.4rem; height: 1px; background: #E8C46A; opacity: .7; }
+    .hd-hero { padding: 10.5rem 1.5rem 2.5rem; text-align: center; }
+    .hd-hero h1 { margin: 0 auto 1.1rem; max-width: 13ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.8rem, 7vw, 6rem); line-height: .98; letter-spacing: -.03em; }
+    .hd-hero p { max-width: 56ch; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+    .hd-room { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem 5rem; align-items: start; }
+    .hd-label { font-family: var(--mono); font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.55); margin: 0 0 1rem; }
+    .hd-bench { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .hd-card { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: .9rem; padding: 1.2rem; border-radius: 20px; background: linear-gradient(180deg, #0C1D13, #08140D); border: 1px solid rgba(232,196,106,.16); cursor: grab; transition: border-color .2s, transform .2s, box-shadow .2s, opacity .2s; }
+    .hd-card:hover { border-color: rgba(232,196,106,.5); transform: translateY(-3px); }
+    .hd-card.is-hired { border-color: #E8C46A; box-shadow: 0 0 0 1px #E8C46A, 0 30px 60px -30px rgba(232,196,106,.55); }
+    .hd-card.is-drag { opacity: .45; }
+    .hd-card__face { display: flex; align-items: center; gap: .8rem; }
+    .hd-bust { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(232,196,106,.45); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); }
+    .hd-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; letter-spacing: -.01em; }
+    .hd-card__app { margin: .15rem 0 .7rem; font-size: .85rem; color: #E8C46A !important; }
+    .hd-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .35rem; }
+    .hd-card li { position: relative; padding-left: 1rem; font-size: .88rem; line-height: 1.45; color: rgba(255,255,255,.72); }
+    .hd-card li::before { content: ""; position: absolute; left: 0; top: .55em; width: 5px; height: 5px; border-radius: 50%; background: #E8C46A; }
+    .hd-card__foot { display: flex; align-items: center; justify-content: space-between; padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .hd-card__foot b { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; }
+    .hd-card__foot small { font-size: .8rem; font-weight: 500; color: rgba(255,255,255,.55); margin-left: .15rem; }
+    .hd-hire { min-height: 44px; padding: .55rem 1.2rem; border-radius: 999px; border: 1px solid #E8C46A; background: transparent; color: #E8C46A; font: 600 .9rem var(--font-body, inherit); cursor: pointer; transition: background .2s, color .2s; }
+    .hd-hire:hover { background: rgba(232,196,106,.12); }
+    .hd-hire[aria-pressed="true"] { background: #E8C46A; color: #06100A; }
+    .hd-hire .on, .hd-hire[aria-pressed="true"] .off { display: none; }
+    .hd-hire[aria-pressed="true"] .on { display: inline; }
+    .hd-desk { position: sticky; top: 90px; padding: 1.4rem; border-radius: 24px; background: linear-gradient(180deg, #10241A, #0A1811); border: 1px solid rgba(232,196,106,.3); box-shadow: 0 60px 120px -50px rgba(0,0,0,.9); transition: border-color .2s, box-shadow .2s; }
+    .hd-desk.is-over { border-color: #E8C46A; box-shadow: 0 0 0 2px #E8C46A, 0 0 80px -10px rgba(232,196,106,.45); }
+    .hd-desk h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.7rem; letter-spacing: -.02em; margin-bottom: .3rem; }
+    .hd-seats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin: 1rem 0 1.2rem; }
+    .hd-seat { aspect-ratio: 1; border-radius: 50%; border: 1px dashed rgba(232,196,106,.35); display: grid; place-items: center; overflow: hidden; background: rgba(0,0,0,.25); padding: 0; cursor: default; }
+    .hd-seat img { width: 100%; height: 100%; object-fit: cover; }
+    .hd-seat.is-filled { border: 1px solid #E8C46A; cursor: pointer; animation: hd-pop .35s ease-out; }
+    .hd-seat.is-filled:hover { opacity: .7; }
+    @keyframes hd-pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .hd-empty { margin: 0 0 1rem; padding: 1.4rem 1rem; text-align: center; border-radius: 16px; border: 1px dashed rgba(255,255,255,.18); font-size: .92rem; }
+    .hd-day { margin: 0 0 1.2rem; padding: 0; list-style: none; max-height: 340px; overflow: auto; }
+    .hd-day li { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: .8rem; padding: .7rem 0; border-top: 1px solid rgba(255,255,255,.07); animation: hd-pop .35s ease-out; }
+    .hd-day time { font-family: var(--mono); font-size: .74rem; color: #E8C46A; padding-top: .15rem; }
+    .hd-day b { display: block; font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; color: rgba(255,255,255,.5); margin-bottom: .15rem; }
+    .hd-day span { font-size: .88rem; line-height: 1.45; color: rgba(255,255,255,.82); }
+    .hd-total { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(232,196,106,.4); }
+    .hd-total b { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.4rem, 4vw, 3.2rem); letter-spacing: -.03em; line-height: 1; }
+    .hd-total span { font-size: .88rem; color: rgba(255,255,255,.6); text-align: right; }
+    .hd-save { margin: .6rem 0 0; font-size: .86rem; color: #E8C46A !important; min-height: 1.3em; }
+    .hd-go { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+    .hd-go .tk-btn { flex: 1 1 auto; justify-content: center; }
+    .hd-go .tk-btn--solid { background: #E8C46A; border-color: #E8C46A; color: #06100A; box-shadow: 0 16px 40px -14px rgba(232,196,106,.7); }
+    .hd-go .tk-btn--solid[aria-disabled="true"] { opacity: .4; pointer-events: none; box-shadow: none; }
+    .hd-go .tk-btn--ghost { border-color: rgba(255,255,255,.3); color: #fff; }
+    .hd-all { background: none; border: 0; padding: .4rem 0; color: rgba(255,255,255,.7); font: inherit; font-size: .85rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .hd-all:hover { color: #fff; }
+    .hd-fine { margin: 1rem 0 0; font-size: .78rem; line-height: 1.5; color: rgba(255,255,255,.45) !important; }
+    @media (max-width: 960px) {
+      .hd-room { grid-template-columns: 1fr; }
+      .hd-desk { position: relative; top: 0; order: -1; }
+      .hd-day { max-height: none; }
+    }
+    @media (max-width: 600px) { .hd-bench { grid-template-columns: 1fr; } .hd-hero { padding-top: 8.5rem; } }
+    @media (prefers-reduced-motion: reduce) { .hd-seat.is-filled, .hd-day li { animation: none; } .hd-card { transition: none; } }
+
+  </style>
+</head>
+<body class="tk hd-page">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="GreenAI Solutions home">
+          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Solutions crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li><a href="service-ai-seo.html">AI SEO: one agent does it end to end</a></li><li><a href="service-crm-dashboards.html">CRM and dashboard optimization</a></li><li><a href="service-reviews.html">Google reviews: every customer asked</a></li><li><a href="service-winback.html">Win back past customers</a></li></ul></li>
+          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="contact.html" class="btn btn-primary nav__cta">Talk to us</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="staff.html">AI employees: one for each app you use, from $297/mo</a></li><li><a href="service-web-design.html">Websites, from $500</a></li><li><a href="service-ai-ads.html">Ad creation, from $497/mo</a></li><li><a href="service-ai-consulting.html">Custom systems, quoted</a></li><li><a href="service-ai-seo.html">AI SEO: one agent does it end to end</a></li><li><a href="service-crm-dashboards.html">CRM and dashboard optimization</a></li><li><a href="service-reviews.html">Google reviews: every customer asked</a></li><li><a href="service-winback.html">Win back past customers</a></li></ul></li>
+        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        <li><a href="tel:4807980753" class="nav__link">(480) 798-0753</a></li>
+        <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Talk to us</a></li>
+      </ul>
+    </div>
+  </nav>
+  <svg class="sv-grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg><div class="sv-vig" aria-hidden="true"></div>
+  <main id="main" class="hd">
+
+    <header class="hd-hero" aria-labelledby="h1">
+      <p class="hd-slate">The Hiring Desk</p>
+      <h1 id="h1">Pick who starts <em>Monday.</em></h1>
+      <p>Six AI employees, one inside each app your company already runs on. Tap one to hire it, or drag it onto the desk. The desk shows what their Monday looks like and the whole price, before you talk to anyone.</p>
+    </header>
+
+    <div class="hd-room">
+      <section id="bench" aria-labelledby="h-bench">
+        <p class="hd-label" id="h-bench">The bench · six employees</p>
+        <div class="hd-bench">
+        <article class="hd-card" draggable="true" data-id="ring" aria-label="RING">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>RING</h3><p class="hd-card__app">works inside your phone line</p>
+            <ul><li>Picks up in about eight seconds</li><li>Books into your calendar</li><li>Texts back the ones who hung up</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$497<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="ring" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        <article class="hd-card" draggable="true" data-id="dispatch" aria-label="DISPATCH">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/dispatch-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>DISPATCH</h3><p class="hd-card__app">works inside Jobber, Housecall Pro or ServiceTitan</p>
+            <ul><li>Turns a lead into a client and a request</li><li>Sends the quote from your price list</li><li>Confirms and reminds every visit</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$497<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="dispatch" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        <article class="hd-card" draggable="true" data-id="inbox" aria-label="INBOX">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/inbox-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>INBOX</h3><p class="hd-card__app">works inside Google Workspace</p>
+            <ul><li>Replies to every new lead in under a minute</li><li>Books into Google Calendar</li><li>Follows up until they answer</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$397<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="inbox" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        <article class="hd-card" draggable="true" data-id="thread" aria-label="THREAD">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/thread-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>THREAD</h3><p class="hd-card__app">works inside Slack</p>
+            <ul><li>Answers the team from your own documents</li><li>Posts every lead, call and payment as it happens</li><li>Drafts the customer reply in the thread</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$347<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="thread" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        <article class="hd-card" draggable="true" data-id="huddle" aria-label="HUDDLE">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/huddle-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>HUDDLE</h3><p class="hd-card__app">works inside Microsoft Teams</p>
+            <ul><li>Answers the team from your files</li><li>Posts every lead, call and payment into a channel</li><li>Drafts the customer reply for one-click approval</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$347<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="huddle" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        <article class="hd-card" draggable="true" data-id="books" aria-label="BOOKS">
+          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/books-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__body">
+            <h3>BOOKS</h3><p class="hd-card__app">works inside QuickBooks Online</p>
+            <ul><li>Sends the invoice when the job closes</li><li>Reminds late payers politely</li><li>Matches payments and marks them paid</li></ul>
+          </div>
+          <div class="hd-card__foot"><b>$297<small>/mo</small></b>
+            <button type="button" class="hd-hire" data-id="books" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
+        </article>
+        </div>
+      </section>
+
+      <aside class="hd-desk" id="desk" aria-labelledby="h-desk" aria-live="polite">
+        <p class="hd-label">Your desk</p>
+        <h2 id="h-desk">Your <em>staff.</em></h2>
+        <div class="hd-seats" id="seats"></div>
+        <p class="hd-empty" id="deskEmpty">Nobody hired yet. Tap <b>Hire</b> on anyone on the bench, or drag them here.</p>
+        <p class="hd-label" style="margin-top:.4rem">Their Monday · an example</p>
+        <ol class="hd-day" id="day"></ol>
+        <div class="hd-total"><b id="total">$0</b><span id="totalNote">a month</span></div>
+        <p class="hd-save" id="save"></p>
+        <button type="button" class="hd-all" id="hireAll">Hire the full staff</button>
+        <div class="hd-go">
+          <a id="send" href="#bench" class="tk-btn tk-btn--solid tk-btn--arrow" aria-disabled="true">Send this lineup</a>
+          <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
+        </div>
+        <p class="hd-fine">Nothing is charged here. Sending the lineup starts a conversation: we confirm it fits your company, then you get the price in writing. Month to month, no contract. Built on your prices, hours and wording, and you read every reply before it goes live.</p>
+      </aside>
+    </div>
+  </main>
+    <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="GreenAI home">
+            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
+            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions</span>
+          </a>
+          <p class="footer__tagline">An AI services workforce for small companies in any trade: AI staff, websites, ads, SEO, CRM, reviews, win-back and custom systems. Run from Gilbert, Arizona, with a real person on the phone.</p>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">GreenAI Solutions<br/>Gilbert, Arizona</p>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="staff.html">AI employees, six apps</a></li>
+            <li><a href="service-web-design.html">Websites</a></li>
+            <li><a href="service-ai-ads.html">Ad creation</a></li>
+            <li><a href="service-ai-consulting.html">Custom systems</a></li>
+            <li><a href="service-ai-seo.html">AI SEO</a></li>
+            <li><a href="service-crm-dashboards.html">CRM and dashboards</a></li>
+            <li><a href="service-reviews.html">Google reviews</a></li>
+            <li><a href="service-winback.html">Win back customers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Company</h5>
+          <ul class="footer__links" role="list">
+            <li><a href="testimonials.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Questions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pay.html">Start</a></li>
+            <li><a href="agreement.html">Service agreement</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact</h5>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>Gilbert, Arizona 85296<br/><span style="color:rgba(255,255,255,.5);font-size:.85rem">Working with companies anywhere</span></div>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div><a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65)">@greenaidigitals</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html">Terms of Service</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="agreement.html">Service Agreement</a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Solutions. All rights reserved.</span>
+        <span class="footer__bottom-right">Gilbert, Arizona</span>
+      </div>
+    </div>
+  </footer>
+  <div class="sn-pad-bottom" aria-hidden="true"></div>
+  <script src="script.js?v=14"></script>
+  <script src="checkout.js?v=8"></script>
+  <script src="analytics.js"></script>
+  <script>
+  (function(){
+    var t=document.querySelector('.ag-t'); if(!t) return;
+    var to=+t.getAttribute('data-to')||8, s=0;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ t.textContent='0:0'+to; return; }
+    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
+  })();
+  </script>
+  <script>
+  (function(){
+    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
+    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
+    function tick(){
+      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      bar.classList.toggle('is-on', past && !nearFoot);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  })();
+  (function(){
+    var list=document.querySelector('.sn-steps__list'); if(!list) return;
+    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
+    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
+    on(0);
+    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
+    if('IntersectionObserver' in window && window.innerWidth>900){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      items.forEach(function(li){ io.observe(li); });
+    }
+  })();
+  </script>
+  <script>
+  (function () {
+    var EMP = [{"id": "ring", "name": "RING", "inside": "inside your phone line", "price": 497, "does": ["Picks up in about eight seconds", "Books into your calendar", "Texts back the ones who hung up"], "day": [["06:52", "6:52 AM", "Answered a caller before you were up. Booked Tuesday 8:00 into your calendar."], ["21:47", "9:47 PM", "Missed call while you were at dinner. Texted them back in under a minute; they booked Thursday."]]}, {"id": "dispatch", "name": "DISPATCH", "inside": "inside Jobber, Housecall Pro or ServiceTitan", "price": 497, "does": ["Turns a lead into a client and a request", "Sends the quote from your price list", "Confirms and reminds every visit"], "day": [["08:05", "8:05 AM", "Turned last night's web request into a client and sent the quote from your price list."], ["18:00", "6:00 PM", "Sent tomorrow's visit reminders. Nudged the quote that went quiet on Friday."]]}, {"id": "inbox", "name": "INBOX", "inside": "inside Google Workspace", "price": 397, "does": ["Replies to every new lead in under a minute", "Books into Google Calendar", "Follows up until they answer"], "day": [["07:30", "7:30 AM", "Replied to four new leads in Gmail, each in under a minute. Two picked a time."], ["13:10", "1:10 PM", "A refund question came in. Drafted a reply and left it in Drafts for you. Nothing sent."]]}, {"id": "thread", "name": "THREAD", "inside": "inside Slack", "price": 347, "does": ["Answers the team from your own documents", "Posts every lead, call and payment as it happens", "Drafts the customer reply in the thread"], "day": [["07:00", "7:00 AM", "Posted the morning summary in #ops: leads overnight, quotes out, who is waiting on you."], ["15:20", "3:20 PM", "Answered a tech's question in Slack from your own price sheet, with the source."]]}, {"id": "huddle", "name": "HUDDLE", "inside": "inside Microsoft Teams", "price": 347, "does": ["Answers the team from your files", "Posts every lead, call and payment into a channel", "Drafts the customer reply for one-click approval"], "day": [["07:02", "7:02 AM", "Morning summary in your Teams channel: three leads, two quoted, one waiting on photos."], ["11:40", "11:40 AM", "Put a new request in front of you with three buttons: approve, edit, or call first."]]}, {"id": "books", "name": "BOOKS", "inside": "inside QuickBooks Online", "price": 297, "does": ["Sends the invoice when the job closes", "Reminds late payers politely", "Matches payments and marks them paid"], "day": [["07:00", "7:00 AM", "Cash sheet in your inbox: what came in last week, what is late, zero disputes."], ["15:12", "3:12 PM", "A job closed at 3:10. The invoice went out at 3:12 with your payment link."]]}], FULL = 1797, SEP = 2382;
+    var byId = {}; EMP.forEach(function (e) { byId[e.id] = e; });
+    var order = EMP.map(function (e) { return e.id; });
+    var picked = [];
+    try { picked = (location.hash.slice(1) || '').split(',').filter(function (id) { return byId[id]; }); } catch (e) {}
+    var $ = function (s) { return document.querySelector(s); };
+    var desk = $('#desk'), seats = $('#seats'), day = $('#day'), empty = $('#deskEmpty');
+    var total = $('#total'), totalNote = $('#totalNote'), save = $('#save'), send = $('#send'), all = $('#hireAll');
+    function money(n) { return '$' + n.toLocaleString('en-US'); }
+    function render() {
+      picked.sort(function (a, b) { return order.indexOf(a) - order.indexOf(b); });
+      document.querySelectorAll('.hd-card').forEach(function (c) {
+        var on = picked.indexOf(c.dataset.id) > -1;
+        c.classList.toggle('is-hired', on);
+        c.querySelector('.hd-hire').setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      var s = '';
+      for (var i = 0; i < 6; i++) {
+        var id = picked[i];
+        s += id ? '<button type="button" class="hd-seat is-filled" data-id="' + id + '" title="Remove ' + byId[id].name + '" aria-label="Remove ' + byId[id].name + '"><img src="art/bots/' + id + '-head.webp" alt="" width="200" height="200" /></button>'
+                : '<span class="hd-seat" aria-hidden="true"></span>';
+      }
+      seats.innerHTML = s;
+      var lines = [];
+      picked.forEach(function (id) { byId[id].day.forEach(function (d) { lines.push([d[0], d[1], byId[id].name, d[2]]); }); });
+      lines.sort(function (a, b) { return a[0] < b[0] ? -1 : 1; });
+      day.innerHTML = lines.map(function (l) { return '<li><time>' + l[1] + '</time><div><b>' + l[2] + '</b><span>' + l[3] + '</span></div></li>'; }).join('');
+      empty.hidden = picked.length > 0;
+      var sum = picked.reduce(function (t, id) { return t + byId[id].price; }, 0);
+      var isAll = picked.length === EMP.length;
+      total.textContent = money(isAll ? FULL : sum);
+      totalNote.textContent = picked.length ? (picked.length + (picked.length === 1 ? ' employee' : ' employees') + ' · a month · month to month') : 'a month · nobody hired yet';
+      save.textContent = isAll ? 'The full staff: ' + money(SEP - FULL) + ' a month less than hiring all six separately.'
+        : (picked.length >= 4 ? 'Hire all six and it is ' + money(FULL) + ' a month, not ' + money(SEP) + '.' : '');
+      all.textContent = isAll ? 'Clear the desk' : 'Hire the full staff';
+      send.setAttribute('aria-disabled', picked.length ? 'false' : 'true');
+      send.href = picked.length ? 'contact.html?lineup=' + picked.join(',') : '#bench';
+      try { history.replaceState(null, '', picked.length ? '#' + picked.join(',') : location.pathname); } catch (e) {}
+    }
+    function toggle(id) { var i = picked.indexOf(id); if (i > -1) picked.splice(i, 1); else picked.push(id); render(); }
+    function add(id) { if (byId[id] && picked.indexOf(id) < 0) { picked.push(id); render(); } }
+    document.querySelectorAll('.hd-hire').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); toggle(b.dataset.id); }); });
+    seats.addEventListener('click', function (e) { var s = e.target.closest('.hd-seat.is-filled'); if (s) toggle(s.dataset.id); });
+    all.addEventListener('click', function () { picked = picked.length === EMP.length ? [] : order.slice(); render(); });
+    document.querySelectorAll('.hd-card').forEach(function (c) {
+      c.addEventListener('dragstart', function (e) { e.dataTransfer.setData('text/plain', c.dataset.id); e.dataTransfer.effectAllowed = 'copy'; c.classList.add('is-drag'); });
+      c.addEventListener('dragend', function () { c.classList.remove('is-drag'); desk.classList.remove('is-over'); });
+    });
+    desk.addEventListener('dragover', function (e) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; desk.classList.add('is-over'); });
+    desk.addEventListener('dragleave', function (e) { if (!desk.contains(e.relatedTarget)) desk.classList.remove('is-over'); });
+    desk.addEventListener('drop', function (e) { e.preventDefault(); desk.classList.remove('is-over'); add(e.dataTransfer.getData('text/plain')); });
+    render();
+  })();
+  </script>
+</body>
+</html>

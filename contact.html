@@ -456,8 +456,19 @@
       'quote':        { pick: 'unsure',  name: 'A question first', price: '' }
     };
 
-    var sku = new URLSearchParams(window.location.search).get('want');
+    /* The Hiring Desk (hire.html) sends ?lineup=ring,books,... — turn the picks
+       into one combined "want" with the whole price. */
+    var params = new URLSearchParams(window.location.search);
+    var sku = params.get('want');
     var want = sku && WANT[sku];
+    var lineup = (params.get('lineup') || '').split(',').filter(function (id) { return WANT['agent-' + id]; });
+    if (!want && lineup.length === 6) want = WANT['full-staff'];
+    else if (!want && lineup.length === 1) want = WANT['agent-' + lineup[0]];
+    else if (!want && lineup.length > 1) {
+      var names = [], sum = 0;
+      lineup.forEach(function (id) { var w = WANT['agent-' + id]; names.push(w.name.split(' —')[0]); sum += parseInt(w.price.replace(/\D/g, ''), 10); });
+      want = { pick: lineup[0], name: 'a staff of ' + lineup.length + ': ' + names.join(', '), price: '$' + sum.toLocaleString('en-US') + '/mo' };
+    }
     if (!want) return;
 
     var label = want.name + (want.price ? ' · ' + want.price : '');
