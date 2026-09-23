@@ -170,10 +170,10 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <section class="sn-sec" aria-labelledby="h-film" style="padding-bottom:1rem">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-film">You closed at six. <em>They didn't.</em></h2><p class="tk-lede">Thirty seconds on what the six do after you lock up. Sound on.</p></div>
-        <div style="max-width:340px;margin:0 auto;border-radius:28px;overflow:hidden;border:1px solid rgba(232,196,106,.45);box-shadow:0 30px 80px rgba(0,0,0,.55);background:#060706">
-          <video controls playsinline preload="none" poster="film/night-shift-poster.jpg" width="720" height="1280" style="display:block;width:100%;height:auto" aria-label="Short film: six robots switch on in a closed shop, answer the phone, book jobs and send invoices through the night.">
-            <source src="film/night-shift.mp4" type="video/mp4">
+        <div class="sn-head"><h2 class="tk-h2" id="h-film">Worn out to <em>lit up.</em></h2><p class="tk-lede">Ten seconds on what we do to a business. Tap for sound.</p></div>
+        <div style="max-width:960px;margin:0 auto;border-radius:24px;overflow:hidden;border:1px solid rgba(232,196,106,.45);box-shadow:0 30px 80px rgba(0,0,0,.55);background:#060706">
+          <video controls muted autoplay loop playsinline preload="metadata" poster="film/homepage-ad-poster.jpg" width="1280" height="720" style="display:block;width:100%;height:auto" aria-label="Ten-second ad: a GreenAI robot flies down a run-down city street and turns each worn-out building into a lit-up tower.">
+            <source src="film/homepage-ad.mp4" type="video/mp4">
           </video>
         </div>
         <p class="tk-lede" style="text-align:center;margin-top:1.25rem">More like this on Instagram: <a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener" style="color:#E8C46A">@greenaidigitals</a></p>
