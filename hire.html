@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=11" />
+  <link rel="stylesheet" href="tech.css?v=12" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -91,7 +91,7 @@
     .hd-card.is-hired { border-color: #E8C46A; box-shadow: 0 0 0 1px #E8C46A, 0 30px 60px -30px rgba(232,196,106,.55); }
     .hd-card.is-drag { opacity: .45; }
     .hd-card__face { display: flex; align-items: center; gap: .8rem; }
-    .hd-bust { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(232,196,106,.45); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); }
+    .hd-bust { width: 56px; height: 56px; border-radius: 50%; flex: none; filter: drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
     .hd-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; letter-spacing: -.01em; }
     .hd-card__app { margin: .15rem 0 .7rem; font-size: .85rem; color: #E8C46A !important; }
     .hd-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .35rem; }
@@ -196,7 +196,7 @@
         <p class="hd-label" id="h-bench">The bench · six employees</p>
         <div class="hd-bench">
         <article class="hd-card" draggable="true" data-id="ring" aria-label="RING">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>RING</h3><p class="hd-card__app">works inside your phone line</p>
             <ul><li>Picks up in about eight seconds</li><li>Books into your calendar</li><li>Texts back the ones who hung up</li></ul>
@@ -205,7 +205,7 @@
             <button type="button" class="hd-hire" data-id="ring" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
         </article>
         <article class="hd-card" draggable="true" data-id="dispatch" aria-label="DISPATCH">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/dispatch-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/dispatch-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>DISPATCH</h3><p class="hd-card__app">works inside Jobber, Housecall Pro or ServiceTitan</p>
             <ul><li>Turns a lead into a client and a request</li><li>Sends the quote from your price list</li><li>Confirms and reminds every visit</li></ul>
@@ -214,7 +214,7 @@
             <button type="button" class="hd-hire" data-id="dispatch" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
         </article>
         <article class="hd-card" draggable="true" data-id="inbox" aria-label="INBOX">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/inbox-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/inbox-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>INBOX</h3><p class="hd-card__app">works inside Google Workspace</p>
             <ul><li>Replies to every new lead in under a minute</li><li>Books into Google Calendar</li><li>Follows up until they answer</li></ul>
@@ -223,7 +223,7 @@
             <button type="button" class="hd-hire" data-id="inbox" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
         </article>
         <article class="hd-card" draggable="true" data-id="thread" aria-label="THREAD">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/thread-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/thread-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>THREAD</h3><p class="hd-card__app">works inside Slack</p>
             <ul><li>Answers the team from your own documents</li><li>Posts every lead, call and payment as it happens</li><li>Drafts the customer reply in the thread</li></ul>
@@ -232,7 +232,7 @@
             <button type="button" class="hd-hire" data-id="thread" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
         </article>
         <article class="hd-card" draggable="true" data-id="huddle" aria-label="HUDDLE">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/huddle-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/huddle-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>HUDDLE</h3><p class="hd-card__app">works inside Microsoft Teams</p>
             <ul><li>Answers the team from your files</li><li>Posts every lead, call and payment into a channel</li><li>Drafts the customer reply for one-click approval</li></ul>
@@ -241,7 +241,7 @@
             <button type="button" class="hd-hire" data-id="huddle" aria-pressed="false"><span class="on">Hired ✓</span><span class="off">Hire</span></button></div>
         </article>
         <article class="hd-card" draggable="true" data-id="books" aria-label="BOOKS">
-          <div class="hd-card__face"><img class="hd-bust rb3-head" src="art/bots/books-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></div>
+          <div class="hd-card__face"><img class="hd-bust rb3-head seal-sm" src="art/marks/books-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></div>
           <div class="hd-card__body">
             <h3>BOOKS</h3><p class="hd-card__app">works inside QuickBooks Online</p>
             <ul><li>Sends the invoice when the job closes</li><li>Reminds late payers politely</li><li>Matches payments and marks them paid</li></ul>
@@ -400,7 +400,7 @@
       var s = '';
       for (var i = 0; i < 6; i++) {
         var id = picked[i];
-        s += id ? '<button type="button" class="hd-seat is-filled" data-id="' + id + '" title="Remove ' + byId[id].name + '" aria-label="Remove ' + byId[id].name + '"><img src="art/bots/' + id + '-head.webp" alt="" width="200" height="200" /></button>'
+        s += id ? '<button type="button" class="hd-seat is-filled" data-id="' + id + '" title="Remove ' + byId[id].name + '" aria-label="Remove ' + byId[id].name + '"><img src="art/marks/' + id + '-sm.svg" alt="" width="48" height="48" /></button>'
                 : '<span class="hd-seat" aria-hidden="true"></span>';
       }
       seats.innerHTML = s;

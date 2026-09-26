@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=11" />
+  <link rel="stylesheet" href="tech.css?v=12" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -66,7 +66,8 @@
 
     .ab-control { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; max-width: 1040px; margin: 2.6rem auto 0; }
     .ab-control__side { display: flex; justify-content: space-around; align-items: flex-end; }
-    .ab-control__side a { display: block; width: var(--w, 140px); transform: translateY(var(--dy, 0)); }
+    .ab-control__side a { display: block; width: min(var(--w, 140px), 8.2vw); transform: translateY(var(--dy, 0)); }
+    .ab-control__side { gap: .5rem; }
     .ab-line { position: relative; width: 340px; padding: 1.6rem 1.5rem; border-radius: 24px; background: #fff; color: var(--ink); text-align: center; box-shadow: 0 40px 90px -30px rgba(0,0,0,.65); }
     .ab-line small { display: block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
     .ab-line a.num { display: block; margin: .4rem 0 .2rem; font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
@@ -150,10 +151,10 @@
           <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
         </div>
       </div>
-      <div class="ab-control" aria-label="The six robots around the direct line">
-        <div class="ab-control__side"><a href="ring.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.0s" title="RING"><img class="rb3 rb3-ring" src="art/bots/ring-power.webp" alt="RING" width="480" height="720" loading="lazy" decoding="async" /></a><a href="dispatch.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="DISPATCH"><img class="rb3 rb3-dispatch" src="art/bots/dispatch-hips.webp" alt="DISPATCH" width="480" height="720" loading="lazy" decoding="async" /></a><a href="inbox.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.8s" title="INBOX"><img class="rb3 rb3-inbox" src="art/bots/inbox-raise.webp" alt="INBOX" width="480" height="720" loading="lazy" decoding="async" /></a></div>
+      <div class="ab-control" aria-label="The six AI employees around the direct line">
+        <div class="ab-control__side"><a href="ring.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.0s" title="RING"><img class="rb3 seal seal-ring" src="art/marks/ring-md.svg" alt="RING" width="240" height="240" loading="lazy" decoding="async" /></a><a href="dispatch.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="DISPATCH"><img class="rb3 seal seal-dispatch" src="art/marks/dispatch-md.svg" alt="DISPATCH" width="240" height="240" loading="lazy" decoding="async" /></a><a href="inbox.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.8s" title="INBOX"><img class="rb3 seal seal-inbox" src="art/marks/inbox-md.svg" alt="INBOX" width="240" height="240" loading="lazy" decoding="async" /></a></div>
         <div class="ab-line"><span class="live">Direct line</span><small>Rings the founder</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>GreenAI Solutions</b> · Gilbert, AZ · works with companies anywhere</p></div>
-        <div class="ab-control__side"><a href="thread.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.0s" title="THREAD"><img class="rb3 rb3-thread" src="art/bots/thread-guard.webp" alt="THREAD" width="480" height="720" loading="lazy" decoding="async" /></a><a href="huddle.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="HUDDLE"><img class="rb3 rb3-huddle" src="art/bots/huddle-hips.webp" alt="HUDDLE" width="480" height="720" loading="lazy" decoding="async" /></a><a href="books.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.8s" title="BOOKS"><img class="rb3 rb3-books" src="art/bots/books-power.webp" alt="BOOKS" width="480" height="720" loading="lazy" decoding="async" /></a></div>
+        <div class="ab-control__side"><a href="thread.html" class="rb-float" style="--w:120px;--dy:-28px;animation-delay:0.0s" title="THREAD"><img class="rb3 seal seal-thread" src="art/marks/thread-md.svg" alt="THREAD" width="240" height="240" loading="lazy" decoding="async" /></a><a href="huddle.html" class="rb-float" style="--w:120px;--dy:-14px;animation-delay:0.4s" title="HUDDLE"><img class="rb3 seal seal-huddle" src="art/marks/huddle-md.svg" alt="HUDDLE" width="240" height="240" loading="lazy" decoding="async" /></a><a href="books.html" class="rb-float" style="--w:120px;--dy:0px;animation-delay:0.8s" title="BOOKS"><img class="rb3 seal seal-books" src="art/marks/books-md.svg" alt="BOOKS" width="240" height="240" loading="lazy" decoding="async" /></a></div>
       </div>
     </header></div>
 
@@ -172,7 +173,7 @@
     <div class="sn-state" aria-label="Why a long snapper builds this">
       <p>A long snapper has one job. Put the ball in the same place, at the same speed, every time, with someone running at you. Nobody knows your name unless you miss.</p>
       <p>I did that for five years at Washington: a Pac-12 championship, a Sugar Bowl, a national championship game. What it taught me was not football. It was how to be automatic when it matters.</p>
-      <p>That is what I build now. <span class="who"><img class="who__bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" />RING</span> answers the phone the same way at 9:47 on a Sunday night as it does on Monday morning. Nobody notices it. That is the point.</p>
+      <p>That is what I build now. <span class="who"><img class="who__bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />RING</span> answers the phone the same way at 9:47 on a Sunday night as it does on Monday morning. Nobody notices it. That is the point.</p>
     </div>
 
     <section class="sn-sec" aria-labelledby="h-path">

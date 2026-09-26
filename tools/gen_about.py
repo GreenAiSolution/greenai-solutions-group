@@ -8,7 +8,8 @@ from robots import robot, bust, peek
 CSS = """
     .ab-control { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; max-width: 1040px; margin: 2.6rem auto 0; }
     .ab-control__side { display: flex; justify-content: space-around; align-items: flex-end; }
-    .ab-control__side a { display: block; width: var(--w, 140px); transform: translateY(var(--dy, 0)); }
+    .ab-control__side a { display: block; width: min(var(--w, 140px), 8.2vw); transform: translateY(var(--dy, 0)); }
+    .ab-control__side { gap: .5rem; }
     .ab-line { position: relative; width: 340px; padding: 1.6rem 1.5rem; border-radius: 24px; background: #fff; color: var(--ink); text-align: center; box-shadow: 0 40px 90px -30px rgba(0,0,0,.65); }
     .ab-line small { display: block; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
     .ab-line a.num { display: block; margin: .4rem 0 .2rem; font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
@@ -80,7 +81,7 @@ PAGE = head("About — GreenAI Solutions, Gilbert, AZ",
           <a href="mailto:jaden@greenaidigital.com" class="tk-btn tk-btn--ghost">jaden@greenaidigital.com</a>
         </div>
       </div>
-      <div class="ab-control" aria-label="The six robots around the direct line">
+      <div class="ab-control" aria-label="The six AI employees around the direct line">
         <div class="ab-control__side">{side(left)}</div>
         <div class="ab-line"><span class="live">Direct line</span><small>Rings the founder</small><a class="num" href="tel:4807980753">(480) 798-0753</a><p>No photo of me on this site, on purpose. You get my number instead.</p><a class="mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><p style="margin-top:.6rem"><b>GreenAI Solutions</b> · Gilbert, AZ · works with companies anywhere</p></div>
         <div class="ab-control__side">{side(right)}</div>

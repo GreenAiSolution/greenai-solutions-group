@@ -28,9 +28,9 @@ CSS = f"""
     .sv-bars {{ height: 44px; background: #000; margin: 0 -16px; }}
     .sv-cast {{ display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem 2rem; margin: 3.2rem auto 0; max-width: 1000px; }}
     .sv-cast a {{ display: grid; justify-items: center; gap: .5rem; text-decoration: none; color: rgba(255,255,255,.75); font-family: var(--mono); font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; }}
-    .sv-cast span {{ display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; border: 1px solid rgba(232,196,106,.55); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); box-shadow: 0 0 0 6px rgba(232,196,106,.06), 0 30px 60px -30px rgba(0,0,0,.8); overflow: hidden; transition: transform .25s, border-color .25s; }}
-    .sv-cast span img {{ width: 88px; height: 88px; border-radius: 50%; object-fit: cover; }}
-    .sv-cast a:hover span {{ transform: translateY(-6px) scale(1.05); border-color: {GOLD}; }}
+    .sv-cast span {{ display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); transition: transform .25s; }}
+    .sv-cast span img {{ width: 92px; height: 92px; }}
+    .sv-cast a:hover span {{ transform: translateY(-4px); }}
     .sv-cast a:hover {{ color: #fff; }}
     .sv-scene {{ position: relative; margin: 0 16px 16px; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(180deg, #0A1A11, #06100A); border: 1px solid rgba(232,196,106,.14); }}
     .sv-scene::before {{ content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at var(--x, 70%) 30%, color-mix(in srgb, var(--ac, {GOLD}) 22%, transparent), transparent 60%); pointer-events: none; }}
@@ -49,6 +49,10 @@ CSS = f"""
     .sv-cta .tk-btn--ghost {{ border-color: rgba(255,255,255,.35); color: #fff; }}
     .sv-stage {{ position: relative; }}
     .sv-stage .rb-float {{ position: absolute; width: 190px; z-index: 2; }}
+    /* the seals sit in the gutter beside each mockup, never over it */
+    .sv-stage .rb-float {{ position: static; width: 88px; margin: 0 0 1.2rem auto; }}
+    .sv-scene--flip .sv-stage .rb-float {{ margin: 0 auto 1.2rem 0; }}
+    .sv-spot {{ display: none; }}
     .sv-spot {{ position: absolute; width: 260px; height: 90px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--ac, {GOLD}) 40%, transparent), transparent); filter: blur(6px); z-index: 1; }}
     .sv-screen {{ position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(232,196,106,.3); box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 60px 120px -40px rgba(0,0,0,.9), 0 0 80px -20px color-mix(in srgb, var(--ac, {GOLD}) 45%, transparent); background: #0B1B12; }}
     .sv-screen .tk-plate {{ border-radius: 0; border: 0; box-shadow: none; background: #0B1B12; color: #fff; }}

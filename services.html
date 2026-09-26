@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=11" />
+  <link rel="stylesheet" href="tech.css?v=12" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -86,9 +86,9 @@
     .sv-bars { height: 44px; background: #000; margin: 0 -16px; }
     .sv-cast { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem 2rem; margin: 3.2rem auto 0; max-width: 1000px; }
     .sv-cast a { display: grid; justify-items: center; gap: .5rem; text-decoration: none; color: rgba(255,255,255,.75); font-family: var(--mono); font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; }
-    .sv-cast span { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; border: 1px solid rgba(232,196,106,.55); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); box-shadow: 0 0 0 6px rgba(232,196,106,.06), 0 30px 60px -30px rgba(0,0,0,.8); overflow: hidden; transition: transform .25s, border-color .25s; }
-    .sv-cast span img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; }
-    .sv-cast a:hover span { transform: translateY(-6px) scale(1.05); border-color: #E8C46A; }
+    .sv-cast span { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); transition: transform .25s; }
+    .sv-cast span img { width: 92px; height: 92px; }
+    .sv-cast a:hover span { transform: translateY(-4px); }
     .sv-cast a:hover { color: #fff; }
     .sv-scene { position: relative; margin: 0 16px 16px; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(180deg, #0A1A11, #06100A); border: 1px solid rgba(232,196,106,.14); }
     .sv-scene::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at var(--x, 70%) 30%, color-mix(in srgb, var(--ac, #E8C46A) 22%, transparent), transparent 60%); pointer-events: none; }
@@ -107,6 +107,10 @@
     .sv-cta .tk-btn--ghost { border-color: rgba(255,255,255,.35); color: #fff; }
     .sv-stage { position: relative; }
     .sv-stage .rb-float { position: absolute; width: 190px; z-index: 2; }
+    /* the seals sit in the gutter beside each mockup, never over it */
+    .sv-stage .rb-float { position: static; width: 88px; margin: 0 0 1.2rem auto; }
+    .sv-scene--flip .sv-stage .rb-float { margin: 0 auto 1.2rem 0; }
+    .sv-spot { display: none; }
     .sv-spot { position: absolute; width: 260px; height: 90px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--ac, #E8C46A) 40%, transparent), transparent); filter: blur(6px); z-index: 1; }
     .sv-screen { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(232,196,106,.3); box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 60px 120px -40px rgba(0,0,0,.9), 0 0 80px -20px color-mix(in srgb, var(--ac, #E8C46A) 45%, transparent); background: #0B1B12; }
     .sv-screen .tk-plate { border-radius: 0; border: 0; box-shadow: none; background: #0B1B12; color: #fff; }
@@ -224,7 +228,7 @@
       <h1 id="h1">Eight services. <em>One workforce.</em></h1>
       <p>GreenAI is an AI services workforce: you hand over a job, and it gets done inside the tools you already use. Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
       <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the eight</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
-      <div class="sv-cast" aria-label="The cast"><a href="ring.html"><span><img class="rb-bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>RING</a><a href="dispatch.html"><span><img class="rb-bust rb3-head" src="art/bots/dispatch-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>DISPATCH</a><a href="inbox.html"><span><img class="rb-bust rb3-head" src="art/bots/inbox-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>INBOX</a><a href="thread.html"><span><img class="rb-bust rb3-head" src="art/bots/thread-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>THREAD</a><a href="huddle.html"><span><img class="rb-bust rb3-head" src="art/bots/huddle-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>HUDDLE</a><a href="books.html"><span><img class="rb-bust rb3-head" src="art/bots/books-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /></span>BOOKS</a></div>
+      <div class="sv-cast" aria-label="The cast"><a href="ring.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>RING</a><a href="dispatch.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/dispatch-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>DISPATCH</a><a href="inbox.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/inbox-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>INBOX</a><a href="thread.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/thread-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>THREAD</a><a href="huddle.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/huddle-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>HUDDLE</a><a href="books.html"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/books-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>BOOKS</a></div>
     </header>
 
     <section class="sv-scene" id="s1" style="--ac:#7DE3A4;--x:75%" aria-labelledby="h-s1">
@@ -234,14 +238,14 @@
           <div class="sv-price"><b>from $297</b><span>a month each · all six $1,797</span></div>
           <div class="sv-cta"><a href="hire.html" class="tk-btn tk-btn--solid tk-btn--arrow">Build your staff</a><a href="staff.html" class="tk-btn tk-btn--ghost">Meet the staff</a><a href="ring.html#h-hear" class="tk-btn tk-btn--ghost">Hear RING answer a call</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 rb3-ring" src="art/bots/ring-raise.webp" alt="RING" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 seal seal-ring" src="art/marks/ring-md.svg" alt="RING" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-screen" style="margin-right:80px"><div class="tk-plate ag-mock"><div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
 <ul class="ag-lines"><li class="them">Hi, is this the heating and air company? My AC is blowing warm air and it's Sunday.</li>
 <li class="us" data-who="RING · answered in 0:08">It is. Sorry, that is no fun on a hot day. Can I get the address? I can book the first visit tomorrow morning.</li>
 <li class="them">Yeah, 1412 E Palo Verde, Gilbert.</li>
 <li class="us typing" data-who="RING"><span class="caret"></span></li></ul>
 <div class="ag-call__foot">Owner texted: "AC blowing warm, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div></div></div>
-          <ul class="sv-roster" style="margin-top:1.4rem"><li><img class="rb-bust rb3-head" src="art/bots/ring-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="ring.html">RING</a><span>inside your phone line</span><b>$497/mo</b></li><li><img class="rb-bust rb3-head" src="art/bots/dispatch-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="dispatch.html">DISPATCH</a><span>inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li><li><img class="rb-bust rb3-head" src="art/bots/inbox-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="inbox.html">INBOX</a><span>inside Google Workspace</span><b>$397/mo</b></li><li><img class="rb-bust rb3-head" src="art/bots/thread-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="thread.html">THREAD</a><span>inside Slack</span><b>$347/mo</b></li><li><img class="rb-bust rb3-head" src="art/bots/huddle-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="huddle.html">HUDDLE</a><span>inside Microsoft Teams</span><b>$347/mo</b></li><li><img class="rb-bust rb3-head" src="art/bots/books-head.webp" alt="" width="200" height="200" loading="lazy" decoding="async" /><a href="books.html">BOOKS</a><span>inside QuickBooks Online</span><b>$297/mo</b></li></ul>
+          <ul class="sv-roster" style="margin-top:1.4rem"><li><img class="rb-bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="ring.html">RING</a><span>inside your phone line</span><b>$497/mo</b></li><li><img class="rb-bust rb3-head seal-sm" src="art/marks/dispatch-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="dispatch.html">DISPATCH</a><span>inside Jobber, Housecall Pro or ServiceTitan</span><b>$497/mo</b></li><li><img class="rb-bust rb3-head seal-sm" src="art/marks/inbox-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="inbox.html">INBOX</a><span>inside Google Workspace</span><b>$397/mo</b></li><li><img class="rb-bust rb3-head seal-sm" src="art/marks/thread-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="thread.html">THREAD</a><span>inside Slack</span><b>$347/mo</b></li><li><img class="rb-bust rb3-head seal-sm" src="art/marks/huddle-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="huddle.html">HUDDLE</a><span>inside Microsoft Teams</span><b>$347/mo</b></li><li><img class="rb-bust rb3-head seal-sm" src="art/marks/books-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /><a href="books.html">BOOKS</a><span>inside QuickBooks Online</span><b>$297/mo</b></li></ul>
         </div>
       </div>
     </section>
@@ -254,7 +258,7 @@
           <div class="sv-tiers"><div><small>Starter</small><b>$500</b><span>up to five pages</span></div><div><small>Business</small><b>$1,500</b><span>up to ten pages</span></div><div><small>Premium</small><b>$2,500+</b><span>custom scope, quoted</span></div></div>
           <div class="sv-cta" style="margin-top:1.4rem"><a href="service-web-design.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the website service</a><a href="testimonials.html" class="tk-btn tk-btn--ghost">See sites that are live</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 rb3-web" src="art/bots/web-guard.webp" alt="Websites" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 seal seal-web" src="art/marks/web-md.svg" alt="Websites" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-theatre" style="margin-right:70px"><div class="hp-browser"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" data-url="performancelab.fitness"/><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" data-url="handmadebyhalle.com"/><img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" data-url="greenaidigital.com/blackbox"/></div></div><div class="sv-theatre__cap"><span>Now showing · three live sites</span><span>built here</span></div></div>
         </div>
       </div>
@@ -280,7 +284,7 @@
           <div class="sv-price"><b>Quoted</b><span>after one conversation · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-ai-consulting.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what has been built</a><a href="contact.html?want=custom" class="tk-btn tk-btn--ghost">Describe what you need</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 rb3-custom" src="art/bots/custom-hips.webp" alt="Custom systems" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 seal seal-custom" src="art/marks/custom-md.svg" alt="Custom systems" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-schem" style="margin-right:70px"><svg viewBox="0 0 640 300" aria-label="A custom system drawn as a schematic: intake, checker, approval, log"><defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
 <g fill="none" stroke="#E8C46A" stroke-width="1.5" filter="url(#glow)">
 <rect x="30" y="110" width="130" height="70" rx="14"/><rect x="255" y="110" width="130" height="70" rx="14"/><rect x="480" y="110" width="130" height="70" rx="14"/>
@@ -302,7 +306,7 @@
           <div class="sv-price"><b>Quoted</b><span>after a free first audit · month to month</span></div>
           <div class="sv-cta"><a href="service-ai-seo.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how AI SEO works</a><a href="contact.html?want=seo" class="tk-btn tk-btn--ghost">Ask for the free audit</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 rb3-seo" src="art/bots/seo-guard.webp" alt="AI SEO" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 seal seal-seo" src="art/marks/seo-md.svg" alt="AI SEO" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Weekly crawl of every page</span><b>audit</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Titles, links, speed, markup</span><b>fixed</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Service and city pages</span><b>written</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Google Business Profile</span><b>kept alive</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly report, Google's numbers</span><b>plain English</b></li></ul></div>
         </div>
       </div>
@@ -315,7 +319,7 @@
           <div class="sv-price"><b>Quoted</b><span>after a read-only look · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-crm-dashboards.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what gets fixed</a><a href="contact.html?want=crm" class="tk-btn tk-btn--ghost">Tell us which CRM you use</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 rb3-crm" src="art/bots/crm-power.webp" alt="CRM and dashboards" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 seal seal-crm" src="art/marks/crm-md.svg" alt="CRM and dashboards" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">New leads this week</span><b>23</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Answered in, median</span><b>0:52</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Quotes out</span><b>$18,400</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Owed to you</span><b>$4,120</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span>Example numbers, not a client's</span><b></b></li></ul></div>
         </div>
       </div>
@@ -328,7 +332,7 @@
           <div class="sv-price"><b>Quoted</b><span>after one conversation · month to month</span></div>
           <div class="sv-cta"><a href="service-reviews.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the review engine</a><a href="contact.html?want=reviews" class="tk-btn tk-btn--ghost">Ask about reviews</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 rb3-reviews" src="art/bots/reviews-raise.webp" alt="Reviews" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px"><img class="rb3 seal seal-reviews" src="art/marks/reviews-md.svg" alt="Reviews" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Ask after every finished job</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">One reminder, then it stops</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A reply to every review</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A private line for complaints</span><b>to you</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly count, Google's numbers</span><b>report</b></li></ul></div>
         </div>
       </div>
@@ -341,7 +345,7 @@
           <div class="sv-price"><b>Quoted</b><span>after a read-only look at your list · fixed price in writing</span></div>
           <div class="sv-cta"><a href="service-winback.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how win-back runs</a><a href="contact.html?want=winback" class="tk-btn tk-btn--ghost">Ask about win-back</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 rb3-winback" src="art/bots/winback-raise.webp" alt="Win-back" width="480" height="720" loading="lazy" decoding="async" /></div>
+          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px"><img class="rb3 seal seal-winback" src="art/marks/winback-md.svg" alt="Win-back" width="240" height="240" loading="lazy" decoding="async" /></div>
           <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Past customers found and merged</span><b>cleaned</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sorted by how long it has been</span><b>grouped</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Three messages, your voice</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Small batches, not a blast</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sent, replied, booked</span><b>report</b></li></ul></div>
         </div>
       </div>

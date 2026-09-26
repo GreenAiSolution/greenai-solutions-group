@@ -4,6 +4,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT
 from ring_demo import section as ring_demo_section
+from robots import seals
 
 JSONLD = '''{
     "@context": "https://schema.org",
@@ -52,9 +53,10 @@ CSS = """
     .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
     @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } .hp-services[style] { grid-template-columns: 1fr !important; } }
     /* the hero: one spotlight, the six on one stage, nothing else */
-    .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
+    .home .sn-hero { padding-bottom: 3.6rem; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
     .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
-    .hp-face { position: absolute; right: -.4rem; bottom: 0; width: 8.2rem; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+    .hp-face { position: absolute; right: 1.2rem; top: 1.2rem; width: 5.6rem; height: auto; }
+    @media (max-width: 560px) { .home .sn-more a { padding-right: 6rem; } .hp-face { width: 4.2rem; right: .9rem; top: .9rem; } }
 """
 
 SIX_X = [22.0, 31.9, 43.5, 56.5, 68.0, 77.9]
@@ -96,7 +98,7 @@ steps = "".join(f'<li><b>{t}</b><p>{p}</p></li>' for t,p in [
 marquee1 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][:2])
 marquee2 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][2:5])
 
-roster = "".join(f'<a href="{a["id"]}.html"><img class="hp-face" src="art/six-{a["id"]}.webp" alt="" width="280" height="280" loading="lazy" decoding="async" /><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
+roster = "".join(f'<a href="{a["id"]}.html"><img class="hp-face" src="art/marks/{a["id"]}-md.svg" alt="" width="240" height="240" loading="lazy" decoding="async" /><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
 
 faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in [
     ("What is an AI employee, in plain English?","A program that does one job inside a tool you already use: answers the phone, replies to leads in Gmail, writes jobs into Jobber, answers the team in Slack or Teams, sends the invoices in QuickBooks. It is trained on your prices, hours and wording, and it never invents a number."),
@@ -129,7 +131,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
-      <div class="hp-six"><div class="hp-six__in"><img src="art/hero-six-1400.webp" srcset="art/hero-six-1400.webp 1400w, art/hero-six.webp 2400w" sizes="(max-width: 720px) 150vw, 1240px" width="2400" height="759" alt="The GreenAI workforce standing on one stage: RING, DISPATCH, INBOX, THREAD, HUDDLE and BOOKS." fetchpriority="high" decoding="async" />{six_links}</div></div>
+      {seals(AGENTS, "The six AI employees in the workforce")}
     </header></div>
 
     <section class="sn-sec" aria-labelledby="h-also">

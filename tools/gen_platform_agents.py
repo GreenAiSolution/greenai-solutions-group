@@ -14,7 +14,7 @@ say so. After running, re-inject the shared chrome if nav.html changed:
 """
 import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from robots import robot, bust, peek, ACCENT
+from robots import robot, bust, peek, seals, ACCENT
 HERO_POSE={"ring":"wave","dispatch":"point","inbox":"fly","thread":"think","huddle":"stand","books":"sit"}
 BAND_POSE={"ring":"fly","dispatch":"sit","inbox":"wave","thread":"point","huddle":"fly","books":"wave"}
 STAFF_POSE={"ring":"stand","dispatch":"fly","inbox":"wave","thread":"sit","huddle":"point","books":"think"}
@@ -28,7 +28,7 @@ STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" a
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = open(os.path.join(ROOT, "tools/shared-nav/nav.html")).read().rstrip("\n")
 FOOT = open(os.path.join(ROOT, "tools/shared-nav/footer.html")).read().rstrip("\n")
-TECH_V = 11; STYLE_V = 22; SCRIPT_V = 15; CHECKOUT_V = 8
+TECH_V = 12; STYLE_V = 22; SCRIPT_V = 15; CHECKOUT_V = 8
 
 def esc(s): return html.escape(s, quote=False)
 
@@ -432,7 +432,7 @@ def build_agent(a):
         </div>
       </div>
       <div class="sn-hero__stage ag-scene">
-        <div class="ag-scene__bot">{ORBIT}<div class="rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=n+", the "+a['inside']+" robot", pose=HERO_POSE[a['id']])}</div></div>
+        <div class="ag-scene__bot">{ORBIT}<div class="rb-float">{robot(a['id'], I[ICON_OF[a['id']]], label=n+", the AI employee "+a['inside'], pose=HERO_POSE[a['id']], size="lg")}</div></div>
         <div class="ag-scene__win">
           <div class="ag-win"><div class="ag-win__bar"><i></i><i></i><i></i><span>{esc(WIN[a['id']])}</span><b>{n} · live</b></div><div class="tk-plate ag-mock" role="img" aria-label="What {n} looks like at work {esc(a['inside'])}, a mock-up with fictional names.">
 {a['mock']}
@@ -467,7 +467,7 @@ def build_agent(a):
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-week">A week with {n}, <em>as you would see it.</em></h2><p class="tk-lede">Three messages you would actually get. Fictional customers, real behaviour.</p></div>
         <div class="sn-bubbles">
-          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div><div class="sn-grad__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], pose=BAND_POSE[a['id']])}</div></div>
+          <div><div class="sn-bubble"><b>{esc(bubbles[0][0])}</b>{esc(bubbles[0][1])}</div><div class="sn-grad__bot rb-float">{robot(a['id'], I[ICON_OF[a['id']]], pose=BAND_POSE[a['id']], size="lg")}</div></div>
           <div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">{n}</p><p class="sn-phone__sub">{esc(a['inside'])}</p><ul class="sn-lines"><li class="us" data-who="{n}">{esc(bubbles[1][1])}</li><li class="them">Good. Anything else?</li><li class="us" data-who="{n}">Nothing that needs you. Monday report at 7.</li></ul></div></div></div>
           <div><div class="sn-bubble"><b>{esc(bubbles[2][0])}</b>{esc(bubbles[2][1])}</div></div>
         </div>
@@ -551,7 +551,7 @@ def build_staff():
           <a href="pay.html?sku=full-staff" class="tk-btn tk-btn--ghost" data-sku="full-staff">Hire all six, ${FULL:,}/mo</a>
         </div>
       </div>
-      <div class="hp-six"><div class="hp-six__in"><img src="art/hero-six-1400.webp" srcset="art/hero-six-1400.webp 1400w, art/hero-six.webp 2400w" sizes="(max-width: 720px) 150vw, 1240px" width="2400" height="759" alt="The six AI employees standing on one stage: RING, DISPATCH, INBOX, THREAD, HUDDLE and BOOKS." fetchpriority="high" decoding="async" />{"".join(f'<a href="{x["id"]}.html" style="left:{px}%;--c:{ACCENT[x["id"]]}" aria-label="{x["name"]}"><span>{x["name"]}</span></a>' for x,px in zip(AGENTS,[24.2, 33.6, 44.0, 55.9, 66.5, 76.0]))}</div></div>
+      {seals(AGENTS)}
     </header></div>
 
     <section class="sn-sec" id="roster" aria-labelledby="h-roster">
