@@ -28,7 +28,7 @@ STARS='<svg class="sn-stars" viewBox="0 0 1400 700" preserveAspectRatio="none" a
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = open(os.path.join(ROOT, "tools/shared-nav/nav.html")).read().rstrip("\n")
 FOOT = open(os.path.join(ROOT, "tools/shared-nav/footer.html")).read().rstrip("\n")
-TECH_V = 11; STYLE_V = 22; SCRIPT_V = 14; CHECKOUT_V = 8
+TECH_V = 11; STYLE_V = 22; SCRIPT_V = 15; CHECKOUT_V = 8
 
 def esc(s): return html.escape(s, quote=False)
 
@@ -92,11 +92,11 @@ AGENTS = [
                ("RING · 2:12 AM","Burst pipe on Ray Rd. Texted you the address and the caller's number. Nothing booked; this one is yours."),
                ("RING · 11:05 AM","Missed call from (480) 555-0177 while you were on the line. Texted them back at 11:06; they want a quote Thursday.")],
       mock='''<div class="ag-call"><div class="ag-call__top"><span><i></i>Incoming · (480) 555-0142</span><b class="ag-t" data-from="0" data-to="8">0:00</b></div>
-<ul class="ag-lines"><li class="them">Hi, uh, is this Saguaro Pool Care? My pump is making a grinding noise and it's Sunday.</li>
-<li class="us" data-who="RING · answered in 0:08">It is. Sorry about the noise, that usually means the pump should be switched off until someone looks at it. Can I get the address? I can book the first visit tomorrow morning.</li>
+<ul class="ag-lines"><li class="them">Hi, is this the heating and air company? My AC is blowing warm air and it's Sunday.</li>
+<li class="us" data-who="RING · answered in 0:08">It is. Sorry, that is no fun on a hot day. Can I get the address? I can book the first visit tomorrow morning.</li>
 <li class="them">Yeah, 1412 E Palo Verde, Gilbert.</li>
 <li class="us typing" data-who="RING"><span class="caret"></span></li></ul>
-<div class="ag-call__foot">Owner texted: "Pump noise, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div>'''),
+<div class="ag-call__foot">Owner texted: "AC blowing warm, 1412 E Palo Verde, booked Mon 8:00. Transcript attached."</div></div>'''),
  dict(id="dispatch", n="02", name="DISPATCH", sku="agent-dispatch", price=497, short="Jobber, Housecall Pro or ServiceTitan",
       inside="inside Jobber, Housecall Pro or ServiceTitan", app="Jobber, Housecall Pro or ServiceTitan", vendors="Jobber, Housecall Pro and ServiceTitan",
       h1='DISPATCH works inside <em>Jobber.</em> Or Housecall Pro. Or ServiceTitan.',
@@ -119,7 +119,7 @@ AGENTS = [
       bubbles=[("DISPATCH · 9:48 PM","New request #1187 from the website. Client created, quoted $285 from your price list, holding Thursday 9:00 on Route B."),
                ("DISPATCH · Wed 6:00 PM","Reminder sent to M. Ortega for tomorrow's 9:00. On-my-way text queued for when the job before it closes."),
                ("DISPATCH · Day 5","Henderson quote still open. Second nudge sent in your wording. Stops after day ten unless they answer.")],
-      mock='''<div class="ag-job"><div class="ag-job__head"><span>Request #1187</span><b>Palo Verde · pump repair</b></div>
+      mock='''<div class="ag-job"><div class="ag-job__head"><span>Request #1187</span><b>Palo Verde · AC repair</b></div>
 <ol class="ag-flow"><li class="done"><b>Lead in</b><span>Website form, 9:47 PM</span></li><li class="done"><b>Client created</b><span>M. Ortega · Gilbert 85296</span></li><li class="done"><b>Quote sent</b><span>From your price list · $285</span></li><li class="on"><b>Scheduled</b><span>Thu 9:00 · Route B</span></li><li><b>Reminder</b><span>Wed 6:00 PM, automatic</span></li></ol>
 <div class="ag-job__foot">Written into your account. Nothing to copy over.</div></div>'''),
  dict(id="inbox", n="03", name="INBOX", sku="agent-inbox", price=397, short="Google Workspace",
@@ -141,11 +141,11 @@ AGENTS = [
       faq=[("Can I see what it sent?","Everything is in Sent, under its own user, the same as any employee's mail."),
            ("What does it do with a complaint?","Drafts a reply and leaves it in Drafts for you. It never sends anything unusual on its own."),
            ("Does it read my whole inbox?","Only the inbox and folders you give it access to, with Google's own permissions listed in writing.")],
-      bubbles=[("INBOX · 7 min ago","Replied to Dana R. about weekly service in 0:41. Asked which day works and whether there is a gate code. Holding Thursday."),
+      bubbles=[("INBOX · 7 min ago","Replied to Dana R. about an AC tune-up in 0:41. Asked which day works and whether someone will be home. Holding Thursday."),
                ("INBOX · 22 min ago","J. Whitfield confirmed Thursday. Calendar invite sent with the address and the note about the side gate."),
                ("INBOX · 2 hr ago","K. Alvarez is asking about a refund. Drafted a reply and left it in Drafts. Nothing sent; this one is yours.")],
-      mock='''<div class="ag-mail"><div class="ag-mail__row on"><b>Weekly service quote?</b><span>Dana R. · 7 min</span><em>Replied · 0:41</em></div><div class="ag-mail__row"><b>Re: Thursday visit</b><span>J. Whitfield · 22 min</span><em>Booked · Cal</em></div><div class="ag-mail__row"><b>Photos of the deck</b><span>M. Ortega · 1 hr</span><em>Filed · Drive</em></div><div class="ag-mail__row warn"><b>Refund for last month</b><span>K. Alvarez · 2 hr</span><em>Drafted · needs you</em></div>
-<div class="ag-mail__draft"><span>To Dana R. · sent from your Gmail</span>Thanks Dana. Weekly service for a standard residential pool in Gilbert is on the price list at the rate you saw. Which day of the week works, and is there a gate code? I can hold Thursday for you.</div></div>'''),
+      mock='''<div class="ag-mail"><div class="ag-mail__row on"><b>AC tune-up quote?</b><span>Dana R. · 7 min</span><em>Replied · 0:41</em></div><div class="ag-mail__row"><b>Re: Thursday visit</b><span>J. Whitfield · 22 min</span><em>Booked · Cal</em></div><div class="ag-mail__row"><b>Photos of the deck</b><span>M. Ortega · 1 hr</span><em>Filed · Drive</em></div><div class="ag-mail__row warn"><b>Refund for last month</b><span>K. Alvarez · 2 hr</span><em>Drafted · needs you</em></div>
+<div class="ag-mail__draft"><span>To Dana R. · sent from your Gmail</span>Thanks Dana. A tune-up for a standard home system in Gilbert is on the price list at the rate you saw. Which day of the week works, and will someone be home? I can hold Thursday for you.</div></div>'''),
  dict(id="thread", n="04", name="THREAD", sku="agent-thread", price=347, short="Slack",
       inside="inside Slack", app="Slack", vendors="Slack",
       h1='THREAD works inside <em>Slack.</em>',
@@ -165,14 +165,14 @@ AGENTS = [
       faq=[("Does it post to customers directly from Slack?","Only after a teammate reacts to send it. The draft sits in the thread until someone says yes."),
            ("What does it read?","The channels you invite it to and the documents you hand it. Nothing else in your workspace."),
            ("What if it does not know the answer?","It says so and tags the person who does. It does not guess at prices or policies.")],
-      bubbles=[("THREAD · #leads · 9:47 PM","New lead from the website. Dana R., Gilbert 85296, weekly service. Quoted from the price list, follow-up set for Thursday."),
-               ("THREAD · reply to Marcus · 9:52 PM","Yes. Henderson quote sent Tuesday, $285 for the pump reseal, not accepted yet. Follow-up goes out tomorrow unless you want to call first."),
-               ("THREAD · draft for Dana","Thanks Dana, Thursday is open. Is there a gate code? React ✅ to send, ✏️ to edit.")],
+      bubbles=[("THREAD · #leads · 9:47 PM","New lead from the website. Dana R., Gilbert 85296, AC tune-up. Quoted from the price list, follow-up set for Thursday."),
+               ("THREAD · reply to Marcus · 9:52 PM","Yes. Henderson quote sent Tuesday, $285 for the capacitor and contactor, not accepted yet. Follow-up goes out tomorrow unless you want to call first."),
+               ("THREAD · draft for Dana","Thanks Dana, Thursday is open. Will someone be home? React ✅ to send, ✏️ to edit.")],
       mock='''<div class="ag-slack"><div class="ag-slack__ch"># leads</div>
-<div class="ag-msg"><b class="bot">THREAD</b><time>9:47 PM</time><p>New lead from the website. <b>Dana R.</b>, Gilbert 85296, weekly service. Quoted from the price list, follow-up set for Thursday.</p></div>
+<div class="ag-msg"><b class="bot">THREAD</b><time>9:47 PM</time><p>New lead from the website. <b>Dana R.</b>, Gilbert 85296, AC tune-up. Quoted from the price list, follow-up set for Thursday.</p></div>
 <div class="ag-msg reply"><b>Marcus</b><time>9:52 PM</time><p>did we ever finish the Henderson repair quote?</p></div>
-<div class="ag-msg reply"><b class="bot">THREAD</b><time>9:52 PM</time><p>Yes. Sent Tuesday, $285 for the pump reseal, not accepted yet. Follow-up goes out tomorrow unless you want to call them first. <span class="src">source: job notes, 2 days ago</span></p></div>
-<div class="ag-msg draft"><b class="bot">THREAD</b><time>9:53 PM</time><p><span class="tag">Draft for Dana</span> Thanks Dana, Thursday is open. Is there a gate code? <span class="react">✅ send</span><span class="react">✏️ edit</span></p></div></div>'''),
+<div class="ag-msg reply"><b class="bot">THREAD</b><time>9:52 PM</time><p>Yes. Sent Tuesday, $285 for the capacitor and contactor, not accepted yet. Follow-up goes out tomorrow unless you want to call them first. <span class="src">source: job notes, 2 days ago</span></p></div>
+<div class="ag-msg draft"><b class="bot">THREAD</b><time>9:53 PM</time><p><span class="tag">Draft for Dana</span> Thanks Dana, Thursday is open. Will someone be home? <span class="react">✅ send</span><span class="react">✏️ edit</span></p></div></div>'''),
  dict(id="huddle", n="05", name="HUDDLE", sku="agent-huddle", price=347, short="Microsoft Teams",
       inside="inside Microsoft Teams", app="Microsoft Teams", vendors="Microsoft Teams and Microsoft 365",
       h1='HUDDLE works inside <em>Microsoft Teams.</em>',
@@ -194,7 +194,7 @@ AGENTS = [
            ("What if it does not know the answer?","It says so and tags the person who does. It does not guess at prices or policies.")],
       bubbles=[("HUDDLE · Ops · 7:02 AM","Morning summary: 3 new leads overnight, 2 quoted from the price list, 1 waiting on photos. Invoice #1042 paid. Nothing needs you before 9."),
                ("HUDDLE · reply to Priya · 7:15 AM","Yes, Whitfield is Thursday 9:00, Route B. Confirmation went out last night. Source: schedule, updated 6:40 PM."),
-               ("HUDDLE · new request","M. Ortega, pump repair, Gilbert 85296. Approve quote, edit, or call first: three buttons, one tap.")],
+               ("HUDDLE · new request","M. Ortega, AC repair, Gilbert 85296. Approve quote, edit, or call first: three buttons, one tap.")],
       mock='''<div class="ag-teams"><div class="ag-teams__ch">Ops · General</div>
 <div class="ag-msg"><b class="bot">HUDDLE</b><time>7:02 AM</time><p><span class="tag">Morning summary</span> 3 new leads overnight, 2 quoted from the price list, 1 waiting on photos. Invoice #1042 paid. Nothing needs you before 9.</p></div>
 <div class="ag-msg reply"><b>Priya</b><time>7:15 AM</time><p>is the Whitfield job still Thursday?</p></div>
@@ -376,7 +376,7 @@ def phone_views(a):
 <div class="sn-file"><i>DOC</i><span>House rules<small>what to say, what to hand to you</small></span><em>READ</em></div>
 <div class="sn-file"><i>TXT</i><span>The way you say things<small>your wording, not a template</small></span><em>READ</em></div></div>'''
     v4 = f'''<div class="sn-phone__view"><p class="sn-phone__title">You read every word first</p><p class="sn-phone__sub">Nothing reaches a customer over your objection.</p>
-<ul class="sn-lines"><li class="us" data-who="{n} · draft">Thanks Dana, Thursday is open. Is there a gate code? I can hold 9:00 for you.</li><li class="them">Change "hold" to "book". Otherwise good.</li><li class="us" data-who="{n} · v2">Thanks Dana, Thursday is open. Is there a gate code? I can book 9:00 for you.</li><li class="them">Approved.</li></ul></div>'''
+<ul class="sn-lines"><li class="us" data-who="{n} · draft">Thanks Dana, Thursday is open. Will someone be home? I can hold 9:00 for you.</li><li class="them">Change "hold" to "book". Otherwise good.</li><li class="us" data-who="{n} · v2">Thanks Dana, Thursday is open. Will someone be home? I can book 9:00 for you.</li><li class="them">Approved.</li></ul></div>'''
     v5 = f'''<div class="sn-phone__view"><p class="sn-phone__title">Live, and still answered</p><p class="sn-phone__sub">Changes are same-day at no charge.</p>
 <div class="sn-file"><i>ON</i><span>{n} is live {esc(a['inside'])}<small>month to month, cancel at month end</small></span><em>LIVE</em></div>
 <div class="sn-file"><i>480</i><span>(480) 798-0753<small>rings the person who built it</small></span><em>DIRECT</em></div>
@@ -391,6 +391,8 @@ def steps(a):
            ("You read every word first", c[2][2] if len(c)>2 else "Nothing goes to a customer until you have read the wording."),
            ("Live, and still answered", f"Changes are same-day at no charge. Cancel at the end of any month and you keep every script and transcript. The number on this page rings the person who built {n}.")]
     return "".join(f'<li><b>{esc(t)}</b><p>{esc(p)}</p></li>' for t,p in items)
+
+from ring_demo import section as ring_demo_section
 
 def build_agent(a):
     n=a["name"]; price=f"${a['price']:,}"
@@ -441,6 +443,7 @@ def build_agent(a):
       </div>
     </header></div>
 
+{ring_demo_section() if a['id']=="ring" else ""}
     <section class="sn-sec" aria-labelledby="h-does">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-does">What {n} does {esc(a['inside'])}</h2><p class="tk-lede">Six things, all of them in the tool you already open every day.</p></div>

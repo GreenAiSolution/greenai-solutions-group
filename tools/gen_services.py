@@ -154,7 +154,7 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
         <div class="sv-scene__copy"><div class="sv-scene__num">01</div><p class="sv-slate">Scene one</p><h2 id="h-s1">AI <em>employees.</em></h2>
           <p class="lede">Six employees, one inside each app your company already runs on. Built for your company: your prices, your hours, your service area, your way of saying things. You read every reply before it goes live. It never claims to be a person, and when it does not know it says so.</p>
           <div class="sv-price"><b>from $297</b><span>a month each · all six ${FULL:,}</span></div>
-          <div class="sv-cta"><a href="hire.html" class="tk-btn tk-btn--solid tk-btn--arrow">Build your staff</a><a href="staff.html" class="tk-btn tk-btn--ghost">Meet the staff</a><a href="catch.html" class="tk-btn tk-btn--ghost">Watch one catch a lead</a></div></div>
+          <div class="sv-cta"><a href="hire.html" class="tk-btn tk-btn--solid tk-btn--arrow">Build your staff</a><a href="staff.html" class="tk-btn tk-btn--ghost">Meet the staff</a><a href="ring.html#h-hear" class="tk-btn tk-btn--ghost">Hear RING answer a call</a></div></div>
         <div class="sv-stage">
           <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("ring", I["phone"], label="RING", pose="wave")}</div>
           <div class="sv-screen" style="margin-right:80px"><div class="tk-plate ag-mock">{ring_mock}</div></div>

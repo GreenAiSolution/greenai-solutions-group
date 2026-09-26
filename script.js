@@ -164,9 +164,17 @@
         })
         .catch(() => {
           if (btn) { btn.innerHTML = original; btn.disabled = false; }
-          showError('That did not go through. Call <a href="tel:4807980753" style="color:inherit">(480) 798-0753</a> ' +
-                    'or email <a href="mailto:jaden@greenaidigital.com" style="color:inherit">jaden@greenaidigital.com</a> ' +
-                    'and you will get a person.');
+          /* Nothing typed is lost: the email link carries every answer, so one
+             tap in their own mail app sends the same message. */
+          const lines = [];
+          new FormData(form).forEach((v, k) => {
+            if (k === 'botcheck' || !String(v).trim()) return;
+            lines.push(k.replace(/_/g, ' ') + ': ' + v);
+          });
+          const mail = 'mailto:jaden@greenaidigital.com?subject=' + encodeURIComponent('Website enquiry') +
+                       '&body=' + encodeURIComponent(lines.join('\n').slice(0, 1800));
+          showError('That did not go through on our side. <a href="' + mail + '" style="color:inherit;font-weight:700">Send it by email instead</a> ' +
+                    '(your answers are already filled in), or call <a href="tel:4807980753" style="color:inherit">(480) 798-0753</a>.');
         });
     });
   }

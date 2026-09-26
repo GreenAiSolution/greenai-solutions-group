@@ -122,7 +122,7 @@ seo_visual = '''<div class="ns-panel__bar"><span>This week · example work log</
   <li><span>Rewrote 14 page titles and descriptions<small>each one names the service and the city</small></span><em>waiting for you</em></li>
   <li><span>Fixed 9 broken links and 3 redirect chains<small>found in the weekly crawl</small></span><em>shipped</em></li>
   <li><span>Added business and FAQ markup to 6 pages<small>so Google and AI assistants can read the facts</small></span><em>shipped</em></li>
-  <li><span>Drafted "Pool pump repair in Gilbert"<small>from the questions your customers actually ask</small></span><em>waiting for you</em></li>
+  <li><span>Drafted "AC repair in Gilbert"<small>from the questions your customers actually ask</small></span><em>waiting for you</em></li>
   <li><span>Answered 4 new Google reviews<small>in your wording, nothing posted without approval</small></span><em>waiting for you</em></li>
 </ul>'''
 

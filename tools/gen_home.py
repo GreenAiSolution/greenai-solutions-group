@@ -3,6 +3,7 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT
+from ring_demo import section as ring_demo_section
 
 JSONLD = '''{
     "@context": "https://schema.org",
@@ -106,7 +107,7 @@ faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in 
 ])
 
 PAGE = head("GreenAI Solutions — an AI services workforce for small companies",
-            "An AI services workforce for small companies. Phones answered, leads replied to, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Eight services, every price in writing: AI staff from $297 a month, websites from $500, finished ads from $697. Gilbert, Arizona.",
+            "An AI services workforce for small companies. Phones answered, leads replied to, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Eight services, a written price before anything is signed: AI staff from $297 a month, websites from $500, finished ads from $697. Gilbert, Arizona.",
             "", CSS, og_title="GreenAI Solutions — your AI services workforce").replace('href="https://greenaidigital.com/"', 'href="https://greenaidigital.com/"') + f'''
 <body class="tk home light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -167,6 +168,8 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
         <p style="text-align:center;margin:1.5rem 0 0"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">See all six at work</a></p>
       </div>
     </section>
+
+{ring_demo_section()}
 
     <section class="sn-sec" aria-labelledby="h-film" style="padding-bottom:1rem">
       <div class="sn-inner">
@@ -240,7 +243,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
     <section class="sn-sec" aria-labelledby="h-stats" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-stats">
-          <div class="sn-stat"><span>Services</span><b>8</b><small>one workforce, every price in writing</small></div>
+          <div class="sn-stat"><span>Services</span><b>8</b><small>three priced on this page, five quoted in writing</small></div>
           <div class="sn-stat"><span>From</span><b>$297</b><small>a month, month to month, no setup fee</small></div>
           <div class="sn-stat"><span>Picks up in about</span><b>8 sec</b><small>the target RING is built to, any hour</small></div>
           <div class="sn-stat"><span>Number to call</span><b>1</b><small>a person answers it: (480) 798-0753</small></div>
