@@ -264,7 +264,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
       <div class="sn-inner">
         <div class="hp-talk">
           <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
-          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
+          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? Send the form and watch your inbox: the first reply lands within a minute, sent by the same AI that would answer your customers. The rest of the conversation is with me.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
         </div>
         <p class="ag-tm">{esc(TM)}</p>
       </div>
