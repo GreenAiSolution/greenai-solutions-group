@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""gen_services.py — services.html as a cinematic, luxury four-scene film. Dark ground, gold titles, the robots as the cast."""
+"""gen_services.py — services.html as a cinematic four-scene film. 2026-09-27 reset: four services for
+Phoenix home service companies (AI ads, AI employee, Property Signals, Reviews and repeat work)."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT, ICON_OF
@@ -115,7 +116,8 @@ CSS = f"""
 
 GRAIN = '<svg class="sv-grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg><div class="sv-vig" aria-hidden="true"></div>'
 
-cast = "".join(f'<a href="{a["id"]}.html"><span>{bust(a["id"])}</span>{a["name"]}</a>' for a in AGENTS)
+SERVICES4 = [("ads","service-ai-ads.html","AI ads"),("ring","staff.html","AI employee"),("signals","service-property-signals.html","Property Signals"),("reviews","service-reviews.html","Reviews & repeat work")]
+cast = "".join(f'<a href="{href}"><span>{bust(key)}</span>{name}</a>' for key, href, name in SERVICES4)
 roster = "".join(f'<li>{bust(a["id"])}<a href="{a["id"]}.html">{a["name"]}</a><span>{esc(a["inside"])}</span><b>${a["price"]:,}/mo</b></li>' for a in AGENTS)
 ring_mock = AGENTS[0]["mock"]
 film = "".join([
@@ -123,20 +125,9 @@ film = "".join([
  for v,p,lab in [("clock","clock","9:16 · 15s"),("reel","question","REEL"),("problem","problem","THE PROBLEM"),("founder","founder","THE FOUNDER"),("question","question","THE QUESTION"),("feed","split","FEED"),("wide","quote","16:9 · 30s")]])
 film += f'<div><img src="art/ad-angle-quote.webp" alt="" loading="lazy"/><span>THE QUOTE</span></div><div><img src="art/ad-angle-split.webp" alt="" loading="lazy"/><span>BEFORE · AFTER</span></div>'
 
-schem = f'''<svg viewBox="0 0 640 300" aria-label="A custom system drawn as a schematic: intake, checker, approval, log"><defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<g fill="none" stroke="{GOLD}" stroke-width="1.5" filter="url(#glow)">
-<rect x="30" y="110" width="130" height="70" rx="14"/><rect x="255" y="110" width="130" height="70" rx="14"/><rect x="480" y="110" width="130" height="70" rx="14"/>
-<path d="M160 145 h95 M385 145 h95" stroke-dasharray="6 6"/><path d="M320 180 v50 h-200 v-50" stroke-dasharray="3 5" opacity=".7"/>
-<rect x="255" y="20" width="130" height="50" rx="12" opacity=".8"/><path d="M320 70 v40" stroke-dasharray="3 5" opacity=".7"/>
-<circle cx="245" cy="145" r="5" fill="{GOLD}"><animate attributeName="cx" values="160;255" dur="2.4s" repeatCount="indefinite"/></circle>
-<circle cx="470" cy="145" r="5" fill="{GOLD}"><animate attributeName="cx" values="385;480" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
-</g>
-<g font-family="Outfit, sans-serif" font-weight="600" font-size="15" fill="#fff" text-anchor="middle"><text x="95" y="140">INTAKE</text><text x="320" y="140">CHECKER</text><text x="545" y="140">APPROVAL</text><text x="320" y="50">YOUR RULES</text></g>
-<g font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle"><text x="95" y="162">call · form · file</text><text x="320" y="162">blocks what is not on the list</text><text x="545" y="162">a person, before it acts</text><text x="320" y="252">every step logged, hash-chained, replayable</text></g></svg>'''
-
-PAGE = head("Services — eight services from one AI workforce | GreenAI Solutions",
-            "Eight services from one AI services workforce, every price the whole price. AI staff from $297 a month, hand-coded websites from $500, a month of finished ads from $697, custom systems quoted after one conversation. Gilbert, Arizona.",
-            "services.html", CSS, og_title="Eight services. One workforce.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
+PAGE = head("Services — AI ads, an AI employee, Property Signals, reviews and repeat work | GreenAI Solutions",
+            "Four services for Phoenix HVAC, roofing, plumbing and pool companies: finished ads every month from $697, an AI employee that answers every call and text from $297 a month, Property Signals lists of the homes that need you next, and reviews and repeat work from the customers you already have. Gilbert, Arizona.",
+            "services.html", CSS, og_title="Four services. Full schedules.").replace('<meta name="twitter:card" content="summary_large_image" />','<meta name="twitter:card" content="summary_large_image" />\n  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />') + f'''
 <body class="tk sv-cinema">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
@@ -146,45 +137,17 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
   <main id="main" class="sv">
 
     <header class="sv-hero" aria-labelledby="h1">
-      <p class="sv-slate">GreenAI Solutions presents</p>
-      <h1 id="h1">Eight services. <em>One workforce.</em></h1>
-      <p>GreenAI is an AI services workforce: you hand over a job, and it gets done inside the tools you already use. Nothing here is a starting point that grows once you are in. The number next to each service is what it costs, the agreement you would sign is already on this site, and anything recurring is month to month.</p>
-      <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the eight</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
-      <div class="sv-cast" aria-label="The cast">{cast}</div>
+      <p class="sv-slate">For Phoenix home service companies</p>
+      <h1 id="h1">Four services. <em>Full schedules.</em></h1>
+      <p>GreenAI is an AI services workforce for HVAC, roofing, plumbing and pool companies. Ads that bring the calls, an AI employee that answers them, lists of the homes that need you next, and reviews and repeat work from the customers you already have. Every price is the whole price, in writing, and anything recurring is month to month.</p>
+      <div class="sv-cta" style="justify-content:center"><a href="#s1" class="tk-btn tk-btn--solid tk-btn--arrow">Roll the four</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
+      <div class="sv-cast" aria-label="The four services">{cast}</div>
     </header>
 
-    <section class="sv-scene" id="s1" style="--ac:#7DE3A4;--x:75%" aria-labelledby="h-s1">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">01</div><p class="sv-slate">Scene one</p><h2 id="h-s1">AI <em>employees.</em></h2>
-          <p class="lede">Six employees, one inside each app your company already runs on. Built for your company: your prices, your hours, your service area, your way of saying things. You read every reply before it goes live. It never claims to be a person, and when it does not know it says so.</p>
-          <div class="sv-price"><b>from $297</b><span>a month each · all six ${FULL:,}</span></div>
-          <div class="sv-cta"><a href="hire.html" class="tk-btn tk-btn--solid tk-btn--arrow">Build your staff</a><a href="staff.html" class="tk-btn tk-btn--ghost">Meet the staff</a><a href="ring.html#h-hear" class="tk-btn tk-btn--ghost">Hear RING answer a call</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("ring", I["phone"], label="RING", pose="wave")}</div>
-          <div class="sv-screen" style="margin-right:80px"><div class="tk-plate ag-mock">{ring_mock}</div></div>
-          <ul class="sv-roster" style="margin-top:1.4rem">{roster}</ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene sv-scene--flip" id="s2" style="--ac:#7CC4F0;--x:25%" aria-labelledby="h-s2">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">02</div><p class="sv-slate">Scene two</p><h2 id="h-s2">Websites, <em>coded by hand.</em></h2>
-          <p class="lede">A website has one job: someone lands on it, understands within five seconds what you do and whether it is for them, and then has an obvious next step. The build starts with the argument, not the look. Mobile first. The titles and structure Google reads go in during the build. Delivered in about seven business days, and the files are yours the day it launches.</p>
-          <div class="sv-price"><b>from $500</b><span>one time · maintenance $150/mo, never required</span></div>
-          <div class="sv-tiers"><div><small>Starter</small><b>$500</b><span>up to five pages</span></div><div><small>Business</small><b>$1,500</b><span>up to ten pages</span></div><div><small>Premium</small><b>$2,500+</b><span>custom scope, quoted</span></div></div>
-          <div class="sv-cta" style="margin-top:1.4rem"><a href="service-web-design.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the website service</a><a href="testimonials.html" class="tk-btn tk-btn--ghost">See sites that are live</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("web", I["inbox"], label="Websites", pose="point")}</div>
-          <div class="sv-theatre" style="margin-right:70px"><div class="hp-browser"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" data-url="performancelab.fitness"/><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" data-url="handmadebyhalle.com"/><img src="previews/work-blackbox.webp" alt="greenaidigital.com/blackbox" width="1100" height="687" loading="lazy" data-url="greenaidigital.com/blackbox"/></div></div><div class="sv-theatre__cap"><span>Now showing · three live sites</span><span>built here</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene" id="s3" style="--ac:#F5A38E;--x:70%" aria-labelledby="h-s3">
+    <section class="sv-scene" id="s1" style="--ac:#F5A38E;--x:70%" aria-labelledby="h-s1">
       <div class="sv-scene__in" style="grid-template-columns:1fr">
-        <div class="sv-scene__copy" style="max-width:60ch"><div class="sv-scene__num">03</div><p class="sv-slate">Scene three</p><h2 id="h-s3">Ad creation. <em>One idea, seven angles.</em></h2>
-          <p class="lede">Targeting, bidding and placement are automated by the platforms now. Creative is the last lever left, and most businesses make exactly one ad. Here one idea gets seven angles, because nobody can tell you in advance which one your market responds to. Every batch arrives captioned, in vertical, square, fifteen-second and thirty-second cuts. You own them permanently, including after you cancel.</p>
+        <div class="sv-scene__copy" style="max-width:60ch"><div class="sv-scene__num">01</div><p class="sv-slate">Scene one · bring the calls</p><h2 id="h-s1">AI ads. <em>One idea, seven angles.</em></h2>
+          <p class="lede">Targeting and bidding are automated by the platforms now. Creative is the last lever left, and most home service companies run the same ad all year. Here every month gets fresh ads built for the season you are in: AC before the heat, roofs after the monsoon, pool openings in spring, heating before the first cold night. Seven angles on each idea, captioned, in vertical, square, fifteen-second and thirty-second cuts. You own them, including after you cancel.</p>
           <div class="sv-price"><b>from $697</b><span>a month · cancel any month</span></div></div>
         <div class="sv-film" aria-label="A month of finished ads, as a film strip"><div class="sv-film__track">{film}{film}</div></div>
         <div>
@@ -194,91 +157,62 @@ PAGE = head("Services — eight services from one AI workforce | GreenAI Solutio
       </div>
     </section>
 
+    <section class="sv-scene sv-scene--flip" id="s2" style="--ac:#7DE3A4;--x:25%" aria-labelledby="h-s2">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">02</div><p class="sv-slate">Scene two · answer them</p><h2 id="h-s2">An AI <em>employee.</em></h2>
+          <p class="lede">The call that comes in while your techs are on a roof or under a house is the job that goes to the next company. The AI employee answers every call and text at any hour, gets the address and the problem, books the visit and texts you a summary. It works inside your phone line, your Jobber, Housecall Pro or ServiceTitan, and your Gmail, in your prices, hours and wording. It never claims to be a person, and when it does not know, it says so.</p>
+          <div class="sv-price"><b>from $297</b><span>a month per app · RING on your phone line $497 · all six ${FULL:,}</span></div>
+          <div class="sv-cta"><a href="ring.html#h-hear" class="tk-btn tk-btn--solid tk-btn--arrow">Hear RING answer a call</a><a href="hire.html" class="tk-btn tk-btn--ghost">Build your staff</a><a href="staff.html" class="tk-btn tk-btn--ghost">See every app it works in</a></div></div>
+        <div class="sv-stage">
+          <div class="rb-float">{robot("ring", I["phone"], label="RING", pose="wave")}</div>
+          <div class="sv-screen"><div class="tk-plate ag-mock">{ring_mock}</div></div>
+          <ul class="sv-roster" style="margin-top:1.4rem">{roster}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sv-scene" id="s3" style="--ac:#7CC4F0;--x:70%" aria-labelledby="h-s3">
+      <div class="sv-scene__in">
+        <div class="sv-scene__copy"><div class="sv-scene__num">03</div><p class="sv-slate">Scene three · know where to go</p><h2 id="h-s3">Property <em>Signals.</em></h2>
+          <p class="lede">After a hail or monsoon storm, a list of the homes likely in its path, oldest first. Every month, the homes whose AC, roof, water heater or pool equipment is due by age. Built from public storm reports and county property records, delivered to your inbox, ready for your mailers, your door-knockers and your ads. A storm list says a home was likely in the path, never that it is damaged, and it is for mail and doors, not cold calls.</p>
+          <div class="sv-price"><b>Quoted</b><span>after a sample list for your service area · month to month</span></div>
+          <div class="sv-cta"><a href="service-property-signals.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how Signals works</a><a href="contact.html?want=signals" class="tk-btn tk-btn--ghost">Ask for a sample list</a></div></div>
+        <div class="sv-stage">
+          <div class="rb-float">{robot("signals", label="Property Signals", pose="point")}</div>
+          <div class="sv-schem"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Storm path from public storm reports</span><b>mapped</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Homes likely in the path, from county records</span><b>matched</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Oldest homes first</span><b>sorted</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Your past customers marked</span><b>flagged</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span>An example, not a real list</span><b></b></li></ul></div>
+        </div>
+      </div>
+    </section>
+
     <section class="sv-scene sv-scene--flip" id="s4" style="--ac:#E8C46A;--x:30%" aria-labelledby="h-s4">
       <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">04</div><p class="sv-slate">Scene four</p><h2 id="h-s4">Custom systems, <em>when it has to be built.</em></h2>
-          <p class="lede">An intake line for a care agency. A quoting tool that reads a set of plans. A test bench for the automations you already run, so you find out they broke before a customer does. A dashboard for the numbers nobody is watching. Scoped in a conversation, priced in writing before a line of code, built by the person you talked to. Whoever does the work does not grade it.</p>
-          <div class="sv-price"><b>Quoted</b><span>after one conversation · fixed price in writing</span></div>
-          <div class="sv-cta"><a href="service-ai-consulting.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what has been built</a><a href="contact.html?want=custom" class="tk-btn tk-btn--ghost">Describe what you need</a></div></div>
+        <div class="sv-scene__copy"><div class="sv-scene__num">04</div><p class="sv-slate">Scene four · keep them coming back</p><h2 id="h-s4">Reviews and <em>repeat work.</em></h2>
+          <p class="lede">When someone needs AC fixed tonight they look at the stars and the number next to them. Every finished job gets a short review request and one reminder, and every review gets a reply drafted in your wording. Then every customer hears from you when their tune-up, service or replacement is due, and the ones you have not seen in a year get asked back. Everyone is asked the same way, because Google and the FTC forbid sorting the happy from the unhappy first.</p>
+          <div class="sv-price"><b>Quoted</b><span>after a read-only look at your records · month to month</span></div>
+          <div class="sv-cta"><a href="service-reviews.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how it runs</a><a href="contact.html?want=reviews" class="tk-btn tk-btn--ghost">Ask about reviews and repeat work</a></div></div>
         <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("custom", I["receipt"], label="Custom systems", pose="think")}</div>
-          <div class="sv-schem" style="margin-right:70px">{schem}</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene" id="s5" style="--ac:#7CC4F0;--x:70%" aria-labelledby="h-s5">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">05</div><p class="sv-slate">Scene five</p><h2 id="h-s5">AI SEO, <em>done for you.</em></h2>
-          <p class="lede">One AI agent does the SEO work end to end. It crawls the site every week, fixes what it finds, writes the service and city pages you are missing, keeps your Google Business Profile alive and reports what changed in plain English. No new tools to learn, no new hire. Nothing goes live until you have read it, and nobody here will promise you page one.</p>
-          <div class="sv-price"><b>Quoted</b><span>after a free first audit · month to month</span></div>
-          <div class="sv-cta"><a href="service-ai-seo.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how AI SEO works</a><a href="contact.html?want=seo" class="tk-btn tk-btn--ghost">Ask for the free audit</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("seo", I["inbox"], label="AI SEO", pose="point")}</div>
-          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Weekly crawl of every page</span><b>audit</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Titles, links, speed, markup</span><b>fixed</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Service and city pages</span><b>written</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Google Business Profile</span><b>kept alive</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly report, Google's numbers</span><b>plain English</b></li></ul></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene sv-scene--flip" id="s6" style="--ac:#E8C46A;--x:30%" aria-labelledby="h-s6">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">06</div><p class="sv-slate">Scene six</p><h2 id="h-s6">CRM and dashboards, <em>made to work.</em></h2>
-          <p class="lede">Most small companies pay for a CRM and run the business from memory. The one you already have gets cleaned up: duplicates merged, stages that match how you sell, follow-ups that send themselves, your tools connected. Then the numbers that matter go on one screen you can read in a minute, with a summary every Monday.</p>
-          <div class="sv-price"><b>Quoted</b><span>after a read-only look · fixed price in writing</span></div>
-          <div class="sv-cta"><a href="service-crm-dashboards.html" class="tk-btn tk-btn--solid tk-btn--arrow">See what gets fixed</a><a href="contact.html?want=crm" class="tk-btn tk-btn--ghost">Tell us which CRM you use</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("crm", I["sun"], label="CRM and dashboards", pose="stand")}</div>
-          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">New leads this week</span><b>23</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Answered in, median</span><b>0:52</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Quotes out</span><b>$18,400</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Owed to you</span><b>$4,120</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span>Example numbers, not a client's</span><b></b></li></ul></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene" id="s7" style="--ac:#7DE3A4;--x:70%" aria-labelledby="h-s7">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">07</div><p class="sv-slate">Scene seven</p><h2 id="h-s7">Google reviews, <em>asked for every time.</em></h2>
-          <p class="lede">When someone needs you tonight they look at the stars and the number next to them. Every finished job gets a short review request and one reminder, every review gets a reply drafted in your wording, and you get the count each month. Every customer is asked the same way, because Google and the FTC both forbid sorting the happy from the unhappy first.</p>
-          <div class="sv-price"><b>Quoted</b><span>after one conversation · month to month</span></div>
-          <div class="sv-cta"><a href="service-reviews.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the review engine</a><a href="contact.html?want=reviews" class="tk-btn tk-btn--ghost">Ask about reviews</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;top:-40px"></div><div class="rb-float" style="right:-60px;top:-90px">{robot("reviews", I["phone"], label="Reviews", pose="wave")}</div>
-          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Ask after every finished job</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">One reminder, then it stops</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A reply to every review</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A private line for complaints</span><b>to you</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly count, Google's numbers</span><b>report</b></li></ul></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sv-scene sv-scene--flip" id="s8" style="--ac:#7CC4F0;--x:30%" aria-labelledby="h-s8">
-      <div class="sv-scene__in">
-        <div class="sv-scene__copy"><div class="sv-scene__num">08</div><p class="sv-slate">Scene eight</p><h2 id="h-s8">Win back the customers <em>you already had.</em></h2>
-          <p class="lede">Most small companies have hundreds of past customers they have not spoken to in a year. The list gets pulled from your own records and cleaned, a short series of messages is written in your voice, it goes out in small batches, and every reply comes straight to you. Nothing bought, nothing scraped, no fake urgency.</p>
-          <div class="sv-price"><b>Quoted</b><span>after a read-only look at your list · fixed price in writing</span></div>
-          <div class="sv-cta"><a href="service-winback.html" class="tk-btn tk-btn--solid tk-btn--arrow">See how win-back runs</a><a href="contact.html?want=winback" class="tk-btn tk-btn--ghost">Ask about win-back</a></div></div>
-        <div class="sv-stage">
-          <div class="sv-spot" style="right:-40px;bottom:-30px"></div><div class="rb-float" style="right:-60px;bottom:-30px">{robot("winback", I["inbox"], label="Win-back", pose="wave")}</div>
-          <div class="sv-schem" style="margin-right:70px"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Past customers found and merged</span><b>cleaned</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sorted by how long it has been</span><b>grouped</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Three messages, your voice</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Small batches, not a blast</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Sent, replied, booked</span><b>report</b></li></ul></div>
+          <div class="rb-float">{robot("reviews", I["phone"], label="Reviews and repeat work", pose="wave")}</div>
+          <div class="sv-schem"><ul class="sv-roster"><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A review ask after every finished job</span><b>sent</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A reply to every review</span><b>you approve</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Tune-up and replacement reminders</span><b>when due</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">A hello to customers not seen in a year</span><b>your voice</b></li><li style="grid-template-columns:minmax(0,1fr) auto"><span style="color:#fff">Monthly count, from your own records</span><b>report</b></li></ul></div>
         </div>
       </div>
     </section>
 
     <section class="sv-credits" aria-labelledby="h-credits">
-      <p class="sv-slate">How a build runs</p>
+      <p class="sv-slate">How it runs</p>
       <h2 id="h-credits">The same four steps, <em>every time.</em></h2>
       <ol>
-        <li><b>One conversation</b><p>What is stuck, what it costs you now, and what done would look like. About twenty minutes.</p></li>
-        <li><b>A price in writing</b><p>What gets built, what it will not do, and the number. Nothing is signed until you have read it.</p></li>
-        <li><b>Built in the open</b><p>You see it working on real examples as it comes together. Every script, page and ad goes past you first.</p></li>
+        <li><b>One conversation</b><p>Your trade, your service area, and where the work is leaking. About twenty minutes.</p></li>
+        <li><b>A price in writing</b><p>What you get, what it will not do, and the number. Nothing is signed until you have read it.</p></li>
+        <li><b>Built in the open</b><p>You hear the calls, read the ads and see the lists on real examples before anything goes live.</p></li>
         <li><b>Live, and still answered</b><p>Changes are same-day at no charge. The number on this page rings the person who built it.</p></li>
       </ol>
       <table class="sv-menu" aria-label="Every price"><tbody>
-        <tr><td>AI employees</td><td>one inside each app, six of them</td><td>from $297/mo · all six ${FULL:,}</td></tr>
-        <tr><td>Websites</td><td>coded by hand, yours the day it launches</td><td>$500 · $1,500 · $2,500+</td></tr>
-        <tr><td>Ad creation</td><td>ten, twenty-five or sixty finished ads a month</td><td>$697 · $1,297 · $2,497 /mo</td></tr>
-        <tr><td>AI SEO</td><td>one agent does it end to end, you approve it</td><td>quoted</td></tr>
-        <tr><td>CRM and dashboards</td><td>your CRM cleaned up, your numbers on one screen</td><td>quoted</td></tr>
-        <tr><td>Google reviews</td><td>every customer asked, every review answered</td><td>quoted</td></tr>
-        <tr><td>Win-back</td><td>past customers, asked back in your voice</td><td>quoted</td></tr>
-        <tr><td>Custom systems</td><td>scoped in one conversation, priced in writing</td><td>quoted</td></tr>
+        <tr><td>AI ads</td><td>ten, twenty-five or sixty finished ads a month</td><td>$697 · $1,297 · $2,497 /mo</td></tr>
+        <tr><td>AI employee</td><td>answers every call and text, books the job</td><td>from $297/mo · all six apps ${FULL:,}</td></tr>
+        <tr><td>Property Signals</td><td>storm and due-by-age lists for your service area</td><td>quoted</td></tr>
+        <tr><td>Reviews and repeat work</td><td>every customer asked, every due date remembered</td><td>quoted</td></tr>
       </tbody></table>
-      <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go unanswered when you are working: start with RING. Web leads sit for hours: INBOX on Gmail, DISPATCH on Jobber. Your site is a theme with your logo dropped in: a Starter site. Running the same ad for months: Growth, twenty-five a month. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:{GOLD}">jaden@greenaidigital.com</a></div>
+      <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls go to voicemail while your crews are working: start with RING. The phone is quiet: ads, Growth, twenty-five a month. A storm just rolled through: Property Signals. Plenty of past customers and a thin review count: reviews and repeat work. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:{GOLD}">jaden@greenaidigital.com</a></div>
       <p class="ag-tm">{esc(TM)}</p>
     </section>
   </main>

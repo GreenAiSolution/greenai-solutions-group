@@ -27,6 +27,10 @@ ICONS = {
     "winback": ['<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>', '<path d="M3 3v5h5"/>'],
     "web": ['<rect x="2" y="4" width="20" height="16" rx="2"/>', '<path d="M2 9h20"/>', '<path d="M6 4v5"/>', '<path d="M10 4v5"/>'],
     "custom": ['<rect x="14" y="3" width="7" height="7" rx="1"/>', '<path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/>'],
+    # Property Signals: a house with a sighting ring on it; this home, flagged from public records.
+    "signals": ['<path d="M2.5 11.5 12 3.5l9.5 8"/>', '<path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/>', '<circle cx="12" cy="14.5" r="3.2"/>', '<path d="M12 9.8v1.5"/>', '<path d="M12 17.7v1.5"/>', '<path d="M7.3 14.5h1.5"/>', '<path d="M15.2 14.5h1.5"/>'],
+    # AI ads: a play frame with a second frame behind it; finished video, many angles.
+    "ads": ['<path d="M6 3h14a2 2 0 0 1 2 2v10"/>', '<rect x="2" y="7" width="16" height="14" rx="2"/>', '<path d="M8 11.2v5.6a.6.6 0 0 0 .9.5l4.5-2.8a.6.6 0 0 0 0-1l-4.5-2.8a.6.6 0 0 0-.9.5z"/>'],
 }
 NUMERAL = {"ring": "I", "dispatch": "II", "inbox": "III", "thread": "IIII", "huddle": "V", "books": "VI"}
 # watch dials write four as IIII; it also keeps the numerals the same visual weight.

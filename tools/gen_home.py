@@ -15,11 +15,12 @@ JSONLD = '''{
     "email": "jaden@greenaidigital.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "postalCode": "85296", "addressCountry": "US" },
     "areaServed": "US",
-    "description": "An AI services workforce for small companies: AI staff inside the apps you already use, websites, ad creation, SEO, CRM and dashboards, Google reviews, win-back campaigns and custom systems.",
+    "description": "An AI services workforce for Phoenix home service companies: AI ads, an AI employee that answers every call and text, Property Signals lists of the homes that need you next, and reviews and repeat work.",
     "makesOffer": [
-      { "@type": "Offer", "name": "AI staff inside your apps", "url": "https://greenaidigital.com/staff.html", "priceCurrency": "USD", "price": "297" },
-      { "@type": "Offer", "name": "Websites", "url": "https://greenaidigital.com/service-web-design.html", "priceCurrency": "USD", "price": "500" },
-      { "@type": "Offer", "name": "Ad creation", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" }
+      { "@type": "Offer", "name": "AI ads", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" },
+      { "@type": "Offer", "name": "AI employee", "url": "https://greenaidigital.com/staff.html", "priceCurrency": "USD", "price": "297" },
+      { "@type": "Offer", "name": "Property Signals", "url": "https://greenaidigital.com/service-property-signals.html" },
+      { "@type": "Offer", "name": "Reviews and repeat work", "url": "https://greenaidigital.com/service-reviews.html" }
     ]
   }'''
 
@@ -108,8 +109,8 @@ faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in 
     ("Do you only work with Arizona businesses?","No. I am in Gilbert, Arizona, and I work with companies anywhere. Everything is built and delivered over the phone, email and your own tools."),
 ])
 
-PAGE = head("GreenAI Solutions — an AI services workforce for small companies",
-            "An AI services workforce for small companies. Phones answered, leads replied to, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Eight services, a written price before anything is signed: AI staff from $297 a month, websites from $500, finished ads from $697. Gilbert, Arizona.",
+PAGE = head("GreenAI Solutions — an AI services workforce for Phoenix home service companies",
+            "An AI services workforce for Phoenix HVAC, roofing, plumbing and pool companies. Four services: finished ads every month from $697, an AI employee that answers every call and text from $297 a month, Property Signals lists of the homes that need you next, and reviews and repeat work. Gilbert, Arizona.",
             "", CSS, og_title="GreenAI Solutions — your AI services workforce").replace('href="https://greenaidigital.com/"', 'href="https://greenaidigital.com/"') + f'''
 <body class="tk home light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -123,11 +124,11 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · Gilbert, Arizona</p>
+        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · for Phoenix home service companies</p>
         <h1 class="tk-h1" id="hero-heading">Your AI services <em>workforce.</em></h1>
-        <p class="sn-hero__sub">Eight services, one workforce. Phones answered, leads replied to, jobs written up, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Priced in writing, month to month, with a real person to call.</p>
+        <p class="sn-hero__sub">Four services for HVAC, roofing, plumbing and pool companies. Ads that bring the calls, an AI employee that answers them, lists of the homes that need you next, and reviews and repeat work from the customers you already have. Priced in writing, month to month, with a real person to call.</p>
         <div class="sn-hero__cta">
-          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the eight services</a>
+          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the four services</a>
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
@@ -136,29 +137,17 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <section class="sn-sec" aria-labelledby="h-also">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-also">Eight services. <em>One workforce.</em></h2><p class="tk-lede">Hand over one job or the whole front office. Every price is the whole price, and you have it in writing before anything is signed.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-also">Four services. <em>Full schedules.</em></h2><p class="tk-lede">Bring the calls, answer every one, know which homes need you next, and keep the customers you already won. Every price is the whole price, in writing before anything is signed.</p></div>
         <div class="sn-cards sn-cards--3 hp-services">
-          <article class="sn-card" style="grid-column:1/-1"><div class="sn-card__ico">{I['user']}</div><h3>AI staff inside your apps</h3><p>Six AI employees, one inside each tool you already run: your phone line, Jobber, Gmail, Slack, Teams and QuickBooks. They answer, reply, book and invoice at any hour, in your wording.</p>
-            <div class="sn-card__price"><b>from $297/mo</b><a href="staff.html">Meet the six →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>Websites</h3><p>No themes, no page builder. Fast on a phone, an obvious next step on every page. The files are yours the day it launches.</p>
-            <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-bakr.webp" alt="bakrjewelry.co" width="1100" height="687" loading="lazy" decoding="async" data-url="bakrjewelry.co" /></div></div></div>
-            <div class="sn-card__price"><b>from $500</b><a href="service-web-design.html">See the website service →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Ad creation</h3><p>Ten, twenty-five or sixty finished ads a month, in every size the platforms need. Run them all and keep what works.</p>
+          <article class="sn-card" style="grid-column:1/-1"><div class="sn-card__ico">{I['phone']}</div><h3>An AI employee on every call</h3><p>Answers every call and text at any hour while your crews are working, gets the address and the problem, books the visit and texts you a summary. Works inside your phone line, Jobber, Housecall Pro or ServiceTitan, and Gmail, in your prices and wording.</p>
+            <div class="sn-card__price"><b>from $297/mo</b><a href="staff.html">See where it works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>AI ads</h3><p>Fresh ads every month for the season you are in: AC before the heat, roofs after the monsoon, pool openings in spring. Seven angles, every size the platforms need.</p>
             <div class="sn-card__vis"><div class="hp-ads" aria-label="Finished ad output"><div class="tall"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>9:16</span></div><div><img src="art/ad-angle-question.webp" alt="A square ad" width="720" height="720" loading="lazy" decoding="async" /><span>1:1</span></div><div><img src="art/ad-angle-split.webp" alt="A portrait ad" width="720" height="893" loading="lazy" decoding="async" /><span>4:5</span></div></div></div>
             <div class="sn-card__price"><b>from $697/mo</b><a href="service-ai-ads.html">See the ad desk →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['plug']}</div><h3>Custom systems</h3><p>An intake line, a quoting tool, a flight recorder for an AI agent. A written scope and a fixed price before a line of code.</p>
-            <div class="sn-card__vis"><div class="hp-schem" aria-label="A custom system, drawn from BLACKBOX"><div><i></i>Every call logged<em>append-only</em></div><div><i></i>Hash-chained<em>tamper-evident</em></div><div><i></i>Replayable<em>step by step</em></div><div><i></i>Runbook and source handed over<em>yours</em></div></div></div>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-consulting.html">See what has been built →</a></div></article>
-        </div>
-        <div class="sn-cards hp-services" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.5rem">
-          <article class="sn-card"><div class="sn-card__ico">{I['search']}</div><h3>AI SEO</h3><p>One AI agent does your SEO end to end: finds what is wrong, fixes it on your site, writes the pages you are missing and reports what changed. No new tools, no new hire. Nothing goes live until you have read it.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-seo.html">See how AI SEO works →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>CRM and dashboard optimization</h3><p>The CRM you already pay for, cleaned up and made to follow up on its own, plus one screen with the numbers you run the company on: leads, speed, quotes, revenue, money owed.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-crm-dashboards.html">See what gets fixed →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Google reviews</h3><p>Every finished job gets a review request, every review gets a reply in your wording, and you get the count each month. Every customer is asked the same way, the way Google requires.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See the review engine →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['repeat']}</div><h3>Win back past customers</h3><p>The people you already served and never wrote to again. The list cleaned up, a short series of messages in your voice, and every reply sent straight to you.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-winback.html">See how win-back runs →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['alert']}</div><h3>Property Signals</h3><p>After a hail or monsoon storm, the homes likely in its path, oldest first. Every month, the homes whose AC, roof, water heater or pool equipment is due by age. From public records, ready for mailers and door-knocking.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-property-signals.html">See how Signals works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['repeat']}</div><h3>Reviews and repeat work</h3><p>A review request after every job and a reply to every review. Then a note when the tune-up or replacement is due, and a hello to the customers you have not seen in a year.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See how it runs →</a></div></article>
         </div>
       </div>
     </section>
@@ -200,7 +189,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <section class="sn-sec" aria-labelledby="h-how">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-how">How a build runs, <em>in five steps.</em></h2><p class="tk-lede">The same five whether it is a phone line, a website or a custom system. Tap a step, or scroll.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-how">How a build runs, <em>in five steps.</em></h2><p class="tk-lede">The same five whether it is a phone line, a month of ads or a list of homes. Tap a step, or scroll.</p></div>
         <div class="sn-steps">
           <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div>{phone_views}</div></div></div>
           <ol class="sn-steps__list">{steps}</ol>
@@ -270,7 +259,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the eight services</a></div>''' + tail("""
+  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the four services</a></div>''' + tail("""
   <script>
   (function(){
     var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;
