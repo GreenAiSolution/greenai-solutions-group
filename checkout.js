@@ -104,13 +104,15 @@
        the plan (contact.html knows every one). Paste a buy.stripe.com link
        here once it is created and the button goes straight to checkout. */
     'plan-starter': '',   /* Starter, $199 one-time */
-    'plan-growth':  '',   /* Growth, $497/mo */
+    'plan-growth':  'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* Growth, $497/mo = employees-front-desk link, same price. Stripe checkout still shows the old product name until it is renamed in the dashboard. */
     'plan-full':    '',   /* Full System, $1,497/mo */
     'alc-cards':    '',   /* NFC review cards, from $49 */
     'alc-gbp':      '',   /* Google Business Profile optimization, $249 one-time */
     'alc-textback': '',   /* Missed-call text-back, $99/mo */
     'alc-reviews':  '',   /* Review automation, $149/mo */
-    'alc-dm':       ''    /* DM automation, $149/mo */
+    'alc-dm':       '',   /* DM automation, $149/mo */
+    'alc-video':    '',   /* AI short-form video, $497/mo */
+    'alc-search':   ''    /* AI search visibility, $297/mo */
   };
 
   /* Dormant — Greenvlt acct_1U1tvI4E6AUMDj1M, the rail this site used from
