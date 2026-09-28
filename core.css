@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Core recurring services (cs-)
+   AI agents · AI receptionist + missed-call text-back · review automation · AI ads
+   Shared by index.html and services.html. Dark green + gold, same tokens as tech.css.
+   ========================================================================== */
+
+.cs { --cs-gold: #E8C46A; --cs-gold-2: #F2D68A; --cs-ink: #06100A; --cs-panel: #0B1B12; --cs-line: rgba(232,196,106,.22); }
+
+/* who it is for */
+.cs-for { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: -.4rem auto 2.4rem; max-width: 880px; padding: 0; list-style: none; }
+.cs-for li { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .9rem; border-radius: 999px; border: 1px solid var(--cs-line); background: rgba(255,255,255,.03); color: rgba(255,255,255,.82); font-size: .86rem; font-weight: 500; }
+.cs-for li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cs-gold); box-shadow: 0 0 0 3px rgba(232,196,106,.18); }
+
+/* the four cards */
+.cs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+.cs-card { position: relative; display: flex; flex-direction: column; padding: 1.7rem 1.7rem 1.4rem; border-radius: 26px; border: 1px solid var(--cs-line); background: radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--ac, #E8C46A) 13%, transparent), transparent 60%), linear-gradient(180deg, #0D2016, #081309); overflow: hidden; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.cs-card:hover { transform: translateY(-3px); border-color: rgba(232,196,106,.45); box-shadow: 0 40px 80px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(232,196,106,.08); }
+.cs-card__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+.cs-card__ico { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; background: rgba(232,196,106,.12); color: var(--cs-gold); border: 1px solid rgba(232,196,106,.25); }
+.cs-card__ico svg { width: 22px; height: 22px; }
+.cs-card__tag { font-family: var(--mono); font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--cs-gold); padding: .3rem .6rem; border-radius: 999px; border: 1px solid rgba(232,196,106,.28); }
+.cs .cs-card h3 { margin: 0 0 .55rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 2.2vw, 1.65rem); line-height: 1.15; letter-spacing: -.015em; color: #fff; }
+.cs .cs-card h3 em { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; color: var(--cs-gold); }
+.cs-card > p { margin: 0 0 1rem; color: rgba(255,255,255,.72); line-height: 1.6; font-size: .98rem; }
+.cs-ticks { list-style: none; margin: 0 0 1.3rem; padding: 0; display: grid; gap: .4rem; }
+.cs-ticks li { position: relative; padding-left: 1.6rem; color: rgba(255,255,255,.82); font-size: .92rem; line-height: 1.45; }
+.cs-ticks li::before { content: ""; position: absolute; left: 0; top: .18rem; width: 1rem; height: 1rem; border-radius: 50%; background: rgba(232,196,106,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8C46A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / 62% no-repeat; }
+.cs-card__foot { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.1rem; border-top: 1px solid var(--cs-line); }
+.cs-card__foot b { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; letter-spacing: -.02em; color: #fff; }
+.cs-card__foot b small { font-size: .78rem; font-weight: 500; color: rgba(255,255,255,.55); letter-spacing: 0; margin-left: .2rem; }
+.cs-card__foot a { font-size: .9rem; font-weight: 600; color: var(--cs-gold); text-decoration: none; white-space: nowrap; }
+.cs-card__foot a:hover { color: var(--cs-gold-2); }
+
+/* the little live screens */
+.cs-demo { position: relative; margin: 0 0 1.3rem; padding: 1rem; border-radius: 18px; background: var(--cs-panel); border: 1px solid rgba(232,196,106,.2); box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 30px 60px -40px rgba(0,0,0,.9); font-size: .86rem; }
+.cs-demo__bar { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-bottom: .75rem; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.55); }
+.cs-demo__bar span { display: inline-flex; align-items: center; gap: .45rem; }
+.cs-demo__bar i { width: 7px; height: 7px; border-radius: 50%; background: var(--cs-gold); box-shadow: 0 0 0 3px rgba(232,196,106,.2); animation: cs-pulse 2s ease-in-out infinite; }
+.cs-demo__bar i.miss { background: #F5A38E; box-shadow: 0 0 0 3px rgba(245,163,142,.2); }
+.cs-demo__bar b { font-family: var(--mono); font-weight: 500; color: var(--cs-gold); letter-spacing: .04em; }
+.cs-demo__note { margin-top: .7rem; font-size: .7rem; color: rgba(255,255,255,.4); text-align: right; }
+
+.cs-msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .45rem; }
+.cs-msgs li { max-width: 86%; padding: .55rem .8rem; border-radius: 14px; line-height: 1.45; }
+.cs-msgs .them { align-self: flex-start; background: rgba(255,255,255,.08); color: #fff; border-bottom-left-radius: 5px; }
+.cs-msgs .us { align-self: flex-end; background: var(--cs-gold); color: var(--cs-ink); border-bottom-right-radius: 5px; }
+.cs-msgs .us[data-who]::before { content: attr(data-who); display: block; font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .7; margin-bottom: .12rem; }
+.cs-msgs .sys { align-self: center; max-width: 100%; padding: .3rem .75rem; border-radius: 999px; background: rgba(232,196,106,.1); border: 1px solid rgba(232,196,106,.3); color: var(--cs-gold); font-size: .72rem; font-weight: 600; letter-spacing: .02em; }
+.cs-msgs .miss { align-self: flex-start; display: flex; align-items: center; gap: .55rem; background: rgba(245,163,142,.1); border: 1px solid rgba(245,163,142,.3); color: #F9C3B4; border-radius: 12px; }
+.cs-msgs .miss svg { width: 16px; height: 16px; flex: none; }
+
+.cs-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; }
+.cs-chips span { font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; padding: .22rem .5rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.6); }
+.cs-chips span.done { border-color: rgba(232,196,106,.4); color: var(--cs-gold); background: rgba(232,196,106,.08); }
+.cs-chips span.done::before { content: "✓ "; }
+
+.cs-stars { display: flex; align-items: center; gap: .15rem; color: var(--cs-gold); font-size: 1.05rem; letter-spacing: .05em; }
+.cs-stars em { font-style: normal; margin-left: .5rem; font-size: .72rem; color: rgba(255,255,255,.55); letter-spacing: 0; }
+
+/* ads: budget that moves on its own */
+.cs-ads { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: .8rem; align-items: stretch; }
+.cs-ads__art { position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; }
+.cs-ads__art video, .cs-ads__art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-ads__art span { position: absolute; left: .35rem; bottom: .35rem; padding: .1rem .4rem; border-radius: 999px; background: rgba(0,0,0,.7); color: var(--cs-gold); font-family: var(--mono); font-size: .56rem; letter-spacing: .1em; }
+.cs-budget { display: grid; gap: .6rem; align-content: center; }
+.cs-budget__row { display: grid; grid-template-columns: 4.3rem minmax(0, 1fr) 2.6rem; gap: .55rem; align-items: center; font-size: .76rem; color: rgba(255,255,255,.75); }
+.cs-budget__row b { font-weight: 600; color: #fff; }
+.cs-budget__row em { font-style: normal; font-family: var(--mono); font-size: .7rem; color: var(--cs-gold); text-align: right; }
+.cs-budget__bar { height: 9px; border-radius: 999px; background: rgba(255,255,255,.07); overflow: hidden; }
+.cs-budget__bar i { display: block; height: 100%; width: var(--w, 50%); border-radius: inherit; background: linear-gradient(90deg, #B8923A, var(--cs-gold)); }
+.cs-budget__row.up i { animation: cs-up 6s ease-in-out infinite alternate; }
+.cs-budget__row.down i { animation: cs-down 6s ease-in-out infinite alternate; }
+.cs-budget__note { font-size: .7rem; color: rgba(255,255,255,.5); line-height: 1.4; }
+.cs-budget__note b { color: var(--cs-gold); font-weight: 600; }
+
+/* how the four feed each other */
+.cs-loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 2.2rem 0 0; padding: 0; list-style: none; border: 1px solid var(--cs-line); border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.02); counter-reset: cs; }
+.cs-loop li { position: relative; padding: 1.2rem 1.3rem 1.25rem; counter-increment: cs; }
+.cs-loop li + li { border-left: 1px solid var(--cs-line); }
+.cs-loop li::before { content: "0" counter(cs); display: block; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 1.5rem; line-height: 1; color: var(--cs-gold); opacity: .55; margin-bottom: .45rem; }
+.cs-loop li + li::after { content: "→"; position: absolute; left: -.7rem; top: 1.25rem; display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: #0A1A11; border: 1px solid var(--cs-line); color: var(--cs-gold); font-size: .72rem; }
+.cs-loop b { display: block; margin-bottom: .2rem; font-family: var(--font-display); font-weight: 600; color: #fff; font-size: 1rem; }
+.cs-loop span { color: rgba(255,255,255,.62); font-size: .86rem; line-height: 1.45; }
+
+.cs-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .75rem 1.2rem; margin-top: 2rem; text-align: center; color: rgba(255,255,255,.6); font-size: .92rem; }
+.cs-foot .tk-btn--solid { background: var(--cs-gold); border-color: var(--cs-gold); color: var(--cs-ink); box-shadow: 0 16px 40px -14px rgba(232,196,106,.7); }
+.cs-foot .tk-btn--solid:hover { background: var(--cs-gold-2); border-color: var(--cs-gold-2); color: var(--cs-ink); }
+
+/* reveal: the conversation plays out once the card is on screen (JS adds .cs-js / .is-in) */
+.cs-js .cs-step { opacity: 0; transform: translateY(8px); }
+.cs-js .is-in .cs-step { animation: cs-rise .5s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i, 0) * .7s + .15s); }
+
+@keyframes cs-rise { to { opacity: 1; transform: none; } }
+@keyframes cs-pulse { 50% { box-shadow: 0 0 0 6px rgba(232,196,106,0); } }
+@keyframes cs-up { from { width: 38%; } to { width: 78%; } }
+@keyframes cs-down { from { width: 62%; } to { width: 22%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-js .cs-step { opacity: 1; transform: none; animation: none !important; }
+  .cs-budget__row i, .cs-demo__bar i { animation: none !important; }
+  .cs-card, .cs-card:hover { transition: none; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-loop li:nth-child(3) { border-left: 0; }
+  .cs-loop li:nth-child(n+3) { border-top: 1px solid var(--cs-line); }
+  .cs-loop li:nth-child(3)::after { display: none; }
+}
+@media (max-width: 520px) {
+  .cs-card { padding: 1.3rem 1.15rem 1.1rem; border-radius: 22px; }
+  .cs-loop { grid-template-columns: 1fr; }
+  .cs-loop li + li { border-left: 0; border-top: 1px solid var(--cs-line); }
+  .cs-loop li + li::after { display: none; }
+  .cs-ads { grid-template-columns: 4.4rem minmax(0, 1fr); }
+  .cs-card__foot { flex-wrap: wrap; }
+}
+
+/* services page: the same screens, sized up for the scenes */
+.sv .cs-demo { font-size: .92rem; padding: 1.2rem 1.3rem; }
+.sv .cs-demo + .cs-demo { margin-top: 1rem; }
+.sv .sv-screen + .cs-demo { margin-top: 1rem; }

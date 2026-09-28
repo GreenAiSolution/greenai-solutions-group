@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenAI Solutions — an AI services workforce for Phoenix home service companies</title>
-  <meta name="description" content="An AI services workforce for Phoenix HVAC, roofing, plumbing and pool companies. Four services: finished ads every month from $697, an AI employee that answers every call and text from $297 a month, Property Signals lists of the homes that need you next, and reviews and repeat work. Gilbert, Arizona." />
+  <title>GreenAI Solutions — AI agents, AI receptionist, review automation and AI ads</title>
+  <meta name="description" content="AI services for local businesses: AI agents that answer leads, book appointments and follow up; an AI voice receptionist with missed-call text-back; automatic review requests after every job; and AI-run Meta and Google ads. Month to month. Gilbert, Arizona." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=22" />
   <link rel="stylesheet" href="tech.css?v=12" />
+  <link rel="stylesheet" href="core.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -18,7 +20,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/" />
   <meta property="og:title" content="GreenAI Solutions — your AI services workforce" />
-  <meta property="og:description" content="An AI services workforce for Phoenix HVAC, roofing, plumbing and pool companies. Four services: finished ads every month from $697, an AI employee that answers every call and text from $297 a month, Property Signals lists of the homes that need you next, and reviews and repeat work. Gilbert, Arizona." />
+  <meta property="og:description" content="AI services for local businesses: AI agents that answer leads, book appointments and follow up; an AI voice receptionist with missed-call text-back; automatic review requests after every job; and AI-run Meta and Google ads. Month to month. Gilbert, Arizona." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -115,7 +117,7 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="service-ai-ads.html">AI ads: finished ads every month, from $697/mo</a></li><li><a href="staff.html">AI employee: answers every call and text, from $297/mo</a></li><li><a href="service-property-signals.html">Property Signals: the homes that need you next</a></li><li><a href="service-reviews.html">Reviews and repeat work</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
           <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
           <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -131,7 +133,7 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="service-ai-ads.html">AI ads: finished ads every month, from $697/mo</a></li><li><a href="staff.html">AI employee: answers every call and text, from $297/mo</a></li><li><a href="service-property-signals.html">Property Signals: the homes that need you next</a></li><li><a href="service-reviews.html">Reviews and repeat work</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
         <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
         <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
         <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
@@ -150,12 +152,12 @@
     "email": "jaden@greenaidigital.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "postalCode": "85296", "addressCountry": "US" },
     "areaServed": "US",
-    "description": "An AI services workforce for Phoenix home service companies: AI ads, an AI employee that answers every call and text, Property Signals lists of the homes that need you next, and reviews and repeat work.",
+    "description": "AI services for local businesses: AI agents that answer leads and book appointments, an AI voice receptionist with missed-call text-back, review automation, and AI-run Meta and Google ads.",
     "makesOffer": [
-      { "@type": "Offer", "name": "AI ads", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" },
-      { "@type": "Offer", "name": "AI employee", "url": "https://greenaidigital.com/staff.html", "priceCurrency": "USD", "price": "297" },
-      { "@type": "Offer", "name": "Property Signals", "url": "https://greenaidigital.com/service-property-signals.html" },
-      { "@type": "Offer", "name": "Reviews and repeat work", "url": "https://greenaidigital.com/service-reviews.html" }
+      { "@type": "Offer", "name": "AI agents", "url": "https://greenaidigital.com/services.html#agents", "priceCurrency": "USD", "price": "397" },
+      { "@type": "Offer", "name": "AI voice receptionist and missed-call text-back", "url": "https://greenaidigital.com/ring.html", "priceCurrency": "USD", "price": "497" },
+      { "@type": "Offer", "name": "Review automation", "url": "https://greenaidigital.com/service-reviews.html" },
+      { "@type": "Offer", "name": "AI ads", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" }
     ]
   }
   </script>
@@ -163,31 +165,97 @@
 
     <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · for Phoenix home service companies</p>
+        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · for contractors, salons, restaurants and local service businesses</p>
         <h1 class="tk-h1" id="hero-heading">Your AI services <em>workforce.</em></h1>
-        <p class="sn-hero__sub">Four services for HVAC, roofing, plumbing and pool companies. Ads that bring the calls, an AI employee that answers them, lists of the homes that need you next, and reviews and repeat work from the customers you already have. Priced in writing, month to month, with a real person to call.</p>
+        <p class="sn-hero__sub">AI that answers your leads, picks up your phone 24/7, texts back every missed call, asks every customer for a review and runs your Meta and Google ads. Four core services that keep working while you do, priced in writing, month to month, with a real person to call.</p>
         <div class="sn-hero__cta">
-          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the four services</a>
+          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the core services</a>
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
       <nav class="hp-seals" aria-label="The six AI employees in the workforce"><div class="hp-seals__row"><a class="hp-seal" href="ring.html"><img src="art/marks/ring-md.svg" alt="" width="240" height="240" decoding="async" /><b>RING</b><span>Phone line</span></a><a class="hp-seal" href="dispatch.html"><img src="art/marks/dispatch-md.svg" alt="" width="240" height="240" decoding="async" /><b>DISPATCH</b><span>Jobber</span></a><a class="hp-seal" href="inbox.html"><img src="art/marks/inbox-md.svg" alt="" width="240" height="240" decoding="async" /><b>INBOX</b><span>Gmail</span></a><a class="hp-seal" href="thread.html"><img src="art/marks/thread-md.svg" alt="" width="240" height="240" decoding="async" /><b>THREAD</b><span>Slack</span></a><a class="hp-seal" href="huddle.html"><img src="art/marks/huddle-md.svg" alt="" width="240" height="240" decoding="async" /><b>HUDDLE</b><span>Teams</span></a><a class="hp-seal" href="books.html"><img src="art/marks/books-md.svg" alt="" width="240" height="240" decoding="async" /><b>BOOKS</b><span>QuickBooks</span></a></div></nav>
     </header></div>
 
-    <section class="sn-sec" aria-labelledby="h-also">
+    <section class="sn-sec cs" aria-labelledby="h-also">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-also">Four services. <em>Full schedules.</em></h2><p class="tk-lede">Bring the calls, answer every one, know which homes need you next, and keep the customers you already won. Every price is the whole price, in writing before anything is signed.</p></div>
-        <div class="sn-cards sn-cards--3 hp-services">
-          <article class="sn-card" style="grid-column:1/-1"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><h3>An AI employee on every call</h3><p>Answers every call and text at any hour while your crews are working, gets the address and the problem, books the visit and texts you a summary. Works inside your phone line, Jobber, Housecall Pro or ServiceTitan, and Gmail, in your prices and wording.</p>
-            <div class="sn-card__price"><b>from $297/mo</b><a href="staff.html">See where it works →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><h3>AI ads</h3><p>Fresh ads every month for the season you are in: AC before the heat, roofs after the monsoon, pool openings in spring. Seven angles, every size the platforms need.</p>
-            <div class="sn-card__vis"><div class="hp-ads" aria-label="Finished ad output"><div class="tall"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>9:16</span></div><div><img src="art/ad-angle-question.webp" alt="A square ad" width="720" height="720" loading="lazy" decoding="async" /><span>1:1</span></div><div><img src="art/ad-angle-split.webp" alt="A portrait ad" width="720" height="893" loading="lazy" decoding="async" /><span>4:5</span></div></div></div>
-            <div class="sn-card__price"><b>from $697/mo</b><a href="service-ai-ads.html">See the ad desk →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><h3>Property Signals</h3><p>After a hail or monsoon storm, the homes likely in its path, oldest first. Every month, the homes whose AC, roof, water heater or pool equipment is due by age. From public records, ready for mailers and door-knocking.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-property-signals.html">See how Signals works →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div><h3>Reviews and repeat work</h3><p>A review request after every job and a reply to every review. Then a note when the tune-up or replacement is due, and a hello to the customers you have not seen in a year.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See how it runs →</a></div></article>
+        <div class="sn-head"><p class="tk-eyebrow"><b>Core recurring services</b> · running every day, month to month</p><h2 class="tk-h2" id="h-also">Four AI services that <em>never clock out.</em></h2><p class="tk-lede">Set up once, then working for you every day after. They answer the leads, pick up the phone, ask for the review and keep the ads fresh, so you can stay on the job. Every price is the whole price, in writing, and you can cancel any month.</p></div>
+        <ul class="cs-for" aria-label="Who it is for"><li>Contractors</li><li>HVAC, plumbing &amp; roofing</li><li>Salons &amp; spas</li><li>Restaurants</li><li>Pool &amp; landscaping</li><li>Any local service business</li></ul>
+        <div class="cs-grid">
+          <article class="cs-card" style="--ac:#7DE3A4">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div><span class="cs-card__tag">Leads</span></div>
+            <h3>AI <em>agents</em></h3>
+            <p>Every new lead gets a friendly answer in under a minute, from your website, Facebook, Google or text. The agent answers questions, books the appointment on your calendar and follows up until they reply, so no lead goes cold.</p>
+            <div class="cs-demo" aria-label="Example: an AI agent answering a new lead and booking it">
+              <div class="cs-demo__bar"><span><i></i>New lead · website form</span><b>replied in 0:41</b></div>
+              <ul class="cs-msgs">
+                <li class="them cs-step" style="--i:0">Hi, do you do bathroom remodels? Looking to get a quote.</li>
+                <li class="us cs-step" style="--i:1" data-who="AI agent">We do. I can get someone out to measure. Does Thursday at 10 or Friday at 2 work?</li>
+                <li class="them cs-step" style="--i:2">Thursday at 10 is perfect.</li>
+                <li class="sys cs-step" style="--i:3">Booked · Thu 10:00 · on your calendar</li>
+              </ul>
+              <div class="cs-chips cs-step" style="--i:4"><span class="done">Reminder sent</span><span class="done">Day 3 follow-up</span><span>Day 7 check-in</span></div>
+            </div>
+            <ul class="cs-ticks"><li>Answers leads in under a minute, day or night</li><li>Books straight onto your calendar or Jobber</li><li>Follows up on day one, three and seven</li></ul>
+            <div class="cs-card__foot"><b>from $397<small>/mo</small></b><a href="services.html#agents">See the agents →</a></div>
+          </article>
+          <article class="cs-card" style="--ac:#F5A38E">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M15 3.5a6 6 0 0 1 5.5 5.5M15 7a2.5 2.5 0 0 1 2 2"/></svg></div><span class="cs-card__tag">Phones</span></div>
+            <h3>AI receptionist + <em>missed-call text-back</em></h3>
+            <p>An AI answers your phone 24/7 in your business name, books the visit and texts you a summary. And if a call ever slips through, the caller gets a text back in seconds, before they dial the next shop on the list.</p>
+            <div class="cs-demo" aria-label="Example: a missed call texted back within seconds">
+              <div class="cs-demo__bar"><span><i class="miss"></i>Front desk · 6:42 PM</span><b>texted in 0:04</b></div>
+              <ul class="cs-msgs">
+                <li class="miss cs-step" style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/><path d="m16 2 6 6M22 2l-6 6"/></svg>Missed call · (602) 555-0188</li>
+                <li class="us cs-step" style="--i:1" data-who="Auto text">Sorry we missed you! This is Luna Salon. Want to book? Reply with a day and time and we'll lock it in.</li>
+                <li class="them cs-step" style="--i:2">Saturday morning for a cut + color?</li>
+                <li class="us cs-step" style="--i:3" data-who="AI receptionist">Saturday at 9:30 is open with Maya. You're booked!</li>
+              </ul>
+            </div>
+            <ul class="cs-ticks"><li>Picks up every call, nights and weekends</li><li>Texts back every missed call within seconds</li><li>Made for contractors, salons and restaurants</li></ul>
+            <div class="cs-card__foot"><b>$497<small>/mo</small></b><a href="ring.html">Hear it answer →</a></div>
+          </article>
+          <article class="cs-card" style="--ac:#E8C46A">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><span class="cs-card__tag">Reputation</span></div>
+            <h3>Review <em>automation</em></h3>
+            <p>After every job or visit, your customer gets a short, personal text asking for a review, plus one gentle reminder. It is the always-on version of the review cards, and every review gets a reply drafted in your voice.</p>
+            <div class="cs-demo" aria-label="Example: a review request sent after a finished job">
+              <div class="cs-demo__bar"><span><i></i>Job marked done · 3:10 PM</span><b>sent 2 hrs later</b></div>
+              <ul class="cs-msgs">
+                <li class="us cs-step" style="--i:0" data-who="Review request">Hi Dan, thanks for having us out today! If we took good care of you, would you leave a quick review? It really helps a small business. g.page/r/…</li>
+                <li class="them cs-step" style="--i:1">Done! Great crew 👍</li>
+              </ul>
+              <div class="cs-stars cs-step" style="--i:2" aria-label="Five stars">★★★★★<em>new Google review · reply drafted for you</em></div>
+            </div>
+            <ul class="cs-ticks"><li>A review text after every job or visit</li><li>One polite reminder, never pushy</li><li>Every customer asked the same way, by the rules</li></ul>
+            <div class="cs-card__foot"><b>Quoted<small>month to month</small></b><a href="service-reviews.html">See how it runs →</a></div>
+          </article>
+          <article class="cs-card" style="--ac:#7CC4F0">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M15 8h5v5"/></svg></div><span class="cs-card__tag">Growth</span></div>
+            <h3>AI <em>ads</em></h3>
+            <p>Meta and Google campaigns with fresh AI-made creative every month and budgets that adjust themselves. Spend shifts toward the ads and platform actually bringing calls, powered by our Pixel Pilot engine.</p>
+            <div class="cs-demo" aria-label="Example: AI ads with budget shifting toward what books">
+              <div class="cs-demo__bar"><span><i></i>Meta + Google · this week</span><b>auto-adjusting</b></div>
+              <div class="cs-ads">
+                <div class="cs-ads__art"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>AI · 9:16</span></div>
+                <div class="cs-budget">
+                  <div class="cs-budget__row up"><b>Meta</b><div class="cs-budget__bar"><i></i></div><em>▲</em></div>
+                  <div class="cs-budget__row down"><b>Google</b><div class="cs-budget__bar"><i></i></div><em>▼</em></div>
+                  <div class="cs-budget__row"><b>Retarget</b><div class="cs-budget__bar"><i style="--w:34%"></i></div><em>=</em></div>
+                  <p class="cs-budget__note"><b>Budget follows the bookings.</b> Spend moves daily to the ads and platform bringing real calls, inside the cap you set.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="cs-ticks"><li>New AI-made ads every month, every size</li><li>Meta and Google, run and watched for you</li><li>Budgets rebalance automatically to what books</li></ul>
+            <div class="cs-card__foot"><b>from $697<small>/mo</small></b><a href="service-ai-ads.html">See the ad desk →</a></div>
+          </article>
         </div>
+        <ol class="cs-loop" aria-label="How the four work together">
+          <li><b>Ads bring them in</b><span>Fresh creative on Meta and Google, budget on what works.</span></li>
+          <li><b>Agents answer fast</b><span>Every lead gets a reply and a booking in minutes.</span></li>
+          <li><b>No call goes unanswered</b><span>Picked up 24/7, and missed calls texted back.</span></li>
+          <li><b>Reviews bring the next one</b><span>Happy customers asked every time, stars keep climbing.</span></li>
+        </ol>
+        <div class="cs-foot"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See all four in detail</a><span>or call <a href="tel:4807980753" style="color:#E8C46A;font-weight:600;text-decoration:none">(480) 798-0753</a> and ask which one to start with</span></div>
       </div>
     </section>
 
@@ -373,7 +441,7 @@
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the four services</a></div>
+  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the core services</a></div>
     <footer class="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer__grid">
@@ -382,17 +450,17 @@
             <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI" width="36" height="36" loading="lazy" decoding="async"/></div>
             <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Solutions</span>
           </a>
-          <p class="footer__tagline">An AI services workforce for Phoenix home service companies: AI ads, an AI employee on every call, Property Signals, and reviews and repeat work. Run from Gilbert, Arizona, with a real person on the phone.</p>
+          <p class="footer__tagline">AI services for local businesses: AI agents, an AI receptionist with missed-call text-back, review automation and AI ads. Run from Gilbert, Arizona, with a real person on the phone.</p>
           <p style="font-size:.78rem;color:rgba(255,255,255,.62)">GreenAI Solutions<br/>Gilbert, Arizona</p>
         </div>
 
         <div>
           <h5>Services</h5>
           <ul class="footer__links" role="list">
+            <li><a href="services.html#agents">AI agents</a></li>
+            <li><a href="ring.html">AI receptionist + missed-call text-back</a></li>
+            <li><a href="service-reviews.html">Review automation</a></li>
             <li><a href="service-ai-ads.html">AI ads</a></li>
-            <li><a href="staff.html">AI employee</a></li>
-            <li><a href="service-property-signals.html">Property Signals</a></li>
-            <li><a href="service-reviews.html">Reviews and repeat work</a></li>
           </ul>
         </div>
 
@@ -447,6 +515,19 @@
   <script src="script.js?v=15"></script>
   <script src="checkout.js?v=8"></script>
   <script src="analytics.js"></script>
+  <script>
+  /* core services: play each little conversation once its card scrolls into view */
+  (function () {
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.cs').forEach(function (root) {
+      root.classList.add('cs-js');
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      root.querySelectorAll('.cs-demo').forEach(function (d) { io.observe(d); });
+    });
+  })();
+  </script>
   <script>
   (function(){
     var t=document.querySelector('.ag-t'); if(!t) return;
