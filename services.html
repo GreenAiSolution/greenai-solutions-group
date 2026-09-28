@@ -179,6 +179,12 @@
     .hp-browser__shots { position: relative; aspect-ratio: 16 / 10; }
     .hp-browser__shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .6s; }
     .hp-browser__shots img.on { opacity: 1; }
+
+    .sv-addons { margin: 0 16px 16px; border-radius: var(--radius-lg); border: 1px solid rgba(232,196,106,.14); background: linear-gradient(180deg, #0A1A11, #06100A); }
+    .sv-addons__in { max-width: 1240px; margin: 0 auto; padding: clamp(3.5rem, 7vw, 6rem) 1.5rem; }
+    .sv-addons__head { text-align: center; max-width: 720px; margin: 0 auto 2.4rem; }
+    .sv-addons__head h2 { margin: 0 0 .9rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 4.4vw, 3.6rem); line-height: 1.02; letter-spacing: -.025em; }
+    .sv-addons__head p:not(.sv-slate) { font-size: 1.08rem; line-height: 1.6; }
   </style>
 </head>
 <body class="tk sv-cinema">
@@ -196,7 +202,7 @@
 
         <ul class="nav__links" role="list">
           <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li><li><a href="services.html#add-ons">Trending add-ons: DMs, AI video, AI search</a></li></ul></li>
           <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li><li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
           <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
@@ -212,7 +218,7 @@
       <!-- Mobile menu -->
       <ul class="nav__mobile" role="list">
         <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li><li><a href="services.html#add-ons">Trending add-ons: DMs, AI video, AI search</a></li></ul></li>
         <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li><li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
         <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
         <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
@@ -229,7 +235,7 @@
       <h1 id="h1">Four AI services. <em>Always on.</em></h1>
       <p>For contractors, salons, restaurants and every local business that lives on the phone. AI agents that answer your leads and book them, an AI receptionist that picks up 24/7 and texts back every missed call, a review request after every job, and Meta and Google ads that make their own creative and move their own budget. Every price is the whole price, in writing, and all four are month to month.</p>
       <div class="sv-cta" style="justify-content:center"><a href="#agents" class="tk-btn tk-btn--solid tk-btn--arrow">Meet the four</a><a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a></div>
-      <div class="sv-cast" aria-label="The four core services"><a href="#agents"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/inbox-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI agents</a><a href="#receptionist"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI receptionist</a><a href="#reviews"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/reviews-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>Review automation</a><a href="#ads"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/ads-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI ads</a></div>
+      <div class="sv-cast" aria-label="The four core services"><a href="#agents"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/inbox-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI agents</a><a href="#receptionist"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/ring-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI receptionist</a><a href="#reviews"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/reviews-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>Review automation</a><a href="#ads"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/ads-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>AI ads</a><a href="#add-ons"><span><img class="rb-bust rb3-head seal-sm" src="art/marks/custom-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>Add-ons</a></div>
     </header>
 
     <section class="sv-scene" id="agents" style="--ac:#7DE3A4;--x:70%" aria-labelledby="h-s1">
@@ -329,6 +335,62 @@
       </div>
     </section>
 
+    <section class="sv-addons" id="add-ons" aria-labelledby="h-addons">
+      <div class="sv-addons__in">
+        <div class="sv-addons__head"><p class="sv-slate">Trending add-ons</p><h2 id="h-addons">Three add-ons that are <em>taking off.</em></h2><p>Plug any of these on top of your core services: DMs that qualify your leads, video you never have to film yourself, and a spot in the answers people get from AI.</p></div>
+        <div class="cs-grid cs-grid--3">
+          <article class="cs-card" style="--ac:#F5A38E">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></div><span class="cs-card__tag">Social</span></div>
+            <h3>Instagram &amp; Facebook <em>DM automation</em></h3>
+            <p>Post "Comment CARD to learn more" and every comment gets an instant DM. The conversation asks a couple of quick questions, qualifies the lead and hands you the good ones, so your comments turn into customers instead of likes.</p>
+            <div class="cs-demo" aria-label="Example: a comment keyword triggers a DM that qualifies the lead">
+              <div class="cs-demo__bar"><span><i></i>Instagram · new comment</span><b>DM in 0:03</b></div>
+              <div class="ao-comment cs-step" style="--i:0"><i></i><p><b>jess.nails</b><em>CARD</em> 🙌 how does this work?</p></div>
+              <ul class="cs-msgs">
+                <li class="us cs-step" style="--i:1" data-who="Auto DM">Hey Jess! Here's how the tap-to-review cards work 👇 Quick question: is this for a salon or a solo chair?</li>
+                <li class="them cs-step" style="--i:2">Salon, 4 chairs</li>
+                <li class="sys cs-step" style="--i:3">Lead qualified · sent to you with the chat</li>
+              </ul>
+            </div>
+            <ul class="cs-ticks"><li>Comment keywords trigger instant DMs</li><li>Qualifies the lead with a few quick questions</li><li>Hot leads sent to you, or booked for you</li></ul>
+            <div class="cs-card__foot"><b>$149<small>/mo · in Growth</small></b><a href="pricing.html#a-la-carte">See pricing →</a></div>
+          </article>
+          <article class="cs-card" style="--ac:#7CC4F0">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="m10.5 9 4 3-4 3z"/></svg></div><span class="cs-card__tag">Content</span></div>
+            <h3>AI short-form <em>video</em></h3>
+            <p>Reels and TikToks made with AI tools and your own footage. Send us clips from the job, the chair or the kitchen and get back finished, captioned vertical videos ready to post. Every business knows it needs video; this is how you get it without the time.</p>
+            <div class="cs-demo" aria-label="Example: short-form videos made from your footage and AI">
+              <div class="cs-demo__bar"><span><i></i>This month · Reels &amp; TikToks</span><b>12 ready</b></div>
+              <div class="ao-reels">
+                <div class="cs-step" style="--i:0"><video src="art/ad-vid-reel.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp" aria-label="An example vertical video"></video><span>YOUR FOOTAGE</span></div>
+                <div class="cs-step" style="--i:1"><video src="art/ad-vid-founder.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-founder.webp" aria-label="An example vertical video"></video><span>AI B-ROLL</span></div>
+                <div class="cs-step" style="--i:2"><video src="art/ad-vid-problem.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-problem.webp" aria-label="An example vertical video"></video><span>CAPTIONED</span></div>
+              </div>
+            </div>
+            <ul class="cs-ticks"><li>12 short-form videos a month</li><li>Your real footage plus AI b-roll and captions</li><li>Ready for Reels, TikTok and Shorts</li></ul>
+            <div class="cs-card__foot"><b>Included<small>in Full System · 12/mo</small></b><a href="pricing.html">See Full System →</a></div>
+          </article>
+          <article class="cs-card" style="--ac:#7DE3A4">
+            <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></div><span class="ao-new">New</span></div>
+            <h3>AI search <em>visibility</em></h3>
+            <p>People now ask ChatGPT and Google's AI things like "best barber in Phoenix." We make sure your business is the one they recommend: your profile, reviews, site and listings tuned so AI assistants can find, trust and name you. Most local businesses have not heard of this yet.</p>
+            <div class="cs-demo" aria-label="Example: a business recommended by an AI assistant">
+              <div class="cs-demo__bar"><span><i></i>ChatGPT · Google AI</span><b>recommended</b></div>
+              <div class="ao-ask cs-step" style="--i:0">best barber in Phoenix?</div>
+              <ul class="ao-answer">
+                <li class="you cs-step" style="--i:1"><b>1</b><span>Your Barbershop</span><em>★ 4.9</em></li>
+                <li class="cs-step" style="--i:2"><b>2</b><span>Another shop</span><em>★ 4.7</em></li>
+                <li class="cs-step" style="--i:3"><b>3</b><span>Another shop</span><em>★ 4.6</em></li>
+              </ul>
+              <p class="cs-demo__note">An example, not a real answer</p>
+            </div>
+            <ul class="cs-ticks"><li>Shows up in ChatGPT and Google AI answers</li><li>Profile, listings and site tuned for AI</li><li>Monthly check of what the AIs say about you</li></ul>
+            <div class="cs-card__foot"><b>Included<small>in Full System</small></b><a href="pricing.html">See Full System →</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="sv-credits" aria-labelledby="h-credits">
       <p class="sv-slate">How it runs</p>
       <h2 id="h-credits">Up and running <em>in four steps.</em></h2>
@@ -344,6 +406,9 @@
         <tr><td>AI receptionist</td><td>answers 24/7 and texts back every missed call</td><td>$497/mo · text-back $99/mo</td></tr>
         <tr><td>Review automation</td><td>a review text after every job or visit</td><td>$149/mo</td></tr>
         <tr><td>AI ads</td><td>Meta and Google, AI creative, self-adjusting budgets</td><td>$697 · $1,297 · $2,497 /mo</td></tr>
+        <tr><td>DM automation</td><td>comment keywords to DMs that qualify the lead</td><td>$149/mo · in Growth</td></tr>
+        <tr><td>AI short-form video</td><td>12 Reels and TikToks a month</td><td>in Full System</td></tr>
+        <tr><td>AI search visibility</td><td>recommended by ChatGPT and Google AI</td><td>in Full System</td></tr>
       </tbody></table>
       <div class="sv-end"><p class="sv-slate">Not sure which one first</p><p>Calls going to voicemail: start with the AI receptionist. Leads coming in but going cold: AI agents. Great work and a thin review count: review automation. The phone is quiet: AI ads. Most businesses end up with all four working together. Or just call and ask.</p><a class="num" href="tel:4807980753">(480) 798-0753</a><a href="mailto:jaden@greenaidigital.com" style="color:#E8C46A">jaden@greenaidigital.com</a></div>
       <p class="ag-tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan, QuickBooks, RingCentral, Nextiva and Zoom are trademarks of their respective owners. GreenAI Solutions builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
