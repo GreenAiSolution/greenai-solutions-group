@@ -97,7 +97,7 @@
         <ul class="nav__links" role="list">
           <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
           <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
-          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li><li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
           <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
           <li class="nav__dropdown nav__dropdown--right"><a href="contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
         </ul>
@@ -113,7 +113,7 @@
       <ul class="nav__mobile" role="list">
         <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
         <li class="nav__dropdown nav__dropdown--gold"><a href="services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="services.html#agents">AI agents: answer leads, book, follow up</a></li><li><a href="ring.html">AI receptionist + missed-call text-back</a></li><li><a href="service-reviews.html">Review automation: a text after every job</a></li><li><a href="service-ai-ads.html">AI ads: Meta and Google, from $697/mo</a></li></ul></li>
-        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li><li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
         <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
         <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
         <li><a href="tel:4807980753" class="nav__link">(480) 798-0753</a></li>
@@ -254,10 +254,21 @@
               <label for="service">What you want</label>
               <select id="service" name="service">
                 <option value="unsure" selected>Not sure yet &mdash; a question first</option>
+                <optgroup label="Plans">
+                  <option value="plan-starter">Starter &mdash; review cards + Google profile &mdash; $199 one-time</option>
+                  <option value="plan-growth">Growth &mdash; AI receptionist, text-back, reviews, DMs &mdash; $497/mo</option>
+                  <option value="plan-full">Full System &mdash; everything, plus AI agents and ads &mdash; $1,497/mo</option>
+                </optgroup>
+                <optgroup label="À la carte">
+                  <option value="alc-cards">NFC review cards &mdash; from $49</option>
+                  <option value="alc-gbp">Google Business Profile optimization &mdash; $249 one-time</option>
+                  <option value="alc-textback">Missed-call text-back &mdash; $99/mo</option>
+                  <option value="alc-dm">DM automation &mdash; $149/mo</option>
+                </optgroup>
                 <optgroup label="Core recurring services">
                   <option value="agents">AI agents &mdash; answer leads, book, follow up &mdash; from $397/mo</option>
                   <option value="receptionist">AI receptionist + missed-call text-back &mdash; $497/mo</option>
-                  <option value="reviews">Review automation &mdash; quoted</option>
+                  <option value="reviews">Review automation &mdash; $149/mo</option>
                   <option value="ads">AI ads &mdash; Meta and Google &mdash; from $697/mo</option>
                 </optgroup>
                 <optgroup label="AI ads">
@@ -363,6 +374,7 @@
         <div>
           <h5>Company</h5>
           <ul class="footer__links" role="list">
+            <li><a href="pricing.html">Pricing</a></li>
             <li><a href="testimonials.html">Work</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="faq.html">Questions</a></li>
@@ -447,6 +459,14 @@
       'crm':          { pick: 'unsure', name: 'A question first', price: '', note: 'GreenAI now runs four services for home service companies. Tell us what you need and you get a straight answer.' },
       'custom':       { pick: 'unsure', name: 'A question first', price: '', note: 'GreenAI now runs four services for home service companies. Tell us what you need and you get a straight answer.' },
       'quote':        { pick: 'unsure',  name: 'A question first', price: '' },
+      'plan-starter': { pick: 'plan-starter', name: 'Starter', price: '$199 one-time', note: 'Say your business name and how many review cards you want. We set up your Google profile and review link and ship the cards.' },
+      'plan-growth':  { pick: 'plan-growth', name: 'Growth', price: '$497/mo', note: 'Say what phone service you use and where your jobs close. The AI receptionist, text-back, review texts and DM automation are set up for you.' },
+      'plan-full':    { pick: 'plan-full', name: 'Full System', price: '$1,497/mo + ad spend', note: 'Pick a time for a strategy call. You get a plan for your market and a price in writing before anything is signed.' },
+      'alc-cards':    { pick: 'alc-cards', name: 'NFC review cards', price: '1 for $49 \u00b7 3 for $129 \u00b7 10 for $349', note: 'Say how many cards you want and your business name. Bundle any three services and get 15% off.' },
+      'alc-gbp':      { pick: 'alc-gbp', name: 'Google Business Profile optimization', price: '$249 one-time' },
+      'alc-textback': { pick: 'alc-textback', name: 'Missed-call text-back', price: '$99/mo', note: 'Say what phone service you use. It works on the number you already have.' },
+      'alc-reviews':  { pick: 'reviews', name: 'Review automation', price: '$149/mo' },
+      'alc-dm':       { pick: 'alc-dm', name: 'DM automation', price: '$149/mo', note: 'Say which Instagram and Facebook pages you want covered.' },
       'agents':       { pick: 'agents', name: 'AI agents', price: 'from $397/mo', note: 'Say where your leads come in today (website form, Facebook, Google, Gmail, text) and where you book jobs. You get a plan and a price in writing.' },
       'receptionist': { pick: 'receptionist', name: 'AI receptionist + missed-call text-back', price: '$497/mo', note: 'Say what phone service you use and your business hours. It works on the number you already have.' },
       'ads':          { pick: 'ads', name: 'AI ads on Meta and Google', price: 'from $697/mo', note: 'Say your trade, your service area and roughly what you spend on ads today. You get a recommendation and a price in writing.' }

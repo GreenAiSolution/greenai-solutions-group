@@ -98,7 +98,19 @@
        the price is correct. Source of truth: data/catalog.json. */
     'pool-net':     'https://buy.stripe.com/fZubJ397leDq4yH9KY5EY04',  /* = employees-front-desk, $497 */
     'pool-balance': 'https://buy.stripe.com/28EeVfabp9j63uD6yM5EY08',  /* = agent-answer, $347 */
-    'pool-pump':    'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09'   /* = agent-collect, $297 */
+    'pool-pump':    'https://buy.stripe.com/00w14perFeDqd5d8GU5EY09',  /* = agent-collect, $297 */
+    /* PRICING PAGE, 2026-09-28 (pricing.html). No Payment Links exist for
+       these yet, so '' sends each click to the contact form preselected on
+       the plan (contact.html knows every one). Paste a buy.stripe.com link
+       here once it is created and the button goes straight to checkout. */
+    'plan-starter': '',   /* Starter, $199 one-time */
+    'plan-growth':  '',   /* Growth, $497/mo */
+    'plan-full':    '',   /* Full System, $1,497/mo */
+    'alc-cards':    '',   /* NFC review cards, from $49 */
+    'alc-gbp':      '',   /* Google Business Profile optimization, $249 one-time */
+    'alc-textback': '',   /* Missed-call text-back, $99/mo */
+    'alc-reviews':  '',   /* Review automation, $149/mo */
+    'alc-dm':       ''    /* DM automation, $149/mo */
   };
 
   /* Dormant — Greenvlt acct_1U1tvI4E6AUMDj1M, the rail this site used from
