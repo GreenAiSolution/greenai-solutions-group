@@ -197,15 +197,6 @@ PAGE = head("GreenAI Solutions — an AI services workforce for Phoenix home ser
       </div>
     </section>
 
-    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-staff">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-staff">Your always-on <em>front office.</em></h2><p class="tk-lede">Six employees, thirty-six jobs, none of them in a new dashboard. This is what they do, in the words the pages use.</p></div>
-        <div style="display:flex;justify-content:center;margin-bottom:2.5rem"><div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Monday report</p><p class="sn-phone__sub">all six, one page</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 emergency to you</small></span><em>RING</em></div><div class="sn-file"><i>DSP</i><span>4 requests created<small>3 quoted from your list</small></span><em>DISPATCH</em></div><div class="sn-file"><i>INB</i><span>9 leads replied to<small>day 1·3·7 follow-ups running</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div></div></div></div></div>
-        <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track">{marquee1}{marquee1}</div></div>
-        <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track">{marquee2}{marquee2}</div></div>
-      </div>
-    </section></div>
-
     <section class="sn-easy" aria-labelledby="h-easy">
       <div class="sn-inner">
         <h2 id="h-easy">Your front office, on <span class="sn-toggle" aria-hidden="true"></span> <em>autopilot.</em></h2>
