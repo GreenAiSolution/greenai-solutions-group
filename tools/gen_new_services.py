@@ -3,7 +3,10 @@
 2026-09-27 reset: the site sells four services to Phoenix home service companies (AI ads,
 AI employee, Property Signals, Reviews and repeat work). SEO, CRM and win-back pages are now
 redirects (tools/gen_redirects.py). No prices on purpose: pricing is the owner's call, so
-both pages are 'quoted' until he sets a number. No damage, ranking or job-count promises."""
+both pages are 'quoted' until he sets a number. No damage, ranking or job-count promises.
+2026-10-02: two more pages, service-ai-search.html and service-ai-video.html. These two already
+carry a price on pricing.html ($297 and $497 a month), so page() takes price= and shows it; the
+contact form SKUs (alc-search, alc-video) already exist in contact.html. No ranking or views promises."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, head, tail, esc, ROOT
@@ -46,8 +49,16 @@ def steps(items):
 def faq(items):
     return "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in items)
 
-def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_lede, s1_cards, state, s2_h2, s2_steps, nots, faqs, close_h2, close_p):
-    P = head(title, desc, fname, CSS + """
+def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_lede, s1_cards, state, s2_h2, s2_steps, nots, faqs, close_h2, close_p, price=None, extra_css=""):
+    # price=None: "Quoted" hero and "Ask for a quote" buttons (the owner has not set a number).
+    # price="$297": the number in the hero and "Start for $297/mo" buttons, pointing at the same contact SKU.
+    if price:
+        price_html = f'<div class="sn-hero__price"><b>{price}</b><span>a month · month to month · no setup fee</span></div>'
+        cta = f"Start for {price}/mo"
+    else:
+        price_html = '<div class="sn-hero__price"><b>Quoted</b><span>after one conversation · price in writing · month to month</span></div>'
+        cta = "Ask for a quote"
+    P = head(title, desc, fname, CSS + extra_css + """
     .ab-path { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; }
     .ab-path li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
     .ab-path li:last-child { border-bottom: 1px solid var(--line); }
@@ -68,9 +79,9 @@ def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_
         <p class="tk-eyebrow">{eyebrow}</p>
         <h1 class="tk-h1" id="hero-heading">{h1}</h1>
         <p class="sn-hero__sub">{sub}</p>
-        <div class="sn-hero__price"><b>Quoted</b><span>after one conversation · price in writing · month to month</span></div>
+        {price_html}
         <div class="sn-hero__cta">
-          <a href="contact.html?want={want}" class="tk-btn tk-btn--inverse tk-btn--arrow">Ask for a quote</a>
+          <a href="contact.html?want={want}" class="tk-btn tk-btn--inverse tk-btn--arrow">{cta}</a>
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
@@ -110,11 +121,11 @@ def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_
     <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner" style="text-align:center">
         <div class="sn-head"><h2 class="tk-h2" id="h-cta">{close_h2}</h2><p class="tk-lede">{close_p}</p></div>
-        <div class="sn-hero__cta"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a><a href="services.html" class="tk-btn tk-btn--line">See every service</a></div>
+        <div class="sn-hero__cta"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">{cta}</a><a href="services.html" class="tk-btn tk-btn--line">See every service</a></div>
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a></div>''' + tail()
+  <div class="sn-sticky"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">{cta}</a></div>''' + tail()
     open(os.path.join(ROOT, fname), "w").write(P)
     print("wrote", fname, len(P))
 
@@ -211,3 +222,108 @@ page("service-reviews.html",
       ("What does it cost?", "Quoted after one conversation and a read-only look at your records. In writing, month to month.")],
      "How many jobs did you finish <em>last year?</em>",
      "Every one of them is a review you could have and a customer who will need you again. Start with one conversation.")
+
+# ------------------------------------------------------------------ AI search visibility (2026-10-02, $297/mo, SKU alc-search)
+search_visual = """<div class="ns-panel__bar"><span>This month · what the AIs said about you</span><b>AI search</b></div>
+<ul class="ns-log">
+  <li><span>Asked ChatGPT, Google AI and Perplexity 40 questions a Gilbert homeowner would ask<small>"AC repair near me", "best pool service in Chandler", by trade and by city</small></span><em>checked</em></li>
+  <li><span>Named in 14 of the 40 answers, up from 3 at the baseline<small>which questions, which assistant, and who else they named</small></span><em>counted</em></li>
+  <li><span>Fixed the facts the assistants had wrong<small>hours, service area, and a phone number from 2019 still on two directories</small></span><em>fixed</em></li>
+  <li><span>Added the two pages they kept quoting from a competitor<small>a service-area page and a what-it-costs FAQ, in your words</small></span><em>published</em></li>
+  <li><span>Example numbers, not a client's<small>yours come from your own monthly check</small></span><em></em></li>
+</ul>"""
+
+page("service-ai-search.html",
+     "AI search visibility — be the company ChatGPT recommends in Phoenix | GreenAI Solutions",
+     "For Phoenix home service companies: when someone asks ChatGPT, Google's AI or Perplexity for an AC, roofing, plumbing or pool company, your business is one of the names it gives. Your Google profile, reviews, listings and site tuned for AI assistants, with a monthly check of what they say about you. $297 a month, month to month.",
+     "Be the company the AI recommends.",
+     "<b>AI search visibility</b> · for Phoenix home service companies",
+     "Be the company the AI <em>recommends.</em>",
+     "People now ask ChatGPT and Google's AI “who should fix my AC in Gilbert?” and get three names back. This makes sure one of them is yours: your Google profile, your reviews, your listings and your own site tuned so AI assistants can find you, trust you and name you. Every month, a plain report of what they say about you.",
+     "alc-search", search_visual, robot("search", label="AI search visibility", pose="point"),
+     "What it <em>does.</em>",
+     "AI assistants build their answers from the same public places people already look: your Google Business Profile, your reviews, the directories, and your own website. This keeps all four straight and keeps checking.",
+     [("search", "Checks what the AIs say about you", "Every month, the questions your customers actually ask, put to ChatGPT, Google's AI and Perplexity for your trade and your cities. Whether you are named, where, and what they say about you."),
+      ("check", "Gets your facts straight everywhere", "Name, hours, service area, phone and services, the same on Google, Apple, Bing, Yelp and the directories the assistants read. One old phone number in one place is enough to lose the mention."),
+      ("star", "Puts your reviews to work", "Assistants lean on how many reviews you have, how recent they are and what people say in them. We make sure the reviews you earn are visible, answered, and found under the words customers search."),
+      ("sheet", "Gives the AIs pages worth quoting", "Short, plain pages on your own site: what you do, where, roughly what it costs, and the questions people ask before they call. Written so an assistant can lift a clean answer from them."),
+      ("plug", "Marks up your site for machines", "Business, service and FAQ structured data added to your pages, so the assistants read your site the way a person does: who you are, what you do, where, and how to reach you."),
+      ("receipt", "A monthly report in plain English", "Which questions named you, which named a competitor, what changed since last month and what we did about it. No dashboard to learn.")],
+     ["When a homeowner's AC quits at nine at night, more and more of them do not scroll ten blue links. They ask an AI and get three names.",
+      "Those three names come from the public record of your business: your profile, your reviews, your listings, your site.",
+      "This keeps that record <span class=\"who\">CLEAN, CURRENT AND QUOTABLE</span>, and checks every month whether the assistants noticed."],
+     "How it <em>starts.</em>",
+     [("Step 1", "A baseline check", "Before you pay anything, twenty of your customers' questions go to the assistants and you see who they name today. Usually it is not you, and now you know where you stand."),
+      ("Step 2", "Facts fixed first", "Google Business Profile, Apple, Bing, Yelp and the main directories brought into agreement in the first two weeks."),
+      ("Step 3", "Pages and markup", "The service, area and cost pages the assistants keep looking for, written for your approval and added to your site, with structured data behind them."),
+      ("Step 4", "Reviews lined up", "If you run reviews and repeat work with us, the two are wired together. If not, the reviews you already have are made visible and answered."),
+      ("Step 5", "A monthly check", "Same questions, same assistants, every month. You see the count move, or you cancel at the end of the month.")],
+     [("No guaranteed spot", "Nobody controls what ChatGPT or Google's AI says, and anyone who promises you a place in the answer is guessing. What is promised is that every public fact about you is right, your site is quotable, and you see the real count each month."),
+      ("No fake reviews or filler pages", "No bought reviews, no doorway pages, no AI-written pages stuffed with city names. The assistants are built to ignore that and Google penalises it."),
+      ("No new website required", "This works on the site you have. If it genuinely cannot carry a few new pages, you will be told that plainly, not sold a rebuild."),
+      ("Not a traditional SEO campaign", "No link buying, no keyword reports. It overlaps with good SEO because the assistants read the same things Google does, but the goal is to be named in an answer, not ranked on a page.")],
+     [("Which AIs do you check?", "ChatGPT, Google's AI Overviews and AI Mode, and Perplexity, because those are the ones Phoenix homeowners actually use. Others can be added if your customers mention them."),
+      ("How soon does it show?", "The facts are fixed within two weeks. The assistants refresh at their own pace, so the first real movement usually shows in the second or third monthly check. You get the baseline up front so there is no arguing about where you started."),
+      ("Do I need your other services?", "No. It works on its own at $297 a month. It works better alongside reviews and repeat work, because reviews are a large part of what the assistants weigh, and it is included in Full System."),
+      ("Will you need access to my site and Google profile?", "Yes, to edit them: a manager seat on your Google Business Profile and editor access to the site. Both stay in your name, nothing is moved, and access can be removed any day."),
+      ("What does it cost?", "$297 a month, month to month, no setup fee. In writing before you sign, like everything else here.")],
+     "Ask an AI for your trade in your city <em>tonight.</em>",
+     "If it does not say your name, that is the whole problem. Start with the baseline check and see who it names instead, before you pay anything.",
+     price="$297")
+
+# ------------------------------------------------------------------ AI short-form video (2026-10-02, $497/mo, SKU alc-video)
+REELS_CSS = """
+    .ns-reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; padding: 1rem 1.2rem 0; }
+    .ns-reels div { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #050B08; border: 1px solid rgba(232,196,106,.18); }
+    .ns-reels video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ns-reels span { position: absolute; left: .5rem; right: .5rem; bottom: .5rem; padding: .3rem .5rem; border-radius: 6px; background: rgba(0,0,0,.62); font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--green); text-align: center; }
+"""
+video_visual = """<div class="ns-panel__bar"><span>This month · Reels &amp; TikToks</span><b>12 ready</b></div>
+<div class="ns-reels">
+  <div><video src="art/ad-vid-reel.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-question.webp" aria-label="An example vertical video cut from job footage"></video><span>Your footage</span></div>
+  <div><video src="art/ad-vid-founder.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-founder.webp" aria-label="An example vertical video with AI b-roll"></video><span>AI b-roll</span></div>
+  <div><video src="art/ad-vid-problem.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-problem.webp" aria-label="An example captioned vertical video"></video><span>Captioned</span></div>
+</div>
+<ul class="ns-log">
+  <li><span>Cut 12 videos from the 31 clips your crew sent<small>a condenser swap, two pool clean-ups, a roof walk, one hello from the owner</small></span><em>delivered</em></li>
+  <li><span>Captioned every one<small>most people watch with the sound off</small></span><em>captioned</em></li>
+  <li><span>Sent to you for a yes before anything posts<small>an example month, not a client's</small></span><em>waiting for you</em></li>
+</ul>"""
+
+page("service-ai-video.html",
+     "AI short-form video — 12 Reels and TikToks a month from your footage | GreenAI Solutions",
+     "For Phoenix home service companies: send clips from the job and get back twelve finished, captioned vertical videos a month for Instagram Reels, TikTok, YouTube Shorts and Facebook. Your real footage plus AI b-roll, voice and captions, approved by you before anything posts. $497 a month, month to month.",
+     "Twelve videos a month. You never edit one.",
+     "<b>AI short-form video</b> · for Phoenix home service companies",
+     "Twelve videos a month. <em>You never edit one.</em>",
+     "Your crew already films the before-and-after on their phones. Send us the clips and twelve finished vertical videos come back every month: cut, captioned, with AI b-roll and a voice where it helps, ready for Reels, TikTok, Shorts and Facebook. Posted for you, or handed over as files. The same videos feed your AI ads.",
+     "alc-video", video_visual, robot("video", label="AI short-form video", pose="wave"),
+     "What you get, <em>every month.</em>",
+     "Twelve finished vertical videos, built from footage you already have, in a style that looks like your company and not like an ad agency.",
+     [("folder", "You send the raw clips", "Phone footage from the job, a walkthrough, a five-second hello from the owner. A shared album, a text thread, whatever your crew will actually use. No tripod, no script."),
+      ("pen", "We cut, caption and finish", "Trimmed to the moment that matters, captions burned in, music or an AI voice where it helps, your logo and number at the end. Twelve a month, in your colours."),
+      ("note", "AI b-roll where you have no footage", "How a heat pump fails, a map of your service area, a before-and-after slider. Generated to fill the gaps in a real job's footage, never passed off as your work."),
+      ("check", "You approve before anything posts", "Every batch comes to you first. Change a line, cut a clip, veto one. Nothing goes out in your name without your yes."),
+      ("calendar", "Posted on a schedule, or handed to you", "Scheduled to Instagram, TikTok, Facebook and YouTube Shorts for you, three a week, or delivered as files if you would rather post yourself."),
+      ("repeat", "The same clips feed your ads", "The videos that do well are already cut for vertical, so they drop straight into your Meta and Google campaigns if you run AI ads with us.")],
+     ["Every home service owner in the valley knows they should be posting video. Almost none of them do, because the job is the job and nobody has an evening left to edit.",
+      "Meanwhile the one roofer in your zip code who posts a sixty-second roof walk every Tuesday is the one people feel they already know when they call.",
+      "This makes you that company, with footage you <span class=\"who\">ALREADY HAVE</span> and about ten minutes of your time a week."],
+     "How it <em>starts.</em>",
+     [("Step 1", "One conversation", "Your trade, your customers, what your crew is willing to film, and where you post today. About twenty minutes."),
+      ("Step 2", "Two sample videos", "Send a handful of clips and get two finished videos back before you pay anything, so you judge the style on your own footage, not a showreel."),
+      ("Step 3", "Your look, written down", "Colours, logo, the words you use and the ones you never would, and whether the owner is on camera or not."),
+      ("Step 4", "Clips in, videos out", "Twelve a month in weekly batches, each one to you for approval. Posted for you or handed over as files."),
+      ("Step 5", "A monthly count", "Views, saves, profile visits, and the calls that mention a video. If it is not earning its keep, cancel at the end of the month.")],
+     [("No promise of going viral", "Some videos take off and most do not, and nobody honest can tell you which in advance. What is promised is twelve finished videos a month and a real count of what they did."),
+      ("No stock footage passed off as yours", "AI b-roll is used for diagrams, maps and illustrations, and it is shown as what it is. Your jobs are your jobs, and nobody else's footage is presented as yours."),
+      ("No filming crew", "We do not come to the job site. The footage comes from your phones. If you want a filmed day, it can be arranged separately and quoted."),
+      ("No posting without your yes", "Every video is approved by you before it is scheduled, and you can pull one back any time before it posts.")],
+     [("What if my crew will not film anything?", "Most crews will take a ten-second clip if it is one tap into a shared album and nobody asks them to talk. We set that up with them. If after a month there is still no footage, we say so and you can stop."),
+      ("Do I have to be on camera?", "No. Plenty of accounts work on hands, equipment and before-and-afters with captions and a voice. A five-second hello now and then helps, but it is your call."),
+      ("Which platforms?", "Instagram Reels, TikTok, Facebook and YouTube Shorts. The same vertical file works on all four, so one video goes everywhere at once."),
+      ("Who owns the videos?", "You do. Every file is yours to keep and reuse, including after you cancel."),
+      ("What does it cost?", "$497 a month for twelve videos, month to month, no setup fee. Included in Full System. Posting and scheduling is part of the price; ad spend, if you run any of them as ads, is separate.")],
+     "How many jobs did your crew photograph <em>this week?</em>",
+     "Every one of them was a video. Send a handful of clips and get two finished ones back before you decide.",
+     price="$497", extra_css=REELS_CSS)

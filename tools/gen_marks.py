@@ -30,6 +30,10 @@ ICONS = {
     # Property Signals: a house with a sighting ring on it; this home, flagged from public records.
     "signals": ['<path d="M2.5 11.5 12 3.5l9.5 8"/>', '<path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/>', '<circle cx="12" cy="14.5" r="3.2"/>', '<path d="M12 9.8v1.5"/>', '<path d="M12 17.7v1.5"/>', '<path d="M7.3 14.5h1.5"/>', '<path d="M15.2 14.5h1.5"/>'],
     # AI ads: a play frame with a second frame behind it; finished video, many angles.
+    # AI search visibility: an answer bubble with a four-point AI spark in it; the assistant naming you.
+    "search": ['<path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.8-.8L3 21l2-5.3A8.4 8.4 0 1 1 21 11.5z"/>', '<path d="m12 7.2 1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9-2.9-1.1 2.9-1.1z"/>'],
+    # AI short-form video: a phone held upright with a play mark; vertical video, made from the crew's phones.
+    "video": ['<rect x="6" y="2" width="12" height="20" rx="2.5"/>', '<path d="m10.5 9 4 3-4 3z"/>', '<path d="M10.5 19h3"/>'],
     "ads": ['<path d="M6 3h14a2 2 0 0 1 2 2v10"/>', '<rect x="2" y="7" width="16" height="14" rx="2"/>', '<path d="M8 11.2v5.6a.6.6 0 0 0 .9.5l4.5-2.8a.6.6 0 0 0 0-1l-4.5-2.8a.6.6 0 0 0-.9.5z"/>'],
 }
 NUMERAL = {"ring": "I", "dispatch": "II", "inbox": "III", "thread": "IIII", "huddle": "V", "books": "VI"}
