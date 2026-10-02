@@ -3,7 +3,10 @@
 2026-09-27 reset: the site sells four services to Phoenix home service companies (AI ads,
 AI employee, Property Signals, Reviews and repeat work). SEO, CRM and win-back pages are now
 redirects (tools/gen_redirects.py). No prices on purpose: pricing is the owner's call, so
-both pages are 'quoted' until he sets a number. No damage, ranking or job-count promises."""
+both pages are 'quoted' until he sets a number. No damage, ranking or job-count promises.
+2026-10-02: the site sells TWO services, AI agents ($397/mo) and review automation ($149/mo).
+This file writes both pages. page() takes price= so a priced service shows its number instead
+of "Quoted". Property Signals is retired (tools/gen_redirects.py) and its page() call is gone."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, head, tail, esc, ROOT
@@ -46,7 +49,17 @@ def steps(items):
 def faq(items):
     return "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in items)
 
-def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_lede, s1_cards, state, s2_h2, s2_steps, nots, faqs, close_h2, close_p):
+def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_lede, s1_cards, state, s2_h2, s2_steps, nots, faqs, close_h2, close_p, price=None, sku=None):
+    # price=None: "Quoted" hero and "Ask for a quote" buttons. price="$397": the number in the
+    # hero and "Start for $397/mo" buttons. sku= puts a data-sku on the buttons so checkout.js
+    # can route a known SKU to its Stripe link; unknown SKUs fall through to the contact form.
+    if price:
+        price_html = f'<div class="sn-hero__price"><b>{price}</b><span>a month · month to month · no setup fee</span></div>'
+        cta = f"Start for {price}/mo"
+    else:
+        price_html = '<div class="sn-hero__price"><b>Quoted</b><span>after one conversation · price in writing · month to month</span></div>'
+        cta = "Ask for a quote"
+    buy = f' buy" data-sku="{sku}' if sku else ""
     P = head(title, desc, fname, CSS + """
     .ab-path { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; }
     .ab-path li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 2rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
@@ -68,9 +81,9 @@ def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_
         <p class="tk-eyebrow">{eyebrow}</p>
         <h1 class="tk-h1" id="hero-heading">{h1}</h1>
         <p class="sn-hero__sub">{sub}</p>
-        <div class="sn-hero__price"><b>Quoted</b><span>after one conversation · price in writing · month to month</span></div>
+        {price_html}
         <div class="sn-hero__cta">
-          <a href="contact.html?want={want}" class="tk-btn tk-btn--inverse tk-btn--arrow">Ask for a quote</a>
+          <a href="contact.html?want={want}" class="tk-btn tk-btn--inverse tk-btn--arrow{buy}">{cta}</a>
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
@@ -110,60 +123,13 @@ def page(fname, title, desc, og, eyebrow, h1, sub, want, visual, bot, s1_h2, s1_
     <section class="sn-sec" aria-labelledby="h-cta" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner" style="text-align:center">
         <div class="sn-head"><h2 class="tk-h2" id="h-cta">{close_h2}</h2><p class="tk-lede">{close_p}</p></div>
-        <div class="sn-hero__cta"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a><a href="services.html" class="tk-btn tk-btn--line">See every service</a></div>
+        <div class="sn-hero__cta"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow{buy}">{cta}</a><a href="services.html" class="tk-btn tk-btn--line">See both services</a></div>
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow">Ask for a quote</a></div>''' + tail()
+  <div class="sn-sticky"><a href="contact.html?want={want}" class="tk-btn tk-btn--solid tk-btn--arrow{buy}">{cta}</a></div>''' + tail()
     open(os.path.join(ROOT, fname), "w").write(P)
     print("wrote", fname, len(P))
-
-# ------------------------------------------------------------------ Property Signals (2026-09-27)
-sig_visual = """<div class="ns-panel__bar"><span>Example list · the morning after a monsoon storm</span><b>Signals</b></div>
-<ul class="ns-log">
-  <li><span>Storm path mapped from public storm reports<small>hail size and wind, by area</small></span><em>mapped</em></li>
-  <li><span>Homes likely in the path, matched to county records<small>year built and last sale, from the county</small></span><em>matched</em></li>
-  <li><span>Oldest homes first<small>the ones most likely to need you</small></span><em>sorted</em></li>
-  <li><span>Addresses you already served, marked<small>so your past customers hear from you first</small></span><em>flagged</em></li>
-  <li><span>An example, not a real list<small>yours is built for your service area</small></span><em></em></li>
-</ul>"""
-
-page("service-property-signals.html",
-     "Property Signals — the Phoenix homes that need you next | GreenAI Solutions",
-     "For roofing, HVAC, plumbing and pool companies: after a hail or monsoon storm, a list of the homes likely in its path, and every month, the homes whose systems are due by age. Built from public storm reports and county records. Quoted after a sample for your area.",
-     "The homes that need you next, on a list.",
-     "<b>Property Signals</b> · for Phoenix home service companies",
-     "The homes that need you <em>next.</em>",
-     "After a hail or monsoon storm, a list of the homes likely in its path, oldest first. Every month, the homes whose AC, roof, water heater or pool equipment is due by age. Built from public storm reports and county property records, and delivered to your inbox ready for your mailers and your door-knockers.",
-     "signals", sig_visual, robot("signals", label="Property Signals", pose="point"),
-     "What you <em>get.</em>",
-     "Two kinds of list, both built from public records, both for your service area only.",
-     [("alert", "Storm lists", "After a hail or high-wind storm, the homes likely in its path, built as soon as the storm reports are published. Oldest homes at the top."),
-      ("clock", "Due-by-age lists", "Every month, the homes old enough that the AC, roof, water heater or pool equipment is near replacement, from build year and, where the city publishes them, permit records."),
-      ("user", "Your past customers first", "Send your customer list and those addresses are marked, so the people who already know you hear from you before anyone else knocks."),
-      ("sheet", "Ready for mail and doors", "A clean spreadsheet: the address, the owner as the county records it, and why the home is on the list. It drops straight into a mailer service or a canvassing app."),
-      ("star", "Lined up with your ads", "The same neighborhoods can be targeted by your AI ads, so the mailer, the door hanger and the Facebook ad say the same thing the same week."),
-      ("receipt", "Counted", "Lists sent and which addresses turned into jobs, matched against your own invoices.")],
-     ["After a storm, every roofer in the valley starts knocking.",
-      "The ones who win are not always the ones with the best crews. They are the ones who knew which streets to go to first.",
-      "This hands you <span class=\"who\">THE STREETS</span> the morning after, with the oldest homes on them at the top."],
-     "How it <em>starts.</em>",
-     [("Step 1", "One conversation", "Your trade, your service area, and whether you work storms, replacements or both. About twenty minutes."),
-      ("Step 2", "A sample for your area", "A real list for a recent storm or this month's due-by-age homes in your zip codes, so you can judge it before you pay anything."),
-      ("Step 3", "A price in writing", "Month to month, no contract."),
-      ("Step 4", "Lists arrive on their own", "Storm lists after each qualifying storm, due-by-age lists every month, straight to your inbox."),
-      ("Step 5", "A monthly count", "Lists sent and the jobs they turned into. If it is not earning its keep, cancel at the end of the month.")],
-     [("Not a damage report", "A storm list shows homes likely in the storm's path, from public reports. It does not say any roof is damaged. Only an inspection can."),
-      ("Not for cold calls or texts", "The lists are for mail, door hangers, door-knocking and ads. Calling or texting people who never gave you their number breaks do-not-call rules, and every list says so."),
-      ("No bought or scraped data", "Public storm reports and county and city records only. Nothing bought from a data broker, nothing taken from anyone's accounts."),
-      ("No promise of jobs", "How many turn into work depends on your offer and your crew. You see the real count, good or bad.")],
-     [("Where does the data come from?", "Storm paths from the National Weather Service's public storm reports. Home details from county property records and, where a city publishes them, building permits. All of it is public record."),
-      ("How fast does a storm list arrive?", "It is built as soon as the storm reports are published, which is usually within hours of the storm passing. Most lists land the next morning."),
-      ("Which areas do you cover?", "Maricopa County first, because its property records are open and detailed. Other Arizona counties on request, checked before you pay."),
-      ("Can I call or text the homes on the list?", "Not cold. Use the list for mailers, door hangers, door-knocking and ads. Your own past customers are different: if they gave you their number, you can reach them the usual way."),
-      ("What does it cost?", "Quoted after one conversation and a sample list for your area. In writing, month to month.")],
-     "Which streets would you knock <em>tomorrow?</em>",
-     "Start with a sample list for your service area. If it would not have sent your crew anywhere new, you will know before you pay.")
 
 # ------------------------------------------------------------------ Reviews and repeat work (2026-09-27, was reviews + win-back)
 rev_visual = """<div class="ns-panel__bar"><span>This month · example work log</span><b>Reviews &amp; repeat work</b></div>
@@ -177,7 +143,7 @@ rev_visual = """<div class="ns-panel__bar"><span>This month · example work log<
 
 page("service-reviews.html",
      "Reviews and repeat work — every customer asked, every one brought back | GreenAI Solutions",
-     "For home service companies: every finished job gets a review request, every Google review gets a reply in your wording, every customer hears from you when their tune-up or replacement is due, and the ones you have not seen in a year get asked back. Quoted after one conversation.",
+     "For home service companies: every finished job gets a review request, every Google review gets a reply in your wording, every customer hears from you when their tune-up or replacement is due, and the ones you have not seen in a year get asked back. $149 a month, month to month.",
      "Every customer asked. Every one brought back.",
      "<b>Reviews &amp; repeat work</b> · for home service companies",
      "Every customer asked. <em>Every one brought back.</em>",
@@ -208,6 +174,56 @@ page("service-reviews.html",
       ("What about a bad review?", "It gets a calm, short reply drafted for you within the day, and you get told so you can call the customer. Only Google can remove a review, and only when it breaks Google's rules."),
       ("My records are a mess. Is that a problem?", "That is normal and it is half the job. Invoices, a job tool, an old spreadsheet and a phone full of contacts can be merged into one clean list."),
       ("How many more reviews and jobs will I get?", "It depends on how many jobs you finish and how your customers feel, so nobody honest can give you a number up front. What is promised is that every customer gets asked, and you see the real count."),
-      ("What does it cost?", "Quoted after one conversation and a read-only look at your records. In writing, month to month.")],
+      ("What does it cost?", "$149 a month, month to month, no setup fee. In writing before you sign, like everything else here.")],
      "How many jobs did you finish <em>last year?</em>",
-     "Every one of them is a review you could have and a customer who will need you again. Start with one conversation.")
+     "Every one of them is a review you could have and a customer who will need you again. Start with one conversation.",
+     price="$149", sku="alc-reviews")
+
+# ------------------------------------------------------------------ AI agents (2026-10-02, $397/mo, SKU agent-inbox)
+agent_visual = """<div class="ns-panel__bar"><span>Last night · example work log</span><b>AI agent</b></div>
+<ul class="ns-log">
+  <li><span>Replied to a website form at 9:47 PM<small>"Do you do bathroom remodels?" Answered, two times offered, booked Thursday at 10.</small></span><em>booked</em></li>
+  <li><span>Answered a Facebook message about pricing<small>from your price list, nothing invented</small></span><em>replied</em></li>
+  <li><span>Day-three follow-up on Tuesday's quote<small>short, in your wording, one question</small></span><em>sent</em></li>
+  <li><span>Drafted a reply to an unusual request<small>a commercial job outside your area, waiting for your yes</small></span><em>waiting for you</em></li>
+  <li><span>Example numbers, not a client's<small>yours come from your own inbox</small></span><em></em></li>
+</ul>"""
+
+page("service-ai-agents.html",
+     "AI agents — every lead answered in under a minute, booked and followed up | GreenAI Solutions",
+     "For contractors, salons, restaurants and local service businesses: an AI agent that replies to every new lead in under a minute from your website form, Facebook, Google, Gmail or text, answers the common questions in your words and prices, books the appointment onto your calendar or Jobber, and follows up on day one, three and seven. $397 a month, month to month.",
+     "Every lead answered in under a minute.",
+     "<b>AI agents</b> · for contractors, salons, restaurants and local service businesses",
+     "Every lead answered <em>in under a minute.</em>",
+     "Most leads go to whoever answers first. Your AI agent replies to every new lead in under a minute, from your website form, Facebook, Google, Gmail or text. It answers the common questions in your words and prices, books the appointment straight onto your calendar, Jobber, Housecall Pro or ServiceTitan, and follows up on day one, three and seven until the lead answers. It never claims to be a person, and anything unusual comes to you as a draft.",
+     "agents", agent_visual, robot("inbox", label="AI agents", pose="point"),
+     "What it <em>does.</em>",
+     "One agent, trained on your prices, hours, service area and wording. It works where your leads already arrive and books where you already book.",
+     [("message", "Replies in under a minute", "Website form, Facebook and Instagram messages, Google Business messages, Gmail and text. Every new lead gets a friendly, specific answer, day or night."),
+      ("note", "Answers from your price list", "The common questions, in your words and your prices. A price that is not on your list cannot go out. When it does not know, it says so and hands it to you."),
+      ("calendar", "Books the appointment", "Offers two real times and books straight onto your calendar, Jobber, Housecall Pro or ServiceTitan, with a confirmation to the customer and a note to you."),
+      ("repeat", "Follows up until they answer", "Day one, day three, day seven. Short, polite, in your voice. Then it stops. Most booked jobs come from the second or third message."),
+      ("hand", "Hands you the unusual ones", "A commercial job, an upset customer, a question outside your rules: it drafts a reply and waits for your yes instead of guessing."),
+      ("receipt", "Shows you the count", "A Monday note: leads in, replied in how long, booked, still being followed up, handed to you. Matched against your own calendar.")],
+     ["A lead that waits until Thursday for a reply has usually booked someone else by Tuesday.",
+      "Not because you did not care. Because you were on a roof, in a chair, or in a dinner rush when it came in.",
+      "The agent answers <span class=\"who\">IN UNDER A MINUTE</span>, every time, and the booking lands on your calendar while you work."],
+     "How it <em>starts.</em>",
+     [("Step 1", "One conversation", "Where your leads come in today, where you book, your prices, hours and service area. About twenty minutes."),
+      ("Step 2", "A price in writing", "$397 a month, month to month. What it will do, what it will not, and the number, before anything is signed."),
+      ("Step 3", "You read every word", "The replies it can send are written for your approval. Change any wording you do not like, as often as you want, at no charge."),
+      ("Step 4", "Connected and tested", "Hooked to your form, your pages, your inbox and your calendar, then tested against your own questions before it answers a real customer."),
+      ("Step 5", "Live, and still answered", "Changes are same-day. Cancel at the end of any month and keep every script and transcript.")],
+     [("Not a person, and never pretends to be", "If a customer asks, it says it is the company's automated assistant and who will follow up. That is a rule in every script."),
+      ("Built for written leads", "Website forms, Facebook, Google, Gmail and text. If you need the phone line itself answered, say so in the first conversation and you get a straight answer about what is possible."),
+      ("No invented prices or promises", "A number that is not on your list is blocked before it sends. Anything outside your rules comes to you as a draft, not to the customer."),
+      ("No promise of more jobs", "How many leads become customers depends on your prices, your area and the season. What is promised is the reply and the follow-up happening every time, the way you approved.")],
+     [("Where does it work?", "Your website form, Facebook and Instagram messages, Google Business Profile messages, Gmail and text. Jobber, Housecall Pro, ServiceTitan or a plain Google Calendar for booking. If you use something else, ask."),
+      ("Do my customers know it is an AI?", "If they ask, it tells the truth. It does not pretend to be a person and does not use a fake name."),
+      ("What happens when it does not know the answer?", "It says so, takes the details, and the conversation lands in your inbox with a drafted reply waiting for your yes. It never guesses a price."),
+      ("I already use Jobber or Housecall Pro. Does this replace it?", "No, it feeds it. The client, the request and the booking land in the tool you already run."),
+      ("How long until it is live?", "Usually inside two weeks from the day you answer the setup questions, and you approve every reply before it goes live."),
+      ("What does it cost?", "$397 a month, month to month, no setup fee, no per-lead charge. In writing before you sign.")],
+     "How many leads came in <em>last week?</em>",
+     "Every one of them wanted an answer in the first few minutes. Start with one conversation.",
+     price="$397", sku="agent-inbox")
