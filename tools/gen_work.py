@@ -91,7 +91,7 @@ PAGE = head("Work — GreenAI Solutions",
         <p class="sn-hero__sub">Three websites for real owners, two 3D sites built in-house, three working systems running on this site and three open-source projects. Every one has a link. Click before you call.</p>
         <div class="sn-hero__cta">
           <a href="#sites" class="tk-btn tk-btn--inverse tk-btn--arrow">Start with the sites</a>
-          <a href="service-web-design.html" class="tk-btn tk-btn--ghost">Websites from $500</a>
+          <a href="services.html" class="tk-btn tk-btn--ghost">See the four services</a>
         </div>
       </div>
     </header></div>

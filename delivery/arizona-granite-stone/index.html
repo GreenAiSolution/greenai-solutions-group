@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arizona Granite &amp; Stone — your new website | GreenAI Solutions</title>
+  <meta name="description" content="Hand-off page for the new Arizona Granite &amp; Stone website, built by GreenAI Solutions." />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css?v=22" />
+  <link rel="stylesheet" href="../../tech.css?v=12" />
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <style>
+    /* ===== delivery page: one client, one preview, one button ===== */
+    .dv-hero { padding-bottom: 0; }
+    .dv-hero .sn-hero__sub { max-width: 48ch; }
+    .dv-stage { position: relative; max-width: 1040px; margin: 3.2rem auto 0; padding: 0 0 2.4rem; text-align: left; }
+    .dv-browser { border-radius: 14px; overflow: hidden; background: #000; border: 1px solid var(--line-2); box-shadow: var(--shadow-2); }
+    .dv-browser__bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #000; border-bottom: 1px solid var(--line); }
+    .dv-browser__bar i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--line-ink); }
+    .dv-browser__bar u { margin-left: 12px; flex: 1; max-width: 380px; height: 20px; border-radius: 10px; border: 1px solid var(--line-2); font: 500 11px/20px var(--font-body); letter-spacing: .04em; color: var(--ink-3); padding: 0 10px; text-decoration: none; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .dv-browser img { display: block; width: 100%; height: auto; }
+    .dv-phone { width: 236px; border-radius: 38px; padding: 8px; background: #0b0b0b; border: 1px solid var(--line-ink); box-shadow: var(--shadow-2); }
+    .dv-phone img { display: block; width: 100%; height: auto; border-radius: 30px; }
+    .dv-stage .dv-phone { position: absolute; right: -28px; bottom: 0; }
+    .dv-stage .dv-browser { margin-right: 120px; }
+    @media (max-width: 760px) {
+      .dv-stage { margin-top: 2.2rem; padding-bottom: 0; }
+      .dv-stage .dv-browser { margin-right: 0; }
+      .dv-stage .dv-phone { position: static; width: 200px; margin: -70px auto 0; }
+    }
+
+    .dv-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+    .dv-ba--phones { margin-top: 2.5rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .dv-ba--phones .dv-phone { margin: 0 auto; }
+    .dv-cap { margin: 1rem 0 0; font-size: .95rem; line-height: 1.5; color: var(--ink-2); }
+    .dv-cap b { display: block; font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 1.25rem; color: var(--green); margin-bottom: .2rem; }
+    .dv-ba .dv-browser { border-radius: 10px; }
+    @media (max-width: 760px) { .dv-ba { grid-template-columns: 1fr; } .dv-ba--phones { grid-template-columns: 1fr 1fr; gap: 1rem; } .dv-ba--phones .dv-phone { width: 100%; max-width: 200px; border-radius: 30px; padding: 6px; } .dv-ba--phones .dv-phone img { border-radius: 24px; } }
+
+    .dv-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; }
+    .dv-tile { background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+    .dv-tile__img { aspect-ratio: 4 / 3; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
+    .dv-tile__img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .dv-tile__img--bottom img { object-position: bottom; }
+    .dv-tile__img--center img { object-position: center; }
+    .dv-tile p { margin: 0; padding: 1rem 1.1rem 1.2rem; font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+    .dv-tile p b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em; color: var(--ink); margin-bottom: .25rem; }
+    @media (max-width: 1000px) { .dv-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .dv-tiles { grid-template-columns: 1fr; } }
+    /* the Google tile: real title + description from the site's head, drawn as a result */
+    .dv-serp { height: 100%; padding: 1rem 1.1rem; background: #fff; color: #1f1f1f; font-family: var(--font-body); display: flex; flex-direction: column; justify-content: center; gap: .25rem; }
+    .dv-serp__site { display: flex; align-items: center; gap: .5rem; font-size: .72rem; color: #4d5156; }
+    .dv-serp__site i { width: 20px; height: 20px; border-radius: 50%; background: #0f0f0f; display: inline-grid; place-items: center; }
+    .dv-serp__site i img { width: 14px; height: 14px; display: block; }
+    .dv-serp__site small { display: block; font-size: .64rem; color: #4d5156; }
+    .dv-serp__t { font-size: .98rem; line-height: 1.25; color: #1a0dab; font-weight: 500; }
+    .dv-serp__d { font-size: .72rem; line-height: 1.4; color: #4d5156; }
+    .dv-serp__chip { align-self: flex-start; margin-top: .35rem; font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; padding: .18rem .5rem; border-radius: 999px; background: #EDF1EC; color: #0F1A14; }
+
+    .dv-ask { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; }
+    .dv-ask li { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1.5rem; align-items: start; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+    .dv-ask li:last-child { border-bottom: 1px solid var(--line); }
+    .dv-ask i { font-style: italic; font-family: var(--font-serif); font-weight: 500; font-size: 2.6rem; line-height: 1; color: var(--green); }
+    body.tk .dv-ask b { display: block; margin-bottom: .3rem; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; letter-spacing: -.01em; color: var(--ink); }
+    body.tk .dv-ask p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--ink-2); }
+    @media (max-width: 520px) { .dv-ask li { grid-template-columns: 3rem 1fr; gap: 1rem; } .dv-ask i { font-size: 2rem; } }
+
+    .dv-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 760px) { .dv-steps { grid-template-columns: 1fr; } }
+
+    .dv-terms { max-width: 620px; margin: 0 auto; text-align: center; }
+    body.tk .dv-terms p { margin: 0; font-size: 1.15rem; line-height: 1.5; color: var(--ink); }
+    body.tk .dv-terms p em { font-family: var(--font-serif); font-style: italic; font-weight: 500; color: var(--green); }
+
+    .dv-foot { margin: 4rem 16px 0; padding: 2.6rem 1.5rem 2.2rem; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: #000; text-align: center; color: var(--ink-2); font-size: .95rem; line-height: 1.7; }
+    .dv-foot b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: #fff; }
+    .dv-foot a { color: var(--green); text-decoration: none; }
+    .dv-foot a:hover { color: var(--green-2); }
+    .dv-foot span { color: var(--ink-3); padding: 0 .5rem; }
+    @media (max-width: 520px) { .dv-foot span { display: block; height: 0; overflow: hidden; } }
+  </style>
+</head>
+<body class="tk light-top">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="../../index.html" class="nav__logo" aria-label="GreenAI Solutions home">
+          <div class="nav__logo-icon"><img src="../../logo-mark.png" alt="GreenAI Solutions crest" width="40" height="40" loading="eager" decoding="async"/></div>
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
+            <span class="nav__logo-sub">Solutions</span>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="../../index.html" class="nav__link" data-page="index.html">Home</a></li>
+          <li class="nav__dropdown nav__dropdown--gold"><a href="../../services.html" class="nav__link" data-page="services.html">Services <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="../../service-ai-ads.html">AI ads: finished ads every month, from $697/mo</a></li><li><a href="../../staff.html">AI employee: answers every call and text, from $297/mo</a></li><li><a href="../../service-property-signals.html">Property Signals: the homes that need you next</a></li><li><a href="../../service-reviews.html">Reviews and repeat work</a></li></ul></li>
+          <li><a href="../../testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+          <li><a href="../../about.html" class="nav__link" data-page="about.html">About</a></li>
+          <li class="nav__dropdown nav__dropdown--right"><a href="../../contact.html" class="nav__link" data-page="contact.html">Contact <span class="nav__caret" aria-hidden="true">▾</span></a><ul class="nav__submenu" role="list"><li><a href="tel:4807980753" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(480) 798-0753</a></li><li><a href="mailto:jaden@greenaidigital.com" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jaden@greenaidigital.com</a></li></ul></li>
+        </ul>
+
+        <a href="../../contact.html" class="btn btn-primary nav__cta">Talk to us</a>
+
+        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <ul class="nav__mobile" role="list">
+        <li><a href="../../index.html" class="nav__link" data-page="index.html">Home</a></li>
+        <li class="nav__dropdown nav__dropdown--gold"><a href="../../services.html" class="nav__link" data-page="services.html">Services</a><ul class="nav__submenu" role="list"><li><a href="../../service-ai-ads.html">AI ads: finished ads every month, from $697/mo</a></li><li><a href="../../staff.html">AI employee: answers every call and text, from $297/mo</a></li><li><a href="../../service-property-signals.html">Property Signals: the homes that need you next</a></li><li><a href="../../service-reviews.html">Reviews and repeat work</a></li></ul></li>
+        <li><a href="../../testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
+        <li><a href="../../about.html" class="nav__link" data-page="about.html">About</a></li>
+        <li><a href="../../contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
+        <li><a href="tel:4807980753" class="nav__link">(480) 798-0753</a></li>
+        <li style="padding:.5rem 1rem"><a href="../../contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Talk to us</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main id="main">
+
+    <div class="sn-wrap"><header class="sn-panel sn-hero dv-hero" aria-labelledby="h1">
+      <div class="sn-hero__inner">
+        <p class="tk-eyebrow"><b>New website</b> · hand-off</p>
+        <h1 class="tk-h1" id="h1">Arizona Granite &amp; Stone — <em>your new website.</em></h1>
+        <p class="sn-hero__sub">Built from your own installs, your license and your phone number. Open it on your phone first; that is where most customers will find you.</p>
+        <div class="sn-hero__cta">
+          <a href="https://greenaisolution.github.io/arizona-granite-stone/" class="tk-btn tk-btn--solid tk-btn--arrow" target="_blank" rel="noopener">Open the preview</a>
+        </div>
+      </div>
+      <div class="dv-stage" aria-label="The new site on a desktop and a phone">
+        <div class="dv-browser"><div class="dv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><u>arizonagraniteandstone.com</u></div><picture><source type="image/webp" srcset="img/new-desktop.webp" /><img src="img/new-desktop.jpg" width="1800" height="1125" alt="The new homepage: Stone countertops, cut and installed by a family shop, beside the white marble waterfall island" fetchpriority="high" /></picture></div>
+        <div class="dv-phone"><picture><source type="image/webp" srcset="img/new-phone.webp" /><img src="img/new-phone.jpg" width="780" height="1688" alt="The new homepage on a phone, with the call bar pinned to the bottom" /></picture></div>
+      </div>
+    </header></div>
+
+    <section class="sn-sec" aria-labelledby="h-ba">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-ba">Before <em>and after.</em></h2></div>
+        <div class="dv-ba">
+          <figure style="margin:0">
+            <div class="dv-browser"><div class="dv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><u>arizonagraniteandstone.com · today</u></div><picture><source type="image/webp" srcset="img/old-desktop.webp" /><img src="img/old-desktop.jpg" width="1800" height="1125" alt="The current GoDaddy page: the logo twice and a Start Today button" loading="lazy" /></picture></div>
+            <figcaption class="dv-cap"><b>Before</b>The GoDaddy builder page. The logo, twice, and a button. No stone.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div class="dv-browser"><div class="dv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><u>arizonagraniteandstone.com · new</u></div><picture><source type="image/webp" srcset="img/new-desktop.webp" /><img src="img/new-desktop.jpg" width="1800" height="1125" alt="The new page: headline, phone number, quote button and the marble island" loading="lazy" /></picture></div>
+            <figcaption class="dv-cap"><b>After</b>Your waterfall island, your number, your license and a quote button, all before anyone scrolls.</figcaption>
+          </figure>
+        </div>
+        <div class="dv-ba dv-ba--phones">
+          <figure style="margin:0">
+            <div class="dv-phone"><picture><source type="image/webp" srcset="img/old-phone.webp" /><img src="img/old-phone.jpg" width="780" height="1688" alt="The current page on a phone: a menu, a cart icon and the logo" loading="lazy" /></picture></div>
+            <figcaption class="dv-cap" style="text-align:center"><b>Before, on a phone</b>A menu, a cart icon, the logo.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div class="dv-phone"><picture><source type="image/webp" srcset="img/new-phone.webp" /><img src="img/new-phone.jpg" width="780" height="1688" alt="The new page on a phone: the island, then Call and Get a quote pinned to the bottom" loading="lazy" /></picture></div>
+            <figcaption class="dv-cap" style="text-align:center"><b>After, on a phone</b>The island, then Call and Get a quote pinned to the bottom of the screen.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-in" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-in">What's <em>in it.</em></h2></div>
+        <div class="dv-tiles">
+          <div class="dv-tile"><div class="dv-tile__img dv-tile__img--bottom"><picture><source type="image/webp" srcset="img/f-callbar.webp" /><img src="img/f-callbar.jpg" width="780" height="900" alt="On a phone, a Call (623) 498-9056 bar stays pinned to the bottom of the screen" loading="lazy" /></picture></div><p><b>The call button, everywhere</b>On a phone, Call (623) 498-9056 stays pinned to the bottom of the screen on every scroll.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/f-form.webp" /><img src="img/f-form.jpg" width="1200" height="784" alt="The quote form: name, phone, email, project type" loading="lazy" /></picture></div><p><b>A quote form that emails you</b>Name, phone, project, material and edge, straight to arizonagraniteandstone@gmail.com.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/f-edges.webp" /><img src="img/f-edges.jpg" width="1400" height="1050" alt="The edge picker: Square, Beveled, Demi, Cove, Ogee, Dupont drawn to scale" loading="lazy" /></picture></div><p><b>The edge picker</b>All 30 of your edge profiles, redrawn to scale. Tap one and it goes on the quote.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/f-gallery.webp" /><img src="img/f-gallery.jpg" width="1400" height="915" alt="The gallery: your own installs, no stock photos" loading="lazy" /></picture></div><p><b>Your jobs only</b>Every photo is one of your installs. No stock photos anywhere on the site.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/f-materials.webp" /><img src="img/f-materials.jpg" width="1400" height="1050" alt="Granite, quartz and marble cards, each with a swatch and plain-English notes" loading="lazy" /></picture></div><p><b>Granite, quartz, marble</b>Each one explained plainly, with a swatch cut from your own slabs.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/f-roc.webp" /><img src="img/f-roc.jpg" width="1400" height="1050" alt="Licensed Arizona contractor, ROC 332009, with a link to the Registrar of Contractors" loading="lazy" /></picture></div><p><b>License and map</b>ROC 332009 with a link to the Registrar; the shop address opens in Maps.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><picture><source type="image/webp" srcset="img/new-desktop-dark.webp" /><img src="img/new-desktop-dark.jpg" width="1600" height="1000" alt="The homepage in dark mode" loading="lazy" /></picture></div><p><b>Dark mode</b>Follows the phone's setting, or the switch in the footer.</p></div>
+          <div class="dv-tile"><div class="dv-tile__img"><div class="dv-serp" aria-label="How the site reads in a Google result"><div class="dv-serp__site"><i><img src="../../favicon-16.png" alt="" width="14" height="14" style="visibility:hidden" /></i><span>Arizona Granite &amp; Stone<small>arizonagraniteandstone.com</small></span></div><div class="dv-serp__t">Granite, Quartz &amp; Marble Countertops — Waddell &amp; West Valley AZ</div><div class="dv-serp__d">Granite, quartz and marble countertops — fabricated and installed by Arizona Granite &amp; Stone LLC, a family-owned shop in Waddell, AZ. Kitchens, vanities, outdoor kitchens, fireplaces, seam repairs and sealing. AZ ROC 332009.</div><span class="dv-serp__chip">LocalBusiness · Waddell, AZ</span></div></div><p><b>Built for Google</b>A real title, description and LocalBusiness data, so Google reads it as a Waddell countertop shop.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-need" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-need">What we need <em>from Carlos.</em></h2></div>
+        <ol class="dv-ask">
+          <li><i>1</i><div><b>3 to 5 real reviews</b><p>Customer name and what they said. The reviews section stays hidden until these arrive.</p></div></li>
+          <li><i>2</i><div><b>The Fantasy Brown kitchen video</b><p>The file itself, if you still have it.</p></div></li>
+          <li><i>3</i><div><b>More photos</b><p>Outdoor kitchens, fireplaces, jacuzzi surrounds, a slab on a wall, the shop.</p></div></li>
+          <li><i>4</i><div><b>Which days</b><p>The 7 am to 5 pm hours: which days of the week they apply to.</p></div></li>
+          <li><i>5</i><div><b>One click</b><p>After the first test on the quote form, FormSubmit sends a one-time activation email. Click it once, or quote requests will not reach you.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-live" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="sn-head"><h2 class="tk-h2" id="h-live">Going <em>live.</em></h2></div>
+        <ol class="tk-steps dv-steps">
+          <li><b>Approve the preview</b><p>Look it over on your phone and your computer. Tell Jaden what to change.</p></li>
+          <li><b>We point the domain</b><p>arizonagraniteandstone.com gets pointed at the new site: about 10 minutes in the GoDaddy account. Jaden walks you through it on the phone.</p></li>
+          <li><b>The old site stays put</b><p>Nothing on the current site is touched until the switch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sn-sec" aria-labelledby="h-terms" style="padding-top:0">
+      <div class="sn-inner">
+        <div class="tk-panel dv-terms">
+          <p class="tk-eyebrow" style="margin-bottom:1rem"><b>Price</b> · terms</p>
+          <!-- JADEN: price + terms go here -->
+          <p>Price and terms: <em>see Jaden's email.</em></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="dv-foot" aria-label="Contact">
+    <b>Jaden Green</b>
+    GreenAI Solutions<span>·</span><a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><span>·</span><a href="https://greenaidigital.com">greenaidigital.com</a>
+  </footer>
+  <script src="../../script.js?v=15"></script>
+  <script>
+  // Unlisted page: no nav item is "current" (script.js would otherwise light up Home for index.html).
+  document.querySelectorAll('.nav__link--current').forEach(function(a){ a.classList.remove('nav__link--current'); a.removeAttribute('aria-current'); });
+  </script>
+</body>
+</html>

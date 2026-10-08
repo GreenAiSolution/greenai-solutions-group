@@ -47,7 +47,7 @@ TERMS = CAT["terms"]
 
 CHECKOUT_V = 8
 STYLE_V = 21
-SCRIPT_V = 14
+SCRIPT_V = 15
 
 # Cache-busters live in one place so the chrome swap can bump every page.
 STYLE_TAG = f'<link rel="stylesheet" href="style.css?v={STYLE_V}" />'

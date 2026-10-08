@@ -179,3 +179,30 @@ def bust(key, cls="rb-bust"):
 
 def peek(key, cls="rb-peek"):
     return f'<img class="{cls} rb3-head" src="art/bots/{key}-peek.webp" alt="" width="160" height="160" loading="lazy" decoding="async" />'
+
+
+# ---------------------------------------------------------------- 2026-09-26: the seals
+# Owner, on the slabs: "fix the fucking art, make it more professional." No robots, no
+# mascots, no 3D objects. Every employee and service is an engraved gold dial, flat vector,
+# made by tools/gen_marks.py into art/marks/<key>.svg (full) and <key>-sm.svg (small cut).
+# robot()/bust()/peek() keep their signatures so every generator picks the seals up.
+APP = {"ring": "Phone line", "dispatch": "Jobber", "inbox": "Gmail", "thread": "Slack", "huddle": "Teams", "books": "QuickBooks"}
+
+def robot(key, icon_svg=None, cls="rb", label=None, pose="stand", size="md"):
+    """size="lg" for spots 180px and wider (fine lines); "md" everywhere else."""
+    alt = label or key.upper()
+    f = key if size == "lg" else f"{key}-md"
+    return f'<img class="rb3 seal seal-{key}" src="art/marks/{f}.svg" alt="{alt}" width="240" height="240" loading="lazy" decoding="async" />'
+
+def bust(key, cls="rb-bust"):
+    return f'<img class="{cls} rb3-head seal-sm" src="art/marks/{key}-sm.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />'
+
+def peek(key, cls="rb-peek"):
+    return bust(key, cls)
+
+def seals(agents, label="The six AI employees"):
+    """Hero row: the six seals on one hairline, names as real links underneath."""
+    items = "".join(
+        f'<a class="hp-seal" href="{a["id"]}.html"><img src="art/marks/{a["id"]}-md.svg" alt="" width="240" height="240" decoding="async" />'
+        f'<b>{a["name"]}</b><span>{APP.get(a["id"], "")}</span></a>' for a in agents)
+    return f'<nav class="hp-seals" aria-label="{label}"><div class="hp-seals__row">{items}</div></nav>'

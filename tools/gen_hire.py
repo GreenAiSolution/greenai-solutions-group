@@ -69,7 +69,7 @@ CSS = f"""
     .hd-card.is-hired {{ border-color: {GOLD}; box-shadow: 0 0 0 1px {GOLD}, 0 30px 60px -30px rgba(232,196,106,.55); }}
     .hd-card.is-drag {{ opacity: .45; }}
     .hd-card__face {{ display: flex; align-items: center; gap: .8rem; }}
-    .hd-bust {{ width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(232,196,106,.45); background: radial-gradient(circle at 50% 30%, rgba(232,196,106,.18), transparent 70%); }}
+    .hd-bust {{ width: 56px; height: 56px; border-radius: 50%; flex: none; filter: drop-shadow(0 6px 12px rgba(0,0,0,.5)); }}
     .hd-card h3 {{ font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; letter-spacing: -.01em; }}
     .hd-card__app {{ margin: .15rem 0 .7rem; font-size: .85rem; color: {GOLD} !important; }}
     .hd-card ul {{ margin: 0; padding: 0; list-style: none; display: grid; gap: .35rem; }}
@@ -143,7 +143,7 @@ JS = """
       var s = '';
       for (var i = 0; i < 6; i++) {
         var id = picked[i];
-        s += id ? '<button type="button" class="hd-seat is-filled" data-id="' + id + '" title="Remove ' + byId[id].name + '" aria-label="Remove ' + byId[id].name + '"><img src="art/bots/' + id + '-head.webp" alt="" width="200" height="200" /></button>'
+        s += id ? '<button type="button" class="hd-seat is-filled" data-id="' + id + '" title="Remove ' + byId[id].name + '" aria-label="Remove ' + byId[id].name + '"><img src="art/marks/' + id + '-sm.svg" alt="" width="48" height="48" /></button>'
                 : '<span class="hd-seat" aria-hidden="true"></span>';
       }
       seats.innerHTML = s;

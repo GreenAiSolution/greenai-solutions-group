@@ -3,6 +3,8 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen_platform_agents import I, NAV, FOOT, AGENTS, FULL, SEPARATE, TM, head, tail, esc, ROOT
+from ring_demo import section as ring_demo_section
+from robots import seals
 
 JSONLD = '''{
     "@context": "https://schema.org",
@@ -13,11 +15,12 @@ JSONLD = '''{
     "email": "jaden@greenaidigital.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Gilbert", "addressRegion": "AZ", "postalCode": "85296", "addressCountry": "US" },
     "areaServed": "US",
-    "description": "An AI services workforce for small companies: AI staff inside the apps you already use, websites, ad creation, SEO, CRM and dashboards, Google reviews, win-back campaigns and custom systems.",
+    "description": "An AI services workforce for Phoenix home service companies: AI ads, an AI employee that answers every call and text, Property Signals lists of the homes that need you next, and reviews and repeat work.",
     "makesOffer": [
-      { "@type": "Offer", "name": "AI staff inside your apps", "url": "https://greenaidigital.com/staff.html", "priceCurrency": "USD", "price": "297" },
-      { "@type": "Offer", "name": "Websites", "url": "https://greenaidigital.com/service-web-design.html", "priceCurrency": "USD", "price": "500" },
-      { "@type": "Offer", "name": "Ad creation", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" }
+      { "@type": "Offer", "name": "AI ads", "url": "https://greenaidigital.com/service-ai-ads.html", "priceCurrency": "USD", "price": "697" },
+      { "@type": "Offer", "name": "AI employee", "url": "https://greenaidigital.com/staff.html", "priceCurrency": "USD", "price": "297" },
+      { "@type": "Offer", "name": "Property Signals", "url": "https://greenaidigital.com/service-property-signals.html" },
+      { "@type": "Offer", "name": "Reviews and repeat work", "url": "https://greenaidigital.com/service-reviews.html" }
     ]
   }'''
 
@@ -51,9 +54,10 @@ CSS = """
     .hp-talk__mail { display: inline-block; font-size: 1.05rem; color: var(--green); text-decoration: none; border-bottom: 1.5px solid currentColor; }
     @media (max-width: 760px) { .hp-talk { grid-template-columns: 1fr; } .hp-services[style] { grid-template-columns: 1fr !important; } }
     /* the hero: one spotlight, the six on one stage, nothing else */
-    .home .sn-hero { padding-bottom: 0; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
+    .home .sn-hero { padding-bottom: 3.6rem; background: radial-gradient(46% 62% at 50% 100%, rgba(232,196,106,.16), transparent 70%), conic-gradient(from 180deg at 50% -12%, transparent 0 157deg, rgba(232,196,106,.13) 172deg, rgba(255,255,255,.10) 180deg, rgba(232,196,106,.13) 188deg, transparent 203deg 360deg), linear-gradient(180deg, #0A1A11 0%, #050C08 100%); }
     .home .sn-more a { padding-right: 8rem; min-height: 11rem; overflow: hidden; }
-    .hp-face { position: absolute; right: -.4rem; bottom: 0; width: 8.2rem; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+    .hp-face { position: absolute; right: 1.2rem; top: 1.2rem; width: 5.6rem; height: auto; }
+    @media (max-width: 560px) { .home .sn-more a { padding-right: 6rem; } .hp-face { width: 4.2rem; right: .9rem; top: .9rem; } }
 """
 
 SIX_X = [22.0, 31.9, 43.5, 56.5, 68.0, 77.9]
@@ -95,7 +99,7 @@ steps = "".join(f'<li><b>{t}</b><p>{p}</p></li>' for t,p in [
 marquee1 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][:2])
 marquee2 = "".join(f'<div class="sn-mcard">{I[ic]}<b>{a["name"]}: {esc(t)}</b><p>{esc(p)}</p></div>' for a in AGENTS for ic,t,p in a["does"][2:5])
 
-roster = "".join(f'<a href="{a["id"]}.html"><img class="hp-face" src="art/six-{a["id"]}.webp" alt="" width="280" height="280" loading="lazy" decoding="async" /><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
+roster = "".join(f'<a href="{a["id"]}.html"><img class="hp-face" src="art/marks/{a["id"]}-md.svg" alt="" width="240" height="240" loading="lazy" decoding="async" /><b>{a["name"]}</b><span>Works {esc(a["inside"])}. {esc(a["does"][0][1])}.</span><i>${a["price"]:,} a month →</i></a>' for a in AGENTS)
 
 faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in [
     ("What is an AI employee, in plain English?","A program that does one job inside a tool you already use: answers the phone, replies to leads in Gmail, writes jobs into Jobber, answers the team in Slack or Teams, sends the invoices in QuickBooks. It is trained on your prices, hours and wording, and it never invents a number."),
@@ -105,8 +109,8 @@ faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in 
     ("Do you only work with Arizona businesses?","No. I am in Gilbert, Arizona, and I work with companies anywhere. Everything is built and delivered over the phone, email and your own tools."),
 ])
 
-PAGE = head("GreenAI Solutions — an AI services workforce for small companies",
-            "An AI services workforce for small companies. Phones answered, leads replied to, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Eight services, every price in writing: AI staff from $297 a month, websites from $500, finished ads from $697. Gilbert, Arizona.",
+PAGE = head("GreenAI Solutions — an AI services workforce for Phoenix home service companies",
+            "An AI services workforce for Phoenix HVAC, roofing, plumbing and pool companies. Four services: finished ads every month from $697, an AI employee that answers every call and text from $297 a month, Property Signals lists of the homes that need you next, and reviews and repeat work. Gilbert, Arizona.",
             "", CSS, og_title="GreenAI Solutions — your AI services workforce").replace('href="https://greenaidigital.com/"', 'href="https://greenaidigital.com/"') + f'''
 <body class="tk home light-top">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -120,42 +124,30 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
       <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · Gilbert, Arizona</p>
+        <p class="tk-eyebrow"><b>GreenAI Solutions</b> · for Phoenix home service companies</p>
         <h1 class="tk-h1" id="hero-heading">Your AI services <em>workforce.</em></h1>
-        <p class="sn-hero__sub">Eight services, one workforce. Phones answered, leads replied to, jobs written up, invoices sent, websites built, ads made, SEO done, reviews asked for, past customers won back. Priced in writing, month to month, with a real person to call.</p>
+        <p class="sn-hero__sub">Four services for HVAC, roofing, plumbing and pool companies. Ads that bring the calls, an AI employee that answers them, lists of the homes that need you next, and reviews and repeat work from the customers you already have. Priced in writing, month to month, with a real person to call.</p>
         <div class="sn-hero__cta">
-          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the eight services</a>
+          <a href="#h-also" class="tk-btn tk-btn--inverse tk-btn--arrow">See the four services</a>
           <a href="tel:4807980753" class="tk-btn tk-btn--ghost">Call (480) 798-0753</a>
         </div>
       </div>
-      <div class="hp-six"><div class="hp-six__in"><img src="art/hero-six-1400.webp" srcset="art/hero-six-1400.webp 1400w, art/hero-six.webp 2400w" sizes="(max-width: 720px) 150vw, 1240px" width="2400" height="759" alt="The GreenAI workforce standing on one stage: RING, DISPATCH, INBOX, THREAD, HUDDLE and BOOKS." fetchpriority="high" decoding="async" />{six_links}</div></div>
+      {seals(AGENTS, "The six AI employees in the workforce")}
     </header></div>
 
     <section class="sn-sec" aria-labelledby="h-also">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-also">Eight services. <em>One workforce.</em></h2><p class="tk-lede">Hand over one job or the whole front office. Every price is the whole price, and you have it in writing before anything is signed.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-also">Four services. <em>Full schedules.</em></h2><p class="tk-lede">Bring the calls, answer every one, know which homes need you next, and keep the customers you already won. Every price is the whole price, in writing before anything is signed.</p></div>
         <div class="sn-cards sn-cards--3 hp-services">
-          <article class="sn-card" style="grid-column:1/-1"><div class="sn-card__ico">{I['user']}</div><h3>AI staff inside your apps</h3><p>Six AI employees, one inside each tool you already run: your phone line, Jobber, Gmail, Slack, Teams and QuickBooks. They answer, reply, book and invoice at any hour, in your wording.</p>
-            <div class="sn-card__price"><b>from $297/mo</b><a href="staff.html">Meet the six →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>Websites</h3><p>No themes, no page builder. Fast on a phone, an obvious next step on every page. The files are yours the day it launches.</p>
-            <div class="sn-card__vis"><div class="hp-browser" aria-label="Three live sites, cycling"><div class="hp-browser__bar"><i></i><i></i><i></i><span class="hp-browser__url" id="hp-url">performancelab.fitness</span></div><div class="hp-browser__shots" id="hp-shots"><img class="on" src="previews/work-perflab.webp" alt="performancelab.fitness" width="1100" height="687" loading="lazy" decoding="async" data-url="performancelab.fitness" /><img src="previews/work-halle.webp" alt="handmadebyhalle.com" width="1100" height="687" loading="lazy" decoding="async" data-url="handmadebyhalle.com" /><img src="previews/work-bakr.webp" alt="bakrjewelry.co" width="1100" height="687" loading="lazy" decoding="async" data-url="bakrjewelry.co" /></div></div></div>
-            <div class="sn-card__price"><b>from $500</b><a href="service-web-design.html">See the website service →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Ad creation</h3><p>Ten, twenty-five or sixty finished ads a month, in every size the platforms need. Run them all and keep what works.</p>
+          <article class="sn-card" style="grid-column:1/-1"><div class="sn-card__ico">{I['phone']}</div><h3>An AI employee on every call</h3><p>Answers every call and text at any hour while your crews are working, gets the address and the problem, books the visit and texts you a summary. Works inside your phone line, Jobber, Housecall Pro or ServiceTitan, and Gmail, in your prices and wording.</p>
+            <div class="sn-card__price"><b>from $297/mo</b><a href="staff.html">See where it works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>AI ads</h3><p>Fresh ads every month for the season you are in: AC before the heat, roofs after the monsoon, pool openings in spring. Seven angles, every size the platforms need.</p>
             <div class="sn-card__vis"><div class="hp-ads" aria-label="Finished ad output"><div class="tall"><video src="art/ad-vid-clock.mp4" muted autoplay loop playsinline preload="metadata" poster="art/ad-angle-clock.webp" aria-label="A fifteen-second vertical ad"></video><span>9:16</span></div><div><img src="art/ad-angle-question.webp" alt="A square ad" width="720" height="720" loading="lazy" decoding="async" /><span>1:1</span></div><div><img src="art/ad-angle-split.webp" alt="A portrait ad" width="720" height="893" loading="lazy" decoding="async" /><span>4:5</span></div></div></div>
             <div class="sn-card__price"><b>from $697/mo</b><a href="service-ai-ads.html">See the ad desk →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['plug']}</div><h3>Custom systems</h3><p>An intake line, a quoting tool, a flight recorder for an AI agent. A written scope and a fixed price before a line of code.</p>
-            <div class="sn-card__vis"><div class="hp-schem" aria-label="A custom system, drawn from BLACKBOX"><div><i></i>Every call logged<em>append-only</em></div><div><i></i>Hash-chained<em>tamper-evident</em></div><div><i></i>Replayable<em>step by step</em></div><div><i></i>Runbook and source handed over<em>yours</em></div></div></div>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-consulting.html">See what has been built →</a></div></article>
-        </div>
-        <div class="sn-cards hp-services" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.5rem">
-          <article class="sn-card"><div class="sn-card__ico">{I['search']}</div><h3>AI SEO</h3><p>One AI agent does your SEO end to end: finds what is wrong, fixes it on your site, writes the pages you are missing and reports what changed. No new tools, no new hire. Nothing goes live until you have read it.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-ai-seo.html">See how AI SEO works →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['sheet']}</div><h3>CRM and dashboard optimization</h3><p>The CRM you already pay for, cleaned up and made to follow up on its own, plus one screen with the numbers you run the company on: leads, speed, quotes, revenue, money owed.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-crm-dashboards.html">See what gets fixed →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['star']}</div><h3>Google reviews</h3><p>Every finished job gets a review request, every review gets a reply in your wording, and you get the count each month. Every customer is asked the same way, the way Google requires.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See the review engine →</a></div></article>
-          <article class="sn-card"><div class="sn-card__ico">{I['repeat']}</div><h3>Win back past customers</h3><p>The people you already served and never wrote to again. The list cleaned up, a short series of messages in your voice, and every reply sent straight to you.</p>
-            <div class="sn-card__price"><b>Quoted</b><a href="service-winback.html">See how win-back runs →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['alert']}</div><h3>Property Signals</h3><p>After a hail or monsoon storm, the homes likely in its path, oldest first. Every month, the homes whose AC, roof, water heater or pool equipment is due by age. From public records, ready for mailers and door-knocking.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-property-signals.html">See how Signals works →</a></div></article>
+          <article class="sn-card"><div class="sn-card__ico">{I['repeat']}</div><h3>Reviews and repeat work</h3><p>A review request after every job and a reply to every review. Then a note when the tune-up or replacement is due, and a hello to the customers you have not seen in a year.</p>
+            <div class="sn-card__price"><b>Quoted</b><a href="service-reviews.html">See how it runs →</a></div></article>
         </div>
       </div>
     </section>
@@ -167,6 +159,8 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
         <p style="text-align:center;margin:1.5rem 0 0"><a href="staff.html" class="tk-btn tk-btn--solid tk-btn--arrow">See all six at work</a></p>
       </div>
     </section>
+
+{ring_demo_section()}
 
     <section class="sn-sec" aria-labelledby="h-film" style="padding-bottom:1rem">
       <div class="sn-inner">
@@ -195,22 +189,13 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
 
     <section class="sn-sec" aria-labelledby="h-how">
       <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-how">How a build runs, <em>in five steps.</em></h2><p class="tk-lede">The same five whether it is a phone line, a website or a custom system. Tap a step, or scroll.</p></div>
+        <div class="sn-head"><h2 class="tk-h2" id="h-how">How a build runs, <em>in five steps.</em></h2><p class="tk-lede">The same five whether it is a phone line, a month of ads or a list of homes. Tap a step, or scroll.</p></div>
         <div class="sn-steps">
           <div class="sn-steps__device"><div class="sn-phone" aria-hidden="true"><div class="sn-phone__screen"><div class="sn-phone__notch"></div>{phone_views}</div></div></div>
           <ol class="sn-steps__list">{steps}</ol>
         </div>
       </div>
     </section>
-
-    <div class="sn-wrap"><section class="sn-panel sn-grad" aria-labelledby="h-staff">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-staff">Your always-on <em>front office.</em></h2><p class="tk-lede">Six employees, thirty-six jobs, none of them in a new dashboard. This is what they do, in the words the pages use.</p></div>
-        <div style="display:flex;justify-content:center;margin-bottom:2.5rem"><div class="sn-phone"><div class="sn-phone__screen"><div class="sn-phone__notch"></div><div class="sn-phone__view is-on"><p class="sn-phone__title">Monday report</p><p class="sn-phone__sub">all six, one page</p><div class="sn-file"><i>RNG</i><span>11 calls answered<small>2 booked, 1 emergency to you</small></span><em>RING</em></div><div class="sn-file"><i>DSP</i><span>4 requests created<small>3 quoted from your list</small></span><em>DISPATCH</em></div><div class="sn-file"><i>INB</i><span>9 leads replied to<small>day 1·3·7 follow-ups running</small></span><em>INBOX</em></div><div class="sn-file"><i>BKS</i><span>$2,760 came in<small>2 late, 0 disputes</small></span><em>BOOKS</em></div></div></div></div></div>
-        <div class="sn-marquee" aria-hidden="true"><div class="sn-marquee__track">{marquee1}{marquee1}</div></div>
-        <div class="sn-marquee sn-marquee--rev" aria-hidden="true"><div class="sn-marquee__track">{marquee2}{marquee2}</div></div>
-      </div>
-    </section></div>
 
     <section class="sn-easy" aria-labelledby="h-easy">
       <div class="sn-inner">
@@ -240,7 +225,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
     <section class="sn-sec" aria-labelledby="h-stats" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-stats">
-          <div class="sn-stat"><span>Services</span><b>8</b><small>one workforce, every price in writing</small></div>
+          <div class="sn-stat"><span>Services</span><b>8</b><small>three priced on this page, five quoted in writing</small></div>
           <div class="sn-stat"><span>From</span><b>$297</b><small>a month, month to month, no setup fee</small></div>
           <div class="sn-stat"><span>Picks up in about</span><b>8 sec</b><small>the target RING is built to, any hour</small></div>
           <div class="sn-stat"><span>Number to call</span><b>1</b><small>a person answers it: (480) 798-0753</small></div>
@@ -259,13 +244,13 @@ PAGE = head("GreenAI Solutions — an AI services workforce for small companies"
       <div class="sn-inner">
         <div class="hp-talk">
           <div><h2 class="tk-h2" id="h-talk">Start with a <em>conversation.</em></h2><p class="tk-lede">Tell me where calls, leads, time or money are getting stuck. If what I build is a fit, you hear what it costs and how long it takes. If it is not, you hear that instead.</p><a class="hp-talk__phone" href="tel:4807980753">(480) 798-0753</a><br/><a class="hp-talk__mail" href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a></div>
-          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? The contact form goes to the same place.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
+          <div class="tk-plate"><p><b>GreenAI Solutions</b>, Gilbert, Arizona. I read every message myself and usually reply the same business day.</p><p>Rather write it down? Send the form and watch your inbox: the first reply lands within a minute, sent by the same AI that would answer your customers. The rest of the conversation is with me.</p><a href="contact.html" class="tk-btn tk-btn--line">Send a message</a></div>
         </div>
         <p class="ag-tm">{esc(TM)}</p>
       </div>
     </section>
   </main>
-  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the eight services</a></div>''' + tail("""
+  <div class="sn-sticky"><a href="services.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the four services</a></div>''' + tail("""
   <script>
   (function(){
     var imgs=[].slice.call(document.querySelectorAll('#hp-shots img')), url=document.getElementById('hp-url'); if(imgs.length<2||!url) return;
