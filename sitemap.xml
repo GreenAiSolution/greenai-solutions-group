@@ -5,6 +5,7 @@
   (a private client form), and the 2026-09-03 noindex redirect stubs
   (phone/leads/support/billing/ads/staff/services/service-ai-ads).
   If you add a page, add it here too.
+  2026-10-08 rebuild: retired service pages removed; ai-employees.html and creative-ai-ads.html added.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
@@ -65,14 +66,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
-  <url>
-    <loc>https://greenaidigital.com/start.html</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <!-- Added 2026-08-21: the two pages that sit between "interested" and "paid",
+<!-- Added 2026-08-21: the two pages that sit between "interested" and "paid",
        plus the in-browser call demo. -->
   <url>
     <loc>https://greenaidigital.com/faq.html</loc>
@@ -83,17 +77,20 @@
   <url><loc>https://greenaidigital.com/friction/</loc><lastmod>2026-08-30</lastmod></url>
   <url><loc>https://greenaidigital.com/tesseract/</loc><lastmod>2026-09-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://greenaidigital.com/blackbox/</loc><lastmod>2026-09-13</lastmod><priority>0.9</priority></url>
-  <url><loc>https://greenaidigital.com/staff.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/ring.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/dispatch.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/inbox.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/thread.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/huddle.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/books.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/services.html</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://greenaidigital.com/pricing.html</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://greenaidigital.com/service-ai-ads.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://greenaidigital.com/service-reviews.html</loc><lastmod>2026-09-27</lastmod></url>
-  <url><loc>https://greenaidigital.com/service-property-signals.html</loc><lastmod>2026-09-27</lastmod></url>
-  <url><loc>https://greenaidigital.com/hire.html</loc><lastmod>2026-09-22</lastmod><priority>0.9</priority></url>
+<url><loc>https://greenaidigital.com/pricing.html</loc><lastmod>2026-09-28</lastmod></url>
+
+  <url>
+    <loc>https://greenaidigital.com/ai-employees.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://greenaidigital.com/creative-ai-ads.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
