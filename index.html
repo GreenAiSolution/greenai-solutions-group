@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="style.css?v=22" />
   <link rel="stylesheet" href="tech.css?v=12" />
   <link rel="stylesheet" href="core.css?v=1" />
+  <link rel="stylesheet" href="cinematic.css?v=1" />
+  <link rel="stylesheet" href="assistant.css?v=1" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -104,10 +106,10 @@
   </script>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
+    <div class="sn-wrap"><header class="sn-panel sn-hero cine-hero" style="background-image:url('art/cinematic/hero-home.webp')" aria-labelledby="hero-heading">
       <div class="sn-hero__inner">
         <p class="tk-eyebrow"><b>AI SERVICES FOR CONTRACTORS</b></p>
-        <h1 class="tk-h1" id="hero-heading">Two services. <em>Every job answered.</em></h1>
+        <h1 class="tk-h1" id="hero-heading">Two services. <em>Every job <span class="volt">answered.</span></em></h1>
         <p class="sn-hero__sub">AI employees that pick up your calls and book your jobs, plus creative AI ads that keep the jobs coming. Month to month, no contracts.</p>
         <div class="sn-hero__cta">
           <a href="pricing.html" class="tk-btn tk-btn--inverse tk-btn--arrow">See pricing</a>
@@ -121,18 +123,18 @@
       </div>
     </header></div>
 
-    <section class="sn-sec cs" aria-labelledby="h-services">
+    <section class="sn-sec cs reveal" aria-labelledby="h-services">
       <div class="sn-inner">
         <div class="sn-head"><p class="tk-eyebrow"><b>What we do</b> · two services, nothing else</p><h2 class="tk-h2" id="h-services">Two services. <em>Done right.</em></h2><p class="tk-lede">We do two things for contractors. AI staff that never miss a call or a lead, and creative ads that keep the phone ringing. That is the whole menu.</p></div>
         <div class="svc-grid">
-          <article class="cs-card" style="--ac:#7DE3A4">
+          <article class="cs-card cine-card" style="--ac:#7DE3A4">
             <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><span class="cs-card__tag">Service 01</span></div>
             <h3>AI <em>Employees</em></h3>
             <p>Six AI staff inside the tools you already run. They answer, reply, book and invoice at any hour.</p>
             <ul class="cs-ticks"><li>Answers every call, day or night</li><li>Replies to new leads in under a minute</li><li>Books straight onto your calendar</li></ul>
             <div class="cs-card__foot"><b>from $297<small>/mo</small></b><a href="ai-employees.html">Meet the crew →</a></div>
           </article>
-          <article class="cs-card" style="--ac:#7CC4F0">
+          <article class="cs-card cine-card" style="--ac:#7CC4F0">
             <div class="cs-card__top"><div class="cs-card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="m10.5 9 4 3-4 3z"/></svg></div><span class="cs-card__tag">Service 02</span></div>
             <h3>Creative <em>AI Ads</em></h3>
             <p>Finished, scroll-stopping ads made by AI, delivered every month in every size.</p>
@@ -143,7 +145,9 @@
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-how" style="padding-top:0">
+    <div class="cine-divider" aria-hidden="true"></div>
+
+    <section class="sn-sec reveal" aria-labelledby="h-how" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-how">How it <em>works.</em></h2><p class="tk-lede">Three steps from the first call to AI working your phones and your feed.</p></div>
         <div class="sn-cards sn-cards--3">
@@ -154,14 +158,16 @@
       </div>
     </section>
 
-    <section class="sn-sec proof-strip" aria-labelledby="h-proof" style="padding-top:0">
+    <section class="sn-sec proof-strip reveal" aria-labelledby="h-proof" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-proof">Real work. <em>Real owners.</em></h2><p class="tk-lede">Websites, brands and booking systems built for actual businesses. Open any of them.</p></div>
         <a href="testimonials.html" class="tk-btn tk-btn--solid tk-btn--arrow">See the work</a>
       </div>
     </section>
 
-    <section class="sn-sec cs" aria-labelledby="h-pricing" style="padding-top:0">
+    <div class="cine-divider" aria-hidden="true"></div>
+
+<section class="sn-sec cs reveal" aria-labelledby="h-pricing" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-head"><p class="tk-eyebrow"><b>Pricing</b> · simple, in writing</p><h2 class="tk-h2" id="h-pricing">One missed $5,000 job pays for <em>8 months</em> of Essential.</h2><p class="tk-lede">Month to month. No contracts. Cancel anytime.</p></div>
         <div class="pr-plans" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin:0 auto">
@@ -182,7 +188,7 @@
       </div>
     </section>
 
-    <section class="sn-sec" aria-labelledby="h-faq" style="padding-top:0">
+    <section class="sn-sec reveal" aria-labelledby="h-faq" style="padding-top:0">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-faq">Asked before hiring</h2><p class="tk-lede"><a href="faq.html">All the questions</a></p></div>
         <div class="sn-faq">
@@ -196,7 +202,7 @@
       </div>
     </section>
 
-    <section class="sn-sec final-cta" aria-labelledby="h-final" style="padding-top:0;padding-bottom:2rem">
+    <section class="sn-sec final-cta reveal" aria-labelledby="h-final" style="padding-top:0;padding-bottom:2rem">
       <div class="sn-inner">
         <div class="sn-head"><h2 class="tk-h2" id="h-final">Stop losing jobs to <em>voicemail.</em></h2><p class="tk-lede">Tell us where calls, leads or time are getting stuck. If what we build is a fit, you hear the price and the timeline. If it is not, you hear that instead.</p></div>
         <a href="contact.html" class="tk-btn tk-btn--solid tk-btn--arrow">Talk to us</a>
@@ -287,5 +293,7 @@
     window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
   })();
   </script>
+  <script src="cinematic.js?v=1"></script>
+  <script src="assistant.js?v=1" defer></script>
 </body>
 </html>
