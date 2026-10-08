@@ -226,3 +226,28 @@ body.tk .btn-primary:hover {
   background: radial-gradient(50% 90% at 50% 100%, rgba(182, 243, 76, .10), transparent 70%);
   border-top: 1px solid rgba(182, 243, 76, .12);
 }
+
+/* film carousel ---------------------------------------------------------- */
+.film-strip {
+  display: flex; gap: 1.25rem; overflow-x: auto;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding: 1rem max(1rem, calc((100vw - 1200px) / 2)) 1.75rem;
+  scrollbar-width: thin; scrollbar-color: rgba(182,243,76,.3) transparent;
+}
+.film-strip::-webkit-scrollbar { height: 8px; }
+.film-strip::-webkit-scrollbar-thumb { background: rgba(182,243,76,.25); border-radius: 8px; }
+.film-card {
+  position: relative; flex: 0 0 min(320px, 78vw); scroll-snap-align: center;
+  border-radius: 20px; overflow: hidden; margin: 0;
+  border: 1px solid rgba(182,243,76,.16); background: var(--panel, #0D1310);
+  box-shadow: 0 16px 48px rgba(0,0,0,.45);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.film-card:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(182,243,76,.12); }
+.film-card video { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
+.film-tag {
+  position: absolute; left: .9rem; bottom: .9rem;
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #EDF2EC; background: rgba(7,10,8,.65); backdrop-filter: blur(6px);
+  padding: .45rem .8rem; border-radius: 999px; border: 1px solid rgba(182,243,76,.25);
+}
