@@ -7,314 +7,186 @@
   <meta name="description" content="Work that speaks. Real sites, tools and concepts from GreenAI Digital, every one designed to book jobs." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=22" />
-  <link rel="stylesheet" href="tech.css?v=12" />
-  <link rel="stylesheet" href="cinematic.css?v=1" />
-  <link rel="stylesheet" href="assistant.css?v=1" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="g3.css?v=20261011" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png" />
   <link rel="canonical" href="https://greenaidigital.com/testimonials.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://greenaidigital.com/testimonials.html" />
   <meta property="og:title" content="Work that speaks | GreenAI Digital" />
   <meta property="og:description" content="Work that speaks. Real sites, tools and concepts from GreenAI Digital, every one designed to book jobs." />
   <meta property="og:image" content="https://greenaidigital.com/og-card.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <style>
-    .ag-mock { padding: 1.2rem 1.3rem; font-size: .9rem; }
-    .ag-mock .caret { display: inline-block; width: .5em; height: 1em; vertical-align: -.15em; background: currentColor; animation: ag-blink 1s steps(1) infinite; }
-    @keyframes ag-blink { 50% { opacity: 0; } }
-    .ag-lines { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
-    .ag-lines li { max-width: 88%; padding: .6rem .85rem; border-radius: 14px; line-height: 1.45; }
-    .ag-lines .them { align-self: flex-start; background: var(--bg-3); color: var(--ink); border-bottom-left-radius: 5px; }
-    .ag-lines .us { align-self: flex-end; background: var(--green); color: var(--green-ink); border-bottom-right-radius: 5px; }
-    .ag-lines .us::before { content: attr(data-who); display: block; font-size: .64rem; font-weight: 600; letter-spacing: .06em; opacity: .8; margin-bottom: .15rem; }
-    .ag-call__top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; font-weight: 600; color: var(--ink-3); }
-    .ag-call__top span { display: inline-flex; align-items: center; gap: .5rem; } .ag-call__top i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
-    .ag-call__top b { font-family: var(--mono); font-size: 1.1rem; color: var(--green); letter-spacing: .04em; }
-    .ag-call__foot, .ag-job__foot, .ag-inv__foot { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); }
-    .ag-job__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-job__head b { color: var(--ink); font-size: .92rem; }
-    .ag-flow { list-style: none; margin: 1rem 0 0; padding: 0; }
-    .ag-flow li { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .6rem 0 .6rem 1.6rem; border-bottom: 1px solid var(--line); color: var(--ink-3); }
-    .ag-flow li::before { content: ""; position: absolute; left: .3rem; top: .95rem; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--line-2); background: #fff; }
-    .ag-flow li.done::before { background: var(--green); border-color: var(--green); } .ag-flow li.on::before { background: #fff; border: 3px solid var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
-    .ag-flow li b { color: var(--ink); font-weight: 600; } .ag-flow li.done b { color: var(--ink-2); } .ag-flow li span { font-family: var(--mono); font-size: .78rem; }
-    .ag-mail__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
-    .ag-mail__row b { color: var(--ink); font-weight: 600; } .ag-mail__row span { font-size: .8rem; color: var(--ink-3); } .ag-mail__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
-    .ag-mail__row.warn em { color: #B7791F; }
-    .ag-mail__draft { margin-top: .9rem; padding: .85rem .95rem; border-radius: 14px; background: var(--bg-3); line-height: 1.5; color: var(--ink); }
-    .ag-mail__draft span { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem; }
-    .ag-slack__ch, .ag-teams__ch { font-weight: 700; font-size: .85rem; color: var(--ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
-    .ag-msg { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: .6rem; padding: .45rem 0; }
-    .ag-msg.reply { margin-left: 1.2rem; border-left: 2px solid var(--line-2); padding-left: .8rem; }
-    .ag-msg b { color: var(--ink); font-weight: 700; } .ag-msg b.bot { color: var(--green); } .ag-msg b.bot::after { content: "APP"; margin-left: .4rem; font-size: .58rem; letter-spacing: .08em; padding: .1rem .3rem; border-radius: 4px; background: var(--bg-3); color: var(--ink-3); vertical-align: middle; }
-    .ag-msg time { font-size: .72rem; color: var(--ink-3); align-self: baseline; } .ag-msg p { grid-column: 1 / -1; margin: .15rem 0 0; color: var(--ink-2); line-height: 1.5; }
-    .ag-msg .src { display: block; margin-top: .2rem; font-size: .7rem; color: var(--ink-3); }
-    .ag-msg .tag, .ag-card .react, .ag-msg .react { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .02em; padding: .18rem .5rem; border-radius: 999px; }
-    .ag-msg .tag { background: var(--green-tint); color: var(--green); margin-right: .3rem; }
-    .ag-msg .react, .ag-card .react { border: 1px solid var(--line-2); color: var(--ink); margin: .4rem .3rem 0 0; background: #fff; }
-    .ag-msg.draft { background: rgba(22,165,90,.08); border-radius: 12px; padding: .5rem .7rem; margin-top: .3rem; }
-    .ag-card { margin-top: .7rem; padding: .85rem .95rem; border: 1px solid var(--line-2); border-radius: 14px; background: #fff; } .ag-card b { display: block; color: var(--ink); } .ag-card span:not(.react) { color: var(--ink-3); font-size: .82rem; }
-    .ag-inv__head { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-3); } .ag-inv__head b { color: var(--ink); }
-    .ag-inv__row { display: grid; grid-template-columns: 1fr auto auto; gap: .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); margin-top: .1rem; }
-    .ag-inv__row b { color: var(--ink); font-weight: 600; } .ag-inv__row span { font-family: var(--mono); color: var(--ink); } .ag-inv__row em { font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
-    .ag-inv__row.paid em { color: var(--green); } .ag-inv__row.late em { color: #B7791F; }
-    .ag-tm { margin: 2rem auto 0; max-width: 800px; text-align: center; font-size: .78rem; line-height: 1.5; color: var(--ink-3); }
-
-    /* work page only (wk-) */
-    .wk-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: clamp(2rem, 4vw, 3.5rem) 0; border-top: 1px solid var(--line); }
-    .sn-head + .wk-row { border-top: 0; padding-top: 0; }
-    .wk-row--flip .wk-shot { order: 2; }
-    .wk-shot { display: block; border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden; background: #0A1A11; box-shadow: var(--shadow-2); transition: transform .3s, border-color .2s; text-decoration: none; }
-    .wk-shot:hover { transform: translateY(-5px); border-color: var(--green); }
-    .wk-shot__bar { display: flex; align-items: center; gap: .4rem; padding: .6rem .9rem; background: rgba(255,255,255,.04); border-bottom: 1px solid var(--line); }
-    .wk-shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(232,196,106,.35); }
-    .wk-shot__bar span { margin-left: .5rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; color: var(--ink-3); }
-    .wk-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-    body.tk .wk-kind { margin: 0 0 .9rem; font-family: var(--mono); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--green); }
-    body.tk .wk-row h3 { margin: 0 0 .8rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -.02em; line-height: 1.1; color: var(--ink); }
-    body.tk .wk-row p { margin: 0 0 1.1rem; font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
-    .wk-row ul { margin: 0 0 1.5rem; padding: 0; list-style: none; display: grid; gap: .55rem; }
-    .wk-row li { position: relative; padding-left: 1.3rem; font-size: .95rem; line-height: 1.5; color: var(--ink-2); }
-    .wk-row li::before { content: ""; position: absolute; left: 0; top: .6em; width: .55rem; height: 1px; background: var(--green); }
-    .wk-two { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .wk-two .wk-shot img { aspect-ratio: 16 / 9.4; }
-    .wk-two figure { margin: 0; }
-    .wk-two figcaption { margin-top: 1.1rem; }
-    .wk-two figcaption b { display: block; margin-bottom: .35rem; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--ink); }
-    .wk-two figcaption span { display: block; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
-    .wk-two figcaption a { display: inline-block; margin-top: .8rem; font-weight: 600; font-size: .92rem; color: var(--green); text-decoration: none; }
-    .wk-oss { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-    .wk-oss li { display: grid; grid-template-columns: 12rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
-    .wk-oss b { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
-    .wk-oss small { display: block; margin-top: .3rem; font-family: var(--mono); font-weight: 400; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-    .wk-oss p { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
-    .wk-oss a { font-weight: 600; font-size: .92rem; color: var(--green); text-decoration: none; white-space: nowrap; }
-    @media (max-width: 860px) { .wk-row, .wk-two { grid-template-columns: 1fr; } .wk-row--flip .wk-shot { order: 0; } .wk-oss li { grid-template-columns: 1fr; gap: .6rem; } }
-
-  </style>
 </head>
-<body class="tk light-top">
+<body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <nav class="nav transparent" id="main-nav" aria-label="Main navigation">
-    <div class="container">
-      <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="GreenAI Digital home">
-          <div class="nav__logo-icon"><img src="logo-mark.png" alt="GreenAI Digital crest" width="40" height="40" loading="eager" decoding="async"/></div>
-          <div class="nav__logo-text">
-            <span class="nav__logo-name">Green<span style="color:#D4AF37">AI</span></span>
-            <span class="nav__logo-sub">Digital</span>
-          </div>
-        </a>
-
-        <ul class="nav__links" role="list">
-          <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-          <li><a href="ai-employees.html" class="nav__link" data-page="ai-employees.html">AI Employees</a></li>
-          <li><a href="creative-ai-ads.html" class="nav__link" data-page="creative-ai-ads.html">Creative AI Ads</a></li>
-          <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li>
-          <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
-          <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
-        </ul>
-
-        <a href="contact.html" class="btn btn-primary nav__cta">Talk to us</a>
-
-        <button class="nav__hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-
-      <!-- Mobile menu -->
-      <ul class="nav__mobile" role="list">
-        <li><a href="index.html" class="nav__link" data-page="index.html">Home</a></li>
-        <li><a href="ai-employees.html" class="nav__link" data-page="ai-employees.html">AI Employees</a></li>
-        <li><a href="creative-ai-ads.html" class="nav__link" data-page="creative-ai-ads.html">Creative AI Ads</a></li>
-        <li><a href="pricing.html" class="nav__link" data-page="pricing.html">Pricing</a></li>
-        <li><a href="testimonials.html" class="nav__link" data-page="testimonials.html">Work</a></li>
-        <li><a href="about.html" class="nav__link" data-page="about.html">About</a></li>
-        <li><a href="contact.html" class="nav__link" data-page="contact.html">Contact</a></li>
-        <li><a href="tel:4807980753" class="nav__link">(480) 798-0753</a></li>
-        <li style="padding:.5rem 1rem"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Talk to us</a></li>
-      </ul>
-    </div>
-  </nav>
+<header class="g3-nav">
+  <div class="g3-nav__inner">
+    <a href="index.html" class="g3-nav__logo" aria-label="GreenAI Digital home">
+      <img src="assets/brand/logo-v3.webp" alt="GreenAI Digital" height="44" />
+    </a>
+    <ul class="g3-nav__links">
+      <li><a href="index.html" data-page="index.html">Home</a></li>
+      <li><a href="ai-employees.html" data-page="ai-employees.html">AI Employees</a></li>
+      <li><a href="creative-ai-ads.html" data-page="creative-ai-ads.html">Creative AI Ads</a></li>
+      <li><a href="pricing.html" data-page="pricing.html">Pricing</a></li>
+      <li><a href="testimonials.html" data-page="testimonials.html">Work</a></li>
+      <li><a href="about.html" data-page="about.html">About</a></li>
+      <li><a href="faq.html" data-page="faq.html">FAQ</a></li>
+    </ul>
+    <a class="g3-nav__phone" href="tel:+14807980753">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (480) 798-0753</a>
+    <a href="contact.html" class="g3-btn g3-btn--primary g3-nav__cta">Start a conversation</a>
+    <button class="g3-nav__burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <ul class="g3-nav__mobile">
+    <li><a href="index.html" data-page="index.html">Home</a></li>
+    <li><a href="ai-employees.html" data-page="ai-employees.html">AI Employees</a></li>
+    <li><a href="creative-ai-ads.html" data-page="creative-ai-ads.html">Creative AI Ads</a></li>
+    <li><a href="pricing.html" data-page="pricing.html">Pricing</a></li>
+    <li><a href="testimonials.html" data-page="testimonials.html">Work</a></li>
+    <li><a href="about.html" data-page="about.html">About</a></li>
+    <li><a href="faq.html" data-page="faq.html">FAQ</a></li>
+    <li><a href="contact.html" data-page="contact.html">Contact</a></li>
+    <li><a href="tel:+14807980753">(480) 798-0753</a></li>
+  </ul>
+</header>
   <main id="main">
 
-    <div class="sn-wrap"><header class="sn-panel sn-hero" aria-labelledby="hero-heading">
-      <div class="sn-hero__inner">
-        <p class="tk-eyebrow"><b>Work</b> · proof, not promises</p>
-        <h1 class="tk-h1" id="hero-heading">Work that <em>speaks.</em></h1>
-        <p class="sn-hero__sub">Real sites for real businesses. Every one designed to book jobs.</p>
-        <div class="sn-hero__cta">
-          <a href="#portfolio" class="tk-btn tk-btn--inverse tk-btn--arrow">See the work</a>
-          <a href="pricing.html" class="tk-btn tk-btn--ghost">See pricing</a>
-        </div>
+    <section class="g3-pagehero">
+      <div class="g3-wrap">
+        <p class="g3-eyebrow rv">Work &middot; proof, not promises</p>
+        <h1 class="rv">Work that <em>speaks.</em></h1>
+        <p class="g3-lede rv rv--d1">Real sites for real businesses. Every one designed to book jobs.</p>
       </div>
-    </header></div>
+    </section>
 
-    <section class="sn-sec reveal" id="portfolio" aria-labelledby="h-portfolio">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2" id="h-portfolio">Built by hand. <em>Built to book.</em></h2><p class="tk-lede">A sample of sites, tools and concepts from the studio. The live ones open in a new tab.</p></div>
-        <div class="cine-grid">
-          <article class="cine-card cine-work reveal">
-            <a class="cine-work__shot" href="https://performancelab.fitness" target="_blank" rel="noopener" aria-label="Open performancelab.fitness"><img src="previews/julia-site.webp" alt="Julia's Performance Lab homepage: science-driven performance coaching" width="1100" height="687" loading="lazy" decoding="async" /></a>
-            <div class="cine-work__body"><span class="cine-work__kind">Website · Personal trainer</span><h3><a href="https://performancelab.fitness" target="_blank" rel="noopener">Julia's Performance Lab</a></h3><p>ISSA-certified training in Seattle and online. Programs, booking and coaching, one tap from the top.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/wick.webp" alt="Wick, the household almanac: everything you own is quietly running out" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Editorial concept · Home</span><h3>Wick</h3><p>Everything you own is quietly running out. An editorial concept on the hidden lifespans of a Phoenix home.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/binder.webp" alt="Binder: a live insurance certificate board showing lapsed subcontractor policies" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Tool concept · General contractors</span><h3>Binder</h3><p>A live insurance certificate board. $1.77M of work on site today by subs whose insurance would not pay a claim.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/relay.webp" alt="Relay: a roster desk concept for home care agencies" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Service concept · Home care</span><h3>Relay</h3><p>You do not have a client problem, you have a roster problem. A hiring concept for home care agencies.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/bidwell.webp" alt="Bidwell: bid more work, win it at the right number" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Service concept · Specialty trades</span><h3>Bidwell</h3><p>Bid more work. Win it at the right number. An estimating desk concept for Phoenix specialty trades.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/asked.webp" alt="Asked: an AI answer-readiness survey of Phoenix businesses" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Research · Phoenix businesses</span><h3>Asked</h3><p>Your customers are asking an AI. Can it read your site? A survey of 60 Phoenix businesses.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <a class="cine-work__shot" href="aether/" aria-label="Open the Aether concept site"><img src="previews/work-aether.webp" alt="Aether: a 3D concept site for AI agents" width="1100" height="687" loading="lazy" decoding="async" /></a>
-            <div class="cine-work__body"><span class="cine-work__kind">3D concept · Built in-house</span><h3><a href="aether/">Aether</a></h3><p>Agents that think, then do. A 3D concept site you scroll through, built in-house.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/mandate.webp" alt="Mandate: the trust layer for agent commerce" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Research · Agent commerce</span><h3>Mandate</h3><p>The trust layer for agent commerce. Who said this agent could buy that, and who is liable when it is wrong.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/phxsolo.webp" alt="PHX Growth Solo: hire one operator, not the whole crew" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Concept · AI operators</span><h3>PHX Growth Solo</h3><p>Hire one operator, not the whole crew. A concept page for hiring a single AI operator.</p></div>
-          </article>
-          <article class="cine-card cine-work reveal">
-            <div class="cine-work__shot"><img src="previews/phxstaff.webp" alt="PHX Growth Staff: a full department of AI employees" width="1100" height="687" loading="lazy" decoding="async" /></div>
-            <div class="cine-work__body"><span class="cine-work__kind">Concept · AI departments</span><h3>PHX Growth Staff</h3><p>A full department of AI employees inside one business. Six desks, every rule in writing.</p></div>
-          </article>
+    <section class="g3-sec" id="portfolio" aria-labelledby="h-portfolio">
+      <div class="g3-wrap">
+        <div class="g3-sec-head rv">
+          <p class="g3-eyebrow">Portfolio</p>
+          <h2 class="g3-h2" id="h-portfolio">Built by hand. <em>Built to book.</em></h2>
+          <p class="g3-lede">A sample of sites, tools and concepts from the studio. The live ones open in a new tab.</p>
+        </div>
+        <div class="g3-work">
+          <figure class="rv">
+            <a href="https://performancelab.fitness" target="_blank" rel="noopener" aria-label="Open performancelab.fitness"><img src="previews/julia-site.webp" alt="Julia's Performance Lab homepage: science-driven performance coaching" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Julia&rsquo;s Performance Lab</b><span>Website &middot; Personal trainer. ISSA-certified training in Seattle and online. Programs, booking and coaching, one tap from the top.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d1">
+            <a><img src="previews/wick.webp" alt="Wick, the household almanac: everything you own is quietly running out" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Wick</b><span>Editorial concept &middot; Home. Everything you own is quietly running out. An editorial concept on the hidden lifespans of a Phoenix home.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d2">
+            <a><img src="previews/binder.webp" alt="Binder: a live insurance certificate board showing lapsed subcontractor policies" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Binder</b><span>Tool concept &middot; General contractors. A live insurance certificate board.</span></figcaption>
+          </figure>
+          <figure class="rv">
+            <a><img src="previews/relay.webp" alt="Relay: a roster desk concept for home care agencies" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Relay</b><span>Service concept &middot; Home care. You do not have a client problem, you have a roster problem. A hiring concept for home care agencies.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d1">
+            <a><img src="previews/bidwell.webp" alt="Bidwell: bid more work, win it at the right number" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Bidwell</b><span>Service concept &middot; Specialty trades. Bid more work. Win it at the right number. An estimating desk concept for Phoenix specialty trades.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d2">
+            <a><img src="previews/asked.webp" alt="Asked: an AI answer-readiness survey of Phoenix businesses" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Asked</b><span>Research &middot; Phoenix businesses. Your customers are asking an AI. Can it read your site?</span></figcaption>
+          </figure>
+          <figure class="rv">
+            <a href="aether/" aria-label="Open the Aether concept site"><img src="previews/work-aether.webp" alt="Aether: a 3D concept site for AI agents" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Aether</b><span>3D concept &middot; Built in-house. Agents that think, then do. A 3D concept site you scroll through, built in-house.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d1">
+            <a><img src="previews/mandate.webp" alt="Mandate: the trust layer for agent commerce" loading="lazy" decoding="async" /></a>
+            <figcaption><b>Mandate</b><span>Research &middot; Agent commerce. The trust layer for agent commerce. Who said this agent could buy that, and who is liable when it is wrong.</span></figcaption>
+          </figure>
+          <figure class="rv rv--d2">
+            <a><img src="previews/phxsolo.webp" alt="PHX Growth Solo: hire one operator, not the whole crew" loading="lazy" decoding="async" /></a>
+            <figcaption><b>PHX Growth Solo</b><span>Concept &middot; AI operators. Hire one operator, not the whole crew. A concept page for hiring a single AI operator.</span></figcaption>
+          </figure>
+          <figure class="rv">
+            <a><img src="previews/phxstaff.webp" alt="PHX Growth Staff: a full department of AI employees" loading="lazy" decoding="async" /></a>
+            <figcaption><b>PHX Growth Staff</b><span>Concept &middot; AI departments. A full department of AI employees inside one business. Six desks, every rule in writing.</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <div class="cine-cta-band reveal">
-      <div class="sn-inner">
-        <div class="sn-head"><h2 class="tk-h2">Your company, <em>next.</em></h2><p class="tk-lede">Two services. AI employees from $297 a month, creative AI ads from $697 a month. Month to month, no contracts.</p></div>
-        <div class="sn-hero__cta" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap"><a href="pricing.html" class="tk-btn tk-btn--solid tk-btn--arrow">See pricing</a><a href="contact.html" class="tk-btn tk-btn--line">Talk to us</a></div>
+    <section class="g3-sec g3-sec--soft" aria-labelledby="h-next">
+      <div class="g3-wrap">
+        <div class="g3-sec-head center rv">
+          <h2 class="g3-h2" id="h-next">Your company, <em>next.</em></h2>
+          <p class="g3-lede">Two services. AI employees from $297 a month, creative AI ads from $697 a month. Month to month, no contracts.</p>
+        </div>
+        <div class="g3-final rv rv--d1">
+          <h2>Stop losing jobs to <em>voicemail.</em></h2>
+          <p class="g3-lede">Tell us where calls, leads or time are getting stuck. If what we build is a fit, you hear the price and the timeline. If it is not, you hear that instead.</p>
+          <div class="g3-final__ctas">
+            <a href="contact.html" class="g3-btn g3-btn--primary g3-btn--lg">Start a conversation <span class="arr">&rarr;</span></a>
+            <a href="pricing.html" class="g3-btn g3-btn--ghost g3-btn--lg">See pricing</a>
+          </div>
+          <a class="g3-final__phone" href="tel:+14807980753">(480) 798-0753</a>
+          <p class="g3-micro" style="justify-content:center;margin-top:1.2rem">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Month to month</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No contracts</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cancel anytime</span>
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
+
   </main>
-    <footer class="footer" aria-label="Site footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="footer__logo" aria-label="GreenAI Digital home">
-            <div class="footer__logo-icon"><img src="logo-mark.png" alt="GreenAI Digital" width="36" height="36" loading="lazy" decoding="async"/></div>
-            <span class="footer__logo-name">Green<span style="color:#D4AF37">AI</span> Digital</span>
-          </a>
-          <p class="footer__tagline">Two services for contractors: AI employees that answer calls, reply to leads and book jobs 24/7, and creative AI ads delivered monthly. Month to month, no contracts.</p>
-          <p style="font-size:.78rem;color:rgba(255,255,255,.62)">GreenAI Digital<br/>Gilbert, Arizona</p>
-        </div>
 
-        <div>
-          <h5>Services</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="ai-employees.html">AI Employees</a></li>
-            <li><a href="creative-ai-ads.html">Creative AI Ads</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Company</h5>
-          <ul class="footer__links" role="list">
-            <li><a href="testimonials.html">Work</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="faq.html">Questions</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="agreement.html">Service agreement</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Contact</h5>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div><a href="tel:4807980753" style="color:rgba(255,255,255,.65)">(480) 798-0753</a></div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><a href="mailto:jaden@greenaidigital.com" style="color:rgba(255,255,255,.65)">jaden@greenaidigital.com</a></div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div>Gilbert, Arizona 85296<br/><span style="color:rgba(255,255,255,.5);font-size:.85rem">Working with companies anywhere</span></div>
-          </div>
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-            <div><a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65)">@greenaidigitals</a></div>
-          </div>
-        </div>
+<footer class="g3-footer">
+  <div class="g3-wrap">
+    <div class="g3-footer__grid">
+      <div class="g3-footer__brand">
+        <img src="assets/brand/logo-v3.webp" alt="GreenAI Digital" />
+        <p class="g3-footer__tag">Two focused services for ambitious businesses: AI employees that answer calls, reply to leads and book jobs 24/7, and creative AI ads delivered monthly. Month to month, no contracts.</p>
+        <address class="g3-footer__addr">GreenAI Digital<br />Gilbert, Arizona 85296</address>
       </div>
-
-      <div class="footer__legal">
-        <a href="privacy.html">Privacy Policy</a>
-        <span style="color:rgba(255,255,255,.25)">·</span>
-        <a href="terms.html">Terms of Service</a>
-        <span style="color:rgba(255,255,255,.25)">·</span>
-        <a href="agreement.html">Service Agreement</a>
+      <div>
+        <h5>Services</h5>
+        <ul class="g3-footer__links">
+          <li><a href="ai-employees.html">AI Employees</a></li>
+          <li><a href="creative-ai-ads.html">Creative AI Ads</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
       </div>
-
-      <div class="footer__bottom">
-        <span>&copy; <span class="js-year">2026</span> Green<span style="color:#D4AF37">AI</span> Digital. All rights reserved.</span>
-        <span class="footer__bottom-right">Gilbert, Arizona</span>
+      <div>
+        <h5>Company</h5>
+        <ul class="g3-footer__links">
+          <li><a href="testimonials.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="agreement.html">Service agreement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="g3-footer__contact">
+          <a href="tel:+14807980753">(480) 798-0753</a>
+          <a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a>
+          <span>Gilbert, Arizona 85296<br />Working with companies anywhere</span>
+          <a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener">@greenaidigitals</a>
+        </div>
       </div>
     </div>
-  </footer>
-  <div class="sn-pad-bottom" aria-hidden="true"></div>
-  <script src="script.js?v=15"></script>
-  <script src="checkout.js?v=8"></script>
-  <script src="analytics.js"></script>
-  <script>
-  (function(){
-    var t=document.querySelector('.ag-t'); if(!t) return;
-    var to=+t.getAttribute('data-to')||8, s=0;
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduce){ t.textContent='0:0'+to; return; }
-    var iv=setInterval(function(){ s++; t.textContent='0:'+(s<10?'0':'')+s; if(s>=to) clearInterval(iv); },380);
-  })();
-  </script>
-  <script>
-  (function(){
-    var bar=document.querySelector('.sn-sticky'); if(!bar) return;
-    var foot=document.querySelector('.footer'), hero=document.querySelector('.sn-hero');
-    function tick(){
-      var y=window.scrollY, past = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > 480;
-      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
-      bar.classList.toggle('is-on', past && !nearFoot);
-    }
-    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
-  })();
-  (function(){
-    var list=document.querySelector('.sn-steps__list'); if(!list) return;
-    var items=[].slice.call(list.children), views=[].slice.call(document.querySelectorAll('.sn-steps .sn-phone__view'));
-    function on(i){ items.forEach(function(li,k){ li.classList.toggle('is-on',k===i); }); views.forEach(function(v,k){ v.classList.toggle('is-on',k===i); }); }
-    on(0);
-    items.forEach(function(li,i){ li.addEventListener('click',function(){ on(i); }); });
-    if('IntersectionObserver' in window && window.innerWidth>900){
-      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) on(items.indexOf(e.target)); }); },{rootMargin:'-45% 0px -45% 0px',threshold:0});
-      items.forEach(function(li){ io.observe(li); });
-    }
-  })();
-  </script>
-  <script src="cinematic.js?v=1"></script>
-  <script src="assistant.js?v=1" defer></script>
+    <div class="g3-footer__legal">
+      <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="agreement.html">Service Agreement</a>
+    </div>
+    <p class="g3-footer__tm">Slack, Microsoft Teams, Google Workspace, Gmail, Jobber, Housecall Pro, ServiceTitan and QuickBooks are trademarks of their respective owners. GreenAI Digital builds on their published APIs and is not affiliated with or endorsed by any of them.</p>
+    <div class="g3-footer__bottom">
+      <span>&copy; <span class="js-year">2026</span> GreenAI Digital. All rights reserved.</span>
+      <span>Gilbert, Arizona</span>
+    </div>
+  </div>
+</footer>
+  <script src="g3.js?v=20261011"></script>
 </body>
 </html>
