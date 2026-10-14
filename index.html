@@ -47,7 +47,28 @@
 .brand img{width:100%;height:100%;object-fit:contain}
 .g3-footer__brand img{width:110px;height:110px;object-fit:contain;background:#00372e;border-radius:5px}
 @media(max-width:760px){.brand{width:54px;height:54px}.brand img{width:100%;height:100%}}
-</style></head><body><a class="skip-link" href="#main">Skip to content</a><header class="nav"><a aria-label="GreenAI Digital home" class="brand" href="#main"><img alt="GreenAI Digital" src="assets/brand/logo-v3.webp?v=20261014"/></a><nav aria-label="Main navigation" id="navigation"><a href="#portfolio">Ventures</a><a href="#employees">AI Employees</a><a href="#ads">Creative AI Ads</a><a href="#selected-work">Work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#faq">FAQ</a></nav><a class="nav-cta" href="#contact">Let’s talk <span>↗</span></a><button aria-controls="navigation" aria-expanded="false" aria-label="Toggle menu" class="menu">Menu +</button></header><main id="main"><section class="hero"><div class="hero-top"><p class="g3-eyebrow">GreenAI Digital · The umbrella brand</p><span class="edition">INTELLIGENCE + IMAGINATION / GREENAI GROUP</span></div><h1>Built to work.<br/><span>Made to <em>wow.</em></span></h1><div class="hero-bottom"><p>AI Employees for the conversations and follow-up behind your business. Creative AI Ads for the moments that put your brand in front of people.</p><div><a class="g3-btn g3-btn--primary" href="#contact">Start a conversation ↗</a><a class="text-link" href="#pricing">See pricing ↓</a></div></div><div class="hero-art"><img alt="GreenAI’s cinematic AI employee concept artwork" fetchpriority="high" src="art/agentic-employees.webp"/><div class="art-caption"><span>GREENAI / INTELLIGENCE IN MOTION</span><a href="#employees">Meet the crew ↗</a></div><span aria-hidden="true" class="art-orbit">G</span></div><div class="hero-foot"><span>Based in Arizona. Working with businesses remotely.</span><a href="#services">Discover the craft ↓</a></div></section><div class="g3-trust">
+
+/* Editorial identity: typography and real portfolio work lead the page. */
+:root{--lime:#d7dfc9;--g3-lime:#d7dfc9;--ink:#121512;--panel:#1a1e19}
+.hero{padding-top:62px}.hero h1{margin-top:55px;margin-bottom:45px}
+.hero-bottom{margin-bottom:64px}.hero-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero-directory a{display:grid;grid-template-columns:25px 1fr 18px;column-gap:12px;row-gap:7px;padding:30px 28px 30px 0;align-items:center}
+.hero-directory a+a{padding-left:28px;border-left:1px solid var(--line)}
+.hero-directory a>span:nth-child(2){font-family:Manrope,sans-serif;font-size:23px;letter-spacing:-.04em}
+.directory-no{font-size:10px;color:var(--muted);align-self:start;padding-top:9px}
+.directory-detail{grid-column:2;font-size:11px;color:var(--muted)}
+.hero-directory a>span:last-child{grid-column:3;grid-row:1/3;justify-self:end;font-size:20px;transition:transform .2s}
+.hero-directory a:hover>span:last-child{transform:translate(3px,-3px)}
+.g3-cards>.g3-card{padding:32px;border:1px solid var(--line);background:transparent}
+.service-label{display:flex;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.13em;color:var(--muted);padding-bottom:46px}
+.g3-card h3{font-size:clamp(30px,3.2vw,45px)}
+.g3-member{background:transparent;border-radius:0}
+.member-index{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:23px 28px 0;font:italic 32px Georgia,serif;color:#889180}
+.member-index span{font:9px 'DM Sans',sans-serif;letter-spacing:.12em;color:var(--muted)}
+.g3-member__body{padding-top:24px}.call-monogram{width:52px;height:52px;flex-shrink:0;display:grid;place-items:center;border:1px solid #55604c;border-radius:50%;font:italic 29px Georgia,serif;color:#d7dfc9}
+.manifesto{background:#d7dfc9}.manifesto em,.manifesto p{color:#35402e}
+@media(max-width:760px){.hero{padding-top:35px}.hero h1{margin-top:40px;margin-bottom:28px}.hero-bottom{margin-bottom:36px}.hero-directory{grid-template-columns:1fr}.hero-directory a,.hero-directory a+a{padding:20px 0;border-left:0}.hero-directory a+a{border-top:1px solid var(--line)}.hero-directory a>span:nth-child(2){font-size:22px}.g3-cards>.g3-card{padding:25px}.service-label{padding-bottom:32px;font-size:8px}.member-index{padding:20px 20px 0;font-size:28px}.member-index span{display:none}}
+</style></head><body><a class="skip-link" href="#main">Skip to content</a><header class="nav"><a aria-label="GreenAI Digital home" class="brand" href="#main"><img alt="GreenAI Digital" src="assets/brand/logo-v3.webp?v=20261014"/></a><nav aria-label="Main navigation" id="navigation"><a href="#portfolio">Ventures</a><a href="#employees">AI Employees</a><a href="#ads">Creative AI Ads</a><a href="#selected-work">Work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#faq">FAQ</a></nav><a class="nav-cta" href="#contact">Let’s talk <span>↗</span></a><button aria-controls="navigation" aria-expanded="false" aria-label="Toggle menu" class="menu">Menu +</button></header><main id="main"><section class="hero"><div class="hero-top"><p class="g3-eyebrow">GreenAI Digital · The umbrella brand</p><span class="edition">INTELLIGENCE + IMAGINATION / GREENAI GROUP</span></div><h1>Built to work.<br/><span>Made to <em>wow.</em></span></h1><div class="hero-bottom"><p>AI Employees for the conversations and follow-up behind your business. Creative AI Ads for the moments that put your brand in front of people.</p><div><a class="g3-btn g3-btn--primary" href="#contact">Start a conversation ↗</a><a class="text-link" href="#pricing">See pricing ↓</a></div></div><div class="hero-directory" aria-label="Explore GreenAI Digital"><a href="#employees"><span class="directory-no">01</span><span>Intelligence</span><span class="directory-detail">AI Employees</span><span aria-hidden="true">↗</span></a><a href="#ads"><span class="directory-no">02</span><span>Imagination</span><span class="directory-detail">Creative AI Ads</span><span aria-hidden="true">↗</span></a><a href="#portfolio"><span class="directory-no">03</span><span>Ventures</span><span class="directory-detail">PoolPilot.ai</span><span aria-hidden="true">↗</span></a></div><div class="hero-foot"><span>Based in Arizona. Working with businesses remotely.</span><a href="#services">Discover the craft ↓</a></div></section><div class="g3-trust">
 <div class="g3-wrap g3-trust__row">
 <div class="g3-trust__item rv">
 <svg aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -71,7 +92,7 @@
 </div>
 <div class="g3-cards g3-cards--2">
 <article class="g3-card rv">
-<div class="g3-card__img"><img alt="Juno, the GreenAI Digital AI receptionist" loading="lazy" src="assets/brand/mascot.jpg"/></div>
+<div class="service-label"><span>01 / INTELLIGENCE</span><span>AI EMPLOYEES</span></div>
 <h3>AI Employees</h3>
 <p>Six AI staff inside the tools you already run. They answer, reply, book and follow up at any hour. Juno, your AI receptionist, leads the crew.</p>
 <ul class="g3-ticks">
@@ -83,7 +104,7 @@
 <a class="g3-card__link" href="#employees">Meet the crew <span class="arr">→</span></a>
 </article>
 <article class="g3-card rv rv--d1">
-<div class="g3-card__img"><img alt="Sample creative AI ad film made by GreenAI Digital" loading="lazy" src="film/homepage-ad-v2-poster.jpg"/></div>
+<div class="service-label"><span>02 / IMAGINATION</span><span>CREATIVE DIRECTION</span></div>
 <h3>Creative AI Ads</h3>
 <p>Finished, scroll-stopping ads made with AI and directed for your brand. A fresh batch lands in your inbox every month.</p>
 <ul class="g3-ticks">
@@ -104,42 +125,42 @@
 <p class="g3-lede">Hire one, or hire the whole crew. Each one lives inside an app your company already opens every morning.</p>
 </div>
 <div class="g3-crew">
-<article class="g3-member rv"><div class="member-art"><img alt="" loading="lazy" src="art/marks/ring.svg"/><span aria-hidden="true">RING</span></div>
+<article class="g3-member rv"><div class="member-index" aria-hidden="true">01<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">Phone line · AI receptionist</p>
 <h3>Juno</h3>
 <p>Answers every call in your business name, books the job on your calendar and texts you a summary. Nights, weekends, the second caller at once.</p>
 </div>
 </article>
-<article class="g3-member rv rv--d1"><div class="member-art"><img alt="" loading="lazy" src="art/marks/dispatch.svg"/><span aria-hidden="true">DISPATCH</span></div>
+<article class="g3-member rv rv--d1"><div class="member-index" aria-hidden="true">02<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">Jobber</p>
 <h3>Dispatch</h3>
 <p>Turns calls and messages into scheduled jobs. Client, request and reminder written straight into your Jobber account.</p>
 </div>
 </article>
-<article class="g3-member rv rv--d2"><div class="member-art"><img alt="" loading="lazy" src="art/marks/inbox.svg"/><span aria-hidden="true">INBOX</span></div>
+<article class="g3-member rv rv--d2"><div class="member-index" aria-hidden="true">03<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">Gmail</p>
 <h3>Inbox</h3>
 <p>Replies to every new lead email in under a minute, in your wording. Follows up on day one, three and seven until they answer.</p>
 </div>
 </article>
-<article class="g3-member rv"><div class="member-art"><img alt="" loading="lazy" src="art/marks/thread.svg"/><span aria-hidden="true">THREAD</span></div>
+<article class="g3-member rv"><div class="member-index" aria-hidden="true">04<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">Slack</p>
 <h3>Thread</h3>
 <p>Your crew's AI coordinator inside Slack. Answers the team from your own documents, prices and playbook.</p>
 </div>
 </article>
-<article class="g3-member rv rv--d1"><div class="member-art"><img alt="" loading="lazy" src="art/marks/huddle.svg"/><span aria-hidden="true">HUDDLE</span></div>
+<article class="g3-member rv rv--d1"><div class="member-index" aria-hidden="true">05<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">Teams</p>
 <h3>Huddle</h3>
 <p>Meeting notes and follow-ups handled inside Microsoft Teams. Nothing discussed gets forgotten by Friday.</p>
 </div>
 </article>
-<article class="g3-member rv rv--d2"><div class="member-art"><img alt="" loading="lazy" src="art/marks/books.svg"/><span aria-hidden="true">BOOKS</span></div>
+<article class="g3-member rv rv--d2"><div class="member-index" aria-hidden="true">06<span>GREENAI / EMPLOYEE</span></div>
 <div class="g3-member__body">
 <p class="g3-member__role">QuickBooks</p>
 <h3>Books</h3>
@@ -167,7 +188,7 @@
 </section><section class="listen-section" id="sample-call"><div class="g3-wrap listen-grid"><div><p class="g3-eyebrow">04 / Intelligence you can hear</p><h2 class="g3-h2">A useful kind<br/>of <em>impressive.</em></h2><p class="g3-lede">Behind the creative is the practical. Hear a recorded example of Juno handling a business call.</p><a class="g3-card__link" href="#employees">Meet your AI employees ↗</a></div> <div class="rv rv--d2">
 <div class="g3-call">
 <div class="g3-call__head">
-<img alt="Juno, the GreenAI Digital AI receptionist" class="g3-call__avatar" src="assets/brand/mascot.jpg"/>
+<span class="call-monogram" aria-hidden="true">J</span>
 <div class="g3-call__who"><b>Juno</b><span>AI receptionist · GreenAI Digital</span></div>
 <span class="g3-call__badge">Sample call</span>
 </div>
