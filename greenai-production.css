@@ -3,5 +3,9 @@ html{scroll-padding-top:95px}body{background:#070b14}a:focus-visible,button:focu
 @media(max-width:760px){html{scroll-padding-top:115px}.live-nav{position:absolute;left:0;right:0;top:64px;justify-content:center;gap:32px;padding:10px 20px;background:#070b14eb;border-bottom:1px solid #1a2340;backdrop-filter:blur(18px);font-size:10px}header+section{padding-top:105px!important}.live-wrap{padding-inline:24px}.live-film-section,.live-contact-section{padding:65px 0}.live-section-heading{display:block;margin-bottom:32px}.live-section-heading>p{margin-top:24px;font-size:13px}.live-films{grid-template-columns:1fr;gap:35px}.live-films video{height:min(560px,75svh)}.live-films figcaption{font-size:9px;gap:12px}.live-films button{padding:9px 13px;font-size:10px}.live-contact-grid{grid-template-columns:1fr;gap:35px}#live-inquiry{padding:22px}.live-contact-grid>div>p:not(.live-eyebrow){font-size:14px}.live-eyebrow{font-size:9px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.slow-fade{animation:none!important}.route-dash{animation:none!important;stroke-dashoffset:0!important}}
 
-/* Production import: retain the uploaded paper and terracotta design. */
-html{scroll-padding-top:95px}header+section{padding-top:0!important}.reveal{opacity:1;transform:none}header nav{gap:22px!important}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#e94e1b}@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}*{animation:none!important}}
+/* Production import: retain the uploaded paper and emerald design. */
+html{scroll-padding-top:95px}header+section{padding-top:0!important}.reveal{opacity:1;transform:none}header nav{gap:22px!important}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#087f63}@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}*{animation:none!important}}
+
+/* Cool neutrals with emerald accents; preserve readable labels in dark mode. */
+body{background:var(--paper)}
+@media(prefers-color-scheme:dark){.text-\[var\(--emerald\)\]{color:#69d9b3}}
