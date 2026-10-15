@@ -13,3 +13,5 @@
 @media(max-width:850px){.pool-brand .hero.wrap{grid-template-columns:1fr;gap:30px;padding-top:55px;padding-bottom:60px;min-height:0}.pool-brand .hero h1{font-size:clamp(46px,8vw,68px);letter-spacing:-2.8px}.water-scene{min-height:420px;max-width:470px;width:100%;margin:auto}.water-orbit{max-width:96%}.orbit-two{width:110%;max-width:110%}.orbit-three{display:none}.logo-disc{width:min(310px,74%)}.command-section{padding:65px 0}.pool-brand .split{gap:38px}}
 @media(max-width:500px){.pool-brand .hero h1{font-size:48px;letter-spacing:-2.7px}.pool-brand .hero .eyebrow{font-size:9px;letter-spacing:1.7px}.water-scene{min-height:350px}.logo-disc{width:260px;max-width:76%}.pool-brand .brand{font-size:18px}.pool-brand .brand .pool-mark{width:43px;height:43px}.pool-brand .bundle{padding:26px}.pool-brand .bar{flex-wrap:wrap}.pool-brand .crew article{padding:25px}.pool-brand .strip .wrap{justify-content:center;gap:14px 24px}.water-signature{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.water-orbit{animation:none}}
+
+.pool-brand main{overflow:clip}
