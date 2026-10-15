@@ -15,3 +15,5 @@
 @media(prefers-reduced-motion:reduce){.water-orbit{animation:none}}
 
 .pool-brand main{overflow:clip}
+
+.pool-brand .hero>div:first-child{position:relative;z-index:3}
