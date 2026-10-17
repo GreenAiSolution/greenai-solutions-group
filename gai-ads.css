@@ -291,3 +291,8 @@ footer{border-top:1px solid var(--line);padding:3rem 0 3.4rem;background:#030307
   .strip::-webkit-scrollbar{display:none}
   .strip figure{flex:0 0 110px;scroll-snap-align:start}
 }
+
+.dm{display:inline-flex;align-items:center;gap:.9rem;margin-top:1.6rem;border:1px dashed rgba(200,255,58,.6);border-radius:16px;padding:.9rem 1.3rem;text-decoration:none;background:rgba(200,255,58,.05);transition:.3s}
+.dm:hover{background:rgba(200,255,58,.12);transform:translateY(-3px)}
+.dm b{font-size:1.5rem;letter-spacing:.08em;color:var(--volt)}
+.dm span{color:var(--mute);font-size:.92rem;line-height:1.3}
