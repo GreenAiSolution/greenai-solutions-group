@@ -1,0 +1,293 @@
+#!/usr/bin/env python3
+"""build_studio_home.py - writes index.html (GreenAI Digital, the AI ad studio home page).
+Run from anywhere: python3 tools/build_studio_home.py
+Assets: gai-ads.css, gai-ads.js, reel/{posters,previews,frames}/. Full films stay in art/films and film/."""
+import os, json
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+FILMS = [  # slug, title, line, full film
+ ('underground','Underground','Neon hoverboard, subway run','art/films/film-dreamscape-01.mp4'),
+ ('deep-current','Deep Current','A submarine meets the jaws','art/films/film-dreamscape-04.mp4'),
+ ('red-mile','Red Mile','Hoverbike through the canyon','art/films/film-dreamscape-05.mp4'),
+ ('firestorm','Firestorm','Standing in the eye of it','art/films/film-dreamscape-06.mp4'),
+ ('the-giant','The Giant','Brand film with a green footprint','art/films/film-greenai-giant.mp4'),
+ ('the-magnet','The Magnet','Cloud walker, portal opening','art/films/film-magnet-portal.mp4'),
+ ('starlight','Starlight','A village that glows at night','art/films/film-starlight-village.mp4'),
+ ('every-time','Every. Single. Time.','Our own ad: AI video that looks like this','film/homepage-ad-v2.mp4'),
+]
+WALL = ['underground','deep-current','red-mile','firestorm','the-giant','the-magnet','starlight','every-time','bloom']
+
+def wall():
+    cols = []
+    for c in range(7):
+        seq = WALL[c*2 % 9:] + WALL[:c*2 % 9]
+        imgs = ''.join(f'<img src="reel/posters/{s}.webp" alt="" width="540" height="960" decoding="async">' for s in seq*2)
+        cols.append(f'<div class="col" aria-hidden="true">{imgs}</div>')
+    return ''.join(cols)
+
+def tiles():
+    out = []
+    for i,(s,t,l,src) in enumerate(FILMS):
+        out.append(f'''<button class="tile rv" style="--d:{(i%4)*.07:.2f}s" data-src="{src}" data-title="{t}" aria-label="Play {t}">
+  <img src="reel/posters/{s}.webp" alt="{t}: {l}" width="540" height="960" loading="lazy" decoding="async">
+  <video muted loop playsinline preload="none" data-src="reel/previews/{s}.mp4" aria-hidden="true" tabindex="-1"></video>
+  <span class="tag">{'Brand film' if s=='every-time' else 'AI concept'} &middot; 9:16</span>
+  <span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="#000"/></svg></span>
+  <span class="meta"><b>{t}</b><span>{l}</span></span>
+</button>''')
+    return '\n'.join(out)
+
+def frames():
+    d = 19.0; out = []
+    for i in range(8):
+        t = 0.6 + i*(d-1.4)/7
+        out.append(f'<figure><img src="reel/frames/ug-{i+1}.webp" alt="Storyboard frame {i+1} of Underground" width="300" height="533" loading="lazy" decoding="async"><figcaption>00:{int(t):02d}</figcaption></figure>')
+    return ''.join(out)
+
+JSONLD = json.dumps({
+ "@context":"https://schema.org","@type":"ProfessionalService","name":"GreenAI Digital","url":"https://greenaidigital.com/",
+ "telephone":"+1-480-798-0753","email":"jaden@greenaidigital.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Gilbert","addressRegion":"AZ","postalCode":"85296","addressCountry":"US"},
+ "areaServed":"Phoenix metro, Arizona",
+ "description":"An AI ad studio in Gilbert, Arizona. Cinematic video and image ads for local businesses, plus instant lead replies and AI search visibility. PoolPrime.ai is our dedicated studio for pool builders.",
+ "makesOffer":[{"@type":"Offer","name":"AI video and image ads"},{"@type":"Offer","name":"Instant lead replies and quote follow-up"},{"@type":"Offer","name":"AI search visibility"},{"@type":"Offer","name":"PoolPrime.ai ads for pool builders","url":"https://greenaidigital.com/poolprime/"}]
+}, indent=2)
+
+HTML = f'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GreenAI Digital | AI ad studio in Arizona. Ads that stop the scroll.</title>
+<meta name="description" content="GreenAI Digital is an AI ad studio in Gilbert, Arizona. Cinematic video and image ads for local businesses, instant lead replies, and AI search visibility. Start with a free sample ad.">
+<link rel="canonical" href="https://greenaidigital.com/">
+<meta name="theme-color" content="#05050a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GreenAI Digital | Ads that stop the scroll">
+<meta property="og:description" content="An AI ad studio in Arizona. Cinematic ads for local businesses. Start with a free sample ad.">
+<meta property="og:url" content="https://greenaidigital.com/">
+<meta property="og:image" content="https://greenaidigital.com/reel/posters/underground.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preload" href="poolprime/assets/fonts/Outfit.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gai-ads.css?v=1">
+<script type="application/ld+json">{JSONLD}</script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true">PLAY</div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top" aria-label="GreenAI Digital, back to top"><img src="assets/brand/logo-v3.webp" alt="" width="34" height="34"><span>Green<i>AI</i> <small>Digital</small></span></a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="#reel">Reel</a><a href="#screens">Formats</a><a href="#process">Craft</a><a href="#verticals">PoolPrime</a><a href="#plans">Plans</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--volt nav__cta" href="#contact" style="padding:.6rem 1.1rem;font-size:.92rem">Free sample ad</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="links" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="wall" aria-hidden="true"><div class="wall__in">{wall()}</div></div>
+  <div class="wrap">
+    <span class="kicker rise" style="--d:.2s">AI ad studio &middot; Gilbert, Arizona</span>
+    <h1 class="rise" style="--d:.4s">Ads that stop <span class="sp">the scroll.</span></h1>
+    <p class="lede rise" style="--d:.7s">Cinematic video and image ads for local brands. Directed by a person, produced at AI speed, and made for your business before you spend a cent.</p>
+    <div class="hero__cta rise" style="--d:.95s">
+      <a class="btn btn--volt btn--lg" href="#contact">Get a free sample ad <span class="arrow">&rarr;</span></a>
+      <a class="btn btn--ghost btn--lg" href="#reel">Watch the reel</a>
+    </div>
+    <p class="hero__note rise" style="--d:1.2s">Every film on this wall is an AI concept we made. Not client work.</p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee__in">
+  <span>Reels</span><span>Feed ads</span><span>Wide spots</span><span>3-second hooks</span><span>Captions</span><span>Color grade</span><span>Lead replies</span><span>AI search</span>
+  <span>Reels</span><span>Feed ads</span><span>Wide spots</span><span>3-second hooks</span><span>Captions</span><span>Color grade</span><span>Lead replies</span><span>AI search</span>
+</div></div>
+
+<section class="sec" id="reel">
+  <a class="anchor" id="ads"></a><a class="anchor" id="selected-work"></a>
+  <div class="wrap">
+    <div class="sechead sechead--row">
+      <div><span class="kicker rv">01 &middot; The reel</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Concept films that <span class="sp">make you look up.</span></h2></div>
+      <p class="lede rv" style="--d:.1s">Eight films we made to push what an AI ad can look like. Tap any one to watch it full screen with sound.</p>
+    </div>
+    <div class="reel">
+{tiles()}
+    </div>
+    <p class="reel__note rv">Concept films made with AI, not client results. Yours is built from your business: your pools, roofs, trucks and crew.</p>
+  </div>
+</section>
+
+<section class="sec" id="screens" style="background:linear-gradient(180deg,transparent,rgba(122,92,255,.06),transparent)">
+  <div class="wrap screens">
+    <div>
+      <span class="kicker rv">02 &middot; One film, every screen</span>
+      <h2 class="rv" style="--d:.05s;margin:1.2rem 0 1.4rem">Built for <span class="sp">the crop.</span></h2>
+      <p class="m rv">A reel, a feed post and a wide spot are three different jobs. We frame every ad for each placement so the hook lands in the first three seconds, instead of just resizing one file.</p>
+      <div class="tabs rv" role="tablist" aria-label="Ad format">
+        <button role="tab" aria-selected="true" data-f="reel">Reel 9:16</button>
+        <button role="tab" aria-selected="false" data-f="feed">Feed 1:1</button>
+        <button role="tab" aria-selected="false" data-f="wide">Wide 16:9</button>
+      </div>
+      <p class="m rv" id="fmtnote">Reels and Shorts. Full screen, sound on, thumb-stopping from the first frame.</p>
+    </div>
+    <div class="stagebox rv">
+      <div class="screen" id="screen" data-f="reel">
+        <div class="ui"><i></i>yourbrand <small>Sponsored</small></div>
+        <video muted loop playsinline preload="none" data-src="reel/previews/red-mile.mp4" aria-label="Sample ad shown in the selected format"></video>
+      </div>
+      <div class="fmt" id="fmtlabel">9:16 &middot; Reels, Shorts, TikTok</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="sechead sechead--row">
+      <div><span class="kicker rv">03 &middot; Frame by frame</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">How an ad <span class="sp">gets made.</span></h2></div>
+      <p class="lede rv" style="--d:.1s">No black box. Here is the path from a rough idea to a finished ad, and eight frames from one of our films.</p>
+    </div>
+    <div class="strip rv">{frames()}</div>
+    <div class="steps">
+      <div class="step rv"><h3>Brief</h3><p>One offer, one promise, one customer. We write it down before anyone generates a frame.</p></div>
+      <div class="step rv" style="--d:.07s"><h3>Boards</h3><p>We sketch the first three seconds and the end card. The hook is decided here, not later.</p></div>
+      <div class="step rv" style="--d:.14s"><h3>Generate</h3><p>Leading video models, many takes per shot. We keep what feels cinematic and throw away the rest.</p></div>
+      <div class="step rv"><h3>Direct</h3><p>Fix drift, extend a shot, swap a take. Every frame is reviewed by a person.</p></div>
+      <div class="step rv" style="--d:.07s"><h3>Grade and cut</h3><p>Color, pacing, captions and sound. Your logo and text go on in editing so they stay exact.</p></div>
+      <div class="step rv" style="--d:.14s"><h3>Deliver</h3><p>Reel, feed and wide versions, ready to upload to Meta, TikTok, YouTube or your site.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="after">
+  <a class="anchor" id="employees"></a><a class="anchor" id="services"></a>
+  <div class="wrap">
+    <div class="sechead sechead--row">
+      <div><span class="kicker rv">04 &middot; After the click</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">The ad is half <span class="sp">the job.</span></h2></div>
+      <p class="lede rv" style="--d:.1s">A great ad only pays off if the lead gets answered. So we also set up what happens next.</p>
+    </div>
+    <div class="after">
+      <div class="card rv"><h3>Answered in a minute</h3><p>A lead messages at 9:41 at night. They get a friendly reply at 9:42.</p>
+        <div class="demo"><div class="chat" id="chat">
+          <div class="msg in"><small>9:41 PM &middot; New lead</small>Hi, can I get a quote for a new roof?</div>
+          <div class="msg out"><small>9:42 PM &middot; Your reply</small>Thanks for reaching out! Happy to help. What is the address?</div>
+          <div class="msg out"><small>Day 2 &middot; Follow-up</small>Just checking you got our quote. Any questions?</div>
+        </div></div></div>
+      <div class="card rv" style="--d:.08s"><h3>Followed up for you</h3><p>Most quotes go quiet. Every one gets a nudge so nobody slips away.</p>
+        <div class="demo"><div class="days"><div><b>2</b><span>Day</span></div><div><b>5</b><span>Day</span></div><div><b>10</b><span>Day</span></div></div>
+        <p style="margin-top:1rem;font-size:.85rem"><button class="textbtn" id="watch8" data-src="film/night-shift.mp4" data-title="Night Shift: a service ad" style="background:none;border:0;color:var(--volt);font-weight:700;cursor:pointer;padding:0">&#9654; Watch an ad for this service</button></p></div></div>
+      <div class="card rv" style="--d:.16s"><h3>Found by AI assistants</h3><p>More people now ask an AI who to hire. We set your business up so it can find and name you.</p>
+        <div class="demo"><div class="q">Who is the best roofer near Gilbert, AZ?</div><div class="a"><small>AI assistant</small><ol><li>Another Roofing Co.</li><li class="you">Your Company</li><li>A Third Contractor</li></ol></div></div></div>
+    </div>
+    <p class="fine rv">Chat and search shown are examples of how the service works, not results from a client.</p>
+  </div>
+</section>
+
+<section class="sec" id="verticals">
+  <a class="anchor" id="about"></a>
+  <div class="wrap">
+    <div class="sechead sechead--row">
+      <div><span class="kicker rv">05 &middot; Built for your trade</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">One studio. <span class="sp">One trade at a time.</span></h2></div>
+      <p class="lede rv" style="--d:.1s">Ads work harder when they speak your customer's language. We go deep on one trade at a time.</p>
+    </div>
+    <div class="verts">
+      <a class="pp rv" href="poolprime/">
+        <div><span class="tag">Studio 01 &middot; Live</span><h3>PoolPrime<em>.ai</em><br>AI ads for pool builders</h3><p>Reveal videos, night-glow reels, instant lead replies and quote follow-up, made for pool companies.</p><span class="btn btn--volt">See PoolPrime <span class="arrow">&rarr;</span></span></div>
+        <div class="logo"><img src="assets/brand/poolprime-logo.png" alt="PoolPrime.ai water P logo" width="220" height="220" loading="lazy"></div>
+      </a>
+      <div class="next rv" style="--d:.1s"><h3>Your trade next?</h3>
+        <div class="trades">
+          <a class="trade" href="#contact" data-trade="Roofing"><b>Roofing</b><span>Tell us your trade</span></a>
+          <a class="trade" href="#contact" data-trade="HVAC"><b>HVAC</b><span>Tell us your trade</span></a>
+          <a class="trade" href="#contact" data-trade="Landscaping"><b>Landscaping</b><span>Tell us your trade</span></a>
+          <a class="trade" href="#contact" data-trade="Remodeling"><b>Remodeling</b><span>Tell us your trade</span></a>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="plans">
+  <a class="anchor" id="pricing"></a>
+  <div class="wrap">
+    <div class="sechead sechead--row">
+      <div><span class="kicker rv">06 &middot; Plans</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Straight prices. <span class="sp">Start free.</span></h2></div>
+      <p class="lede rv" style="--d:.1s">You see your own ad before you pay anything. Then pick what fits.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv"><h3>Free sample</h3><div class="price"><sup>$</sup>0</div><div class="per">one ad, made for you</div>
+        <ul><li>One ad for your business</li><li>No card needed</li><li>See it before you decide</li></ul><a class="btn btn--ghost" href="#contact" data-plan="sample">Get my sample</a></div>
+      <div class="plan rv" style="--d:.08s"><h3>Starter pack</h3><div class="price"><sup>$</sup>297</div><div class="per">one time</div>
+        <ul><li>5 ads</li><li>One round of changes</li><li>Reel, feed and wide sizes</li></ul><a class="btn btn--ghost" href="#contact" data-plan="starter">Start with a sample</a></div>
+      <div class="plan hot rv" style="--d:.16s"><span class="tag">Best for steady growth</span><h3>Monthly plan</h3><div class="price"><sup>$</sup>497</div><div class="per">per month</div>
+        <ul><li>8 new ads every month</li><li>Fresh creative all season</li><li>Add lead replies or AI search anytime</li></ul><a class="btn btn--volt" href="#contact" data-plan="monthly">Start with a sample <span class="arrow">&rarr;</span></a></div>
+    </div>
+    <div class="partner rv"><div><b>Agency or freelancer?</b><p>Need concept films or AI cutdowns for your own clients? Send us a brief and we will tell you honestly what we can do.</p></div><a class="btn btn--ghost" href="#contact" data-plan="partner">Send a brief</a></div>
+    <p class="fine rv">Ad spend on Meta, Google or TikTok is separate and goes straight to the platform. We make the ads and set up the replies, so we never promise a number of leads.</p>
+  </div>
+</section>
+
+<section class="sec cta" id="contact">
+  <div class="wrap cta__in">
+    <div>
+      <span class="kicker rv">07 &middot; Your turn</span>
+      <h2 class="rv" style="--d:.05s">Let's make your <span class="sp">first ad.</span></h2>
+      <p class="lede rv" style="--d:.1s">Tell us about your business. We make your free sample ad and send it to you. A real person reads every request.</p>
+      <div class="who rv"><span>Jaden Green &middot; Gilbert, Arizona</span><a href="mailto:jaden@greenaidigital.com">jaden@greenaidigital.com</a><a href="tel:+14807980753">(480) 798-0753</a></div>
+    </div>
+    <form class="rv" id="form" action="https://greenai-forms-production.up.railway.app/api/submit" method="POST" novalidate aria-label="Free sample ad request" data-form="greenai-sample" data-source="greenaidigital.com">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="row"><label>Your name *<input name="name" required autocomplete="name" placeholder="Alex Rivera"></label><label>Business *<input name="business" required autocomplete="organization" placeholder="Desert Blue Pools"></label></div>
+      <div class="row"><label>Email *<input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></label><label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="(480) 555-0100"></label></div>
+      <label>Website or Instagram<input name="website" placeholder="@yourbusiness or yourbusiness.com"></label>
+      <label>What would you like?<select name="interest" id="interest">
+        <option value="sample">A free sample ad</option><option value="starter">Starter pack, 5 ads</option><option value="monthly">Monthly plan, 8 ads a month</option>
+        <option value="pool">I run a pool company (PoolPrime)</option><option value="trade">My trade is something else</option><option value="partner">Agency or creative partner</option><option value="other">Something else</option></select></label>
+      <label>Anything we should know?<textarea name="message" id="message" placeholder="What you sell, who you want to reach, a style you love."></textarea></label>
+      <button class="btn btn--volt btn--lg" type="submit" id="send">Send my request <span class="arrow">&rarr;</span></button>
+      <p class="err" id="err" role="alert"></p>
+      <p class="fine" style="margin:0">We use your details only to reply to this request.</p>
+      <div class="ok" role="status"><h3>We got it.</h3><p class="lede" style="margin:0 auto">Watch your email. We will be in touch about your sample ad.</p></div>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:clamp(40px,6vw,80px)">
+  <div class="wrap faq">
+    <div class="sechead"><span class="kicker rv">Straight answers</span><h2 class="rv" style="--d:.05s">Before you <span class="sp">ask.</span></h2></div>
+    <details><summary>Is that real footage?</summary><p>No. Every film on this site is made with AI. They are concept films, labeled as such. Your ads are built from your business details and your own photos and footage where you have them.</p></details>
+    <details><summary>What does AI do badly?</summary><p>Hands, small text and logos can drift. We review every frame and add your logo and text ourselves in editing so they stay exact. If a shot does not hold up, we do not use it.</p></details>
+    <details><summary>Will the ads get me leads?</summary><p>We make strong ads and set up fast replies. Where you run them and how much you spend is your call, so we do not promise a number of leads. We do promise you see your own ad before paying.</p></details>
+    <details><summary>What does the free sample include?</summary><p>One ad made for your business so you can judge the work. No card and no obligation.</p></details>
+    <details><summary>Who is behind GreenAI Digital?</summary><p>Jaden Green, in Gilbert, Arizona. You deal with a real person you can email or call.</p></details>
+    <details><summary>Do you only work in Phoenix?</summary><p>Phoenix businesses come first, but the work is done online, so businesses elsewhere can send a request.</p></details>
+  </div>
+</section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Film player">
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Previous film">&#8249;</button>
+  <div class="lb__box"><div class="lb__bar"><b id="lbTitle"></b></div><video id="lbVideo" playsinline controls></video></div>
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Next film">&#8250;</button>
+  <button class="lb__x" id="lbX" aria-label="Close">&times;</button>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <div class="l"><a class="brand" href="#top"><img src="assets/brand/logo-v3.webp" alt="" width="34" height="34"><span>Green<i>AI</i> <small>Digital</small></span></a><a href="poolprime/">PoolPrime.ai</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    <div>&copy; <span id="yr">2026</span> GreenAI Digital &middot; Jaden Green, Gilbert, Arizona</div>
+  </div>
+</footer>
+<script src="gai-ads.js?v=1"></script>
+</body>
+</html>
+'''
+open(os.path.join(ROOT,'index.html'),'w').write(HTML)
+print('index.html written', len(HTML),'bytes')
