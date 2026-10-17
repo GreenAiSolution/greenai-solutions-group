@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GreenSnaps Pricing</title>
+<meta name="description" content="GreenSnaps price card: 1 month and 2 month options.">
+<style>
+  :root {
+    --green-dark:#1a5c2a; --green-light:#2e8b47; --green-pale:#e8f4eb; --green-accent:#4caf6e;
+    --bg:#f9fafb; --card:#fff; --ink:#0d1117; --muted:#5b6470; --line:#e2e8e4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --card:#161d19; --ink:#f2f6f3; --muted:#9aa7a0; --line:#25302a; --green-pale:#16281c; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,sans-serif; padding:48px 16px; }
+  .wrap { max-width:760px; margin:0 auto; text-align:center; }
+  h1 { font-size:clamp(28px,5vw,40px); margin:0 0 8px; }
+  h1 em { color:var(--green-light); font-style:normal; }
+  .sub { color:var(--muted); margin:0 0 32px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; text-align:left; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px; position:relative; }
+  .card.hot { border:2px solid var(--green-light); }
+  .tag { position:absolute; top:-12px; left:24px; background:var(--green-light); color:#fff; font-size:12px; font-weight:600; padding:4px 12px; border-radius:99px; }
+  h2 { margin:0; font-size:20px; }
+  .price { font-size:48px; font-weight:700; margin:12px 0 0; line-height:1; }
+  .price sup { font-size:22px; vertical-align:top; margin-right:2px; }
+  .per { color:var(--muted); font-size:14px; margin:6px 0 20px; }
+  .save { display:inline-block; background:var(--green-pale); color:var(--green-dark); font-size:13px; font-weight:600; padding:3px 10px; border-radius:6px; margin-bottom:16px; }
+  @media (prefers-color-scheme: dark) { .save { color:var(--green-accent); } }
+  ul { list-style:none; padding:0; margin:0 0 24px; }
+  li { padding:7px 0 7px 26px; position:relative; font-size:15px; }
+  li::before { content:"\2713"; position:absolute; left:0; color:var(--green-light); font-weight:700; }
+  .btn { display:block; text-align:center; text-decoration:none; font-weight:600; padding:13px; border-radius:10px;
+         background:var(--green-light); color:#fff; }
+  .btn:hover { background:var(--green-dark); }
+  .card:not(.hot) .btn { background:transparent; color:var(--green-light); border:1.5px solid var(--green-light); }
+  .card:not(.hot) .btn:hover { background:var(--green-pale); }
+  .note { color:var(--muted); font-size:13px; margin-top:24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GreenSnaps <em>pricing</em></h1>
+  <p class="sub">Pick 1 month or 2. No long contract.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>1 Month</h2>
+      <div class="price"><sup>$</sup>497</div>
+      <div class="per">one month, billed once</div>
+      <ul>
+        <li>Full GreenSnaps access</li>
+        <li>One round of changes</li>
+        <li>Email support</li>
+      </ul>
+      <a class="btn" href="contact.html?plan=greensnaps-1mo">Start 1 month</a>
+    </div>
+
+    <div class="card hot">
+      <span class="tag">Best value</span>
+      <h2>2 Months</h2>
+      <div class="price"><sup>$</sup>797</div>
+      <div class="per">two months, billed once &middot; $399/mo</div>
+      <span class="save">Save $197</span>
+      <ul>
+        <li>Everything in 1 Month</li>
+        <li>Two rounds of changes</li>
+        <li>Priority support</li>
+      </ul>
+      <a class="btn" href="contact.html?plan=greensnaps-2mo">Start 2 months</a>
+    </div>
+  </div>
+
+  <p class="note">Prices in USD. Placeholder pricing, confirm before publishing.</p>
+</div>
+</body>
+</html>
