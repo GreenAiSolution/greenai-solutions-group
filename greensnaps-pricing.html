@@ -3,77 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GreenSnaps Pricing</title>
-<meta name="description" content="GreenSnaps price card: 1 month and 2 month options.">
+<title>Green Snaps Rate Card</title>
+<meta name="description" content="Green Snaps 2026 rate card: private long snapping instruction with Jaden Green. Lessons, packs, 1 month, 2 month and 3 month programs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green-dark:#1a5c2a; --green-light:#2e8b47; --green-pale:#e8f4eb; --green-accent:#4caf6e;
-    --bg:#f9fafb; --card:#fff; --ink:#0d1117; --muted:#5b6470; --line:#e2e8e4;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#0d1117; --card:#161d19; --ink:#f2f6f3; --muted:#9aa7a0; --line:#25302a; --green-pale:#16281c; }
-  }
+  :root { --bg:#0b0b0d; --panel:#16140f; --ink:#f3ece0; --muted:#9a9384; --gold:#cdb88a; --line:#2a2720; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,sans-serif; padding:48px 16px; }
-  .wrap { max-width:760px; margin:0 auto; text-align:center; }
-  h1 { font-size:clamp(28px,5vw,40px); margin:0 0 8px; }
-  h1 em { color:var(--green-light); font-style:normal; }
-  .sub { color:var(--muted); margin:0 0 32px; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; text-align:left; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px; position:relative; }
-  .card.hot { border:2px solid var(--green-light); }
-  .tag { position:absolute; top:-12px; left:24px; background:var(--green-light); color:#fff; font-size:12px; font-weight:600; padding:4px 12px; border-radius:99px; }
-  h2 { margin:0; font-size:20px; }
-  .price { font-size:48px; font-weight:700; margin:12px 0 0; line-height:1; }
-  .price sup { font-size:22px; vertical-align:top; margin-right:2px; }
-  .per { color:var(--muted); font-size:14px; margin:6px 0 20px; }
-  .save { display:inline-block; background:var(--green-pale); color:var(--green-dark); font-size:13px; font-weight:600; padding:3px 10px; border-radius:6px; margin-bottom:16px; }
-  @media (prefers-color-scheme: dark) { .save { color:var(--green-accent); } }
-  ul { list-style:none; padding:0; margin:0 0 24px; }
-  li { padding:7px 0 7px 26px; position:relative; font-size:15px; }
-  li::before { content:"\2713"; position:absolute; left:0; color:var(--green-light); font-weight:700; }
-  .btn { display:block; text-align:center; text-decoration:none; font-weight:600; padding:13px; border-radius:10px;
-         background:var(--green-light); color:#fff; }
-  .btn:hover { background:var(--green-dark); }
-  .card:not(.hot) .btn { background:transparent; color:var(--green-light); border:1.5px solid var(--green-light); }
-  .card:not(.hot) .btn:hover { background:var(--green-pale); }
-  .note { color:var(--muted); font-size:13px; margin-top:24px; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,sans-serif; padding:32px 16px; }
+  .card { max-width:820px; margin:0 auto; }
+  header { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+           padding-bottom:20px; border-bottom:1px solid var(--line); }
+  .logo { font-family:'Playfair Display',serif; font-size:22px; letter-spacing:.18em; text-transform:uppercase; }
+  .eyebrow { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+  .badge { border:1px solid var(--gold); color:var(--gold); font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:8px 12px; }
+  .hero { padding:36px 0 28px; }
+  h1 { font-family:'Playfair Display',serif; font-weight:500; font-size:clamp(40px,8vw,64px); line-height:1; margin:10px 0 14px; }
+  h1 em { color:var(--gold); }
+  .creds { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); line-height:1.8; margin:0; }
+  .row { display:grid; grid-template-columns:44px 1fr auto; gap:12px; align-items:center;
+         padding:20px 0; border-top:1px solid var(--line); }
+  .row.hot { background:linear-gradient(90deg,rgba(205,184,138,.12),transparent); padding-left:12px; padding-right:12px; margin:0 -12px; }
+  .n { font-family:'Playfair Display',serif; font-style:italic; color:var(--gold); font-size:20px; }
+  h2 { margin:0 0 4px; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; }
+  .desc { font-family:'Playfair Display',serif; color:#d9d1c2; font-size:16px; margin:0; }
+  .tag { display:inline-block; vertical-align:middle; margin-left:8px; background:var(--gold); color:#14110a;
+         font-size:9px; letter-spacing:.14em; padding:3px 7px; font-weight:600; }
+  .amt { text-align:right; }
+  .price { font-family:'Playfair Display',serif; font-size:34px; color:var(--gold); line-height:1; }
+  .price s { font-size:18px; color:var(--muted); margin-right:8px; }
+  .unit { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+  footer { border-top:1px solid var(--line); padding-top:24px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:end; }
+  .name { font-family:'Playfair Display',serif; font-style:italic; font-size:26px; }
+  .cta { text-align:right; }
+  .cta a { color:var(--ink); text-decoration:none; font-family:'Playfair Display',serif; font-size:20px; }
+  @media (max-width:560px) {
+    .row { grid-template-columns:30px 1fr; }
+    .amt { grid-column:2; text-align:left; }
+    .cta { text-align:left; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>GreenSnaps <em>pricing</em></h1>
-  <p class="sub">Pick 1 month or 2. No long contract.</p>
-
-  <div class="cards">
-    <div class="card">
-      <h2>1 Month</h2>
-      <div class="price"><sup>$</sup>497</div>
-      <div class="per">one month, billed once</div>
-      <ul>
-        <li>Full GreenSnaps access</li>
-        <li>One round of changes</li>
-        <li>Email support</li>
-      </ul>
-      <a class="btn" href="contact.html?plan=greensnaps-1mo">Start 1 month</a>
+<main class="card">
+  <header>
+    <div>
+      <div class="logo">Green Snaps</div>
+      <div class="eyebrow">Private long snapping instruction</div>
     </div>
+    <div class="badge">2026 Roster &middot; Now open</div>
+  </header>
 
-    <div class="card hot">
-      <span class="tag">Best value</span>
-      <h2>2 Months</h2>
-      <div class="price"><sup>$</sup>797</div>
-      <div class="per">two months, billed once &middot; $399/mo</div>
-      <span class="save">Save $197</span>
-      <ul>
-        <li>Everything in 1 Month</li>
-        <li>Two rounds of changes</li>
-        <li>Priority support</li>
-      </ul>
-      <a class="btn" href="contact.html?plan=greensnaps-2mo">Start 2 months</a>
-    </div>
+  <section class="hero">
+    <div class="eyebrow">Private coaching</div>
+    <h1>2026<br><em>rate card.</em></h1>
+    <p class="creds">University of Washington 2020&ndash;25 &middot; No. 89<br>Last Pac-12 champions ever &middot; CFP National Championship &middot; Sugar Bowl<br>Still snapping for pro tryouts</p>
+  </section>
+
+  <div class="row">
+    <div class="n">01</div>
+    <div><h2>First conversation</h2><p class="desc">We talk goals and look at where your snap is today.</p></div>
+    <div class="amt"><div class="price">Free</div><div class="unit">No charge</div></div>
   </div>
 
-  <p class="note">Prices in USD. Placeholder pricing, confirm before publishing.</p>
-</div>
+  <div class="row">
+    <div class="n">02</div>
+    <div><h2>Private lesson<span class="tag">Launch special &middot; Ends Oct 4</span></h2><p class="desc">One on one, 60 minutes. Seattle or Phoenix.</p></div>
+    <div class="amt"><div class="price"><s>$100</s>$85</div><div class="unit">Per lesson &middot; Book by Oct 4</div></div>
+  </div>
+
+  <div class="row">
+    <div class="n">03</div>
+    <div><h2>Three-lesson pack<span class="tag">Launch special &middot; Ends Oct 4</span></h2><p class="desc">Three private lessons, booked together. $83 a lesson.</p></div>
+    <div class="amt"><div class="price"><s>$285</s>$249</div><div class="unit">Three lessons &middot; Book by Oct 4</div></div>
+  </div>
+
+  <div class="row">
+    <div class="n">04</div>
+    <div><h2>Five-lesson pack<span class="tag">Save $50</span></h2><p class="desc">Five private lessons, booked together. $90 a lesson.</p></div>
+    <div class="amt"><div class="price">$450</div><div class="unit">Five lessons</div></div>
+  </div>
+
+  <div class="row">
+    <div class="n">05</div>
+    <div><h2>1-month program<span class="tag">Save $40</span></h2><p class="desc">One lesson a week for four weeks, your spot held. $90 a lesson.</p></div>
+    <div class="amt"><div class="price">$360</div><div class="unit">Four lessons</div></div>
+  </div>
+
+  <div class="row">
+    <div class="n">06</div>
+    <div><h2>2-month program<span class="tag">Save $120</span></h2><p class="desc">One lesson a week for eight weeks, your spot held. $85 a lesson.</p></div>
+    <div class="amt"><div class="price">$680</div><div class="unit">Eight lessons</div></div>
+  </div>
+
+  <div class="row hot">
+    <div class="n">07</div>
+    <div><h2>Three-month program<span class="tag">Best value &middot; Save $240</span></h2><p class="desc">One lesson a week for twelve weeks, your spot held. $80 a lesson.</p></div>
+    <div class="amt"><div class="price">$960</div><div class="unit">Twelve lessons</div></div>
+  </div>
+
+  <div class="row">
+    <div class="n">08</div>
+    <div><h2>College &amp; pro-day prep</h2><p class="desc">60 minutes built around camps, tryouts and pro day.</p></div>
+    <div class="amt"><div class="price">$125</div><div class="unit">Per session</div></div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="name">Jaden Green</div>
+      <div class="eyebrow">Long snapper &middot; Coach</div>
+      <div class="creds">Seattle, WA &middot; Phoenix, AZ &middot; Remote film analysis</div>
+    </div>
+    <div class="cta">
+      <div class="eyebrow">First conversation is free</div>
+      <a href="mailto:jadengreen808@gmail.com">jadengreen808@gmail.com</a>
+    </div>
+  </footer>
+</main>
 </body>
 </html>
