@@ -7,7 +7,7 @@
 
   /* ---------------- Knowledge base ---------------- */
   var KB = {
-    brand: 'GreenAI Digital',
+    brand: 'Clipcode',
     phone: '(480) 798-0753',
     email: 'hello@greenaidigital.com',
     town: 'Gilbert, Arizona',
@@ -181,7 +181,7 @@
         r.html = pick(['See you soon' + name + '.', 'Talk soon' + name + '.']) + ' Good luck out there.';
         break;
       case 'who':
-        r.html = 'I am Juno, GreenAI Digital\u2019s site guide. I know every page, every price and every answer on this site. Think of me as the friendly front desk, ask me anything.';
+        r.html = 'I am Juno, Clipcode\u2019s site guide. I know every page, every price and every answer on this site. Think of me as the friendly front desk, ask me anything.';
         r.chips = ['What do you offer?', 'Show me pricing'];
         break;
       default:

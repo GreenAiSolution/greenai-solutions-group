@@ -8,7 +8,7 @@
 
   /* nav + progress */
   var nav=$('#nav'), prog=$('#progress'), burger=$('#burger'), links=$('#links');
-  var secIds=['reel','screens','process','verticals','plans','contact'];
+  var secIds=['automations','industries','how','reel','plans','contact'];
   var tick=false;
   function onScroll(){
     tick=false;
@@ -75,8 +75,8 @@
     feed:['The feed. A square crop that has to work muted, in a busy scroll, with the hook inside three seconds.','1:1 · Facebook and Instagram feed'],
     wide:['The wide spot. For YouTube, connected TV and your own website, where there is room for a story.','16:9 · YouTube, TV, your site']
   };
-  $$('.tabs button').forEach(function(b){b.addEventListener('click',function(){
-    $$('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b);});
+  $$('#screens .tabs button').forEach(function(b){b.addEventListener('click',function(){
+    $$('#screens .tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b);});
     scr.dataset.f=b.dataset.f; note.textContent=info[b.dataset.f][0]; lab.textContent=info[b.dataset.f][1];
   });});
   if(sv&&'IntersectionObserver' in window){
@@ -86,6 +86,24 @@
   /* chat sequence */
   var chat=$('#chat');
   if(chat&&'IntersectionObserver' in window){var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chat.classList.add('on');co.disconnect();}});},{threshold:.4});co.observe(chat);}
+
+  /* industry tabs */
+  var itabs=$$('#industries [role=tab]');
+  itabs.forEach(function(b){b.addEventListener('click',function(){
+    itabs.forEach(function(x){x.setAttribute('aria-selected',x===b); var pn=document.getElementById('ind-'+x.dataset.ind); if(pn) pn.hidden=(x!==b);});
+  });});
+
+  /* hero board: light up one automation at a time */
+  var feed=$$('#feed li');
+  if(feed.length){
+    if(RM){feed.forEach(function(li){li.classList.add('on');});}
+    else{var fi=0; (function step(){ feed.forEach(function(li,j){li.classList.toggle('on',j<=fi); li.classList.toggle('now',j===fi);}); fi=(fi+1)%feed.length; setTimeout(step, fi===0?2600:1500); })();}
+  }
+
+  /* pricing switcher */
+  var sw=$('.switch'), ptabs=$$('.switch [role=tab]');
+  function pick(k){ ptabs.forEach(function(x){var on=x.dataset.pp===k; x.setAttribute('aria-selected',on); var pn=document.getElementById('pp-'+x.dataset.pp); if(pn) pn.hidden=!on;}); if(sw) sw.dataset.at=k; }
+  ptabs.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.pp);});});
 
   /* plan + trade buttons prefill the form */
   var sel=$('#interest'), msg=$('#message');
@@ -108,7 +126,7 @@
       .catch(function(){
         btn.innerHTML=orig; btn.disabled=false;
         var lines=[]; new FormData(form).forEach(function(v,k){if(k!=='botcheck'&&String(v).trim())lines.push(k+': '+v);});
-        var mail='mailto:jaden@greenaidigital.com?subject='+encodeURIComponent('Free sample ad request')+'&body='+encodeURIComponent(lines.join('\n').slice(0,1800));
+        var mail='mailto:jaden@greenaidigital.com?subject='+encodeURIComponent('Clipcode request: '+(form.interest.options[form.interest.selectedIndex]||{}).text)+'&body='+encodeURIComponent(lines.join('\n').slice(0,1800));
         err.innerHTML='That did not go through on our side. <a href="'+mail+'">Send it by email instead</a> (your answers are already filled in), or call <a href="tel:+14807980753">(480) 798-0753</a>.';
         err.style.display='block';
       });
