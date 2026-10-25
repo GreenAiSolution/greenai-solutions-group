@@ -32,12 +32,12 @@
   if('IntersectionObserver' in window && !RM){
     var vio=new IntersectionObserver(function(es){
       es.forEach(function(e){
-        var v=e.target, tile=v.closest('.tile');
+        var v=e.target, tile=v.closest('.tile, .cmark__screen');
         if(e.isIntersecting){ attach(v); var p=v.play(); if(p&&p.catch) p.catch(function(){}); if(tile) v.addEventListener('playing',function(){tile.classList.add('live');},{once:true}); }
         else { v.pause(); }
       });
     },{threshold:.35});
-    $$('.tile video').forEach(function(v){vio.observe(v);});
+    $$('.tile video, .cmark__screen video').forEach(function(v){vio.observe(v);});
   }
 
   /* PLAY cursor */
@@ -45,7 +45,7 @@
   if(cur && matchMedia('(hover:hover)').matches && !RM){
     addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY; if(!raf) raf=requestAnimationFrame(move);},{passive:true});
     function move(){raf=0;cx+=(tx-cx)*.28;cy+=(ty-cy)*.28;cur.style.transform='translate3d('+cx+'px,'+cy+'px,0) scale('+(cur.classList.contains('on')?1:0)+')'; if(Math.abs(tx-cx)>.5||Math.abs(ty-cy)>.5) raf=requestAnimationFrame(move);}
-    $$('.tile').forEach(function(t){
+    $$('.tile, .cmark__screen').forEach(function(t){
       t.addEventListener('pointerenter',function(){cur.classList.add('on');move();});
       t.addEventListener('pointerleave',function(){cur.classList.remove('on');move();});
     });
@@ -102,8 +102,22 @@
 
   /* pricing switcher */
   var sw=$('.switch'), ptabs=$$('.switch [role=tab]');
-  function pick(k){ ptabs.forEach(function(x){var on=x.dataset.pp===k; x.setAttribute('aria-selected',on); var pn=document.getElementById('pp-'+x.dataset.pp); if(pn) pn.hidden=!on;}); if(sw) sw.dataset.at=k; }
+  var plansSec=$('#plans');
+  function pick(k){ ptabs.forEach(function(x){var on=x.dataset.pp===k; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; var pn=document.getElementById('pp-'+x.dataset.pp); if(pn) pn.hidden=!on;}); if(sw) sw.dataset.at=k; if(plansSec) plansSec.dataset.at=k; }
+  pick('auto');
   ptabs.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.pp);});});
+
+  /* tablists: left/right arrow keys move between tabs and select them */
+  $$('[role=tablist]').forEach(function(list){
+    var tabs=$$('[role=tab]',list);
+    tabs.forEach(function(t){ if(t.getAttribute('aria-selected')!=='true') t.tabIndex=-1; });
+    list.addEventListener('keydown',function(e){
+      var i=tabs.indexOf(document.activeElement); if(i<0) return;
+      var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:e.key==='Home'?0:e.key==='End'?tabs.length-1:null;
+      if(n===null) return; e.preventDefault(); n=(n+tabs.length)%tabs.length;
+      tabs.forEach(function(t,j){t.tabIndex=j===n?0:-1;}); tabs[n].focus(); tabs[n].click();
+    });
+  });
 
   /* plan + trade buttons prefill the form */
   var sel=$('#interest'), msg=$('#message');

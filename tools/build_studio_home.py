@@ -15,15 +15,8 @@ FILMS = [  # slug, title, line, full film
  ('starlight','Starlight','A village that glows at night','art/films/film-starlight-village.mp4'),
  ('every-time','Every. Single. Time.','Our own ad: AI video that looks like this','film/homepage-ad-v2.mp4'),
 ]
-WALL = ['underground','deep-current','red-mile','firestorm','the-giant','the-magnet','starlight','every-time','bloom']
-
-def wall():
-    cols = []
-    for c in range(7):
-        seq = WALL[c*2 % 9:] + WALL[:c*2 % 9]
-        imgs = ''.join(f'<img src="reel/posters/{s}.webp" alt="" width="540" height="960" decoding="async">' for s in seq*2)
-        cols.append(f'<div class="col" aria-hidden="true">{imgs}</div>')
-    return ''.join(cols)
+# the white play triangle from the mark, in the mark's own coordinates (see tools/gen_clipcode_brand.py)
+PLAY_SVG = '<svg class="cmark__play" viewBox="366 250 524 524" aria-hidden="true" focusable="false"><path d="M575 456L690 523L575 590Z" fill="#fff" stroke="#fff" stroke-width="36" stroke-linejoin="round"/></svg>'
 
 def tiles():
     out = []
@@ -32,7 +25,7 @@ def tiles():
   <img src="reel/posters/{s}.webp" alt="{t}: {l}" width="540" height="960" loading="lazy" decoding="async">
   <video muted loop playsinline preload="none" data-src="reel/previews/{s}.mp4" aria-hidden="true" tabindex="-1"></video>
   <span class="tag">{'Brand film' if s=='every-time' else 'AI concept'} &middot; 9:16</span>
-  <span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="#000"/></svg></span>
+  <span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3.5 2.2v11.6c0 .6.6 1 1.1.7l9.3-5.8c.5-.3.5-1 0-1.3L4.6 1.5c-.5-.3-1.1.1-1.1.7z" fill="#fff"/></svg></span>
   <span class="meta"><b>{t}</b><span>{l}</span></span>
 </button>''')
     return '\n'.join(out)
@@ -77,7 +70,7 @@ def ind_tabs():
 def ind_panels():
     out=[]
     for i,(k,(lab,rows)) in enumerate(INDUSTRIES.items()):
-        items=''.join(f'<li><span class="w">{w}</span><span class="ar" aria-hidden="true">&rarr;</span><span class="t">{t}</span></li>' for w,t in rows)
+        items=''.join(f'<li><span class="w">{w}</span><span class="ar" aria-hidden="true"></span><span class="t">{t}</span></li>' for w,t in rows)
         out.append(f'<ol class="recipes" role="tabpanel" id="ind-{k}" aria-labelledby="tab-{k}"{"" if i==0 else " hidden"}>{items}</ol>')
     return ''.join(out)
 
@@ -102,7 +95,7 @@ HTML = f'''<!doctype html>
 <title>Clipcode | Automations for your business. Premium AI ads.</title>
 <meta name="description" content="Clipcode (formerly GreenAI Digital) is an automation center in Gilbert, Arizona. We automate lead replies, missed calls, follow-up, scheduling, reviews and back office work, and we make premium AI ads. Start with a free automation map or a free sample ad.">
 <link rel="canonical" href="https://greenaidigital.com/">
-<meta name="theme-color" content="#05050a">
+<meta name="theme-color" content="#070B1E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Clipcode | Automations for your business. Premium AI ads.">
 <meta property="og:description" content="We automate the busywork that slows a business down, and we make AI ads that bring the customers in. Start free.">
@@ -113,8 +106,8 @@ HTML = f'''<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/brand/clipcode-favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/brand/clipcode-apple-touch-icon.png">
-<link rel="preload" href="poolprime/assets/fonts/Outfit.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="gai-ads.css?v=3">
+<link rel="preload" href="assets/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gai-ads.css?v=4">
 <script type="application/ld+json">{JSONLD}</script>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -125,31 +118,40 @@ HTML = f'''<!doctype html>
 
 <header class="nav" id="nav">
   <div class="wrap nav__in">
-    <a class="brand" href="#top" aria-label="Clipcode, back to top"><img class="brand__mark" src="assets/brand/clipcode-mark.svg" alt="" width="30" height="30"><span>Clip<i>code</i></span></a>
+    <a class="brand" href="#top" aria-label="Clipcode, back to top"><img src="assets/brand/clipcode-wordmark.svg" alt="clipcode.ai" width="129" height="30"></a>
     <nav class="links" id="links" aria-label="Sections">
       <a href="#automations">Automations</a><a href="#industries">Industries</a><a href="#how">How it works</a><a href="#reel">AI ads</a><a href="#plans">Plans</a><a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn--volt nav__cta" href="#contact" data-plan="map" style="padding:.6rem 1.1rem;font-size:.92rem">Free automation map</a>
+    <a class="btn btn--go nav__cta" href="#contact" data-plan="map">Free automation map</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="links" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
 
 <main id="main">
 
-<section class="hero hero--auto" id="top">
-  <div class="wall" aria-hidden="true"><div class="wall__in">{wall()}</div></div>
+<section class="hero is-auto" id="top">
   <div class="wrap hero__grid">
     <div>
-      <span class="kicker rise" style="--d:.2s">Automations + premium AI ads &middot; Gilbert, Arizona</span>
-      <h1 class="rise" style="--d:.4s">Your business, <span class="sp">on autopilot.</span></h1>
-      <p class="lede rise" style="--d:.7s">We automate the jobs that eat your day: answering leads, catching missed calls, following up quotes, booking, reviews and paperwork. And we make the premium AI ads that bring the customers in.</p>
-      <div class="hero__cta rise" style="--d:.95s">
-        <a class="btn btn--volt btn--lg" href="#contact" data-plan="map">Get a free automation map <span class="arrow">&rarr;</span></a>
+      <span class="kicker rise" style="--d:.15s">Automations + premium AI ads &middot; Gilbert, Arizona</span>
+      <h1 class="rise" style="--d:.3s">Your business, <span class="sp">on autopilot.</span></h1>
+      <p class="lede rise" style="--d:.5s">We automate the jobs that eat your day: answering leads, catching missed calls, following up quotes, booking, reviews and paperwork. And we make the premium AI ads that bring the customers in.</p>
+      <div class="hero__cta rise" style="--d:.7s">
+        <a class="btn btn--go btn--lg" href="#contact" data-plan="map">Get a free automation map <span class="arrow">&rarr;</span></a>
         <a class="btn btn--ghost btn--lg" href="#automations">See what we automate</a>
       </div>
-      <p class="hero__note rise" style="--d:1.2s">Set up by a real person. Works with the apps you already use.</p>
+      <p class="hero__note rise" style="--d:.9s">Set up by a real person. Works with the apps you already use.</p>
     </div>
-    <div class="board rise" style="--d:.8s" aria-label="Example of automations running in one evening">
+    <div class="stage">
+      <div class="cmark rise" style="--d:.35s">
+        <img class="cmark__art" src="assets/brand/clipcode-mark.svg" alt="" width="524" height="524" decoding="async">
+        <button class="cmark__screen" id="watch8" data-src="film/homepage-ad-v2.mp4" data-title="Every. Single. Time." aria-label="Play our brand film, Every. Single. Time. Made with AI.">
+          <img src="reel/posters/every-time.webp" alt="" width="540" height="960" decoding="async">
+          <video muted loop playsinline preload="none" data-src="reel/previews/every-time.mp4" aria-hidden="true" tabindex="-1"></video>
+        </button>
+        {PLAY_SVG}
+      </div>
+      <p class="stage__cap rise" style="--d:1s">Our own brand film, made with AI. Tap the screen to watch.</p>
+    <div class="board rise" style="--d:.75s" aria-label="Example of automations running in one evening">
       <div class="board__top"><b>Tonight, while you're off</b><span class="live">Running</span></div>
       <ol class="board__feed" id="feed">
         <li><time>6:12 PM</time><span><b>Missed call</b> texted back, visit booked for Tue 8 AM</span></li>
@@ -161,6 +163,7 @@ HTML = f'''<!doctype html>
       </ol>
       <p class="board__fine">Example of a typical night. Names and numbers are made up.</p>
     </div>
+    </div>
   </div>
 </section>
 
@@ -169,11 +172,11 @@ HTML = f'''<!doctype html>
   <span>Lead replies</span><span>Missed calls</span><span>Quote follow-up</span><span>Booking</span><span>Reviews</span><span>Invoices</span><span>Inbox</span><span>AI search</span><span>AI ads</span>
 </div></div>
 
-<section class="sec" id="automations">
+<section class="sec is-auto" id="automations">
   <a class="anchor" id="services"></a><a class="anchor" id="employees"></a>
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">01 &middot; What we automate</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Eight jobs you can <span class="sp">stop doing.</span></h2></div>
+      <div><span class="kicker rv">01 &middot; What we automate</span><h2 class="rv" style="--d:.05s">Eight jobs you can <span class="sp">stop doing.</span></h2></div>
       <p class="lede rv" style="--d:.1s">Every automation is the same idea: when something happens in your business, the right thing happens next, without you. Pick one or run them all.</p>
     </div>
     <div class="lanes">
@@ -182,27 +185,27 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="industries" style="background:linear-gradient(180deg,transparent,rgba(39,217,255,.05),transparent)">
+<section class="sec is-auto" id="industries">
   <div class="wrap ind">
     <div>
       <span class="kicker rv">02 &middot; Built around your business</span>
-      <h2 class="rv" style="--d:.05s;margin:1.2rem 0 1.4rem">Different business, <span class="sp">different autopilot.</span></h2>
+      <h2 class="rv" style="--d:.05s">Different business, <span class="sp">different autopilot.</span></h2>
       <p class="m rv">A roofer, a shop and a clinic lose time in different places. Pick yours to see the first four things we would automate.</p>
       <div class="tabs rv" role="tablist" aria-label="Type of business">{ind_tabs()}</div>
     </div>
     <div class="recipebox rv">
       <div class="recipebox__top"><span>When this happens</span><span>We do this</span></div>
       {ind_panels()}
-      <a class="btn btn--ghost" href="#contact" data-plan="map" style="margin-top:1.4rem">Map mine for free <span class="arrow">&rarr;</span></a>
+      <a class="btn btn--ghost" href="#contact" data-plan="map">Map mine for free <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<section class="sec" id="how">
+<section class="sec is-auto" id="how">
   <a class="anchor" id="about"></a>
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">03 &middot; How it works</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Three ways <span class="sp">to work with us.</span></h2></div>
+      <div><span class="kicker rv">03 &middot; How it works</span><h2 class="rv" style="--d:.05s">Three ways <span class="sp">to work with us.</span></h2></div>
       <p class="lede rv" style="--d:.1s">Start small, see it work, then add more. You always know what runs and who to call.</p>
     </div>
     <div class="ways">
@@ -214,11 +217,13 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="reel">
+<div class="fold" aria-hidden="true"></div>
+
+<section class="sec is-ads" id="reel">
   <a class="anchor" id="ads"></a><a class="anchor" id="selected-work"></a><a class="anchor" id="ai-ads"></a>
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">04 &middot; Premium AI ads</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Premium AI ads. <span class="sp">Made to stop the scroll.</span></h2></div>
+      <div><span class="kicker rv">04 &middot; Premium AI ads</span><h2 class="rv" style="--d:.05s">Premium AI ads. <span class="sp">Made to stop the scroll.</span></h2></div>
       <p class="lede rv" style="--d:.1s">Automation handles every lead. Our ads bring more of them. Eight concept films we made to push what an AI ad can look like. Tap one to watch it with sound.</p>
     </div>
     <div class="reel">
@@ -228,11 +233,11 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="screens" style="background:linear-gradient(180deg,transparent,rgba(122,92,255,.06),transparent)">
+<section class="sec is-ads" id="screens">
   <div class="wrap screens">
     <div>
       <span class="kicker rv">AI ads &middot; One film, every screen</span>
-      <h2 class="rv" style="--d:.05s;margin:1.2rem 0 1.4rem">Built for <span class="sp">the crop.</span></h2>
+      <h2 class="rv" style="--d:.05s">Built for <span class="sp">the crop.</span></h2>
       <p class="m rv">A reel, a feed post and a wide spot are three different jobs. We frame every ad for each placement so the hook lands in the first three seconds, instead of just resizing one file.</p>
       <div class="tabs rv" role="tablist" aria-label="Ad format">
         <button role="tab" aria-selected="true" data-f="reel">Reel 9:16</button>
@@ -251,10 +256,10 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="process">
+<section class="sec is-ads" id="process">
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">AI ads &middot; Frame by frame</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">How an ad <span class="sp">gets made.</span></h2></div>
+      <div><span class="kicker rv">AI ads &middot; Frame by frame</span><h2 class="rv" style="--d:.05s">How an ad <span class="sp">gets made.</span></h2></div>
       <p class="lede rv" style="--d:.1s">No black box. Here is the path from a rough idea to a finished ad, and eight frames from one of our films.</p>
     </div>
     <div class="strip rv">{frames()}</div>
@@ -269,15 +274,15 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="verticals">
+<section class="sec is-ads" id="verticals">
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">05 &middot; Built for your trade</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">One studio. <span class="sp">One trade at a time.</span></h2></div>
+      <div><span class="kicker rv">05 &middot; Built for your trade</span><h2 class="rv" style="--d:.05s">One studio. <span class="sp">One trade at a time.</span></h2></div>
       <p class="lede rv" style="--d:.1s">Ads and automations work harder when they speak your customer's language. We go deep on one trade at a time.</p>
     </div>
     <div class="verts">
       <a class="pp rv" href="poolprime/">
-        <div><span class="tag">Studio 01 &middot; Live</span><h3>PoolPrime<em>.ai</em><br>AI ads for pool builders</h3><p>Reveal videos, night-glow reels, instant lead replies and quote follow-up, made for pool companies.</p><span class="btn btn--volt">See PoolPrime <span class="arrow">&rarr;</span></span></div>
+        <div><span class="tag">Studio 01 &middot; Live</span><h3>PoolPrime<em>.ai</em><br>AI ads for pool builders</h3><p>Reveal videos, night-glow reels, instant lead replies and quote follow-up, made for pool companies.</p><span class="btn btn--go">See PoolPrime <span class="arrow">&rarr;</span></span></div>
         <div class="logo"><img src="assets/brand/poolprime-logo.png" alt="PoolPrime.ai water P logo" width="220" height="220" loading="lazy"></div>
       </a>
       <div class="next rv" style="--d:.1s"><h3>Your trade next?</h3>
@@ -291,11 +296,13 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="plans">
+<div class="fold fold--even" aria-hidden="true"></div>
+
+<section class="sec" id="plans" data-at="auto">
   <a class="anchor" id="pricing"></a>
   <div class="wrap">
     <div class="sechead sechead--row">
-      <div><span class="kicker rv">06 &middot; Pricing</span><h2 class="rv" style="--d:.05s;margin-top:1.2rem">Pick your lane. <span class="sp">Or take both.</span></h2></div>
+      <div><span class="kicker rv">06 &middot; Pricing</span><h2 class="rv" style="--d:.05s">Pick your lane. <span class="sp">Or take both.</span></h2></div>
       <p class="lede rv" style="--d:.1s">One price to build it, one monthly price to run it. Every plan starts free, so you see the work before you pay anything.</p>
     </div>
     <div class="switch rv" role="tablist" aria-label="Pricing">
@@ -312,7 +319,7 @@ HTML = f'''<!doctype html>
         <div class="plan"><h3>Single</h3><div class="price"><sup>$</sup>197<span>/mo</span></div><div class="per">+ $497 one-time build</div>
           <ul><li>1 automation, built and run</li><li>Like missed calls texted back</li><li>Watched and fixed by us</li></ul><a class="btn btn--ghost" href="#contact" data-plan="auto-single">Start with one</a></div>
         <div class="plan hot"><span class="tag">Recommended</span><h3>Front Office</h3><div class="price"><sup>$</sup>497<span>/mo</span></div><div class="per">+ $1,497 one-time build</div>
-          <ul><li>3 automations working together</li><li>Leads answered, quotes followed up, reviews asked</li><li>Monthly check-in and tuning</li></ul><a class="btn btn--volt" href="#contact" data-plan="auto-front">Build my front office <span class="arrow">&rarr;</span></a></div>
+          <ul><li>3 automations working together</li><li>Leads answered, quotes followed up, reviews asked</li><li>Monthly check-in and tuning</li></ul><a class="btn btn--go" href="#contact" data-plan="auto-front">Build my front office <span class="arrow">&rarr;</span></a></div>
         <div class="plan"><h3>Autopilot</h3><div class="price"><sup>$</sup>997<span>/mo</span></div><div class="per">+ $2,997 one-time build</div>
           <ul><li>Up to 8 automations</li><li>Back office, inbox and AI search included</li><li>New automations added as you grow</li></ul><a class="btn btn--ghost" href="#contact" data-plan="auto-autopilot">Go on autopilot</a></div>
       </div>
@@ -325,7 +332,7 @@ HTML = f'''<!doctype html>
         <div class="plan"><h3>Premiere pack</h3><div class="price"><sup>$</sup>297</div><div class="per">one time</div>
           <ul><li>5 premium ads</li><li>One round of changes</li><li>Reel, feed and wide sizes</li></ul><a class="btn btn--ghost" href="#contact" data-plan="starter">Start with a sample</a></div>
         <div class="plan hot"><span class="tag">Best for steady growth</span><h3>Studio monthly</h3><div class="price"><sup>$</sup>497<span>/mo</span></div><div class="per">cancel anytime</div>
-          <ul><li>8 new premium ads every month</li><li>Fresh creative all season</li><li>Add any automation anytime</li></ul><a class="btn btn--volt" href="#contact" data-plan="monthly">Start with a sample <span class="arrow">&rarr;</span></a></div>
+          <ul><li>8 new premium ads every month</li><li>Fresh creative all season</li><li>Add any automation anytime</li></ul><a class="btn btn--go" href="#contact" data-plan="monthly">Start with a sample <span class="arrow">&rarr;</span></a></div>
       </div>
       <div class="partner"><div><b>Agency or freelancer?</b><p>Need concept films or AI cutdowns for your own clients? Send us a brief and we will tell you honestly what we can do.</p></div><a class="btn btn--ghost" href="#contact" data-plan="partner">Send a brief</a></div>
     </div>
@@ -334,9 +341,9 @@ HTML = f'''<!doctype html>
       <div class="ticket">
         <div class="ticket__main">
           <span class="tag">Clipcode Complete</span>
-          <h3>The ads bring them in. <span class="sp">The automations close them.</span></h3>
+          <h3>The <span class="pk">ads</span> bring them in. The <span class="cy">automations</span> close them.</h3>
           <ul><li>Autopilot: up to 8 automations, built and run</li><li>Studio monthly: 8 new premium ads every month</li><li>One team, one monthly bill, one person to call</li><li>Every lead from every ad answered in about a minute</li></ul>
-          <a class="btn btn--volt btn--lg" href="#contact" data-plan="complete">Get the full system <span class="arrow">&rarr;</span></a>
+          <a class="btn btn--go btn--lg" href="#contact" data-plan="complete">Get the full system <span class="arrow">&rarr;</span></a>
         </div>
         <div class="ticket__stub">
           <div class="was">$1,494/mo separately</div>
@@ -351,7 +358,7 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec cta" id="contact">
+<section class="sec cta is-auto" id="contact">
   <div class="wrap cta__in">
     <div>
       <span class="kicker rv">07 &middot; Your turn</span>
@@ -369,7 +376,7 @@ HTML = f'''<!doctype html>
         <option value="map">A free automation map</option><option value="auto-single">Automation: Single</option><option value="auto-front">Automation: Front Office</option><option value="auto-autopilot">Automation: Autopilot</option><option value="sample">A free sample ad</option><option value="starter">Premiere pack, 5 ads</option><option value="monthly">Studio monthly, 8 ads a month</option><option value="complete">Clipcode Complete: automation + ads</option>
         <option value="pool">I run a pool company (PoolPrime)</option><option value="trade">My trade is something else</option><option value="partner">Agency or creative partner</option><option value="other">Something else</option></select></label>
       <label>Anything we should know?<textarea name="message" id="message" placeholder="What you do, the apps you use, and the job you would love to stop doing."></textarea></label>
-      <button class="btn btn--volt btn--lg" type="submit" id="send">Send my request <span class="arrow">&rarr;</span></button>
+      <button class="btn btn--go btn--lg" type="submit" id="send">Send my request <span class="arrow">&rarr;</span></button>
       <p class="err" id="err" role="alert"></p>
       <p class="fine" style="margin:0">We use your details only to reply to this request.</p>
       <div class="ok" role="status"><h3>We got it.</h3><p class="lede" style="margin:0 auto">Watch your email. We will be in touch about your sample ad.</p></div>
@@ -377,7 +384,7 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="faq" style="padding-top:clamp(40px,6vw,80px)">
+<section class="sec is-auto" id="faq" style="padding-top:clamp(40px,6vw,80px)">
   <div class="wrap faq">
     <div class="sechead"><span class="kicker rv">Straight answers</span><h2 class="rv" style="--d:.05s">Before you <span class="sp">ask.</span></h2></div>
     <details><summary>What can you automate?</summary><p>Most of the repeat work between a customer reaching out and you getting paid: replies to leads, missed calls, quote follow-up, booking and reminders, review asks, invoices and payment reminders, inbox sorting and daily summaries. The free map tells you which ones are worth it for you.</p></details>
@@ -403,11 +410,11 @@ HTML = f'''<!doctype html>
 
 <footer>
   <div class="wrap foot">
-    <div class="l"><a class="brand" href="#top" aria-label="Clipcode, back to top"><img class="brand__mark" src="assets/brand/clipcode-mark.svg" alt="" width="30" height="30"><span>Clip<i>code</i></span></a><a href="#automations">Automations</a><a href="#reel">AI ads</a><a href="poolprime/">PoolPrime.ai</a><a href="https://instagram.com/greenaidigitals" target="_blank" rel="noopener">Instagram</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    <div class="l"><a class="brand" href="#top" aria-label="Clipcode, back to top"><img src="assets/brand/clipcode-wordmark.svg" alt="clipcode.ai" width="129" height="30"></a><a href="#automations">Automations</a><a href="#reel">AI ads</a><a href="poolprime/">PoolPrime.ai</a><a href="https://instagram.com/greenaidigitals" target="_blank" rel="noopener">Instagram</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
     <div>&copy; <span id="yr">2026</span> Clipcode (formerly GreenAI Digital) &middot; Jaden Green, Gilbert, Arizona</div>
   </div>
 </footer>
-<script src="gai-ads.js?v=3"></script>
+<script src="gai-ads.js?v=4"></script>
 </body>
 </html>
 '''

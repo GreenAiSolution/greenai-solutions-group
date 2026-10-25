@@ -1,4 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Clipcode"><title>Clipcode</title><defs><mask id="mcut" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
-  <rect width="512" height="512" fill="#fff"/><polygon points="334.03,256.00 819.44,-96.67 819.44,608.67" fill="#000"/></mask></defs>
-<circle cx="256" cy="256" r="175.00" fill="none" stroke="#eeede6" stroke-width="58" mask="url(#mcut)"/>
-<polygon points="177.00,175.29 288.09,256.00 177.00,336.71" fill="#c8ff3a" stroke="#c8ff3a" stroke-width="14" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="366 250 524 524" role="img" aria-label="Clipcode"><title>Clipcode</title><defs>
+<clipPath id="cc-c"><path d="M372 407A150 150 0 0 1 522 257H733A150 150 0 0 1 883 407V444A28 28 0 0 1 855 472H781A28 28 0 0 1 753 444H740V700L650 768H522A150 150 0 0 1 372 618Z"/></clipPath>
+<clipPath id="cc-cb"><path d="M776 249C600 295 420 440 368 622L360 800L900 800L900 249Z"/></clipPath>
+<clipPath id="cc-p"><path d="M781 555H857A28 28 0 0 1 885 583V618A150 150 0 0 1 735 768H597A100 100 0 0 1 497 668V560H740V583H753A28 28 0 0 1 781 555Z"/></clipPath>
+<clipPath id="cc-pb"><path d="M730 636C695 700 625 752 538 776L480 790L480 540L760 540Z"/></clipPath>
+<filter id="cc-s" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="26"/></filter>
+<filter id="cc-s2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+<linearGradient id="cc-cg" x1="0" y1="257" x2="0" y2="768" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#12FBF4"/><stop offset="1" stop-color="#0CF4EC"/></linearGradient>
+</defs>
+<g clip-path="url(#cc-c)">
+<rect x="360" y="240" width="540" height="540" fill="url(#cc-cg)"/>
+<g clip-path="url(#cc-cb)"><rect x="360" y="240" width="540" height="540" fill="#07EDE7"/>
+<path d="M776 249C600 295 420 440 368 622" fill="none" stroke="#027E8E" stroke-width="90" filter="url(#cc-s)"/></g>
+</g>
+<g clip-path="url(#cc-p)">
+<rect x="480" y="540" width="420" height="240" fill="#FC2470"/>
+<g clip-path="url(#cc-pb)"><rect x="480" y="540" width="420" height="240" fill="#EA1264"/>
+<path d="M730 636C695 700 625 752 538 776" fill="none" stroke="#B0084A" stroke-width="80" filter="url(#cc-s2)"/></g>
+</g>
+<path d="M541 384H693A60 60 0 0 1 753 444V593A62 62 0 0 1 691 655H612A115 115 0 0 1 497 540V428A44 44 0 0 1 541 384Z" fill="#030820"/>
+<path d="M575 456L690 523L575 590Z" fill="#fff" stroke="#fff" stroke-width="36" stroke-linejoin="round"/></svg>
