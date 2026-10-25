@@ -170,7 +170,7 @@ PAGE = head("GreenAI Solutions — an AI services workforce for Phoenix home ser
             <source src="film/homepage-ad-v2.mp4" type="video/mp4">
           </video>
         </div>
-        <p class="tk-lede" style="text-align:center;margin-top:1.25rem">More like this on Instagram: <a href="https://www.instagram.com/greenaidigitals/" target="_blank" rel="noopener" style="color:#E8C46A">@greenaidigitals</a></p>
+        <p class="tk-lede" style="text-align:center;margin-top:1.25rem">More like this on Instagram: <a href="https://www.instagram.com/clipcode.ai/" target="_blank" rel="noopener" style="color:#E8C46A">@clipcode.ai</a></p>
       </div>
     </section>
 
