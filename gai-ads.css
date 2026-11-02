@@ -430,3 +430,70 @@ footer{position:relative;border-top:1px solid var(--line);padding:3rem 0 3.4rem;
   .js .rv{opacity:1;transform:none}
   .js .board__feed li{opacity:1}
 }
+
+/* ---------- 2026-11-01: three services (SEO, ads, automation) ---------- */
+:root{--vi:#B79CFF;--vi-tint:rgba(183,156,255,.10);--vi-edge:rgba(183,156,255,.48)}
+.is-seo{--acc:var(--vi);--acc-tint:var(--vi-tint);--acc-edge:var(--vi-edge)}
+
+/* the three services at a glance */
+.trio{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.trio__i a{position:relative;height:100%;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;border:1px solid var(--line);border-radius:var(--rs-lg);padding:1.8rem 1.6rem 1.5rem;background:radial-gradient(80% 70% at 100% 0%,var(--acc-tint),transparent 70%),linear-gradient(170deg,var(--panel-2),var(--panel) 70%);overflow:hidden;transition:transform .35s var(--ease),border-color .35s}
+.trio__i a::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--acc)}
+.trio__i a:hover{transform:translateY(-5px);border-color:var(--acc-edge)}
+.trio__n{font-family:var(--display);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.trio h3{font-size:clamp(1.6rem,2.4vw,2.1rem);letter-spacing:-.035em}
+.trio p{color:var(--mute);font-size:.98rem}
+.trio__t{margin-top:auto;padding-top:.9rem;font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--ink)}
+.trio__t::before{content:"";display:inline-block;width:8px;height:10px;margin-right:.55rem;background:var(--acc);clip-path:polygon(0 0,100% 50%,0 100%)}
+
+/* SEO: city pages + timeline */
+.seo2{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:16px}
+.chips,.tline{border:1px solid var(--line);border-radius:var(--rs-lg);padding:clamp(1.3rem,3vw,1.9rem);background:var(--panel)}
+.chips>b,.tline>b{display:block;font-family:var(--display);font-size:1.15rem;letter-spacing:-.02em;margin-bottom:1.1rem}
+.chips__in{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips__in span{font-size:.88rem;padding:.5rem .85rem;border-radius:999px;border:1px solid var(--acc-edge);background:var(--acc-tint);color:var(--ink)}
+.tline ol{list-style:none;display:grid;gap:.55rem;margin-bottom:1rem;counter-reset:t}
+.tline li{display:grid;grid-template-columns:6.2rem 1fr;gap:.8rem;align-items:center;padding:.6rem .8rem;border-radius:8px 10px 10px 16px;background:var(--screen);border:1px solid var(--line);font-size:.92rem;color:var(--ink-2)}
+.tline li b{font-family:var(--display);font-size:.78rem;letter-spacing:.04em;color:var(--acc)}
+.tline li:last-child{background:var(--acc-tint);border-color:var(--acc-edge);color:var(--ink);font-weight:600}
+.tline .m{font-size:.85rem;max-width:none}
+
+/* Ads: channels + who pays what */
+.chans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chan{display:flex;flex-direction:column;gap:.65rem;border:1px solid var(--line);border-radius:var(--rs-lg);padding:1.7rem 1.5rem;background:linear-gradient(170deg,var(--panel-2),var(--panel) 70%)}
+.chan h3{font-size:1.45rem}
+.chan p{color:var(--mute)}
+.chan ul{list-style:none;display:grid;gap:.45rem;margin-top:.3rem;font-size:.94rem;color:var(--ink-2)}
+.chan li{padding-left:1.4rem;position:relative}
+.chan li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:10px;background:var(--acc);clip-path:polygon(0 0,100% 50%,0 100%)}
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:16px;border:1px solid var(--acc-edge);border-radius:var(--rs-lg);background:linear-gradient(95deg,var(--acc-tint),transparent 80%);overflow:hidden}
+.money div{padding:1.3rem 1.4rem;display:grid;gap:.3rem}
+.money div+div{border-left:1px solid var(--line)}
+.money b{font-family:var(--display);font-size:1.02rem;letter-spacing:-.01em}
+.money span{color:var(--mute);font-size:.92rem}
+.reelhead{margin-top:clamp(3rem,6vw,4.5rem);margin-bottom:clamp(1.4rem,3vw,2rem)}
+.reelhead h3{font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.035em}
+
+/* Automation: the 5-minute window */
+.fivemin{display:flex;align-items:center;gap:clamp(1.2rem,4vw,2.6rem);margin-bottom:16px;border:1px solid var(--acc-edge);border-radius:var(--rs-lg);padding:clamp(1.2rem,3vw,1.8rem) clamp(1.3rem,3vw,2.2rem);background:radial-gradient(70% 120% at 0% 50%,var(--acc-tint),transparent 70%),var(--panel)}
+.fivemin__n{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,8vw,6rem);letter-spacing:-.06em;line-height:.9;color:var(--acc);flex:none}
+.fivemin__n small{font-size:.3em;letter-spacing:0;margin-left:.15em;color:var(--ink-2)}
+.fivemin p{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--ink-2);max-width:52ch}
+.loopnote{margin-top:1.4rem;color:var(--mute);font-size:.95rem;max-width:70ch}
+.loopnote::before{content:"";display:inline-block;width:8px;height:10px;margin-right:.55rem;background:var(--vi);clip-path:polygon(0 0,100% 50%,0 100%)}
+
+/* PoolPrime card alone */
+.verts--one{grid-template-columns:1fr}
+
+/* Pricing: three service cards */
+#plans .partner--check{margin:0 0 16px;border-color:var(--cy-edge);background:linear-gradient(95deg,var(--cy-tint),transparent 70%)}
+#plans .partner--check p{color:var(--mute);max-width:70ch;margin-top:.3rem}
+.plan .lane__k{margin-bottom:.5rem}
+.price--word{font-size:clamp(2.2rem,3.4vw,3rem)}
+.plan ul.tiers{gap:.7rem}
+.tiers b{font-family:var(--display);color:var(--ink);margin-right:.3rem}
+.tiers em{display:block;font-style:normal;font-size:.85rem;color:var(--mute)}
+
+@media(max-width:1100px){.trio,.seo2{grid-template-columns:1fr}}
+@media(max-width:860px){.chans,.money{grid-template-columns:1fr}.money div+div{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:560px){.fivemin{flex-direction:column;align-items:flex-start}.tline li{grid-template-columns:1fr;gap:.1rem}}

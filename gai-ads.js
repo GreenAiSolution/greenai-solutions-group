@@ -8,7 +8,7 @@
 
   /* nav + progress */
   var nav=$('#nav'), prog=$('#progress'), burger=$('#burger'), links=$('#links');
-  var secIds=['automations','industries','how','reel','plans','contact'];
+  var secIds=['seo','ads','automations','trades','plans','contact'];
   var tick=false;
   function onScroll(){
     tick=false;
@@ -69,7 +69,7 @@
   var w8=$('#watch8'); if(w8) w8.addEventListener('click',function(){last=w8;show(w8.dataset.title,w8.dataset.src);});
 
   /* screens switcher */
-  var scr=$('#screen'), sv=$('video',scr), note=$('#fmtnote'), lab=$('#fmtlabel');
+  var scr=$('#screen'), sv=scr&&$('video',scr), note=$('#fmtnote'), lab=$('#fmtlabel');
   var info={
     reel:['Reels and Shorts. Full screen, sound on, thumb-stopping from the first frame.','9:16 · Reels, Shorts, TikTok'],
     feed:['The feed. A square crop that has to work muted, in a busy scroll, with the hook inside three seconds.','1:1 · Facebook and Instagram feed'],
@@ -79,7 +79,7 @@
     $$('#screens .tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b);});
     scr.dataset.f=b.dataset.f; note.textContent=info[b.dataset.f][0]; lab.textContent=info[b.dataset.f][1];
   });});
-  if(sv&&'IntersectionObserver' in window){
+  if(scr&&sv&&'IntersectionObserver' in window){
     new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){attach(sv); if(!RM){var p=sv.play(); if(p&&p.catch)p.catch(function(){});}} else sv.pause(); });},{threshold:.3}).observe(scr);
   }
 
