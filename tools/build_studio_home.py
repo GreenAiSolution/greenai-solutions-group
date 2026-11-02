@@ -132,7 +132,7 @@ HTML = f'''<!doctype html>
 <link rel="icon" type="image/png" href="assets/brand/clipcode-favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/brand/clipcode-apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="gai-ads.css?v=6">
+<link rel="stylesheet" href="gai-ads.css?v=7">
 <script type="application/ld+json">{JSONLD}</script>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -145,7 +145,7 @@ HTML = f'''<!doctype html>
   <div class="wrap nav__in">
     <a class="brand" href="#top" aria-label="Clipcode, back to top"><img src="assets/brand/clipcode-wordmark.svg" alt="clipcode.ai" width="129" height="30"></a>
     <nav class="links" id="links" aria-label="Sections">
-      <a href="#seo">SEO</a><a href="#ads">Ads</a><a href="#automations">Automation</a><a href="#trades">Your trade</a><a href="#plans">Pricing</a><a href="#contact">Contact</a>
+      <a href="#seo">SEO</a><a href="#ads">Ads</a><a href="#automations">Automation</a><a href="#plans">Pricing</a><a href="#trades">Your trade</a><a href="#contact">Contact</a>
     </nav>
     <a class="btn btn--go nav__cta" href="#contact" data-plan="check">Free growth check</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="links" aria-label="Menu"><span></span><span></span></button>
@@ -273,6 +273,8 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
+{plans_section()}
+
 <section class="sec" id="trades">
   <a class="anchor" id="industries"></a>
   <div class="wrap ind">
@@ -301,7 +303,6 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-{plans_section()}
 
 <section class="sec cta is-auto" id="contact">
   <div class="wrap cta__in">
@@ -362,7 +363,7 @@ HTML = f'''<!doctype html>
     <div>&copy; <span id="yr">2026</span> Clipcode (formerly GreenAI Digital) &middot; Jaden Green, Gilbert, Arizona</div>
   </div>
 </footer>
-<script src="gai-ads.js?v=6"></script>
+<script src="gai-ads.js?v=7"></script>
 </body>
 </html>
 '''

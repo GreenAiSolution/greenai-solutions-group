@@ -8,7 +8,7 @@
 
   /* nav + progress */
   var nav=$('#nav'), prog=$('#progress'), burger=$('#burger'), links=$('#links');
-  var secIds=['seo','ads','automations','trades','plans','contact'];
+  var secIds=['seo','ads','automations','plans','trades','contact'];
   var tick=false;
   function onScroll(){
     tick=false;
