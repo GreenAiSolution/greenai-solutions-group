@@ -6,17 +6,17 @@ $500-$1,500/mo on small budgets, done-for-you text-back automation ~$250-$400/mo
 PRICING = {  # key: (tab, sub, accent class, note, [(name, price, per, bullets, cta, plan, hot)])
  'seo': ('SEO','Get found','is-seo','No setup fee. Month to month. SEO builds over 4+ months, so we show you the progress every month.',[
    ('Local Starter','1,097','per month, no setup fee',['1 city','Google profile fixed, posted to weekly','4 service + city pages a month','Monthly ranking and calls report'],'Start local','seo-starter',''),
-   ('Market Leader','1,797','per month, no setup fee',['Up to 5 cities','8 service + city pages a month','Directory listings cleaned up everywhere','Competitor tracking and a monthly call'],'Lead my market','seo-leader','Most chosen'),
+   ('Market Leader','1,797','per month, no setup fee',['Up to 5 cities','8 service + city pages a month','Directory listings cleaned up everywhere','Competitor tracking and a monthly call'],'Lead my market','seo-leader','Recommended'),
    ('Valley Dominator','2,997','per month, no setup fee',['The whole Phoenix metro, up to 15 cities','16 pages a month, every service covered','Up to 2 locations on Google','AI search visibility and a call every 2 weeks'],'Own the Valley','seo-valley',''),
  ]),
  'ads': ('Ads','Get clicked now','is-ads','Plus a one-time $797 launch: tracking, campaign build and first ads. Your ad spend is paid straight to Google and Meta. We recommend at least $1,500 a month in spend.',[
    ('Launch','897','per month + ad spend',['One platform: Google or Facebook/Instagram','Up to $3,000 a month in ad spend managed','2 new ads a month','Monthly results report'],'Launch my ads','ads-launch',''),
-   ('Growth','1,497','per month + ad spend',['Google and Facebook/Instagram','Up to $10,000 a month in ad spend managed','4 premium AI ads a month','Weekly tuning and call tracking'],'Grow with ads','ads-growth','Most chosen'),
+   ('Growth','1,497','per month + ad spend',['Google and Facebook/Instagram','Up to $10,000 a month in ad spend managed','4 premium AI ads a month','Weekly tuning and call tracking'],'Grow with ads','ads-growth','Recommended'),
    ('Scale','2,497','per month + ad spend',['Google, Local Services, Meta and YouTube','Up to $25,000 a month in ad spend managed','8 premium AI ads a month','Landing page tests and a call every 2 weeks'],'Scale up','ads-scale',''),
  ]),
  'auto': ('Automation',"Don't lose them",'is-auto','Builds are a fixed price, agreed in writing before work starts. Texting and phone costs are included.',[
    ('Single','347','per month + $697 one-time build',['1 automation, built and run','Like every missed call texted back','Watched and fixed by us'],'Start with one','auto-single',''),
-   ('Front Office','697','per month + $1,497 one-time build',['3 automations working together','Leads texted back, quotes followed up, reviews asked','Monthly check-in and tuning'],'Build my front office','auto-front','Most chosen'),
+   ('Front Office','697','per month + $1,497 one-time build',['3 automations working together','Leads texted back, quotes followed up, reviews asked','Monthly check-in and tuning'],'Build my front office','auto-front','Recommended'),
    ('Autopilot','1,197','per month + $2,997 one-time build',['Up to 8 automations','Booking, reminders, rebooks and win-backs','New automations added as you grow'],'Go on autopilot','auto-autopilot',''),
  ]),
 }
