@@ -3,7 +3,9 @@
 2026-11-01: three services for local service businesses - SEO (get found), ad management (get clicked now),
 automation (don't lose them). Run from anywhere: python3 tools/build_studio_home.py
 Assets: gai-ads.css, gai-ads.js, reel/{posters,previews}/. Full films stay in art/films and film/."""
-import os, json
+import os, json, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from clipcode_pricing import plans_section
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 FILMS = [  # slug, title, line, full film
@@ -107,7 +109,7 @@ JSONLD = json.dumps({
  "areaServed":"Phoenix metro, Arizona",
  "sameAs":["https://www.instagram.com/clipcode.ai/","https://www.instagram.com/poolprime.ai/"],
  "description":"Clipcode (formerly GreenAI Digital) helps local service businesses in the Phoenix area get found, get clicked and never lose a lead: local SEO and Google Business Profile work, Google and Facebook/Instagram ad management, and automations that text back every lead, follow up missed calls and ask for reviews.",
- "makesOffer":[{"@type":"Offer","name":"Local SEO: Google Business Profile, map rankings, service and city pages, reviews"},{"@type":"Offer","name":"Ad management: Google ads and Facebook/Instagram ads"},{"@type":"Offer","name":"Automation: instant lead text-back, missed-call follow-up, quote follow-up, review requests"}]
+ "makesOffer":[{"@type":"Offer","name":"Local SEO: Google Business Profile, map rankings, service and city pages, reviews","price":"1097","priceCurrency":"USD"},{"@type":"Offer","name":"Ad management: Google ads and Facebook/Instagram ads","price":"897","priceCurrency":"USD"},{"@type":"Offer","name":"Automation: instant lead text-back, missed-call follow-up, quote follow-up, review requests","price":"347","priceCurrency":"USD"}]
 }, indent=2)
 
 HTML = f'''<!doctype html>
@@ -130,7 +132,7 @@ HTML = f'''<!doctype html>
 <link rel="icon" type="image/png" href="assets/brand/clipcode-favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/brand/clipcode-apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="gai-ads.css?v=5">
+<link rel="stylesheet" href="gai-ads.css?v=6">
 <script type="application/ld+json">{JSONLD}</script>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -203,9 +205,9 @@ HTML = f'''<!doctype html>
       <p class="lede rv" style="--d:.1s">Each one fixes a different leak. Together, ads pay the bills while SEO warms up, and automation makes sure no click is wasted.</p>
     </div>
     <ol class="trio">
-      <li class="trio__i is-seo rv"><a href="#seo"><span class="trio__n">01 &middot; SEO</span><h3>Get found</h3><p>Google profile, map top 3, a page for every service and city, and more reviews.</p><span class="trio__t">Slow to build, then it compounds</span></a></li>
-      <li class="trio__i is-ads rv" style="--d:.08s"><a href="#ads"><span class="trio__n">02 &middot; Ads</span><h3>Get clicked now</h3><p>Google and Facebook/Instagram ads for businesses that cannot wait for SEO.</p><span class="trio__t">Calls this week</span></a></li>
-      <li class="trio__i is-auto rv" style="--d:.16s"><a href="#automations"><span class="trio__n">03 &middot; Automation</span><h3>Don't lose them</h3><p>Instant text back, missed-call follow-up and review asks, day or night.</p><span class="trio__t">Answered in under a minute</span></a></li>
+      <li class="trio__i is-seo rv"><a href="#seo"><span class="trio__n">01 &middot; SEO</span><h3>Get found</h3><p>Google profile, map top 3, a page for every service and city, and more reviews.</p><span class="trio__t">Slow to build, then it compounds</span><span class="trio__p">from $1,097/mo</span></a></li>
+      <li class="trio__i is-ads rv" style="--d:.08s"><a href="#ads"><span class="trio__n">02 &middot; Ads</span><h3>Get clicked now</h3><p>Google and Facebook/Instagram ads for businesses that cannot wait for SEO.</p><span class="trio__t">Calls this week</span><span class="trio__p">from $897/mo + ad spend</span></a></li>
+      <li class="trio__i is-auto rv" style="--d:.16s"><a href="#automations"><span class="trio__n">03 &middot; Automation</span><h3>Don't lose them</h3><p>Instant text back, missed-call follow-up and review asks, day or night.</p><span class="trio__t">Answered in under a minute</span><span class="trio__p">from $347/mo</span></a></li>
     </ol>
   </div>
 </section>
@@ -299,25 +301,7 @@ HTML = f'''<!doctype html>
   </div>
 </section>
 
-<section class="sec" id="plans">
-  <a class="anchor" id="pricing"></a>
-  <div class="wrap">
-    <div class="sechead sechead--row">
-      <div><span class="kicker rv">Pricing</span><h2 class="rv" style="--d:.05s">Start free. <span class="sp">Add what you need.</span></h2></div>
-      <p class="lede rv" style="--d:.1s">Everything starts with a free growth check. Take one service or all three.</p>
-    </div>
-    <div class="partner partner--check rv"><div><b>Free growth check &middot; $0</b><p>We look at your Google profile, where you rank on the map, any ads you run, and how fast you answer a new lead. You get a plain list of what to fix first.</p></div><a class="btn btn--go" href="#contact" data-plan="check">Get my free check <span class="arrow">&rarr;</span></a></div>
-    <div class="plans">
-      <div class="plan is-seo"><span class="lane__k">01 &middot; Get found</span><h3>SEO</h3><div class="price price--word">Monthly</div><div class="per">quoted after your free check</div>
-        <ul><li>Google Business Profile fixed and kept fresh</li><li>Map pack work for your towns</li><li>Service + city pages on your site</li><li>Monthly report on calls and rankings</li></ul><a class="btn btn--ghost" href="#contact" data-plan="seo">Ask about SEO</a></div>
-      <div class="plan is-ads"><span class="lane__k">02 &middot; Get clicked</span><h3>Ad management</h3><div class="price price--word">Flat fee</div><div class="per">+ your ad spend, paid straight to Google and Meta</div>
-        <ul><li>Google and Facebook/Instagram campaigns</li><li>Ad creative made for you</li><li>Weekly tuning, waste cut fast</li><li>You own the accounts</li></ul><a class="btn btn--ghost" href="#contact" data-plan="ads">Ask about ads</a></div>
-      <div class="plan hot is-auto"><span class="tag">Makes the other two pay off</span><span class="lane__k">03 &middot; Don't lose them</span><h3>Automation</h3><div class="price"><sup>$</sup>197<span>/mo</span></div><div class="per">from, + $497 one-time build</div>
-        <ul class="tiers"><li><b>Single</b> 1 automation <em>$197/mo + $497 build</em></li><li><b>Front Office</b> 3 working together <em>$497/mo + $1,497 build</em></li><li><b>Autopilot</b> up to 8 <em>$997/mo + $2,997 build</em></li></ul><a class="btn btn--go" href="#contact" data-plan="auto-front">Start with automation <span class="arrow">&rarr;</span></a></div>
-    </div>
-    <p class="fine rv">Automation builds are a fixed price, agreed in writing before work starts. Monthly plans cancel anytime. Ad spend is separate and goes straight to the platform. We do the work, but we never promise a number of leads or a ranking.</p>
-  </div>
-</section>
+{plans_section()}
 
 <section class="sec cta is-auto" id="contact">
   <div class="wrap cta__in">
@@ -334,7 +318,7 @@ HTML = f'''<!doctype html>
       <div class="row"><label>Email *<input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></label><label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="(480) 555-0100"></label></div>
       <label>Website or Instagram<input name="website" placeholder="yourbusiness.com or @yourbusiness"></label>
       <label>What would you like?<select name="interest" id="interest">
-        <option value="check">A free growth check</option><option value="seo">SEO: get found on Google</option><option value="ads">Ad management: Google and Facebook/Instagram</option><option value="auto-single">Automation: Single</option><option value="auto-front">Automation: Front Office</option><option value="auto-autopilot">Automation: Autopilot</option><option value="all">All three</option>
+        <option value="check">A free growth check</option><optgroup label="SEO"><option value="seo-starter">SEO: Local Starter, $1,097/mo</option><option value="seo-leader">SEO: Market Leader, $1,797/mo</option><option value="seo-valley">SEO: Valley Dominator, $2,997/mo</option></optgroup><optgroup label="Ads"><option value="ads-launch">Ads: Launch, $897/mo</option><option value="ads-growth">Ads: Growth, $1,497/mo</option><option value="ads-scale">Ads: Scale, $2,497/mo</option></optgroup><optgroup label="Automation"><option value="auto-single">Automation: Single, $347/mo</option><option value="auto-front">Automation: Front Office, $697/mo</option><option value="auto-autopilot">Automation: Autopilot, $1,197/mo</option></optgroup><option value="all">Full System, all three, $3,297/mo</option>
         <option value="pool">I run a pool company (PoolPrime)</option><option value="other">Something else</option></select></label>
       <label>Anything we should know?<textarea name="message" id="message" placeholder="What you do, the towns you serve, and where your leads come from today."></textarea></label>
       <button class="btn btn--go btn--lg" type="submit" id="send">Send my request <span class="arrow">&rarr;</span></button>
@@ -350,9 +334,12 @@ HTML = f'''<!doctype html>
     <div class="sechead"><span class="kicker rv">Straight answers</span><h2 class="rv" style="--d:.05s">Before you <span class="sp">ask.</span></h2></div>
     <details><summary>Which service should I start with?</summary><p>If you need calls this month, start with ads plus automation. If you can wait, SEO is the cheapest long-term source of calls. The free growth check tells you which one fits your business.</p></details>
     <details><summary>How long does SEO take?</summary><p>Weeks to months. Fixing your Google profile shows up fastest. Map rankings and city pages build over two to four months, and then they keep bringing calls without more ad spend. Nobody can honestly guarantee a ranking.</p></details>
-    <details><summary>How does ad management pricing work?</summary><p>You pay Google and Meta directly for the ads, on your own card. We charge a flat monthly management fee for building, running and improving the campaigns. We quote it up front after your free check.</p></details>
+    <details><summary>How much does SEO cost?</summary><p>Local Starter is $1,097 a month for one city. Market Leader is $1,797 for up to five cities, and Valley Dominator is $2,997 for the whole Phoenix metro. No setup fee, month to month.</p></details>
+    <details><summary>How does ad management pricing work?</summary><p>You pay Google and Meta directly for the ads, on your own card. We charge a flat monthly fee: $897 for one platform, $1,497 for Google plus Facebook/Instagram, or $2,497 to scale, plus a one-time $797 launch. Premium AI ad creative is included.</p></details>
     <details><summary>Why do I need automation if I already run ads?</summary><p>Because most leads go to whoever answers first. A lead that comes in at 9 PM and waits until morning has usually booked someone else. Automation texts them back in under a minute, follows up missed calls, and asks happy customers for reviews.</p></details>
-    <details><summary>How much does automation cost?</summary><p>One automation is $497 to build and $197 a month. Front Office, three working together, is $1,497 and $497 a month. Autopilot, up to eight, is $2,997 and $997 a month. The build price is fixed in writing before any work starts.</p></details>
+    <details><summary>How much does automation cost?</summary><p>One automation is $697 to build and $347 a month. Front Office, three working together, is $1,497 and $697 a month. Autopilot, up to eight, is $2,997 and $1,197 a month. The build price is fixed in writing before any work starts.</p></details>
+    <details><summary>Is there a discount for all three?</summary><p>Yes. The Full System (SEO Market Leader, Ads Growth and Automation Front Office) is $3,297 a month instead of $3,991, with a $997 setup instead of $2,294.</p></details>
+    <details><summary>Why do you cost more than some agencies?</summary><p>Most local agencies charge around $1,000 a month for SEO and $500 to $1,500 to run ads. We sit just above that because premium AI ad creative is included, you talk to the people doing the work, you own every account, and there is no long contract.</p></details>
     <details><summary>Do I have to switch software?</summary><p>No. We work with your Google profile, your website, your phone and the apps you already use. If something cannot connect, we tell you before you pay.</p></details>
     <details><summary>Will the texts sound like a robot?</summary><p>Messages are written in your voice and you approve them before anything goes live. Anything unusual gets passed to you instead of guessed at.</p></details>
     <details><summary>Do I own my accounts?</summary><p>Yes. Your Google Business Profile, ad accounts and website stay in your name. If you ever leave, everything stays with you.</p></details>
@@ -375,7 +362,7 @@ HTML = f'''<!doctype html>
     <div>&copy; <span id="yr">2026</span> Clipcode (formerly GreenAI Digital) &middot; Jaden Green, Gilbert, Arizona</div>
   </div>
 </footer>
-<script src="gai-ads.js?v=5"></script>
+<script src="gai-ads.js?v=6"></script>
 </body>
 </html>
 '''

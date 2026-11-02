@@ -104,7 +104,7 @@
   var sw=$('.switch'), ptabs=$$('.switch [role=tab]');
   var plansSec=$('#plans');
   function pick(k){ ptabs.forEach(function(x){var on=x.dataset.pp===k; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; var pn=document.getElementById('pp-'+x.dataset.pp); if(pn) pn.hidden=!on;}); if(sw) sw.dataset.at=k; if(plansSec) plansSec.dataset.at=k; }
-  pick('auto');
+  pick(ptabs.length?ptabs[0].dataset.pp:'');
   ptabs.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.pp);});});
 
   /* tablists: left/right arrow keys move between tabs and select them */
